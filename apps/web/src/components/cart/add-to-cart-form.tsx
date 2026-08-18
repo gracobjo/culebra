@@ -50,7 +50,14 @@ export function AddToCartForm({ product }: { product: ProductRecord }) {
         />
       </div>
       {state.error ? <p className="text-sm text-red-700">{state.error}</p> : null}
-      {state.success ? <p className="text-sm text-emerald-700">{state.success}</p> : null}
+      {state.success ? (
+        <p className="text-sm text-emerald-700">
+          {state.success}{" "}
+          <a href="/carrito" className="font-medium underline">
+            Ver carrito
+          </a>
+        </p>
+      ) : null}
       <button
         type="submit"
         disabled={pending || soldOut}

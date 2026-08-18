@@ -115,6 +115,13 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
               </Link>
             ))}
             <Link
+              href="/como-funciona"
+              className="rounded-xl px-3 py-3 hover:bg-stone-50"
+              onClick={() => setOpen(false)}
+            >
+              Como funciona
+            </Link>
+            <Link
               href="/quiero-vender"
               className="rounded-xl px-3 py-3 hover:bg-stone-50"
               onClick={() => setOpen(false)}

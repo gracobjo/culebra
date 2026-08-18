@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { getCategoryBySlug, listPublicProducts } from "@culebra/auth";
 import { ProductCard } from "@/components/catalog/product-card";
 import { PageShell } from "@/components/layout/page-shell";
+import { Breadcrumbs } from "@/components/ux/breadcrumbs";
+import { EmptyState } from "@/components/ux/empty-state";
+import { siteConfig } from "@/lib/site";
 
 type CategoryPageProps = {
   params: Promise<{ slug: string }>;
@@ -15,7 +18,7 @@ export async function generateMetadata({ params }: CategoryPageProps) {
     return { title: "Categoria no encontrada" };
   }
   return {
-    title: `${category.name} | Sierra de la Culebra Marketplace`,
+    title: `${category.name} | ${siteConfig.shortName}`,
     description: category.description ?? `Productos de ${category.name}`,
   };
 }
@@ -27,17 +30,21 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  const { items } = await listPublicProducts({
+  const { items, total } = await listPublicProducts({
     categorySlug: slug,
     limit: 24,
   });
 
   return (
     <PageShell>
-      <Link href="/productos" className="text-sm text-emerald-800">
-        ← Volver al catalogo
-      </Link>
-      <h1 className="mt-6 text-3xl font-semibold sm:text-4xl">{category.name}</h1>
+      <Breadcrumbs
+        items={[
+          { label: "Inicio", href: "/" },
+          { label: "Categorias", href: "/categorias" },
+          { label: category.name },
+        ]}
+      />
+      <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">{category.name}</h1>
       {category.description ? (
         <p className="mt-4 max-w-2xl text-stone-600">{category.description}</p>
       ) : null}
@@ -48,7 +55,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <Link
               key={child.id}
               href={`/categorias/${child.slug}`}
-              className="rounded-full border border-stone-300 px-4 py-2 text-sm"
+              className="rounded-full border border-stone-300 px-4 py-2 text-sm hover:border-emerald-400"
             >
               {child.name}
             </Link>
@@ -56,12 +63,21 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       ) : null}
 
+      <p className="mt-6 text-sm text-stone-500">
+        {total} producto{total === 1 ? "" : "s"}
+      </p>
+
       {items.length === 0 ? (
-        <div className="mt-10 rounded-3xl border border-dashed border-stone-300 p-10 text-center text-stone-600">
-          Todavia no hay productos publicados en esta categoria.
+        <div className="mt-8">
+          <EmptyState
+            title="Categoria sin productos"
+            description="Vuelve mas tarde o explora otras categorias."
+            actionHref="/productos"
+            actionLabel="Ver todo el catalogo"
+          />
         </div>
       ) : (
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

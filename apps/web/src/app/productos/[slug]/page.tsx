@@ -4,6 +4,10 @@ import { getPublicProductBySlug } from "@culebra/auth";
 import { formatPrice } from "@/lib/format";
 import { AddToCartForm } from "@/components/cart/add-to-cart-form";
 import { PageShell } from "@/components/layout/page-shell";
+import { Breadcrumbs } from "@/components/ux/breadcrumbs";
+import { TrustStrip } from "@/components/ux/trust-strip";
+import { JsonLd } from "@/components/ux/json-ld";
+import { siteConfig } from "@/lib/site";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -15,9 +19,18 @@ export async function generateMetadata({ params }: ProductPageProps) {
   if (!product) {
     return { title: "Producto no encontrado" };
   }
+  const description =
+    product.shortDescription ??
+    `Compra ${product.name} de ${product.vendor?.tradeName ?? "productor local"}.`;
   return {
-    title: `${product.name} | Sierra de la Culebra Marketplace`,
-    description: product.shortDescription ?? undefined,
+    title: `${product.name} | ${siteConfig.shortName}`,
+    description,
+    openGraph: {
+      title: product.name,
+      description,
+      type: "website",
+      images: product.images[0]?.url ? [{ url: product.images[0].url }] : undefined,
+    },
   };
 }
 
@@ -30,15 +43,42 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   }
 
   const image = product.images[0];
+  const breadcrumbItems = [
+    { label: "Inicio", href: "/" },
+    { label: "Productos", href: "/productos" },
+    ...(product.category
+      ? [{ label: product.category.name, href: `/categorias/${product.category.slug}` }]
+      : []),
+    { label: product.name },
+  ];
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.shortDescription ?? product.longDescription,
+    image: product.images.map((img) => img.url),
+    offers: {
+      "@type": "Offer",
+      price: product.basePrice,
+      priceCurrency: "EUR",
+      availability:
+        product.stock > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+    },
+    brand: product.vendor
+      ? { "@type": "Brand", name: product.vendor.tradeName }
+      : undefined,
+  };
 
   return (
     <PageShell width="xl">
-      <Link href="/productos" className="text-sm text-emerald-800">
-        ← Volver al catalogo
-      </Link>
+      <JsonLd data={productJsonLd} />
+      <Breadcrumbs items={breadcrumbItems} />
 
-      <article className="mt-8 grid gap-10 md:grid-cols-2">
-        <div className="flex aspect-square min-h-56 items-center justify-center overflow-hidden rounded-3xl bg-stone-100 text-stone-500 sm:min-h-72 sm:aspect-auto">
+      <article className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="flex aspect-square min-h-56 items-center justify-center overflow-hidden rounded-3xl bg-stone-100 text-stone-500 lg:sticky lg:top-24 lg:self-start">
           {image ? (
             <img
               src={image.url}
@@ -65,22 +105,27 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               Productor:{" "}
               <Link
                 href={`/productores/${product.vendor.slug}`}
-                className="text-emerald-800 underline"
+                className="font-medium text-emerald-800 underline"
               >
                 {product.vendor.tradeName}
               </Link>
+              {product.vendor.city ? ` · ${product.vendor.city}` : ""}
             </p>
           ) : null}
-          <p className="mt-6 text-3xl font-semibold text-emerald-900">
-            {formatPrice(product.basePrice)}
-          </p>
-          {product.previousPrice ? (
-            <p className="text-sm text-stone-500 line-through">
-              {formatPrice(product.previousPrice)}
+
+          <div className="mt-6 flex flex-wrap items-baseline gap-3">
+            <p className="text-3xl font-semibold text-emerald-900">
+              {formatPrice(product.basePrice)}
             </p>
-          ) : null}
+            {product.previousPrice ? (
+              <p className="text-lg text-stone-500 line-through">
+                {formatPrice(product.previousPrice)}
+              </p>
+            ) : null}
+          </div>
           <p className="mt-2 text-sm text-stone-600">
-            {product.stock > 0 ? `${product.stock} uds. disponibles` : "Agotado"}
+            {product.stock > 0 ? `${product.stock} uds. disponibles` : "Agotado temporalmente"}
+            {product.unit ? ` · ${product.unit}` : ""}
           </p>
 
           {product.shortDescription ? (
@@ -89,7 +134,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
           {product.variants.length > 0 ? (
             <section className="mt-8">
-              <h2 className="font-medium">Formatos</h2>
+              <h2 className="font-medium">Formatos disponibles</h2>
               <ul className="mt-3 space-y-2">
                 {product.variants
                   .filter((variant) => variant.isActive)
@@ -109,63 +154,63 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </section>
           ) : null}
 
-          <AddToCartForm product={product} />
+          <div className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm">
+            <AddToCartForm product={product} />
+            <p className="mt-4 text-xs text-stone-500">
+              Pago seguro con Stripe. Envio gestionado por el productor segun sus
+              condiciones indicadas abajo.
+            </p>
+          </div>
         </div>
       </article>
 
+      <section className="mt-12">
+        <TrustStrip />
+      </section>
+
       <div className="mt-12 grid gap-8 md:grid-cols-2">
         {product.longDescription ? (
-          <section>
+          <section className="rounded-3xl border border-stone-200 bg-white p-5">
             <h2 className="text-lg font-medium">Descripcion</h2>
-            <p className="mt-3 whitespace-pre-line text-stone-700">
-              {product.longDescription}
-            </p>
-          </section>
-        ) : null}
-        {product.ingredients ? (
-          <section>
-            <h2 className="text-lg font-medium">Ingredientes</h2>
-            <p className="mt-3 whitespace-pre-line text-stone-700">
-              {product.ingredients}
-            </p>
-          </section>
-        ) : null}
-        {product.allergens ? (
-          <section>
-            <h2 className="text-lg font-medium">Alergenos</h2>
-            <p className="mt-3 whitespace-pre-line text-stone-700">
-              {product.allergens}
-            </p>
-          </section>
-        ) : null}
-        {product.conservation ? (
-          <section>
-            <h2 className="text-lg font-medium">Conservacion</h2>
-            <p className="mt-3 whitespace-pre-line text-stone-700">
-              {product.conservation}
-            </p>
+            <p className="mt-3 whitespace-pre-line text-stone-700">{product.longDescription}</p>
           </section>
         ) : null}
         {product.origin ? (
-          <section>
+          <section className="rounded-3xl border border-stone-200 bg-white p-5">
             <h2 className="text-lg font-medium">Origen</h2>
             <p className="mt-3 text-stone-700">{product.origin}</p>
           </section>
         ) : null}
-        {product.producerInfo ? (
-          <section>
-            <h2 className="text-lg font-medium">Informacion del productor</h2>
-            <p className="mt-3 whitespace-pre-line text-stone-700">
-              {product.producerInfo}
-            </p>
+        {product.ingredients ? (
+          <section className="rounded-3xl border border-stone-200 bg-white p-5">
+            <h2 className="text-lg font-medium">Ingredientes</h2>
+            <p className="mt-3 whitespace-pre-line text-stone-700">{product.ingredients}</p>
+          </section>
+        ) : null}
+        {product.allergens ? (
+          <section className="rounded-3xl border border-amber-200 bg-amber-50 p-5">
+            <h2 className="text-lg font-medium text-amber-950">Alergenos</h2>
+            <p className="mt-3 whitespace-pre-line text-amber-950/90">{product.allergens}</p>
+          </section>
+        ) : null}
+        {product.conservation ? (
+          <section className="rounded-3xl border border-stone-200 bg-white p-5">
+            <h2 className="text-lg font-medium">Conservacion</h2>
+            <p className="mt-3 whitespace-pre-line text-stone-700">{product.conservation}</p>
           </section>
         ) : null}
         {product.shippingConditions ? (
-          <section>
+          <section className="rounded-3xl border border-stone-200 bg-white p-5">
             <h2 className="text-lg font-medium">Condiciones de envio</h2>
             <p className="mt-3 whitespace-pre-line text-stone-700">
               {product.shippingConditions}
             </p>
+          </section>
+        ) : null}
+        {product.producerInfo ? (
+          <section className="rounded-3xl border border-stone-200 bg-white p-5 md:col-span-2">
+            <h2 className="text-lg font-medium">Sobre el productor</h2>
+            <p className="mt-3 whitespace-pre-line text-stone-700">{product.producerInfo}</p>
           </section>
         ) : null}
       </div>

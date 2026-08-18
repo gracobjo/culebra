@@ -5,6 +5,7 @@ import { loadCart } from "../carrito/actions";
 import { CheckoutForm } from "@/components/cart/checkout-form";
 import { formatPrice } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
+import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 
 export const metadata = {
   title: "Checkout | Sierra de la Culebra Marketplace",
@@ -20,9 +21,16 @@ export default async function CheckoutPage() {
 
   return (
     <PageShell width="xl">
-      <h1 className="text-3xl font-semibold sm:text-4xl">Checkout</h1>
+      <Breadcrumbs
+        items={[
+          { label: "Inicio", href: "/" },
+          { label: "Carrito", href: "/carrito" },
+          { label: "Checkout" },
+        ]}
+      />
+      <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">Checkout</h1>
       <p className="mt-3 text-stone-600">
-        Puedes comprar como invitado. Recogeremos datos de envio y facturacion.
+        Puedes comprar como invitado. Pago seguro y seguimiento del pedido por email.
       </p>
 
       <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-10">

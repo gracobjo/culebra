@@ -2,7 +2,7 @@
 
 ## Estado
 
-Monolito modular. FASE 11: web Next.js, API Fastify, Prisma, pedidos, Stripe Connect, contratos, comisiones y panel admin.
+Monolito modular. FASE 12: UX publica, confianza, navegacion y SEO en la web.
 
 ## Enfoque
 

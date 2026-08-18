@@ -2,6 +2,8 @@ import Link from "next/link";
 import { loadCart, removeCartItemAction, updateCartItemAction } from "./actions";
 import { formatPrice } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
+import { Breadcrumbs } from "@/components/ux/breadcrumbs";
+import { EmptyState } from "@/components/ux/empty-state";
 
 export const metadata = {
   title: "Carrito | Sierra de la Culebra Marketplace",
@@ -12,14 +14,17 @@ export default async function CartPage() {
 
   return (
     <PageShell width="lg">
-      <h1 className="text-3xl font-semibold sm:text-4xl">Carrito</h1>
+      <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Carrito" }]} />
+      <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">Carrito</h1>
 
       {cart.items.length === 0 ? (
-        <div className="mt-10 rounded-3xl border border-dashed border-stone-300 p-6 text-center text-stone-600 sm:p-10">
-          Tu carrito esta vacio.{" "}
-          <Link href="/productos" className="text-emerald-800 underline">
-            Ver productos
-          </Link>
+        <div className="mt-10">
+          <EmptyState
+            title="Tu carrito esta vacio"
+            description="Explora productos locales de la sierra y anade lo que te interese."
+            actionHref="/productos"
+            actionLabel="Ver productos"
+          />
         </div>
       ) : (
         <div className="mt-8 space-y-4">

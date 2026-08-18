@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { listCategories } from "@culebra/auth";
+import { CategoryCard } from "@/components/catalog/category-card";
 import { PageShell } from "@/components/layout/page-shell";
+import { Breadcrumbs } from "@/components/ux/breadcrumbs";
+import { siteConfig } from "@/lib/site";
 
 export const metadata = {
-  title: "Categorias | Sierra de la Culebra Marketplace",
+  title: `Categorias | ${siteConfig.shortName}`,
 };
 
 export default async function CategoriesPage() {
@@ -11,21 +14,25 @@ export default async function CategoriesPage() {
 
   return (
     <PageShell>
-      <h1 className="text-3xl font-semibold sm:text-4xl">Categorias</h1>
+      <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Categorias" }]} />
+      <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">Categorias</h1>
+      <p className="mt-3 max-w-2xl text-stone-600">
+        Navega por embutidos, quesos, vinos, miel y mas productos del territorio.
+      </p>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((category) => (
-          <article
-            key={category.id}
-            className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
-          >
-            <h2 className="text-xl font-semibold">
-              <Link href={`/categorias/${category.slug}`}>{category.name}</Link>
-            </h2>
+          <article key={category.id}>
+            <CategoryCard category={category} />
             {category.children.length > 0 ? (
-              <ul className="mt-4 space-y-1 text-sm text-stone-600">
+              <ul className="mt-3 flex flex-wrap gap-2 text-sm">
                 {category.children.map((child) => (
                   <li key={child.id}>
-                    <Link href={`/categorias/${child.slug}`}>{child.name}</Link>
+                    <Link
+                      href={`/categorias/${child.slug}`}
+                      className="rounded-full border border-stone-200 px-3 py-1 text-stone-600 hover:border-emerald-300"
+                    >
+                      {child.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

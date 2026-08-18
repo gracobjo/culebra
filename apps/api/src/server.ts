@@ -46,7 +46,7 @@ async function buildServer() {
     return {
       status: database === "connected" ? "ok" : "degraded",
       service: "culebra-api",
-      phase: 11,
+      phase: 12,
       database,
     };
   });

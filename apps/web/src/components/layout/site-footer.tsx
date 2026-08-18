@@ -1,28 +1,52 @@
 import Link from "next/link";
+import { siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-stone-200 bg-white">
-      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:px-6 sm:grid-cols-3">
-        <div>
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-4">
+        <div className="lg:col-span-2">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-800">
-            Sierra de la Culebra
+            {siteConfig.shortName}
           </p>
-          <p className="mt-2 text-sm text-stone-600">
-            Marketplace de productos locales. Compra directa a productores.
+          <p className="mt-2 max-w-md text-sm text-stone-600">{siteConfig.description}</p>
+          <p className="mt-4 text-xs text-stone-500">
+            Compra directa a productores · Pago seguro · Seguimiento de pedido
           </p>
         </div>
-        <nav className="grid gap-2 text-sm">
-          <Link href="/productos">Productos</Link>
-          <Link href="/categorias">Categorias</Link>
-          <Link href="/productores">Productores</Link>
+        <nav className="grid gap-2 text-sm" aria-label="Catalogo">
+          <p className="font-medium text-stone-800">Explorar</p>
+          <Link href="/productos" className="text-stone-600 hover:text-emerald-800">
+            Productos
+          </Link>
+          <Link href="/categorias" className="text-stone-600 hover:text-emerald-800">
+            Categorias
+          </Link>
+          <Link href="/productores" className="text-stone-600 hover:text-emerald-800">
+            Productores
+          </Link>
+          <Link href="/como-funciona" className="text-stone-600 hover:text-emerald-800">
+            Como funciona
+          </Link>
         </nav>
-        <nav className="grid gap-2 text-sm">
-          <Link href="/pedido/consultar">Consultar pedido</Link>
-          <Link href="/quiero-vender">Quiero vender</Link>
-          <Link href="/login">Entrar</Link>
-          <Link href="/carrito">Carrito</Link>
+        <nav className="grid gap-2 text-sm" aria-label="Cuenta y ayuda">
+          <p className="font-medium text-stone-800">Ayuda</p>
+          <Link href="/pedido/consultar" className="text-stone-600 hover:text-emerald-800">
+            Consultar pedido
+          </Link>
+          <Link href="/quiero-vender" className="text-stone-600 hover:text-emerald-800">
+            Quiero vender
+          </Link>
+          <Link href="/login" className="text-stone-600 hover:text-emerald-800">
+            Entrar
+          </Link>
+          <Link href="/carrito" className="text-stone-600 hover:text-emerald-800">
+            Carrito
+          </Link>
         </nav>
+      </div>
+      <div className="border-t border-stone-100 px-4 py-4 text-center text-xs text-stone-500 sm:px-6">
+        {siteConfig.region} · Textos legales en revision profesional
       </div>
     </footer>
   );

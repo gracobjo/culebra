@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 11**: panel de administracion.
+Proyecto en **FASE 12**: UX/UI del marketplace publico.
 
 ## Stack
 
@@ -97,4 +97,5 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 9: Contratos
 - [x] FASE 10: Comisiones y liquidaciones
 - [x] FASE 11: Panel de administracion
-- [ ] FASE 12: UX/UI del marketplace
+- [x] FASE 12: UX/UI del marketplace
+- [ ] FASE 13: Seguridad
