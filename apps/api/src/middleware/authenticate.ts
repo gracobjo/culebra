@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import {
-  getUserById,
+  getActiveUserById,
   validateSessionToken,
   verifyAccessToken,
   type AuthUser,
@@ -33,7 +33,7 @@ export async function authenticate(
     const token = authHeader.slice(7);
     const payload = await verifyAccessToken(token);
     if (payload) {
-      const user = await getUserById(payload.sub);
+      const user = await getActiveUserById(payload.sub);
       if (user) {
         request.authUser = user;
         return;
@@ -62,7 +62,7 @@ export async function optionalAuthenticate(
     const token = authHeader.slice(7);
     const payload = await verifyAccessToken(token);
     if (payload) {
-      const user = await getUserById(payload.sub);
+      const user = await getActiveUserById(payload.sub);
       if (user) {
         request.authUser = user;
       }

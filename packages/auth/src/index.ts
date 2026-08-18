@@ -1,14 +1,20 @@
 export {
+  getActiveUserById,
   getUserById,
   loginUser,
   logoutUser,
   registerUser,
   requestPasswordReset,
+  revokeAllUserSessions,
   revokeSession,
   seedAdminUser,
   validateCredentials,
   validateSessionToken,
 } from "./auth.service.js";
+export {
+  listAuditLogsForAdmin,
+} from "./audit.service.js";
+export type { AdminAuditLogRecord } from "./audit.service.js";
 export { signAccessToken, verifyAccessToken } from "./jwt.js";
 export { hashPassword, verifyPassword } from "./password.js";
 export { hasAllRoles, hasAnyRole, hasRole } from "./rbac.js";

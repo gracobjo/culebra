@@ -87,17 +87,21 @@ export async function stripeWebhookRoutes(app: FastifyInstance) {
       },
     );
 
-    scope.post("/webhooks/stripe", async (request, reply) => {
-      try {
-        const signature = request.headers["stripe-signature"];
-        const result = await handleStripeWebhook(
-          String(request.body ?? ""),
-          Array.isArray(signature) ? signature[0] : (signature ?? null),
-        );
-        reply.send(result);
-      } catch (error) {
-        handlePaymentError(error, reply);
-      }
-    });
+    scope.post(
+      "/webhooks/stripe",
+      { config: { rateLimit: false } },
+      async (request, reply) => {
+        try {
+          const signature = request.headers["stripe-signature"];
+          const result = await handleStripeWebhook(
+            String(request.body ?? ""),
+            Array.isArray(signature) ? signature[0] : (signature ?? null),
+          );
+          reply.send(result);
+        } catch (error) {
+          handlePaymentError(error, reply);
+        }
+      },
+    );
   });
 }

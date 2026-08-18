@@ -8,6 +8,8 @@ import {
 } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
+import { revokeAllUserSessions } from "./auth.service.js";
+
 export type AdminDashboardStats = {
   vendorsPending: number;
   productsPending: number;
@@ -123,6 +125,10 @@ export async function updateUserStatusByAdmin(
     where: { id: userId },
     data: { status },
   });
+
+  if (status === "SUSPENDED") {
+    await revokeAllUserSessions(userId);
+  }
 
   await prisma.auditLog.create({
     data: {

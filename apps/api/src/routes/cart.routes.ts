@@ -38,6 +38,7 @@ function ensureGuestCookie(
   const sessionId = createCartSessionId();
   reply.setCookie(config.cartCookieName, sessionId, {
     httpOnly: true,
+    secure: config.isProduction,
     sameSite: "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 30,

@@ -1,6 +1,6 @@
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { validateCredentials } from "@culebra/auth";
+import { getActiveUserById, validateCredentials } from "@culebra/auth";
 
 export const authConfig = {
   trustHost: true,
@@ -38,22 +38,35 @@ export const authConfig = {
             [user.firstName, user.lastName].filter(Boolean).join(" ") ||
             user.email,
           roles: user.roles,
+          status: user.status,
         };
       },
     }),
   ],
   callbacks: {
-    jwt({ token, user }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.roles = (user as { roles?: string[] }).roles ?? [];
+        token.status = (user as { status?: string }).status ?? "ACTIVE";
       }
+
+      if (token.id) {
+        const activeUser = await getActiveUserById(token.id as string);
+        if (!activeUser) {
+          return {};
+        }
+        token.roles = activeUser.roles;
+        token.status = activeUser.status;
+      }
+
       return token;
     },
     session({ session, token }) {
-      if (session.user) {
+      if (session.user && token.id) {
         session.user.id = token.id as string;
         session.user.roles = (token.roles as string[]) ?? [];
+        session.user.status = (token.status as string) ?? "ACTIVE";
       }
       return session;
     },

@@ -1,8 +1,9 @@
 import type { FastifyInstance, FastifyReply } from "fastify";
-import { OrderStatus, UserRole } from "@culebra/domain";
+import { OrderStatus, UserRole, type AuditAction } from "@culebra/domain";
 import {
   getAdminDashboardStats,
   getOrderByNumberForAdmin,
+  listAuditLogsForAdmin,
   listOrdersForAdmin,
   listUsersForAdmin,
   updateUserStatusByAdmin,
@@ -99,6 +100,26 @@ export async function adminPanelRoutes(app: FastifyInstance) {
         return;
       }
       reply.send({ order });
+    },
+  );
+
+  app.get(
+    "/admin/audit-logs",
+    { preHandler: [authenticate, requireRoles(UserRole.ADMIN)] },
+    async (request, reply) => {
+      const query = request.query as {
+        limit?: string;
+        offset?: string;
+        entityType?: string;
+        action?: string;
+      };
+      const result = await listAuditLogsForAdmin({
+        limit: query.limit ? Number(query.limit) : undefined,
+        offset: query.offset ? Number(query.offset) : undefined,
+        entityType: query.entityType,
+        action: query.action as AuditAction | undefined,
+      });
+      reply.send(result);
     },
   );
 }

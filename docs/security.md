@@ -2,7 +2,7 @@
 
 ## Estado
 
-FASE 3 completada: autenticacion, sesiones, RBAC y validacion de inputs.
+FASE 13 completada: hardening de API, web, sesiones y auditoria administrativa.
 
 ## Autenticacion
 
@@ -13,6 +13,8 @@ FASE 3 completada: autenticacion, sesiones, RBAC y validacion de inputs.
 - Cookie httpOnly `culebra_last_order` para confirmar el pedido reciente del invitado
 - JWT firmado con `AUTH_SECRET` para integracion web/API
 - Auth.js (NextAuth v5) en frontend con provider Credentials
+- Usuarios `SUSPENDED` o no `ACTIVE` no pueden autenticarse ni mantener sesion
+- Al suspender un usuario se revocan todas sus sesiones API
 
 ## RBAC
 
@@ -26,27 +28,40 @@ Middleware de API:
 
 - `authenticate` — valida cookie de sesion o Bearer JWT
 - `requireRoles(...)` — autoriza por rol
+- JWT y sesiones rechazan usuarios no activos via `getActiveUserById`
 
-Rutas protegidas de ejemplo:
+Middleware web (`apps/web/src/middleware.ts`):
 
-- `GET /admin/status` — solo ADMIN
-- `GET /vendor/status` — solo VENDOR
-- `GET /consumer/status` — solo CONSUMER
+- `/cuenta/*`, `/panel/proveedor/*` y `/admin/*` requieren sesion
+- `/admin/*` requiere rol `ADMIN`
+- Cuentas suspendidas redirigen a login
 
 ## Protecciones activas
 
 - Validacion de inputs con Zod
-- Rate limiting global (100 req/min) y en auth (10 req/min)
+- Rate limiting por scope:
+  - Global: 100 req/min (configurable)
+  - Auth: 10 req/min
+  - Carrito/checkout: 40 req/min
+  - Admin: 60 req/min
+  - Webhooks Stripe: sin limite
+- `@fastify/helmet` en API (headers de seguridad)
+- Headers de seguridad en Next.js (`next.config.ts`)
 - CORS restringido a `CORS_ORIGIN`
-- Auditoria en registro, login, logout y solicitud de reset
+- Limite de body HTTP (1 MB) en API
+- `trustProxy` en produccion o con `TRUST_PROXY=true`
+- Cookies `secure` en produccion
+- Verificacion de origen en acciones admin (`assertSameOriginRequest`)
+- Auditoria en registro, login, logout, reset, cambios de estado y operaciones admin
+- Panel `/admin/auditoria` y endpoint `GET /admin/audit-logs`
 - Campo `mfaEnabled` preparado para MFA futuro
 
 ## Pendiente (fases posteriores)
 
 - MFA real
-- CSRF en formularios web sensibles
-- Hardening avanzado (FASE 13)
+- CSRF explicito en formularios publicos adicionales (Next.js ya valida origen en server actions)
 - Envio real de emails para reset de contrasena
+- WAF / proteccion DDoS a nivel de infraestructura
 
 ## Variables sensibles
 
@@ -55,3 +70,12 @@ Nunca commitear:
 - `AUTH_SECRET`
 - `SEED_ADMIN_PASSWORD`
 - credenciales de base de datos
+- claves Stripe
+
+## Variables de rate limiting (opcionales)
+
+- `RATE_LIMIT_GLOBAL_MAX`
+- `RATE_LIMIT_AUTH_MAX`
+- `RATE_LIMIT_CART_MAX`
+- `RATE_LIMIT_ADMIN_MAX`
+- `TRUST_PROXY`

@@ -283,6 +283,20 @@ export async function getUserById(userId: string): Promise<AuthUser | null> {
   return user ? mapUser(user) : null;
 }
 
+export async function getActiveUserById(userId: string): Promise<AuthUser | null> {
+  const user = await findUserById(userId);
+  if (!user || user.status !== "ACTIVE") {
+    return null;
+  }
+  return mapUser(user);
+}
+
+export async function revokeAllUserSessions(userId: string): Promise<void> {
+  await prisma.userSession.deleteMany({
+    where: { userId },
+  });
+}
+
 export async function requestPasswordReset(
   email: string,
 ): Promise<{ token?: string; userId?: string }> {

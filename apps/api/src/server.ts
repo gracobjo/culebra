@@ -1,5 +1,6 @@
 import cookie from "@fastify/cookie";
 import cors from "@fastify/cors";
+import helmet from "@fastify/helmet";
 import rateLimit from "@fastify/rate-limit";
 import Fastify from "fastify";
 import { prisma } from "@culebra/db";
@@ -18,6 +19,12 @@ import { adminPanelRoutes } from "./routes/admin.routes.js";
 async function buildServer() {
   const app = Fastify({
     logger: true,
+    bodyLimit: 1_048_576,
+    trustProxy: config.trustProxy,
+  });
+
+  await app.register(helmet, {
+    contentSecurityPolicy: false,
   });
 
   await app.register(cors, {
@@ -29,7 +36,7 @@ async function buildServer() {
 
   await app.register(rateLimit, {
     global: true,
-    max: 100,
+    max: config.rateLimitGlobalMax,
     timeWindow: "1 minute",
   });
 
@@ -46,7 +53,7 @@ async function buildServer() {
     return {
       status: database === "connected" ? "ok" : "degraded",
       service: "culebra-api",
-      phase: 12,
+      phase: 13,
       database,
     };
   });
@@ -54,7 +61,7 @@ async function buildServer() {
   await app.register(
     async (authScope) => {
       await authScope.register(rateLimit, {
-        max: 10,
+        max: config.rateLimitAuthMax,
         timeWindow: "1 minute",
       });
       await authRoutes(authScope);
@@ -62,20 +69,40 @@ async function buildServer() {
     { prefix: "" },
   );
 
+  await app.register(
+    async (cartScope) => {
+      await cartScope.register(rateLimit, {
+        max: config.rateLimitCartMax,
+        timeWindow: "1 minute",
+      });
+      await cartRoutes(cartScope);
+    },
+    { prefix: "" },
+  );
+
+  await app.register(
+    async (adminScope) => {
+      await adminScope.register(rateLimit, {
+        max: config.rateLimitAdminMax,
+        timeWindow: "1 minute",
+      });
+      await adminVendorRoutes(adminScope);
+      await adminProductRoutes(adminScope);
+      await adminContractRoutes(adminScope);
+      await adminCommissionRoutes(adminScope);
+      await adminPanelRoutes(adminScope);
+    },
+    { prefix: "" },
+  );
+
   await protectedRoutes(app);
   await vendorRoutes(app);
-  await adminVendorRoutes(app);
   await productRoutes(app);
-  await adminProductRoutes(app);
-  await cartRoutes(app);
   await orderRoutes(app);
   await paymentRoutes(app);
   await stripeWebhookRoutes(app);
   await contractRoutes(app);
-  await adminContractRoutes(app);
   await commissionRoutes(app);
-  await adminCommissionRoutes(app);
-  await adminPanelRoutes(app);
 
   app.addHook("onClose", async () => {
     await prisma.$disconnect();
