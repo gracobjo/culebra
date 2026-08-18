@@ -11,6 +11,7 @@ import { adminProductRoutes, productRoutes } from "./routes/product.routes.js";
 import { cartRoutes } from "./routes/cart.routes.js";
 import { orderRoutes } from "./routes/order.routes.js";
 import { paymentRoutes, stripeWebhookRoutes } from "./routes/payment.routes.js";
+import { adminContractRoutes, contractRoutes } from "./routes/contract.routes.js";
 
 async function buildServer() {
   const app = Fastify({
@@ -43,7 +44,7 @@ async function buildServer() {
     return {
       status: database === "connected" ? "ok" : "degraded",
       service: "culebra-api",
-      phase: 8,
+      phase: 9,
       database,
     };
   });
@@ -68,6 +69,8 @@ async function buildServer() {
   await orderRoutes(app);
   await paymentRoutes(app);
   await stripeWebhookRoutes(app);
+  await contractRoutes(app);
+  await adminContractRoutes(app);
 
   app.addHook("onClose", async () => {
     await prisma.$disconnect();

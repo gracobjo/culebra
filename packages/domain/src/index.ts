@@ -157,3 +157,20 @@ export const VendorStatus = {
   SUSPENDED: "SUSPENDED",
   REJECTED: "REJECTED",
 } as const satisfies Record<string, VendorStatus>;
+
+export type ContractStatus =
+  | "DRAFT"
+  | "PENDING_SIGNATURE"
+  | "ACTIVE"
+  | "EXPIRING_SOON"
+  | "EXPIRED"
+  | "CANCELLED";
+
+export const ContractStatus = {
+  DRAFT: "DRAFT",
+  PENDING_SIGNATURE: "PENDING_SIGNATURE",
+  ACTIVE: "ACTIVE",
+  EXPIRING_SOON: "EXPIRING_SOON",
+  EXPIRED: "EXPIRED",
+  CANCELLED: "CANCELLED",
+} as const satisfies Record<string, ContractStatus>;

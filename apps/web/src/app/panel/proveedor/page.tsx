@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { getVendorContractStatus } from "@culebra/auth";
 import { getVendorForPanel } from "./actions";
 import { VendorProfileForm } from "@/components/vendor/vendor-profile-form";
 import { PageShell } from "@/components/layout/page-shell";
@@ -22,6 +23,13 @@ export default async function VendorPanelPage() {
   const vendor = await getVendorForPanel();
   if (!vendor) {
     redirect("/quiero-vender");
+  }
+
+  let contractStatus = null;
+  try {
+    contractStatus = await getVendorContractStatus(session.user.id);
+  } catch {
+    contractStatus = null;
   }
 
   return (
@@ -49,6 +57,24 @@ export default async function VendorPanelPage() {
           </p>
         ) : null}
 
+        {contractStatus?.pendingVersion ? (
+          <p className="mt-6 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            Tienes un contrato pendiente de aceptacion.{" "}
+            <Link href="/panel/proveedor/contratos" className="underline">
+              Revisar y firmar
+            </Link>
+          </p>
+        ) : null}
+
+        {!contractStatus?.hasActiveContract && vendor.status === "ACTIVE" ? (
+          <p className="mt-4 rounded-xl bg-stone-100 px-4 py-3 text-sm text-stone-700">
+            Necesitas un contrato activo para enviar productos a revision.{" "}
+            <Link href="/panel/proveedor/contratos" className="underline">
+              Ver contratos
+            </Link>
+          </p>
+        ) : null}
+
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/panel/proveedor/productos"
@@ -67,6 +93,12 @@ export default async function VendorPanelPage() {
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
           >
             Pagos Stripe
+          </Link>
+          <Link
+            href="/panel/proveedor/contratos"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
+          >
+            Contratos
           </Link>
         </div>
 

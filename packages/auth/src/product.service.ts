@@ -2,6 +2,7 @@ import { AuditAction, ProductStatus, VendorStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
 import { getCategoryById } from "./category.service.js";
+import { vendorHasActiveContract } from "./contract.service.js";
 import { createUniqueSlug } from "./slug.js";
 import type {
   ProductCatalogQuery,
@@ -479,6 +480,10 @@ export async function submitProductForReview(
   const { vendor, product } = await getOwnedProduct(userId, productId);
   if (vendor.status !== VendorStatus.ACTIVE) {
     throw new Error("PRODUCT_VENDOR_NOT_ACTIVE");
+  }
+
+  if (!(await vendorHasActiveContract(vendor.id))) {
+    throw new Error("VENDOR_CONTRACT_REQUIRED");
   }
 
   const submittable = [ProductStatus.DRAFT, ProductStatus.REJECTED] as const;

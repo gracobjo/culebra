@@ -36,4 +36,4 @@ Eventos: `checkout.session.completed`, `payment_intent.succeeded`, `payment_inte
 
 ## Siguiente fase
 
-FASE 9: contratos versionados con el productor.
+FASE 10: comisiones y liquidaciones.

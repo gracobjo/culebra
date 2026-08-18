@@ -26,6 +26,25 @@ export type {
 } from "./schemas.js";
 export type { AuthSessionResult, AuthUser, JwtPayload } from "./types.js";
 export {
+  acceptContractVersion,
+  createContractVersionForAdmin,
+  DEFAULT_CONTRACT_CONDITIONS,
+  getContractById,
+  getVendorContractStatus,
+  listContractsForAdmin,
+  publishContractVersionForAdmin,
+  vendorHasActiveContract,
+} from "./contract.service.js";
+export type {
+  AdminContractListItem,
+  ContractAcceptanceRecord,
+  ContractRecord,
+  ContractVersionRecord,
+  VendorContractStatus,
+} from "./contract.service.js";
+export { contractVersionCreateSchema } from "./contract.schemas.js";
+export type { ContractVersionCreateInput } from "./contract.schemas.js";
+export {
   applyAsVendor,
   assertVendorOwnership,
   getPublicVendorBySlug,
