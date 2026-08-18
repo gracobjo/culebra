@@ -2,7 +2,7 @@
 
 ## Estado
 
-Monolito modular. FASE 14: SEO, sitemap y datos estructurados en la web.
+Monolito modular. FASE 15: testing automatizado.
 
 ## Enfoque
 

@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 14**: SEO y descubrimiento en buscadores.
+Proyecto en **FASE 15**: testing automatizado.
 
 ## Stack
 
@@ -66,6 +66,8 @@ npm run dev:api   # http://localhost:4000
 | `npm run build` | Build de todos los workspaces |
 | `npm run lint` | Lint |
 | `npm run typecheck` | Verificacion de tipos |
+| `npm test` | Tests automatizados (Vitest) |
+| `npm run test:watch` | Tests en modo watch |
 | `npm run docker:up` | Levantar PostgreSQL |
 | `npm run docker:down` | Parar PostgreSQL |
 | `npm run db:generate` | Generar cliente Prisma |
@@ -100,3 +102,4 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 12: UX/UI del marketplace
 - [x] FASE 13: Seguridad
 - [x] FASE 14: SEO
+- [x] FASE 15: Testing

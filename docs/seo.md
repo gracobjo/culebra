@@ -59,4 +59,4 @@ Ademas bloqueadas en `robots.txt`: checkout, carrito, login, register, pedido.
 
 ## Siguiente fase
 
-FASE 15: testing automatizado (dominio, API y flujos criticos).
+FASE 16: despliegue (Docker produccion, cloud, backups).
