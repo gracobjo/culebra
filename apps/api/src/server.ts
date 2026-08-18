@@ -7,6 +7,7 @@ import { prisma } from "@culebra/db";
 import { config } from "./lib/config.js";
 import { authRoutes, protectedRoutes } from "./routes/auth.routes.js";
 import { adminVendorRoutes, vendorRoutes } from "./routes/vendor.routes.js";
+import { adminProductRoutes, productRoutes } from "./routes/product.routes.js";
 
 async function buildServer() {
   const app = Fastify({
@@ -39,7 +40,7 @@ async function buildServer() {
     return {
       status: database === "connected" ? "ok" : "degraded",
       service: "culebra-api",
-      phase: 4,
+      phase: 5,
       database,
     };
   });
@@ -58,6 +59,8 @@ async function buildServer() {
   await protectedRoutes(app);
   await vendorRoutes(app);
   await adminVendorRoutes(app);
+  await productRoutes(app);
+  await adminProductRoutes(app);
 
   app.addHook("onClose", async () => {
     await prisma.$disconnect();

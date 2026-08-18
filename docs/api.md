@@ -45,6 +45,22 @@ FASE 3 completada: autenticacion, sesiones y RBAC base.
 | GET | `/admin/vendors` | ADMIN |
 | PATCH | `/admin/vendors/:id/status` | ADMIN |
 
+## Catalogo y productos
+
+| Metodo | Ruta | Acceso |
+|--------|------|--------|
+| GET | `/categories` | Publico |
+| GET | `/products` | Publico |
+| GET | `/products/:slug` | Publico |
+| GET | `/vendors/me/products` | VENDOR |
+| GET | `/vendors/me/products/:id` | VENDOR |
+| POST | `/vendors/me/products` | VENDOR |
+| PATCH | `/vendors/me/products/:id` | VENDOR |
+| POST | `/vendors/me/products/:id/submit` | VENDOR |
+| POST | `/vendors/me/products/:id/disable` | VENDOR |
+| GET | `/admin/products` | ADMIN |
+| PATCH | `/admin/products/:id/status` | ADMIN |
+
 ## Autenticacion
 
 Dos metodos soportados:
@@ -62,6 +78,5 @@ curl -X POST http://localhost:4000/auth/register \
 
 ## Siguientes modulos
 
-- Proveedores
-- Catalogo y productos
 - Pedidos y pagos
+- Contratos y comisiones

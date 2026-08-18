@@ -1,15 +1,12 @@
 import Link from "next/link";
 import { auth } from "@/auth";
-
-const featuredCategories = [
-  "Embutidos y productos carnicos",
-  "Quesos y lacteos",
-  "Vinos",
-  "Miel y productos apicolas",
-];
+import { listCategories, listPublicProducts } from "@culebra/auth";
+import { ProductCard } from "@/components/catalog/product-card";
 
 export default async function HomePage() {
   const session = await auth();
+  const categories = await listCategories();
+  const { items: featuredProducts } = await listPublicProducts({ limit: 4 });
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
@@ -21,9 +18,9 @@ export default async function HomePage() {
             </p>
           </div>
           <nav className="hidden items-center gap-6 text-sm md:flex">
-            <a href="#categorias">Categorias</a>
+            <Link href="/productos">Productos</Link>
+            <Link href="/categorias">Categorias</Link>
             <Link href="/productores">Productores</Link>
-            <a href="#como-funciona">Como funciona</a>
             {session?.user ? (
               <Link href="/cuenta">Mi cuenta</Link>
             ) : (
@@ -50,12 +47,12 @@ export default async function HomePage() {
             crecer.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a
+            <Link
               className="rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white"
-              href="#catalogo"
+              href="/productos"
             >
               Descubrir productos
-            </a>
+            </Link>
             <Link
               className="rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
               href="/quiero-vender"
@@ -67,30 +64,54 @@ export default async function HomePage() {
 
         <div className="rounded-3xl bg-emerald-950 p-8 text-white shadow-xl">
           <p className="text-sm uppercase tracking-[0.3em] text-emerald-200">
-            Fase 4
+            Fase 5
           </p>
-          <h2 className="mt-4 text-2xl font-semibold">
-            Proveedores y paginas publicas
-          </h2>
+          <h2 className="mt-4 text-2xl font-semibold">Catalogo y productos</h2>
           <p className="mt-4 text-emerald-50/80">
-            Alta de productores, panel privado, listado publico y moderacion
-            administrativa via API.
+            Fichas de producto, busqueda, categorias, variantes y moderacion
+            antes de publicar.
           </p>
         </div>
       </section>
 
-      <section id="categorias" className="mx-auto max-w-6xl px-6 pb-20">
-        <h2 className="text-2xl font-semibold">Categorias iniciales</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {featuredCategories.map((category) => (
-            <article
-              key={category}
+      <section id="categorias" className="mx-auto max-w-6xl px-6 pb-16">
+        <div className="flex items-end justify-between">
+          <h2 className="text-2xl font-semibold">Categorias</h2>
+          <Link href="/categorias" className="text-sm text-emerald-800">
+            Ver todas
+          </Link>
+        </div>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {categories.map((category) => (
+            <Link
+              key={category.id}
+              href={`/categorias/${category.slug}`}
               className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm"
             >
-              <h3 className="font-medium">{category}</h3>
-            </article>
+              <h3 className="font-medium">{category.name}</h3>
+            </Link>
           ))}
         </div>
+      </section>
+
+      <section id="catalogo" className="mx-auto max-w-6xl px-6 pb-20">
+        <div className="flex items-end justify-between">
+          <h2 className="text-2xl font-semibold">Productos destacados</h2>
+          <Link href="/productos" className="text-sm text-emerald-800">
+            Ver catalogo
+          </Link>
+        </div>
+        {featuredProducts.length === 0 ? (
+          <p className="mt-6 text-stone-600">
+            Todavia no hay productos publicados.
+          </p>
+        ) : (
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );

@@ -51,3 +51,34 @@ export type {
   VendorUpdateInput,
 } from "./vendor.schemas.js";
 export { createUniqueSlug, slugify } from "./slug.js";
+export {
+  createProduct,
+  disableProduct,
+  getPublicProductBySlug,
+  getVendorProduct,
+  listProductsForAdmin,
+  listPublicProducts,
+  listVendorProducts,
+  submitProductForReview,
+  updateProduct,
+  updateProductStatusByAdmin,
+} from "./product.service.js";
+export type { ProductRecord } from "./product.service.js";
+export {
+  getCategoryById,
+  getCategoryBySlug,
+  listCategories,
+} from "./category.service.js";
+export type { CategoryRecord } from "./category.service.js";
+export {
+  productCatalogQuerySchema,
+  productCreateSchema,
+  productStatusUpdateSchema,
+  productUpdateSchema,
+} from "./product.schemas.js";
+export type {
+  ProductCatalogQuery,
+  ProductCreateInput,
+  ProductStatusUpdateInput,
+  ProductUpdateInput,
+} from "./product.schemas.js";

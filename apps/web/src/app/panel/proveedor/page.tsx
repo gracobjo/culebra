@@ -48,6 +48,15 @@ export default async function VendorPanelPage() {
           </p>
         ) : null}
 
+        <div className="mt-6">
+          <Link
+            href="/panel/proveedor/productos"
+            className="rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white"
+          >
+            Gestionar productos
+          </Link>
+        </div>
+
         <div className="mt-8">
           <VendorProfileForm vendor={vendor} />
         </div>

@@ -42,6 +42,14 @@ export type ProductStatus =
   | "REJECTED"
   | "DISABLED";
 
+export const ProductStatus = {
+  DRAFT: "DRAFT",
+  PENDING_REVIEW: "PENDING_REVIEW",
+  PUBLISHED: "PUBLISHED",
+  REJECTED: "REJECTED",
+  DISABLED: "DISABLED",
+} as const satisfies Record<string, ProductStatus>;
+
 export type PaymentStatus =
   | "PAYMENT_PENDING"
   | "PAYMENT_AUTHORIZED"

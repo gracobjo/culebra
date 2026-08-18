@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPublicVendorBySlug } from "@culebra/auth";
+import { getPublicVendorBySlug, listPublicProducts } from "@culebra/auth";
+import { ProductCard } from "@/components/catalog/product-card";
 
 type ProducerPageProps = {
   params: Promise<{ slug: string }>;
@@ -25,6 +26,11 @@ export default async function ProducerDetailPage({ params }: ProducerPageProps) 
   if (!vendor) {
     notFound();
   }
+
+  const { items: products } = await listPublicProducts({
+    vendorSlug: vendor.slug,
+    limit: 12,
+  });
 
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-16">
@@ -82,12 +88,19 @@ export default async function ProducerDetailPage({ params }: ProducerPageProps) 
           ) : null}
         </section>
 
-        <section className="mt-10 rounded-2xl bg-stone-50 p-6">
+        <section className="mt-10">
           <h2 className="text-lg font-medium">Productos</h2>
-          <p className="mt-2 text-stone-600">
-            {vendor.productCount ?? 0} productos publicados. El catalogo se
-            activara en la siguiente fase.
-          </p>
+          {products.length === 0 ? (
+            <p className="mt-2 text-stone-600">
+              Este productor todavia no tiene productos publicados.
+            </p>
+          ) : (
+            <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
         </section>
       </article>
     </main>

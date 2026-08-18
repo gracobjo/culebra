@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 4**: onboarding de proveedores, panel productor y paginas publicas.
+Proyecto en **FASE 5**: catalogo, fichas de producto, busqueda y moderacion.
 
 ## Stack
 
@@ -90,4 +90,5 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 2: Base de datos
 - [x] FASE 3: Autenticacion y roles
 - [x] FASE 4: Proveedores
-- [ ] FASE 5: Productos y catalogo
+- [x] FASE 5: Productos y catalogo
+- [ ] FASE 6: Marketplace y carrito

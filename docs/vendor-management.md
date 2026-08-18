@@ -47,4 +47,4 @@ Solo proveedores `ACTIVE` aparecen en el listado y ficha publica. La moderacion 
 
 ## Siguiente fase
 
-FASE 5: productos, catalogo y moderacion de productos.
+FASE 6: marketplace, carrito y checkout.

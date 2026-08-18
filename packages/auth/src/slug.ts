@@ -11,8 +11,9 @@ export function slugify(value: string): string {
 export async function createUniqueSlug(
   tradeName: string,
   exists: (slug: string) => Promise<boolean>,
+  fallback = "item",
 ): Promise<string> {
-  const base = slugify(tradeName) || "productor";
+  const base = slugify(tradeName) || fallback;
   let candidate = base;
   let suffix = 1;
 
