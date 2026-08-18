@@ -2,7 +2,7 @@
 
 ## Estado
 
-FASE 6: autenticacion, proveedores, catalogo, carrito y checkout.
+FASE 7: autenticacion, proveedores, catalogo, carrito, checkout y pedidos.
 
 ## Base URL
 
@@ -71,6 +71,18 @@ FASE 6: autenticacion, proveedores, catalogo, carrito y checkout.
 | DELETE | `/cart/items/:id` | Publico / sesion |
 | POST | `/checkout` | Publico / sesion |
 
+## Pedidos
+
+| Metodo | Ruta | Acceso |
+|--------|------|--------|
+| GET | `/orders` | Autenticado |
+| GET | `/orders/:orderNumber` | Autenticado (propietario) |
+| POST | `/orders/lookup` | Publico (numero + email) |
+| GET | `/vendors/me/orders` | VENDOR |
+| GET | `/vendors/me/orders/:id` | VENDOR |
+| PATCH | `/vendors/me/orders/:id/status` | VENDOR |
+| POST | `/vendors/me/orders/:id/ship` | VENDOR |
+
 ## Autenticacion
 
 Dos metodos soportados:
@@ -88,5 +100,6 @@ curl -X POST http://localhost:4000/auth/register \
 
 ## Siguientes modulos
 
-- Pedidos y pagos
+- Pedidos (FASE 7)
+- Pagos
 - Contratos y comisiones

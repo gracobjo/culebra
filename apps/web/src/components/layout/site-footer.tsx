@@ -18,6 +18,7 @@ export function SiteFooter() {
           <Link href="/productores">Productores</Link>
         </nav>
         <nav className="grid gap-2 text-sm">
+          <Link href="/pedido/consultar">Consultar pedido</Link>
           <Link href="/quiero-vender">Quiero vender</Link>
           <Link href="/login">Entrar</Link>
           <Link href="/carrito">Carrito</Link>

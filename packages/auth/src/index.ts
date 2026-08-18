@@ -69,8 +69,32 @@ export type {
   CheckoutInput,
   UpdateCartItemInput,
 } from "./cart.schemas.js";
-export { checkoutCart, getOrderByNumber } from "./checkout.service.js";
-export type { OrderDetail, OrderSummary } from "./checkout.service.js";
+export { checkoutCart } from "./checkout.service.js";
+export type { OrderSummary } from "./checkout.service.js";
+export {
+  getOrderByNumber,
+  getVendorOrder,
+  listOrdersForUser,
+  listVendorOrders,
+  lookupGuestOrder,
+  shipVendorOrder,
+  updateVendorOrderStatus,
+} from "./order.service.js";
+export type {
+  OrderDetail,
+  OrderListItem,
+  VendorOrderDetail,
+} from "./order.service.js";
+export {
+  guestOrderLookupSchema,
+  shipVendorOrderSchema,
+  vendorOrderStatusSchema,
+} from "./order.schemas.js";
+export type {
+  GuestOrderLookupInput,
+  ShipVendorOrderInput,
+  VendorOrderStatusInput,
+} from "./order.schemas.js";
 export {
   createProduct,
   disableProduct,

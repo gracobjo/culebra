@@ -29,6 +29,23 @@ export default async function AccountPage() {
           </ul>
         </div>
 
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="/cuenta/pedidos"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white"
+          >
+            Ver mis pedidos
+          </Link>
+          {(session?.user?.roles ?? []).includes("VENDOR") ? (
+            <Link
+              href="/panel/proveedor/pedidos"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
+            >
+              Pedidos de mi tienda
+            </Link>
+          ) : null}
+        </div>
+
         <form action={signOutAction} className="mt-8">
           <button
             type="submit"

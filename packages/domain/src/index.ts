@@ -88,6 +88,46 @@ export const OrderStatus = {
   REFUNDED: "REFUNDED",
 } as const satisfies Record<string, OrderStatus>;
 
+export type VendorOrderStatus =
+  | "PENDING"
+  | "CONFIRMED"
+  | "IN_PREPARATION"
+  | "SHIPPED"
+  | "DELIVERED"
+  | "CANCELLED"
+  | "RETURNED";
+
+export const VendorOrderStatus = {
+  PENDING: "PENDING",
+  CONFIRMED: "CONFIRMED",
+  IN_PREPARATION: "IN_PREPARATION",
+  SHIPPED: "SHIPPED",
+  DELIVERED: "DELIVERED",
+  CANCELLED: "CANCELLED",
+  RETURNED: "RETURNED",
+} as const satisfies Record<string, VendorOrderStatus>;
+
+export type ShipmentStatus =
+  | "PENDING"
+  | "CONFIRMED"
+  | "IN_PREPARATION"
+  | "SHIPPED"
+  | "IN_TRANSIT"
+  | "DELIVERED"
+  | "CANCELLED"
+  | "RETURNED";
+
+export const ShipmentStatus = {
+  PENDING: "PENDING",
+  CONFIRMED: "CONFIRMED",
+  IN_PREPARATION: "IN_PREPARATION",
+  SHIPPED: "SHIPPED",
+  IN_TRANSIT: "IN_TRANSIT",
+  DELIVERED: "DELIVERED",
+  CANCELLED: "CANCELLED",
+  RETURNED: "RETURNED",
+} as const satisfies Record<string, ShipmentStatus>;
+
 export type VendorStatus =
   | "DRAFT"
   | "PENDING_REVIEW"

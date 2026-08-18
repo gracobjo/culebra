@@ -49,12 +49,18 @@ export default async function VendorPanelPage() {
           </p>
         ) : null}
 
-        <div className="mt-6">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/panel/proveedor/productos"
             className="inline-flex min-h-11 items-center justify-center rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white"
           >
             Gestionar productos
+          </Link>
+          <Link
+            href="/panel/proveedor/pedidos"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
+          >
+            Ver pedidos
           </Link>
         </div>
 

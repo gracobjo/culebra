@@ -51,9 +51,14 @@ export function SiteHeaderNav({ cartCount, isLoggedIn }: SiteHeaderNavProps) {
             Carrito ({cartCount})
           </Link>
           {isLoggedIn ? (
-            <Link href="/cuenta" className="hover:text-emerald-800">
-              Cuenta
-            </Link>
+            <>
+              <Link href="/cuenta/pedidos" className="hover:text-emerald-800">
+                Pedidos
+              </Link>
+              <Link href="/cuenta" className="hover:text-emerald-800">
+                Cuenta
+              </Link>
+            </>
           ) : (
             <Link href="/login" className="hover:text-emerald-800">
               Entrar
@@ -110,6 +115,22 @@ export function SiteHeaderNav({ cartCount, isLoggedIn }: SiteHeaderNavProps) {
             >
               Quiero vender
             </Link>
+            <Link
+              href="/pedido/consultar"
+              className="rounded-xl px-3 py-3 hover:bg-stone-50"
+              onClick={() => setOpen(false)}
+            >
+              Consultar pedido
+            </Link>
+            {isLoggedIn ? (
+              <Link
+                href="/cuenta/pedidos"
+                className="rounded-xl px-3 py-3 hover:bg-stone-50"
+                onClick={() => setOpen(false)}
+              >
+                Mis pedidos
+              </Link>
+            ) : null}
             <Link
               href={isLoggedIn ? "/cuenta" : "/login"}
               className="rounded-xl px-3 py-3 hover:bg-stone-50"

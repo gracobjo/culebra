@@ -116,4 +116,4 @@ erDiagram
 
 ## Siguiente fase
 
-FASE 7: seguimiento de pedidos. Los modelos de carrito y pedido ya existen.
+FASE 8: pagos con Stripe Connect.

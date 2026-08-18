@@ -40,12 +40,12 @@ export default async function HomePage() {
 
         <div className="rounded-3xl bg-emerald-950 p-6 text-white shadow-xl sm:p-8">
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-200 sm:text-sm sm:tracking-[0.3em]">
-            Fase 6
+            Fase 7
           </p>
-          <h2 className="mt-4 text-xl font-semibold sm:text-2xl">Carrito y checkout</h2>
+          <h2 className="mt-4 text-xl font-semibold sm:text-2xl">Seguimiento de pedidos</h2>
           <p className="mt-4 text-emerald-50/80">
-            Compra como invitado o con cuenta. El pedido se divide por
-            productor y queda pendiente de pago.
+            El comprador consulta el estado y cada productor confirma, prepara
+            y registra el envio de su parte del pedido.
           </p>
         </div>
       </section>

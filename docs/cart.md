@@ -33,7 +33,9 @@ El pedido queda en `PAYMENT_PENDING`. Stripe se conecta en FASE 8.
 - `/carrito`
 - `/checkout`
 - `/pedido/[orderNumber]`
+- `/pedido/consultar`
+- `/cuenta/pedidos`
 
 ## Siguiente fase
 
-FASE 7: seguimiento de pedidos por consumidor y panel de productor.
+FASE 8: pagos con Stripe Connect.

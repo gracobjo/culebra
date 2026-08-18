@@ -2,7 +2,7 @@
 
 ## Estado
 
-Monolito modular. FASE 6: web Next.js, API Fastify, Prisma y carrito/checkout en `@culebra/auth`.
+Monolito modular. FASE 7: web Next.js, API Fastify, Prisma, carrito/checkout y seguimiento de pedidos.
 
 ## Enfoque
 

@@ -44,4 +44,4 @@ El stock se controla por variante cuando existen.
 
 ## Siguiente fase
 
-FASE 7: seguimiento de pedidos.
+FASE 8: pagos con Stripe Connect.
