@@ -27,7 +27,7 @@ describe("API", () => {
     expect(response.statusCode).toBe(200);
     const body = response.json();
     expect(body.service).toBe("culebra-api");
-    expect(body.phase).toBe(15);
+    expect(body.phase).toBe(16);
     expect(body.status).toBe("degraded");
     expect(body.database).toBe("disconnected");
   });

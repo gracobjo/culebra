@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 15**: testing automatizado.
+Proyecto en **FASE 16**: despliegue Docker de produccion (MVP completo).
 
 ## Stack
 
@@ -70,6 +70,10 @@ npm run dev:api   # http://localhost:4000
 | `npm run test:watch` | Tests en modo watch |
 | `npm run docker:up` | Levantar PostgreSQL |
 | `npm run docker:down` | Parar PostgreSQL |
+| `npm run docker:prod:build` | Build imagenes Docker produccion |
+| `npm run docker:prod:up` | Levantar stack produccion |
+| `npm run docker:prod:down` | Parar stack produccion |
+| `npm run docker:backup` | Backup PostgreSQL |
 | `npm run db:generate` | Generar cliente Prisma |
 | `npm run db:migrate` | Migraciones (dev) |
 | `npm run db:seed` | Seed roles + categorias |
@@ -78,7 +82,7 @@ npm run dev:api   # http://localhost:4000
 
 ## Variables de entorno
 
-Revisar `.env.example`.
+Revisar `.env.example` (desarrollo) y `.env.production.example` (produccion).
 
 ## Notas legales
 
@@ -103,3 +107,4 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 13: Seguridad
 - [x] FASE 14: SEO
 - [x] FASE 15: Testing
+- [x] FASE 16: Deploy

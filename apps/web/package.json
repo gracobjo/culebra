@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run build --workspace @culebra/auth && next build",
+    "build": "npm run build --workspace @culebra/domain && npm run build --workspace @culebra/auth && next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --project tsconfig.json --noEmit"

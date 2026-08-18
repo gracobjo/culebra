@@ -46,4 +46,4 @@ npm run test --workspace @culebra/api
 
 ## Siguiente fase
 
-FASE 16: despliegue (Docker produccion, entorno cloud, backups).
+Roadmap MVP completado. Mejoras opcionales: MFA, emails reales, CI/CD, integracion E2E con PostgreSQL.

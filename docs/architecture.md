@@ -2,7 +2,7 @@
 
 ## Estado
 
-Monolito modular. FASE 15: testing automatizado.
+Monolito modular. Monolito modular. FASE 16: despliegue Docker de produccion.
 
 ## Enfoque
 

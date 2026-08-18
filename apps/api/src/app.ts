@@ -53,7 +53,7 @@ export async function buildApp() {
     return {
       status: database === "connected" ? "ok" : "degraded",
       service: "culebra-api",
-      phase: 15,
+      phase: 16,
       database,
     };
   });

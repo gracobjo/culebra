@@ -1,0 +1,79 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: culebra-postgres-prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD es obligatoria}
+      POSTGRES_DB: ${POSTGRES_DB:-culebra}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-culebra}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - culebra
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: culebra-api-prod
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-culebra}
+      TRUST_PROXY: ${TRUST_PROXY:-true}
+      RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${API_PORT:-4000}:4000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:4000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+    networks:
+      - culebra
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: culebra-web-prod
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-culebra}
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    networks:
+      - culebra
+
+networks:
+  culebra:
+    driver: bridge
+
+volumes:
+  postgres_data:
