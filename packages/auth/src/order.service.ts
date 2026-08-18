@@ -79,6 +79,8 @@ export type VendorOrderDetail = {
   orderStatus: string;
   paymentStatus: string | null;
   subtotalGross: string;
+  marketplaceCommission: string;
+  vendorNetAmount: string;
   customerName: string;
   customerEmail: string;
   customerPhone: string | null;
@@ -340,6 +342,8 @@ function mapVendorOrderDetail(row: {
   id: string;
   status: string;
   subtotalGross: unknown;
+  marketplaceCommission?: unknown;
+  vendorNetAmount?: unknown;
   createdAt: Date;
   shipment: {
     carrier: string | null;
@@ -373,6 +377,8 @@ function mapVendorOrderDetail(row: {
     orderStatus: row.order.status,
     paymentStatus: row.order.payment?.status ?? null,
     subtotalGross: decimalToString(row.subtotalGross),
+    marketplaceCommission: decimalToString(row.marketplaceCommission),
+    vendorNetAmount: decimalToString(row.vendorNetAmount),
     customerName: name || "Cliente",
     customerEmail: row.order.customerEmail,
     customerPhone: row.order.customerPhone,

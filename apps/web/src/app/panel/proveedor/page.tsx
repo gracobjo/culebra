@@ -100,6 +100,12 @@ export default async function VendorPanelPage() {
           >
             Contratos
           </Link>
+          <Link
+            href="/panel/proveedor/liquidaciones"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
+          >
+            Liquidaciones
+          </Link>
         </div>
 
         <div className="mt-8">

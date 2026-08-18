@@ -174,3 +174,11 @@ export const ContractStatus = {
   EXPIRED: "EXPIRED",
   CANCELLED: "CANCELLED",
 } as const satisfies Record<string, ContractStatus>;
+
+export type CommissionRuleType = "PERCENTAGE" | "FIXED" | "CATEGORY";
+
+export const CommissionRuleType = {
+  PERCENTAGE: "PERCENTAGE",
+  FIXED: "FIXED",
+  CATEGORY: "CATEGORY",
+} as const satisfies Record<string, CommissionRuleType>;

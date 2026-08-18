@@ -7,6 +7,12 @@ import {
   getOrCreateCart,
   type CartItemRecord,
 } from "./cart.service.js";
+import {
+  finalizeVendorCommission,
+  loadCommissionContext,
+  resolveLineCommission,
+  resolveVendorFixedFee,
+} from "./commission.service.js";
 
 type CartOwner = {
   userId?: string;
@@ -50,8 +56,21 @@ export async function checkoutCart(
     item: CartItemRecord;
     gross: number;
     tax: number;
+    commissionRate: number;
+    commissionAmount: number;
     netToVendor: number;
   }> = [];
+
+  const productIds = [...new Set(cart.items.map((item) => item.productId))];
+  const products = (await prisma.product.findMany({
+    where: { id: { in: productIds } },
+    select: { id: true, categoryId: true, subcategoryId: true },
+  })) as Array<{ id: string; categoryId: string; subcategoryId: string | null }>;
+  const productById = new Map(products.map((product) => [product.id, product]));
+
+  const vendorIds = [...new Set(cart.items.map((item) => item.vendorId))];
+  const { rulesByVendor, contractPercentByVendor } = await loadCommissionContext(vendorIds);
+
   for (const item of cart.items) {
     if (item.quantity > item.stock) {
       throw new Error("INSUFFICIENT_STOCK");
@@ -59,11 +78,22 @@ export async function checkoutCart(
     const gross = Number(item.lineTotal);
     const vatRate = Number(item.vatRate);
     const tax = taxFromGross(gross, vatRate);
+    const product = productById.get(item.productId);
+    const commission = await resolveLineCommission({
+      vendorId: item.vendorId,
+      categoryId: product?.categoryId ?? null,
+      subcategoryId: product?.subcategoryId ?? null,
+      gross,
+      rules: rulesByVendor.get(item.vendorId) ?? [],
+      contractPercent: contractPercentByVendor.get(item.vendorId) ?? null,
+    });
     lines.push({
       item,
       gross,
       tax,
-      netToVendor: gross,
+      commissionRate: commission.rate,
+      commissionAmount: commission.amount,
+      netToVendor: commission.net,
     });
   }
 
@@ -74,7 +104,7 @@ export async function checkoutCart(
     lines.reduce((sum, line) => sum + line.tax, 0).toFixed(2),
   );
 
-  const vendorIds = [...new Set(lines.map((line) => line.item.vendorId))];
+  const vendorIdsUnique = vendorIds;
   const orderNumber = await nextOrderNumber();
   const activeCart = await getActiveCartRow(owner);
   if (!activeCart) {
@@ -104,8 +134,10 @@ export async function checkoutCart(
     });
 
     const vendorOrderIds = new Map<string, string>();
+    let marketplaceCommissionTotal = 0;
+    let netToVendorsTotal = 0;
 
-    for (const vendorId of vendorIds) {
+    for (const vendorId of vendorIdsUnique) {
       const vendorLines = lines.filter((line) => line.item.vendorId === vendorId);
       const vendorGross = Number(
         vendorLines.reduce((sum, line) => sum + line.gross, 0).toFixed(2),
@@ -113,6 +145,16 @@ export async function checkoutCart(
       const vendorTax = Number(
         vendorLines.reduce((sum, line) => sum + line.tax, 0).toFixed(2),
       );
+      const lineCommissionTotal = Number(
+        vendorLines.reduce((sum, line) => sum + line.commissionAmount, 0).toFixed(2),
+      );
+      const breakdown = finalizeVendorCommission({
+        vendorGross,
+        lineCommissionTotal,
+        fixedFee: resolveVendorFixedFee(rulesByVendor.get(vendorId) ?? []),
+      });
+      marketplaceCommissionTotal += breakdown.marketplaceCommission;
+      netToVendorsTotal += breakdown.vendorNetAmount;
 
       const vendorOrder = await tx.vendorOrder.create({
         data: {
@@ -120,14 +162,23 @@ export async function checkoutCart(
           vendorId,
           status: "PENDING",
           subtotalGross: vendorGross,
-          marketplaceCommission: 0,
-          otherFees: 0,
+          marketplaceCommission: breakdown.marketplaceCommission,
+          otherFees: breakdown.fixedFee,
           taxTotal: vendorTax,
-          vendorNetAmount: vendorGross,
+          vendorNetAmount: breakdown.vendorNetAmount,
         },
       });
       vendorOrderIds.set(vendorId, vendorOrder.id);
     }
+
+    await tx.order.update({
+      where: { id: created.id },
+      data: {
+        marketplaceCommission: Number(marketplaceCommissionTotal.toFixed(2)),
+        otherFees: 0,
+        netToVendorsTotal: Number(netToVendorsTotal.toFixed(2)),
+      },
+    });
 
     for (const line of lines) {
       const orderItem = await tx.orderItem.create({
@@ -142,8 +193,8 @@ export async function checkoutCart(
           unitPrice: line.item.unitPrice,
           vatRate: line.item.vatRate,
           subtotalGross: line.gross,
-          commissionRate: 0,
-          commissionAmount: 0,
+          commissionRate: line.commissionRate,
+          commissionAmount: line.commissionAmount,
           vendorNetAmount: line.netToVendor,
         },
       });
@@ -200,7 +251,7 @@ export async function checkoutCart(
     totalAmount: String(order.totalAmount),
     taxTotal: String(order.taxTotal),
     subtotalGross: String(order.subtotalGross),
-    vendorCount: vendorIds.length,
+    vendorCount: vendorIdsUnique.length,
     createdAt: order.createdAt,
   };
 }

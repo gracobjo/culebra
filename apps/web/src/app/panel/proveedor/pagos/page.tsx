@@ -63,6 +63,11 @@ export default async function VendorPaymentsPage({ searchParams }: PagosPageProp
         <div className="mt-6">
           <StripeOnboardButton connected={stripeStatus.connected} />
         </div>
+        <p className="mt-4 text-sm">
+          <Link href="/panel/proveedor/liquidaciones" className="text-emerald-800 underline">
+            Ver liquidaciones y comisiones
+          </Link>
+        </p>
       </section>
     </PageShell>
   );

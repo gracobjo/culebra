@@ -4,6 +4,7 @@ import { AuditAction, ContractStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
 import type { ContractVersionCreateInput } from "./contract.schemas.js";
+import { syncCommissionRuleFromContract } from "./commission.service.js";
 import { getVendorById, getVendorByUserId } from "./vendor.service.js";
 
 export const DEFAULT_CONTRACT_CONDITIONS = `[REVISAR CON ABOGADO]
@@ -507,6 +508,15 @@ export async function acceptContractVersion(
       documentHash,
     },
   });
+
+  if (version.commissionPercent != null) {
+    await syncCommissionRuleFromContract({
+      vendorId: vendor.id,
+      actorUserId: userId,
+      commissionPercent: Number(version.commissionPercent),
+      actorIp: context?.ipAddress,
+    });
+  }
 
   const full = await getContractById(version.contractId);
   if (!full) {

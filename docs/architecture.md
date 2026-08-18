@@ -2,7 +2,7 @@
 
 ## Estado
 
-Monolito modular. FASE 8: web Next.js, API Fastify, Prisma, pedidos y Stripe Connect.
+Monolito modular. FASE 10: web Next.js, API Fastify, Prisma, pedidos, Stripe Connect, contratos y comisiones.
 
 ## Enfoque
 

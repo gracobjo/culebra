@@ -38,6 +38,7 @@ FASE 4 completada: onboarding, perfil, pagina publica, panel productor y moderac
 
 - `/quiero-vender` — alta inicial
 - `/panel/proveedor` — panel privado
+- `/panel/proveedor/liquidaciones` — comisiones y payouts
 - `/productores` — listado publico
 - `/productores/[slug]` — ficha publica
 

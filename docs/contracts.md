@@ -24,7 +24,8 @@ FASE 9 completada: contratos versionados productor–plataforma con aceptacion a
 
 - Solo puede haber una version `PENDING_SIGNATURE` por contrato.
 - Para enviar productos a revision hace falta un contrato `ACTIVE` (`VENDOR_CONTRACT_REQUIRED`).
-- La comision indicada en el contrato es informativa hasta FASE 10 (reglas de comision).
+- La comision indicada en el contrato es el respaldo si no hay `CommissionRule` vigente (FASE 10).
+- Al aceptar un contrato con porcentaje, se sincroniza una regla `PERCENTAGE` si hace falta.
 
 ## API
 
@@ -43,4 +44,4 @@ Plantillas y clausulas contractuales definitivas: `[REVISAR CON ABOGADO]`
 
 ## Siguiente fase
 
-FASE 10: comisiones y liquidaciones.
+FASE 11: panel de administracion.

@@ -2,7 +2,7 @@
 
 ## Estado
 
-FASE 8: autenticacion, proveedores, catalogo, carrito, pedidos y pagos Stripe.
+FASE 10: autenticacion, proveedores, catalogo, carrito, pedidos, pagos Stripe, contratos y comisiones.
 
 ## Base URL
 
@@ -92,6 +92,28 @@ FASE 8: autenticacion, proveedores, catalogo, carrito, pedidos y pagos Stripe.
 | POST | `/vendors/me/stripe/onboard` | VENDOR |
 | POST | `/webhooks/stripe` | Stripe (firma) |
 
+## Contratos
+
+| Metodo | Ruta | Acceso |
+|--------|------|--------|
+| GET | `/vendors/me/contracts` | VENDOR |
+| POST | `/vendors/me/contracts/versions/:versionId/accept` | VENDOR |
+| GET | `/admin/contracts` | ADMIN |
+| GET | `/admin/contracts/:id` | ADMIN |
+| POST | `/admin/vendors/:vendorId/contracts/versions` | ADMIN |
+| POST | `/admin/contracts/:contractId/versions/:versionId/publish` | ADMIN |
+
+## Comisiones y liquidaciones
+
+| Metodo | Ruta | Acceso |
+|--------|------|--------|
+| GET | `/vendors/me/commission-rules` | VENDOR |
+| GET | `/vendors/me/payouts` | VENDOR |
+| POST | `/vendors/me/payouts/retry` | VENDOR |
+| GET | `/admin/vendors/:vendorId/commission-rules` | ADMIN |
+| POST | `/admin/vendors/:vendorId/commission-rules` | ADMIN |
+| GET | `/admin/payouts` | ADMIN |
+
 ## Autenticacion
 
 Dos metodos soportados:
@@ -109,5 +131,4 @@ curl -X POST http://localhost:4000/auth/register \
 
 ## Siguientes modulos
 
-- Pagos Stripe (FASE 8)
-- Contratos y comisiones
+- Panel de administracion (FASE 11)

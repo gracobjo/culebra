@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 9**: contratos versionados productor–plataforma.
+Proyecto en **FASE 10**: comisiones versionadas y liquidaciones.
 
 ## Stack
 
@@ -95,4 +95,5 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 7: Pedidos
 - [x] FASE 8: Pagos
 - [x] FASE 9: Contratos
-- [ ] FASE 10: Comisiones y liquidaciones
+- [x] FASE 10: Comisiones y liquidaciones
+- [ ] FASE 11: Panel de administracion

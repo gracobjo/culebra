@@ -119,12 +119,56 @@ export async function createOrderCheckoutSession(
   return { url: session.url };
 }
 
+async function transferPayout(payoutId: string, vendorOrder: {
+  id: string;
+  vendorNetAmount: unknown;
+  vendor: {
+    stripeAccountId: string | null;
+    stripeChargesEnabled: boolean;
+  };
+}, orderNumber: string): Promise<"paid" | "failed" | "skipped"> {
+  if (!vendorOrder.vendor.stripeAccountId || !vendorOrder.vendor.stripeChargesEnabled) {
+    return "skipped";
+  }
+
+  const amount = Math.round(Number(vendorOrder.vendorNetAmount) * 100);
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return "skipped";
+  }
+
+  try {
+    const transfer = await getStripe().transfers.create({
+      amount,
+      currency: "eur",
+      destination: vendorOrder.vendor.stripeAccountId,
+      transfer_group: orderNumber,
+      metadata: {
+        vendorOrderId: vendorOrder.id,
+        orderNumber,
+      },
+    });
+    await prisma.payout.update({
+      where: { id: payoutId },
+      data: {
+        status: PayoutStatus.PAID,
+        stripeTransferId: transfer.id,
+      },
+    });
+    return "paid";
+  } catch {
+    await prisma.payout.update({
+      where: { id: payoutId },
+      data: { status: PayoutStatus.FAILED },
+    });
+    return "failed";
+  }
+}
+
 async function createVendorTransfers(orderId: string, paymentId: string, orderNumber: string) {
   const vendorOrders = await prisma.vendorOrder.findMany({
     where: { orderId },
     include: { vendor: true, payout: true },
   });
-  const stripe = getStripe();
 
   for (const vendorOrder of vendorOrders as Array<{
     id: string;
@@ -156,40 +200,66 @@ async function createVendorTransfers(orderId: string, paymentId: string, orderNu
       },
     });
 
-    if (!vendorOrder.vendor.stripeAccountId || !vendorOrder.vendor.stripeChargesEnabled) {
-      continue;
-    }
+    await transferPayout(payout.id, vendorOrder, orderNumber);
+  }
+}
 
-    const amount = Math.round(Number(vendorOrder.vendorNetAmount) * 100);
-    if (!Number.isFinite(amount) || amount <= 0) {
-      continue;
-    }
+export async function retryPendingPayoutsForVendor(userId: string): Promise<{ retried: number }> {
+  if (!isStripeConfigured()) {
+    throw new Error("STRIPE_NOT_CONFIGURED");
+  }
 
-    try {
-      const transfer = await stripe.transfers.create({
-        amount,
-        currency: "eur",
-        destination: vendorOrder.vendor.stripeAccountId,
-        transfer_group: orderNumber,
-        metadata: {
-          vendorOrderId: vendorOrder.id,
-          orderNumber,
-        },
-      });
+  const vendor = await getVendorByUserId(userId);
+  if (!vendor) {
+    throw new Error("VENDOR_NOT_FOUND");
+  }
+  if (!vendor.stripeAccountId || !vendor.stripeChargesEnabled) {
+    throw new Error("VENDOR_STRIPE_NOT_READY");
+  }
+
+  const pending = await prisma.payout.findMany({
+    where: {
+      vendorId: vendor.id,
+      status: { in: [PayoutStatus.PENDING, PayoutStatus.FAILED] },
+      stripeTransferId: null,
+    },
+    include: {
+      vendor: true,
+      vendorOrder: { include: { order: true } },
+    },
+  });
+
+  for (const payout of pending as Array<{
+    id: string;
+    vendorNetAmount: unknown;
+    vendor: {
+      stripeAccountId: string | null;
+      stripeChargesEnabled: boolean;
+    };
+    vendorOrder: { id: string; order: { orderNumber: string } };
+  }>) {
+    await prisma.payout.update({
+      where: { id: payout.id },
+      data: { status: PayoutStatus.PROCESSING },
+    });
+    const result = await transferPayout(
+      payout.id,
+      {
+        id: payout.vendorOrder.id,
+        vendorNetAmount: payout.vendorNetAmount,
+        vendor: payout.vendor,
+      },
+      payout.vendorOrder.order.orderNumber,
+    );
+    if (result === "skipped") {
       await prisma.payout.update({
         where: { id: payout.id },
-        data: {
-          status: PayoutStatus.PAID,
-          stripeTransferId: transfer.id,
-        },
-      });
-    } catch {
-      await prisma.payout.update({
-        where: { id: payout.id },
-        data: { status: PayoutStatus.FAILED },
+        data: { status: PayoutStatus.PENDING },
       });
     }
   }
+
+  return { retried: pending.length };
 }
 
 export async function markOrderPaid(params: {
@@ -261,12 +331,18 @@ async function syncConnectedAccount(account: Stripe.Account) {
   if (!vendor) {
     return;
   }
+  const chargesEnabled = Boolean(account.charges_enabled && account.payouts_enabled);
   await prisma.vendor.update({
     where: { id: vendor.id },
-    data: {
-      stripeChargesEnabled: Boolean(account.charges_enabled && account.payouts_enabled),
-    },
+    data: { stripeChargesEnabled: chargesEnabled },
   });
+  if (chargesEnabled && isStripeConfigured()) {
+    try {
+      await retryPendingPayoutsForVendor(vendor.userId);
+    } catch {
+      // Retry is best-effort after Connect onboarding.
+    }
+  }
 }
 
 export async function handleStripeWebhook(rawBody: string, signature: string | null) {

@@ -116,4 +116,4 @@ erDiagram
 
 ## Siguiente fase
 
-FASE 9: contratos versionados. Los campos Stripe Connect estan en `Vendor`.
+FASE 11: panel de administracion. Los campos Stripe Connect estan en `Vendor`.

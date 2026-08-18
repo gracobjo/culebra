@@ -79,6 +79,14 @@ export default async function VendorOrderDetailPage({ params }: VendorOrderPageP
             <span>Subtotal</span>
             <span>{formatPrice(order.subtotalGross)}</span>
           </li>
+          <li className="flex justify-between text-stone-600">
+            <span>Comision marketplace</span>
+            <span>-{formatPrice(order.marketplaceCommission)}</span>
+          </li>
+          <li className="flex justify-between font-medium">
+            <span>Neto a recibir</span>
+            <span>{formatPrice(order.vendorNetAmount)}</span>
+          </li>
         </ul>
       </section>
 

@@ -19,9 +19,9 @@ Si Stripe no esta configurado, el pedido queda en `PAYMENT_PENDING` (modo desarr
 
 Si el productor tiene cuenta Connect con cobros activos, se crea un `Transfer` al `stripeAccountId` con `transfer_group` = numero de pedido.
 
-Si no ha completado el alta, el `Payout` queda `PENDING` (liquidacion posterior, FASE 10).
+Si no ha completado el alta, el `Payout` queda `PENDING` y se reintenta desde `/panel/proveedor/liquidaciones` o al completar Stripe Connect.
 
-Comision marketplace: 0 hasta FASE 10.
+Comision marketplace: se calcula en checkout (FASE 10) y se guarda como snapshot. El transfer a Stripe usa `vendorNetAmount`.
 
 ## Alta del productor
 
@@ -36,4 +36,4 @@ Eventos: `checkout.session.completed`, `payment_intent.succeeded`, `payment_inte
 
 ## Siguiente fase
 
-FASE 10: comisiones y liquidaciones.
+FASE 11: panel de administracion.
