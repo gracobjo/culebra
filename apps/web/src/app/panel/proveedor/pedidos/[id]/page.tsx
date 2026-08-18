@@ -103,8 +103,8 @@ export default async function VendorOrderDetailPage({ params }: VendorOrderPageP
       ) : null}
 
       <p className="mt-6 text-xs text-stone-500">
-        El cobro con Stripe se conectara en la siguiente fase. Puedes preparar y
-        enviar el pedido para completar el flujo logistico.
+        Si Stripe esta configurado, solo podras preparar y enviar pedidos ya pagados.
+        Sin Stripe (entorno local), el flujo logistico sigue disponible.
       </p>
     </PageShell>
   );

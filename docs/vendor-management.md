@@ -47,4 +47,4 @@ Solo proveedores `ACTIVE` aparecen en el listado y ficha publica. La moderacion 
 
 ## Siguiente fase
 
-FASE 8: pagos con Stripe Connect.
+FASE 9: contratos versionados.

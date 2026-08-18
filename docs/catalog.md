@@ -44,4 +44,4 @@ El stock se controla por variante cuando existen.
 
 ## Siguiente fase
 
-FASE 8: pagos con Stripe Connect.
+FASE 9: contratos versionados.

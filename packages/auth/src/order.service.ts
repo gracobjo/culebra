@@ -1,8 +1,9 @@
-import { AuditAction, OrderStatus, ShipmentStatus, VendorOrderStatus } from "@culebra/domain";
+import { AuditAction, OrderStatus, PaymentStatus, ShipmentStatus, VendorOrderStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
 import { getVendorByUserId } from "./vendor.service.js";
 import type { ShipVendorOrderInput, VendorOrderStatusInput } from "./order.schemas.js";
+import { isStripeConfigured } from "./stripe.js";
 
 type AddressSnapshot = {
   firstName?: string;
@@ -483,6 +484,14 @@ export async function updateVendorOrderStatus(
     throw new Error("VENDOR_ORDER_INVALID_STATUS");
   }
 
+  if (
+    input.status !== VendorOrderStatus.CANCELLED &&
+    isStripeConfigured() &&
+    current.paymentStatus !== PaymentStatus.PAYMENT_PAID
+  ) {
+    throw new Error("VENDOR_ORDER_PAYMENT_REQUIRED");
+  }
+
   if (input.status === VendorOrderStatus.SHIPPED) {
     return shipVendorOrder(userId, vendorOrderId, {
       carrier: input.carrier,
@@ -541,6 +550,12 @@ export async function shipVendorOrder(
   const current = await getVendorOrder(userId, vendorOrderId);
   if (!current.allowedActions.includes(VendorOrderStatus.SHIPPED)) {
     throw new Error("VENDOR_ORDER_INVALID_STATUS");
+  }
+  if (
+    isStripeConfigured() &&
+    current.paymentStatus !== PaymentStatus.PAYMENT_PAID
+  ) {
+    throw new Error("VENDOR_ORDER_PAYMENT_REQUIRED");
   }
 
   await prisma.vendorOrder.update({

@@ -72,6 +72,15 @@ export type {
 export { checkoutCart } from "./checkout.service.js";
 export type { OrderSummary } from "./checkout.service.js";
 export {
+  createOrderCheckoutSession,
+  createVendorStripeOnboardingLink,
+  getVendorStripeStatus,
+  handleStripeWebhook,
+  isStripeConfigured,
+  markOrderPaid,
+} from "./payment.service.js";
+export type { VendorStripeStatus } from "./payment.service.js";
+export {
   getOrderByNumber,
   getVendorOrder,
   listOrdersForUser,

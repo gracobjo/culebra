@@ -19,7 +19,7 @@ Obligatorio recoger:
 - direccion de envio
 - direccion de facturacion (o la misma)
 
-El pedido queda en `PAYMENT_PENDING`. Stripe se conecta en FASE 8.
+El pedido queda en `PAYMENT_PENDING` hasta el pago Stripe (FASE 8).
 
 ## Pedido interno
 
@@ -38,4 +38,4 @@ El pedido queda en `PAYMENT_PENDING`. Stripe se conecta en FASE 8.
 
 ## Siguiente fase
 
-FASE 8: pagos con Stripe Connect.
+FASE 9: contratos versionados.

@@ -40,12 +40,12 @@ export default async function HomePage() {
 
         <div className="rounded-3xl bg-emerald-950 p-6 text-white shadow-xl sm:p-8">
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-200 sm:text-sm sm:tracking-[0.3em]">
-            Fase 7
+            Fase 8
           </p>
-          <h2 className="mt-4 text-xl font-semibold sm:text-2xl">Seguimiento de pedidos</h2>
+          <h2 className="mt-4 text-xl font-semibold sm:text-2xl">Pagos con Stripe</h2>
           <p className="mt-4 text-emerald-50/80">
-            El comprador consulta el estado y cada productor confirma, prepara
-            y registra el envio de su parte del pedido.
+            El cliente paga el pedido y, si el productor tiene Stripe Connect,
+            se transfiere su neto automaticamente.
           </p>
         </div>
       </section>

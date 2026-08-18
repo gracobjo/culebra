@@ -116,4 +116,4 @@ erDiagram
 
 ## Siguiente fase
 
-FASE 8: pagos con Stripe Connect.
+FASE 9: contratos versionados. Los campos Stripe Connect estan en `Vendor`.

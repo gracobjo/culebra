@@ -128,6 +128,21 @@ export const ShipmentStatus = {
   RETURNED: "RETURNED",
 } as const satisfies Record<string, ShipmentStatus>;
 
+export type PayoutStatus =
+  | "PENDING"
+  | "PROCESSING"
+  | "PAID"
+  | "FAILED"
+  | "CANCELLED";
+
+export const PayoutStatus = {
+  PENDING: "PENDING",
+  PROCESSING: "PROCESSING",
+  PAID: "PAID",
+  FAILED: "FAILED",
+  CANCELLED: "CANCELLED",
+} as const satisfies Record<string, PayoutStatus>;
+
 export type VendorStatus =
   | "DRAFT"
   | "PENDING_REVIEW"

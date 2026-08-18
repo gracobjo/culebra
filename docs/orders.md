@@ -39,4 +39,4 @@ El estado del pedido padre se calcula a partir de los subpedidos.
 
 ## Siguiente fase
 
-FASE 8: pagos con Stripe Connect.
+FASE 9: contratos versionados.

@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 7**: seguimiento de pedidos.
+Proyecto en **FASE 8**: pagos con Stripe Connect.
 
 ## Stack
 
@@ -93,4 +93,5 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 5: Productos y catalogo
 - [x] FASE 6: Marketplace y carrito
 - [x] FASE 7: Pedidos
-- [ ] FASE 8: Pagos
+- [x] FASE 8: Pagos
+- [ ] FASE 9: Contratos

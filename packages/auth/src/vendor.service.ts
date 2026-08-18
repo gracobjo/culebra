@@ -27,12 +27,17 @@ export type VendorRecord = {
   website: string | null;
   socialLinks: Record<string, string> | null;
   logoUrl: string | null;
+  stripeAccountId: string | null;
+  stripeChargesEnabled: boolean;
   status: VendorStatus;
   createdAt: Date;
   updatedAt: Date;
 };
 
-export type PublicVendorRecord = Omit<VendorRecord, "taxId" | "userId"> & {
+export type PublicVendorRecord = Omit<
+  VendorRecord,
+  "taxId" | "userId" | "stripeAccountId" | "stripeChargesEnabled"
+> & {
   productCount?: number;
 };
 
@@ -55,6 +60,8 @@ function mapVendor(vendor: {
   website: string | null;
   socialLinks: unknown;
   logoUrl: string | null;
+  stripeAccountId?: string | null;
+  stripeChargesEnabled?: boolean;
   status: string;
   createdAt: Date;
   updatedAt: Date;
@@ -62,12 +69,20 @@ function mapVendor(vendor: {
   return {
     ...vendor,
     socialLinks: (vendor.socialLinks as Record<string, string> | null) ?? null,
+    stripeAccountId: vendor.stripeAccountId ?? null,
+    stripeChargesEnabled: Boolean(vendor.stripeChargesEnabled),
     status: vendor.status as VendorStatus,
   };
 }
 
 function toPublicVendor(vendor: VendorRecord, productCount = 0): PublicVendorRecord {
-  const { taxId: _taxId, userId: _userId, ...publicVendor } = vendor;
+  const {
+    taxId: _taxId,
+    userId: _userId,
+    stripeAccountId: _stripe,
+    stripeChargesEnabled: _charges,
+    ...publicVendor
+  } = vendor;
   return { ...publicVendor, productCount };
 }
 

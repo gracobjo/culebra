@@ -244,6 +244,8 @@ model Vendor {
   website     String?
   socialLinks Json?
   logoUrl     String?
+  stripeAccountId      String?  @unique
+  stripeChargesEnabled Boolean  @default(false)
   status      VendorStatus @default(DRAFT)
   deletedAt   DateTime?
   createdAt   DateTime     @default(now())

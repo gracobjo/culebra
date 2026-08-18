@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { auth } from "@/auth";
-import { getOrderByNumber } from "@culebra/auth";
+import { getOrderByNumber, isStripeConfigured } from "@culebra/auth";
 import { guestCanAccessOrder } from "@/lib/cart";
 import { formatDate, formatPrice, vendorOrderStatusLabels } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 import { OrderStatusBadge } from "@/components/orders/order-status-badge";
+import { PayOrderButton } from "@/components/orders/pay-order-button";
 
 type OrderPageProps = {
   params: Promise<{ orderNumber: string }>;
+  searchParams: Promise<{ pago?: string }>;
 };
 
 export async function generateMetadata({ params }: OrderPageProps) {
@@ -16,8 +18,9 @@ export async function generateMetadata({ params }: OrderPageProps) {
   return { title: `Pedido ${orderNumber}` };
 }
 
-export default async function OrderConfirmationPage({ params }: OrderPageProps) {
+export default async function OrderConfirmationPage({ params, searchParams }: OrderPageProps) {
   const { orderNumber } = await params;
+  const { pago } = await searchParams;
   const session = await auth();
   const guestAccess = await guestCanAccessOrder(orderNumber);
   const order = await getOrderByNumber(orderNumber, {
@@ -42,9 +45,33 @@ export default async function OrderConfirmationPage({ params }: OrderPageProps) 
         <span className="text-sm text-stone-500">{formatDate(order.createdAt)}</span>
       </div>
       <p className="mt-4 text-stone-600">
-        Confirmacion enviada a {order.customerEmail}. El pago online se conectara
-        en una fase posterior.
+        Confirmacion enviada a {order.customerEmail}.
+        {order.paymentStatus === "PAYMENT_PAID"
+          ? " El pago se ha recibido."
+          : isStripeConfigured()
+            ? " Completa el pago para que los productores preparen el envio."
+            : " El pago online se activara cuando Stripe este configurado."}
       </p>
+      {pago === "ok" && order.paymentStatus !== "PAYMENT_PAID" ? (
+        <p className="mt-3 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          Estamos confirmando el pago. Recarga en unos segundos si el estado no cambia.
+        </p>
+      ) : null}
+      {pago === "cancelado" ? (
+        <p className="mt-3 rounded-xl bg-stone-100 px-4 py-3 text-sm text-stone-700">
+          El pago se cancelo. Puedes intentarlo de nuevo cuando quieras.
+        </p>
+      ) : null}
+      {order.paymentStatus === "PAYMENT_PAID" ? (
+        <p className="mt-3 rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+          Pedido pagado.
+        </p>
+      ) : null}
+      {order.paymentStatus !== "PAYMENT_PAID" &&
+      order.status !== "CANCELLED" &&
+      isStripeConfigured() ? (
+        <PayOrderButton orderNumber={order.orderNumber} />
+      ) : null}
 
       <ul className="mt-8 space-y-3 rounded-3xl border border-stone-200 bg-white p-4 sm:p-6">
         {order.items.map((item) => (

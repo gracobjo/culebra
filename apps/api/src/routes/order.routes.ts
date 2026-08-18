@@ -25,6 +25,7 @@ function handleOrderError(error: unknown, reply: FastifyReply) {
     VENDOR_NOT_FOUND: 404,
     VENDOR_ORDER_NOT_FOUND: 404,
     VENDOR_ORDER_INVALID_STATUS: 400,
+    VENDOR_ORDER_PAYMENT_REQUIRED: 409,
   };
   reply.code(map[error.message] ?? 500).send({ error: error.message });
 }

@@ -5,7 +5,9 @@ import {
   addCartItemSchema,
   checkoutCart,
   checkoutSchema,
+  createOrderCheckoutSession,
   getOrCreateCart,
+  isStripeConfigured,
   removeCartItem,
   updateCartItem,
 } from "@culebra/auth";
@@ -118,6 +120,19 @@ export async function checkoutAction(
     const order = await checkoutCart(owner, parsed.data);
     await rememberGuestOrder(order.orderNumber);
     revalidatePath("/carrito");
+    if (isStripeConfigured()) {
+      try {
+        const checkout = await createOrderCheckoutSession(order.orderNumber, {
+          userId: owner.userId,
+          guestAccess: true,
+        });
+        redirect(checkout.url);
+      } catch (paymentError) {
+        if (paymentError && typeof paymentError === "object" && "digest" in paymentError) {
+          throw paymentError;
+        }
+      }
+    }
     redirect(`/pedido/${order.orderNumber}`);
   } catch (error) {
     if (error && typeof error === "object" && "digest" in error) {

@@ -2,7 +2,7 @@
 
 ## Estado
 
-FASE 7: autenticacion, proveedores, catalogo, carrito, checkout y pedidos.
+FASE 8: autenticacion, proveedores, catalogo, carrito, pedidos y pagos Stripe.
 
 ## Base URL
 
@@ -83,6 +83,15 @@ FASE 7: autenticacion, proveedores, catalogo, carrito, checkout y pedidos.
 | PATCH | `/vendors/me/orders/:id/status` | VENDOR |
 | POST | `/vendors/me/orders/:id/ship` | VENDOR |
 
+## Pagos
+
+| Metodo | Ruta | Acceso |
+|--------|------|--------|
+| POST | `/orders/:orderNumber/pay` | Autenticado |
+| GET | `/vendors/me/stripe` | VENDOR |
+| POST | `/vendors/me/stripe/onboard` | VENDOR |
+| POST | `/webhooks/stripe` | Stripe (firma) |
+
 ## Autenticacion
 
 Dos metodos soportados:
@@ -100,6 +109,5 @@ curl -X POST http://localhost:4000/auth/register \
 
 ## Siguientes modulos
 
-- Pedidos (FASE 7)
-- Pagos
+- Pagos Stripe (FASE 8)
 - Contratos y comisiones

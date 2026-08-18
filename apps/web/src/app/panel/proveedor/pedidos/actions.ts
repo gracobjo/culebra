@@ -41,6 +41,9 @@ export async function updateVendorOrderStatusAction(
     if (error instanceof Error && error.message === "VENDOR_ORDER_INVALID_STATUS") {
       return { error: "Ese cambio de estado no esta permitido." };
     }
+    if (error instanceof Error && error.message === "VENDOR_ORDER_PAYMENT_REQUIRED") {
+      return { error: "El pedido debe estar pagado antes de prepararlo o enviarlo." };
+    }
     return { error: "No se pudo actualizar el pedido." };
   }
 }
