@@ -4,15 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build --workspace @culebra/auth && next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
     "next": "^15.5.23",
+    "next-auth": "^5.0.0-beta.29",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "@culebra/auth": "*",
+    "@culebra/db": "*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

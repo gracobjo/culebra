@@ -1,0 +1,61 @@
+import type { NextAuthConfig } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import { validateCredentials } from "@culebra/auth";
+
+export const authConfig = {
+  trustHost: true,
+  pages: {
+    signIn: "/login",
+  },
+  session: {
+    strategy: "jwt",
+    maxAge: 7 * 24 * 60 * 60,
+  },
+  providers: [
+    Credentials({
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Contrasena", type: "password" },
+      },
+      authorize: async (credentials) => {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
+        const user = await validateCredentials({
+          email: String(credentials.email),
+          password: String(credentials.password),
+        });
+
+        if (!user) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          name:
+            [user.firstName, user.lastName].filter(Boolean).join(" ") ||
+            user.email,
+          roles: user.roles,
+        };
+      },
+    }),
+  ],
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.roles = (user as { roles?: string[] }).roles ?? [];
+      }
+      return token;
+    },
+    session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.roles = (token.roles as string[]) ?? [];
+      }
+      return session;
+    },
+  },
+} satisfies NextAuthConfig;

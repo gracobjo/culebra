@@ -2,6 +2,7 @@ node_modules/
 .next/
 dist/
 packages/db/dist/
+packages/auth/dist/
 coverage/
 .turbo/
 .env

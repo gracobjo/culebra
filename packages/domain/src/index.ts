@@ -1,5 +1,40 @@
 export type UserRole = "ADMIN" | "VENDOR" | "CONSUMER";
 
+export const UserRole = {
+  ADMIN: "ADMIN",
+  VENDOR: "VENDOR",
+  CONSUMER: "CONSUMER",
+} as const;
+
+export type UserStatus =
+  | "ACTIVE"
+  | "INACTIVE"
+  | "SUSPENDED"
+  | "PENDING_VERIFICATION";
+
+export type AuditAction =
+  | "CREATE"
+  | "UPDATE"
+  | "DELETE"
+  | "APPROVE"
+  | "REJECT"
+  | "SIGN"
+  | "LOGIN"
+  | "LOGOUT"
+  | "STATUS_CHANGE";
+
+export const AuditAction = {
+  CREATE: "CREATE",
+  UPDATE: "UPDATE",
+  DELETE: "DELETE",
+  APPROVE: "APPROVE",
+  REJECT: "REJECT",
+  SIGN: "SIGN",
+  LOGIN: "LOGIN",
+  LOGOUT: "LOGOUT",
+  STATUS_CHANGE: "STATUS_CHANGE",
+} as const satisfies Record<string, AuditAction>;
+
 export type ProductStatus =
   | "DRAFT"
   | "PENDING_REVIEW"

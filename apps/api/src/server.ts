@@ -1,39 +1,74 @@
+import cookie from "@fastify/cookie";
+import cors from "@fastify/cors";
+import rateLimit from "@fastify/rate-limit";
 import Fastify from "fastify";
 import { prisma } from "@culebra/db";
 
-const app = Fastify({
-  logger: true,
-});
+import { config } from "./lib/config.js";
+import { authRoutes, protectedRoutes } from "./routes/auth.routes.js";
 
-app.get("/health", async () => {
-  let database: "connected" | "disconnected" = "disconnected";
+async function buildServer() {
+  const app = Fastify({
+    logger: true,
+  });
 
-  try {
-    await prisma.$queryRaw`SELECT 1`;
-    database = "connected";
-  } catch {
-    database = "disconnected";
-  }
+  await app.register(cors, {
+    origin: config.corsOrigin,
+    credentials: true,
+  });
 
-  return {
-    status: database === "connected" ? "ok" : "degraded",
-    service: "culebra-api",
-    phase: 2,
-    database,
-  };
-});
+  await app.register(cookie);
 
-app.addHook("onClose", async () => {
-  await prisma.$disconnect();
-});
+  await app.register(rateLimit, {
+    global: true,
+    max: 100,
+    timeWindow: "1 minute",
+  });
 
-const port = Number(process.env.API_PORT ?? 4000);
+  app.get("/health", async () => {
+    let database: "connected" | "disconnected" = "disconnected";
+
+    try {
+      await prisma.$queryRaw`SELECT 1`;
+      database = "connected";
+    } catch {
+      database = "disconnected";
+    }
+
+    return {
+      status: database === "connected" ? "ok" : "degraded",
+      service: "culebra-api",
+      phase: 3,
+      database,
+    };
+  });
+
+  await app.register(
+    async (authScope) => {
+      await authScope.register(rateLimit, {
+        max: 10,
+        timeWindow: "1 minute",
+      });
+      await authRoutes(authScope);
+    },
+    { prefix: "" },
+  );
+
+  await protectedRoutes(app);
+
+  app.addHook("onClose", async () => {
+    await prisma.$disconnect();
+  });
+
+  return app;
+}
 
 const start = async () => {
   try {
-    await app.listen({ port, host: "0.0.0.0" });
+    const app = await buildServer();
+    await app.listen({ port: config.port, host: "0.0.0.0" });
   } catch (error) {
-    app.log.error(error);
+    console.error(error);
     process.exit(1);
   }
 };

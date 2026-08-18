@@ -14,7 +14,7 @@ FASE 2 completada: esquema Prisma, migracion inicial, seed de roles y categorias
 
 | Modulo | Entidades |
 |--------|-----------|
-| Usuarios | `User`, `Role`, `UserRole` |
+| Usuarios | `User`, `Role`, `UserRole`, `UserSession`, `PasswordResetToken` |
 | Proveedores | `Vendor`, `VendorDocument` |
 | Contratos | `VendorContract`, `VendorContractVersion`, `ContractAcceptance` |
 | Comisiones | `CommissionRule` (versionadas) |
@@ -116,4 +116,4 @@ erDiagram
 
 ## Siguiente fase
 
-FASE 3: autenticacion, sesiones y RBAC sobre el modelo de usuarios y roles.
+FASE 4: onboarding de proveedores y panel privado inicial.

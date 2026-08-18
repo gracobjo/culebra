@@ -1,13 +1,55 @@
 # Seguridad
 
-## Principios
+## Estado
 
-- RBAC por rol y alcance por proveedor
-- validacion estricta de inputs
-- proteccion frente a XSS, CSRF e inyecciones
-- sesiones seguras y hashing robusto
-- auditoria y trazabilidad
+FASE 3 completada: autenticacion, sesiones, RBAC y validacion de inputs.
 
-## Pendiente
+## Autenticacion
 
-Implementacion por fases a partir de FASE 3 y hardening progresivo hasta FASE 13.
+- Hash de contrasenas con **bcrypt** (12 rondas)
+- Sesiones en base de datos (`UserSession`) con token aleatorio hasheado (SHA-256)
+- Cookie httpOnly `culebra_session` para clientes REST
+- JWT firmado con `AUTH_SECRET` para integracion web/API
+- Auth.js (NextAuth v5) en frontend con provider Credentials
+
+## RBAC
+
+Roles definidos:
+
+- `ADMIN`
+- `VENDOR`
+- `CONSUMER`
+
+Middleware de API:
+
+- `authenticate` — valida cookie de sesion o Bearer JWT
+- `requireRoles(...)` — autoriza por rol
+
+Rutas protegidas de ejemplo:
+
+- `GET /admin/status` — solo ADMIN
+- `GET /vendor/status` — solo VENDOR
+- `GET /consumer/status` — solo CONSUMER
+
+## Protecciones activas
+
+- Validacion de inputs con Zod
+- Rate limiting global (100 req/min) y en auth (10 req/min)
+- CORS restringido a `CORS_ORIGIN`
+- Auditoria en registro, login, logout y solicitud de reset
+- Campo `mfaEnabled` preparado para MFA futuro
+
+## Pendiente (fases posteriores)
+
+- MFA real
+- CSRF en formularios web sensibles
+- Hardening avanzado (FASE 13)
+- Envio real de emails para reset de contrasena
+
+## Variables sensibles
+
+Nunca commitear:
+
+- `AUTH_SECRET`
+- `SEED_ADMIN_PASSWORD`
+- credenciales de base de datos

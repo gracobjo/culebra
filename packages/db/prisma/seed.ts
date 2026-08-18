@@ -1,4 +1,5 @@
 import { PrismaClient, RoleName } from "@prisma/client";
+import { seedAdminUser } from "@culebra/auth";
 
 const prisma = new PrismaClient();
 
@@ -121,6 +122,9 @@ async function main() {
   for (const category of categories) {
     await seedCategoryTree(category);
   }
+
+  console.log("Seeding admin user (optional)...");
+  await seedAdminUser();
 
   const roleCount = await prisma.role.count();
   const categoryCount = await prisma.category.count();

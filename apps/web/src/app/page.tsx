@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { auth } from "@/auth";
+
 const featuredCategories = [
   "Embutidos y productos carnicos",
   "Quesos y lacteos",
@@ -5,7 +8,9 @@ const featuredCategories = [
   "Miel y productos apicolas",
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await auth();
+
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
       <header className="border-b border-stone-200 bg-white/90">
@@ -15,10 +20,18 @@ export default function HomePage() {
               Sierra de la Culebra Marketplace
             </p>
           </div>
-          <nav className="hidden gap-6 text-sm md:flex">
+          <nav className="hidden items-center gap-6 text-sm md:flex">
             <a href="#categorias">Categorias</a>
             <a href="#productores">Productores</a>
             <a href="#como-funciona">Como funciona</a>
+            {session?.user ? (
+              <Link href="/cuenta">Mi cuenta</Link>
+            ) : (
+              <>
+                <Link href="/login">Entrar</Link>
+                <Link href="/register">Registro</Link>
+              </>
+            )}
           </nav>
         </div>
       </header>
@@ -54,14 +67,14 @@ export default function HomePage() {
 
         <div className="rounded-3xl bg-emerald-950 p-8 text-white shadow-xl">
           <p className="text-sm uppercase tracking-[0.3em] text-emerald-200">
-            Fase 1
+            Fase 3
           </p>
           <h2 className="mt-4 text-2xl font-semibold">
-            Base del marketplace preparada
+            Autenticacion y roles activos
           </h2>
           <p className="mt-4 text-emerald-50/80">
-            Esta primera iteracion deja listo el esqueleto para frontend,
-            backend, documentacion y siguientes modulos del MVP.
+            Registro, login, sesiones seguras, RBAC y endpoints protegidos listos
+            para consumidores, proveedores y administradores.
           </p>
         </div>
       </section>

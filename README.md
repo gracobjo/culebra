@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 2**: base de datos con Prisma, migracion inicial y seed de roles/categorias.
+Proyecto en **FASE 3**: autenticacion, sesiones, RBAC y paginas de login/registro.
 
 ## Stack
 
@@ -88,6 +88,6 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 
 - [x] FASE 1: Estructura del proyecto
 - [x] FASE 2: Base de datos
-- [ ] FASE 3: Autenticacion y roles
+- [x] FASE 3: Autenticacion y roles
 - [ ] FASE 4: Proveedores
 - [ ] FASE 5: Productos y catalogo
