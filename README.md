@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 13**: seguridad reforzada.
+Proyecto en **FASE 14**: SEO y descubrimiento en buscadores.
 
 ## Stack
 
@@ -99,3 +99,4 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 11: Panel de administracion
 - [x] FASE 12: UX/UI del marketplace
 - [x] FASE 13: Seguridad
+- [x] FASE 14: SEO

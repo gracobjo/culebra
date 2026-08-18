@@ -7,7 +7,8 @@ import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 import { TrustStrip } from "@/components/ux/trust-strip";
 import { JsonLd } from "@/components/ux/json-ld";
-import { siteConfig } from "@/lib/site";
+import { buildBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/site";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -22,16 +23,12 @@ export async function generateMetadata({ params }: ProductPageProps) {
   const description =
     product.shortDescription ??
     `Compra ${product.name} de ${product.vendor?.tradeName ?? "productor local"}.`;
-  return {
-    title: `${product.name} | ${siteConfig.shortName}`,
+  return buildPageMetadata({
+    title: product.name,
     description,
-    openGraph: {
-      title: product.name,
-      description,
-      type: "website",
-      images: product.images[0]?.url ? [{ url: product.images[0].url }] : undefined,
-    },
-  };
+    path: `/productos/${slug}`,
+    image: product.images[0]?.url,
+  });
 }
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
@@ -52,29 +49,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     { label: product.name },
   ];
 
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.shortDescription ?? product.longDescription,
-    image: product.images.map((img) => img.url),
-    offers: {
-      "@type": "Offer",
-      price: product.basePrice,
-      priceCurrency: "EUR",
-      availability:
-        product.stock > 0
-          ? "https://schema.org/InStock"
-          : "https://schema.org/OutOfStock",
-    },
-    brand: product.vendor
-      ? { "@type": "Brand", name: product.vendor.tradeName }
-      : undefined,
-  };
+  const productJsonLd = buildProductJsonLd(product);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbItems);
 
   return (
     <PageShell width="xl">
       <JsonLd data={productJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <Breadcrumbs items={breadcrumbItems} />
 
       <article className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-12">

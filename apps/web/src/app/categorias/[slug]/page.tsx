@@ -5,7 +5,9 @@ import { ProductCard } from "@/components/catalog/product-card";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 import { EmptyState } from "@/components/ux/empty-state";
-import { siteConfig } from "@/lib/site";
+import { JsonLd } from "@/components/ux/json-ld";
+import { buildBreadcrumbJsonLd, buildCategoryJsonLd } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/site";
 
 type CategoryPageProps = {
   params: Promise<{ slug: string }>;
@@ -17,10 +19,11 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   if (!category) {
     return { title: "Categoria no encontrada" };
   }
-  return {
-    title: `${category.name} | ${siteConfig.shortName}`,
+  return buildPageMetadata({
+    title: category.name,
     description: category.description ?? `Productos de ${category.name}`,
-  };
+    path: `/categorias/${slug}`,
+  });
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -35,15 +38,17 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     limit: 24,
   });
 
+  const breadcrumbItems = [
+    { label: "Inicio", href: "/" },
+    { label: "Categorias", href: "/categorias" },
+    { label: category.name },
+  ];
+
   return (
     <PageShell>
-      <Breadcrumbs
-        items={[
-          { label: "Inicio", href: "/" },
-          { label: "Categorias", href: "/categorias" },
-          { label: category.name },
-        ]}
-      />
+      <JsonLd data={buildCategoryJsonLd(category)} />
+      <JsonLd data={buildBreadcrumbJsonLd(breadcrumbItems)} />
+      <Breadcrumbs items={breadcrumbItems} />
       <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">{category.name}</h1>
       {category.description ? (
         <p className="mt-4 max-w-2xl text-stone-600">{category.description}</p>

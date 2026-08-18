@@ -3,12 +3,13 @@ import { VendorCard } from "@/components/catalog/vendor-card";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 import { EmptyState } from "@/components/ux/empty-state";
-import { siteConfig } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: `Productores | ${siteConfig.shortName}`,
+export const metadata = buildPageMetadata({
+  title: "Productores",
   description: "Productores y elaboradores de la Sierra de la Culebra.",
-};
+  path: "/productores",
+});
 
 export default async function ProducersPage() {
   const { items } = await listPublicVendors({ limit: 50 });

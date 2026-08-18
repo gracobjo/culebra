@@ -2,12 +2,13 @@ import Link from "next/link";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 import { TrustStrip } from "@/components/ux/trust-strip";
-import { siteConfig } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: `Como funciona | ${siteConfig.shortName}`,
+export const metadata = buildPageMetadata({
+  title: "Como funciona",
   description: "Guia de compra, pago, envio y seguimiento en el marketplace.",
-};
+  path: "/como-funciona",
+});
 
 export default function HowItWorksPage() {
   return (

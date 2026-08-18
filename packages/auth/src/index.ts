@@ -75,6 +75,12 @@ export type {
   VendorStatusUpdateInput,
   VendorUpdateInput,
 } from "./vendor.schemas.js";
+export {
+  listCategoryUrlsForSitemap,
+  listPublicProductUrlsForSitemap,
+  listPublicVendorUrlsForSitemap,
+} from "./seo.service.js";
+export type { SitemapUrlRecord } from "./seo.service.js";
 export { createUniqueSlug, slugify } from "./slug.js";
 export {
   addCartItem,

@@ -4,7 +4,7 @@ import { ProductCard } from "@/components/catalog/product-card";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 import { EmptyState } from "@/components/ux/empty-state";
-import { siteConfig } from "@/lib/site";
+import { buildPageMetadata, siteConfig } from "@/lib/site";
 
 type ProductsPageProps = {
   searchParams: Promise<{
@@ -16,10 +16,11 @@ type ProductsPageProps = {
   }>;
 };
 
-export const metadata = {
-  title: `Productos | ${siteConfig.shortName}`,
+export const metadata = buildPageMetadata({
+  title: `Productos`,
   description: siteConfig.description,
-};
+  path: "/productos",
+});
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const params = await searchParams;

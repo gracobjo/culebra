@@ -3,11 +3,13 @@ import { listCategories } from "@culebra/auth";
 import { CategoryCard } from "@/components/catalog/category-card";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
-import { siteConfig } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: `Categorias | ${siteConfig.shortName}`,
-};
+export const metadata = buildPageMetadata({
+  title: "Categorias",
+  description: "Explora productos agroalimentarios por categoria en la Sierra de la Culebra.",
+  path: "/categorias",
+});
 
 export default async function CategoriesPage() {
   const categories = await listCategories();

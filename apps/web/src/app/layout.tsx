@@ -1,23 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SiteShell } from "@/components/layout/site-shell";
-import { siteConfig } from "@/lib/site";
+import { buildPageMetadata, getSiteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: siteConfig.name,
+    description: siteConfig.description,
+    path: "/",
+  }),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.shortName}`,
   },
-  description: siteConfig.description,
-  metadataBase: process.env.NEXT_PUBLIC_APP_URL
-    ? new URL(process.env.NEXT_PUBLIC_APP_URL)
-    : undefined,
-  openGraph: {
-    title: siteConfig.name,
-    description: siteConfig.description,
-    locale: "es_ES",
-    type: "website",
-  },
+  metadataBase: new URL(getSiteUrl("/")),
 };
 
 export const viewport: Viewport = {

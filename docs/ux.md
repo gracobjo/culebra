@@ -37,4 +37,4 @@ FASE 12 completada: experiencia publica orientada a confianza, navegacion clara 
 
 ## Siguiente fase
 
-FASE 13: seguridad reforzada (rate limits, auditoria, hardening).
+FASE 15: testing automatizado.

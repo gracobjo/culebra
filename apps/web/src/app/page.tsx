@@ -6,7 +6,14 @@ import { VendorCard } from "@/components/catalog/vendor-card";
 import { PageShell } from "@/components/layout/page-shell";
 import { TrustStrip } from "@/components/ux/trust-strip";
 import { JsonLd } from "@/components/ux/json-ld";
-import { siteConfig } from "@/lib/site";
+import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "@/lib/seo";
+import { buildPageMetadata, siteConfig } from "@/lib/site";
+
+export const metadata = buildPageMetadata({
+  title: siteConfig.name,
+  description: siteConfig.description,
+  path: "/",
+});
 
 export default async function HomePage() {
   const [categories, featuredProducts, featuredVendors] = await Promise.all([
@@ -15,17 +22,10 @@ export default async function HomePage() {
     listPublicVendors({ limit: 3 }),
   ]);
 
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    description: siteConfig.description,
-    areaServed: siteConfig.region,
-  };
-
   return (
     <PageShell className="text-stone-900">
-      <JsonLd data={organizationJsonLd} />
+      <JsonLd data={buildOrganizationJsonLd()} />
+      <JsonLd data={buildWebSiteJsonLd()} />
 
       <section className="grid gap-10 lg:grid-cols-5 lg:gap-12">
         <div className="space-y-6 lg:col-span-3">

@@ -4,6 +4,13 @@ import { getVendorByUserId } from "@culebra/auth";
 import { redirect } from "next/navigation";
 import { VendorApplyForm } from "@/components/vendor/vendor-apply-form";
 import { PageShell } from "@/components/layout/page-shell";
+import { buildPageMetadata } from "@/lib/site";
+
+export const metadata = buildPageMetadata({
+  title: "Quiero vender",
+  description: "Alta de productores en el marketplace Sierra de la Culebra.",
+  path: "/quiero-vender",
+});
 
 export default async function SellPage() {
   const session = await auth();

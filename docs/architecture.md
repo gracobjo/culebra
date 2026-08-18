@@ -2,7 +2,7 @@
 
 ## Estado
 
-Monolito modular. FASE 12: UX publica, confianza, navegacion y SEO en la web.
+Monolito modular. FASE 14: SEO, sitemap y datos estructurados en la web.
 
 ## Enfoque
 

@@ -5,7 +5,9 @@ import { ProductCard } from "@/components/catalog/product-card";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 import { EmptyState } from "@/components/ux/empty-state";
-import { siteConfig } from "@/lib/site";
+import { JsonLd } from "@/components/ux/json-ld";
+import { buildBreadcrumbJsonLd, buildVendorJsonLd } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/site";
 
 type ProducerPageProps = {
   params: Promise<{ slug: string }>;
@@ -17,10 +19,12 @@ export async function generateMetadata({ params }: ProducerPageProps) {
   if (!vendor) {
     return { title: "Productor no encontrado" };
   }
-  return {
-    title: `${vendor.tradeName} | ${siteConfig.shortName}`,
+  return buildPageMetadata({
+    title: vendor.tradeName,
     description: vendor.description ?? `Productos de ${vendor.tradeName}.`,
-  };
+    path: `/productores/${slug}`,
+    image: vendor.logoUrl ?? undefined,
+  });
 }
 
 export default async function ProducerDetailPage({ params }: ProducerPageProps) {
@@ -36,16 +40,17 @@ export default async function ProducerDetailPage({ params }: ProducerPageProps) 
     limit: 12,
   });
   const location = [vendor.city, vendor.province].filter(Boolean).join(", ");
+  const breadcrumbItems = [
+    { label: "Inicio", href: "/" },
+    { label: "Productores", href: "/productores" },
+    { label: vendor.tradeName },
+  ];
 
   return (
     <PageShell width="lg">
-      <Breadcrumbs
-        items={[
-          { label: "Inicio", href: "/" },
-          { label: "Productores", href: "/productores" },
-          { label: vendor.tradeName },
-        ]}
-      />
+      <JsonLd data={buildVendorJsonLd(vendor)} />
+      <JsonLd data={buildBreadcrumbJsonLd(breadcrumbItems)} />
+      <Breadcrumbs items={breadcrumbItems} />
 
       <header className="mt-6 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
