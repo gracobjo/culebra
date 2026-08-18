@@ -1,15 +1,30 @@
 import Fastify from "fastify";
+import { prisma } from "@culebra/db";
 
 const app = Fastify({
   logger: true,
 });
 
 app.get("/health", async () => {
+  let database: "connected" | "disconnected" = "disconnected";
+
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    database = "connected";
+  } catch {
+    database = "disconnected";
+  }
+
   return {
-    status: "ok",
+    status: database === "connected" ? "ok" : "degraded",
     service: "culebra-api",
-    phase: 1,
+    phase: 2,
+    database,
   };
+});
+
+app.addHook("onClose", async () => {
+  await prisma.$disconnect();
 });
 
 const port = Number(process.env.API_PORT ?? 4000);

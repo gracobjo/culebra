@@ -2,7 +2,7 @@
 
 ## Estado
 
-Documento inicial de FASE 1.
+Documento inicial de FASE 1, actualizado en FASE 2 con capa de persistencia.
 
 ## Enfoque
 

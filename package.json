@@ -12,6 +12,17 @@
     "dev:api": "npm run dev --workspace @culebra/api",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "db:generate": "npm run generate --workspace @culebra/db",
+    "db:migrate": "npm run migrate:dev --workspace @culebra/db",
+    "db:migrate:deploy": "npm run migrate:deploy --workspace @culebra/db",
+    "db:seed": "npm run seed --workspace @culebra/db",
+    "db:studio": "npm run studio --workspace @culebra/db",
+    "db:check": "tsx scripts/check-db.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.5"
   }
 }

@@ -4,15 +4,15 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en FASE 1: inicializacion de estructura, configuracion base y documentacion inicial.
+Proyecto en **FASE 2**: base de datos con Prisma, migracion inicial y seed de roles/categorias.
 
-## Stack previsto
+## Stack
 
 - `apps/web`: Next.js + TypeScript + Tailwind CSS
-- `apps/api`: Node.js + TypeScript + API REST
-- `database`: PostgreSQL + Prisma
-- `storage`: S3 compatible
-- `payments`: Stripe Connect o equivalente
+- `apps/api`: Node.js + TypeScript + Fastify
+- `packages/db`: PostgreSQL + Prisma
+- `packages/domain`: tipos de dominio compartidos
+- `packages/shared`: utilidades compartidas
 
 ## Estructura
 
@@ -21,20 +21,58 @@ apps/
   web/
   api/
 packages/
+  db/
   domain/
   shared/
 docs/
 infra/
 scripts/
+docker-compose.yml
+```
+
+## Requisitos
+
+- Node.js 20+
+- Docker (para PostgreSQL local)
+- npm 10+
+
+## Inicio rapido
+
+```bash
+# 1. Variables de entorno
+cp .env.example .env
+cp packages/db/.env.example packages/db/.env
+
+# 2. Dependencias
+npm install
+
+# 3. Base de datos
+npm run docker:up
+npm run db:generate
+npm run db:migrate
+npm run db:seed
+
+# 4. Desarrollo
+npm run dev:web   # http://localhost:3000
+npm run dev:api   # http://localhost:4000
 ```
 
 ## Scripts
 
-- `npm run dev:web`
-- `npm run dev:api`
-- `npm run build`
-- `npm run lint`
-- `npm run typecheck`
+| Script | Descripcion |
+|--------|-------------|
+| `npm run dev:web` | Frontend Next.js |
+| `npm run dev:api` | API Fastify |
+| `npm run build` | Build de todos los workspaces |
+| `npm run lint` | Lint |
+| `npm run typecheck` | Verificacion de tipos |
+| `npm run docker:up` | Levantar PostgreSQL |
+| `npm run docker:down` | Parar PostgreSQL |
+| `npm run db:generate` | Generar cliente Prisma |
+| `npm run db:migrate` | Migraciones (dev) |
+| `npm run db:seed` | Seed roles + categorias |
+| `npm run db:check` | Verificar conexion DB |
+| `npm run db:studio` | Prisma Studio |
 
 ## Variables de entorno
 
@@ -42,13 +80,14 @@ Revisar `.env.example`.
 
 ## Notas legales
 
-Los textos juridicos, fiscales y de cumplimiento normativo deben tratarse como placeholders hasta revision profesional:
+Los textos juridicos deben tratarse como placeholders hasta revision profesional:
 
 - `[REVISAR CON ABOGADO]`
 
-## Siguientes fases
+## Roadmap
 
-1. Base de datos y Prisma
-2. Autenticacion y roles
-3. Proveedores
-4. Catalogo y productos
+- [x] FASE 1: Estructura del proyecto
+- [x] FASE 2: Base de datos
+- [ ] FASE 3: Autenticacion y roles
+- [ ] FASE 4: Proveedores
+- [ ] FASE 5: Productos y catalogo
