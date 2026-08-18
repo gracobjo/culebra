@@ -44,4 +44,4 @@ El stock se controla por variante cuando existen.
 
 ## Siguiente fase
 
-FASE 6: marketplace, carrito y checkout (incluido invitado).
+FASE 7: seguimiento de pedidos.

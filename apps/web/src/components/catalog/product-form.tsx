@@ -277,7 +277,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
                 placeholder="Etiqueta"
                 defaultValue={variantDefaults[index]?.label ?? ""}
                 disabled={!editable}
-                className="rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
+                className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
               />
               <input
                 name={`variantPrice${index + 1}`}
@@ -287,7 +287,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
                 placeholder="Precio"
                 defaultValue={variantDefaults[index]?.price ?? ""}
                 disabled={!editable}
-                className="rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
+                className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
               />
               <input
                 name={`variantStock${index + 1}`}
@@ -296,7 +296,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
                 placeholder="Stock"
                 defaultValue={variantDefaults[index]?.stock ?? ""}
                 disabled={!editable}
-                className="rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
+                className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
               />
             </div>
           ))}
@@ -309,7 +309,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
           <button
             type="submit"
             disabled={pending}
-            className="rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
+            className="min-h-11 w-full rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white disabled:opacity-60 sm:w-auto"
           >
             {pending ? "Guardando..." : product ? "Guardar cambios" : "Crear producto"}
           </button>
@@ -320,7 +320,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
         <form action={submitProductAction.bind(null, product.id)}>
           <button
             type="submit"
-            className="rounded-full border border-emerald-800 px-5 py-3 text-sm font-medium text-emerald-800"
+            className="min-h-11 w-full rounded-full border border-emerald-800 px-5 py-3 text-sm font-medium text-emerald-800 sm:w-auto"
           >
             Enviar a revision
           </button>
@@ -331,7 +331,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
         <form action={disableProductAction.bind(null, product.id)}>
           <button
             type="submit"
-            className="rounded-full border border-stone-400 px-5 py-3 text-sm font-medium"
+            className="min-h-11 w-full rounded-full border border-stone-400 px-5 py-3 text-sm font-medium sm:w-auto"
           >
             Desactivar producto
           </button>

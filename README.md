@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 5**: catalogo, fichas de producto, busqueda y moderacion.
+Proyecto en **FASE 6**: carrito, checkout e invitado.
 
 ## Stack
 
@@ -91,4 +91,5 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 3: Autenticacion y roles
 - [x] FASE 4: Proveedores
 - [x] FASE 5: Productos y catalogo
-- [ ] FASE 6: Marketplace y carrito
+- [x] FASE 6: Marketplace y carrito
+- [ ] FASE 7: Pedidos

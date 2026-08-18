@@ -3,35 +3,36 @@ import { auth } from "@/auth";
 import { getVendorByUserId } from "@culebra/auth";
 import { redirect } from "next/navigation";
 import { VendorApplyForm } from "@/components/vendor/vendor-apply-form";
+import { PageShell } from "@/components/layout/page-shell";
 
 export default async function SellPage() {
   const session = await auth();
 
   if (!session?.user) {
     return (
-      <main className="mx-auto max-w-3xl px-6 py-16">
-        <div className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
-          <h1 className="text-3xl font-semibold">Vende tus productos online</h1>
+      <PageShell width="md">
+        <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
+          <h1 className="text-2xl font-semibold sm:text-3xl">Vende tus productos online</h1>
           <p className="mt-4 text-stone-600">
             Conecta con consumidores interesados en producto local de la Sierra
             de la Culebra. Necesitas una cuenta para empezar.
           </p>
-          <div className="mt-8 flex gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <Link
               href="/login?callbackUrl=/quiero-vender"
-              className="rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white"
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white"
             >
               Iniciar sesion
             </Link>
             <Link
               href="/register"
-              className="rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
             >
               Crear cuenta
             </Link>
           </div>
         </div>
-      </main>
+      </PageShell>
     );
   }
 
@@ -41,8 +42,8 @@ export default async function SellPage() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <div className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
+    <PageShell width="md">
+      <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
         <p className="text-sm uppercase tracking-[0.2em] text-emerald-800">
           Productores
         </p>
@@ -55,6 +56,6 @@ export default async function SellPage() {
           <VendorApplyForm />
         </div>
       </div>
-    </main>
+    </PageShell>
   );
 }

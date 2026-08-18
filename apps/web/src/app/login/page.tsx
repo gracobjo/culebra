@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { LoginForm } from "@/components/auth/login-form";
+import { PageShell } from "@/components/layout/page-shell";
 
 export default function LoginPage() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-16">
-      <div className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
-        <p className="text-sm uppercase tracking-[0.2em] text-emerald-800">
+    <PageShell width="sm" className="flex flex-col justify-center">
+      <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-emerald-800 sm:text-sm">
           Acceso
         </p>
         <h1 className="mt-2 text-2xl font-semibold">Iniciar sesion</h1>
@@ -22,6 +23,6 @@ export default function LoginPage() {
           </Link>
         </p>
       </div>
-    </main>
+    </PageShell>
   );
 }

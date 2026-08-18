@@ -47,4 +47,4 @@ Solo proveedores `ACTIVE` aparecen en el listado y ficha publica. La moderacion 
 
 ## Siguiente fase
 
-FASE 6: marketplace, carrito y checkout.
+FASE 7: seguimiento de pedidos.

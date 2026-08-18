@@ -9,6 +9,8 @@ FASE 3 completada: autenticacion, sesiones, RBAC y validacion de inputs.
 - Hash de contrasenas con **bcrypt** (12 rondas)
 - Sesiones en base de datos (`UserSession`) con token aleatorio hasheado (SHA-256)
 - Cookie httpOnly `culebra_session` para clientes REST
+- Cookie httpOnly `culebra_cart` para carrito de invitado
+- Cookie httpOnly `culebra_last_order` para confirmar el pedido reciente del invitado
 - JWT firmado con `AUTH_SECRET` para integracion web/API
 - Auth.js (NextAuth v5) en frontend con provider Credentials
 

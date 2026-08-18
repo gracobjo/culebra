@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicProductBySlug } from "@culebra/auth";
 import { formatPrice } from "@/lib/format";
+import { AddToCartForm } from "@/components/cart/add-to-cart-form";
+import { PageShell } from "@/components/layout/page-shell";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -30,13 +32,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const image = product.images[0];
 
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-6 py-16">
+    <PageShell width="xl">
       <Link href="/productos" className="text-sm text-emerald-800">
         ← Volver al catalogo
       </Link>
 
       <article className="mt-8 grid gap-10 md:grid-cols-2">
-        <div className="flex min-h-72 items-center justify-center overflow-hidden rounded-3xl bg-stone-100 text-stone-500">
+        <div className="flex aspect-square min-h-56 items-center justify-center overflow-hidden rounded-3xl bg-stone-100 text-stone-500 sm:min-h-72 sm:aspect-auto">
           {image ? (
             <img
               src={image.url}
@@ -57,7 +59,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               {product.category.name}
             </Link>
           ) : null}
-          <h1 className="mt-2 text-4xl font-semibold">{product.name}</h1>
+          <h1 className="mt-2 break-words text-3xl font-semibold sm:text-4xl">{product.name}</h1>
           {product.vendor ? (
             <p className="mt-2 text-stone-600">
               Productor:{" "}
@@ -106,6 +108,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               </ul>
             </section>
           ) : null}
+
+          <AddToCartForm product={product} />
         </div>
       </article>
 
@@ -165,6 +169,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </section>
         ) : null}
       </div>
-    </main>
+    </PageShell>
   );
 }

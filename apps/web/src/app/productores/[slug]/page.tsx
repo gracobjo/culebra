@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicVendorBySlug, listPublicProducts } from "@culebra/auth";
 import { ProductCard } from "@/components/catalog/product-card";
+import { PageShell } from "@/components/layout/page-shell";
 
 type ProducerPageProps = {
   params: Promise<{ slug: string }>;
@@ -33,16 +34,16 @@ export default async function ProducerDetailPage({ params }: ProducerPageProps) 
   });
 
   return (
-    <main className="mx-auto min-h-screen max-w-4xl px-6 py-16">
+    <PageShell width="lg">
       <Link href="/productores" className="text-sm text-emerald-800">
         ← Volver a productores
       </Link>
 
-      <article className="mt-8 rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
+      <article className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
         <p className="text-sm uppercase tracking-[0.2em] text-emerald-800">
           Productor
         </p>
-        <h1 className="mt-2 text-4xl font-semibold">{vendor.tradeName}</h1>
+        <h1 className="mt-2 break-words text-3xl font-semibold sm:text-4xl">{vendor.tradeName}</h1>
         <p className="mt-2 text-stone-600">
           {[vendor.city, vendor.province].filter(Boolean).join(", ")}
         </p>
@@ -81,7 +82,7 @@ export default async function ProducerDetailPage({ params }: ProducerPageProps) 
           {vendor.website ? (
             <div>
               <h3 className="text-sm font-medium text-stone-500">Web</h3>
-              <a href={vendor.website} className="text-emerald-800 underline">
+              <a href={vendor.website} className="break-all text-emerald-800 underline">
                 {vendor.website}
               </a>
             </div>
@@ -103,6 +104,6 @@ export default async function ProducerDetailPage({ params }: ProducerPageProps) 
           )}
         </section>
       </article>
-    </main>
+    </PageShell>
   );
 }

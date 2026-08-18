@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCategoryBySlug, listPublicProducts } from "@culebra/auth";
 import { ProductCard } from "@/components/catalog/product-card";
+import { PageShell } from "@/components/layout/page-shell";
 
 type CategoryPageProps = {
   params: Promise<{ slug: string }>;
@@ -32,11 +33,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   });
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-6 py-16">
+    <PageShell>
       <Link href="/productos" className="text-sm text-emerald-800">
         ← Volver al catalogo
       </Link>
-      <h1 className="mt-6 text-4xl font-semibold">{category.name}</h1>
+      <h1 className="mt-6 text-3xl font-semibold sm:text-4xl">{category.name}</h1>
       {category.description ? (
         <p className="mt-4 max-w-2xl text-stone-600">{category.description}</p>
       ) : null}
@@ -66,6 +67,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           ))}
         </div>
       )}
-    </main>
+    </PageShell>
   );
 }

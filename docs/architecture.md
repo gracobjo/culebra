@@ -2,7 +2,7 @@
 
 ## Estado
 
-Documento inicial de FASE 1, actualizado en FASE 2 con capa de persistencia.
+Monolito modular. FASE 6: web Next.js, API Fastify, Prisma y carrito/checkout en `@culebra/auth`.
 
 ## Enfoque
 

@@ -2,7 +2,7 @@
 
 ## Estado
 
-FASE 3 completada: autenticacion, sesiones y RBAC base.
+FASE 6: autenticacion, proveedores, catalogo, carrito y checkout.
 
 ## Base URL
 
@@ -60,6 +60,16 @@ FASE 3 completada: autenticacion, sesiones y RBAC base.
 | POST | `/vendors/me/products/:id/disable` | VENDOR |
 | GET | `/admin/products` | ADMIN |
 | PATCH | `/admin/products/:id/status` | ADMIN |
+
+## Carrito y checkout
+
+| Metodo | Ruta | Acceso |
+|--------|------|--------|
+| GET | `/cart` | Publico / sesion |
+| POST | `/cart/items` | Publico / sesion |
+| PATCH | `/cart/items/:id` | Publico / sesion |
+| DELETE | `/cart/items/:id` | Publico / sesion |
+| POST | `/checkout` | Publico / sesion |
 
 ## Autenticacion
 

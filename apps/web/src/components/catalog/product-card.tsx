@@ -17,7 +17,7 @@ export function ProductCard({ product }: ProductCardProps) {
       href={`/productos/${product.slug}`}
       className="flex flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition hover:border-emerald-300"
     >
-      <div className="flex h-40 items-center justify-center bg-stone-100 text-sm text-stone-500">
+      <div className="flex aspect-[4/3] items-center justify-center bg-stone-100 text-sm text-stone-500 sm:h-40 sm:aspect-auto">
         {image ? (
           <img
             src={image.url}

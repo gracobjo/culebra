@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { listCategories } from "@culebra/auth";
+import { PageShell } from "@/components/layout/page-shell";
 
 export const metadata = {
   title: "Categorias | Sierra de la Culebra Marketplace",
@@ -9,8 +10,8 @@ export default async function CategoriesPage() {
   const categories = await listCategories();
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-6 py-16">
-      <h1 className="text-4xl font-semibold">Categorias</h1>
+    <PageShell>
+      <h1 className="text-3xl font-semibold sm:text-4xl">Categorias</h1>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((category) => (
           <article
@@ -32,6 +33,6 @@ export default async function CategoriesPage() {
           </article>
         ))}
       </div>
-    </main>
+    </PageShell>
   );
 }

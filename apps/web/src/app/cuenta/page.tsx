@@ -1,17 +1,18 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import { signOutAction } from "./actions";
+import { PageShell } from "@/components/layout/page-shell";
 
 export default async function AccountPage() {
   const session = await auth();
 
   return (
-    <main className="mx-auto min-h-screen max-w-3xl px-6 py-16">
-      <div className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
-        <p className="text-sm uppercase tracking-[0.2em] text-emerald-800">
+    <PageShell width="md">
+      <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-emerald-800 sm:text-sm">
           Mi cuenta
         </p>
-        <h1 className="mt-2 text-3xl font-semibold">Hola, {session?.user?.name}</h1>
+        <h1 className="mt-2 break-words text-2xl font-semibold sm:text-3xl">Hola, {session?.user?.name}</h1>
         <p className="mt-2 text-stone-600">{session?.user?.email}</p>
 
         <div className="mt-8 rounded-2xl bg-stone-50 p-5">
@@ -31,7 +32,7 @@ export default async function AccountPage() {
         <form action={signOutAction} className="mt-8">
           <button
             type="submit"
-            className="rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
+            className="min-h-11 rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
           >
             Cerrar sesion
           </button>
@@ -41,6 +42,6 @@ export default async function AccountPage() {
           Volver al inicio
         </Link>
       </div>
-    </main>
+    </PageShell>
   );
 }

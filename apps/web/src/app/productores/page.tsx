@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { listPublicVendors } from "@culebra/auth";
+import { PageShell } from "@/components/layout/page-shell";
 
 export default async function ProducersPage() {
   const { items } = await listPublicVendors({ limit: 50 });
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-6 py-16">
-      <div className="mb-10">
-        <p className="text-sm uppercase tracking-[0.2em] text-emerald-800">
+    <PageShell>
+      <div className="mb-8 sm:mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-emerald-800 sm:text-sm">
           Productores
         </p>
-        <h1 className="mt-2 text-4xl font-semibold">Productores de la sierra</h1>
+        <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">Productores de la sierra</h1>
         <p className="mt-4 max-w-2xl text-stone-600">
           Descubre quienes elaboran los productos del marketplace. Compra
           directamente a productores locales.
@@ -42,6 +43,6 @@ export default async function ProducersPage() {
           ))}
         </div>
       )}
-    </main>
+    </PageShell>
   );
 }

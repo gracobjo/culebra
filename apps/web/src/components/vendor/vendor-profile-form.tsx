@@ -115,7 +115,7 @@ export function VendorProfileForm({ vendor }: VendorProfileFormProps) {
           <button
             type="submit"
             disabled={pending}
-            className="rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
+            className="min-h-11 w-full rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white disabled:opacity-60 sm:w-auto"
           >
             {pending ? "Guardando..." : "Guardar perfil"}
           </button>
@@ -126,7 +126,7 @@ export function VendorProfileForm({ vendor }: VendorProfileFormProps) {
         <form action={submitVendorFormAction}>
           <button
             type="submit"
-            className="rounded-full border border-emerald-800 px-5 py-3 text-sm font-medium text-emerald-800"
+            className="min-h-11 w-full rounded-full border border-emerald-800 px-5 py-3 text-sm font-medium text-emerald-800 sm:w-auto"
           >
             Enviar a revision
           </button>

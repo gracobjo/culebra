@@ -58,6 +58,36 @@ export type PaymentStatus =
   | "PAYMENT_REFUNDED"
   | "PAYMENT_PARTIALLY_REFUNDED";
 
+export const PaymentStatus = {
+  PAYMENT_PENDING: "PAYMENT_PENDING",
+  PAYMENT_AUTHORIZED: "PAYMENT_AUTHORIZED",
+  PAYMENT_PAID: "PAYMENT_PAID",
+  PAYMENT_FAILED: "PAYMENT_FAILED",
+  PAYMENT_REFUNDED: "PAYMENT_REFUNDED",
+  PAYMENT_PARTIALLY_REFUNDED: "PAYMENT_PARTIALLY_REFUNDED",
+} as const satisfies Record<string, PaymentStatus>;
+
+export type OrderStatus =
+  | "PENDING"
+  | "PAYMENT_PENDING"
+  | "PAID"
+  | "PARTIALLY_SHIPPED"
+  | "SHIPPED"
+  | "DELIVERED"
+  | "CANCELLED"
+  | "REFUNDED";
+
+export const OrderStatus = {
+  PENDING: "PENDING",
+  PAYMENT_PENDING: "PAYMENT_PENDING",
+  PAID: "PAID",
+  PARTIALLY_SHIPPED: "PARTIALLY_SHIPPED",
+  SHIPPED: "SHIPPED",
+  DELIVERED: "DELIVERED",
+  CANCELLED: "CANCELLED",
+  REFUNDED: "REFUNDED",
+} as const satisfies Record<string, OrderStatus>;
+
 export type VendorStatus =
   | "DRAFT"
   | "PENDING_REVIEW"

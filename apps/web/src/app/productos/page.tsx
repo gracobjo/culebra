@@ -2,6 +2,7 @@ import Link from "next/link";
 import { listCategories, listPublicProducts } from "@culebra/auth";
 import { CatalogFilters } from "@/components/catalog/catalog-filters";
 import { ProductCard } from "@/components/catalog/product-card";
+import { PageShell } from "@/components/layout/page-shell";
 
 type ProductsPageProps = {
   searchParams: Promise<{
@@ -31,9 +32,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   });
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-6 py-16">
-      <p className="text-sm uppercase tracking-[0.2em] text-emerald-800">Catalogo</p>
-      <h1 className="mt-2 text-4xl font-semibold">Productos</h1>
+    <PageShell>
+      <p className="text-xs uppercase tracking-[0.2em] text-emerald-800 sm:text-sm">Catalogo</p>
+      <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">Productos</h1>
       <p className="mt-4 max-w-2xl text-stone-600">
         Compra directamente a productores de la Sierra de la Culebra. La
         informacion de origen o certificacion solo aparece si el productor la
@@ -58,7 +59,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           No hay productos publicados con esos filtros.
         </div>
       ) : (
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -68,6 +69,6 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       <Link href="/" className="mt-10 inline-block text-sm text-emerald-800">
         Volver al inicio
       </Link>
-    </main>
+    </PageShell>
   );
 }

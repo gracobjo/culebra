@@ -52,6 +52,26 @@ export type {
 } from "./vendor.schemas.js";
 export { createUniqueSlug, slugify } from "./slug.js";
 export {
+  addCartItem,
+  createCartSessionId,
+  getOrCreateCart,
+  removeCartItem,
+  updateCartItem,
+} from "./cart.service.js";
+export type { CartItemRecord, CartRecord } from "./cart.service.js";
+export {
+  addCartItemSchema,
+  checkoutSchema,
+  updateCartItemSchema,
+} from "./cart.schemas.js";
+export type {
+  AddCartItemInput,
+  CheckoutInput,
+  UpdateCartItemInput,
+} from "./cart.schemas.js";
+export { checkoutCart, getOrderByNumber } from "./checkout.service.js";
+export type { OrderDetail, OrderSummary } from "./checkout.service.js";
+export {
   createProduct,
   disableProduct,
   getPublicProductBySlug,
