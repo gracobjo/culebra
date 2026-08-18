@@ -2,7 +2,7 @@
 
 ## Estado
 
-FASE 10: autenticacion, proveedores, catalogo, carrito, pedidos, pagos Stripe, contratos y comisiones.
+FASE 11: autenticacion, proveedores, catalogo, carrito, pedidos, pagos, contratos, comisiones y panel admin.
 
 ## Base URL
 
@@ -114,7 +114,15 @@ FASE 10: autenticacion, proveedores, catalogo, carrito, pedidos, pagos Stripe, c
 | POST | `/admin/vendors/:vendorId/commission-rules` | ADMIN |
 | GET | `/admin/payouts` | ADMIN |
 
-## Autenticacion
+## Panel admin
+
+| Metodo | Ruta | Acceso |
+|--------|------|--------|
+| GET | `/admin/dashboard` | ADMIN |
+| GET | `/admin/users` | ADMIN |
+| PATCH | `/admin/users/:id/status` | ADMIN |
+| GET | `/admin/orders` | ADMIN |
+| GET | `/admin/orders/:orderNumber` | ADMIN |
 
 Dos metodos soportados:
 
@@ -131,4 +139,4 @@ curl -X POST http://localhost:4000/auth/register \
 
 ## Siguientes modulos
 
-- Panel de administracion (FASE 11)
+- UX/UI del marketplace (FASE 12)

@@ -8,10 +8,11 @@ export async function SiteShell({ children }: { children: React.ReactNode }) {
   const session = await auth();
   const cart = await loadCart();
   const isLoggedIn = Boolean(session?.user);
+  const isAdmin = Boolean(session?.user?.roles?.includes("ADMIN"));
 
   return (
     <>
-      <SiteHeaderNav cartCount={cart.itemCount} isLoggedIn={isLoggedIn} />
+      <SiteHeaderNav cartCount={cart.itemCount} isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
       <div className="flex min-h-0 flex-1 flex-col pb-20 lg:pb-0">
         {children}
         <SiteFooter />

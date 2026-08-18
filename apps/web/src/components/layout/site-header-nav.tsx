@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 type SiteHeaderNavProps = {
   cartCount: number;
   isLoggedIn: boolean;
+  isAdmin?: boolean;
 };
 
 const links = [
@@ -15,7 +16,7 @@ const links = [
   { href: "/productores", label: "Productores" },
 ];
 
-export function SiteHeaderNav({ cartCount, isLoggedIn }: SiteHeaderNavProps) {
+export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -58,6 +59,11 @@ export function SiteHeaderNav({ cartCount, isLoggedIn }: SiteHeaderNavProps) {
               <Link href="/cuenta" className="hover:text-emerald-800">
                 Cuenta
               </Link>
+              {isAdmin ? (
+                <Link href="/admin" className="hover:text-emerald-800">
+                  Admin
+                </Link>
+              ) : null}
             </>
           ) : (
             <Link href="/login" className="hover:text-emerald-800">
@@ -138,6 +144,15 @@ export function SiteHeaderNav({ cartCount, isLoggedIn }: SiteHeaderNavProps) {
             >
               {isLoggedIn ? "Mi cuenta" : "Entrar"}
             </Link>
+            {isAdmin ? (
+              <Link
+                href="/admin"
+                className="rounded-xl px-3 py-3 hover:bg-stone-50"
+                onClick={() => setOpen(false)}
+              >
+                Administracion
+              </Link>
+            ) : null}
           </nav>
         </div>
       ) : null}

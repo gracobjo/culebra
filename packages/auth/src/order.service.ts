@@ -604,3 +604,66 @@ export async function shipVendorOrder(
 
   return getVendorOrder(userId, vendorOrderId);
 }
+
+export type AdminOrderListItem = OrderListItem & {
+  customerEmail: string;
+  paymentStatus: string | null;
+};
+
+export async function listOrdersForAdmin(params?: {
+  status?: OrderStatus;
+  limit?: number;
+  offset?: number;
+}): Promise<{ items: AdminOrderListItem[]; total: number }> {
+  const limit = params?.limit ?? 50;
+  const offset = params?.offset ?? 0;
+  const where = params?.status ? { status: params.status } : {};
+
+  const [orders, total] = await Promise.all([
+    prisma.order.findMany({
+      where,
+      include: { items: true, vendorOrders: true, payment: true },
+      orderBy: { createdAt: "desc" },
+      take: limit,
+      skip: offset,
+    }),
+    prisma.order.count({ where }),
+  ]);
+
+  return {
+    items: orders.map(
+      (order: {
+        id: string;
+        orderNumber: string;
+        status: string;
+        totalAmount: unknown;
+        createdAt: Date;
+        customerEmail: string;
+        items: unknown[];
+        vendorOrders: unknown[];
+        payment: { status: string } | null;
+      }) => ({
+        id: order.id,
+        orderNumber: order.orderNumber,
+        status: order.status,
+        totalAmount: decimalToString(order.totalAmount),
+        vendorCount: order.vendorOrders.length,
+        itemCount: order.items.length,
+        createdAt: order.createdAt,
+        customerEmail: order.customerEmail,
+        paymentStatus: order.payment?.status ?? null,
+      }),
+    ),
+    total,
+  };
+}
+
+export async function getOrderByNumberForAdmin(
+  orderNumber: string,
+): Promise<OrderDetail | null> {
+  const order = await prisma.order.findFirst({
+    where: { orderNumber },
+    include: orderDetailInclude,
+  });
+  return order ? mapOrderDetail(order) : null;
+}

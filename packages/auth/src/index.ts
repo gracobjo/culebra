@@ -116,8 +116,16 @@ export type {
 export { commissionRuleCreateSchema } from "./commission.schemas.js";
 export type { CommissionRuleCreateInput } from "./commission.schemas.js";
 export {
+  getAdminDashboardStats,
+  listUsersForAdmin,
+  updateUserStatusByAdmin,
+} from "./admin.service.js";
+export type { AdminDashboardStats, AdminUserRecord } from "./admin.service.js";
+export {
   getOrderByNumber,
+  getOrderByNumberForAdmin,
   getVendorOrder,
+  listOrdersForAdmin,
   listOrdersForUser,
   listVendorOrders,
   lookupGuestOrder,
@@ -125,6 +133,7 @@ export {
   updateVendorOrderStatus,
 } from "./order.service.js";
 export type {
+  AdminOrderListItem,
   OrderDetail,
   OrderListItem,
   VendorOrderDetail,

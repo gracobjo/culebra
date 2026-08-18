@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 10**: comisiones versionadas y liquidaciones.
+Proyecto en **FASE 11**: panel de administracion.
 
 ## Stack
 
@@ -96,4 +96,5 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 8: Pagos
 - [x] FASE 9: Contratos
 - [x] FASE 10: Comisiones y liquidaciones
-- [ ] FASE 11: Panel de administracion
+- [x] FASE 11: Panel de administracion
+- [ ] FASE 12: UX/UI del marketplace

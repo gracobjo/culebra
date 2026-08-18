@@ -58,4 +58,4 @@ Cuando el pedido se marca pagado:
 
 ## Siguiente fase
 
-FASE 11: panel de administracion (moderacion, pedidos, usuarios, contratos y comisiones).
+FASE 12: UX/UI del marketplace.

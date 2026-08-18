@@ -44,6 +44,14 @@ export default async function AccountPage() {
               Pedidos de mi tienda
             </Link>
           ) : null}
+          {(session?.user?.roles ?? []).includes("ADMIN") ? (
+            <Link
+              href="/admin"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
+            >
+              Panel administracion
+            </Link>
+          ) : null}
         </div>
 
         <form action={signOutAction} className="mt-8">

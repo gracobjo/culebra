@@ -44,4 +44,4 @@ Plantillas y clausulas contractuales definitivas: `[REVISAR CON ABOGADO]`
 
 ## Siguiente fase
 
-FASE 11: panel de administracion.
+FASE 12: UX/UI del marketplace.

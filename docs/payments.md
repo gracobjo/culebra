@@ -36,4 +36,4 @@ Eventos: `checkout.session.completed`, `payment_intent.succeeded`, `payment_inte
 
 ## Siguiente fase
 
-FASE 11: panel de administracion.
+FASE 12: UX/UI del marketplace.
