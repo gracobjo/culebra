@@ -49,3 +49,18 @@ export type PaymentStatus =
   | "PAYMENT_FAILED"
   | "PAYMENT_REFUNDED"
   | "PAYMENT_PARTIALLY_REFUNDED";
+
+export type VendorStatus =
+  | "DRAFT"
+  | "PENDING_REVIEW"
+  | "ACTIVE"
+  | "SUSPENDED"
+  | "REJECTED";
+
+export const VendorStatus = {
+  DRAFT: "DRAFT",
+  PENDING_REVIEW: "PENDING_REVIEW",
+  ACTIVE: "ACTIVE",
+  SUSPENDED: "SUSPENDED",
+  REJECTED: "REJECTED",
+} as const satisfies Record<string, VendorStatus>;

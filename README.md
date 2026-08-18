@@ -4,7 +4,7 @@ Marketplace multi-vendedor especializado en productos tradicionales y agroalimen
 
 ## Estado
 
-Proyecto en **FASE 3**: autenticacion, sesiones, RBAC y paginas de login/registro.
+Proyecto en **FASE 4**: onboarding de proveedores, panel productor y paginas publicas.
 
 ## Stack
 
@@ -89,5 +89,5 @@ Los textos juridicos deben tratarse como placeholders hasta revision profesional
 - [x] FASE 1: Estructura del proyecto
 - [x] FASE 2: Base de datos
 - [x] FASE 3: Autenticacion y roles
-- [ ] FASE 4: Proveedores
+- [x] FASE 4: Proveedores
 - [ ] FASE 5: Productos y catalogo

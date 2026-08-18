@@ -32,6 +32,19 @@ FASE 3 completada: autenticacion, sesiones y RBAC base.
 | GET | `/vendor/status` | VENDOR |
 | GET | `/consumer/status` | CONSUMER |
 
+## Proveedores
+
+| Metodo | Ruta | Acceso |
+|--------|------|--------|
+| GET | `/vendors` | Publico |
+| GET | `/vendors/:slug` | Publico |
+| POST | `/vendors/apply` | Autenticado |
+| GET | `/vendors/me/profile` | VENDOR |
+| PATCH | `/vendors/me/profile` | VENDOR |
+| POST | `/vendors/me/submit` | VENDOR |
+| GET | `/admin/vendors` | ADMIN |
+| PATCH | `/admin/vendors/:id/status` | ADMIN |
+
 ## Autenticacion
 
 Dos metodos soportados:

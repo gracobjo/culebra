@@ -25,3 +25,29 @@ export type {
   RegisterInput,
 } from "./schemas.js";
 export type { AuthSessionResult, AuthUser, JwtPayload } from "./types.js";
+export {
+  applyAsVendor,
+  assertVendorOwnership,
+  getPublicVendorBySlug,
+  getVendorById,
+  getVendorByUserId,
+  listPublicVendors,
+  listVendorsForAdmin,
+  submitVendorForReview,
+  updateVendorProfile,
+  updateVendorStatusByAdmin,
+} from "./vendor.service.js";
+export type { PublicVendorRecord, VendorRecord } from "./vendor.service.js";
+export {
+  slugSchema,
+  vendorApplySchema,
+  vendorProfileSchema,
+  vendorStatusUpdateSchema,
+  vendorUpdateSchema,
+} from "./vendor.schemas.js";
+export type {
+  VendorApplyInput,
+  VendorStatusUpdateInput,
+  VendorUpdateInput,
+} from "./vendor.schemas.js";
+export { createUniqueSlug, slugify } from "./slug.js";

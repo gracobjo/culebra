@@ -8,7 +8,11 @@ export async function middleware(request: NextRequest) {
     secret: process.env.AUTH_SECRET,
   });
 
-  if (!token && request.nextUrl.pathname.startsWith("/cuenta")) {
+  if (
+    !token &&
+    (request.nextUrl.pathname.startsWith("/cuenta") ||
+      request.nextUrl.pathname.startsWith("/panel/proveedor"))
+  ) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -16,5 +20,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/cuenta/:path*"],
+  matcher: ["/cuenta/:path*", "/panel/proveedor/:path*"],
 };
