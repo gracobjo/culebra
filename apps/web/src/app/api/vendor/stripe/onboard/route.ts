@@ -20,6 +20,25 @@ export async function POST() {
         { status: 503 },
       );
     }
+
+    const stripeMessage =
+      error &&
+      typeof error === "object" &&
+      "message" in error &&
+      typeof error.message === "string"
+        ? error.message
+        : null;
+
+    if (stripeMessage?.includes("Accounts v1")) {
+      return NextResponse.json(
+        {
+          error:
+            "Stripe requiere la nueva API Connect. Actualiza el codigo (git pull) y reinicia el servidor.",
+        },
+        { status: 502 },
+      );
+    }
+
     console.error("[api/vendor/stripe/onboard]", error);
     return NextResponse.json(
       { error: "No se pudo iniciar el alta en Stripe." },

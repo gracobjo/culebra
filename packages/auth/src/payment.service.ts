@@ -583,9 +583,13 @@ export async function createVendorStripeOnboardingLink(
     });
     const profileUrl = vendorPublicProfileUrl(vendor.slug);
     const account = await stripe.accounts.create({
-      type: "express",
       country: "ES",
       email: vendor.email ?? user?.email ?? undefined,
+      controller: {
+        stripe_dashboard: { type: "express" },
+        fees: { payer: "application" },
+        losses: { payments: "application" },
+      },
       capabilities: {
         transfers: { requested: true },
       },

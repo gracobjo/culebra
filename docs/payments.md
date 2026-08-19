@@ -28,7 +28,11 @@ Comision marketplace: se calcula en checkout (FASE 10) y se guarda como snapshot
 
 ## Alta del productor
 
-`/panel/proveedor/pagos` inicia Account Link de Stripe Express.
+`/panel/proveedor/pagos` inicia Account Link de Stripe Express (cuentas Connect con `controller.stripe_dashboard.type=express`).
+
+Si Stripe devuelve error sobre **Accounts v1**, actualiza la app: las cuentas nuevas se crean con propiedades `controller` en lugar de `type=express`.
+
+En el [Dashboard de Stripe (test)](https://dashboard.stripe.com/test/settings/connect) completa el perfil de plataforma Connect si te lo pide al crear la primera cuenta conectada.
 
 ## Webhooks
 
