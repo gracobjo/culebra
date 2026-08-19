@@ -9,4 +9,7 @@ export const config = {
   rateLimitAuthMax: Number(process.env.RATE_LIMIT_AUTH_MAX ?? 10),
   rateLimitCartMax: Number(process.env.RATE_LIMIT_CART_MAX ?? 40),
   rateLimitAdminMax: Number(process.env.RATE_LIMIT_ADMIN_MAX ?? 60),
+  enableSwagger:
+    process.env.ENABLE_SWAGGER === "true" ||
+    (process.env.ENABLE_SWAGGER !== "false" && process.env.NODE_ENV !== "production"),
 };

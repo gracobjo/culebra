@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { loadCart } from "@/app/carrito/actions";
+import { ChatWidget } from "@/components/assistant/chat-widget";
 import { MobileTabBar } from "./mobile-tab-bar";
 import { SiteFooter } from "./site-footer";
 import { SiteHeaderNav } from "./site-header-nav";
@@ -25,6 +26,7 @@ export async function SiteShell({ children }: { children: React.ReactNode }) {
         <SiteFooter />
       </div>
       <MobileTabBar cartCount={cart.itemCount} isLoggedIn={isLoggedIn} user={user} />
+      <ChatWidget />
     </>
   );
 }

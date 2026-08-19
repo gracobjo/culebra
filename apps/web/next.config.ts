@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 
 import type { NextConfig } from "next";
 
+import { getServerActionsAllowedOrigins } from "./src/lib/server-actions-origins";
+
 const require = createRequire(import.meta.url);
 const { loadEnvConfig } = require("@next/env");
 
@@ -31,8 +33,13 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   reactStrictMode: true,
-  transpilePackages: ["@culebra/db", "@culebra/domain"],
+  transpilePackages: ["@culebra/db", "@culebra/domain", "@culebra/assistant"],
   serverExternalPackages: ["@prisma/client", "bcryptjs", "pdfkit", "fontkit"],
+  experimental: {
+    serverActions: {
+      allowedOrigins: getServerActionsAllowedOrigins(),
+    },
+  },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,

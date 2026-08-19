@@ -6,6 +6,7 @@ import Fastify from "fastify";
 import { prisma } from "@culebra/db";
 
 import { config } from "./lib/config.js";
+import { registerSwagger } from "./lib/swagger.js";
 import { authRoutes, protectedRoutes } from "./routes/auth.routes.js";
 import { adminVendorRoutes, vendorRoutes } from "./routes/vendor.routes.js";
 import { adminProductRoutes, productRoutes } from "./routes/product.routes.js";
@@ -39,6 +40,8 @@ export async function buildApp() {
     max: config.rateLimitGlobalMax,
     timeWindow: "1 minute",
   });
+
+  await registerSwagger(app);
 
   app.get("/health", async () => {
     let database: "connected" | "disconnected" = "disconnected";

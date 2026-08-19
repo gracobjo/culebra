@@ -32,7 +32,11 @@ Archivo `.env` en la raíz (monorepo), con:
 2. Generar cliente Prisma si hiciera falta:
    - se hace con `prisma migrate dev` / `prisma generate` durante el ciclo de desarrollo.
 3. Desplegar/levantar:
-   - `npm run dev` (workspace web).
+   - `npm run dev:web` (frontend Next.js, puerto 3000)
+   - `npm run dev:api` (API REST Fastify, puerto 4000)
+
+Documentacion interactiva de la API REST (Swagger UI): `http://localhost:4000/docs`  
+Especificacion OpenAPI: `apps/api/src/openapi/spec.ts` — activada por defecto en desarrollo (`ENABLE_SWAGGER=true`).
 
 ### B4. Stripe Connect, retención 14 días y payouts
 

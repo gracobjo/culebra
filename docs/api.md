@@ -11,6 +11,20 @@ FASE 11: autenticacion, proveedores, catalogo, carrito, pedidos, pagos, contrato
 
 `http://localhost:4000`
 
+## Documentacion interactiva (Swagger)
+
+Con la API en marcha (`npm run dev:api`):
+
+| Recurso | URL |
+|---------|-----|
+| Swagger UI | `http://localhost:4000/docs` |
+| OpenAPI JSON | `http://localhost:4000/docs/json` |
+
+Por defecto Swagger esta **activo en desarrollo** y **desactivado en produccion**.
+Para habilitarlo en produccion: `ENABLE_SWAGGER=true` en el entorno de la API.
+
+La especificacion OpenAPI vive en `apps/api/src/openapi/spec.ts`.
+
 ## Endpoints publicos
 
 | Metodo | Ruta | Descripcion |
@@ -126,6 +140,11 @@ FASE 11: autenticacion, proveedores, catalogo, carrito, pedidos, pagos, contrato
 | PATCH | `/admin/users/:id/status` | ADMIN |
 | GET | `/admin/orders` | ADMIN |
 | GET | `/admin/orders/:orderNumber` | ADMIN |
+| GET | `/admin/audit-logs` | ADMIN |
+
+## Documentacion Swagger
+
+Ver seccion anterior: interfaz en `/docs` cuando `ENABLE_SWAGGER` lo permite.
 
 Dos metodos soportados:
 
