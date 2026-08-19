@@ -2,6 +2,8 @@
 
 Versión: para presentación interna (convencer a futuros socios)
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
 ---
 
 ## 1) Resumen ejecutivo (por qué invertir)
@@ -72,20 +74,20 @@ Tramos de facturación anual acumulada:
 sequenceDiagram
   participant C as Consumidor
   participant Web as Next.js
-  participant Auth as culebra/auth
+  participant Auth as culebra auth
   participant Stripe as Stripe
   participant Webhook as Webhook
   participant DB as PostgreSQL
 
-  C->>Web: Checkout — Bizum o tarjeta
-  Web->>Auth: createOrderCheckoutSession
-  Auth->>Stripe: checkout.sessions.create
-  Stripe-->>Web: URL de pago
-  Stripe-->>Webhook: evento payment_intent.succeeded
-  Webhook->>Auth: handleStripeWebhook
-  Auth->>DB: markOrderPaid
-  Auth->>DB: createVendorTransfers — Payout retenido 14 días
-  DB-->>Auth: OK
+  C->Web: Checkout - Bizum o tarjeta
+  Web->Auth: createOrderCheckoutSession
+  Auth->Stripe: checkout.sessions.create
+  Stripe-->Web: URL de pago
+  Stripe-->Webhook: evento payment_intent.succeeded
+  Webhook->Auth: handleStripeWebhook
+  Auth->DB: markOrderPaid
+  Auth->DB: createVendorTransfers - Payout retenido 14 dias
+  DB-->Auth: OK
 ```
 
 ### 4.2 Enlaces recomendados (para auditoría técnica)

@@ -1,5 +1,7 @@
 # Manual de Usuario — Marketplace Villardeciervos
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
 > Basado en las funcionalidades implementadas del marketplace (Villardeciervos).
 
 ---
