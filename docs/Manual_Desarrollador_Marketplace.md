@@ -91,3 +91,48 @@ Para cambios en BD o lógica:
   - `order.service.ts`
   - paneles admin que calculan métricas.
 
+### B9. Flujo VENDOR: creación de producto y publicación por ADMIN
+
+#### B9.1. Objetivo
+Permitir que un **proveedor (VENDOR)** cree productos, pero que el catálogo público solo muestre productos cuando un **admin** los haya revisado y publicado.
+
+#### B9.2. Rutas implicadas (frontend)
+- Alta/edición en panel VENDOR:
+  - `/panel/proveedor/productos/nuevo` (crear)
+  - `/panel/proveedor/productos/[id]` (editar)
+- Envío a revisión:
+  - botón **“Enviar a revisión”** (solo aparece si el producto está en `DRAFT` o `REJECTED`)
+- Contrato requerido:
+  - `/panel/proveedor/contratos`
+
+#### B9.3. En el backend (lógica de negocio)
+El envío a revisión ejecuta `submitProductForReview` en el servicio de `packages/auth`.
+Si el proveedor **no tiene contrato activo**, el sistema corta el flujo con el error:
+- `VENDOR_CONTRACT_REQUIRED`
+
+El estado “publicable” depende de que el producto termine en `PUBLISHED` (solo entonces entra en el catálogo público `/productos`).
+
+#### B9.4. Cómo se resuelve cuando falla por contrato
+En el panel de VENDOR, si aparece el mensaje “no tienes un contrato activo”, significa que:
+- no existe `pendingVersion` que puedas aceptar,
+- por lo tanto el admin debe crear/enviar a firma una versión del contrato para tu productor.
+
+Una vez que el admin la envíe a firma y a ti te aparezca `pendingVersion`, podrás aceptar el contrato desde:
+- `/panel/proveedor/contratos`
+
+Después de tener contrato activo, el botón **“Enviar a revisión”** vuelve a funcionar y el admin ya puede revisar/publicar.
+
+### B10. Imágenes por categoría y placeholders (incluye “Reposteria”)
+
+#### B10.1. Requisito
+Si un productor no sube foto, el sistema debe mostrar un **PNG por defecto** según la categoría (incluyendo nuevas categorías como “Reposteria”).
+
+#### B10.2. Soluciones aplicadas
+- Se añadió la categoría “Reposteria” en el `seed.ts` para que aparezca en `listCategories()`.
+- Se añadió el PNG de placeholder en:
+  - `apps/web/public/categories/reposteria.png`
+- El form y las tarjetas de producto usan un placeholder calculado en función de la categoría/subcategoría seleccionada.
+- Para evitar problemas de validación al enviar la foto:
+  - se normaliza la `imageUrl` a URL absoluta en el `parseProductForm`,
+  - y se configuró `next/image` para permitir `localhost` en dev (`remotePatterns`).
+

@@ -59,18 +59,27 @@ export default async function VendorProductsPage() {
                 <p className="mt-1 text-sm text-stone-500">
                   {productStatusLabels[product.status] ?? product.status}
                 </p>
+                <div className="mt-3">
+                  <Link
+                    href={`/panel/proveedor/productos/${product.id}`}
+                    className="inline-flex min-h-10 items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-800 hover:bg-stone-50"
+                  >
+                    Editar
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>
 
           <div className="mt-8 hidden overflow-x-auto rounded-3xl border border-stone-200 bg-white md:block">
-            <table className="w-full min-w-[32rem] text-left text-sm">
+            <table className="w-full min-w-[38rem] text-left text-sm">
               <thead className="bg-stone-50 text-stone-500">
                 <tr>
                   <th className="px-4 py-3">Producto</th>
                   <th className="px-4 py-3">Precio</th>
                   <th className="px-4 py-3">Stock</th>
                   <th className="px-4 py-3">Estado</th>
+                  <th className="px-4 py-3">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,6 +97,14 @@ export default async function VendorProductsPage() {
                     <td className="px-4 py-3">{product.stock}</td>
                     <td className="px-4 py-3">
                       {productStatusLabels[product.status] ?? product.status}
+                    </td>
+                    <td className="px-4 py-3">
+                      <Link
+                        href={`/panel/proveedor/productos/${product.id}`}
+                        className="inline-flex min-h-10 items-center justify-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-800 hover:bg-stone-50"
+                      >
+                        Editar
+                      </Link>
                     </td>
                   </tr>
                 ))}

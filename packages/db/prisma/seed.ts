@@ -69,10 +69,20 @@ const categories: CategorySeed[] = [
     ],
   },
   {
+    name: "Reposteria",
+    slug: "reposteria",
+    sortOrder: 6,
+    children: [
+      { name: "Tartas", slug: "tartas", sortOrder: 1 },
+      { name: "Postres", slug: "postres", sortOrder: 2 },
+      { name: "Dulces", slug: "dulces", sortOrder: 3 },
+    ],
+  },
+  {
     name: "Productos tradicionales",
     slug: "productos-tradicionales",
     description: "Categoria preparada para futuras incorporaciones.",
-    sortOrder: 6,
+    sortOrder: 7,
   },
 ];
 

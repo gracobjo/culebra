@@ -2,10 +2,12 @@
 
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +33,33 @@ export function LoginForm() {
       return;
     }
 
-    router.push("/cuenta");
+    const callbackUrl = searchParams.get("callbackUrl");
+    if (callbackUrl) {
+      router.push(callbackUrl);
+      router.refresh();
+      return;
+    }
+
+    // Redirección según rol (la pantalla por defecto de /login es /cuenta,
+    // pero si eres VENDOR/ADMIN debes ir al panel correspondiente).
+    // Nota: la sesión puede tardar un instante en estar disponible, así que hacemos
+    // un par de reintentos.
+    let roles: string[] = [];
+    for (let i = 0; i < 3; i++) {
+      const sessionRes = await fetch("/api/auth/session");
+      const session = (await sessionRes.json()) as { user?: { roles?: string[] } };
+      roles = session?.user?.roles ?? [];
+      if (roles.length) break;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+
+    if (roles.includes("ADMIN")) {
+      router.push("/admin");
+    } else if (roles.includes("VENDOR")) {
+      router.push("/panel/proveedor");
+    } else {
+      router.push("/cuenta");
+    }
     router.refresh();
   }
 

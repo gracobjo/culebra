@@ -33,6 +33,22 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@culebra/auth", "@culebra/db", "@culebra/domain"],
   serverExternalPackages: ["@prisma/client", "bcryptjs"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/uploads/products/**",
+      },
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
+        port: "3000",
+        pathname: "/uploads/products/**",
+      },
+    ],
+  },
   async headers() {
     return [
       {

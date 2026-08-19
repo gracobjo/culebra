@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { listProductsForAdmin } from "@culebra/auth";
 import type { ProductRecord } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
@@ -37,6 +38,12 @@ export default async function AdminProductsPage({ searchParams }: PageProps) {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
+                <Link
+                  href={`/admin/productos/${product.id}`}
+                  className="rounded-full border border-stone-300 px-3 py-2 text-sm hover:bg-stone-50"
+                >
+                  Editar
+                </Link>
                 <form action={updateProductStatusAction.bind(null, product.id)}>
                   <input type="hidden" name="status" value="PUBLISHED" />
                   <button

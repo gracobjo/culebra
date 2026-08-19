@@ -148,6 +148,39 @@ Rutas típicas:
   - el sistema envía el email de **shipment notification** al comprador (best-effort),
   - se sincroniza el estado del pedido padre.
 
+#### 3) Gestión de productos (crear, enviar a revisión y publicación)
+
+El flujo de productos está diseñado para que el productor:
+- cree un producto en estado `DRAFT`,
+- lo envíe a revisión,
+- y espere a que el admin lo revise y publique.
+
+Flujo recomendado:
+1. Ve al panel productor:
+   - `/panel/proveedor/productos`
+   - pulsa **“Nuevo producto”**.
+2. Rellena los datos requeridos:
+   - `Nombre`
+   - `Categoría`
+   - `Precio (EUR)`
+3. (Opcional) Sube la foto del producto.
+   - Si no subes foto, el sistema muestra un PNG por defecto según la categoría.
+4. Pulsa **“Crear producto”**.
+   - El producto se guarda inicialmente en `DRAFT`.
+5. Pulsa **“Enviar a revisión”**.
+   - Solo se habilita si el producto está en `DRAFT` o `REJECTED`.
+
+Requisito de contrato:
+- Para poder “Enviar a revisión”, tu proveedor debe tener un **contrato activo** con la plataforma.
+- Si al pulsar “Enviar a revisión” te aparece un error de “contrato requerido”:
+  - entra en `/panel/proveedor/contratos`,
+  - y si existe una versión pendiente, acéptala.
+  - si no existe versión pendiente, el **admin** debe crear/enviar a firma la versión del contrato antes de que puedas continuar.
+
+Publicación y visibilidad:
+- El catálogo público `/productos` muestra únicamente productos en estado `PUBLISHED`.
+- Hasta que el admin publique, el producto no aparecerá en el catálogo.
+
 ---
 
 ### A4. Funcionalidades del Admin (ADMIN)

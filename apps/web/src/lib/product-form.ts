@@ -19,6 +19,9 @@ export function parseProductForm(formData: FormData): ProductCreateInput {
     .filter((variant): variant is NonNullable<typeof variant> => Boolean(variant));
 
   const imageUrl = String(formData.get("imageUrl") ?? "").trim();
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const normalizedImageUrl =
+    imageUrl.startsWith("/") && appUrl ? `${appUrl}${imageUrl}` : imageUrl;
 
   return {
     name: String(formData.get("name") ?? ""),
@@ -48,7 +51,7 @@ export function parseProductForm(formData: FormData): ProductCreateInput {
       ? Number(formData.get("prepTimeDays"))
       : undefined,
     stock: Number(formData.get("stock") ?? 0),
-    images: imageUrl ? [{ url: imageUrl }] : undefined,
+    images: normalizedImageUrl ? [{ url: normalizedImageUrl }] : undefined,
     variants: variants.length ? variants : undefined,
   };
 }

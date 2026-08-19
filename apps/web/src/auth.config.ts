@@ -1,6 +1,6 @@
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { getActiveUserById, notifyLogin, validateCredentials } from "@culebra/auth";
+import { getActiveUserById, validateCredentials } from "@culebra/auth";
 
 export const authConfig = {
   trustHost: true,
@@ -28,15 +28,8 @@ export const authConfig = {
         });
 
         if (!user) {
-          notifyLogin({ email: String(credentials.email), role: "?", success: false });
           return null;
         }
-
-        notifyLogin({
-          email: user.email,
-          role: user.roles[0] ?? "CONSUMER",
-          success: true,
-        });
 
         return {
           id: user.id,

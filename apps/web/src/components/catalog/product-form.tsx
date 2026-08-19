@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useMemo, useState } from "react";
 import type { CategoryRecord, ProductRecord } from "@culebra/auth";
 import {
   createProductAction,
@@ -9,6 +9,29 @@ import {
   updateProductAction,
   type ProductFormState,
 } from "@/app/panel/proveedor/productos/actions";
+import { ImageUploader } from "@/components/catalog/image-uploader";
+
+const CATEGORY_PLACEHOLDER: Record<string, string> = {
+  "embutidos-y-productos-carnicos": "/categories/embutidos-y-productos-carnicos.png",
+  "jamon": "/categories/embutidos-y-productos-carnicos.png",
+  "chorizo": "/categories/embutidos-y-productos-carnicos.png",
+  "quesos-y-lacteos": "/categories/quesos-y-lacteos.png",
+  "miel-y-productos-apicolas": "/categories/miel-y-productos-apicolas.png",
+  "vinos": "/categories/vinos.png",
+  "licores": "/categories/licores.png",
+};
+
+function getPlaceholderFromSelection(params: {
+  categoryName?: string;
+  categorySlug?: string;
+  subcategorySlug?: string;
+}): string {
+  const name = (params.categoryName ?? "").toLowerCase();
+  if (name.includes("repost")) return "/categories/reposteria.png";
+
+  const slug = params.subcategorySlug ?? params.categorySlug ?? "";
+  return CATEGORY_PLACEHOLDER[slug] ?? "/categories/productos-tradicionales.png";
+}
 
 const initialState: ProductFormState = {};
 
@@ -18,9 +41,37 @@ type ProductFormProps = {
 };
 
 export function ProductForm({ categories, product }: ProductFormProps) {
-  const action = product
-    ? updateProductAction.bind(null, product.id)
-    : createProductAction;
+  const [selectedCategoryId, setSelectedCategoryId] = useState(
+    product?.categoryId ?? "",
+  );
+  const [selectedSubcategoryId, setSelectedSubcategoryId] = useState(
+    product?.subcategoryId ?? "",
+  );
+  const [basePrice, setBasePrice] = useState<string>(
+    product?.basePrice !== undefined ? String(product.basePrice) : "",
+  );
+
+  const selectedCategory = useMemo(
+    () => categories.find((c) => c.id === selectedCategoryId),
+    [categories, selectedCategoryId],
+  );
+
+  const selectedSubcategory = useMemo(() => {
+    if (!selectedSubcategoryId) return undefined;
+    for (const cat of categories) {
+      const child = cat.children.find((ch) => ch.id === selectedSubcategoryId);
+      if (child) return child;
+    }
+    return undefined;
+  }, [categories, selectedSubcategoryId]);
+
+  const placeholderUrl = getPlaceholderFromSelection({
+    categoryName: selectedCategory?.name,
+    categorySlug: selectedCategory?.slug,
+    subcategorySlug: selectedSubcategory?.slug,
+  });
+
+  const action = product ? updateProductAction.bind(null, product.id) : createProductAction;
   const [state, formAction, pending] = useActionState(action, initialState);
   const editable =
     !product || ["DRAFT", "REJECTED"].includes(product.status);
@@ -52,8 +103,12 @@ export function ProductForm({ categories, product }: ProductFormProps) {
               id="categoryId"
               name="categoryId"
               required
-              defaultValue={product?.categoryId}
+              value={selectedCategoryId}
               disabled={!editable}
+              onChange={(e) => {
+                setSelectedCategoryId(e.target.value);
+                setSelectedSubcategoryId("");
+              }}
               className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
             >
               <option value="">Selecciona categoria</option>
@@ -71,8 +126,9 @@ export function ProductForm({ categories, product }: ProductFormProps) {
             <select
               id="subcategoryId"
               name="subcategoryId"
-              defaultValue={product?.subcategoryId ?? ""}
+              value={selectedSubcategoryId}
               disabled={!editable}
+              onChange={(e) => setSelectedSubcategoryId(e.target.value)}
               className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
             >
               <option value="">Sin subcategoria</option>
@@ -124,7 +180,8 @@ export function ProductForm({ categories, product }: ProductFormProps) {
               min="0.01"
               step="0.01"
               required
-              defaultValue={product?.basePrice}
+              value={basePrice}
+              onChange={(e) => setBasePrice(e.target.value)}
               disabled={!editable}
               className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
             />
@@ -252,16 +309,14 @@ export function ProductForm({ categories, product }: ProductFormProps) {
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium" htmlFor="imageUrl">
-            URL de imagen
+          <label className="mb-2 block text-sm font-medium">
+            Foto del producto
           </label>
-          <input
-            id="imageUrl"
-            name="imageUrl"
-            type="url"
-            defaultValue={product?.images[0]?.url ?? ""}
+          <ImageUploader
+            currentUrl={product?.images[0]?.url ?? ""}
+            placeholderUrl={placeholderUrl}
+            inputName="imageUrl"
             disabled={!editable}
-            className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
           />
         </div>
 

@@ -36,6 +36,12 @@ const CATEGORY_PLACEHOLDER: Record<string, string> = {
 function getProductImage(product: ProductRecord): { src: string; isPlaceholder: boolean } {
   const uploaded = product.images[0];
   if (uploaded?.url) return { src: uploaded.url, isPlaceholder: false };
+
+  const categoryName = (product.category?.name ?? "").toLowerCase();
+  if (categoryName.includes("repost")) {
+    return { src: "/categories/reposteria.png", isPlaceholder: true };
+  }
+
   const slug = product.subcategory?.slug ?? product.category?.slug ?? "";
   const placeholder = CATEGORY_PLACEHOLDER[slug] ?? "/categories/productos-tradicionales.png";
   return { src: placeholder, isPlaceholder: true };
