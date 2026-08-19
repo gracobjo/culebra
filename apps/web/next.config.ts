@@ -4,8 +4,6 @@ import { fileURLToPath } from "node:url";
 
 import type { NextConfig } from "next";
 
-import { getServerActionsAllowedOrigins } from "./src/lib/server-actions-origins";
-
 const require = createRequire(import.meta.url);
 const { loadEnvConfig } = require("@next/env");
 
@@ -14,6 +12,44 @@ const monorepoRoot = path.resolve(
   "../..",
 );
 loadEnvConfig(monorepoRoot);
+
+function getServerActionsAllowedOrigins(): string[] {
+  const origins = new Set<string>([
+    "localhost:3000",
+    "127.0.0.1:3000",
+    "*.app.github.dev",
+    "*.github.dev",
+    "*.devtunnels.ms",
+  ]);
+
+  const codespaceName = process.env.CODESPACE_NAME?.trim();
+  const forwardingDomain = process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN?.trim();
+  if (codespaceName && forwardingDomain) {
+    origins.add(`${codespaceName}-3000.${forwardingDomain}`);
+  }
+
+  for (const value of [process.env.AUTH_URL, process.env.NEXT_PUBLIC_APP_URL]) {
+    if (!value?.trim()) continue;
+    try {
+      origins.add(new URL(value.trim()).host);
+    } catch {
+      const host = value.trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
+      if (host) origins.add(host);
+    }
+  }
+
+  const extra = process.env.SERVER_ACTIONS_ALLOWED_ORIGINS?.trim();
+  if (extra) {
+    for (const item of extra.split(",")) {
+      const host = item.trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
+      if (host) origins.add(host);
+    }
+  }
+
+  return [...origins];
+}
+
+const serverActionsAllowedOrigins = getServerActionsAllowedOrigins();
 
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -37,8 +73,11 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["@prisma/client", "bcryptjs", "pdfkit", "fontkit"],
   experimental: {
     serverActions: {
-      allowedOrigins: getServerActionsAllowedOrigins(),
+      allowedOrigins: serverActionsAllowedOrigins,
     },
+  },
+  serverActions: {
+    allowedOrigins: serverActionsAllowedOrigins,
   },
   webpack: (config) => {
     config.resolve.alias = {
