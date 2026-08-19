@@ -4,7 +4,7 @@ import type Stripe from "stripe";
 
 import { getOrderByNumber } from "./order.service.js";
 import { getVendorByUserId } from "./vendor.service.js";
-import { appBaseUrl, eurosToCents, getStripe, isStripeConfigured } from "./stripe.js";
+import { appBaseUrl, eurosToCents, getStripe, isStripeConfigured, vendorPublicProfileUrl } from "./stripe.js";
 import { initVendorOrderSla } from "./sla.service.js";
 import { notifyPaymentConfirmed } from "./notifications.service.js";
 
@@ -581,6 +581,7 @@ export async function createVendorStripeOnboardingLink(
       where: { id: userId },
       select: { email: true },
     });
+    const profileUrl = vendorPublicProfileUrl(vendor.slug);
     const account = await stripe.accounts.create({
       type: "express",
       country: "ES",
@@ -590,7 +591,7 @@ export async function createVendorStripeOnboardingLink(
       },
       business_profile: {
         name: vendor.tradeName,
-        url: `${appBaseUrl()}/productores/${vendor.slug}`,
+        ...(profileUrl ? { url: profileUrl } : {}),
       },
       metadata: { vendorId: vendor.id },
     });

@@ -26,7 +26,24 @@ export function getStripe(): Stripe {
 }
 
 export function appBaseUrl(): string {
-  return (process.env.AUTH_URL ?? "http://localhost:3000").replace(/\/$/, "");
+  return (
+    process.env.NEXT_PUBLIC_APP_URL ??
+    process.env.AUTH_URL ??
+    "http://localhost:3000"
+  ).replace(/\/$/, "");
+}
+
+/** Stripe rechaza localhost en business_profile.url al crear cuentas Connect. */
+export function vendorPublicProfileUrl(vendorSlug: string): string | undefined {
+  try {
+    const { hostname } = new URL(appBaseUrl());
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return undefined;
+    }
+    return `${appBaseUrl()}/productores/${vendorSlug}`;
+  } catch {
+    return undefined;
+  }
 }
 
 export function eurosToCents(value: unknown): number {
