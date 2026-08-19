@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
+import { SignOutButton } from "@/components/auth/sign-out-button";
+
 type SessionUser = {
   name: string;
   email: string;
@@ -116,6 +118,10 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
                   Admin
                 </Link>
               ) : null}
+              <SignOutButton
+                className="text-sm text-stone-600 underline-offset-2 hover:text-emerald-900 hover:underline"
+                label="Salir"
+              />
             </>
           ) : (
             <Link href="/login" className="hover:text-emerald-800">
@@ -233,6 +239,14 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
               >
                 Administracion
               </Link>
+            ) : null}
+            {isLoggedIn ? (
+              <div className="mt-2 border-t border-stone-100 pt-2">
+                <SignOutButton
+                  className="w-full rounded-xl px-3 py-3 text-left text-sm font-medium text-red-800 hover:bg-red-50"
+                  label="Cerrar sesion"
+                />
+              </div>
             ) : null}
           </nav>
         </div>

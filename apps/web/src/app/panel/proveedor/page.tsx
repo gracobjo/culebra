@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { getVendorContractStatus } from "@culebra/auth";
 import { getVendorForPanel } from "./actions";
 import { VendorProfileForm } from "@/components/vendor/vendor-profile-form";
+import { SignOutButton } from "@/components/auth/sign-out-button";
 import { PageShell } from "@/components/layout/page-shell";
 
 const statusLabels: Record<string, string> = {
@@ -121,6 +122,9 @@ export default async function VendorPanelPage() {
         <Link href="/" className="mt-8 inline-block text-sm text-emerald-800">
           Volver al inicio
         </Link>
+        <div className="mt-4">
+          <SignOutButton label="Cerrar sesion" />
+        </div>
       </div>
     </PageShell>
   );
