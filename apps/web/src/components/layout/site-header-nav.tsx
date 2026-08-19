@@ -33,7 +33,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
 
   return (
     <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 pt-[env(safe-area-inset-top)] backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
+      <div className="site-container flex max-w-6xl items-center justify-between gap-3 py-3 sm:py-4">
         <Link
           href="/"
           className="min-w-0 truncate text-xs font-semibold uppercase tracking-[0.14em] text-emerald-800 sm:text-sm sm:tracking-[0.2em]"
@@ -42,7 +42,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
           <span className="hidden sm:inline">Sierra de la Culebra Marketplace</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm lg:flex">
+        <nav className="hidden shrink-0 items-center gap-4 text-sm lg:flex xl:gap-6">
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="hover:text-emerald-800">
               {link.label}
@@ -101,9 +101,9 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
       {open ? (
         <div
           id="mobile-menu"
-          className="border-t border-stone-200 bg-white px-4 py-4 lg:hidden"
+          className="border-t border-stone-200 bg-white lg:hidden"
         >
-          <nav className="flex flex-col gap-1 text-base">
+          <nav className="site-container flex max-w-6xl flex-col gap-1 py-4 text-base">
             {links.map((link) => (
               <Link
                 key={link.href}

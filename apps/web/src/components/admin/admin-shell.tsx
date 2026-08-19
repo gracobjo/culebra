@@ -3,6 +3,11 @@ import { PageShell } from "@/components/layout/page-shell";
 
 const links = [
   { href: "/admin", label: "Resumen" },
+  { href: "/admin/sandbox", label: "Sandbox" },
+  { href: "/admin/piloto", label: "Grupo Piloto" },
+  { href: "/admin/kpis", label: "KPIs artesanos" },
+  { href: "/admin/rentabilidad", label: "Rentabilidad" },
+  { href: "/admin/rappels", label: "Rappels" },
   { href: "/admin/productores", label: "Productores" },
   { href: "/admin/productos", label: "Productos" },
   { href: "/admin/contratos", label: "Contratos" },

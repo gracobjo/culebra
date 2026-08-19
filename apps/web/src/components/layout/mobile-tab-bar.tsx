@@ -36,7 +36,7 @@ export function MobileTabBar({ cartCount, isLoggedIn }: MobileTabBarProps) {
       className="fixed inset-x-0 bottom-0 z-40 border-t border-stone-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
       aria-label="Navegacion principal"
     >
-      <ul className="grid grid-cols-4">
+      <ul className="site-container grid max-w-6xl grid-cols-4">
         {tabs.map((tab) => {
           const href = tab.href === "/cuenta" && !isLoggedIn ? "/login" : tab.href;
           const active = tab.match(pathname);
@@ -51,7 +51,7 @@ export function MobileTabBar({ cartCount, isLoggedIn }: MobileTabBarProps) {
                 <span className="relative">
                   {tab.label}
                   {tab.href === "/carrito" && cartCount > 0 ? (
-                    <span className="absolute -right-4 -top-2 inline-flex min-w-4 items-center justify-center rounded-full bg-emerald-800 px-1 text-[10px] text-white">
+                    <span className="absolute -right-3 -top-2 inline-flex min-w-4 items-center justify-center rounded-full bg-emerald-800 px-1 text-[10px] text-white">
                       {cartCount}
                     </span>
                   ) : null}

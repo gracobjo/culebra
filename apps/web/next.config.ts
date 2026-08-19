@@ -1,4 +1,17 @@
+import { createRequire } from "node:module";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 import type { NextConfig } from "next";
+
+const require = createRequire(import.meta.url);
+const { loadEnvConfig } = require("@next/env");
+
+const monorepoRoot = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../..",
+);
+loadEnvConfig(monorepoRoot);
 
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },

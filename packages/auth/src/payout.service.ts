@@ -14,6 +14,8 @@ export type PayoutRecord = {
   otherFees: string;
   amountNetToVendor: string;
   stripeTransferId: string | null;
+  releasesAt: Date | null;
+  heldForWithdrawal: boolean;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -32,6 +34,8 @@ function mapPayout(row: {
   otherFees: unknown;
   amountNetToVendor: unknown;
   stripeTransferId: string | null;
+  releasesAt: Date | null;
+  heldForWithdrawal: boolean;
   createdAt: Date;
   updatedAt: Date;
   vendorOrder: { order: { orderNumber: string } };
@@ -47,6 +51,8 @@ function mapPayout(row: {
     otherFees: decimalToString(row.otherFees),
     amountNetToVendor: decimalToString(row.amountNetToVendor),
     stripeTransferId: row.stripeTransferId,
+    releasesAt: row.releasesAt,
+    heldForWithdrawal: row.heldForWithdrawal,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
   };

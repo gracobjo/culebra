@@ -125,6 +125,12 @@ export default async function VendorSettlementsPage() {
                   {formatPrice(payout.commissionMarketplace)} · Neto{" "}
                   {formatPrice(payout.amountNetToVendor)}
                 </p>
+                {payout.heldForWithdrawal && payout.releasesAt ? (
+                  <p className="mt-1 text-xs text-amber-700">
+                    Retenido por derecho de desistimiento · Disponible el{" "}
+                    {formatDate(payout.releasesAt)}
+                  </p>
+                ) : null}
                 <p className="mt-1 text-xs text-stone-500">{formatDate(payout.createdAt)}</p>
               </li>
             ))}

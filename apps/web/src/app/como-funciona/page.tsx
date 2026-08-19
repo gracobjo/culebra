@@ -50,17 +50,11 @@ export default function HowItWorksPage() {
         <TrustStrip />
       </section>
 
-      <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-        <Link
-          href="/productos"
-          className="inline-flex min-h-11 items-center justify-center rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white"
-        >
+      <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <Link className="btn btn-primary w-full sm:w-auto" href="/productos">
           Ver productos
         </Link>
-        <Link
-          href="/pedido/consultar"
-          className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
-        >
+        <Link className="btn btn-secondary w-full sm:w-auto" href="/pedido/consultar">
           Consultar un pedido
         </Link>
       </div>

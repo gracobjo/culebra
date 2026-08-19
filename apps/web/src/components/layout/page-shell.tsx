@@ -19,7 +19,7 @@ export function PageShell({
 }: PageShellProps) {
   return (
     <main
-      className={`mx-auto w-full ${widths[width]} px-4 py-8 sm:px-6 sm:py-12 lg:py-16 ${className}`}
+      className={`site-container py-8 sm:py-12 lg:py-16 ${widths[width]} ${className}`}
     >
       {children}
     </main>

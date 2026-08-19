@@ -36,11 +36,11 @@ export function TrustStrip({ compact = false }: { compact?: boolean }) {
             key={item.title}
             className={
               compact
-                ? "rounded-2xl border border-stone-100 bg-stone-50 px-4 py-3"
-                : "rounded-2xl bg-stone-50 px-4 py-3"
+                ? "rounded-2xl border border-stone-100 bg-stone-50 px-5 py-4"
+                : "rounded-2xl bg-stone-50 px-5 py-4"
             }
           >
-            <p className="text-sm font-medium text-emerald-900">{item.title}</p>
+            <p className="text-sm font-medium leading-snug text-emerald-900">{item.title}</p>
             <p className="mt-1 text-xs text-stone-600 sm:text-sm">{item.description}</p>
           </li>
         ))}

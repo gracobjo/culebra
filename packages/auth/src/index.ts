@@ -16,6 +16,17 @@ export {
 } from "./audit.service.js";
 export type { AdminAuditLogRecord } from "./audit.service.js";
 export { signAccessToken, verifyAccessToken } from "./jwt.js";
+export {
+  sendOrderConfirmationEmail,
+  sendShipmentNotificationEmail,
+  sendVendorNewOrderEmail,
+} from "./email.service.js";
+export type {
+  EmailPayload,
+  OrderConfirmationData,
+  ShipmentNotificationData,
+  VendorNewOrderData,
+} from "./email.service.js";
 export { hashPassword, verifyPassword } from "./password.js";
 export { hasAllRoles, hasAnyRole, hasRole } from "./rbac.js";
 export {
@@ -107,8 +118,10 @@ export {
   createVendorStripeOnboardingLink,
   getVendorStripeStatus,
   handleStripeWebhook,
+  isPayoutReleased,
   isStripeConfigured,
   markOrderPaid,
+  releaseMaturedPayouts,
   retryPendingPayoutsForVendor,
 } from "./payment.service.js";
 export type { VendorStripeStatus } from "./payment.service.js";

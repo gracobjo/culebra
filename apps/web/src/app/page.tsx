@@ -27,12 +27,12 @@ export default async function HomePage() {
       <JsonLd data={buildOrganizationJsonLd()} />
       <JsonLd data={buildWebSiteJsonLd()} />
 
-      <section className="grid gap-10 lg:grid-cols-5 lg:gap-12">
-        <div className="space-y-6 lg:col-span-3">
+      <section className="grid min-w-0 gap-10 lg:grid-cols-5 lg:items-start lg:gap-12">
+        <div className="min-w-0 space-y-6 lg:col-span-3">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 sm:text-sm">
             Del territorio a tu mesa
           </p>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Productos autenticos de la Sierra de la Culebra
           </h1>
           <p className="max-w-xl text-base text-stone-600 sm:text-lg">
@@ -41,28 +41,19 @@ export default async function HomePage() {
             pedido.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white"
-              href="/productos"
-            >
+            <Link className="btn btn-primary w-full sm:w-auto" href="/productos">
               Descubrir productos
             </Link>
-            <Link
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
-              href="/como-funciona"
-            >
+            <Link className="btn btn-secondary w-full sm:w-auto" href="/como-funciona">
               Como funciona
             </Link>
-            <Link
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
-              href="/quiero-vender"
-            >
+            <Link className="btn btn-secondary w-full sm:w-auto" href="/quiero-vender">
               Soy productor
             </Link>
           </div>
         </div>
 
-        <div className="rounded-3xl bg-gradient-to-br from-emerald-900 to-emerald-950 p-6 text-white shadow-xl sm:p-8 lg:col-span-2">
+        <div className="min-w-0 rounded-3xl bg-gradient-to-br from-emerald-900 to-emerald-950 p-6 text-white shadow-xl sm:p-8 lg:col-span-2 lg:sticky lg:top-24">
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">Territorio</p>
           <h2 className="mt-3 text-2xl font-semibold">Sierra de la Culebra</h2>
           <p className="mt-4 text-emerald-50/90">

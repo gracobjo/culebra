@@ -2,11 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { auth } from "@/auth";
 import { getOrderByNumber, isStripeConfigured } from "@culebra/auth";
+import { prisma } from "@culebra/db";
 import { guestCanAccessOrder } from "@/lib/cart";
 import { formatDate, formatPrice, vendorOrderStatusLabels } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 import { OrderStatusBadge } from "@/components/orders/order-status-badge";
 import { PayOrderButton } from "@/components/orders/pay-order-button";
+import { ReviewForm } from "@/components/orders/review-form";
 
 type OrderPageProps = {
   params: Promise<{ orderNumber: string }>;
@@ -33,6 +35,17 @@ export default async function OrderConfirmationPage({ params, searchParams }: Or
   }
 
   const shipping = order.shippingAddress;
+  const isPaid = ["PAYMENT_PAID"].includes(order.paymentStatus ?? "");
+
+  // Cargar reviews existentes del usuario para este pedido (evitar duplicar el form)
+  const existingReviewProductIds = session?.user?.id && isPaid
+    ? new Set(
+        (await prisma.review.findMany({
+          where: { userId: session.user.id, orderId: order.id },
+          select: { productId: true },
+        })).map((r) => r.productId),
+      )
+    : new Set<string>();
 
   return (
     <PageShell width="md">
@@ -134,6 +147,36 @@ export default async function OrderConfirmationPage({ params, searchParams }: Or
           </article>
         ))}
       </section>
+
+      {/* Formulario de valoraciones: solo para usuarios autenticados con pedido pagado */}
+      {session?.user && isPaid ? (
+        <section className="mt-10">
+          <h2 className="text-lg font-semibold">Valora tu compra</h2>
+          <p className="mt-1 text-sm text-stone-500">
+            Tu opinion ayuda a otros compradores y a mejorar la calidad de los artesanos.
+          </p>
+          <div className="mt-4 space-y-4">
+            {order.items
+              .filter((item) => item.productId && !existingReviewProductIds.has(item.productId ?? ""))
+              .map((item) => (
+                item.productId && item.vendorId ? (
+                  <ReviewForm
+                    key={item.id}
+                    orderNumber={order.orderNumber}
+                    productId={item.productId}
+                    productName={item.productName}
+                    vendorId={item.vendorId}
+                  />
+                ) : null
+              ))}
+            {order.items.every(
+              (item) => !item.productId || existingReviewProductIds.has(item.productId ?? ""),
+            ) ? (
+              <p className="text-sm text-stone-500">Ya has valorado todos los productos de este pedido.</p>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         {session?.user ? (

@@ -13,6 +13,10 @@ import {
   resolveLineCommission,
   resolveVendorFixedFee,
 } from "./commission.service.js";
+import {
+  sendOrderConfirmationEmail,
+  sendVendorNewOrderEmail,
+} from "./email.service.js";
 
 type CartOwner = {
   userId?: string;
@@ -243,7 +247,7 @@ export async function checkoutCart(
     return created;
   });
 
-  return {
+  const summary = {
     id: order.id,
     orderNumber: order.orderNumber,
     customerEmail: order.customerEmail,
@@ -254,4 +258,50 @@ export async function checkoutCart(
     vendorCount: vendorIdsUnique.length,
     createdAt: order.createdAt,
   };
+
+  // Emails post-checkout (best-effort: no bloquean si fallan)
+  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? process.env.AUTH_URL ?? "http://localhost:3000").replace(/\/$/, "");
+  const orderUrl = `${appUrl}/pedido/${order.orderNumber}`;
+
+  sendOrderConfirmationEmail({
+    orderNumber: order.orderNumber,
+    customerFirstName: input.customerFirstName,
+    customerEmail: order.customerEmail,
+    totalAmount: String(order.totalAmount),
+    items: lines.map((l) => ({
+      productName: l.item.productName,
+      variantLabel: l.item.variantLabel,
+      quantity: l.item.quantity,
+      subtotalGross: String(l.gross),
+    })),
+    shippingAddress: input.shipping,
+    orderUrl,
+  }).catch((err: unknown) => console.error("[EMAIL] orderConfirmation failed", err));
+
+  // Notificar a cada artesano involucrado
+  const vendorEmailsById = await prisma.vendor.findMany({
+    where: { id: { in: vendorIdsUnique } },
+    select: { id: true, tradeName: true, email: true, user: { select: { email: true } } },
+  });
+
+  for (const vendor of vendorEmailsById) {
+    const vendorLines = lines.filter((l) => l.item.vendorId === vendor.id);
+    const vendorEmail = vendor.email ?? vendor.user?.email;
+    if (!vendorEmail) continue;
+
+    sendVendorNewOrderEmail({
+      orderNumber: order.orderNumber,
+      vendorTradeName: vendor.tradeName,
+      vendorEmail,
+      items: vendorLines.map((l) => ({
+        productName: l.item.productName,
+        variantLabel: l.item.variantLabel,
+        quantity: l.item.quantity,
+      })),
+      shippingAddress: input.shipping,
+      panelUrl: `${appUrl}/panel/proveedor/pedidos`,
+    }).catch((err: unknown) => console.error("[EMAIL] vendorNewOrder failed", err));
+  }
+
+  return summary;
 }

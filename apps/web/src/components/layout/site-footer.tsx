@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site";
 export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-stone-200 bg-white">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-4">
+      <div className="site-container grid max-w-6xl gap-8 py-10 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-800">
             {siteConfig.shortName}
@@ -45,7 +45,7 @@ export function SiteFooter() {
           </Link>
         </nav>
       </div>
-      <div className="border-t border-stone-100 px-4 py-4 text-center text-xs text-stone-500 sm:px-6">
+      <div className="site-container max-w-6xl border-t border-stone-100 py-4 text-center text-xs text-stone-500">
         {siteConfig.region} · Textos legales en revision profesional
       </div>
     </footer>

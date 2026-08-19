@@ -1,5 +1,6 @@
 import { AuditAction, OrderStatus, PaymentStatus, ShipmentStatus, VendorOrderStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
+import { sendShipmentNotificationEmail } from "./email.service.js";
 
 import { getVendorByUserId } from "./vendor.service.js";
 import type { ShipVendorOrderInput, VendorOrderStatusInput } from "./order.schemas.js";
@@ -19,6 +20,8 @@ type AddressSnapshot = {
 
 export type OrderItemView = {
   id: string;
+  productId: string | null;
+  vendorId: string;
   productName: string;
   variantLabel: string | null;
   quantity: number;
@@ -126,6 +129,8 @@ function asAddress(value: unknown): AddressSnapshot | null {
 
 function mapOrderItem(item: {
   id: string;
+  productId: string | null;
+  vendorId: string;
   productName: string;
   variantLabel: string | null;
   quantity: number;
@@ -134,6 +139,8 @@ function mapOrderItem(item: {
 }): OrderItemView {
   return {
     id: item.id,
+    productId: item.productId,
+    vendorId: item.vendorId,
     productName: item.productName,
     variantLabel: item.variantLabel,
     quantity: item.quantity,
@@ -601,6 +608,32 @@ export async function shipVendorOrder(
       trackingNumber: input.trackingNumber ?? null,
     },
   });
+
+  // Notificar al comprador por email (best-effort)
+  try {
+    const parentOrder = await prisma.order.findUnique({
+      where: { id: current.orderId },
+      select: { orderNumber: true, customerEmail: true, customerFirstName: true },
+    });
+    const vendor = await prisma.vendor.findUnique({
+      where: { id: current.vendorId },
+      select: { tradeName: true },
+    });
+    if (parentOrder && vendor) {
+      const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? process.env.AUTH_URL ?? "http://localhost:3000").replace(/\/$/, "");
+      sendShipmentNotificationEmail({
+        orderNumber: parentOrder.orderNumber,
+        customerFirstName: parentOrder.customerFirstName,
+        customerEmail: parentOrder.customerEmail,
+        vendorName: vendor.tradeName,
+        carrier: input.carrier,
+        trackingNumber: input.trackingNumber,
+        orderUrl: `${appUrl}/pedido/${parentOrder.orderNumber}`,
+      }).catch((err: unknown) => console.error("[EMAIL] shipmentNotification failed", err));
+    }
+  } catch {
+    // No bloquear el flujo principal si el email falla
+  }
 
   return getVendorOrder(userId, vendorOrderId);
 }

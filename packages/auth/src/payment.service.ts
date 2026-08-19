@@ -67,11 +67,27 @@ export async function createOrderCheckoutSession(
     }
   }
 
+  // payment_method_types: habilitamos tarjeta, Bizum y wallets (Apple/Google Pay).
+  // Bizum requiere activación explícita en el Dashboard de Stripe > Payment Methods.
+  // Apple/Google Pay se activan automáticamente si el dominio está verificado en Stripe.
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     customer_email: order.customerEmail,
     success_url: `${appBaseUrl()}/pedido/${order.orderNumber}?pago=ok`,
     cancel_url: `${appBaseUrl()}/pedido/${order.orderNumber}?pago=cancelado`,
+    locale: "es",
+    payment_method_types: [
+      "card",
+      // Bizum: activa en Stripe Dashboard > Payment methods > Bizum
+      // Disponible solo para merchants en España con currency EUR
+      "bizum",
+    ],
+    payment_method_options: {
+      card: {
+        // Solicitar código postal para reducir fraude
+        request_three_d_secure: "automatic",
+      },
+    },
     line_items: [
       {
         quantity: 1,
@@ -80,7 +96,7 @@ export async function createOrderCheckoutSession(
           unit_amount: eurosToCents(order.totalAmount),
           product_data: {
             name: `Pedido ${order.orderNumber}`,
-            description: "Sierra de la Culebra Marketplace",
+            description: "Sierra de la Culebra Marketplace · Productos artesanales de Zamora",
           },
         },
       },
@@ -164,7 +180,25 @@ async function transferPayout(payoutId: string, vendorOrder: {
   }
 }
 
+// Días de retención legal por derecho de desistimiento (Ley 3/2014, art. 102)
+const WITHDRAWAL_RETENTION_DAYS = 14;
+
+function payoutReleasesAt(from: Date = new Date()): Date {
+  const d = new Date(from);
+  d.setDate(d.getDate() + WITHDRAWAL_RETENTION_DAYS);
+  return d;
+}
+
+export function isPayoutReleased(payout: { releasesAt: Date | null; heldForWithdrawal: boolean }): boolean {
+  if (!payout.heldForWithdrawal) return true;
+  if (!payout.releasesAt) return false;
+  return new Date() >= payout.releasesAt;
+}
+
 async function createVendorTransfers(orderId: string, paymentId: string, orderNumber: string) {
+  const paidAt = new Date();
+  const releasesAt = payoutReleasesAt(paidAt);
+
   const vendorOrders = await prisma.vendorOrder.findMany({
     where: { orderId },
     include: { vendor: true, payout: true },
@@ -187,7 +221,9 @@ async function createVendorTransfers(orderId: string, paymentId: string, orderNu
       continue;
     }
 
-    const payout = await prisma.payout.create({
+    // El payout se crea en estado PENDING y retenido 14 días.
+    // El transfer real a Stripe se ejecuta cuando expira la retención (cron/webhook).
+    await prisma.payout.create({
       data: {
         vendorId: vendorOrder.vendorId,
         vendorOrderId: vendorOrder.id,
@@ -197,11 +233,61 @@ async function createVendorTransfers(orderId: string, paymentId: string, orderNu
         commissionMarketplace: vendorOrder.marketplaceCommission,
         otherFees: vendorOrder.otherFees,
         amountNetToVendor: vendorOrder.vendorNetAmount,
+        releasesAt,
+        heldForWithdrawal: true,
       },
     });
-
-    await transferPayout(payout.id, vendorOrder, orderNumber);
+    // No llamamos a transferPayout aquí: el transfer ocurre cuando expira la retención.
   }
+}
+
+/**
+ * Procesa los payouts cuya retención de 14 días ha expirado y aún no se han
+ * transferido. Llamar desde un cron job diario o desde el webhook de Stripe.
+ */
+export async function releaseMaturedPayouts(): Promise<{ released: number; failed: number }> {
+  if (!isStripeConfigured()) return { released: 0, failed: 0 };
+
+  const matured = await prisma.payout.findMany({
+    where: {
+      heldForWithdrawal: true,
+      releasesAt: { lte: new Date() },
+      stripeTransferId: null,
+      status: { in: [PayoutStatus.PENDING, PayoutStatus.FAILED] },
+    },
+    include: {
+      vendor: true,
+      vendorOrder: { include: { order: true } },
+    },
+  });
+
+  let released = 0;
+  let failed = 0;
+
+  for (const payout of matured as Array<{
+    id: string;
+    vendorNetAmount: unknown;
+    vendor: { stripeAccountId: string | null; stripeChargesEnabled: boolean };
+    vendorOrder: { id: string; order: { orderNumber: string } };
+  }>) {
+    await prisma.payout.update({
+      where: { id: payout.id },
+      data: { heldForWithdrawal: false, status: PayoutStatus.PROCESSING },
+    });
+    const result = await transferPayout(
+      payout.id,
+      { id: payout.vendorOrder.id, vendorNetAmount: payout.vendorNetAmount, vendor: payout.vendor },
+      payout.vendorOrder.order.orderNumber,
+    );
+    if (result === "paid") released++;
+    else if (result === "failed") failed++;
+    else {
+      // skipped: vendor no listo, deja en PENDING para reintento
+      await prisma.payout.update({ where: { id: payout.id }, data: { status: PayoutStatus.PENDING } });
+    }
+  }
+
+  return { released, failed };
 }
 
 export async function retryPendingPayoutsForVendor(userId: string): Promise<{ retried: number }> {
