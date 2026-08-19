@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { PageShell } from "@/components/layout/page-shell";
 
 const links = [
@@ -26,10 +27,24 @@ export function AdminShell({
 }) {
   return (
     <PageShell width="full">
-      <p className="text-sm uppercase tracking-[0.2em] text-emerald-800">
-        Panel administracion
-      </p>
-      <h1 className="mt-2 text-2xl font-semibold sm:text-3xl">{title}</h1>
+      <div className="flex items-center gap-4">
+        <Link href="/" aria-label="Sabores de la Culebra — Inicio">
+          <Image
+            src="/logo.png"
+            alt="Sabores de la Culebra"
+            width={80}
+            height={80}
+            className="h-14 w-auto"
+            priority
+          />
+        </Link>
+        <div>
+          <p className="text-sm uppercase tracking-[0.2em] text-emerald-800">
+            Panel administracion
+          </p>
+          <h1 className="mt-1 text-2xl font-semibold sm:text-3xl">{title}</h1>
+        </div>
+      </div>
       <nav className="mt-6 flex flex-wrap gap-2">
         {links.map((link) => (
           <Link

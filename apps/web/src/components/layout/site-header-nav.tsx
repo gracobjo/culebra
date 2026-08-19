@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
@@ -34,12 +35,15 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
   return (
     <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 pt-[env(safe-area-inset-top)] backdrop-blur">
       <div className="site-container flex max-w-6xl items-center justify-between gap-3 py-3 sm:py-4">
-        <Link
-          href="/"
-          className="min-w-0 truncate text-xs font-semibold uppercase tracking-[0.14em] text-emerald-800 sm:text-sm sm:tracking-[0.2em]"
-        >
-          <span className="sm:hidden">Culebra</span>
-          <span className="hidden sm:inline">Sierra de la Culebra Marketplace</span>
+        <Link href="/" className="shrink-0" aria-label="Sabores de la Culebra — Inicio">
+          <Image
+            src="/logo.png"
+            alt="Sabores de la Culebra"
+            width={120}
+            height={120}
+            className="h-12 w-auto sm:h-14"
+            priority
+          />
         </Link>
 
         <nav className="hidden shrink-0 items-center gap-4 text-sm lg:flex xl:gap-6">
