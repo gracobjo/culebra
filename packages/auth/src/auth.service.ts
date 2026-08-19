@@ -6,6 +6,7 @@ import { hashPassword, verifyPassword } from "./password.js";
 import type { LoginInput, RegisterInput } from "./schemas.js";
 import { generateSecureToken, hashToken } from "./token.js";
 import type { AuthSessionResult, AuthUser } from "./types.js";
+import { notifyLogin } from "./notifications.service.js";
 
 const SESSION_MAX_AGE_DAYS = Number(process.env.SESSION_MAX_AGE_DAYS ?? 7);
 
@@ -204,6 +205,7 @@ export async function loginUser(
       action: AuditAction.LOGIN,
       metadata: { success: false },
     });
+    notifyLogin({ email: input.email, role: "?", ipAddress: context?.ipAddress, userAgent: context?.userAgent, success: false });
     return null;
   }
 
@@ -216,6 +218,14 @@ export async function loginUser(
     entityId: user.id,
     action: AuditAction.LOGIN,
     metadata: { success: true },
+  });
+
+  notifyLogin({
+    email: user.email,
+    role: user.roles[0] ?? "CONSUMER",
+    ipAddress: context?.ipAddress,
+    userAgent: context?.userAgent,
+    success: true,
   });
 
   return session;

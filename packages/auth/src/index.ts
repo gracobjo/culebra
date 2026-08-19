@@ -205,6 +205,16 @@ export type {
   ProductUpdateInput,
 } from "./product.schemas.js";
 export {
+  notifyCheckout,
+  notifyLogin,
+  notifyPaymentConfirmed,
+} from "./notifications.service.js";
+export type {
+  CheckoutNotificationParams,
+  LoginNotificationParams,
+  PaymentNotificationParams,
+} from "./notifications.service.js";
+export {
   checkSlaCompliance,
   computeSlaDeadline,
   getVendorSlaReports,

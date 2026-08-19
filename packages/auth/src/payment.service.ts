@@ -6,6 +6,7 @@ import { getOrderByNumber } from "./order.service.js";
 import { getVendorByUserId } from "./vendor.service.js";
 import { appBaseUrl, eurosToCents, getStripe, isStripeConfigured } from "./stripe.js";
 import { initVendorOrderSla } from "./sla.service.js";
+import { notifyPaymentConfirmed } from "./notifications.service.js";
 
 export { isStripeConfigured };
 
@@ -398,6 +399,14 @@ export async function markOrderPaid(params: {
   }
 
   await createVendorTransfers(payment.orderId, payment.id, payment.order.orderNumber);
+
+  // Notificación Telegram de pago confirmado (best-effort)
+  notifyPaymentConfirmed({
+    orderNumber: payment.order.orderNumber,
+    customerEmail: payment.order.customerEmail,
+    amount: String(payment.order.totalAmount),
+  });
+
   return payment;
 }
 

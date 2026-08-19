@@ -17,6 +17,7 @@ import {
   sendOrderConfirmationEmail,
   sendVendorNewOrderEmail,
 } from "./email.service.js";
+import { notifyCheckout } from "./notifications.service.js";
 
 type CartOwner = {
   userId?: string;
@@ -258,6 +259,16 @@ export async function checkoutCart(
     vendorCount: vendorIdsUnique.length,
     createdAt: order.createdAt,
   };
+
+  // Notificación Telegram post-checkout (best-effort)
+  notifyCheckout({
+    orderNumber: order.orderNumber,
+    customerEmail: order.customerEmail,
+    customerName: `${input.customerFirstName} ${input.customerLastName ?? ""}`.trim(),
+    totalAmount: String(order.totalAmount),
+    vendorCount: vendorIdsUnique.length,
+    itemCount: lines.reduce((sum, l) => sum + l.item.quantity, 0),
+  });
 
   // Emails post-checkout (best-effort: no bloquean si fallan)
   const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? process.env.AUTH_URL ?? "http://localhost:3000").replace(/\/$/, "");
