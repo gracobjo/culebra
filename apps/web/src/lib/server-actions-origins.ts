@@ -17,12 +17,15 @@ export function getServerActionsAllowedOrigins(
   env: NodeJS.ProcessEnv = process.env,
 ): string[] {
   const origins = new Set<string>([
-    "localhost:3000",
-    "127.0.0.1:3000",
     "*.app.github.dev",
     "*.github.dev",
     "*.devtunnels.ms",
   ]);
+
+  for (let port = 3000; port <= 3010; port += 1) {
+    origins.add(`localhost:${port}`);
+    origins.add(`127.0.0.1:${port}`);
+  }
 
   const codespaceName = env.CODESPACE_NAME?.trim();
   const forwardingDomain = env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN?.trim();

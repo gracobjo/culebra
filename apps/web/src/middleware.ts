@@ -46,20 +46,12 @@ function alignForwardedHostHeaders(request: NextRequest): Headers {
   return headers;
 }
 
-function withForwardedHeaders(request: NextRequest, headers: Headers): NextRequest {
-  return new NextRequest(request.url, {
-    headers,
-    method: request.method,
-  });
-}
-
 export async function middleware(request: NextRequest) {
   const requestHeaders = alignForwardedHostHeaders(request);
-  const forwardedRequest = withForwardedHeaders(request, requestHeaders);
   const pathname = request.nextUrl.pathname;
 
   const token = await getToken({
-    req: forwardedRequest,
+    req: request,
     secret: process.env.AUTH_SECRET,
   });
 

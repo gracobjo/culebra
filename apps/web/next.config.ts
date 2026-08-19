@@ -15,12 +15,15 @@ loadEnvConfig(monorepoRoot);
 
 function getServerActionsAllowedOrigins(): string[] {
   const origins = new Set<string>([
-    "localhost:3000",
-    "127.0.0.1:3000",
     "*.app.github.dev",
     "*.github.dev",
     "*.devtunnels.ms",
   ]);
+
+  for (let port = 3000; port <= 3010; port += 1) {
+    origins.add(`localhost:${port}`);
+    origins.add(`127.0.0.1:${port}`);
+  }
 
   const codespaceName = process.env.CODESPACE_NAME?.trim();
   const forwardingDomain = process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN?.trim();
@@ -75,9 +78,6 @@ const nextConfig: NextConfig = {
     serverActions: {
       allowedOrigins: serverActionsAllowedOrigins,
     },
-  },
-  serverActions: {
-    allowedOrigins: serverActionsAllowedOrigins,
   },
   webpack: (config) => {
     config.resolve.alias = {
