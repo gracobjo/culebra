@@ -1,5 +1,8 @@
 # Modelo de negocio
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Base
 
 Marketplace multi-vendedor sin compra inicial de stock por parte de la plataforma.

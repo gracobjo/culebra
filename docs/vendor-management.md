@@ -1,5 +1,8 @@
 # Gestion de proveedores
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 4 completada: onboarding, perfil, pagina publica, panel productor y moderacion admin via API.

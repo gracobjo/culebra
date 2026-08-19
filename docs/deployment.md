@@ -1,5 +1,8 @@
 # Despliegue
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 16 completada: empaquetado Docker, compose de produccion y backups de PostgreSQL.

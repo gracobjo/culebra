@@ -1,5 +1,8 @@
 # Documentos Legales — Marketplace Villardeciervos
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 > Carpeta de modelos jurídicos para uso interno de la S.L. en constitución.
 > Todos los documentos están adaptados al derecho español y deben ser revisados por un abogado antes de su firma definitiva.
 > Los campos entre corchetes `[...]` deben rellenarse antes de cada uso.

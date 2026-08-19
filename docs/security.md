@@ -1,5 +1,8 @@
 # Seguridad
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 13 completada: hardening de API, web, sesiones y auditoria administrativa.

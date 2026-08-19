@@ -1,5 +1,8 @@
 # Manual de Desarrollador — Marketplace Villardeciervos
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ---
 
 ## B. Manual de Desarrollador

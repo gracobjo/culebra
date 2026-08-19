@@ -1,5 +1,8 @@
 # Contratos
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 9 completada: contratos versionados productor–plataforma con aceptacion auditada.

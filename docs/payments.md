@@ -1,5 +1,8 @@
 # Pagos Stripe
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 8 completada: Checkout de Stripe, webhook y Stripe Connect Express para productores.

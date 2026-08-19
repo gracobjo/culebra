@@ -1,5 +1,8 @@
 # UX y conversion
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 12 completada: experiencia publica orientada a confianza, navegacion clara y conversion.

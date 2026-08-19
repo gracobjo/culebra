@@ -1,5 +1,8 @@
 # API
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 11: autenticacion, proveedores, catalogo, carrito, pedidos, pagos, contratos, comisiones y panel admin.

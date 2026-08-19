@@ -1,5 +1,8 @@
 # Base de datos
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 2 completada: esquema Prisma, migracion inicial, seed de roles y categorias.

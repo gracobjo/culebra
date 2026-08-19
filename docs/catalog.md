@@ -1,5 +1,8 @@
 # Catalogo y productos
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 5 completada: catalogo publico, fichas de producto, variantes, busqueda/filtros y moderacion.

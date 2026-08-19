@@ -1,5 +1,8 @@
 # Arquitectura
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 Monolito modular. Monolito modular. FASE 16: despliegue Docker de produccion.

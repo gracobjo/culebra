@@ -1,5 +1,8 @@
 # Requisitos Funcionales / No Funcionales + Casos de Uso + UML
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ---
 
 ## C. Requisitos Funcionales (RF) y No Funcionales (RNF)

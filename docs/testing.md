@@ -1,5 +1,8 @@
 # Testing
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 15 completada: suite automatizada con Vitest para dominio, validaciones y API.

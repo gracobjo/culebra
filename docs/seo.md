@@ -1,5 +1,8 @@
 # SEO
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 14 completada: sitemap dinamico, robots, metadatos canonicos y datos estructurados.

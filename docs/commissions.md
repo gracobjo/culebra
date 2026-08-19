@@ -1,5 +1,8 @@
 # Comisiones y liquidaciones
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 10 completada: reglas de comision versionadas, snapshot en el pedido y liquidaciones al productor.

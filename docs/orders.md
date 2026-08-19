@@ -1,5 +1,8 @@
 # Pedidos
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 7 completada: seguimiento de pedidos para el comprador y gestion logistica por productor.

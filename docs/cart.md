@@ -1,5 +1,8 @@
 # Carrito y checkout
 
+![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+
+
 ## Estado
 
 FASE 6 completada: carrito con invitado, checkout con datos de envio/facturacion y pedido interno dividido por productor.
