@@ -204,3 +204,15 @@ export type {
   ProductStatusUpdateInput,
   ProductUpdateInput,
 } from "./product.schemas.js";
+export {
+  checkSlaCompliance,
+  computeSlaDeadline,
+  getVendorSlaReports,
+  initVendorOrderSla,
+  recordVendorOrderReceived,
+} from "./sla.service.js";
+export type {
+  SlaCheckResult,
+  SlaNotification,
+  VendorSlaReport,
+} from "./sla.service.js";

@@ -5,6 +5,7 @@ import type Stripe from "stripe";
 import { getOrderByNumber } from "./order.service.js";
 import { getVendorByUserId } from "./vendor.service.js";
 import { appBaseUrl, eurosToCents, getStripe, isStripeConfigured } from "./stripe.js";
+import { initVendorOrderSla } from "./sla.service.js";
 
 export { isStripeConfigured };
 
@@ -237,6 +238,9 @@ async function createVendorTransfers(orderId: string, paymentId: string, orderNu
         heldForWithdrawal: true,
       },
     });
+    // Inicializar el SLA del VendorOrder: registra notifiedAt y calcula el deadline.
+    // Operación best-effort para no bloquear el flujo de pago.
+    initVendorOrderSla(vendorOrder.id).catch(() => { /* SLA init is non-critical */ });
     // No llamamos a transferPayout aquí: el transfer ocurre cuando expira la retención.
   }
 }

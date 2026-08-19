@@ -88,6 +88,14 @@ enum VendorOrderStatus {
   RETURNED
 }
 
+enum SlaStatus {
+  PENDING      // Sin notificar aún
+  NOTIFIED     // Productor notificado, esperando recepción en tienda
+  AT_RISK      // Quedan menos de 4h para el deadline y no hay recepción
+  FULFILLED    // Recibido en tienda antes del deadline
+  BREACHED     // Deadline superado sin recepción
+}
+
 enum PaymentStatus {
   PAYMENT_PENDING
   PAYMENT_AUTHORIZED
@@ -580,6 +588,11 @@ model VendorOrder {
   otherFees             Decimal           @default(0) @db.Decimal(12, 2)
   taxTotal              Decimal           @default(0) @db.Decimal(12, 2)
   vendorNetAmount       Decimal           @db.Decimal(12, 2)
+  // SLA timestamps para control de cumplimiento logístico
+  slaNotifiedAt         DateTime?         // Hora en que el sistema notificó al productor
+  slaDeadlineAt         DateTime?         // Límite máximo de entrega en tienda (cut-off + 24h)
+  slaReceivedAt         DateTime?         // Hora en que el socio escanea el paquete en trastienda
+  slaStatus             SlaStatus         @default(PENDING)
   createdAt             DateTime          @default(now())
   updatedAt             DateTime          @updatedAt
 

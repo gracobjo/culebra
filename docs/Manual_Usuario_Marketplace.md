@@ -41,9 +41,77 @@ Rutas típicas:
 
 #### 3) Checkout y pago avanzado (Stripe Connect + Bizum)
 
-- El comprador paga mediante checkout.
-- Se habilitan métodos: tarjeta + **Bizum** (y wallets si aplica).
-- La pasarela gestiona el **split automático** (comisión marketplace + neto del productor).
+##### ¿Qué es Stripe y por qué se usa?
+
+**Stripe** es el intermediario financiero regulado que custodia el dinero del comprador y lo distribuye automáticamente entre el marketplace y cada productor artesano. El sistema nunca maneja el dinero directamente: todo pasa por Stripe, que cumple la normativa europea de pagos (PSD2).
+
+**Stripe Connect** es la capa de Stripe que permite tener múltiples vendedores (los artesanos), cada uno con su propia cuenta bancaria conectada, y repartir el dinero de forma automática sin intervención manual. Es el mismo modelo que usa Amazon con sus vendedores.
+
+##### Métodos de pago disponibles
+
+- **Tarjeta bancaria** (Visa, Mastercard, American Express — europeas y no europeas).
+- **Bizum** — pago instantáneo desde el móvil vinculado a la cuenta bancaria.
+- **Wallets digitales** (Google Pay, Apple Pay) — si el dispositivo los tiene configurados.
+
+##### Flujo completo paso a paso
+
+```
+1. PAGO        → El cliente introduce su tarjeta o confirma Bizum.
+                 El dinero va a Stripe, NO a la cuenta del marketplace.
+
+2. RETENCIÓN   → Stripe congela los fondos 14 días (derecho legal de
+                 desistimiento). El cliente puede devolver sin preguntas.
+
+3. SPLIT       → Stripe divide el importe automáticamente:
+                   · 15% → comisión del marketplace (S.L.)
+                   · 85% → payout del productor artesano
+                   · ~1–2% → comisión propia de Stripe (descontada del total)
+
+4. LIBERACIÓN  → Al día 15, el CronJob nocturno comprueba los payouts
+                 maduros y los libera. El dinero llega al banco del
+                 productor sin que nadie tenga que hacer nada.
+
+5. DEVOLUCIÓN  → Si hay desistimiento antes del día 14, Stripe devuelve
+                 el importe íntegro al cliente. Nadie cobra comisión.
+```
+
+##### Ejemplo real — tarjeta española
+
+> Cesta de **50,00 €** pagada con Visa española.
+
+| Concepto | Cálculo | Importe |
+|---|---|---:|
+| Importe pagado por el cliente | — | 50,00 € |
+| Comisión Stripe (1,5% + 0,25 €) | 50 × 0,015 + 0,25 | −1,00 € |
+| Comisión marketplace (15%) | 50 × 0,15 | −7,50 € |
+| **Payout neto al productor** | 50 − 1,00 − 7,50 | **41,50 €** |
+
+##### Ejemplo real — Bizum
+
+> Cesta de **50,00 €** pagada con Bizum.
+
+| Concepto | Cálculo | Importe |
+|---|---|---:|
+| Importe pagado por el cliente | — | 50,00 € |
+| Comisión Stripe Bizum (0,8% + 0,25 €) | 50 × 0,008 + 0,25 | −0,65 € |
+| Comisión marketplace (15%) | 50 × 0,15 | −7,50 € |
+| **Payout neto al productor** | 50 − 0,65 − 7,50 | **41,85 €** |
+
+> Bizum es ligeramente más barato para el productor porque la comisión de Stripe es menor que con tarjeta.
+
+##### ¿Cuánto cuesta estar dado de alta en Stripe?
+
+**Nada.** Stripe no tiene cuota mensual fija. Solo cobra cuando hay una venta. Sin ventas, coste cero. Tanto la cuenta del marketplace como las subcuentas de cada productor artesano son gratuitas — Stripe solo requiere verificación de identidad (DNI + datos bancarios).
+
+##### Tarifa oficial de Stripe en España (2026)
+
+| Tipo de pago | Comisión Stripe |
+|---|---:|
+| Tarjeta europea (Visa/Mastercard) | 1,5% + 0,25 € / transacción |
+| Tarjeta no europea | 3,25% + 0,25 € / transacción |
+| Bizum | ~0,8% + 0,25 € / transacción |
+
+> La comisión de Stripe se descuenta automáticamente del flujo antes de repartir. Nunca se paga por separado ni sale de la caja de la empresa.
 
 #### 4) Estado del pedido y notificaciones
 

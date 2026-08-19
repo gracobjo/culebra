@@ -295,30 +295,48 @@ classDiagram
 ### F2. Diagrama de casos de uso (funcional)
 
 ```mermaid
-usecaseDiagram
-  actor Consumidor
-  actor Productor
-  actor Administrador
-  actor Cron as CronJob
-  actor StripeWebhook as StripeWebhook
+flowchart LR
+  %% Actores
+  Consumidor(["👤 Consumidor"])
+  Productor(["🏭 Productor"])
+  Admin(["🛠 Administrador"])
+  Cron(["⏰ CronJob"])
+  Stripe(["💳 StripeWebhook"])
 
-  Consumidor -- (Consultar catálogo)
-  Consumidor -- (Gestionar carrito)
-  Consumidor -- (Realizar checkout)
-  Consumidor -- (Dejar review)
+  %% Casos de uso (elipses)
+  UC01(["Consultar catálogo"])
+  UC02(["Gestionar carrito"])
+  UC03(["Realizar checkout"])
+  UC04(["Dejar review"])
+  UC05(["Confirmar pedido"])
+  UC06(["Marcar envío SHIPPED"])
+  UC07(["Marcar entregado"])
+  UC08(["Ver KPIs"])
+  UC09(["Ver rentabilidad"])
+  UC10(["Gestionar rappels"])
+  UC11(["Gestionar grupo piloto"])
+  UC12(["Ejecutar sandbox"])
+  UC13(["Confirmar pago"])
+  UC14(["Liberar payouts maduros"])
 
-  Productor -- (Confirmar pedido)
-  Productor -- (Marcar envío SHIPPED)
-  Productor -- (Marcar entregado)
+  %% Relaciones
+  Consumidor --- UC01
+  Consumidor --- UC02
+  Consumidor --- UC03
+  Consumidor --- UC04
 
-  Administrador -- (Ver KPIs)
-  Administrador -- (Ver rentabilidad)
-  Administrador -- (Gestionar rappels)
-  Administrador -- (Gestionar grupo piloto)
-  Administrador -- (Ejecutar sandbox)
+  Productor --- UC05
+  Productor --- UC06
+  Productor --- UC07
 
-  StripeWebhook -- (Confirmar pago)
-  CronJob -- (Liberar payouts maduros)
+  Admin --- UC08
+  Admin --- UC09
+  Admin --- UC10
+  Admin --- UC11
+  Admin --- UC12
+
+  Stripe --- UC13
+  Cron   --- UC14
 ```
 
 ### F3. Diagrama de secuencia (checkout + retención)

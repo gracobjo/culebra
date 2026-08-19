@@ -168,6 +168,48 @@ const COMPETITIVE_ANALYSIS = [
 ];
 
 // ---------------------------------------------------------------------------
+// Informe mensual en lenguaje natural (estilo IA)
+// ---------------------------------------------------------------------------
+
+function generateRappelInsight(v: VendorRappelStatus, year: number): string {
+  const now = new Date();
+  const monthsElapsed = now.getMonth() + 1; // 1–12
+  const monthsRemaining = 12 - monthsElapsed;
+  const monthName = now.toLocaleString("es-ES", { month: "long" });
+
+  const tierName = v.currentTier.name;
+  const rev = euros(v.annualRevenue);
+
+  // Velocidad mensual de facturación
+  const monthlyRate = monthsElapsed > 0 ? v.annualRevenue / monthsElapsed : 0;
+  const projectedRevenue = monthlyRate * 12;
+
+  if (v.currentTier.id === "gold") {
+    const rebate = euros(v.pendingRebate);
+    return `${v.tradeName} está en Tramo Oro con ${rev} facturados en ${year}. ` +
+      `Al ritmo actual proyecta ${euros(Math.round(projectedRevenue))} anuales. ` +
+      `Rappel acumulado a abonar en enero: ${rebate}. ` +
+      `Considerar incrementar su visibilidad en newsletter para mantener el volumen en invierno.`;
+  }
+
+  if (v.nextTier && v.remainingToNextTier > 0) {
+    const monthsToReach = monthlyRate > 0 ? Math.ceil(v.remainingToNextTier / monthlyRate) : null;
+    const timeNote = monthsToReach !== null && monthsToReach <= monthsRemaining
+      ? `Al ritmo de ${monthName} alcanzará el Tramo ${v.nextTier.name} en aprox. ${monthsToReach} mes${monthsToReach !== 1 ? "es" : ""}.`
+      : monthsRemaining > 0
+        ? `Necesita ${euros(v.remainingToNextTier)} más para saltar al Tramo ${v.nextTier.name} (${v.nextTier.effectivePct}% efectivo). ` +
+          `Quedan ${monthsRemaining} meses. Activar promoción en newsletter puede acelerar el cambio de tramo.`
+        : `No alcanzará el Tramo ${v.nextTier.name} este año.`;
+
+    return `${v.tradeName} lleva facturados ${rev} en ${year} — Tramo ${tierName} (${v.currentTier.effectivePct}% efectivo). ` +
+      timeNote;
+  }
+
+  return `${v.tradeName} lleva facturados ${rev} en ${year}. Tramo ${tierName} (${v.currentTier.effectivePct}% efectivo). ` +
+    `Sin ventas suficientes para calcular proyección.`;
+}
+
+// ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
@@ -316,6 +358,37 @@ export default async function AdminRappelsPage() {
             </div>
           )}
         </div>
+
+        {/* ---------- Informe mensual en lenguaje natural ---------- */}
+        {vendorStatuses.length > 0 && (
+          <div className="rounded-3xl border border-violet-200 bg-violet-50 p-6">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">📋</span>
+              <h2 className="text-base font-semibold text-violet-900">
+                Informe mensual de rappels — {new Date().toLocaleString("es-ES", { month: "long", year: "numeric" })}
+              </h2>
+            </div>
+            <p className="mt-1 text-sm text-violet-600">
+              Análisis automático del estado de cada artesano para la toma de decisiones de captación.
+            </p>
+            <ul className="mt-4 space-y-3">
+              {vendorStatuses
+                .sort((a, b) => b.annualRevenue - a.annualRevenue)
+                .map((v) => (
+                  <li key={v.vendorId} className="flex gap-3 rounded-2xl bg-white/70 p-3">
+                    <span
+                      className={`mt-0.5 shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${v.currentTier.badge}`}
+                    >
+                      {v.currentTier.name}
+                    </span>
+                    <p className="text-sm text-violet-900">
+                      {generateRappelInsight(v, new Date().getFullYear())}
+                    </p>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        )}
 
         {/* ---------- Análisis competitivo ---------- */}
         <div className="rounded-3xl border border-stone-200 bg-white p-6">
