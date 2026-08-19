@@ -31,13 +31,6 @@ export async function createProductAction(
 ): Promise<ProductFormState> {
   const userId = await requireUserId();
 
-  // Diagnóstico temporal: ver qué llega realmente en el FormData.
-  // Esto nos ayuda a entender por qué Zod falla y el formulario parece “reiniciarse”.
-  console.log("[createProductAction] name:", formData.get("name"));
-  console.log("[createProductAction] categoryId:", formData.get("categoryId"));
-  console.log("[createProductAction] subcategoryId:", formData.get("subcategoryId"));
-  console.log("[createProductAction] basePrice:", formData.get("basePrice"));
-
   const parsed = productCreateSchema.safeParse(parseProductForm(formData));
   if (!parsed.success) {
     return { error: "Revisa los datos del producto. Precio y categoria son obligatorios." };
