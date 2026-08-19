@@ -3,6 +3,7 @@ import { getOrderByNumberForAdmin } from "@culebra/auth";
 import type { OrderDetail } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
+import { DownloadOrderDocumentButton } from "@/components/orders/download-order-document-button";
 import { formatDate, formatPrice, orderStatusLabels } from "@/lib/format";
 
 type PageProps = { params: Promise<{ orderNumber: string }> };
@@ -21,6 +22,12 @@ export default async function AdminOrderDetailPage({ params }: PageProps) {
         {orderStatusLabels[order.status] ?? order.status} · {order.customerEmail} ·{" "}
         {formatDate(order.createdAt)}
       </p>
+      <div className="mt-4">
+        <DownloadOrderDocumentButton
+          href={`/api/admin/orders/${order.orderNumber}/document`}
+          label="Descargar PDF del pedido"
+        />
+      </div>
       <ul className="mt-6 space-y-2 text-sm">
         {order.items.map((item: OrderDetail["items"][number]) => (
           <li key={item.id} className="flex justify-between gap-4">

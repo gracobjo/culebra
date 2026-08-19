@@ -181,6 +181,26 @@ Publicación y visibilidad:
 - El catálogo público `/productos` muestra únicamente productos en estado `PUBLISHED`.
 - Hasta que el admin publique, el producto no aparecerá en el catálogo.
 
+#### 4) Edición de productos publicados
+
+- Desde `/panel/proveedor/productos`, pulsa el nombre del producto o **Editar**.
+- Puedes modificar datos comerciales (PVP, stock) y, según el estado, también nombre, descripción, categoría e imagen.
+- Cada cambio relevante queda registrado y puedes descargar un **PDF del cambio** en el historial de la ficha del producto (conservado mínimo 3 meses).
+
+#### 5) Documentos PDF
+
+| Documento | Dónde | Para qué sirve |
+|-----------|-------|----------------|
+| PDF del subpedido | `/panel/proveedor/pedidos/[id]` | Resumen operativo y liquidación de tu parte del pedido |
+| PDF del cambio de producto | `/panel/proveedor/productos/[id]` | Justificante de una modificación (precio, stock, etc.) |
+| PDF de tus compras | `/panel/proveedor/mis-compras` | Justificantes cuando compras como consumidor |
+
+Todos los PDF incluyen el **logo**, el **nombre del marketplace** y la **fecha** del documento.
+
+Como consumidor, el justificante del pedido está en `/pedido/[orderNumber]` y en `/cuenta/pedidos`.
+
+Más detalle: [documents.md](./documents.md).
+
 ---
 
 ### A4. Funcionalidades del Admin (ADMIN)

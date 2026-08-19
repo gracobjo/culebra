@@ -15,6 +15,18 @@ FASE 7 completada: seguimiento de pedidos para el comprador y gestion logistica 
 
 El pedido unico se divide internamente en `VendorOrder` por productor. El consumidor ve el estado de cada envio.
 
+## Documentos PDF
+
+Tras la compra o una modificacion de producto, el marketplace permite **descargar PDF** con logo, nombre y fecha del marketplace.
+
+| Documento | Retencion | Donde descargarlo |
+|-----------|-----------|-------------------|
+| Justificante de pedido | 4 anos | `/pedido/[orderNumber]`, `/cuenta/pedidos` |
+| Resumen productor | 4 anos | `/panel/proveedor/pedidos/[id]` |
+| Cambio de producto | 3 meses | `/panel/proveedor/productos/[id]` (historial) |
+
+Detalle tecnico y de configuracion: [documents.md](./documents.md).
+
 ## Flujo del productor
 
 En `/panel/proveedor/pedidos`:

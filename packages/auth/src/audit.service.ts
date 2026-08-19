@@ -11,6 +11,7 @@ export type AdminAuditLogRecord = {
   fieldName: string | null;
   oldValue: string | null;
   newValue: string | null;
+  metadata: Record<string, unknown> | null;
   createdAt: Date;
 };
 
@@ -50,6 +51,7 @@ export async function listAuditLogsForAdmin(params?: {
     fieldName: row.fieldName,
     oldValue: row.oldValue,
     newValue: row.newValue,
+    metadata: (row.metadata as Record<string, unknown> | null) ?? null,
     createdAt: row.createdAt,
   }));
 

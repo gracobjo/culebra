@@ -8,9 +8,15 @@ import type {
   ProductCatalogQuery,
   ProductCreateInput,
   ProductStatusUpdateInput,
+  ProductStockUpdateInput,
   ProductUpdateInput,
 } from "./product.schemas.js";
 import { getVendorByUserId } from "./vendor.service.js";
+import {
+  diffProductSnapshots,
+  productSnapshotFromRecord,
+  recordProductChangeDocument,
+} from "./stored-document.service.js";
 
 export type ProductVariantRecord = {
   id: string;
@@ -409,7 +415,12 @@ export async function updateProduct(
   context?: { ipAddress?: string },
 ): Promise<ProductRecord> {
   const { vendor, product } = await getOwnedProduct(userId, productId);
-  const editableStatuses = [ProductStatus.DRAFT, ProductStatus.REJECTED] as const;
+  const editableStatuses = [
+    ProductStatus.DRAFT,
+    ProductStatus.REJECTED,
+    ProductStatus.PENDING_REVIEW,
+    ProductStatus.PUBLISHED,
+  ] as const;
   if (!editableStatuses.includes(product.status as (typeof editableStatuses)[number])) {
     throw new Error("PRODUCT_NOT_EDITABLE");
   }
@@ -419,6 +430,7 @@ export async function updateProduct(
   }
 
   const oldPrice = product.basePrice;
+  const beforeSnapshot = productSnapshotFromRecord(product);
 
   await prisma.product.update({
     where: { id: productId },
@@ -469,8 +481,115 @@ export async function updateProduct(
     newValue: input.basePrice !== undefined ? String(input.basePrice) : undefined,
   });
 
-  return loadProduct(productId);
+  const updated = await loadProduct(productId);
+  const afterSnapshot = productSnapshotFromRecord(updated);
+  const changedFields = diffProductSnapshots(beforeSnapshot, afterSnapshot);
+  if (changedFields.length > 0) {
+    await recordProductChangeDocument({
+      userId,
+      productId,
+      productName: updated.name,
+      before: beforeSnapshot,
+      after: afterSnapshot,
+      changedFields,
+    });
+  }
+
+  return updated;
 }
+
+export async function updateProductCommercialData(
+  userId: string,
+  productId: string,
+  input: ProductStockUpdateInput,
+  context?: { ipAddress?: string },
+): Promise<ProductRecord> {
+  const { vendor, product } = await getOwnedProduct(userId, productId);
+  const beforeSnapshot = productSnapshotFromRecord(product);
+  const oldPrice = product.basePrice;
+  let priceChanged = false;
+
+  if (product.variants.length > 0) {
+    if (!input.variants?.length) {
+      throw new Error("PRODUCT_VARIANT_STOCK_REQUIRED");
+    }
+
+    for (const variantInput of input.variants) {
+      const variant = product.variants.find((item) => item.id === variantInput.id);
+      if (!variant) {
+        throw new Error("PRODUCT_VARIANT_NOT_FOUND");
+      }
+
+      if (variantInput.stock !== undefined) {
+        await prisma.inventory.updateMany({
+          where: {
+            vendorId: vendor.id,
+            productId,
+            variantId: variantInput.id,
+          },
+          data: { stock: variantInput.stock },
+        });
+      }
+
+      if (variantInput.price !== undefined && String(variantInput.price) !== variant.price) {
+        await prisma.productVariant.update({
+          where: { id: variantInput.id },
+          data: { price: variantInput.price },
+        });
+        priceChanged = true;
+      }
+    }
+  } else {
+    if (input.stock !== undefined) {
+      await prisma.inventory.updateMany({
+        where: {
+          vendorId: vendor.id,
+          productId,
+          variantId: null,
+        },
+        data: { stock: input.stock },
+      });
+    }
+
+    if (input.basePrice !== undefined && String(input.basePrice) !== product.basePrice) {
+      await prisma.product.update({
+        where: { id: productId },
+        data: { basePrice: input.basePrice },
+      });
+      priceChanged = true;
+    }
+  }
+
+  await writeAuditLog({
+    actorUserId: userId,
+    actorIp: context?.ipAddress,
+    entityType: "Product",
+    entityId: productId,
+    action: AuditAction.UPDATE,
+    fieldName: priceChanged ? "basePrice" : "stock",
+    oldValue: priceChanged ? oldPrice : undefined,
+    newValue: priceChanged && input.basePrice !== undefined ? String(input.basePrice) : undefined,
+  });
+
+  const updated = await loadProduct(productId);
+  const afterSnapshot = productSnapshotFromRecord(updated);
+  const changedFields = diffProductSnapshots(beforeSnapshot, afterSnapshot);
+  if (changedFields.length > 0) {
+    await recordProductChangeDocument({
+      userId,
+      productId,
+      productName: updated.name,
+      before: beforeSnapshot,
+      after: afterSnapshot,
+      changedFields,
+    });
+  }
+
+  return updated;
+}
+
+/** @deprecated Use updateProductCommercialData */
+export const updateProductStock = updateProductCommercialData;
 
 export async function submitProductForReview(
   userId: string,

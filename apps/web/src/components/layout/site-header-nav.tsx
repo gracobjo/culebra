@@ -5,10 +5,17 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
+type SessionUser = {
+  name: string;
+  email: string;
+  roles: string[];
+};
+
 type SiteHeaderNavProps = {
   cartCount: number;
   isLoggedIn: boolean;
   isAdmin?: boolean;
+  user?: SessionUser | null;
 };
 
 const links = [
@@ -17,7 +24,33 @@ const links = [
   { href: "/productores", label: "Productores" },
 ];
 
-export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavProps) {
+const ROLE_LABELS: Record<string, string> = {
+  CONSUMER: "Consumidor",
+  VENDOR: "Productor",
+  ADMIN: "Administrador",
+};
+
+function getRoleLabel(roles: string[]): string {
+  if (roles.includes("ADMIN")) return ROLE_LABELS.ADMIN;
+  if (roles.includes("VENDOR")) return ROLE_LABELS.VENDOR;
+  return ROLE_LABELS.CONSUMER;
+}
+
+function getAccountHref(roles: string[]): string {
+  if (roles.includes("VENDOR")) return "/panel/proveedor";
+  return "/cuenta";
+}
+
+function getInitial(name: string): string {
+  return name.trim().charAt(0).toUpperCase() || "?";
+}
+
+function getDisplayName(name: string): string {
+  const first = name.trim().split(/\s+/)[0];
+  return first || name;
+}
+
+export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHeaderNavProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -31,6 +64,9 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const accountHref = user ? getAccountHref(user.roles) : "/cuenta";
+  const roleLabel = user ? getRoleLabel(user.roles) : "";
 
   return (
     <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 pt-[env(safe-area-inset-top)] backdrop-blur">
@@ -55,13 +91,25 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
           <Link href="/carrito" className="hover:text-emerald-800">
             Carrito ({cartCount})
           </Link>
-          {isLoggedIn ? (
+          {isLoggedIn && user ? (
             <>
-              <Link href="/cuenta/pedidos" className="hover:text-emerald-800">
-                Pedidos
-              </Link>
-              <Link href="/cuenta" className="hover:text-emerald-800">
-                Cuenta
+              {!user.roles.includes("VENDOR") ? (
+                <Link href="/cuenta/pedidos" className="hover:text-emerald-800">
+                  Pedidos
+                </Link>
+              ) : null}
+              <Link
+                href={accountHref}
+                className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-2.5 py-1 hover:border-emerald-200 hover:bg-emerald-50"
+                title={user.email}
+              >
+                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-xs font-medium text-white">
+                  {getInitial(user.name)}
+                </span>
+                <span className="flex flex-col leading-tight">
+                  <span className="font-medium text-stone-900">{getDisplayName(user.name)}</span>
+                  <span className="text-[11px] text-stone-500">{roleLabel}</span>
+                </span>
               </Link>
               {isAdmin ? (
                 <Link href="/admin" className="hover:text-emerald-800">
@@ -108,6 +156,26 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
           className="border-t border-stone-200 bg-white lg:hidden"
         >
           <nav className="site-container flex max-w-6xl flex-col gap-1 py-4 text-base">
+            {isLoggedIn && user ? (
+              <Link
+                href={accountHref}
+                className="mb-2 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 hover:bg-emerald-50"
+                onClick={() => setOpen(false)}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-sm font-medium text-white">
+                    {getInitial(user.name)}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="truncate font-semibold text-stone-900">{user.name}</p>
+                    <p className="truncate text-sm text-stone-500">{user.email}</p>
+                    <span className="mt-1 inline-block rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800">
+                      {roleLabel}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ) : null}
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -139,7 +207,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
             >
               Consultar pedido
             </Link>
-            {isLoggedIn ? (
+            {isLoggedIn && user && !user.roles.includes("VENDOR") ? (
               <Link
                 href="/cuenta/pedidos"
                 className="rounded-xl px-3 py-3 hover:bg-stone-50"
@@ -148,13 +216,15 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin }: SiteHeaderNavP
                 Mis pedidos
               </Link>
             ) : null}
-            <Link
-              href={isLoggedIn ? "/cuenta" : "/login"}
-              className="rounded-xl px-3 py-3 hover:bg-stone-50"
-              onClick={() => setOpen(false)}
-            >
-              {isLoggedIn ? "Mi cuenta" : "Entrar"}
-            </Link>
+            {!isLoggedIn ? (
+              <Link
+                href="/login"
+                className="rounded-xl px-3 py-3 hover:bg-stone-50"
+                onClick={() => setOpen(false)}
+              >
+                Entrar
+              </Link>
+            ) : null}
             {isAdmin ? (
               <Link
                 href="/admin"

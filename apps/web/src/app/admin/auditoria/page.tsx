@@ -33,6 +33,14 @@ export default async function AdminAuditPage() {
                     {log.newValue ?? ""}
                   </p>
                 )}
+                {log.fieldName && (
+                  <p className="mt-1 text-xs text-stone-500">Campo: {log.fieldName}</p>
+                )}
+                {log.metadata && Object.keys(log.metadata).length > 0 && (
+                  <pre className="mt-2 whitespace-pre-wrap break-words rounded-xl bg-stone-50 p-3 text-xs text-stone-700">
+                    {JSON.stringify(log.metadata, null, 2)}
+                  </pre>
+                )}
               </div>
             </div>
           </li>

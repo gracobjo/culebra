@@ -15,6 +15,21 @@ export {
   listAuditLogsForAdmin,
 } from "./audit.service.js";
 export type { AdminAuditLogRecord } from "./audit.service.js";
+export {
+  diffProductSnapshots,
+  getStoredDocumentForAdmin,
+  getStoredDocumentForOwner,
+  listProductChangeDocuments,
+  listStoredDocumentsForUser,
+  productSnapshotFromRecord,
+  purgeExpiredStoredDocuments,
+  recordOrderDocuments,
+  recordProductChangeDocument,
+} from "./stored-document.service.js";
+export type {
+  StoredDocumentKind,
+  StoredDocumentRecord,
+} from "./stored-document.service.js";
 export { signAccessToken, verifyAccessToken } from "./jwt.js";
 export {
   sendOrderConfirmationEmail,
@@ -183,6 +198,8 @@ export {
   listVendorProducts,
   submitProductForReview,
   updateProduct,
+  updateProductCommercialData,
+  updateProductStock,
   updateProductStatusByAdmin,
 } from "./product.service.js";
 export type { ProductRecord } from "./product.service.js";
@@ -194,14 +211,18 @@ export {
 export type { CategoryRecord } from "./category.service.js";
 export {
   productCatalogQuerySchema,
+  productCommercialUpdateSchema,
   productCreateSchema,
   productStatusUpdateSchema,
+  productStockUpdateSchema,
   productUpdateSchema,
 } from "./product.schemas.js";
 export type {
   ProductCatalogQuery,
+  ProductCommercialUpdateInput,
   ProductCreateInput,
   ProductStatusUpdateInput,
+  ProductStockUpdateInput,
   ProductUpdateInput,
 } from "./product.schemas.js";
 export {

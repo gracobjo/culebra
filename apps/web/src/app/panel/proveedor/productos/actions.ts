@@ -3,12 +3,15 @@
 import {
   createProduct,
   disableProduct,
+  getVendorProduct,
+  productCommercialUpdateSchema,
   productCreateSchema,
   submitProductForReview,
   updateProduct,
+  updateProductCommercialData,
 } from "@culebra/auth";
 import { auth } from "@/auth";
-import { parseProductForm } from "@/lib/product-form";
+import { parseCommercialForm, parseProductForm } from "@/lib/product-form";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -71,6 +74,42 @@ export async function updateProductAction(
     return { error: "No se pudo actualizar el producto." };
   }
 }
+
+export async function updateCommercialAction(
+  productId: string,
+  _prev: ProductFormState,
+  formData: FormData,
+): Promise<ProductFormState> {
+  const userId = await requireUserId();
+
+  let product;
+  try {
+    product = await getVendorProduct(userId, productId);
+  } catch {
+    return { error: "Producto no encontrado." };
+  }
+
+  const parsed = productCommercialUpdateSchema.safeParse(
+    parseCommercialForm(formData, product.variants),
+  );
+  if (!parsed.success) {
+    return { error: "Revisa el PVP y el stock indicados." };
+  }
+
+  try {
+    const updated = await updateProductCommercialData(userId, productId, parsed.data);
+    revalidatePath("/panel/proveedor/productos");
+    revalidatePath(`/panel/proveedor/productos/${productId}`);
+    revalidatePath("/productos");
+    revalidatePath(`/productos/${updated.slug}`);
+    return { success: "PVP y stock actualizados." };
+  } catch {
+    return { error: "No se pudo actualizar el PVP o el stock." };
+  }
+}
+
+/** @deprecated Use updateCommercialAction */
+export const updateStockAction = updateCommercialAction;
 
 export async function submitProductAction(productId: string): Promise<void> {
   const userId = await requireUserId();

@@ -8,6 +8,7 @@ import { formatDate, formatPrice, vendorOrderStatusLabels } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 import { OrderStatusBadge } from "@/components/orders/order-status-badge";
 import { PayOrderButton } from "@/components/orders/pay-order-button";
+import { DownloadOrderDocumentButton } from "@/components/orders/download-order-document-button";
 import { ReviewForm } from "@/components/orders/review-form";
 
 type OrderPageProps = {
@@ -80,6 +81,12 @@ export default async function OrderConfirmationPage({ params, searchParams }: Or
           Pedido pagado.
         </p>
       ) : null}
+      <div className="mt-4 flex flex-wrap gap-3">
+        <DownloadOrderDocumentButton
+          href={`/api/orders/${order.orderNumber}/document`}
+          label="Descargar justificante PDF"
+        />
+      </div>
       {order.paymentStatus !== "PAYMENT_PAID" &&
       order.status !== "CANCELLED" &&
       isStripeConfigured() ? (

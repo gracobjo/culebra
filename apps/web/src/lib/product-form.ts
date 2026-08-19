@@ -1,4 +1,31 @@
-import type { ProductCreateInput } from "@culebra/auth";
+import type { ProductCommercialUpdateInput, ProductCreateInput } from "@culebra/auth";
+
+export function parseCommercialForm(
+  formData: FormData,
+  variants: Array<{ id: string }>,
+): ProductCommercialUpdateInput {
+  if (variants.length > 0) {
+    return {
+      variants: variants.map((variant, index) => {
+        const priceRaw = String(formData.get(`variantPrice${index + 1}`) ?? "").trim();
+        return {
+          id: variant.id,
+          stock: Number(formData.get(`variantStock${index + 1}`) ?? 0),
+          ...(priceRaw ? { price: Number(priceRaw) } : {}),
+        };
+      }),
+    };
+  }
+
+  const basePriceRaw = String(formData.get("basePrice") ?? "").trim();
+  return {
+    stock: Number(formData.get("stock") ?? 0),
+    ...(basePriceRaw ? { basePrice: Number(basePriceRaw) } : {}),
+  };
+}
+
+/** @deprecated Use parseCommercialForm */
+export const parseStockForm = parseCommercialForm;
 
 export function parseProductForm(formData: FormData): ProductCreateInput {
   const variants = [1, 2, 3]

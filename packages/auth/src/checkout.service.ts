@@ -18,6 +18,7 @@ import {
   sendVendorNewOrderEmail,
 } from "./email.service.js";
 import { notifyCheckout } from "./notifications.service.js";
+import { recordOrderDocuments } from "./stored-document.service.js";
 
 type CartOwner = {
   userId?: string;
@@ -259,6 +260,10 @@ export async function checkoutCart(
     vendorCount: vendorIdsUnique.length,
     createdAt: order.createdAt,
   };
+
+  recordOrderDocuments(order.id).catch((err: unknown) =>
+    console.error("[STORED_DOC] order record failed", err),
+  );
 
   // Notificación Telegram post-checkout (best-effort)
   notifyCheckout({

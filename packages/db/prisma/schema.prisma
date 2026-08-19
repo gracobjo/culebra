@@ -142,6 +142,12 @@ enum AuditAction {
   STATUS_CHANGE
 }
 
+enum StoredDocumentKind {
+  ORDER_CUSTOMER
+  ORDER_VENDOR
+  PRODUCT_CHANGE
+}
+
 enum NotificationType {
   ORDER
   PAYMENT
@@ -178,6 +184,7 @@ model User {
   reviews             Review[]
   notifications       Notification[]
   auditLogs           AuditLog[]           @relation("AuditActor")
+  storedDocuments     StoredDocument[]     @relation("StoredDocumentOwner")
   contractAcceptances ContractAcceptance[]
 }
 
@@ -832,6 +839,28 @@ model PilotTask {
   producer PilotProducer @relation(fields: [pilotProducerId], references: [id], onDelete: Cascade)
 
   @@index([pilotProducerId, phase])
+}
+
+// ---------------------------------------------------------------------------
+// Stored documents (retention for orders / product changes)
+// ---------------------------------------------------------------------------
+
+model StoredDocument {
+  id             String             @id @default(cuid())
+  kind           StoredDocumentKind
+  ownerUserId    String?
+  entityType     String
+  entityId       String
+  title          String
+  snapshot       Json
+  retentionUntil DateTime
+  createdAt      DateTime           @default(now())
+
+  owner User? @relation("StoredDocumentOwner", fields: [ownerUserId], references: [id])
+
+  @@index([ownerUserId, kind, createdAt])
+  @@index([entityType, entityId, createdAt])
+  @@index([retentionUntil])
 }
 
 // ---------------------------------------------------------------------------

@@ -47,6 +47,23 @@ export const productCreateSchema = z.object({
 
 export const productUpdateSchema = productCreateSchema.partial();
 
+export const productCommercialUpdateSchema = z.object({
+  basePrice: moneySchema.optional(),
+  stock: z.coerce.number().int().min(0).max(1_000_000).optional(),
+  variants: z
+    .array(
+      z.object({
+        id: z.string().trim().min(1),
+        stock: z.coerce.number().int().min(0).max(1_000_000).optional(),
+        price: moneySchema.optional(),
+      }),
+    )
+    .optional(),
+});
+
+/** @deprecated Use productCommercialUpdateSchema */
+export const productStockUpdateSchema = productCommercialUpdateSchema;
+
 export const productStatusUpdateSchema = z.object({
   status: z.enum(["DRAFT", "PENDING_REVIEW", "PUBLISHED", "REJECTED", "DISABLED"]),
   rejectionReason: z.string().trim().max(2000).optional(),
@@ -65,5 +82,7 @@ export const productCatalogQuerySchema = z.object({
 
 export type ProductCreateInput = z.infer<typeof productCreateSchema>;
 export type ProductUpdateInput = z.infer<typeof productUpdateSchema>;
+export type ProductStockUpdateInput = z.infer<typeof productCommercialUpdateSchema>;
+export type ProductCommercialUpdateInput = ProductStockUpdateInput;
 export type ProductStatusUpdateInput = z.infer<typeof productStatusUpdateSchema>;
 export type ProductCatalogQuery = z.infer<typeof productCatalogQuerySchema>;

@@ -6,6 +6,7 @@ import {
   createProductAction,
   disableProductAction,
   submitProductAction,
+  updateCommercialAction,
   updateProductAction,
   type ProductFormState,
 } from "@/app/panel/proveedor/productos/actions";
@@ -71,15 +72,31 @@ export function ProductForm({ categories, product }: ProductFormProps) {
     subcategorySlug: selectedSubcategory?.slug,
   });
 
-  const action = product ? updateProductAction.bind(null, product.id) : createProductAction;
+  const canEditDetails =
+    !product ||
+    ["DRAFT", "REJECTED", "PENDING_REVIEW", "PUBLISHED"].includes(
+      product.status,
+    );
+  const canEditCommercial = Boolean(product);
+  const action = product
+    ? canEditDetails
+      ? updateProductAction.bind(null, product.id)
+      : updateCommercialAction.bind(null, product.id)
+    : createProductAction;
   const [state, formAction, pending] = useActionState(action, initialState);
-  const editable =
-    !product || ["DRAFT", "REJECTED"].includes(product.status);
+  const editable = canEditDetails;
+  const canEditPriceOrStock = editable || canEditCommercial;
 
   const variantDefaults = product?.variants ?? [];
 
   return (
     <div className="space-y-6">
+      {product && !canEditDetails ? (
+        <p className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          Este producto no esta en un estado editable por el proveedor. Puedes actualizar el
+          PVP y el stock.
+        </p>
+      ) : null}
       <form action={formAction} className="space-y-4">
         <div>
           <label className="mb-1 block text-sm font-medium" htmlFor="name">
@@ -171,7 +188,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
         <div className="grid gap-4 sm:grid-cols-3">
           <div>
             <label className="mb-1 block text-sm font-medium" htmlFor="basePrice">
-              Precio EUR *
+              PVP EUR *
             </label>
             <input
               id="basePrice"
@@ -179,12 +196,15 @@ export function ProductForm({ categories, product }: ProductFormProps) {
               type="number"
               min="0.01"
               step="0.01"
-              required
+              required={editable}
               value={basePrice}
               onChange={(e) => setBasePrice(e.target.value)}
-              disabled={!editable}
+              disabled={(product?.variants.length ?? 0) > 0 || !canEditPriceOrStock}
               className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
             />
+            {(product?.variants.length ?? 0) > 0 ? (
+              <input type="hidden" name="basePrice" value={basePrice} />
+            ) : null}
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium" htmlFor="vatRate">
@@ -211,7 +231,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
               type="number"
               min="0"
               defaultValue={product && product.variants.length === 0 ? product.stock : 0}
-              disabled={!editable}
+              disabled={(product?.variants.length ?? 0) > 0 || !canEditPriceOrStock}
               className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
             />
           </div>
@@ -339,9 +359,9 @@ export function ProductForm({ categories, product }: ProductFormProps) {
                 type="number"
                 min="0.01"
                 step="0.01"
-                placeholder="Precio"
+                placeholder="PVP"
                 defaultValue={variantDefaults[index]?.price ?? ""}
-                disabled={!editable}
+                disabled={!canEditPriceOrStock}
                 className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
               />
               <input
@@ -350,7 +370,7 @@ export function ProductForm({ categories, product }: ProductFormProps) {
                 min="0"
                 placeholder="Stock"
                 defaultValue={variantDefaults[index]?.stock ?? ""}
-                disabled={!editable}
+                disabled={!canEditPriceOrStock}
                 className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
               />
             </div>
@@ -360,13 +380,19 @@ export function ProductForm({ categories, product }: ProductFormProps) {
         {state.error ? <p className="text-sm text-red-700">{state.error}</p> : null}
         {state.success ? <p className="text-sm text-emerald-700">{state.success}</p> : null}
 
-        {editable ? (
+        {editable || canEditCommercial ? (
           <button
             type="submit"
             disabled={pending}
             className="min-h-11 w-full rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white disabled:opacity-60 sm:w-auto"
           >
-            {pending ? "Guardando..." : product ? "Guardar cambios" : "Crear producto"}
+            {pending
+              ? "Guardando..."
+              : product
+                ? canEditDetails
+                  ? "Guardar cambios"
+                  : "Actualizar PVP y stock"
+                : "Crear producto"}
           </button>
         ) : null}
       </form>

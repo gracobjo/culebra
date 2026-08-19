@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import { notFound, redirect } from "next/navigation";
-import { getVendorProduct, listCategories } from "@culebra/auth";
+import { getVendorProduct, listCategories, listProductChangeDocuments } from "@culebra/auth";
 import { ProductForm } from "@/components/catalog/product-form";
-import { productStatusLabels } from "@/lib/format";
+import { DownloadOrderDocumentButton } from "@/components/orders/download-order-document-button";
+import { formatDate, productStatusLabels } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 
 type EditProductPageProps = {
@@ -15,6 +16,9 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
   if (!session?.user?.id) {
     redirect("/login?callbackUrl=/panel/proveedor/productos");
   }
+  if (!session?.user?.roles?.includes("VENDOR")) {
+    redirect("/quiero-vender");
+  }
 
   const { id } = await params;
   const categories = await listCategories();
@@ -23,7 +27,14 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
   try {
     product = await getVendorProduct(session.user.id, id);
   } catch {
-    notFound();
+    redirect("/panel/proveedor/productos");
+  }
+
+  let changeDocuments: Awaited<ReturnType<typeof listProductChangeDocuments>> = [];
+  try {
+    changeDocuments = await listProductChangeDocuments(session.user.id, id);
+  } catch {
+    // El historial es opcional; no bloquea la edicion del producto.
   }
 
   return (
@@ -45,6 +56,33 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
       <div className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
         <ProductForm categories={categories} product={product} />
       </div>
+
+      {changeDocuments.length > 0 ? (
+        <section className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 sm:p-8">
+          <h2 className="text-lg font-semibold">Historial de cambios</h2>
+          <p className="mt-2 text-sm text-stone-600">
+            Registros conservados minimo 3 meses. Puedes descargar un PDF de cada modificacion.
+          </p>
+          <ul className="mt-4 space-y-2 text-sm">
+            {changeDocuments.map((doc) => (
+              <li
+                key={doc.id}
+                className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3"
+              >
+                <span>
+                  {formatDate(doc.createdAt)} ·{" "}
+                  {((doc.snapshot.changedFields as string[]) ?? []).join(", ") || "Cambios"}
+                </span>
+                <DownloadOrderDocumentButton
+                  href={`/api/stored-documents/${doc.id}/document`}
+                  label="PDF del cambio"
+                  className="inline-flex items-center text-emerald-800 underline"
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </PageShell>
   );
 }

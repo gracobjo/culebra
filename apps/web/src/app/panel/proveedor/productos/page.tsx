@@ -10,6 +10,9 @@ export default async function VendorProductsPage() {
   if (!session?.user?.id) {
     redirect("/login?callbackUrl=/panel/proveedor/productos");
   }
+  if (!session?.user?.roles?.includes("VENDOR")) {
+    redirect("/quiero-vender");
+  }
 
   let products = [];
   try {

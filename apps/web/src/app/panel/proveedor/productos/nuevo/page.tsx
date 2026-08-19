@@ -9,6 +9,9 @@ export default async function NewProductPage() {
   if (!session?.user) {
     redirect("/login?callbackUrl=/panel/proveedor/productos/nuevo");
   }
+  if (!session?.user?.roles?.includes("VENDOR")) {
+    redirect("/quiero-vender");
+  }
 
   const categories = await listCategories();
 

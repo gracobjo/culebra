@@ -5,6 +5,7 @@ import { getVendorOrder } from "@culebra/auth";
 import { formatDate, formatPrice } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 import { OrderStatusBadge } from "@/components/orders/order-status-badge";
+import { DownloadOrderDocumentButton } from "@/components/orders/download-order-document-button";
 import { VendorOrderActions } from "@/components/orders/vendor-order-actions";
 
 type VendorOrderPageProps = {
@@ -37,6 +38,12 @@ export default async function VendorOrderDetailPage({ params }: VendorOrderPageP
         <OrderStatusBadge status={order.status} kind="vendor" />
       </div>
       <p className="mt-2 text-sm text-stone-500">{formatDate(order.createdAt)}</p>
+      <div className="mt-4">
+        <DownloadOrderDocumentButton
+          href={`/api/vendor-orders/${order.id}/document`}
+          label="Descargar resumen PDF"
+        />
+      </div>
 
       <section className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
         <h2 className="font-medium">Cliente y envio</h2>

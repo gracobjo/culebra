@@ -14,7 +14,34 @@ type OrderAccess = { userId?: string; guestAccess?: boolean; email?: string };
 
 type PaymentMetadata = {
   checkoutSessionId?: string;
+  paymentMethod?: string;
 };
+
+function paymentMethodFromStripeType(type: string | undefined): string | undefined {
+  if (!type) return undefined;
+  if (type === "card") return "Tarjeta";
+  if (type === "bizum") return "Bizum";
+  return type;
+}
+
+async function resolveStripePaymentMethodLabel(paymentIntentId: string): Promise<string | undefined> {
+  if (!isStripeConfigured()) {
+    return undefined;
+  }
+  try {
+    const stripe = getStripe();
+    const intent = await stripe.paymentIntents.retrieve(paymentIntentId, {
+      expand: ["payment_method"],
+    });
+    const paymentMethod = intent.payment_method;
+    if (typeof paymentMethod === "object" && paymentMethod && "type" in paymentMethod) {
+      return paymentMethodFromStripeType(paymentMethod.type);
+    }
+  } catch {
+    return undefined;
+  }
+  return undefined;
+}
 
 export type VendorStripeStatus = {
   stripeConfigured: boolean;
@@ -377,12 +404,23 @@ export async function markOrderPaid(params: {
     return payment;
   }
 
+  const existingMetadata = asMetadata(payment.metadata);
+  const paymentMethod =
+    existingMetadata.paymentMethod ??
+    (params.paymentIntentId
+      ? await resolveStripePaymentMethodLabel(params.paymentIntentId)
+      : undefined);
+
   await prisma.payment.update({
     where: { id: payment.id },
     data: {
       status: PaymentStatus.PAYMENT_PAID,
       stripePaymentIntentId: params.paymentIntentId ?? payment.stripePaymentIntentId,
       stripeChargeId: params.chargeId ?? payment.stripeChargeId,
+      metadata: {
+        ...existingMetadata,
+        ...(paymentMethod ? { paymentMethod } : {}),
+      },
     },
   });
 

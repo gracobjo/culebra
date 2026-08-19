@@ -63,7 +63,37 @@ Arquitectura:
 - `packages/auth/src/email.service.ts` (proveedor configurable / dev console)
 - Llamadas desde `checkout.service.ts` y `order.service.ts`
 
-### B6. Reviews post-compra (server action)
+### B6. Documentos PDF (pedidos y cambios de producto)
+
+Generación bajo demanda con **pdfkit** en `apps/web` (no en el paquete auth compilado).
+
+Archivos clave:
+
+| Capa | Archivo |
+|------|---------|
+| Cabecera común | `apps/web/src/lib/pdf-document-header.ts` |
+| PDF pedidos | `apps/web/src/lib/order-document.ts` |
+| PDF cambios | `apps/web/src/lib/product-change-document.ts` |
+| Registros / retención | `packages/auth/src/stored-document.service.ts` |
+| UI descarga | `apps/web/src/components/orders/download-order-document-button.tsx` |
+
+API routes:
+
+- `GET /api/orders/[orderNumber]/document`
+- `GET /api/vendor-orders/[id]/document`
+- `GET /api/admin/orders/[orderNumber]/document`
+- `GET /api/stored-documents/[id]/document`
+- `GET /api/cron/purge-documents` (limpieza, Bearer `CRON_SECRET`)
+
+Configuración:
+
+- Variables `MARKETPLACE_*` en `.env` (nombre, datos fiscales, logo vía `public/logo.png`).
+- `serverExternalPackages: ["pdfkit", "fontkit"]` en `next.config.ts`.
+- Recompilar auth tras cambios: `npm run build --workspace @culebra/auth`.
+
+Documentación completa: [documents.md](./documents.md).
+
+### B7. Reviews post-compra (server action)
 
 Flujo:
 
@@ -73,7 +103,7 @@ Flujo:
   - validación de que el producto está en el pedido,
   - prevención de duplicidad.
 
-### B7. Admin: KPIs, rentabilidad, rappels, piloto y sandbox
+### B8. Admin: KPIs, rentabilidad, rappels, piloto y sandbox
 
 - `apps/web/src/app/admin/kpis/page.tsx`
 - `apps/web/src/app/admin/rentabilidad/page.tsx`
@@ -81,7 +111,7 @@ Flujo:
 - `apps/web/src/app/admin/piloto/*`
 - `apps/web/src/app/admin/sandbox/*`
 
-### B8. Diagramas y modelado
+### B9. Diagramas y modelado
 
 Para cambios en BD o lógica:
 
@@ -91,7 +121,7 @@ Para cambios en BD o lógica:
   - `order.service.ts`
   - paneles admin que calculan métricas.
 
-### B9. Flujo VENDOR: creación de producto y publicación por ADMIN
+### B10. Flujo VENDOR: creación de producto y publicación por ADMIN
 
 #### B9.1. Objetivo
 Permitir que un **proveedor (VENDOR)** cree productos, pero que el catálogo público solo muestre productos cuando un **admin** los haya revisado y publicado.

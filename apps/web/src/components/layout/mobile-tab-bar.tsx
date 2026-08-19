@@ -3,24 +3,34 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+type SessionUser = {
+  name: string;
+  email: string;
+  roles: string[];
+};
+
 type MobileTabBarProps = {
   cartCount: number;
   isLoggedIn: boolean;
+  user?: SessionUser | null;
 };
 
 const tabs = [
-  { href: "/", label: "Inicio", match: (path: string) => path === "/" },
+  { id: "home", href: "/", label: "Inicio", match: (path: string) => path === "/" },
   {
+    id: "products",
     href: "/productos",
     label: "Productos",
     match: (path: string) => path.startsWith("/productos") || path.startsWith("/categorias"),
   },
   {
+    id: "cart",
     href: "/carrito",
     label: "Carrito",
     match: (path: string) => path.startsWith("/carrito") || path.startsWith("/checkout"),
   },
   {
+    id: "account",
     href: "/cuenta",
     label: "Cuenta",
     match: (path: string) =>
@@ -28,8 +38,23 @@ const tabs = [
   },
 ];
 
-export function MobileTabBar({ cartCount, isLoggedIn }: MobileTabBarProps) {
+function getAccountHref(user: SessionUser | null | undefined, isLoggedIn: boolean): string {
+  if (!isLoggedIn) return "/login";
+  if (user?.roles.includes("VENDOR")) return "/panel/proveedor";
+  return "/cuenta";
+}
+
+function getAccountLabel(user: SessionUser | null | undefined, isLoggedIn: boolean): string {
+  if (!isLoggedIn || !user) return "Cuenta";
+  const first = user.name.trim().split(/\s+/)[0];
+  if (!first) return "Cuenta";
+  return first.length > 8 ? `${first.slice(0, 7)}…` : first;
+}
+
+export function MobileTabBar({ cartCount, isLoggedIn, user }: MobileTabBarProps) {
   const pathname = usePathname();
+  const accountHref = getAccountHref(user, isLoggedIn);
+  const accountLabel = getAccountLabel(user, isLoggedIn);
 
   return (
     <nav
@@ -38,19 +63,21 @@ export function MobileTabBar({ cartCount, isLoggedIn }: MobileTabBarProps) {
     >
       <ul className="site-container grid max-w-6xl grid-cols-4">
         {tabs.map((tab) => {
-          const href = tab.href === "/cuenta" && !isLoggedIn ? "/login" : tab.href;
+          const href = tab.id === "account" ? accountHref : tab.href;
+          const label = tab.id === "account" ? accountLabel : tab.label;
           const active = tab.match(pathname);
           return (
-            <li key={tab.href}>
+            <li key={tab.id}>
               <Link
                 href={href}
                 className={`flex min-h-14 flex-col items-center justify-center gap-0.5 text-xs ${
                   active ? "font-semibold text-emerald-800" : "text-stone-600"
                 }`}
+                title={tab.id === "account" && user ? user.name : undefined}
               >
                 <span className="relative">
-                  {tab.label}
-                  {tab.href === "/carrito" && cartCount > 0 ? (
+                  {label}
+                  {tab.id === "cart" && cartCount > 0 ? (
                     <span className="absolute -right-3 -top-2 inline-flex min-w-4 items-center justify-center rounded-full bg-emerald-800 px-1 text-[10px] text-white">
                       {cartCount}
                     </span>

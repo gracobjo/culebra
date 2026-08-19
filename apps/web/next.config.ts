@@ -31,8 +31,15 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   reactStrictMode: true,
-  transpilePackages: ["@culebra/auth", "@culebra/db", "@culebra/domain"],
-  serverExternalPackages: ["@prisma/client", "bcryptjs"],
+  transpilePackages: ["@culebra/db", "@culebra/domain"],
+  serverExternalPackages: ["@prisma/client", "bcryptjs", "pdfkit", "fontkit"],
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@culebra/auth": path.resolve(monorepoRoot, "packages/auth/dist/index.js"),
+    };
+    return config;
+  },
   images: {
     remotePatterns: [
       {
