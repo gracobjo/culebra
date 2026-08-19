@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { listCommissionRulesForUser, listPayoutsForVendor } from "@culebra/auth";
+import { getEffectiveCommissionPercent, getVendorByUserId, listCommissionRulesForUser, listPayoutsForVendor } from "@culebra/auth";
+import { DEFAULT_MARKETPLACE_COMMISSION_PERCENT } from "@culebra/domain";
 import type { CommissionRuleRecord, PayoutRecord } from "@culebra/auth";
 import { formatDate, formatPrice } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
@@ -33,10 +34,16 @@ export default async function VendorSettlementsPage() {
 
   let payouts;
   let rules;
+  let effectiveCommission;
   try {
-    [payouts, rules] = await Promise.all([
+    const vendor = await getVendorByUserId(session.user.id);
+    if (!vendor) {
+      throw new Error("VENDOR_NOT_FOUND");
+    }
+    [payouts, rules, effectiveCommission] = await Promise.all([
       listPayoutsForVendor(session.user.id),
       listCommissionRulesForUser(session.user.id),
+      getEffectiveCommissionPercent(vendor.id),
     ]);
   } catch {
     redirect("/quiero-vender");
@@ -72,10 +79,18 @@ export default async function VendorSettlementsPage() {
 
       <section className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
         <h2 className="text-lg font-semibold">Reglas de comision vigentes</h2>
+        <p className="mt-2 text-sm text-stone-600">
+          Comision aplicada en pedidos nuevos:{" "}
+          <strong>{effectiveCommission.percent}%</strong>
+          {effectiveCommission.source === "DEFAULT"
+            ? ` (por defecto de la plataforma, ${DEFAULT_MARKETPLACE_COMMISSION_PERCENT}%)`
+            : null}
+        </p>
         {activeRules.length === 0 ? (
           <p className="mt-3 text-sm text-stone-600">
-            No hay una regla de comision activa. Si el contrato indica un porcentaje, se
-            aplicara como respaldo. Si no, la comision es 0.
+            No hay una regla personalizada activa. Se aplica el{" "}
+            {DEFAULT_MARKETPLACE_COMMISSION_PERCENT}% por defecto del marketplace, salvo que tu
+            contrato indique otro porcentaje.
           </p>
         ) : (
           <ul className="mt-4 space-y-3 text-sm">

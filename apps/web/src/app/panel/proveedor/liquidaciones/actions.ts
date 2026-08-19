@@ -29,7 +29,9 @@ export async function retryPayoutsAction(
       return { error: "No se pudieron reintentar las liquidaciones." };
     }
     const messages: Record<string, string> = {
-      STRIPE_NOT_CONFIGURED: "Stripe no esta configurado en la plataforma.",
+      PAYOUTS_NOT_CONFIGURED: "Los pagos a productores no estan configurados en la plataforma.",
+      VENDOR_PAYOUT_NOT_READY:
+        "Configura Stripe Connect o PayPal en Pagos para recibir transferencias.",
       VENDOR_STRIPE_NOT_READY: "Completa el alta de Stripe para recibir transferencias.",
       VENDOR_NOT_FOUND: "Perfil de productor no encontrado.",
     };

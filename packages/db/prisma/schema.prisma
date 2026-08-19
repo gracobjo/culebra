@@ -240,6 +240,11 @@ model PasswordResetToken {
 // Vendors
 // ---------------------------------------------------------------------------
 
+enum VendorPayoutMethod {
+  STRIPE_CONNECT
+  PAYPAL
+}
+
 model Vendor {
   id          String       @id @default(cuid())
   userId      String       @unique
@@ -261,6 +266,8 @@ model Vendor {
   logoUrl     String?
   stripeAccountId      String?  @unique
   stripeChargesEnabled Boolean  @default(false)
+  payoutMethod         VendorPayoutMethod @default(STRIPE_CONNECT)
+  paypalEmail          String?
   status      VendorStatus @default(DRAFT)
   deletedAt   DateTime?
   createdAt   DateTime     @default(now())
@@ -668,6 +675,7 @@ model Payout {
   otherFees             Decimal      @default(0) @db.Decimal(12, 2)
   amountNetToVendor     Decimal      @db.Decimal(12, 2)
   stripeTransferId      String?
+  paypalPayoutBatchId   String?
   /// Fecha en que se levanta la retención del derecho de desistimiento (14 días desde el pago)
   releasesAt            DateTime?
   /// true mientras el pago está retenido por el periodo de desistimiento

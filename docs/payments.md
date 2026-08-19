@@ -1,4 +1,4 @@
-# Pagos Stripe
+# Pagos y liquidaciones a productores
 
 ![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
 
@@ -20,19 +20,34 @@ Si Stripe no esta configurado, el pedido queda en `PAYMENT_PENDING` (modo desarr
 
 ## Split a productores
 
-Si el productor tiene cuenta Connect con cobros activos, se crea un `Transfer` al `stripeAccountId` con `transfer_group` = numero de pedido.
+El productor elige en `/panel/proveedor/pagos`:
 
-Si no ha completado el alta, el `Payout` queda `PENDING` y se reintenta desde `/panel/proveedor/liquidaciones` o al completar Stripe Connect.
+- **Stripe Connect Express** — transferencia bancaria vía cuenta conectada.
+- **PayPal** — liquidaciones al email PayPal del productor (API Payouts).
 
-Comision marketplace: se calcula en checkout (FASE 10) y se guarda como snapshot. El transfer a Stripe usa `vendorNetAmount`.
+Si el productor tiene el metodo configurado y activo, tras la retencion de 14 dias se ejecuta el payout (Stripe Transfer o PayPal Payout).
 
-## Alta del productor
+Si no ha completado el alta, el `Payout` queda `PENDING` y se reintenta desde `/panel/proveedor/liquidaciones` o al completar la configuracion.
 
-`/panel/proveedor/pagos` inicia Account Link de Stripe Express (cuentas Connect con `controller.stripe_dashboard.type=express`).
+Comision marketplace: por defecto **15%** (`DEFAULT_MARKETPLACE_COMMISSION_PERCENT`). El admin puede subir o bajar el porcentaje por productor en `/admin/productores/:id`. Los contratos nuevos incluyen 15% si no se indica otro valor.
 
-Si Stripe devuelve error sobre **Accounts v1**, actualiza la app: las cuentas nuevas se crean con propiedades `controller` en lugar de `type=express`.
+## Alta del productor (Stripe)
+
+`/panel/proveedor/pagos` → pestaña Stripe Connect. Las cuentas conectadas se crean con **Connect Accounts v2** (`POST /v2/core/accounts`, dashboard Express, capability `stripe_transfers`).
+
+Las cuentas Stripe nuevas ya no admiten Accounts v1; no hace falta activar soporte v1 en el Dashboard si usas esta version de la app.
 
 En el [Dashboard de Stripe (test)](https://dashboard.stripe.com/test/settings/connect) completa el perfil de plataforma Connect si te lo pide al crear la primera cuenta conectada.
+
+## Alta del productor (PayPal)
+
+`/panel/proveedor/pagos` → pestaña PayPal → email de la cuenta receptora.
+
+Variables de entorno: `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_MODE=sandbox|live`.
+
+En sandbox, crea una app REST en [PayPal Developer](https://developer.paypal.com/dashboard/applications/sandbox) y activa **Payouts**. El productor puede usar una cuenta personal o business de prueba.
+
+El cobro al cliente sigue siendo Stripe; PayPal solo se usa para marketplace → productor.
 
 ## Webhooks
 

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
+  getEffectiveCommissionPercent,
   getVendorById,
   listCommissionRulesForVendor,
   listContractsForAdmin,
+  DEFAULT_MARKETPLACE_COMMISSION_PERCENT,
 } from "@culebra/auth";
 import type { CommissionRuleRecord } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
@@ -25,9 +27,10 @@ export default async function AdminVendorDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const [contracts, rules] = await Promise.all([
+  const [contracts, rules, effectiveCommission] = await Promise.all([
     listContractsForAdmin({ vendorId: id }),
     listCommissionRulesForVendor(id),
+    getEffectiveCommissionPercent(id),
   ]);
   const contract = contracts.items[0];
   const activeRules = rules.filter((rule: CommissionRuleRecord) => rule.isActive);
@@ -35,7 +38,8 @@ export default async function AdminVendorDetailPage({ params }: PageProps) {
   return (
     <AdminShell title={vendor.tradeName}>
       <p className="text-sm text-stone-600">
-        Estado: {vendor.status} · /{vendor.slug} · {vendor.city ?? "sin municipio"}
+        Estado: {vendor.status} · /{vendor.slug} · {vendor.city ?? "sin municipio"} · Comision
+        efectiva: {effectiveCommission.percent}%
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
         <VendorStatusForm
@@ -77,6 +81,10 @@ export default async function AdminVendorDetailPage({ params }: PageProps) {
         </div>
         <div className="rounded-3xl border border-stone-200 bg-white p-5">
           <h2 className="font-medium">Comision</h2>
+          <p className="mt-2 text-sm text-stone-600">
+            Por defecto la plataforma aplica {DEFAULT_MARKETPLACE_COMMISSION_PERCENT}%. Puedes
+            subir o bajar el porcentaje creando una nueva version (solo afecta a pedidos futuros).
+          </p>
           <ul className="mt-3 space-y-2 text-sm text-stone-600">
             {activeRules.map((rule: CommissionRuleRecord) => (
               <li key={rule.id}>

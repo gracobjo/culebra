@@ -158,6 +158,16 @@ export const VendorStatus = {
   REJECTED: "REJECTED",
 } as const satisfies Record<string, VendorStatus>;
 
+export type VendorPayoutMethod = "STRIPE_CONNECT" | "PAYPAL";
+
+export const VendorPayoutMethod = {
+  STRIPE_CONNECT: "STRIPE_CONNECT",
+  PAYPAL: "PAYPAL",
+} as const satisfies Record<string, VendorPayoutMethod>;
+
+/** Comision marketplace por defecto cuando no hay regla ni contrato especifico. */
+export const DEFAULT_MARKETPLACE_COMMISSION_PERCENT = 15;
+
 export type ContractStatus =
   | "DRAFT"
   | "PENDING_SIGNATURE"

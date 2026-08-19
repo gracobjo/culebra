@@ -41,9 +41,18 @@ FASE 4 completada: onboarding, perfil, pagina publica, panel productor y moderac
 
 - `/quiero-vender` — alta inicial
 - `/panel/proveedor` — panel privado
-- `/panel/proveedor/liquidaciones` — comisiones y payouts
+- `/panel/proveedor/pagos` — metodo de cobro (Stripe Connect o PayPal)
+- `/panel/proveedor/liquidaciones` — comision efectiva (15 % por defecto), historial y reintento de payouts
 - `/productores` — listado publico
 - `/productores/[slug]` — ficha publica
+
+### Aviso si falta configurar cobros
+
+En todas las paginas del panel productor aparece una barra ambar si el metodo elegido no esta listo (Stripe sin onboarding o PayPal sin email). Ver `docs/payments.md`.
+
+## Comision del marketplace
+
+Por defecto **15 %** sobre el bruto del productor. El admin puede modificarlo por productor en `/admin/productores/:id`. Detalle en `docs/commissions.md`.
 
 ## Moderacion
 

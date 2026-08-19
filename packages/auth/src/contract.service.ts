@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-import { AuditAction, ContractStatus } from "@culebra/domain";
+import { AuditAction, ContractStatus, DEFAULT_MARKETPLACE_COMMISSION_PERCENT } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
 import type { ContractVersionCreateInput } from "./contract.schemas.js";
@@ -294,7 +294,7 @@ export async function createContractVersionForAdmin(
       versionNumber: (latest?.versionNumber ?? 0) + 1,
       status: ContractStatus.DRAFT,
       conditions: input.conditions ?? DEFAULT_CONTRACT_CONDITIONS,
-      commissionPercent: input.commissionPercent ?? null,
+      commissionPercent: input.commissionPercent ?? DEFAULT_MARKETPLACE_COMMISSION_PERCENT,
       startDate: input.startDate ?? null,
       endDate: input.endDate ?? null,
       observations: input.observations ?? null,
@@ -509,14 +509,17 @@ export async function acceptContractVersion(
     },
   });
 
-  if (version.commissionPercent != null) {
-    await syncCommissionRuleFromContract({
-      vendorId: vendor.id,
-      actorUserId: userId,
-      commissionPercent: Number(version.commissionPercent),
-      actorIp: context?.ipAddress,
-    });
-  }
+  const commissionPercent =
+    version.commissionPercent != null
+      ? Number(version.commissionPercent)
+      : DEFAULT_MARKETPLACE_COMMISSION_PERCENT;
+
+  await syncCommissionRuleFromContract({
+    vendorId: vendor.id,
+    actorUserId: userId,
+    commissionPercent,
+    actorIp: context?.ipAddress,
+  });
 
   const full = await getContractById(version.contractId);
   if (!full) {

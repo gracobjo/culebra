@@ -700,6 +700,26 @@ async function seedVendorsAndProducts() {
       });
     }
 
+    const existingCommissionRule = await prisma.commissionRule.findFirst({
+      where: {
+        vendorId: vendor.id,
+        ruleType: "PERCENTAGE",
+        validTo: null,
+      },
+    });
+    if (!existingCommissionRule) {
+      await prisma.commissionRule.create({
+        data: {
+          vendorId: vendor.id,
+          versionNumber: 1,
+          ruleType: "PERCENTAGE",
+          percentage: 15,
+          validFrom: new Date(),
+          notes: "Comision por defecto de la plataforma (seed)",
+        },
+      });
+    }
+
     // Create products for this vendor
     const products = productsByVendor[v.slug] ?? [];
     for (const p of products) {

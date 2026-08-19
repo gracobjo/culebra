@@ -201,6 +201,25 @@ Como consumidor, el justificante del pedido está en `/pedido/[orderNumber]` y e
 
 Más detalle: [documents.md](./documents.md).
 
+#### 6) Pagos, comisión y liquidaciones
+
+**Comisión del marketplace:** por defecto la plataforma retiene un **15 %** del bruto de tus ventas. El administrador puede acordar otro porcentaje (subir o bajar) en tu ficha de productor; los cambios solo afectan a pedidos nuevos.
+
+Consulta tu comisión efectiva en `/panel/proveedor/liquidaciones`.
+
+**Cómo recibes tu neto** (`/panel/proveedor/pagos`):
+
+| Método | Qué necesitas |
+|--------|----------------|
+| **Stripe Connect** | Completar onboarding Express (cuenta bancaria, datos fiscales) |
+| **PayPal** | Indicar el email de tu cuenta PayPal |
+
+El cliente siempre paga con tarjeta/Bizum en la plataforma (Stripe). Tu neto se transfiere tras **14 días** de retención legal.
+
+Si no configuras cobros, puedes vender igualmente pero las liquidaciones quedan **pendientes** hasta que completes Stripe o PayPal.
+
+Más detalle: [payments.md](./payments.md) y [commissions.md](./commissions.md).
+
 ---
 
 ### A4. Funcionalidades del Admin (ADMIN)

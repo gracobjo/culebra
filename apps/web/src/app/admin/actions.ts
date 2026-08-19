@@ -5,13 +5,16 @@ import {
   contractVersionCreateSchema,
   createCommissionRuleForAdmin,
   createContractVersionForAdmin,
+  ensureDefaultCommissionRuleForVendor,
   productStatusUpdateSchema,
   publishContractVersionForAdmin,
+  setVendorCommissionPercentForAdmin,
   updateProductStatusByAdmin,
   updateUserStatusByAdmin,
   updateVendorStatusByAdmin,
   vendorStatusUpdateSchema,
 } from "@culebra/auth";
+import { DEFAULT_MARKETPLACE_COMMISSION_PERCENT, VendorStatus } from "@culebra/domain";
 import { requireAdmin } from "@/lib/admin";
 import { revalidatePath } from "next/cache";
 
@@ -33,6 +36,9 @@ export async function updateVendorStatusAction(
     return;
   }
   await updateVendorStatusByAdmin(vendorId, admin.id, parsed.data);
+  if (parsed.data.status === VendorStatus.ACTIVE) {
+    await ensureDefaultCommissionRuleForVendor(vendorId, admin.id);
+  }
   revalidatePath("/admin");
   revalidatePath("/admin/productores");
   revalidatePath(`/admin/productores/${vendorId}`);
@@ -98,7 +104,9 @@ export async function createCommissionRuleAction(
   const vendorId = String(formData.get("vendorId") ?? "");
   const parsed = commissionRuleCreateSchema.safeParse({
     ruleType: formData.get("ruleType") || "PERCENTAGE",
-    percentage: formData.get("percentage") || undefined,
+    percentage:
+      formData.get("percentage") ||
+      (formData.get("ruleType") === "FIXED" ? undefined : DEFAULT_MARKETPLACE_COMMISSION_PERCENT),
     fixedAmount: formData.get("fixedAmount") || undefined,
     categoryId: formData.get("categoryId") || undefined,
     notes: formData.get("notes") || undefined,
@@ -107,7 +115,11 @@ export async function createCommissionRuleAction(
     return { error: "Revisa tipo e importe de la comision." };
   }
   try {
-    await createCommissionRuleForAdmin(admin.id, vendorId, parsed.data);
+    if (parsed.data.ruleType === "PERCENTAGE") {
+      await setVendorCommissionPercentForAdmin(admin.id, vendorId, parsed.data.percentage!);
+    } else {
+      await createCommissionRuleForAdmin(admin.id, vendorId, parsed.data);
+    }
     revalidatePath(`/admin/productores/${vendorId}`);
     return { success: "Nueva version de comision creada." };
   } catch {

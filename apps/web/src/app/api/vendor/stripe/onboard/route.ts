@@ -21,28 +21,19 @@ export async function POST() {
       );
     }
 
-    const stripeMessage =
-      error &&
-      typeof error === "object" &&
-      "message" in error &&
-      typeof error.message === "string"
-        ? error.message
-        : null;
-
-    if (stripeMessage?.includes("Accounts v1")) {
+    if (error instanceof Error && error.message === "VENDOR_EMAIL_REQUIRED") {
       return NextResponse.json(
-        {
-          error:
-            "Stripe requiere la nueva API Connect. Actualiza el codigo (git pull) y reinicia el servidor.",
-        },
-        { status: 502 },
+        { error: "Anade un email de contacto a tu perfil de productor antes de conectar Stripe." },
+        { status: 400 },
       );
     }
 
+    const message =
+      error instanceof Error && error.message && error.message !== "STRIPE_ACCOUNT_CREATE_FAILED"
+        ? error.message
+        : "No se pudo iniciar el alta en Stripe.";
+
     console.error("[api/vendor/stripe/onboard]", error);
-    return NextResponse.json(
-      { error: "No se pudo iniciar el alta en Stripe." },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

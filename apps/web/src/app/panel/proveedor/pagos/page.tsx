@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { getVendorStripeStatus, isStripeConfigured } from "@culebra/auth";
+import { getVendorPayoutStatus } from "@culebra/auth";
 import { PageShell } from "@/components/layout/page-shell";
-import { StripeOnboardButton } from "@/components/orders/stripe-onboard-button";
+import { VendorPayoutSettings } from "@/components/vendor/vendor-payout-settings";
 
 export const metadata = {
   title: "Pagos | Panel productor",
@@ -20,9 +20,9 @@ export default async function VendorPaymentsPage({ searchParams }: PagosPageProp
   }
 
   const { estado } = await searchParams;
-  let stripeStatus;
+  let payoutStatus;
   try {
-    stripeStatus = await getVendorStripeStatus(session.user.id);
+    payoutStatus = await getVendorPayoutStatus(session.user.id);
   } catch {
     redirect("/quiero-vender");
   }
@@ -32,10 +32,10 @@ export default async function VendorPaymentsPage({ searchParams }: PagosPageProp
       <Link href="/panel/proveedor" className="text-sm text-emerald-800">
         ← Volver al perfil
       </Link>
-      <h1 className="mt-6 text-2xl font-semibold sm:text-3xl">Pagos Stripe</h1>
+      <h1 className="mt-6 text-2xl font-semibold sm:text-3xl">Pagos y liquidaciones</h1>
       <p className="mt-3 text-stone-600">
-        Conecta Stripe Express para recibir el importe de tus ventas. La
-        plataforma cobra al cliente y transfiere tu neto.
+        Elige como recibir tu neto tras cada venta. La plataforma cobra al cliente; tu parte se
+        transfiere por Stripe Connect o PayPal.
       </p>
 
       {estado === "ok" ? (
@@ -49,21 +49,16 @@ export default async function VendorPaymentsPage({ searchParams }: PagosPageProp
         </p>
       ) : null}
 
-      <section className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
-        <p className="text-sm text-stone-600">
-          Stripe en la plataforma:{" "}
-          {isStripeConfigured() || stripeStatus.stripeConfigured ? "configurado" : "pendiente"}
-        </p>
-        <p className="mt-2 text-sm text-stone-600">
-          Tu cuenta: {stripeStatus.connected ? "conectada" : "sin conectar"}
-        </p>
-        <p className="mt-2 text-sm text-stone-600">
-          Cobros activos: {stripeStatus.chargesEnabled ? "si" : "no"}
-        </p>
-        <div className="mt-6">
-          <StripeOnboardButton connected={stripeStatus.connected} />
-        </div>
-        <p className="mt-4 text-sm">
+      <section className="mt-8">
+        <VendorPayoutSettings
+          method={payoutStatus.method}
+          stripeConfigured={payoutStatus.stripe.stripeConfigured}
+          stripeConnected={payoutStatus.stripe.connected}
+          stripeChargesEnabled={payoutStatus.stripe.chargesEnabled}
+          paypalConfigured={payoutStatus.paypalConfigured}
+          paypalEmail={payoutStatus.paypalEmail}
+        />
+        <p className="mt-6 text-sm">
           <Link href="/panel/proveedor/liquidaciones" className="text-emerald-800 underline">
             Ver liquidaciones y comisiones
           </Link>

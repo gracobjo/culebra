@@ -1,4 +1,4 @@
-import { AuditAction, UserRole, VendorStatus } from "@culebra/domain";
+import { AuditAction, UserRole, VendorPayoutMethod, VendorStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
 import { createUniqueSlug } from "./slug.js";
@@ -29,6 +29,8 @@ export type VendorRecord = {
   logoUrl: string | null;
   stripeAccountId: string | null;
   stripeChargesEnabled: boolean;
+  payoutMethod: VendorPayoutMethod;
+  paypalEmail: string | null;
   status: VendorStatus;
   createdAt: Date;
   updatedAt: Date;
@@ -36,7 +38,7 @@ export type VendorRecord = {
 
 export type PublicVendorRecord = Omit<
   VendorRecord,
-  "taxId" | "userId" | "stripeAccountId" | "stripeChargesEnabled"
+  "taxId" | "userId" | "stripeAccountId" | "stripeChargesEnabled" | "payoutMethod" | "paypalEmail"
 > & {
   productCount?: number;
 };
@@ -62,6 +64,8 @@ function mapVendor(vendor: {
   logoUrl: string | null;
   stripeAccountId?: string | null;
   stripeChargesEnabled?: boolean;
+  payoutMethod?: string;
+  paypalEmail?: string | null;
   status: string;
   createdAt: Date;
   updatedAt: Date;
@@ -71,6 +75,8 @@ function mapVendor(vendor: {
     socialLinks: (vendor.socialLinks as Record<string, string> | null) ?? null,
     stripeAccountId: vendor.stripeAccountId ?? null,
     stripeChargesEnabled: Boolean(vendor.stripeChargesEnabled),
+    payoutMethod: (vendor.payoutMethod as VendorPayoutMethod) ?? VendorPayoutMethod.STRIPE_CONNECT,
+    paypalEmail: vendor.paypalEmail ?? null,
     status: vendor.status as VendorStatus,
   };
 }
@@ -81,6 +87,8 @@ function toPublicVendor(vendor: VendorRecord, productCount = 0): PublicVendorRec
     userId: _userId,
     stripeAccountId: _stripe,
     stripeChargesEnabled: _charges,
+    payoutMethod: _payoutMethod,
+    paypalEmail: _paypalEmail,
     ...publicVendor
   } = vendor;
   return { ...publicVendor, productCount };

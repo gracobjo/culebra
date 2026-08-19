@@ -23,6 +23,9 @@ function handleCommissionError(error: unknown, reply: FastifyReply) {
     VENDOR_NOT_FOUND: 404,
     CATEGORY_NOT_FOUND: 404,
     STRIPE_NOT_CONFIGURED: 503,
+    PAYPAL_NOT_CONFIGURED: 503,
+    PAYOUTS_NOT_CONFIGURED: 503,
+    VENDOR_PAYOUT_NOT_READY: 400,
     VENDOR_STRIPE_NOT_READY: 400,
   };
   reply.code(map[error.message] ?? 500).send({ error: error.message });

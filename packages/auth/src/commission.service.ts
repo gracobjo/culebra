@@ -1,4 +1,4 @@
-import { AuditAction, CommissionRuleType, ContractStatus } from "@culebra/domain";
+import { AuditAction, CommissionRuleType, ContractStatus, DEFAULT_MARKETPLACE_COMMISSION_PERCENT } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
 import type { CommissionRuleCreateInput } from "./commission.schemas.js";
@@ -26,6 +26,14 @@ export type LineCommission = {
   amount: number;
   net: number;
   source: "CATEGORY" | "PERCENTAGE" | "CONTRACT" | "DEFAULT";
+  ruleId: string | null;
+};
+
+export { DEFAULT_MARKETPLACE_COMMISSION_PERCENT };
+
+export type EffectiveCommission = {
+  percent: number;
+  source: LineCommission["source"];
   ruleId: string | null;
 };
 
@@ -206,13 +214,8 @@ export async function resolveLineCommission(params: {
     return { ...applied, source: "CONTRACT", ruleId: null };
   }
 
-  return {
-    rate: 0,
-    amount: 0,
-    net: roundMoney(params.gross),
-    source: "DEFAULT",
-    ruleId: null,
-  };
+  const applied = applyPercent(params.gross, DEFAULT_MARKETPLACE_COMMISSION_PERCENT);
+  return { ...applied, source: "DEFAULT", ruleId: null };
 }
 
 export function resolveVendorFixedFee(
@@ -385,4 +388,82 @@ export async function loadCommissionContext(vendorIds: string[], at = new Date()
   }
 
   return { rulesByVendor, contractPercentByVendor };
+}
+
+export async function getEffectiveCommissionPercent(
+  vendorId: string,
+  at = new Date(),
+): Promise<EffectiveCommission> {
+  const rules = await getActiveCommissionRules(vendorId, at);
+
+  const categoryRule = rules.find(
+    (rule) => rule.ruleType === CommissionRuleType.CATEGORY && rule.percentage != null,
+  );
+  if (categoryRule?.percentage != null) {
+    return {
+      percent: Number(categoryRule.percentage),
+      source: "CATEGORY",
+      ruleId: categoryRule.id,
+    };
+  }
+
+  const percentRule = rules.find(
+    (rule) => rule.ruleType === CommissionRuleType.PERCENTAGE && rule.percentage != null,
+  );
+  if (percentRule?.percentage != null) {
+    return {
+      percent: Number(percentRule.percentage),
+      source: "PERCENTAGE",
+      ruleId: percentRule.id,
+    };
+  }
+
+  const contractPercent = await getActiveContractPercent(vendorId);
+  if (contractPercent != null && Number.isFinite(contractPercent)) {
+    return { percent: contractPercent, source: "CONTRACT", ruleId: null };
+  }
+
+  return {
+    percent: DEFAULT_MARKETPLACE_COMMISSION_PERCENT,
+    source: "DEFAULT",
+    ruleId: null,
+  };
+}
+
+/** Crea regla PERCENTAGE al 15% si el productor no tiene ninguna activa. */
+export async function ensureDefaultCommissionRuleForVendor(
+  vendorId: string,
+  actorUserId: string,
+): Promise<CommissionRuleRecord | null> {
+  const active = await getActiveCommissionRules(vendorId);
+  const hasPercentRule = active.some(
+    (rule) => rule.ruleType === CommissionRuleType.PERCENTAGE,
+  );
+  if (hasPercentRule) {
+    return null;
+  }
+
+  return createCommissionRuleForAdmin(actorUserId, vendorId, {
+    ruleType: CommissionRuleType.PERCENTAGE,
+    percentage: DEFAULT_MARKETPLACE_COMMISSION_PERCENT,
+    notes: "Comision por defecto de la plataforma",
+  });
+}
+
+export async function setVendorCommissionPercentForAdmin(
+  adminUserId: string,
+  vendorId: string,
+  percentage: number,
+  context?: { ipAddress?: string; notes?: string },
+): Promise<CommissionRuleRecord> {
+  return createCommissionRuleForAdmin(
+    adminUserId,
+    vendorId,
+    {
+      ruleType: CommissionRuleType.PERCENTAGE,
+      percentage,
+      notes: context?.notes ?? "Actualizacion de comision por administracion",
+    },
+    { ipAddress: context?.ipAddress },
+  );
 }

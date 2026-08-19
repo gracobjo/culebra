@@ -98,7 +98,7 @@ export default async function VendorPanelPage() {
             href="/panel/proveedor/pagos"
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-medium"
           >
-            Pagos Stripe
+            Pagos
           </Link>
           <Link
             href="/panel/proveedor/contratos"

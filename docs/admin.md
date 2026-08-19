@@ -25,7 +25,13 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin/liquidaciones` | Payouts a productores |
 | `/admin/usuarios` | Suspender o reactivar cuentas |
 
-Las reglas de comision se crean en la ficha del productor (`/admin/productores/:id`).
+Las reglas de comision se gestionan en la ficha del productor (`/admin/productores/:id`):
+
+- **Comision por defecto de la plataforma:** 15 %.
+- Al **aprobar** un productor (`ACTIVE`) se crea regla al 15 % si no tenia ninguna.
+- Para **subir o bajar** la comision: introduce el nuevo % y pulsa *Actualizar comision (%)*. Solo aplica a pedidos futuros.
+
+Ver detalle en `docs/commissions.md`.
 
 ## API extra
 

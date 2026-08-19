@@ -9,7 +9,7 @@ Marketplace multi-vendedor sin compra inicial de stock por parte de la plataform
 
 ## Ingresos
 
-- comision por venta (reglas versionadas por productor, categoria o cuota fija)
+- comision por venta: **15 % por defecto**, ajustable por productor (reglas versionadas, categoria o cuota fija)
 - futuras tarifas especiales o promocionales
 
 Los importes se congelan en el pedido. Ver `docs/commissions.md`.

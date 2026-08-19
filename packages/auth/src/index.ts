@@ -140,16 +140,29 @@ export {
   retryPendingPayoutsForVendor,
 } from "./payment.service.js";
 export type { VendorStripeStatus } from "./payment.service.js";
+export {
+  getVendorPayoutStatus,
+  isPayPalConfigured,
+  isVendorPayoutReady,
+  setVendorPayPalEmail,
+  updateVendorPayoutMethod,
+} from "./vendor-payout.service.js";
+export type { VendorPayoutStatus } from "./vendor-payout.service.js";
 export { listPayoutsForAdmin, listPayoutsForVendor } from "./payout.service.js";
 export type { PayoutRecord } from "./payout.service.js";
 export {
   createCommissionRuleForAdmin,
+  DEFAULT_MARKETPLACE_COMMISSION_PERCENT,
+  ensureDefaultCommissionRuleForVendor,
   getActiveCommissionRules,
+  getEffectiveCommissionPercent,
   listCommissionRulesForUser,
   listCommissionRulesForVendor,
+  setVendorCommissionPercentForAdmin,
 } from "./commission.service.js";
 export type {
   CommissionRuleRecord,
+  EffectiveCommission,
   LineCommission,
   VendorCommissionBreakdown,
 } from "./commission.service.js";

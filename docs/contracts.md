@@ -27,8 +27,9 @@ FASE 9 completada: contratos versionados productor–plataforma con aceptacion a
 
 - Solo puede haber una version `PENDING_SIGNATURE` por contrato.
 - Para enviar productos a revision hace falta un contrato `ACTIVE` (`VENDOR_CONTRACT_REQUIRED`).
-- La comision indicada en el contrato es el respaldo si no hay `CommissionRule` vigente (FASE 10).
-- Al aceptar un contrato con porcentaje, se sincroniza una regla `PERCENTAGE` si hace falta.
+- La comision indicada en el contrato es el **tercer nivel** de prioridad (detras de reglas `CATEGORY` y `PERCENTAGE`). Ver `docs/commissions.md`.
+- Si el admin no indica `commissionPercent` al crear la version, se guarda **15 %** por defecto.
+- Al aceptar un contrato, se sincroniza una regla `PERCENTAGE` con el porcentaje firmado (o 15 % si faltaba).
 
 ## API
 

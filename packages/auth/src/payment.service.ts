@@ -1,10 +1,22 @@
-import { OrderStatus, PaymentStatus, PayoutStatus } from "@culebra/domain";
+import { OrderStatus, PaymentStatus, PayoutStatus, VendorPayoutMethod } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 import type Stripe from "stripe";
 
 import { getOrderByNumber } from "./order.service.js";
 import { getVendorByUserId } from "./vendor.service.js";
-import { appBaseUrl, eurosToCents, getStripe, isStripeConfigured, vendorPublicProfileUrl } from "./stripe.js";
+import {
+  appBaseUrl,
+  createConnectRecipientAccount,
+  eurosToCents,
+  getStripe,
+  isStripeConfigured,
+} from "./stripe.js";
+import {
+  executeVendorPayout,
+  isPayPalConfigured,
+  isVendorPayoutReady,
+  mapVendorToPayoutVendor,
+} from "./vendor-payout.service.js";
 import { initVendorOrderSla } from "./sla.service.js";
 import { notifyPaymentConfirmed } from "./notifications.service.js";
 
@@ -164,49 +176,34 @@ export async function createOrderCheckoutSession(
   return { url: session.url };
 }
 
-async function transferPayout(payoutId: string, vendorOrder: {
-  id: string;
-  vendorNetAmount: unknown;
-  vendor: {
-    stripeAccountId: string | null;
-    stripeChargesEnabled: boolean;
-  };
-}, orderNumber: string): Promise<"paid" | "failed" | "skipped"> {
-  if (!vendorOrder.vendor.stripeAccountId || !vendorOrder.vendor.stripeChargesEnabled) {
-    return "skipped";
-  }
-
-  const amount = Math.round(Number(vendorOrder.vendorNetAmount) * 100);
-  if (!Number.isFinite(amount) || amount <= 0) {
-    return "skipped";
-  }
-
-  try {
-    const transfer = await getStripe().transfers.create({
-      amount,
-      currency: "eur",
-      destination: vendorOrder.vendor.stripeAccountId,
-      transfer_group: orderNumber,
-      metadata: {
-        vendorOrderId: vendorOrder.id,
-        orderNumber,
+async function transferPayout(
+  payoutId: string,
+  vendorOrder: {
+    id: string;
+    vendorNetAmount: unknown;
+    vendor: {
+      stripeAccountId: string | null;
+      stripeChargesEnabled: boolean;
+      payoutMethod?: VendorPayoutMethod;
+      paypalEmail?: string | null;
+    };
+  },
+  orderNumber: string,
+): Promise<"paid" | "failed" | "skipped"> {
+  return executeVendorPayout(
+    payoutId,
+    {
+      id: vendorOrder.id,
+      vendorNetAmount: vendorOrder.vendorNetAmount,
+      vendor: {
+        stripeAccountId: vendorOrder.vendor.stripeAccountId,
+        stripeChargesEnabled: vendorOrder.vendor.stripeChargesEnabled,
+        payoutMethod: vendorOrder.vendor.payoutMethod ?? VendorPayoutMethod.STRIPE_CONNECT,
+        paypalEmail: vendorOrder.vendor.paypalEmail ?? null,
       },
-    });
-    await prisma.payout.update({
-      where: { id: payoutId },
-      data: {
-        status: PayoutStatus.PAID,
-        stripeTransferId: transfer.id,
-      },
-    });
-    return "paid";
-  } catch {
-    await prisma.payout.update({
-      where: { id: payoutId },
-      data: { status: PayoutStatus.FAILED },
-    });
-    return "failed";
-  }
+    },
+    orderNumber,
+  );
 }
 
 // Días de retención legal por derecho de desistimiento (Ley 3/2014, art. 102)
@@ -278,13 +275,16 @@ async function createVendorTransfers(orderId: string, paymentId: string, orderNu
  * transferido. Llamar desde un cron job diario o desde el webhook de Stripe.
  */
 export async function releaseMaturedPayouts(): Promise<{ released: number; failed: number }> {
-  if (!isStripeConfigured()) return { released: 0, failed: 0 };
+  if (!isStripeConfigured() && !isPayPalConfigured()) {
+    return { released: 0, failed: 0 };
+  }
 
   const matured = await prisma.payout.findMany({
     where: {
       heldForWithdrawal: true,
       releasesAt: { lte: new Date() },
       stripeTransferId: null,
+      paypalPayoutBatchId: null,
       status: { in: [PayoutStatus.PENDING, PayoutStatus.FAILED] },
     },
     include: {
@@ -298,8 +298,13 @@ export async function releaseMaturedPayouts(): Promise<{ released: number; faile
 
   for (const payout of matured as Array<{
     id: string;
-    vendorNetAmount: unknown;
-    vendor: { stripeAccountId: string | null; stripeChargesEnabled: boolean };
+    amountNetToVendor: unknown;
+    vendor: {
+      stripeAccountId: string | null;
+      stripeChargesEnabled: boolean;
+      payoutMethod: VendorPayoutMethod;
+      paypalEmail: string | null;
+    };
     vendorOrder: { id: string; order: { orderNumber: string } };
   }>) {
     await prisma.payout.update({
@@ -308,7 +313,11 @@ export async function releaseMaturedPayouts(): Promise<{ released: number; faile
     });
     const result = await transferPayout(
       payout.id,
-      { id: payout.vendorOrder.id, vendorNetAmount: payout.vendorNetAmount, vendor: payout.vendor },
+      {
+        id: payout.vendorOrder.id,
+        vendorNetAmount: payout.amountNetToVendor,
+        vendor: payout.vendor,
+      },
       payout.vendorOrder.order.orderNumber,
     );
     if (result === "paid") released++;
@@ -323,16 +332,16 @@ export async function releaseMaturedPayouts(): Promise<{ released: number; faile
 }
 
 export async function retryPendingPayoutsForVendor(userId: string): Promise<{ retried: number }> {
-  if (!isStripeConfigured()) {
-    throw new Error("STRIPE_NOT_CONFIGURED");
+  if (!isStripeConfigured() && !isPayPalConfigured()) {
+    throw new Error("PAYOUTS_NOT_CONFIGURED");
   }
 
   const vendor = await getVendorByUserId(userId);
   if (!vendor) {
     throw new Error("VENDOR_NOT_FOUND");
   }
-  if (!vendor.stripeAccountId || !vendor.stripeChargesEnabled) {
-    throw new Error("VENDOR_STRIPE_NOT_READY");
+  if (!isVendorPayoutReady(mapVendorToPayoutVendor(vendor))) {
+    throw new Error("VENDOR_PAYOUT_NOT_READY");
   }
 
   const pending = await prisma.payout.findMany({
@@ -340,6 +349,7 @@ export async function retryPendingPayoutsForVendor(userId: string): Promise<{ re
       vendorId: vendor.id,
       status: { in: [PayoutStatus.PENDING, PayoutStatus.FAILED] },
       stripeTransferId: null,
+      paypalPayoutBatchId: null,
     },
     include: {
       vendor: true,
@@ -349,10 +359,12 @@ export async function retryPendingPayoutsForVendor(userId: string): Promise<{ re
 
   for (const payout of pending as Array<{
     id: string;
-    vendorNetAmount: unknown;
+    amountNetToVendor: unknown;
     vendor: {
       stripeAccountId: string | null;
       stripeChargesEnabled: boolean;
+      payoutMethod: VendorPayoutMethod;
+      paypalEmail: string | null;
     };
     vendorOrder: { id: string; order: { orderNumber: string } };
   }>) {
@@ -364,7 +376,7 @@ export async function retryPendingPayoutsForVendor(userId: string): Promise<{ re
       payout.id,
       {
         id: payout.vendorOrder.id,
-        vendorNetAmount: payout.vendorNetAmount,
+        vendorNetAmount: payout.amountNetToVendor,
         vendor: payout.vendor,
       },
       payout.vendorOrder.order.orderNumber,
@@ -581,23 +593,17 @@ export async function createVendorStripeOnboardingLink(
       where: { id: userId },
       select: { email: true },
     });
-    const profileUrl = vendorPublicProfileUrl(vendor.slug);
-    const account = await stripe.accounts.create({
-      country: "ES",
-      email: vendor.email ?? user?.email ?? undefined,
-      controller: {
-        stripe_dashboard: { type: "express" },
-        fees: { payer: "application" },
-        losses: { payments: "application" },
-      },
-      capabilities: {
-        transfers: { requested: true },
-      },
-      business_profile: {
-        name: vendor.tradeName,
-        ...(profileUrl ? { url: profileUrl } : {}),
-      },
-      metadata: { vendorId: vendor.id },
+    const email = vendor.email ?? user?.email;
+    if (!email) {
+      throw new Error("VENDOR_EMAIL_REQUIRED");
+    }
+    const entityType =
+      vendor.taxId && /^[ABCDEFGHJKLMNPQRSUVW]/i.test(vendor.taxId) ? "company" : "individual";
+    const account = await createConnectRecipientAccount({
+      email,
+      displayName: vendor.tradeName,
+      vendorId: vendor.id,
+      entityType,
     });
     accountId = account.id;
     await prisma.vendor.update({

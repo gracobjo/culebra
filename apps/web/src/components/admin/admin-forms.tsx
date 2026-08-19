@@ -50,6 +50,7 @@ export function ContractVersionForm({ vendorId }: { vendorId: string }) {
         step="0.01"
         min="0"
         max="100"
+        defaultValue="15"
         placeholder="Comision %"
         className="w-full rounded-xl border border-stone-300 px-3 py-2 text-sm"
       />
@@ -85,7 +86,8 @@ export function CommissionRuleForm({ vendorId }: { vendorId: string }) {
         step="0.01"
         min="0"
         max="100"
-        placeholder="Porcentaje"
+        defaultValue="15"
+        placeholder="Porcentaje (defecto 15%)"
         className="w-full rounded-xl border border-stone-300 px-3 py-2 text-sm"
       />
       <input
@@ -103,7 +105,7 @@ export function CommissionRuleForm({ vendorId }: { vendorId: string }) {
         disabled={pending}
         className="rounded-full bg-emerald-800 px-4 py-2 text-sm text-white disabled:opacity-60"
       >
-        {pending ? "Guardando..." : "Crear regla de comision"}
+        {pending ? "Guardando..." : "Actualizar comision (%)"}
       </button>
     </form>
   );
