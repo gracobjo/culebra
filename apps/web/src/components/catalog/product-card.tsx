@@ -1,13 +1,52 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ProductRecord } from "@culebra/auth";
 import { formatPrice } from "@/lib/format";
+
+// Mapa de slug de categoría → imagen placeholder en /public/categories/
+// Se usa cuando el productor aún no ha subido foto propia del producto.
+const CATEGORY_PLACEHOLDER: Record<string, string> = {
+  "embutidos-y-productos-carnicos": "/categories/embutidos-y-productos-carnicos.png",
+  "jamon":                          "/categories/embutidos-y-productos-carnicos.png",
+  "chorizo":                        "/categories/embutidos-y-productos-carnicos.png",
+  "salchichon":                     "/categories/embutidos-y-productos-carnicos.png",
+  "otros-embutidos":                "/categories/embutidos-y-productos-carnicos.png",
+  "productos-derivados-del-cerdo":  "/categories/embutidos-y-productos-carnicos.png",
+  "quesos-y-lacteos":               "/categories/quesos-y-lacteos.png",
+  "queso-de-oveja":                 "/categories/quesos-y-lacteos.png",
+  "queso-de-cabra":                 "/categories/quesos-y-lacteos.png",
+  "queso-de-vaca":                  "/categories/quesos-y-lacteos.png",
+  "otros-productos-lacteos":        "/categories/quesos-y-lacteos.png",
+  "miel-y-productos-apicolas":      "/categories/miel-y-productos-apicolas.png",
+  "miel":                           "/categories/miel-y-productos-apicolas.png",
+  "polen":                          "/categories/miel-y-productos-apicolas.png",
+  "jalea-real":                     "/categories/miel-y-productos-apicolas.png",
+  "otros-productos-apicolas":       "/categories/miel-y-productos-apicolas.png",
+  "vinos":                          "/categories/vinos.png",
+  "vinos-tintos":                   "/categories/vinos.png",
+  "vinos-blancos":                  "/categories/vinos.png",
+  "vinos-rosados":                  "/categories/vinos.png",
+  "vinos-otros":                    "/categories/vinos.png",
+  "licores":                        "/categories/licores.png",
+  "orujo":                          "/categories/licores.png",
+  "licores-tradicionales":          "/categories/licores.png",
+  "productos-tradicionales":        "/categories/productos-tradicionales.png",
+};
+
+function getProductImage(product: ProductRecord): { src: string; isPlaceholder: boolean } {
+  const uploaded = product.images[0];
+  if (uploaded?.url) return { src: uploaded.url, isPlaceholder: false };
+  const slug = product.subcategory?.slug ?? product.category?.slug ?? "";
+  const placeholder = CATEGORY_PLACEHOLDER[slug] ?? "/categories/productos-tradicionales.png";
+  return { src: placeholder, isPlaceholder: true };
+}
 
 type ProductCardProps = {
   product: ProductRecord;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const image = product.images[0];
+  const { src: imageSrc, isPlaceholder } = getProductImage(product);
   const location = [product.vendor?.city, product.vendor?.province]
     .filter(Boolean)
     .join(", ");
@@ -20,16 +59,14 @@ export function ProductCard({ product }: ProductCardProps) {
       href={`/productos/${product.slug}`}
       className="group flex flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
     >
-      <div className="relative flex aspect-[4/3] items-center justify-center bg-stone-100 text-sm text-stone-500">
-        {image ? (
-          <img
-            src={image.url}
-            alt={image.altText ?? product.name}
-            className="h-full w-full object-cover transition group-hover:scale-[1.02]"
-          />
-        ) : (
-          "Sin imagen"
-        )}
+      <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-stone-100 text-sm text-stone-500">
+        <Image
+          src={imageSrc}
+          alt={product.images[0]?.altText ?? product.name}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className={`object-cover transition group-hover:scale-[1.02] ${isPlaceholder ? "opacity-80" : ""}`}
+        />
         {soldOut ? (
           <span className="absolute left-3 top-3 rounded-full bg-stone-800/90 px-2.5 py-1 text-xs font-medium text-white">
             Agotado
