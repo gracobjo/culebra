@@ -2,8 +2,16 @@ import Stripe from "stripe";
 
 let stripeClient: Stripe | null = null;
 
+function normalizeEnvSecret(value: string | undefined): string {
+  const trimmed = value?.trim() ?? "";
+  if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+    return trimmed.slice(1, -1).trim();
+  }
+  return trimmed;
+}
+
 export function isStripeConfigured(): boolean {
-  const key = process.env.STRIPE_SECRET_KEY ?? "";
+  const key = normalizeEnvSecret(process.env.STRIPE_SECRET_KEY);
   return key.startsWith("sk_");
 }
 
@@ -12,7 +20,7 @@ export function getStripe(): Stripe {
     throw new Error("STRIPE_NOT_CONFIGURED");
   }
   if (!stripeClient) {
-    stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY!);
+    stripeClient = new Stripe(normalizeEnvSecret(process.env.STRIPE_SECRET_KEY)!);
   }
   return stripeClient;
 }
