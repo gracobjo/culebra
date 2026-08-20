@@ -656,7 +656,7 @@ Alineado con el plan de viabilidad (reforma del local: electricidad, pintura, cl
 | Tasas legalización y depósito | 320 €/año | gasto corriente | no |
 | SaaS / nube / herramientas de arranque | 1.500 € | gasto corriente (lanzamiento) | no *(salvo que la convocatoria admita expresamente algún activo software; a confirmar)* |
 | Consultoría / plan de empresa / marketing inicial | a determinar (orden de magnitud 2.000–4.000 € en fuentes) | gasto corriente | no *(salvo partida expresamente elegible)* |
-| Gestoría, suministros, internet (operación) | a determinar (~300 €/mes en fuentes internas) | gasto de funcionamiento | no |
+| Gestoría, suministros, internet (operación) | a determinar (~300 €/mes base; alt. alquiler ~650 €/mes en plan §5.F) | gasto de funcionamiento | no |
 
 ### 25.4 Fondo de maniobra (caja de arranque — no subvencionable como inversión)
 
@@ -792,7 +792,7 @@ Detalle mes a mes en `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` → hoja
 
 **Objetivo financiero del escenario conservador:** recuperar la inversión de referencia (**30.000 €**) y generar al menos un **15%** adicional en dividendos (**4.500 €**) en el horizonte de 5 años (neto acumulado mínimo **34.500 €**).
 
-**Punto de equilibrio orientativo (fase Y3+, con amortización y opex contenido):** del orden de **~1.700 €/mes** de gastos fijos → **~11.400 €/mes de GMV** (÷15%).
+**Punto de equilibrio orientativo (fase Y3+, con amortización y opex contenido):** del orden de **~1.700 €/mes** de gastos fijos → **~11.400 €/mes de GMV** (÷15%). Escenario base = comodato. **Alternativa alquiler:** plan §5.F (~8.200–11.500 € GMV/mes).
 
 **Reconciliación con el plan interno previo:** el plan citaba EBITDA Y1 positivo sin el mismo rigor de amortización (activo capitalizado en lanzamiento) ni comisiones de medios de pago sobre GMV. El Excel conservador **suaviza Y1** (amortización solo H2; marketing comercial en H2) y sigue siendo más prudente que el EBITDA simplificado del plan. IS 15% = orientativo. IVA fuera de PyG.
 
@@ -803,7 +803,7 @@ Volcados **mes a mes** en el Excel (`PyG Realista`, `PyG Optimista`) y resumidos
 
 | Escenario | GMV Y1 → Y5 (orden) | Lectura |
 |-----------|---------------------|---------|
-| Conservador | 40k → 360k | Referencia memoria / ICECYL; recupera 30k + ≥15% dividendos |
+| Conservador | 40k → 360k | Referencia memoria / ICECYL (base comodato); recupera 30k + ≥15% dividendos |
 | Realista | 75k → 680k | Más vendedores/GMV y más gasto |
 | Optimista | 110k → 1,05M | Escalado agresivo (hipótesis) |
 ## 29. Riesgos y medidas correctoras

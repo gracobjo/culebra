@@ -1,9 +1,13 @@
-# Cuenta de resultados 5 años — v3 (GMV conservador recalibrado)
+# Cuenta de resultados 5 años — v3 (GMV conservador; base comodato)
 
 Fichero: `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx`  
 Script: `docs/datos_ine/populate_pyg_excel.py`
 
-## Objetivo financiero (conservador)
+## Escenario base (referencia)
+
+Local en **comodato** (sin fila de alquiler en la PyG). Opex oficina contenido.
+
+## Objetivo financiero (conservador base)
 
 | Concepto | Importe |
 |----------|--------:|
@@ -23,6 +27,22 @@ Script: `docs/datos_ine/populate_pyg_excel.py`
 | 5 | 360.000 | 54.000 | ≈ +23.900 | ≈ +41.440 |
 
 Drivers: 5 → 8 → 11 → 13 → 15 vendedores. Opex contenido alineado al volumen.
+
+## Alternativa — local en alquiler (plan §5.F)
+
+Decisión pendiente. Costes mensuales de sensibilidad:
+
+| Concepto | €/mes |
+|----------|------:|
+| Alquiler | 300 |
+| Luz | 100 |
+| Teléfono | 50 |
+| Higiene / limpieza | 50 |
+| **Subtotal local** | **500** |
+| + internet + gestoría (partida) | **650** total partida |
+
+Efecto en plan simplificado §5.B: EBITDA Y1 **−1.400 €** / Y2 **+7.200 €** (frente a +700 / +14.400 del base).  
+Si se modela en Excel con esos opex, el neto acum. conservador cae a ~**23.100 €** (por debajo de 34.500 €).
 
 ## Otros escenarios (alza)
 

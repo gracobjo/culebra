@@ -19,7 +19,7 @@ La empresa se constituirá bajo la forma jurídica de **Sociedad de Responsabili
 El Capital Social inicial se fija en **30.000 €**, dividido en participaciones de 1 € de valor nominal.
 
 * **Socio 1 (Promotor / Inversor - 60%):** Aporta 18.000 € en efectivo. Rol: Dirección de negocio, finanzas y gestión de subvenciones.
-* **Socio 2 (Propietario del Local - 20%):** Aporta 6.000 € en efectivo + formalización del Contrato de Comodato. Rol: Atención presencial estacional en la tienda física de productos típicos.
+* **Socio 2 (Propietario / Gestor del Local - 20%):** Aporta 6.000 € en efectivo +, en el **escenario base**, formalización de comodato del local. Rol: Atención presencial estacional en la tienda física. **Alternativa** (decisión pendiente): arrendamiento a 300 €/mes (ver §5.F).
 * **Socio 3 (Desarrollador DAW - 20%):** Aporta 6.000 € en efectivo. Rol: Desarrollo íntegro de la plataforma (Meses 1-6) y posterior mantenimiento técnico del entorno.
 
 ### C. Clasificación de Actividades (CNAE Oficiales)
@@ -60,7 +60,7 @@ El presupuesto se ha ajustado estrictamente al **mínimo elegible de 30.000 €*
 | Partida Presupuestaria | Coste Neto | Carácter Técnico / Tipo de Justificación | ¿Elegible ICECYL? |
 | :--- | :---: | :--- | :---: |
 | **1. Desarrollo Tecnológico** | 24.000 € | Coste de personal bruto + SS del programador DAW (6 meses) | **SÍ** |
-| **2. Adecuación de Oficina** | 2.500 € | Reforma del local cedido (Electricidad, pintura, climatización) | **SÍ** |
+| **2. Adecuación de Oficina** | 2.500 € | Reforma del local (Electricidad, pintura, climatización); base = comodato; alt. = alquiler | **SÍ** |
 | **3. Equipamiento Informático** | 2.000 € | Ordenadores portátiles de desarrollo, pantallas y servidor NAS | **SÍ** |
 | **4. Seguridad y Redes** | 1.500 € | Router profesional, Firewall físico y sistemas SAI | **SÍ** |
 | **5. Mobiliario y Logística** | 1.000 € | Puestos de trabajo, báscula de pesaje y etiquetadora | **SÍ** |
@@ -111,11 +111,15 @@ Al situarse el centro de trabajo en el entorno rural de Zamora, el proyecto cali
 
 Este plan asume una proyección de ingresos de carácter pesimista (reducción del 50% sobre la capacidad estimada) y un comportamiento comercial estacional para la tienda física del municipio.
 
+**Escenario base (cuadros 5.B–5.E):** local en **comodato** (sin alquiler) + suministros ligeros / gestoría (~300 €/mes en la partida de oficina).  
+**Escenario alternativo (§5.F):** decisión de ocupación aún abierta → **alquiler 300 € + luz 100 € + teléfono 50 € + higiene 50 €** (y el resto de partida). No sustituye al base; sirve para sensibilidad.
+
 ### A. Operativa del Modelo Híbrido (Digital + Físico)
 * **Tienda Física Estacional:** Atendida presencialmente por el **Socio 2** (Coste de personal: 0 €) concentrando las aperturas en fines de semana, Semana Santa y periodo estival (junio-septiembre). Genera flujo de caja y ventas de productos típicos (embutido, vino, miel) desde el primer mes.
 * **Fase de Mantenimiento Técnico (Mes 7+):** El programador DAW finaliza su contrato de desarrollo y pasa a un contrato de mantenimiento de **mínimo técnico** (2 a 5 horas semanales o bajo factura de retén mercantil de 250 €/mes), minimizando los costes fijos de la S.L.
+* **Ocupación del local:** el **base** asume comodato (anexo §6). Si los socios optan por arrendamiento, aplicar la **alternativa §5.F**.
 
-### B. Proyección de Resultados a 3 Años
+### B. Proyección de Resultados a 3 Años (escenario base — comodato)
 
 | Concepto de la Cuenta de Explotación | Año 1 (6 meses venta) | Año 2 (Consolidación) | Año 3 (Madurez) |
 | :--- | :---: | :---: | :---: |
@@ -128,9 +132,10 @@ Este plan asume una proyección de ingresos de carácter pesimista (reducción d
 | Impuesto de Sociedades (15% Emprendedores) | -105 € | -2.160 € | -5.310 € |
 | **BENEFICIO NETO LIMPIO** | **+595 €** | **+12.240 €** | **+30.090 €** |
 
-### C. Umbral de Rentabilidad (Breakeven) y Retorno (ROI)
+### C. Umbral de Rentabilidad (Breakeven) y Retorno (ROI) — base
 * **Punto de Equilibrio Mensual:** Se alcanza en el **Mes 7**. Al estabilizarse los gastos corrientes fijos en apenas ~880 €/mes (incluyendo el retén del programador DAW, la nube y la gestoría), la viabilidad se asegura con un volumen mínimo de transacciones en el marketplace y ventas en el local.
 * **Retorno del Capital de los Socios:** Los socios recuperan íntegramente su aportación neta de riesgo (17.800 €) durante el transcurso del **Año 2**, momento en el que el beneficio neto acumulado de la empresa y la entrada de las subvenciones consolidan la caja de la S.L. en positivo permanente.
+* **Alternativa con alquiler:** ver §5.F (EBITDA más estrecho; GMV de equilibrio más alto).
 
 ### D. Desglose de gastos de promoción (Paid Media — Año 1)
 
@@ -167,11 +172,11 @@ Partida total de marketing digital del escenario prudente: **3.000 €** (= **50
 
 *Nota:* LinkedIn se financia **reasignando** parte del cupo Meta/Google en la campaña de otoño (p. ej. 1–2 meses a 400 €), sin romper el techo anual de 3.000 €, o se dota con el margen de “Gastos de Lanzamiento” (partida 7) si se acelera B2B.
 
-### E. ¿Es rentable esta inversión en promoción? (comisión 15 % + opex)
+### E. ¿Es rentable esta inversión en promoción? (comisión 15 % + opex) — base
 
 **Marco de ingresos:** la S.L. cobra ~**15 %** sobre el GMV del marketplace (el productor se queda ~85 %). El marketing no se “repercute” al productor: se paga con el margen de intermediación (+ tienda física estacional, si aplica).
 
-**Opex de referencia (plan prudente):**
+**Opex de referencia (escenario base — comodato):**
 
 | Concepto | Año 1 (6 meses venta) | Mensualizado orientativo |
 | :--- | ---: | ---: |
@@ -182,7 +187,7 @@ Partida total de marketing digital del escenario prudente: **3.000 €** (= **50
 | **Opex operativo Año 1** | **6.800 €** | **~1.130 €/mes** (media 6 meses) |
 | Tras Mes 7 (fijos sin pico de lanzamiento) | — | **~880 €/mes** (+ marketing si se mantiene) |
 
-**Ingresos Año 1 del propio plan:** 7.500 € (comisiones + tienda) → EBITDA **+700 €** tras pagar los 3.000 € de Paid Media. Es decir: **con las hipótesis del cuadro 5.B, la inversión de 3.000 € es compatible con resultado positivo (aunque estrecho)**.
+**Ingresos Año 1 del propio plan:** 7.500 € (comisiones + tienda) → EBITDA **+700 €** tras pagar los 3.000 € de Paid Media. Es decir: **con las hipótesis del cuadro 5.B (base), la inversión de 3.000 € es compatible con resultado positivo (aunque estrecho)**.
 
 **Lectura por GMV (solo comisión 15 %, sin tienda física):**
 
@@ -195,18 +200,65 @@ Partida total de marketing digital del escenario prudente: **3.000 €** (= **50
 \*Antes de cloud, gestoría, envíos absorbidos (≥49 €) y Stripe.  
 \*\*~880 €/mes fijos ⇒ GMV mínimo ≈ 880 / 0,15 ≈ **5.900 €/mes**. Con marketing continuo a 500 € ⇒ opex ≈ 1.380 €/mes ⇒ GMV ≈ **9.200 €/mes** (~110.000 € GMV/año).
 
-**Veredicto prudente:**
+**Veredicto prudente (base):**
 
 1. **Sí es rentable como apuesta de arranque** si se mantiene el techo de **500 €/mes** y el Año 1 cierra cerca de los **7.500 €** de ingresos del plan (o ≥6.000 € de comisión pura): el Paid Media no tumba el EBITDA.
 2. **No es rentable “por sí solo” mes a mes** si el GMV digital se queda muy por debajo de ~6.000–9.000 €/mes y se mantiene publicidad a 500 € sin conversión: el CAC comería casi toda la comisión.
 3. **Año 2** (GMV conservador ~140.000 € → comisión ~21.000 €; marketing −8.000 €) el ratio mejora: la publicidad pasa a ser **inversión de crecimiento**, no un lastre, siempre que el ticket medio y el umbral de envío gratis (≥49 €) empujen cestas multiproductor.
 4. **LinkedIn** solo compensa en campaña corta B2B (cestas): no debe ser gasto fijo mensual del Lean.
+5. Si la ocupación del local pasa a **alquiler**, usar la sensibilidad de **§5.F** (no invalidar el base hasta que se decida).
 
 **Condiciones de control (recomendadas):** CAC &lt; margen de comisión por pedido; pausar Google/Meta si el ROAS cae &lt; ~3–4× gasto en ads; priorizar Meta+Google y retargeting barato antes que LinkedIn continuo.
 
+### F. Alternativa — Local en alquiler (decisión pendiente)
+
+> **Naturaleza.** Escenario de sensibilidad. La forma de ocupación del inmueble **aún no está cerrada**. Si no hay comodato, el plan contempla estos costes mensuales de local **en lugar de** asumir cesión gratuita.
+
+#### F.1 Costes mensuales del local (alternativa)
+
+| Concepto | Importe / mes | Notas |
+| :--- | ---: | :--- |
+| Alquiler del local | **300 €** | Sustituye al comodato del escenario base |
+| Luz | **100 €** | (en base la luz iba en el bloque ~300 € de oficina) |
+| Teléfono | **50 €** | Línea / móvil corporativo |
+| Materiales de higiene, limpieza, etc. | **50 €** | Consumibles del local |
+| **Subtotal local** | **500 €** | |
+| Internet rural | 30 € | Fibra o contingencia satélite |
+| Gestoría (cuota fija) | 120 € | Contabilidad e impuestos |
+| **Total partida oficina / local / gestoría** | **650 €** | **7.800 € / año** |
+
+*Año 1 (6 meses de venta):* **3.900 €** en esta partida (frente a 1.800 € del base).  
+Cloud/SaaS del marketplace siguen en su fila propia (sin duplicar).
+
+#### F.2 Cuenta de explotación alternativa (mismos ingresos)
+
+| Concepto | Año 1 (6 meses) | Año 2 | Año 3 |
+| :--- | :---: | :---: | :---: |
+| Ingresos totales | 7.500 € | 30.000 € | 55.000 € |
+| Marketing + Cloud + Mant. DAW | -5.000 € | -15.000 € | -19.000 € |
+| Local + gestoría/internet (alt.) | -3.900 € | -7.800 € | -7.800 € |
+| **EBITDA** | **−1.400 €** | **+7.200 €** | **+28.200 €** |
+| IS 15 % | 0 € | -1.080 € | -4.230 € |
+| **Neto** | **−1.400 €** | **+6.120 €** | **+23.970 €** |
+
+#### F.3 Break-even y lectura
+
+| Indicador | Base (comodato) | Alternativa (alquiler) |
+| :--- | ---: | ---: |
+| Fijos tras Mes 7 | ~880 €/mes | ~**1.230 €/mes** |
+| Idem + ads 500 € | ~1.380 €/mes | ~**1.730 €/mes** |
+| GMV equilibrio (15 %) | ~5.900 / 9.200 €/mes | ~**8.200 / 11.500 €/mes** |
+| EBITDA Año 1 (plan 5.B) | +700 € | **−1.400 €** |
+| EBITDA Año 2 | +14.400 € | **+7.200 €** |
+| Ahorro si se firma comodato | — | **+3.600 €/año** (solo alquiler) |
+
+En el Excel / dossier, el escenario **conservador de referencia** sigue siendo el de comodato (neto acum. ~41.400 €). La alternativa con alquiler degrada el neto acum. conservador a ~**23.100 €** y deja el objetivo 34.500 € condicionado a comodato, más GMV o escenario realista/optimista.
+
 ---
 
-## 6. 📝 ANEXO: MODELO DEL CONTRATO DE COMODATO (LOCAL DEL SOCIO)
+## 6. 📝 ANEXO: MODELO DEL CONTRATO DE COMODATO (ESCENARIO BASE)
+
+> Modelo alineado al **escenario base** de §5. Si los socios eligen alquiler, no se firma este anexo y aplica la **alternativa §5.F**.
 
 **CONTRATO DE COMODATO DE BIEN INMUEBLE PARA USO COMERCIAL Y TECNOLÓGICO**
 

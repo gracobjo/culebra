@@ -281,7 +281,7 @@ Validará:
 | **Take rate** | Ingresos / GMV | Debe situarse ~15% |
 | **Cobertura de gastos** | Ingresos / Gastos | >100% = umbral operativo |
 | **Resultado neto** | Tras gastos, amortización e IS orientativo | Viabilidad |
-| **GMV de equilibrio** | ≈ gastos fijos ÷ 15% | ~11.400 €/mes (fase Y3+, opex contenido) |
+| **GMV de equilibrio** | ≈ gastos fijos ÷ 15% | Base ~5.900–9.200 €/mes · Alt. alquiler ~8.200–11.500 €/mes |
 | **GMV / vendedor / mes** | GMV ÷ n.º vendedores activos | Intensidad comercial |
 
 Cuadro de mando visual (gráficos dinámicos): Excel `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` → hoja **`00_KPI_Dashboard`**.
@@ -305,15 +305,16 @@ Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red
 |---|---:|---:|---:|---:|---:|
 | GMV vendedores | 40.000 € | 140.000 € | 220.000 € | 280.000 € | 360.000 € |
 | Ingresos SL (15%) | **6.000 €** | **21.000 €** | **33.000 €** | **42.000 €** | **54.000 €** |
-| Resultado neto (orientativo) | ≈ −4.400 € | ≈ +500 € | ≈ +7.800 € | ≈ +14.700 € | ≈ +23.900 € |
+| Resultado neto (orientativo, **base comodato**) | ≈ −4.400 € | ≈ +500 € | ≈ +7.800 € | ≈ +14.700 € | ≈ +23.900 € |
 
 - Y1 en pérdida es coherente con arranque + amortización desde lanzamiento.  
 - Drivers: 5 → 8 → 11 → 13–15 vendedores.  
-- **Objetivo financiero:** recuperar inversión de referencia **30.000 €** y al menos **15%** en dividendos (4.500 €) → neto acumulado mínimo **34.500 €**. El conservador proyecta ≈ **41.400 €** acumulados en 5 años.  
+- **Objetivo financiero:** recuperar inversión de referencia **30.000 €** y al menos **15%** en dividendos (4.500 €) → neto acumulado mínimo **34.500 €**. El conservador **base** proyecta ≈ **41.400 €** acumulados en 5 años.  
+- **Alternativa alquiler** (plan §5.F): EBITDA Año 1 ≈ −1.400 € / Año 2 ≈ +7.200 €; neto Excel acum. ~23.100 € — documentada, no sustituye al base.  
 - Escenarios **Realista** y **Optimista** en el mismo Excel (hipótesis de sensibilidad).  
 - **GMV ≠ ventas propias de la SL.** IS orientativo; IVA fuera de la PyG.
 
-Punto de equilibrio operativo orientativo: entorno del **mes 7+** / consolidación en año 2–3 según GMV.
+Punto de equilibrio operativo orientativo (base): entorno del **mes 7+** / ~**5.900–9.200 € GMV/mes**. Con alternativa alquiler: ~**8.200–11.500 €/mes**.
 
 **Anexos contractuales:** **§9.A** (GMV ↔ pedidos ↔ clientes) y **§9.B** (embudo de conversión web Año 1). Marco de referencia para el Pacto de Socios; no son previsión garantizada. Cuadro de mando operativo en el panel: **`/admin/plan`** (incluye descarga del Excel de cuenta de resultados).
 
@@ -330,7 +331,7 @@ Criterio de prudencia: **ticket medio 65 €** por cesta unificada.
 | Horizonte | GMV (conservador) | Pedidos equivalentes | Ritmo orientativo | Lectura operativa |
 |---|---:|---:|---|---|
 | **Año 1** (6 meses de venta) | 40.000 € | ~**615** (~100/mes) | **3–4 cajas/día** en trastienda | Volumen absorbible por el nodo de Villardeciervos sin estructura extra |
-| **Año 2** | 140.000 € | ~**2.150** | ~**6 pedidos/día** | Consolidación; resultado neto orientativo ≈ **+500 €** (equilibrio fino) |
+| **Año 2** | 140.000 € | ~**2.150** | ~**6 pedidos/día** | Consolidación; resultado neto orientativo ≈ **+500 €** (base comodato; alt. alquiler más estrecha) |
 | **Año 5** (madurez) | 360.000 € | ~**5.530** | ~**15 pedidos/día** | Umbral donde conviene optimizar empaquetado/consolidación para mantener el SLA 24 h |
 
 Cálculo: `pedidos ≈ GMV ÷ 65 €`.
@@ -372,10 +373,11 @@ Año 3: 33.000 €         Año 3: 187.000 € repartidos
 
 **Matices que los socios aceptan al anexar este documento:**
 
-1. **Y1 contable** puede cerrar en pérdida orientativa (≈ −4.400 € en PyG prudente) aunque el volumen de pedidos sea manejable: amortización, medios de pago y opex.
+1. **Y1 contable** puede cerrar en pérdida orientativa (≈ −4.400 € en PyG prudente base) aunque el volumen de pedidos sea manejable: amortización, medios de pago y opex.
 2. El **15 % no es margen neto puro**: comisiones Stripe y, cuando aplique, absorción del **envío gratis ≥ 49 €** reducen la caja de la S.L.; el productor conserva su **85 %** sobre el bruto de producto.
-3. El resultado Año 2 ≈ **+500 €** es **equilibrio fino**, no holgura: desviaciones de ticket o CAC lo afectan.
+3. El resultado Año 2 ≈ **+500 €** (base) es **equilibrio fino**, no holgura: desviaciones de ticket o CAC lo afectan.
 4. El control de captación digital está en **§9.B** (embudo web, CAC, ROAS); este §9.A fija solo la equivalencia GMV ↔ pedidos ↔ clientes.
+5. **Alternativa alquiler** (plan §5.F): documentada; no es el caso base del Pacto hasta que los socios la activen.
 
 ### A.4 Conclusión financiera para firma de socios
 
@@ -794,19 +796,39 @@ La conexión es crítica para la gestión del marketplace en tiempo real y la si
 
 ### 📊 15.4 Cuadro Resumen: Partida de Costes Fijos Operativos
 
-La partida presupuestada de **"Gastos de Oficina, Suministros y Gestoría"** se valida matemáticamente:
+#### Escenario base (comodato)
+
+La partida presupuestada de **"Gastos de Oficina, Suministros y Gestoría"** se valida así:
 
 | Concepto | Coste mensual |
 |---|---:|
 | Luz del local | 50 € |
 | Internet rural de alta velocidad | 30 € |
-| Suscripciones de software (SaaS) | 100 € |
+| Suscripciones de software (SaaS)* | 100 € |
 | Cuota fija de gestoría (contabilidad e impuestos) | 120 € |
-| **TOTAL COSTES FIJOS OPERATIVOS** | **300 € / mes** |
+| **TOTAL COSTES FIJOS OPERATIVOS (base)** | **300 € / mes** |
 
-> **Coste anual total: 3.600 € / año** — exactamente la partida presupuestada.
+\*En el plan de viabilidad §5.B el cloud/SaaS del marketplace puede ir en fila propia; aquí se valida el bloque “oficina” del dossier.
 
-**Conclusión para los socios:** Los 3.600 € anuales cubren al céntimo la totalidad de los costes fijos de suministros, internet, licencias de software y asesoría contable. Sin gasto de alquiler (local cedido en comodato), la startup operará con una de las **estructuras de costes fijos más ligeras y seguras del mercado tecnológico actual**.
+> **Coste anual base: 3.600 € / año.** Sin alquiler (local en comodato del escenario base).
+
+#### Alternativa — local en alquiler (decisión pendiente)
+
+Si no se firma comodato, el plan de viabilidad §5.F contempla:
+
+| Concepto | Coste mensual |
+|---|---:|
+| Alquiler | **300 €** |
+| Luz | **100 €** |
+| Teléfono | **50 €** |
+| Materiales de higiene / limpieza | **50 €** |
+| Internet | 30 € |
+| Gestoría | 120 € |
+| **TOTAL partida local + gestoría/internet (alt.)** | **650 € / mes** |
+
+> **7.800 € / año** (Año 1 con 6 meses de venta: 3.900 €). EBITDA Año 1 del plan pasa de +700 € (base) a **−1.400 €** (alternativa). Detalle en `Plan_Viabilidad_Marketplace_Villardeciervos.md` §5.F.
+
+**Conclusión para los socios:** el **base** sigue siendo comodato + estructura ligera (~300 €/mes). La **alternativa con alquiler** está documentada para decidir sin rehacer el plan entero.
 
 ---
 

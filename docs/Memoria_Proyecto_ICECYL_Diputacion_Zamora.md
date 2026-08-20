@@ -179,7 +179,7 @@ El marketplace propone una **plataforma común** que concentra esas funciones, m
 
 **Identidad territorial.** Se desarrollará una identidad de marca de territorio y un sistema de presentación homogéneo que contribuya a posicionar los productos locales en el mercado nacional. El nombre comercial en estudio es *Sabores de la Culebra*. Detalles de packaging, proveedores y diseño gráfico **no se incluyen** en esta memoria institucional; están pendientes de consolidación.
 
-**Showroom / punto rural.** Las fuentes contemplan un espacio físico en Villardeciervos (oficina, posible exposición estacional y consolidación de envíos) como diferenciador frente a agregadores puramente digitales. El uso del inmueble se prevé mediante **cesión gratuita (comodato)** a la sociedad, por un plazo alineado con las exigencias de permanencia de las ayudas (**previsión**; contrato no reproducido aquí).
+**Showroom / punto rural.** Las fuentes contemplan un espacio físico en Villardeciervos (oficina, posible exposición estacional y consolidación de envíos) como diferenciador frente a agregadores puramente digitales. El **escenario base** prevé **cesión gratuita (comodato)**; existe una **alternativa documentada** de arrendamiento (300 €/mes + luz/teléfono/higiene) en el plan de viabilidad §5.F, pendiente de decisión societaria.
 
 ---
 
@@ -407,7 +407,7 @@ No se declaran ahorros de CO₂ ni sellos ambientales. Cualquier afirmación amb
 - Modelo de plataforma **sin compra de stock** (menor inmovilizado comercial).
 - Especialización territorial y sede en Villardeciervos.
 - Desarrollo tecnológico propio (activo de la sociedad).
-- Estructura de costes fijos prevista relativamente contenida (incluye, según fuentes, ausencia de alquiler por cesión del local).
+- Estructura de costes fijos prevista relativamente contenida (escenario base: ausencia de alquiler por cesión del local; alternativa de alquiler documentada en el plan).
 - Enfoque inicial en no perecederos (menor complejidad logística).
 
 *Nota.* Las fuentes internas citan como fortaleza una alta cobertura de la inversión vía ayudas. **En esta memoria esa cobertura se reclasifica como oportunidad / hipótesis de financiación**, no como fortaleza cierta: las ayudas no están concedidas.
@@ -518,7 +518,7 @@ Las fuentes internas coinciden en un **proyecto de arranque del orden de 40.000 
 
 Las fuentes citan, entre otros: constitución societaria, tasas, software/nube (SaaS), marketing inicial, consultoría, **caja de maniobra**. El total de caja de arranque se sitúa en **~40.000 €** (previsión).
 
-Costes fijos operativos internos estimados en fuentes: entorno de **300 €/mes** de suministros + software + gestoría, **sin alquiler** si se confirma el comodato. **Previsión**; tarifas de mercado sujetas a cambio.
+Costes fijos operativos internos estimados en fuentes: entorno de **300 €/mes** de suministros + software + gestoría en el **escenario base (comodato)**. **Alternativa** (plan §5.F): ~**650 €/mes** con alquiler 300 + luz 100 + teléfono 50 + higiene 50 (+ internet/gestoría). **Previsión**; tarifas de mercado sujetas a cambio.
 
 ### 22.4 Lo que no es este presupuesto
 
@@ -567,7 +567,7 @@ Costes = nube/SaaS, marketing, mantenimiento técnico, oficina, gestoría, enví
 
 ### 24.2 Proyección a 5 años (escenario **conservador** del modelo cuantitativo)
 
-Referencia: `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` (escenario conservador recalibrado: recuperar inversión 30.000 € + ≥15% dividendos).
+Referencia: `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` (escenario conservador **base** / comodato: recuperar inversión 30.000 € + ≥15% dividendos).
 
 | Concepto | Año 1 (≈ 6 meses de venta) | Año 2 | Año 3 | Año 4 | Año 5 |
 |----------|---------------------------:|------:|------:|------:|------:|
@@ -575,7 +575,8 @@ Referencia: `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` (escenario conser
 | Ingresos SL (comisión 15%) | 6.000 € | 21.000 € | 33.000 € | 42.000 € | 54.000 € |
 | Resultado neto (orientativo) | ≈ −4.400 € | ≈ +500 € | ≈ +7.800 € | ≈ +14.700 € | ≈ +23.900 € |
 
-**Neto acumulado 5 años (conservador):** ≈ **41.400 €** (≥ 34.500 € = 30.000 inversión + 4.500 dividendos al 15%).
+**Neto acumulado 5 años (conservador base):** ≈ **41.400 €** (≥ 34.500 € = 30.000 inversión + 4.500 dividendos al 15%).  
+**Alternativa alquiler:** ver plan de viabilidad §5.F (EBITDA más estrecho; acum. Excel ~23.100 €).
 
 Escenarios realista y optimista cuantificados en el mismo Excel. **Previsión**, no compromiso de ventas.
 
