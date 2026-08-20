@@ -68,16 +68,29 @@ Correcto: “el Centro del Lobo recibió >42.000 visitantes”. Incorrecto: “l
 
 Gasto medio hogares en alimentos y bebidas no alcohólicas: **5.391 €/año** (15,8 % del presupuesto). Categorías relevantes: carne 3,6 %; leche/quesos/huevos 2,0 %. Dimensiona el mercado de categorías; **no** el gasto en productos de la Culebra.
 
-### Tesis comercial (sin eje Madrid)
+### Tesis comercial (Sanabria–La Carballeda + recompra online)
 
 ```text
-TERRITORIO (productos + naturaleza + turismo)
+TERRITORIO (productos + naturaleza + turismo Sanabria/Carballeda/Culebra)
     → MARKETPLACE
-    → RESIDENTE / TURISTA / CONSUMIDOR NACIONAL
+    → RESIDENTE / TURISTA (Galicia, Madrid, CyL, norte…) / CONSUMIDOR NACIONAL
     → COMPRA ONLINE → RECOMPRA
 ```
 
-La procedencia por CCAA de los viajeros rurales de Zamora está **pendiente de extracción INE**; hasta entonces no se declara un mercado principal.
+**Procedencia — dos capas:**
+
+1. **Provincia Zamora (INE EOTR tabular CCAA):** pendiente de extracción; 75448 solo da Residentes ES / extranjero.  
+2. **Comarca Sanabria–La Carballeda (síntesis de trabajo):** motor turístico provincial (Lago de Sanabria, Puebla, A-52, AVE Sanabria AV). Órdenes de magnitud orientativos:
+
+| Procedencia | ~Cuota | Nota |
+|-------------|-------:|------|
+| Galicia | 42 % | Principal emisor; proximidad |
+| Madrid | 25 % | Verano / Semana Santa; estancias más largas |
+| Castilla y León | 18 % | Alta repetición |
+| Asturias + País Vasco | 10 % | Activo / montaña |
+| Resto | 5 % | Residual |
+
+Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/persona. Serie 2019–2025: resiliencia rural, boom 2020–21, estabilización y alargamiento de temporada con AVE. **No** atribuir estas cuotas a Villardeciervos ni a la serie provincial sin tabla INE.
 
 ---
 
@@ -339,7 +352,7 @@ La **IA** (p. ej. asistentes de código) apoya desarrollo y fichas de producto; 
 **Oportunidades**
 
 - Alto ticket medio gourmet.
-- Demanda nacional y turística diversificada (Castilla y León, limítrofes y resto de España); la cuota por CCAA se fijará con datos INE de procedencia (pendiente), no por intuición ni por un único polo urbano.
+- Demanda nacional y turística diversificada; en **Sanabria–La Carballeda** la síntesis prioriza Galicia, Madrid y CyL (ver §1). Las cuotas CCAA **provinciales** oficiales siguen pendientes de extracción INE.
 - Campañas en invierno con inversión rural.
 - Fondos europeos complementarios (La Raya).
 

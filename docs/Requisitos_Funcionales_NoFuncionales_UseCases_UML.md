@@ -2,6 +2,7 @@
 
 ![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
 
+**Documentos relacionados:** [Manual de usuario](./Manual_Usuario_Marketplace.md) · [Manual de desarrollador](./Manual_Desarrollador_Marketplace.md) · [Turismo](./tourism.md)
 
 ---
 
@@ -14,9 +15,10 @@ RF-01 Autenticación y roles
 - El sistema debe soportar login/register y roles: ADMIN, VENDOR, CONSUMER.
 - Debe proteger rutas de panel productor y panel admin.
 
-RF-02 Catálogo y categorías
+RF-02 Catálogo, hub tienda y categorías
 
-- El consumidor debe poder ver categorías y productos publicados.
+- El consumidor debe poder ver el hub `/tienda`, categorías agro y productos publicados.
+- Las entradas de turismo/packs en el hub no deben mezclar la reserva de noche en el checkout de productos.
 
 RF-03 Carrito multi-proveedor
 
@@ -72,6 +74,33 @@ RF-14 Sandbox de validación
 
 - Admin debe poder ejecutar simulaciones para validar flujo end-to-end sin Stripe real.
 
+RF-15 Hub tienda de la comarca
+
+- Debe existir `/tienda` que agrupe categorías agroalimentarias y entradas a turismo/packs.
+- `/categorias` (índice) puede redirigir al hub; las fichas `/categorias/[slug]` siguen siendo catálogo agro.
+
+RF-16 Directorio de alojamientos (fase 2)
+
+- Debe listar alojamientos publicados con enlace de reserva externa (Booking, web, WhatsApp, teléfono, email).
+- Debe permitir cross-sell producto ↔ alojamiento sin integrar la noche en el checkout.
+
+RF-17 Packs territoriales (fase 3)
+
+- Debe permitir packs “noche + lote gourmet”: el lote se añade al carrito como productos; la noche permanece como enlace externo al alojamiento.
+
+RF-18 Cupones
+
+- Debe poder aplicarse un cupón al carrito (% o fijo) con validación de vigencia y mínimo de pedido.
+- El descuento se refleja en `Order.discountAmount` / `Order.couponCode` y en el importe de pago.
+
+RF-19 Afiliación
+
+- Debe capturar `?ref=CODIGO`, persistirlo (cookie) y asociarlo al pedido (`Order.affiliateCode`) si el código está activo.
+
+RF-20 Admin turismo
+
+- Admin debe poder gestionar alojamientos, packs, cupones y códigos de afiliado desde `/admin/turismo`.
+
 ### C2. Requisitos No Funcionales
 
 RNF-01 Seguridad
@@ -100,6 +129,10 @@ RNF-06 Cumplimiento legal
 
 - Retención de 14 días aplicada a payouts.
 
+RNF-07 Separación checkout agro / reserva turística
+
+- La reserva de alojamiento no debe mezclarse en el mismo checkout de productos (evita complejidad legal/pago de estancias y mantiene el núcleo agroalimentario del expediente).
+
 ---
 
 ## D. Casos de Uso (Use Cases) — Alto nivel
@@ -110,12 +143,13 @@ Actores:
 - **Productor**
 - **Administrador**
 - **Sistema** (webhook/cron)
+- **Alojamiento / afiliado** (actor externo; recibe tráfico vía `?ref=` o directorio)
 
 Use cases principales:
 
-- UC-01 Consultar catálogo y categorías
-- UC-02 Gestionar carrito multi-vendor
-- UC-03 Realizar checkout (Stripe Connect + Bizum)
+- UC-01 Consultar catálogo y hub `/tienda`
+- UC-02 Gestionar carrito multi-vendor (incl. cupón)
+- UC-03 Realizar checkout (Stripe Connect + Bizum; cupón/afiliado opcionales)
 - UC-04 Confirmación de pago (webhook) → marcar pedido pagado
 - UC-05 Crear payouts retenidos (heldForWithdrawal + releasesAt)
 - UC-06 Liberar payouts maduros (cron)
@@ -125,6 +159,10 @@ Use cases principales:
 - UC-10 Admin consulta KPIs y rentabilidad
 - UC-11 Admin gestiona grupo piloto
 - UC-12 Sandbox: simular pago y shipping para validación
+- UC-13 Consultar directorio de alojamientos y abrir reserva externa
+- UC-14 Añadir pack (lote) al carrito y reservar noche fuera
+- UC-15 Aplicar cupón / registrar afiliado en pedido
+- UC-16 Admin gestiona turismo (alojamientos, packs, cupones, afiliados)
 
 ---
 
@@ -200,6 +238,37 @@ Postcondiciones:
   - costes imputables (Stripe processing, amortización, envasado, transporte, cloud/gestoría)
   - beneficio neto y margen.
 
+### E6. Pack + reserva externa (sin mezclar checkout)
+
+Precondiciones:
+
+- Pack publicado con ítems de producto `PUBLISHED`.
+- Alojamiento publicado (opcional) con `bookingUrl` / canal de reserva.
+
+Flujo:
+
+1. Consumidor en `/packs/[slug]` añade el **lote** al carrito (`addPackToCart`).
+2. Si el pack tiene cupón asociado, se intenta aplicar al carrito.
+3. Consumidor abre el enlace de reserva del alojamiento (fuera del marketplace).
+4. Checkout del carrito solo cobra productos (+ descuento cupón si aplica).
+
+Postcondiciones:
+
+- Pedido con líneas de producto; sin línea de “noche”.
+- Si había `?ref=`, `Order.affiliateCode` informativo.
+
+### E7. Cupón en carrito → pedido
+
+Precondiciones:
+
+- Cupón activo, dentro de fechas, bajo `maxRedemptions`, y subtotal ≥ `minOrderAmount`.
+
+Postcondiciones:
+
+- `Cart.couponCode` / `Order.couponCode`, `Order.discountAmount`.
+- `Payment.amount` = total tras descuento.
+- `CouponRedemption` + incremento de `redemptionCount`.
+
 ---
 
 ## F. Diagramas UML (los 4 principales + otros útiles)
@@ -270,6 +339,34 @@ classDiagram
     comment
     createdAt
   }
+  class Accommodation{
+    id
+    slug
+    name
+    bookingUrl
+    bookingChannel
+    status
+  }
+  class TourismPack{
+    id
+    slug
+    name
+    accommodationId
+    status
+  }
+  class Coupon{
+    id
+    code
+    discountType
+    discountValue
+    isActive
+  }
+  class AffiliateCode{
+    id
+    code
+    accommodationId
+    isActive
+  }
   class PilotProducer{
     id
     category
@@ -289,9 +386,13 @@ classDiagram
   Vendor "1" --> "0..*" VendorOrder : owns
   Order "1" --> "0..1" Payment
   Order "1" --> "1..*" VendorOrder
+  Order "0..*" --> "0..1" Coupon : mayRedeem
   VendorOrder "1" --> "0..1" Shipment
   VendorOrder "1" --> "0..1" Payout
   User "1" --> "0..*" Review : writes
+  Accommodation "1" --> "0..*" TourismPack : optional
+  Accommodation "1" --> "0..*" AffiliateCode : optional
+  TourismPack "0..1" --> "0..1" Coupon : optional
   PilotProducer "1" --> "0..*" PilotTask : has
 ```
 
@@ -307,8 +408,8 @@ flowchart LR
   Stripe(["💳 StripeWebhook"])
 
   %% Casos de uso (elipses)
-  UC01(["Consultar catálogo"])
-  UC02(["Gestionar carrito"])
+  UC01(["Consultar hub /tienda y catálogo"])
+  UC02(["Gestionar carrito + cupón"])
   UC03(["Realizar checkout"])
   UC04(["Dejar review"])
   UC05(["Confirmar pedido"])
@@ -321,12 +422,17 @@ flowchart LR
   UC12(["Ejecutar sandbox"])
   UC13(["Confirmar pago"])
   UC14(["Liberar payouts maduros"])
+  UC15(["Consultar alojamientos / reserva externa"])
+  UC16(["Añadir pack lote al carrito"])
+  UC17(["Admin turismo"])
 
   %% Relaciones
   Consumidor --- UC01
   Consumidor --- UC02
   Consumidor --- UC03
   Consumidor --- UC04
+  Consumidor --- UC15
+  Consumidor --- UC16
 
   Productor --- UC05
   Productor --- UC06
@@ -337,6 +443,7 @@ flowchart LR
   Admin --- UC10
   Admin --- UC11
   Admin --- UC12
+  Admin --- UC17
 
   Stripe --- UC13
   Cron   --- UC14

@@ -36,7 +36,8 @@ npm run test --workspace @culebra/api
 | RBAC | `hasRole`, `hasAnyRole`, `hasAllRoles` |
 | Slugs | normalizacion y unicidad |
 | Schemas auth | registro, login, contrasena |
-| Schemas carrito/checkout | cantidades y flujo minimo de compra |
+| Schemas carrito/checkout | cantidades, cupon y flujo minimo de compra |
+| Turismo / packs | listados publicos; pack añade productos, no noches |
 | Password/JWT/Token | hash, firma y utilidades criptograficas |
 | SEO web | URLs canonicas y JSON-LD |
 | API | health, validaciones, auth admin y carrito invitado |

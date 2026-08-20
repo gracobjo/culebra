@@ -110,9 +110,25 @@ No se declaran ventas, usuarios, productores adheridos, contratos comerciales ni
 - Marco comarcal citado en las fuentes: **La Carballeda**.
 - Marco de política territorial citado: zona fronteriza y de despoblación, **Plan de La Raya** / fondos europeos de desarrollo rural (**potencialmente aplicables**, no concedidos).
 
-**Caracterización cualitativa (sin inventar estadísticas).** El municipio y su entorno se inscriben en un medio rural de sierra, con tejido productivo de pequeños elaboradores agroalimentarios y artesanos, y con dificultades típicas de comercialización fuera del circuito de proximidad. Las fuentes internas mencionan estacionalidad de la actividad presencial y una **demanda nacional diversificada** —no limitada a un único destino— como **hipótesis de trabajo comercial**. Madrid es un polo de referencia frecuente, pero el mercado objetivo abarca también visitantes y consumidores de **Castilla y León**, **Cataluña (Barcelona)**, **País Vasco (incl. Vitoria)** y otras comunidades autónomas. No se trata de un estudio de mercado publicado con cuotas regionales cerradas.
+**Caracterización cualitativa y marco turístico comarcal.** El municipio y su entorno se inscriben en un medio rural de sierra, con tejido productivo de pequeños elaboradores agroalimentarios y artesanos, y con dificultades típicas de comercialización fuera del circuito de proximidad.
 
-**Datos estadísticos oficiales** (población, renta, empresas, turismo) **no figuran cuantificados** en las fuentes utilizadas. Quedan para completar con INE, Junta de Castilla y León, Diputación de Zamora u observatorios comarcales. Ver sección final.
+Si el análisis se centra en **Sanabria y La Carballeda** —motor del turismo rural de la provincia, con hitos como el Parque Natural del Lago de Sanabria y Puebla de Sanabria—, el perfil de procedencia **no coincide** con el de la capital provincial. El acceso por la **A-52** y, más recientemente, la parada **AVE Sanabria AV** (Otero de Sanabria) refuerzan un turismo interregional y de escapadas.
+
+**Órdenes de magnitud de procedencia (síntesis de trabajo para la comarca Sanabria–La Carballeda; no es la tabla INE “Zamora × CCAA” aún pendiente de extracción tabular):**
+
+| Procedencia | Orden de magnitud | Lectura comercial |
+|-------------|------------------:|-------------------|
+| Galicia | ~42 % | Principal emisor; proximidad (Ourense/Pontevedra); puentes, fines de semana, gastronomía de interior |
+| Comunidad de Madrid | ~25 % | Estancias más largas; verano y Semana Santa; casas completas (p. ej. Galende, Porto, Mombuey) |
+| Castilla y León | ~18 % | Intrarregional (Valladolid, León, Zamora); alta repetición todo el año |
+| Asturias + País Vasco | ~10 % | Senderismo, sierras (Culebra / Sanabria), turismo activo |
+| Resto de CCAA | ~5 % | Residual (p. ej. Cataluña, C. Valenciana) |
+
+**Perfil de estancia (síntesis comarcal):** estancia media orientativa **~2,4 noches** (superior a la media provincial EOTR reciente, del orden de **~1,9–2,2** según año); gasto medio diario estimado **48–62 €/persona** (restauración, activo, productos autóctonos); grupos familiares o de amigos. Serie cualitativa 2019–2025: resiliencia rural, “boom” 2020–2021, estabilización 2022–2023 (nacional >90 % de viajeros) y alargamiento de temporada 2024–2025 con AVE (más fines de semana en otoño/primavera).
+
+El mercado objetivo del marketplace sigue siendo **nacional y diversificado** (visitante + residente + recompra online), no un único polo urbano. Detalle y fuentes: memoria técnica §9.3 (capa B) y [`Tabla_Maestra_Mercado.md`](./datos_ine/Tabla_Maestra_Mercado.md).
+
+**Datos estadísticos oficiales** de población, renta y turismo **provincial** se documentan en la memoria técnica y en la tabla maestra INE. Villardeciervos **no** es punto turístico EOTR: no se inventan viajeros municipales.
 
 **Arraigo.** El centro de desarrollo, el domicilio fiscal previsto y, en su caso, un espacio de representación física / consolidación logística se sitúan en Villardeciervos, de modo que la inversión y el know-how no se deslocalizan a un hub urbano.
 

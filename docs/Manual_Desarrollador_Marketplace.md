@@ -2,6 +2,7 @@
 
 ![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
 
+**Documentos relacionados:** [Requisitos / UC / UML](./Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [Turismo](./tourism.md) · [Base de datos](./database.md) · [Catálogo](./catalog.md)
 
 ---
 
@@ -107,13 +108,33 @@ Flujo:
   - validación de que el producto está en el pedido,
   - prevención de duplicidad.
 
-### B8. Admin: KPIs, rentabilidad, rappels, piloto y sandbox
+### B8. Admin: KPIs, rentabilidad, rappels, piloto, sandbox y turismo
 
 - `apps/web/src/app/admin/kpis/page.tsx`
 - `apps/web/src/app/admin/rentabilidad/page.tsx`
 - `apps/web/src/app/admin/rappels/page.tsx`
 - `apps/web/src/app/admin/piloto/*`
 - `apps/web/src/app/admin/sandbox/*`
+- `apps/web/src/app/admin/turismo/*` — alojamientos, packs, cupones, afiliados
+
+### B8b. Turismo territorial (fases 2–3) — diseño
+
+**Principio:** el checkout (`checkoutCart`) solo procesa **líneas de producto**. La noche de alojamiento **nunca** entra en el carrito; se enlaza a Booking / web / WhatsApp / teléfono.
+
+| Fase | Qué | Rutas / modelos |
+|------|-----|-----------------|
+| 2 | Directorio + cross-sell | `Accommodation`, `/alojamientos`, `/tienda` |
+| 3 | Packs, cupones, afiliación | `TourismPack`, `Coupon`, `AffiliateCode`, `/packs`, cookie `culebra_ref` |
+
+Servicios (`packages/auth`):
+
+- `accommodation.service.ts` / `tourism-pack.service.ts`
+- `coupon.service.ts` / `affiliate.service.ts`
+- Carrito: `applyCartCoupon`, `addPackToCart`; checkout aplica `discountAmount`, `couponCode`, `affiliateCode`
+
+Migración: `packages/db/prisma/migrations/20260820130000_tourism_module/`
+
+Hub UX: `/tienda` (agro + entradas turismo). `/categorias` (índice) redirige a `/tienda`.
 
 ### B9. Diagramas y modelado
 

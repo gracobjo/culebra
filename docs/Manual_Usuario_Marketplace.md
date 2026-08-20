@@ -4,6 +4,8 @@
 
 > Basado en las funcionalidades implementadas del marketplace (Villardeciervos).
 
+**Documentos relacionados:** [Requisitos y casos de uso](./Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [Turismo (fases 2–3)](./tourism.md) · [Catálogo](./catalog.md) · [Carrito](./cart.md)
+
 ---
 
 ## A. Manual de Usuario (Consumidor / Productor / Admin)
@@ -19,29 +21,47 @@ La aplicación usa autenticación con roles:
 Rutas típicas:
 
 - Inicio: `/`
-- Categorías: `/categorias`
+- **Tienda (hub):** `/tienda` — categorías agro + turismo rural + packs
+- Productos: `/productos`, `/productos/[slug]`
+- Categorías agro: `/categorias/[slug]` (`/categorias` redirige a `/tienda`)
+- Productores: `/productores`
+- Alojamientos (directorio): `/alojamientos`, `/alojamientos/[slug]`
+- Packs: `/packs`, `/packs/[slug]`
 - Cuenta: `/cuenta`
 - Login/Register: `/login`, `/register`
 - Carrito: `/carrito`
+- Checkout: `/checkout`
 - Pedido (detalle): `/pedido/[orderNumber]`
 - Panel productor: `/panel/proveedor/*`
-- Panel admin: `/admin/*`
+- Panel admin: `/admin/*` (incluye `/admin/turismo`)
 
 ---
 
 ### A2. Funcionalidades del Consumidor
 
-#### 1) Navegar catálogo unificado
+#### 1) Tienda de la comarca (hub)
 
-- Explora categorías y productos.
+- Entra en `/tienda`:
+  - **Agroalimentario:** tarjetas de categoría → `/categorias/[slug]` → compra en el marketplace.
+  - **Turismo rural:** → `/alojamientos` (directorio; la reserva se hace fuera).
+  - **Packs:** → `/packs` (lote gourmet en carrito; noche = reserva externa).
+- Regla de producto: **el checkout solo vende productos agroalimentarios**. La estancia no se cobra en el carrito.
+
+#### 2) Navegar catálogo unificado
+
+- Explora categorías y productos desde la tienda o `/productos`.
 - Los productos pueden pertenecer a **diferentes productores**.
+- En fichas de producto puede aparecer cross-sell: *“Si vienes a la sierra…”* (alojamientos relacionados).
+- En fichas de alojamiento: *“Si te alojaste aquí, prueba estos productos”*.
 
-#### 2) Carrito multi-proveedor
+#### 3) Carrito multi-proveedor
 
-- Añade productos.
+- Añade productos (o un pack completo: añade sus líneas de producto).
+- Puedes aplicar un **cupón** en `/carrito` (código; descuento % o fijo según reglas).
+- Si llegas con `?ref=CODIGO` (afiliado de un alojamiento), el código se guarda en cookie y se asocia al pedido en checkout.
 - El sistema prepara el pedido agregando vendedores implicados.
 
-#### 3) Checkout y pago avanzado (Stripe Connect + Bizum)
+#### 4) Checkout y pago avanzado (Stripe Connect + Bizum)
 
 ##### ¿Qué es Stripe y por qué se usa?
 
@@ -115,14 +135,14 @@ Rutas típicas:
 
 > La comisión de Stripe se descuenta automáticamente del flujo antes de repartir. Nunca se paga por separado ni sale de la caja de la empresa.
 
-#### 4) Estado del pedido y notificaciones
+#### 5) Estado del pedido y notificaciones
 
 - Tras el pedido, el sistema muestra el estado (pendiente de pago, pagado, envío, etc.).
 - Se envían emails:
   - **Confirmación de pedido** (al comprador, best-effort).
   - **Aviso de envío** (cuando el productor marca el pedido como enviado).
 
-#### 5) Reviews post-compra (opcional pero habilitadas)
+#### 6) Reviews post-compra (opcional pero habilitadas)
 
 - En la página `/pedido/[orderNumber]` aparece el formulario si:
   - el usuario está autenticado,
@@ -252,4 +272,13 @@ Más detalle: [payments.md](./payments.md) y [commissions.md](./commissions.md).
   - fast-forward retención de payouts,
   - libera payouts en modo sandbox,
   - marca entregado.
+
+#### 6) Turismo territorial (fases 2–3)
+
+- Panel `/admin/turismo`:
+  - alta de **alojamientos** (enlace de reserva Booking/web/WhatsApp, productos relacionados),
+  - **cupones**,
+  - **packs** (noche + lote; el lote usa productos publicados),
+  - **códigos de afiliado** (`?ref=`).
+- Recuerda: publicar un alojamiento no implica checkout de noches en la plataforma.
 

@@ -15,14 +15,15 @@ FASE 12 completada: experiencia publica orientada a confianza, navegacion clara 
 - Footer ampliado con enlaces de ayuda.
 
 ### Navegacion
-- Migas de pan (`Breadcrumbs`) en catalogo, producto, productores y categorias.
-- Tarjetas de categoria y productor con mejor jerarquia visual.
+- Hub `/tienda` (agro + turismo rural + packs) como entrada de catalogo.
+- Migas de pan (`Breadcrumbs`) en tienda, catalogo, producto, productores, alojamientos y packs.
+- Cabecera: Tienda · Productos · Productores (alojamientos/packs desde el hub).
 - Pagina `/como-funciona` con flujo de compra explicado.
 
 ### Fichas y catalogo
 - `ProductCard` con badges de agotado/oferta y hover mejorado.
-- Ficha de producto con panel de compra, secciones agrupadas y alergenos destacados.
-- Catalogo con contador de resultados y empty states accionables.
+- Ficha de producto con panel de compra, secciones agrupadas, alergenos y cross-sell de alojamientos.
+- Catalogo con contador de resultados y empty states accionables hacia `/tienda`.
 
 ### SEO
 - Metadata con plantilla de titulo y Open Graph en layout.
@@ -35,8 +36,11 @@ FASE 12 completada: experiencia publica orientada a confianza, navegacion clara 
 
 | Ruta | Proposito |
 |------|-----------|
+| `/tienda` | Hub “Tienda de la comarca” |
+| `/alojamientos` | Directorio territorial (reserva externa) |
+| `/packs` | Packs noche + lote (noche fuera del checkout) |
 | `/como-funciona` | Explicacion del flujo de compra |
-| `/` | Hero, confianza, categorias, destacados y productores |
+| `/` | Hero, confianza, preview de tienda, destacados y productores |
 
 ## Siguiente fase
 

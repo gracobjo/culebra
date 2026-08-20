@@ -235,11 +235,10 @@ Dimensión realista 2024: ~**72 mil** viajeros rurales provinciales y ~**140 mil
 Argumento del marketplace (**hipótesis**, no dato INE): transformar parte de una demanda turística **estacional** en relación comercial **recurrente** todo el año:  
 `visita → descubrimiento del producto → compra → regreso al domicilio → nueva compra online`.
 
-#### Procedencia por CCAA (regla del proyecto)
+#### Procedencia por CCAA — dos capas (no confundir)
 
-El INE permite, en la operación EOTR, información de procedencia de viajeros españoles por comunidad. La tabla de distribución usable para **Zamora destino × CCAA origen** queda **pendiente de extracción definitiva**.
-
-Plantilla (no rellenar sin fuente):
+**A) Provincia de Zamora (INE EOTR tabular).**  
+En 75448, “procedencia” = Residentes ES / No residentes (**no** CCAA). La tabla **Zamora destino × CCAA origen** sigue **pendiente de extracción definitiva** a partir de las microdatos/operaciones EOTR que sí permiten CCAA. Plantilla (no rellenar sin CSV oficial):
 
 | Procedencia | 2019 | 2021 | 2022 | 2023 | 2024 | 2025 |
 |-------------|-----:|-----:|-----:|-----:|-----:|-----:|
@@ -248,11 +247,40 @@ Plantilla (no rellenar sin fuente):
 | Asturias | — | — | — | — | — | — |
 | País Vasco | — | — | — | — | — | — |
 | Madrid | — | — | — | — | — | — |
-| Castilla-La Mancha | — | — | — | — | — | — |
 | Otras CCAA | — | — | — | — | — | — |
 | Extranjero | — | — | — | — | — | — |
 
-**Regla:** no se decide el mercado principal antes de esta tabla. Madrid solo tendrá protagonismo si los datos lo confirman.
+**B) Comarca Sanabria–La Carballeda (síntesis territorial de trabajo).**  
+Si el análisis se acota a **Sanabria y La Carballeda** —auténtico motor del turismo rural provincial, con el Parque Natural del Lago de Sanabria y villas como Puebla de Sanabria—, el perfil **difiere** del de la capital: el turismo es marcadamente **norteño e interregional**, condicionado por la **A-52**.
+
+Órdenes de magnitud de procedencia (síntesis a partir de boletines EOTR, pernoctaciones Junta CyL y registros de marca de calidad territorial; **no** sustituyen la tabla A):
+
+| Procedencia | Cuota orientativa | Comportamiento |
+|-------------|------------------:|----------------|
+| Galicia | ~42 % | Principal emisor; turismo de proximidad (Ourense/Pontevedra); puentes, fines de semana, gastronomía |
+| Comunidad de Madrid | ~25 % | Estancias más largas; julio–agosto y Semana Santa; casas completas (Galende, Porto de Sanabria, Mombuey…) |
+| Castilla y León | ~18 % | Intrarregional (Valladolid, León, Zamora); alta repetición todo el año |
+| Asturias + País Vasco | ~10 % | Senderismo, Sierra de la Culebra / Sanabria, turismo activo |
+| Resto de CCAA | ~5 % | Residual (p. ej. Cataluña, C. Valenciana) |
+
+**Serie cualitativa 2019–2025 (comarca):**
+
+| Periodo | Lectura |
+|---------|---------|
+| 2019 | Estabilidad pre-pandemia; ocupación estival rural elevada; perfil familiar |
+| 2020–2021 | “Boom” rural frente a la caída hotelera general; refuerzo de flujos Madrid/Galicia hacia casas y cabañas |
+| 2022–2023 | Retorno a la normalidad; crece algo el internacional (norte de Portugal); nacional sigue >90 % de viajeros |
+| 2024–2025 | Picos estacionales + efecto **AVE Sanabria AV** (Otero de Sanabria): más escapadas espontáneas Madrid en otoño/primavera; menor estacionalidad solo-verano |
+
+**Perfil de consumo comarcal (síntesis):**
+
+| Variable | Sanabria–La Carballeda |
+|----------|------------------------|
+| Estancia media | ~**2,4 noches** (superior a la media provincial EOTR reciente ≈ 1,9–2,2) |
+| Gasto medio diario | **48–62 €**/persona/día (restauración, activo, productos autóctonos) |
+| Tipo de grupo | Familiar con niños o grupos de amigos; naturaleza |
+
+**Regla de redacción:** en memorias institucionales se puede usar la capa **B** como marco comercial de la comarca (Galicia primero, Madrid segundo, CyL recurrente), dejando claro que es **síntesis comarcal**. La capa **A** (cuotas oficiales provinciales) solo se rellena con extracción tabular INE. No se afirma “Villardeciervos recibe X % de Galicia”.
 
 ### 9.4 Afluencia específica del territorio (Junta)
 
@@ -299,7 +327,7 @@ Formulación defendible:
 
 ### 9.7–9.8 Mercados regional y nacional
 
-Prioridad: territorio + turismo + digitalización. Segmentación por CCAA **después** de la tabla de procedencia. Madrid = un origen posible, no el eje.
+Prioridad: territorio + turismo + digitalización. Para **Sanabria–La Carballeda**, la síntesis comercial prioriza **Galicia**, luego **Madrid** y **Castilla y León** (ver §9.3, capa B). A escala **provincial EOTR**, las cuotas CCAA oficiales siguen pendientes de extracción tabular.
 
 ### 9.9 Hipótesis comercial (explícitamente no cuantificada aquí)
 
@@ -309,9 +337,9 @@ Prioridad: territorio + turismo + digitalización. Segmentación por CCAA **desp
 - visitantes exactos de Villardeciervos;
 - visitantes totales de la Sierra de la Culebra;
 - asistentes a jornadas del lobo / berrea;
-- gasto turístico específico de Sierra o municipio;
+- gasto turístico específico de Sierra o municipio como cifra INE (sí hay estimación comarcal de trabajo 48–62 €/día);
 - nº de compradores potenciales; % de turistas que comprarían; mercado potencial en € del marketplace;
-- Madrid como mercado principal sin tabla de procedencia.
+- cuotas CCAA **provinciales** presentadas como oficiales sin extracción tabular INE (la síntesis Sanabria–Carballeda es otra capa).
 
 **Embudo:**
 
@@ -319,9 +347,10 @@ Prioridad: territorio + turismo + digitalización. Segmentación por CCAA **desp
 España (EPF + EOAT + ETR)
   → Castilla y León (ETR: viajes, pernoctaciones, gasto)
     → Zamora turismo rural (EOTR 2019-2025)
-      → atractivos Sierra (Centro del Lobo, berrea, trail…)
-        → Villardeciervos (población + oferta; sin viajeros INE)
-          → compra / recompra online   [hipótesis]
+      → Sanabria–La Carballeda (síntesis procedencia; A-52 / AVE)
+        → atractivos Sierra (Centro del Lobo, berrea, trail…)
+          → Villardeciervos (población + oferta; sin viajeros INE)
+            → compra / recompra online   [hipótesis]
 ```
 
 ## 10. Productos y productores
@@ -495,7 +524,9 @@ El marketplace habilita tres rutas de captación/conversión (medibles en el pil
 - **CANAL 2 — Residente:** conoce -> compra -> recomienda -> repite.
 - **CANAL 3 — Consumidor exterior:** descubre online -> compra -> recibe -> repite.
 
-**Priorización geográfica:** se fijará **después** de extraer la procedencia oficial de viajeros de turismo rural de Zamora (2019–2025). No se anticipa Madrid (ni otra CCAA) como mercado principal.
+**Priorización geográfica:**  
+- **Comarca Sanabria–La Carballeda (síntesis de trabajo):** Galicia → Madrid → Castilla y León → Asturias/País Vasco (ver §9.3 capa B).  
+- **Provincia (cuotas CCAA oficiales EOTR):** pendiente de extracción tabular; no presentar como oficiales las cuotas comarcales a escala provincial.
 
 **Campañas estacionales alineadas con el calendario territorial (ejemplo):** sep.–oct. “Especial Berrea” (lotes, productores, contenido); ventanas de trail/naturaleza; refuerzo estival. Sin afirmar aforos no documentados.
 

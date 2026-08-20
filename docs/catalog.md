@@ -7,6 +7,8 @@
 
 FASE 5 completada: catalogo publico, fichas de producto, variantes, busqueda/filtros y moderacion.
 
+Extension territorial (fases 2–3): hub `/tienda`, directorio de alojamientos, packs, cupones y afiliacion — **sin** integrar la noche en el checkout agroalimentario.
+
 ## Estados de producto
 
 - `DRAFT` — borrador del productor
@@ -16,6 +18,18 @@ FASE 5 completada: catalogo publico, fichas de producto, variantes, busqueda/fil
 - `DISABLED` — desactivado por el productor o admin
 
 Solo se publican productos de proveedores `ACTIVE`.
+
+## Hub `/tienda`
+
+Punto de entrada “Tienda de la comarca”:
+
+| Bloque | Destino | Checkout |
+|--------|---------|----------|
+| Categorias agro | `/categorias/[slug]` → productos | Si (carrito marketplace) |
+| Turismo rural | `/alojamientos` | No (reserva externa) |
+| Packs | `/packs` | Solo el **lote** de productos; noche externa |
+
+`/categorias` (indice) redirige a `/tienda`. Las fichas `/categorias/[slug]` se mantienen.
 
 ## Regla de contenido
 
@@ -37,14 +51,20 @@ El stock se controla por variante cuando existen.
 - rango de precio
 - disponibilidad
 
+## Cross-sell territorio
+
+- Producto → alojamientos relacionados (“Si vienes a la sierra…”).
+- Alojamiento → productos vinculados (“Si te alojaste aqui…”).
+
 ## URLs
 
+- `/tienda`
 - `/productos`
 - `/productos/[slug]`
-- `/categorias`
 - `/categorias/[slug]`
+- `/alojamientos`, `/alojamientos/[slug]`
+- `/packs`, `/packs/[slug]`
 - `/panel/proveedor/productos`
+- `/admin/turismo`
 
-## Siguiente fase
-
-FASE 9: contratos versionados.
+Detalle de modelos y servicios: [tourism.md](./tourism.md).

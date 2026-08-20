@@ -152,13 +152,35 @@ Suma de meses con dato publicado. Residencia: España + extranjero.
 | Pernoctaciones | 29.417 | 33.026 | 27.844 |
 | Estancia media (2067) | 3,19 | 2,89 | 2,29 |
 
-### 3.6 Procedencia por CCAA hacia Zamora
+### 3.6 Procedencia por CCAA
 
 | Estado | Detalle |
 |--------|---------|
-| **75448 / 2073** | Solo Residentes ES vs Extranjero |
-| **CCAA → Zamora** | **Pendiente** — pieza prioritaria siguiente |
-| **Regla del proyecto** | Los datos decidirán el mercado; no anticipar Madrid |
+| **75448 / 2073** | Solo Residentes ES vs Extranjero a escala provincial usable |
+| **CCAA → Zamora (tabular)** | **Pendiente** — extracción INE prioritaria |
+| **Sanabria–La Carballeda (síntesis)** | Motor turístico provincial; perfil distinto a la capital |
+
+#### Comarca Sanabria–La Carballeda (síntesis de trabajo)
+
+Ámbito: Sanabria + La Carballeda (Parque Natural Lago de Sanabria, Puebla de Sanabria, accesos **A-52**, parada **AVE Sanabria AV** en Otero de Sanabria). Fuentes de apoyo: boletines EOTR, pernoctaciones Junta CyL, registros de marca de calidad territorial. **No** es la tabla provincial CCAA.
+
+| Procedencia | Cuota orientativa | Lectura |
+|-------------|------------------:|---------|
+| Galicia | ~42 % | Principal emisor; proximidad Ourense/Pontevedra |
+| Comunidad de Madrid | ~25 % | Estancias más largas; verano y Semana Santa |
+| Castilla y León | ~18 % | Intrarregional; alta repetición |
+| Asturias + País Vasco | ~10 % | Senderismo / turismo activo |
+| Resto de CCAA | ~5 % | Residual |
+
+| Variable | Valor orientativo |
+|----------|-------------------|
+| Estancia media | ~2,4 noches (vs provincial EOTR ~1,9–2,2 según año) |
+| Gasto medio diario | 48–62 €/persona |
+| Grupo tipico | Familiar o amigos; naturaleza |
+
+Serie cualitativa 2019–2025: estabilidad 2019 → boom rural 2020–21 → normalización 2022–23 (nacional >90 %) → 2024–25 con AVE (más fines de semana fuera de verano).
+
+**Regla:** usar la síntesis comarcal para estrategia (Galicia > Madrid > CyL); no declarar cuotas oficiales provinciales hasta extracción tabular; no atribuir % a Villardeciervos.
 
 ---
 
@@ -196,6 +218,8 @@ Contexto CyL / nacional según notas de prensa INE (turismo rural): crecimiento 
 | Junta CyL | Centro del Lobo | Acumulado | 2015–~2020 | >160.000 | Relevancia del recurso |
 | Junta CyL | Sierra Culebra | Berrea | anual | Sep.–oct. | Estacionalidad / campañas |
 | Portal Turismo CyL | Villardeciervos | Oferta alojamiento | vigente | existencia (p. ej. casa rural registrada) | Oferta sin aforo inventado |
+| Síntesis comarcal | Sanabria–La Carballeda | Procedencia orientativa | 2019–2025 | Galicia ~42 %; Madrid ~25 %; CyL ~18 %; AS+PV ~10 %; resto ~5 % | Estrategia comercial (no tabla INE provincial) |
+| Síntesis comarcal | Sanabria–La Carballeda | Estancia / gasto | vigente | ~2,4 noches; 48–62 €/día | Perfil de consumo |
 | Diputación | Zamora | Promoción 2026 | 2026 | “Zamora. Escúchate” (naturaleza, lobo, berrea, gastronomía) | Coherencia estratégica |
 | Diputación / ZTS | Sierra Culebra | Desafío del Lobo Trail | 14 jun. 2026 | celebrado / apoyado | Turismo deportivo no solo estival |
 
@@ -210,7 +234,7 @@ TERRITORIO → PRODUCTOS + NATURALEZA + TURISMO
         → COMPRA ONLINE → RECOMPRA
 ```
 
-El marketplace convierte recursos productivos, gastronómicos y turísticos en **relación comercial digital permanente**. No es “Villardeciervos → Madrid”.
+El marketplace convierte recursos productivos, gastronómicos y turísticos en **relación comercial digital permanente**. No es “solo Villardeciervos → Madrid”: en Sanabria–Carballeda la síntesis prioriza Galicia, Madrid y CyL (ver §3.6).
 
 ---
 
@@ -220,19 +244,20 @@ El marketplace convierte recursos productivos, gastronómicos y turísticos en *
 España (EPF + EOAT + ETR)
     → Castilla y León (ETR destino)
         → Zamora turismo rural (EOTR 2019-2025)
-            → atractivos Sierra (Lobo, berrea, trail…)
-                → Villardeciervos (población + oferta; sin viajeros INE)
-                    → compra / recompra online   ← HIPÓTESIS
+            → Sanabria–La Carballeda (síntesis procedencia; A-52 / AVE)
+                → atractivos Sierra (Lobo, berrea, trail…)
+                    → Villardeciervos (población + oferta; sin viajeros INE)
+                        → compra / recompra online   ← HIPÓTESIS
 ```
 
 ---
 
-## Pendiente (NO poner en memoria como hecho)
+## Pendiente (NO poner en memoria como hecho oficial sin fuente tabular)
 
-1. **Procedencia CCAA de los ~71.910 viajeros 2024** (y serie 2019–2025) — prioridad.
+1. **Procedencia CCAA tabular de los ~71.910 viajeros provinciales 2024** (y serie 2019–2025) — prioridad; la síntesis Sanabria–Carballeda **no** la sustituye.
 2. Visitantes exactos de Villardeciervos / totales Sierra.
 3. Asistentes jornadas del lobo / berrea.
-4. Gasto turístico específico Sierra o municipio.
+4. Gasto turístico específico Sierra o municipio (los 48–62 €/día son estimación comarcal de trabajo).
 5. Compradores potenciales, % conversión, mercado € del marketplace.
 6. Inventario completo alojamientos Villardeciervos + DIRCE municipal.
 7. 2026 solo como meses provisionales.
