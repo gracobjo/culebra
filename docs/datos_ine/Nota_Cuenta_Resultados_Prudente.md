@@ -1,39 +1,36 @@
-# Cuenta de resultados 5 años — v2 (3 PyG mensuales + Y1 suavizado)
+# Cuenta de resultados 5 años — v3 (GMV conservador recalibrado)
 
 Fichero: `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx`  
 Script: `docs/datos_ine/populate_pyg_excel.py`
 
-## Hojas
+## Objetivo financiero (conservador)
 
-| Hoja | Contenido |
-|------|-----------|
-| **PyG Conservador** | 60 meses — escenario de referencia |
-| **PyG Realista** | 60 meses — hipótesis |
-| **PyG Optimista** | 60 meses — hipótesis |
-| Resumen anual | 3 bloques agregados |
-| Escenarios 3 vías | Comparativa rápida |
-| Drivers y equilibrio | Vendedores → GMV → umbral |
-| Parámetros / Notas / Partidas | Criterios |
+| Concepto | Importe |
+|----------|--------:|
+| Inversión de referencia | 30.000 € |
+| Dividendos mínimos (15%) | 4.500 € |
+| **Neto acumulado mínimo 5 años** | **34.500 €** |
+| Neto acumulado proyectado (conservador) | ≈ **41.400 €** |
 
-## Escenario PRUDENTE / Conservador (suavizado Y1)
+## Escenario CONSERVADOR (referencia)
 
-| Año | GMV | Ingresos | RAI | Neto |
-|----:|----:|---------:|----:|-----:|
-| 1 | 50.000 | 7.500 | ≈−4.860 | ≈−4.860 |
-| 2 | 200.000 | 30.000 | ≈+1.860 | ≈+1.580 |
-| 3 | 366.667 | 55.000 | ≈+20.360 | ≈+17.310 |
-| 4 | 440.000 | 66.000 | ≈+30.260 | ≈+25.720 |
-| 5 | 528.000 | 79.200 | ≈+42.140 | ≈+35.820 |
+| Año | GMV | Ingresos 15% | Neto | Acumulado |
+|----:|----:|-------------:|-----:|----------:|
+| 1 | 40.000 | 6.000 | ≈ −4.380 | ≈ −4.380 |
+| 2 | 140.000 | 21.000 | ≈ +460 | ≈ −3.920 |
+| 3 | 220.000 | 33.000 | ≈ +7.800 | ≈ +3.880 |
+| 4 | 280.000 | 42.000 | ≈ +14.700 | ≈ +18.570 |
+| 5 | 360.000 | 54.000 | ≈ +23.900 | ≈ +41.440 |
 
-## Dashboard KPI (al abrir el Excel)
+Drivers: 5 → 8 → 11 → 13 → 15 vendedores. Opex contenido alineado al volumen.
 
-Hoja **`00_KPI_Dashboard`** (activa al abrir) con 6 gráficos dinámicos alimentados por **`KPI_Datos`** (fórmulas `SUMIF` sobre `PyG Conservador`):
+## Otros escenarios (alza)
 
-1. GMV vs Ingresos (5 años)
-2. Resultado neto anual
-3. GMV por escenario C/R/O
-4. Neto por escenario
-5. Estacionalidad GMV año 2
-6. Estructura de gastos año 3 (tarta)
+| Escenario | GMV Y1 → Y5 | Neto acum. 5 años (orden) |
+|-----------|-------------|---------------------------:|
+| Realista | 75k → 680k | ≈ 52.000 € |
+| Optimista | 110k → 1,05M | ≈ 75.000 € |
 
-Si se modifica `PyG Conservador`, recalcular en Excel (datos → calcular ahora / F9) y los gráficos se actualizan.
+## Dashboard KPI
+
+Hoja **`00_KPI_Dashboard`** alimentada por **`KPI_Datos`**. Tras abrir el Excel, recalcular (F9) si hace falta.

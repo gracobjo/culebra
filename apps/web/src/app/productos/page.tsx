@@ -80,8 +80,8 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           <EmptyState
             title="Sin resultados"
             description="Prueba otros filtros o explora todas las categorias."
-            actionHref="/categorias"
-            actionLabel="Ver categorias"
+            actionHref="/tienda"
+            actionLabel="Volver a la tienda"
           />
         </div>
       ) : (

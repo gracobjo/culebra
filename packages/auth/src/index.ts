@@ -103,6 +103,8 @@ export type {
 } from "./vendor.schemas.js";
 export {
   listCategoryUrlsForSitemap,
+  listPublicAccommodationUrlsForSitemap,
+  listPublicPackUrlsForSitemap,
   listPublicProductUrlsForSitemap,
   listPublicVendorUrlsForSitemap,
 } from "./seo.service.js";
@@ -110,6 +112,9 @@ export type { SitemapUrlRecord } from "./seo.service.js";
 export { createUniqueSlug, slugify } from "./slug.js";
 export {
   addCartItem,
+  addPackToCart,
+  applyCartCoupon,
+  clearCartCoupon,
   createCartSessionId,
   getOrCreateCart,
   removeCartItem,
@@ -118,11 +123,13 @@ export {
 export type { CartItemRecord, CartRecord } from "./cart.service.js";
 export {
   addCartItemSchema,
+  applyCartCouponSchema,
   checkoutSchema,
   updateCartItemSchema,
 } from "./cart.schemas.js";
 export type {
   AddCartItemInput,
+  ApplyCartCouponInput,
   CheckoutInput,
   UpdateCartItemInput,
 } from "./cart.schemas.js";
@@ -238,6 +245,68 @@ export type {
   ProductStockUpdateInput,
   ProductUpdateInput,
 } from "./product.schemas.js";
+export {
+  getAccommodationById,
+  getPublicAccommodationBySlug,
+  listAccommodationsForAdmin,
+  listAccommodationsForProduct,
+  listPublicAccommodations,
+  updateAccommodationStatusForAdmin,
+  upsertAccommodationForAdmin,
+} from "./accommodation.service.js";
+export type {
+  AccommodationRecord,
+  PublicAccommodationRecord,
+} from "./accommodation.service.js";
+export {
+  accommodationBookingChannelSchema,
+  accommodationStatusSchema,
+  accommodationUpsertSchema,
+} from "./accommodation.schemas.js";
+export type { AccommodationUpsertInput } from "./accommodation.schemas.js";
+export {
+  getPublicTourismPackBySlug,
+  getTourismPackById,
+  listPublicTourismPacks,
+  listTourismPacksForAdmin,
+  upsertTourismPackForAdmin,
+} from "./tourism-pack.service.js";
+export type {
+  PublicTourismPackRecord,
+  TourismPackRecord,
+} from "./tourism-pack.service.js";
+export {
+  tourismPackStatusSchema,
+  tourismPackUpsertSchema,
+} from "./tourism-pack.schemas.js";
+export type { TourismPackUpsertInput } from "./tourism-pack.schemas.js";
+export {
+  getActiveCouponByCode,
+  listCouponsForAdmin,
+  previewCoupon,
+  upsertCouponForAdmin,
+} from "./coupon.service.js";
+export type { CouponPreview, CouponRecord } from "./coupon.service.js";
+export {
+  applyCouponSchema,
+  couponUpsertSchema,
+} from "./coupon.schemas.js";
+export type { ApplyCouponInput, CouponUpsertInput } from "./coupon.schemas.js";
+export {
+  getActiveAffiliateByCode,
+  listAffiliateCodesForAdmin,
+  trackAffiliateClick,
+  upsertAffiliateCodeForAdmin,
+} from "./affiliate.service.js";
+export type { AffiliateCodeRecord } from "./affiliate.service.js";
+export {
+  affiliateRefSchema,
+  affiliateUpsertSchema,
+} from "./affiliate.schemas.js";
+export type {
+  AffiliateRefInput,
+  AffiliateUpsertInput,
+} from "./affiliate.schemas.js";
 export {
   notifyCheckout,
   notifyLogin,

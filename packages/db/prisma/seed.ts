@@ -769,6 +769,178 @@ async function seedVendorsAndProducts() {
   }
 }
 
+async function seedTourismModule() {
+  const products = await prisma.product.findMany({
+    where: { status: "PUBLISHED", deletedAt: null },
+    orderBy: { createdAt: "asc" },
+    take: 6,
+    select: { id: true, slug: true, name: true },
+  });
+
+  const casa = await prisma.accommodation.upsert({
+    where: { slug: "casa-rural-foz-culebra" },
+    update: {
+      name: "Casa Rural Foz de la Culebra",
+      shortDescription:
+        "Casa rural en el entorno de Villardeciervos. Ideal para escapadas a la sierra.",
+      kind: "CASA_RURAL",
+      city: "Villardeciervos",
+      municipality: "Villardeciervos",
+      province: "Zamora",
+      bookingChannel: "WEBSITE",
+      websiteUrl: "https://example.com/casa-foz",
+      bookingUrl: "https://example.com/casa-foz/reservar",
+      capacity: 6,
+      status: "PUBLISHED",
+      sortOrder: 1,
+    },
+    create: {
+      name: "Casa Rural Foz de la Culebra",
+      slug: "casa-rural-foz-culebra",
+      shortDescription:
+        "Casa rural en el entorno de Villardeciervos. Ideal para escapadas a la sierra.",
+      longDescription:
+        "Alojamiento de ejemplo para el directorio territorial. La reserva se gestiona en su web.",
+      kind: "CASA_RURAL",
+      city: "Villardeciervos",
+      municipality: "Villardeciervos",
+      province: "Zamora",
+      bookingChannel: "WEBSITE",
+      websiteUrl: "https://example.com/casa-foz",
+      bookingUrl: "https://example.com/casa-foz/reservar",
+      capacity: 6,
+      status: "PUBLISHED",
+      sortOrder: 1,
+    },
+  });
+
+  const hostal = await prisma.accommodation.upsert({
+    where: { slug: "hostal-sierra-culebra" },
+    update: {
+      name: "Hostal Sierra de la Culebra",
+      shortDescription: "Hostal familiar en la sierra. Reserva por WhatsApp o telefono.",
+      kind: "HOSTAL",
+      city: "Ferreras de Arriba",
+      province: "Zamora",
+      bookingChannel: "WHATSAPP",
+      whatsapp: "34600000000",
+      phone: "+34 980 000 000",
+      status: "PUBLISHED",
+      sortOrder: 2,
+    },
+    create: {
+      name: "Hostal Sierra de la Culebra",
+      slug: "hostal-sierra-culebra",
+      shortDescription: "Hostal familiar en la sierra. Reserva por WhatsApp o telefono.",
+      kind: "HOSTAL",
+      city: "Ferreras de Arriba",
+      province: "Zamora",
+      bookingChannel: "WHATSAPP",
+      whatsapp: "34600000000",
+      phone: "+34 980 000 000",
+      status: "PUBLISHED",
+      sortOrder: 2,
+    },
+  });
+
+  if (products.length > 0) {
+    await prisma.accommodationProduct.deleteMany({
+      where: { accommodationId: { in: [casa.id, hostal.id] } },
+    });
+    await prisma.accommodationProduct.createMany({
+      data: products.slice(0, 3).map((product, index) => ({
+        accommodationId: casa.id,
+        productId: product.id,
+        sortOrder: index,
+      })),
+    });
+    if (products[3]) {
+      await prisma.accommodationProduct.create({
+        data: {
+          accommodationId: hostal.id,
+          productId: products[3].id,
+          sortOrder: 0,
+        },
+      });
+    }
+  }
+
+  const coupon = await prisma.coupon.upsert({
+    where: { code: "SIERRA10" },
+    update: {
+      name: "Bienvenida sierra 10%",
+      discountType: "PERCENTAGE",
+      discountValue: 10,
+      minOrderAmount: 25,
+      isActive: true,
+    },
+    create: {
+      code: "SIERRA10",
+      name: "Bienvenida sierra 10%",
+      description: "10% en pedidos a partir de 25 EUR (seed).",
+      discountType: "PERCENTAGE",
+      discountValue: 10,
+      minOrderAmount: 25,
+      isActive: true,
+    },
+  });
+
+  await prisma.affiliateCode.upsert({
+    where: { code: "CASAFOZ" },
+    update: {
+      label: "Casa Foz — afiliado",
+      accommodationId: casa.id,
+      isActive: true,
+    },
+    create: {
+      code: "CASAFOZ",
+      label: "Casa Foz — afiliado",
+      accommodationId: casa.id,
+      isActive: true,
+      notes: "Enlace: /productos?ref=CASAFOZ",
+    },
+  });
+
+  if (products.length >= 2) {
+    const pack = await prisma.tourismPack.upsert({
+      where: { slug: "noche-lote-gourmet-foz" },
+      update: {
+        name: "Noche + lote gourmet Foz",
+        shortDescription:
+          "Reserva la casa en su web y anade el lote gourmet al carrito del marketplace.",
+        accommodationId: casa.id,
+        nightsHint: "1–2 noches (reserva externa)",
+        status: "PUBLISHED",
+        sortOrder: 1,
+        couponId: coupon.id,
+      },
+      create: {
+        name: "Noche + lote gourmet Foz",
+        slug: "noche-lote-gourmet-foz",
+        shortDescription:
+          "Reserva la casa en su web y anade el lote gourmet al carrito del marketplace.",
+        longDescription:
+          "Pack de ejemplo fase 3: la noche no se cobra aqui; el lote si.",
+        accommodationId: casa.id,
+        nightsHint: "1–2 noches (reserva externa)",
+        status: "PUBLISHED",
+        sortOrder: 1,
+        couponId: coupon.id,
+      },
+    });
+
+    await prisma.tourismPackItem.deleteMany({ where: { packId: pack.id } });
+    await prisma.tourismPackItem.createMany({
+      data: products.slice(0, 2).map((product, index) => ({
+        packId: pack.id,
+        productId: product.id,
+        quantity: 1,
+        sortOrder: index,
+      })),
+    });
+  }
+}
+
 async function main() {
   console.log("Seeding roles...");
   await seedRoles();
@@ -787,15 +959,20 @@ async function main() {
   console.log("Seeding vendors and products...");
   await seedVendorsAndProducts();
 
+  console.log("Seeding tourism module (alojamientos, packs, cupones, afiliados)...");
+  await seedTourismModule();
+
   const roleCount = await prisma.role.count();
   const categoryCount = await prisma.category.count();
   const vendorCount = await prisma.vendor.count();
   const productCount = await prisma.product.count();
   const userCount = await prisma.user.count();
+  const accommodationCount = await prisma.accommodation.count();
 
   console.log(
     `Seed completed: ${roleCount} roles, ${categoryCount} categories, ` +
-    `${vendorCount} vendors, ${productCount} products, ${userCount} users.`
+    `${vendorCount} vendors, ${productCount} products, ${userCount} users, ` +
+    `${accommodationCount} accommodations.`
   );
 }
 

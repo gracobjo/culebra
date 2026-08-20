@@ -16,14 +16,20 @@ export function SiteFooter() {
         </div>
         <nav className="grid gap-2 text-sm" aria-label="Catalogo">
           <p className="font-medium text-stone-800">Explorar</p>
+          <Link href="/tienda" className="text-stone-600 hover:text-emerald-800">
+            Tienda
+          </Link>
           <Link href="/productos" className="text-stone-600 hover:text-emerald-800">
             Productos
           </Link>
-          <Link href="/categorias" className="text-stone-600 hover:text-emerald-800">
-            Categorias
-          </Link>
           <Link href="/productores" className="text-stone-600 hover:text-emerald-800">
             Productores
+          </Link>
+          <Link href="/alojamientos" className="text-stone-600 hover:text-emerald-800">
+            Alojamientos
+          </Link>
+          <Link href="/packs" className="text-stone-600 hover:text-emerald-800">
+            Packs
           </Link>
           <Link href="/como-funciona" className="text-stone-600 hover:text-emerald-800">
             Como funciona

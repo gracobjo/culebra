@@ -14,6 +14,11 @@ import {
   resolveVendorFixedFee,
 } from "./commission.service.js";
 import {
+  computeCouponDiscount,
+  getActiveCouponByCode,
+} from "./coupon.service.js";
+import { incrementAffiliateOrderCount, getActiveAffiliateByCode } from "./affiliate.service.js";
+import {
   sendOrderConfirmationEmail,
   sendVendorNewOrderEmail,
 } from "./email.service.js";
@@ -33,6 +38,9 @@ export type OrderSummary = {
   totalAmount: string;
   taxTotal: string;
   subtotalGross: string;
+  discountAmount: string;
+  couponCode: string | null;
+  affiliateCode: string | null;
   vendorCount: number;
   createdAt: Date;
 };
@@ -110,6 +118,34 @@ export async function checkoutCart(
     lines.reduce((sum, line) => sum + line.tax, 0).toFixed(2),
   );
 
+  const couponCodeRaw = input.couponCode ?? cart.couponCode ?? null;
+  let discountAmount = 0;
+  let resolvedCoupon: Awaited<ReturnType<typeof getActiveCouponByCode>> = null;
+  if (couponCodeRaw) {
+    resolvedCoupon = await getActiveCouponByCode(couponCodeRaw);
+    if (!resolvedCoupon) {
+      throw new Error("COUPON_INVALID");
+    }
+    try {
+      discountAmount = computeCouponDiscount(resolvedCoupon, subtotalGross);
+    } catch (error) {
+      if (error instanceof Error && error.message === "COUPON_MIN_ORDER") {
+        throw error;
+      }
+      throw new Error("COUPON_INVALID");
+    }
+  }
+
+  let affiliateCode: string | null = null;
+  if (input.affiliateCode) {
+    const affiliate = await getActiveAffiliateByCode(input.affiliateCode);
+    if (affiliate) {
+      affiliateCode = affiliate.code;
+    }
+  }
+
+  const totalAmount = Number(Math.max(0, subtotalGross - discountAmount).toFixed(2));
+
   const vendorIdsUnique = vendorIds;
   const orderNumber = await nextOrderNumber();
   const activeCart = await getActiveCartRow(owner);
@@ -133,7 +169,10 @@ export async function checkoutCart(
         marketplaceCommission: 0,
         otherFees: 0,
         taxTotal,
-        totalAmount: subtotalGross,
+        totalAmount,
+        discountAmount,
+        couponCode: resolvedCoupon?.code ?? null,
+        affiliateCode,
         netToVendorsTotal: subtotalGross,
         notes: input.notes,
       },
@@ -236,18 +275,37 @@ export async function checkoutCart(
       data: {
         orderId: created.id,
         status: PaymentStatus.PAYMENT_PENDING,
-        amount: subtotalGross,
+        amount: totalAmount,
         currency: "EUR",
       },
     });
 
+    if (resolvedCoupon && discountAmount > 0) {
+      await tx.couponRedemption.create({
+        data: {
+          couponId: resolvedCoupon.id,
+          orderId: created.id,
+          userId: owner.userId,
+          amount: discountAmount,
+        },
+      });
+      await tx.coupon.update({
+        where: { id: resolvedCoupon.id },
+        data: { redemptionCount: { increment: 1 } },
+      });
+    }
+
     await tx.cart.update({
       where: { id: activeCart.id },
-      data: { status: "CONVERTED", sessionId: null },
+      data: { status: "CONVERTED", sessionId: null, couponCode: null },
     });
 
     return created;
   });
+
+  if (affiliateCode) {
+    incrementAffiliateOrderCount(affiliateCode).catch(() => undefined);
+  }
 
   const summary = {
     id: order.id,
@@ -257,6 +315,9 @@ export async function checkoutCart(
     totalAmount: String(order.totalAmount),
     taxTotal: String(order.taxTotal),
     subtotalGross: String(order.subtotalGross),
+    discountAmount: String(order.discountAmount ?? 0),
+    couponCode: order.couponCode ?? null,
+    affiliateCode: order.affiliateCode ?? null,
     vendorCount: vendorIdsUnique.length,
     createdAt: order.createdAt,
   };

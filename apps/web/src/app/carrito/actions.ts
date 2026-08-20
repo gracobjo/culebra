@@ -3,8 +3,11 @@
 import {
   addCartItem,
   addCartItemSchema,
+  applyCartCoupon,
+  applyCartCouponSchema,
   checkoutCart,
   checkoutSchema,
+  clearCartCoupon,
   createOrderCheckoutSession,
   getOrCreateCart,
   isStripeConfigured,
@@ -13,7 +16,7 @@ import {
 } from "@culebra/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { getCartOwner, rememberGuestOrder } from "@/lib/cart";
+import { getAffiliateCode, getCartOwner, rememberGuestOrder } from "@/lib/cart";
 
 export type CartActionState = {
   error?: string;
@@ -72,11 +75,48 @@ export async function removeCartItemAction(formData: FormData) {
   revalidatePath("/carrito");
 }
 
+export async function applyCouponAction(
+  _prev: CartActionState,
+  formData: FormData,
+): Promise<CartActionState> {
+  const parsed = applyCartCouponSchema.safeParse({
+    code: formData.get("code"),
+  });
+  if (!parsed.success) {
+    return { error: "Introduce un codigo de cupon valido." };
+  }
+  try {
+    const owner = await getCartOwner(true);
+    await applyCartCoupon(owner, parsed.data);
+    revalidatePath("/carrito");
+    revalidatePath("/checkout");
+    return { success: "Cupon aplicado." };
+  } catch (error) {
+    if (error instanceof Error && error.message === "COUPON_INVALID") {
+      return { error: "Cupon no valido o caducado." };
+    }
+    if (error instanceof Error && error.message === "COUPON_MIN_ORDER") {
+      return { error: "El pedido no alcanza el minimo del cupon." };
+    }
+    return { error: "No se pudo aplicar el cupon." };
+  }
+}
+
+export async function clearCouponAction() {
+  const owner = await getCartOwner();
+  if (!owner.userId && !owner.sessionId) return;
+  await clearCartCoupon(owner);
+  revalidatePath("/carrito");
+  revalidatePath("/checkout");
+}
+
 export async function checkoutAction(
   _prev: CartActionState,
   formData: FormData,
 ): Promise<CartActionState> {
   const billingSame = formData.get("billingSameAsShipping") === "on";
+  const affiliateFromForm = String(formData.get("affiliateCode") ?? "").trim();
+  const affiliateFromCookie = await getAffiliateCode();
   const parsed = checkoutSchema.safeParse({
     customerEmail: formData.get("customerEmail"),
     customerPhone: formData.get("customerPhone"),
@@ -84,6 +124,8 @@ export async function checkoutAction(
     customerLastName: formData.get("customerLastName"),
     notes: formData.get("notes") || undefined,
     billingSameAsShipping: billingSame,
+    couponCode: formData.get("couponCode") || undefined,
+    affiliateCode: affiliateFromForm || affiliateFromCookie || undefined,
     shipping: {
       firstName: formData.get("shippingFirstName"),
       lastName: formData.get("shippingLastName"),
@@ -144,6 +186,12 @@ export async function checkoutAction(
     if (error instanceof Error && error.message === "INSUFFICIENT_STOCK") {
       return { error: "Algun producto ya no tiene stock suficiente." };
     }
+    if (error instanceof Error && error.message === "COUPON_INVALID") {
+      return { error: "El cupon ya no es valido." };
+    }
+    if (error instanceof Error && error.message === "COUPON_MIN_ORDER") {
+      return { error: "El pedido no alcanza el minimo del cupon." };
+    }
     return { error: "No se pudo completar el pedido." };
   }
 }
@@ -151,7 +199,16 @@ export async function checkoutAction(
 export async function loadCart() {
   const owner = await getCartOwner();
   if (!owner.userId && !owner.sessionId) {
-    return { id: null, sessionId: null, itemCount: 0, subtotal: "0.00", items: [] };
+    return {
+      id: null,
+      sessionId: null,
+      itemCount: 0,
+      subtotal: "0.00",
+      couponCode: null,
+      discountAmount: "0.00",
+      total: "0.00",
+      items: [],
+    };
   }
   return getOrCreateCart(owner);
 }

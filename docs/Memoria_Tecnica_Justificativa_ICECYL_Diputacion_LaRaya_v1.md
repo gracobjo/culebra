@@ -751,15 +751,17 @@ Detalle mes a mes en `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` → hoja
 
 | Año | GMV vendedores | Ingresos SL (15%) | Resultado neto (conservador) | Notas |
 |----:|---------------:|------------------:|-----------------------------:|-------|
-| 1 | 50.000 € | 7.500 € | ≈ −4.900 € | Venta jul–dic; amortización solo desde lanzamiento; H1 costes mínimos |
-| 2 | 200.000 € | 30.000 € | ≈ +1.600 € | Consolidación |
-| 3 | 366.667 € | 55.000 € | ≈ +17.300 € | Madurez |
-| 4 | 440.000 € | 66.000 € | ≈ +25.700 € | +20% GMV vs Y3 |
-| 5 | 528.000 € | 79.200 € | ≈ +35.800 € | +20% GMV vs Y4 |
+| 1 | 40.000 € | 6.000 € | ≈ −4.400 € | Venta jul–dic; amortización solo desde lanzamiento; H1 costes mínimos |
+| 2 | 140.000 € | 21.000 € | ≈ +500 € | Consolidación |
+| 3 | 220.000 € | 33.000 € | ≈ +7.800 € | Madurez operativa |
+| 4 | 280.000 € | 42.000 € | ≈ +14.700 € | Escalado contenido |
+| 5 | 360.000 € | 54.000 € | ≈ +23.900 € | Neto acumulado 5 años ≈ 41.400 € |
 
-**Drivers prudentes (objetivo de actividad, no ventas cerradas):** piloto 5 vendedores (Y1) → 10 (Y2) → 15 (Y3) → 18–20 (Y4–Y5).
+**Drivers prudentes (objetivo de actividad, no ventas cerradas):** piloto 5 vendedores (Y1) → 8 (Y2) → 11 (Y3) → 13–15 (Y4–Y5).
 
-**Punto de equilibrio orientativo (fase Y2+, con amortización):** del orden de **~1.450 €/mes** de gastos fijos → **~9.700 €/mes de GMV** (÷15%).
+**Objetivo financiero del escenario conservador:** recuperar la inversión de referencia (**30.000 €**) y generar al menos un **15%** adicional en dividendos (**4.500 €**) en el horizonte de 5 años (neto acumulado mínimo **34.500 €**).
+
+**Punto de equilibrio orientativo (fase Y3+, con amortización y opex contenido):** del orden de **~1.700 €/mes** de gastos fijos → **~11.400 €/mes de GMV** (÷15%).
 
 **Reconciliación con el plan interno previo:** el plan citaba EBITDA Y1 positivo sin el mismo rigor de amortización (activo capitalizado en lanzamiento) ni comisiones de medios de pago sobre GMV. El Excel conservador **suaviza Y1** (amortización solo H2; marketing comercial en H2) y sigue siendo más prudente que el EBITDA simplificado del plan. IS 15% = orientativo. IVA fuera de PyG.
 
@@ -770,9 +772,9 @@ Volcados **mes a mes** en el Excel (`PyG Realista`, `PyG Optimista`) y resumidos
 
 | Escenario | GMV Y1 → Y5 (orden) | Lectura |
 |-----------|---------------------|---------|
-| Conservador | 50k → 528k | Referencia memoria / ICECYL |
-| Realista | 80k → 811k | Más vendedores/GMV y más gasto |
-| Optimista | 120k → 1,37M | Escalado agresivo (hipótesis) |
+| Conservador | 40k → 360k | Referencia memoria / ICECYL; recupera 30k + ≥15% dividendos |
+| Realista | 75k → 680k | Más vendedores/GMV y más gasto |
+| Optimista | 110k → 1,05M | Escalado agresivo (hipótesis) |
 ## 29. Riesgos y medidas correctoras
 
 Riesgos (no exhaustivos) y mitigación:

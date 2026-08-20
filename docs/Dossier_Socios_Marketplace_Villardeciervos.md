@@ -251,7 +251,7 @@ Validará:
 | **Take rate** | Ingresos / GMV | Debe situarse ~15% |
 | **Cobertura de gastos** | Ingresos / Gastos | >100% = umbral operativo |
 | **Resultado neto** | Tras gastos, amortización e IS orientativo | Viabilidad |
-| **GMV de equilibrio** | ≈ gastos fijos ÷ 15% | ~9.700 €/mes (fase Y2+, con amort.) |
+| **GMV de equilibrio** | ≈ gastos fijos ÷ 15% | ~11.400 €/mes (fase Y3+, opex contenido) |
 | **GMV / vendedor / mes** | GMV ÷ n.º vendedores activos | Intensidad comercial |
 
 Cuadro de mando visual (gráficos dinámicos): Excel `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` → hoja **`00_KPI_Dashboard`**.
@@ -273,16 +273,17 @@ Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red
 
 | Concepto | Año 1 (6 meses venta) | Año 2 | Año 3 | Año 4 | Año 5 |
 |---|---:|---:|---:|---:|---:|
-| GMV vendedores | 50.000 € | 200.000 € | 366.667 € | 440.000 € | 528.000 € |
-| Ingresos SL (15%) | **7.500 €** | **30.000 €** | **55.000 €** | **66.000 €** | **79.200 €** |
-| Resultado neto (orientativo) | ≈ −4.900 € | ≈ +1.600 € | ≈ +17.300 € | ≈ +25.700 € | ≈ +35.800 € |
+| GMV vendedores | 40.000 € | 140.000 € | 220.000 € | 280.000 € | 360.000 € |
+| Ingresos SL (15%) | **6.000 €** | **21.000 €** | **33.000 €** | **42.000 €** | **54.000 €** |
+| Resultado neto (orientativo) | ≈ −4.400 € | ≈ +500 € | ≈ +7.800 € | ≈ +14.700 € | ≈ +23.900 € |
 
 - Y1 en pérdida es coherente con arranque + amortización desde lanzamiento.  
-- Drivers: 5 → 10 → 15 → 18–20 vendedores.  
+- Drivers: 5 → 8 → 11 → 13–15 vendedores.  
+- **Objetivo financiero:** recuperar inversión de referencia **30.000 €** y al menos **15%** en dividendos (4.500 €) → neto acumulado mínimo **34.500 €**. El conservador proyecta ≈ **41.400 €** acumulados en 5 años.  
 - Escenarios **Realista** y **Optimista** en el mismo Excel (hipótesis de sensibilidad).  
 - **GMV ≠ ventas propias de la SL.** IS orientativo; IVA fuera de la PyG.
 
-Punto de equilibrio operativo orientativo: entorno del **mes 7+** / consolidación en año 2 según GMV.
+Punto de equilibrio operativo orientativo: entorno del **mes 7+** / consolidación en año 2–3 según GMV.
 
 ---
 

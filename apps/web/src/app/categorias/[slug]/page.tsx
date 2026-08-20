@@ -40,7 +40,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   const breadcrumbItems = [
     { label: "Inicio", href: "/" },
-    { label: "Categorias", href: "/categorias" },
+    { label: "Tienda", href: "/tienda" },
     { label: category.name },
   ];
 

@@ -31,17 +31,20 @@ HEADERS = [
     "Resultado antes impuestos", "Impuesto Sociedades", "Resultado neto",
 ]
 
-# GMV anual por escenario
+# GMV anual por escenario (conservador recalibrado: recuperar inversión 30k + ≥15% dividendos en 5 años)
+# Objetivo: neto acumulado ≥ 30.000 × 1,15 = 34.500 € con volúmenes más modestos que la v1.
 GMV = {
-    "conservador": {1: 50_000, 2: 200_000, 3: 366_667, 4: 440_000, 5: 528_000},
-    "realista": {1: 80_000, 2: 280_000, 3: 480_000, 4: 624_000, 5: 811_200},
-    "optimista": {1: 120_000, 2: 400_000, 3: 700_000, 4: 980_000, 5: 1_372_000},
+    "conservador": {1: 40_000, 2: 140_000, 3: 220_000, 4: 280_000, 5: 360_000},
+    "realista": {1: 75_000, 2: 260_000, 3: 400_000, 4: 520_000, 5: 680_000},
+    "optimista": {1: 110_000, 2: 400_000, 3: 620_000, 4: 800_000, 5: 1_050_000},
 }
 
 COMISION = 0.15
 IS = 0.15
 PCT_PAGO = 0.015
 AMORT_ANUAL = 6_000.0  # 30k / 5 años; en Y1 solo H2 (lanzamiento)
+INVERSION_REF = 30_000.0
+DIVIDENDO_OBJ_PCT = 0.15  # ≥15% sobre la inversión en el horizonte de 5 años
 
 
 def money_fmt(cell):
@@ -72,26 +75,25 @@ def opex(scenario: str, year: int, month: int) -> dict[str, float]:
     """Costes mensuales (sin medios de pago ni amortización)."""
     launched = not (year == 1 and month not in Y1_ACTIVE)
 
-    # Base conservador suavizado (cerca del plan de viabilidad)
+    # Conservador: opex contenido alineado a GMV más modesto (sin marketing agresivo)
     if scenario == "conservador":
         if year == 1 and not launched:
-            # Fase desarrollo: costes mínimos de estructura (sin marketing agresivo)
             return dict(
                 personal=0, transportes=0, marketing=0, hosting=80,
                 gestoria=120, seguros=30, telefonia=35, suministros=40,
                 otros=25, fin=10,
             )
-        personal = 0 if year == 1 else 250
+        personal = 0 if year == 1 else 150
         if year == 1:
-            marketing, hosting = 500, 250  # 3.000 mkt + ~2.000 host año (H2 más H1)
+            marketing, hosting = 350, 180  # ~2.100 mkt + ~1.560 host en H2 (+H1 mínimo)
         elif year == 2:
-            marketing, hosting = 667, 333
+            marketing, hosting = 400, 220
         else:
-            marketing, hosting = 1000, 333
+            marketing, hosting = 550, 250
         return dict(
             personal=personal, transportes=0, marketing=marketing, hosting=hosting,
-            gestoria=150, seguros=40, telefonia=45, suministros=55,
-            otros=40, fin=15,
+            gestoria=120, seguros=30, telefonia=35, suministros=40,
+            otros=25, fin=10,
         )
 
     if scenario == "realista":
@@ -362,30 +364,32 @@ def write_kpi_dashboard(wb):
         ws_d.cell(r, 2).value = f"=SUMIF({pyg}!$A:$A,3,{pyg}!${col}:${col})"
         money_fmt(ws_d.cell(r, 2))
 
-    # F) KPIs tarjeta (valores clave)
-    ws_d["D3"] = "F. Tarjetas KPI (Conservador)"
-    ws_d["D3"].font = Font(bold=True)
+    # F) KPIs tarjeta en J–K (NO solapar con D–H de la tabla anual; evita circularidad)
+    ws_d["J3"] = "F. Tarjetas KPI (Conservador)"
+    ws_d["J3"].font = Font(bold=True)
     cards = [
         (5, "GMV Y3", "=B7"),
         (6, "Ingresos Y3", "=C7"),
         (7, "Neto Y3", "=E7"),
         (8, "Margen neto Y3", "=F7"),
         (9, "Take rate", "=G7"),
-        (10, "GMV equilibrio mes", 9700),
-        (11, "Vendedores obj. Y3", 15),
-        (12, "Comisión marketplace", COMISION),
+        (10, "Cobertura gastos Y3", "=H7"),
+        (11, "GMV equilibrio mes", round((150 + 550 + 250 + 120 + 30 + 35 + 40 + 25 + 10 + AMORT_ANUAL / 12) / COMISION, 0)),
+        (12, "Vendedores obj. Y3", 11),
+        (13, "Comisión marketplace", COMISION),
+        (14, "Inv. + 15% dividendos", INVERSION_REF * (1 + DIVIDENDO_OBJ_PCT)),
     ]
-    style_header(ws_d.cell(4, 4, "KPI"))
-    style_header(ws_d.cell(4, 5, "Valor"))
+    style_header(ws_d.cell(4, 10, "KPI"))
+    style_header(ws_d.cell(4, 11, "Valor"))
     for r, label, val in cards:
-        ws_d.cell(r, 4).value = label
-        ws_d.cell(r, 5).value = val
-        if label.startswith("Margen") or label.startswith("Take") or label.startswith("Comisión"):
-            pct_fmt(ws_d.cell(r, 5))
+        ws_d.cell(r, 10).value = label
+        ws_d.cell(r, 11).value = val
+        if label.startswith("Margen") or label.startswith("Take") or label.startswith("Comisión") or label.startswith("Cobertura"):
+            pct_fmt(ws_d.cell(r, 11))
         elif isinstance(val, (int, float)) or (isinstance(val, str) and val.startswith("=")):
-            money_fmt(ws_d.cell(r, 5))
+            money_fmt(ws_d.cell(r, 11))
 
-    for c, w in enumerate([22, 14, 14, 22, 14, 12, 12, 14], 1):
+    for c, w in enumerate([22, 14, 14, 14, 14, 12, 12, 14, 3, 24, 14], 1):
         ws_d.column_dimensions[get_column_letter(c)].width = w
 
     # --- Dashboard visual ---
@@ -580,13 +584,16 @@ def build():
         (3, "IVA referencia", 0.21, "No entra en PyG operativa"),
         (4, "IS orientativo", IS, "No es liquidación fiscal"),
         (5, "Escenario de referencia", "CONSERVADOR", "PyG Conservador = base memoria/ICECYL"),
-        (6, "GMV Y1 conservador", GMV["conservador"][1], "→ 7.500 € comisión"),
-        (7, "GMV Y2 conservador", GMV["conservador"][2], "→ 30.000 € comisión"),
-        (8, "GMV Y3 conservador", GMV["conservador"][3], "→ 55.000 € comisión"),
+        (6, "GMV Y1 conservador", GMV["conservador"][1], f"→ {GMV['conservador'][1]*COMISION:,.0f} € comisión (6 meses venta)"),
+        (7, "GMV Y2 conservador", GMV["conservador"][2], f"→ {GMV['conservador'][2]*COMISION:,.0f} € comisión"),
+        (8, "GMV Y3 conservador", GMV["conservador"][3], f"→ {GMV['conservador'][3]*COMISION:,.0f} € comisión"),
         (9, "% medios de pago / GMV", PCT_PAGO, "Pasarela/Connect orientativo"),
         (10, "Amortización anual", AMORT_ANUAL, "30.000/5; en Y1 solo jul–dic"),
-        (11, "Compras mercancía", 0, "Intermediación: sin COGS"),
-        (12, "Suavizado Y1", "Sí", "Amort. y marketing comercial desde lanzamiento; H1 costes mínimos"),
+        (11, "Inversión referencia", INVERSION_REF, "Activo tecnológico / umbral ICECYL"),
+        (12, "Objetivo dividendos 5 años", DIVIDENDO_OBJ_PCT, "≥15% sobre la inversión (además de recuperarla)"),
+        (13, "Neto acumulado mínimo", INVERSION_REF * (1 + DIVIDENDO_OBJ_PCT), "Recuperar 30k + 4,5k dividendos"),
+        (14, "Compras mercancía", 0, "Intermediación: sin COGS"),
+        (15, "Suavizado Y1", "Sí", "Amort. y marketing comercial desde lanzamiento; H1 costes mínimos"),
     ]
     for r, a, b, c in params:
         ws_par.cell(r, 1).value = a
@@ -642,11 +649,12 @@ def build():
     ws_d["A1"] = "Drivers (conservador) y punto de equilibrio"
     ws_d["A1"].font = Font(bold=True, size=13, color="2F5233")
     drivers = [
-        (1, 5, 1666.67, 6, 50_000, 7_500),
-        (2, 10, 1666.67, 12, 200_000, 30_000),
-        (3, 15, 2037.04, 12, 366_667, 55_000),
-        (4, 18, 2037.04, 12, 440_000, 66_000),
-        (5, 20, 2200.00, 12, 528_000, 79_200),
+        # Año, vendedores, GMV€/vend/mes, meses venta, GMV anual, ingresos 15%
+        (1, 5, 1_333.33, 6, 40_000, 6_000),
+        (2, 8, 1_458.33, 12, 140_000, 21_000),
+        (3, 11, 1_666.67, 12, 220_000, 33_000),
+        (4, 13, 1_794.87, 12, 280_000, 42_000),
+        (5, 15, 2_000.00, 12, 360_000, 54_000),
     ]
     hdr = ["Año", "Vendedores", "GMV €/vend/mes", "Meses venta", "GMV anual", "Ingresos 15%"]
     for i, h in enumerate(hdr, 1):
@@ -657,9 +665,9 @@ def build():
             if c in (3, 5, 6):
                 money_fmt(ws_d.cell(4 + i, c))
 
-    # equilibrio Y2+
-    fixed = 250 + 333 + 150 + 40 + 45 + 55 + 40 + 15 + (AMORT_ANUAL / 12)
-    ws_d["A10"] = "Umbral orientativo Y2+ (con amortización)"
+    # equilibrio Y3+ (opex conservador contenido + amortización)
+    fixed = 150 + 550 + 250 + 120 + 30 + 35 + 40 + 25 + 10 + (AMORT_ANUAL / 12)
+    ws_d["A10"] = "Umbral orientativo Y3+ (con amortización; opex contenido)"
     ws_d["A10"].font = Font(bold=True)
     ws_d["A11"] = "Gastos fijos mensuales ≈"
     ws_d["B11"] = round(fixed, 2)
@@ -667,10 +675,27 @@ def build():
     ws_d["A12"] = "GMV mínimo mensual (÷15%)"
     ws_d["B12"] = round(fixed / COMISION, 2)
     money_fmt(ws_d["B12"])
-    ws_d["A13"] = "Con 10 vendedores → GMV/vend/mes"
-    ws_d["B13"] = round((fixed / COMISION) / 10, 2)
+    ws_d["A13"] = "Con 11 vendedores → GMV/vend/mes"
+    ws_d["B13"] = round((fixed / COMISION) / 11, 2)
     money_fmt(ws_d["B13"])
-    for c, w in enumerate([10, 12, 16, 12, 12, 14], 1):
+    ws_d["A15"] = "Objetivo financiero (conservador)"
+    ws_d["A15"].font = Font(bold=True)
+    ws_d["A16"] = "Inversión de referencia"
+    ws_d["B16"] = INVERSION_REF
+    money_fmt(ws_d["B16"])
+    ws_d["A17"] = "Dividendos mínimos (15%)"
+    ws_d["B17"] = INVERSION_REF * DIVIDENDO_OBJ_PCT
+    money_fmt(ws_d["B17"])
+    ws_d["A18"] = "Neto acumulado objetivo (5 años)"
+    ws_d["B18"] = INVERSION_REF * (1 + DIVIDENDO_OBJ_PCT)
+    money_fmt(ws_d["B18"])
+    cons = annual_totals("conservador")
+    cum = sum(t["neto"] for t in cons)
+    ws_d["A19"] = "Neto acumulado proyectado (conservador)"
+    ws_d["B19"] = round(cum, 0)
+    money_fmt(ws_d["B19"])
+    ws_d["C19"] = "OK" if cum >= INVERSION_REF * (1 + DIVIDENDO_OBJ_PCT) else "REVISAR"
+    for c, w in enumerate([38, 14, 16, 12, 12, 14], 1):
         ws_d.column_dimensions[get_column_letter(c)].width = w
 
     # --- Escenarios hoja resumen compacta ---

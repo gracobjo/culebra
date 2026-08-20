@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPublicProductBySlug } from "@culebra/auth";
+import { getPublicProductBySlug, listAccommodationsForProduct } from "@culebra/auth";
 import { formatPrice } from "@/lib/format";
 import { AddToCartForm } from "@/components/cart/add-to-cart-form";
 import { PageShell } from "@/components/layout/page-shell";
@@ -9,7 +9,7 @@ import { TrustStrip } from "@/components/ux/trust-strip";
 import { JsonLd } from "@/components/ux/json-ld";
 import { buildBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/seo";
 import { buildPageMetadata } from "@/lib/site";
-
+import { bookingCtaLabel, resolveBookingHref } from "@/lib/tourism";
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
 };
@@ -39,9 +39,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  const stays = await listAccommodationsForProduct(product.id, 4);
+
   const image = product.images[0];
   const breadcrumbItems = [
     { label: "Inicio", href: "/" },
+    { label: "Tienda", href: "/tienda" },
     { label: "Productos", href: "/productos" },
     ...(product.category
       ? [{ label: product.category.name, href: `/categorias/${product.category.slug}` }]
@@ -195,6 +198,57 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </section>
         ) : null}
       </div>
+
+      {stays.length > 0 ? (
+        <section className="mt-14">
+          <h2 className="text-2xl font-semibold">Si vienes a la sierra…</h2>
+          <p className="mt-2 max-w-2xl text-stone-600">
+            Alojamientos del territorio donde puedes combinar visita y compra local.
+            La reserva se hace en su canal habitual.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {stays.map((stay) => {
+              const href = resolveBookingHref(stay);
+              return (
+                <article
+                  key={stay.id}
+                  className="rounded-3xl border border-stone-200 bg-white p-5"
+                >
+                  <Link
+                    href={`/alojamientos/${stay.slug}`}
+                    className="text-lg font-medium hover:text-emerald-900"
+                  >
+                    {stay.name}
+                  </Link>
+                  {stay.city ? (
+                    <p className="mt-1 text-sm text-stone-500">{stay.city}</p>
+                  ) : null}
+                  {stay.shortDescription ? (
+                    <p className="mt-3 line-clamp-2 text-sm text-stone-600">
+                      {stay.shortDescription}
+                    </p>
+                  ) : null}
+                  <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                    <Link href={`/alojamientos/${stay.slug}`} className="text-emerald-800 underline">
+                      Ver ficha
+                    </Link>
+                    {href ? (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-emerald-900 underline"
+                      >
+                        {bookingCtaLabel(stay.bookingChannel)}
+                      </a>
+                    ) : null}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ) : null}
     </PageShell>
   );
 }

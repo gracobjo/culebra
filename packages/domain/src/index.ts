@@ -192,3 +192,43 @@ export const CommissionRuleType = {
   FIXED: "FIXED",
   CATEGORY: "CATEGORY",
 } as const satisfies Record<string, CommissionRuleType>;
+
+export type AccommodationStatus = "DRAFT" | "PUBLISHED" | "DISABLED";
+
+export const AccommodationStatus = {
+  DRAFT: "DRAFT",
+  PUBLISHED: "PUBLISHED",
+  DISABLED: "DISABLED",
+} as const satisfies Record<string, AccommodationStatus>;
+
+export type AccommodationBookingChannel =
+  | "BOOKING"
+  | "WEBSITE"
+  | "WHATSAPP"
+  | "PHONE"
+  | "EMAIL"
+  | "OTHER";
+
+export const AccommodationBookingChannel = {
+  BOOKING: "BOOKING",
+  WEBSITE: "WEBSITE",
+  WHATSAPP: "WHATSAPP",
+  PHONE: "PHONE",
+  EMAIL: "EMAIL",
+  OTHER: "OTHER",
+} as const satisfies Record<string, AccommodationBookingChannel>;
+
+export type TourismPackStatus = "DRAFT" | "PUBLISHED" | "DISABLED";
+
+export const TourismPackStatus = {
+  DRAFT: "DRAFT",
+  PUBLISHED: "PUBLISHED",
+  DISABLED: "DISABLED",
+} as const satisfies Record<string, TourismPackStatus>;
+
+export type CouponDiscountType = "PERCENTAGE" | "FIXED";
+
+export const CouponDiscountType = {
+  PERCENTAGE: "PERCENTAGE",
+  FIXED: "FIXED",
+} as const satisfies Record<string, CouponDiscountType>;

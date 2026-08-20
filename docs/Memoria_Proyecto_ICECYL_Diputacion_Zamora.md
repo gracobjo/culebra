@@ -467,6 +467,18 @@ Sin citar cifras de terceros ni nombres que no consten como estudio:
 
 Calendario definitivo: **pendiente** de constitución, de convocatoria de ayudas y de capacidad real de captación.
 
+### 21.1 Extensión turística territorial (fases posteriores al núcleo agroalimentario)
+
+El expediente y el arranque se centran en el **marketplace agroalimentario**. Como evolución de producto (no como sustituto del núcleo subvencionable) se contempla una extensión ligera al turismo del territorio:
+
+| Fase | Contenido | Esfuerzo |
+|------|-----------|----------|
+| **1 — Núcleo** | Solo agroalimentario (catálogo, pedidos, pagos, productores) | Actual |
+| **2 — Ligera** | Directorio de alojamientos del territorio + enlace a su reserva (Booking, web propia, WhatsApp). Cross-sell (“si vienes a la sierra…” / “si te alojaste aquí, prueba estos productos”) | Bajo |
+| **3 — Media** | Packs “noche + lote gourmet” (noche = reserva externa; lote = compra en marketplace), cupones y afiliación (`?ref=`) | Medio |
+
+La reserva de alojamiento **no** se integra en el checkout agroalimentario: se mantiene como enlace externo al canal del alojamiento. Los packs venden el lote de productos; la estancia se gestiona fuera de la plataforma.
+
 ---
 
 ## 22. Presupuesto e inversión
@@ -537,19 +549,19 @@ Costes = nube/SaaS, marketing, mantenimiento técnico, oficina, gestoría, enví
 
 **Punto de equilibrio.** Las fuentes estiman equilibrio alrededor del **mes 7** y gastos fijos mensuales contenidos tras el desarrollo. **Previsión de escenario prudente**, no demostración contable.
 
-### 24.2 Proyección a 3 años (escenario **prudente / pesimista** de las fuentes)
+### 24.2 Proyección a 5 años (escenario **conservador** del modelo cuantitativo)
 
-Las fuentes presentan una única cuenta de explotación cuantificada, calificada como **prudente o pesimista** (y, en el plan, como reducción respecto a una capacidad no publicada). Se reproduce como **previsión**, no como compromiso de ventas:
+Referencia: `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` (escenario conservador recalibrado: recuperar inversión 30.000 € + ≥15% dividendos).
 
-| Concepto | Año 1 (≈ 6 meses de venta) | Año 2 | Año 3 |
-|----------|---------------------------:|------:|------:|
-| Ingresos totales (comisiones +, en su caso, tienda) | 7.500 € | 30.000 € | 55.000 € |
-| EBITDA | +700 € | +14.400 € | +35.400 € |
-| Beneficio neto (tras IS simulado) | +595 € | +12.240 € | +30.090 € |
+| Concepto | Año 1 (≈ 6 meses de venta) | Año 2 | Año 3 | Año 4 | Año 5 |
+|----------|---------------------------:|------:|------:|------:|------:|
+| GMV vendedores | 40.000 € | 140.000 € | 220.000 € | 280.000 € | 360.000 € |
+| Ingresos SL (comisión 15%) | 6.000 € | 21.000 € | 33.000 € | 42.000 € | 54.000 € |
+| Resultado neto (orientativo) | ≈ −4.400 € | ≈ +500 € | ≈ +7.800 € | ≈ +14.700 € | ≈ +23.900 € |
 
-**No existen en las fuentes tres escenarios numéricos (prudente / base / optimista) completos.** Solo está cuantificado el escenario prudente. Los escenarios base y optimista **no se inventan**.
+**Neto acumulado 5 años (conservador):** ≈ **41.400 €** (≥ 34.500 € = 30.000 inversión + 4.500 dividendos al 15%).
 
-**Datos que faltan para un plan de empresa bancario:** GMV implícito, ticket medio, tasa de conversión, número de pedidos, mix comisión/tienda física, estacionalidad real, y sensibilidad a no obtener ayudas.
+Escenarios realista y optimista cuantificados en el mismo Excel. **Previsión**, no compromiso de ventas.
 
 ### 24.3 Empleo (objetivos — no resultados acreditados)
 

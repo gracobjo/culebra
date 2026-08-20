@@ -1,4 +1,4 @@
-import { ProductStatus, VendorStatus } from "@culebra/domain";
+import { AccommodationStatus, ProductStatus, TourismPackStatus, VendorStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
 export type SitemapUrlRecord = {
@@ -42,5 +42,21 @@ export async function listCategoryUrlsForSitemap(): Promise<SitemapUrlRecord[]> 
       updatedAt: true,
     },
     orderBy: { sortOrder: "asc" },
+  });
+}
+
+export async function listPublicAccommodationUrlsForSitemap(): Promise<SitemapUrlRecord[]> {
+  return prisma.accommodation.findMany({
+    where: { status: AccommodationStatus.PUBLISHED },
+    select: { slug: true, updatedAt: true },
+    orderBy: { updatedAt: "desc" },
+  });
+}
+
+export async function listPublicPackUrlsForSitemap(): Promise<SitemapUrlRecord[]> {
+  return prisma.tourismPack.findMany({
+    where: { status: TourismPackStatus.PUBLISHED },
+    select: { slug: true, updatedAt: true },
+    orderBy: { updatedAt: "desc" },
   });
 }
