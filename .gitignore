@@ -23,6 +23,7 @@ infra/backups/*
 
 # Permitir documentación versionable en GitHub
 !README.md
+!Plan_Viabilidad_Marketplace_Villardeciervos.md
 !docs/
 !docs/**/*.md
 !docs/**/*.pdf
