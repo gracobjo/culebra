@@ -1,6 +1,5 @@
 # Dossier para Socios — Marketplace Villardeciervos
 
-Versión: para presentación interna (convencer a futuros socios)
 
 ![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
 
