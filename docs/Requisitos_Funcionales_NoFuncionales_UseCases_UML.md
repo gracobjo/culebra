@@ -30,7 +30,7 @@ RF-04 Checkout con Stripe Connect + Bizum
 
 - Debe existir flujo de checkout que habilite tarjeta y Bizum.
 - Debe crear sesión Stripe con metadata del pedido.
-- El importe de pago debe incluir `shippingAmount` cobrado al cliente (0 si envío gratis).
+- El importe de pago debe incluir `shippingAmount` cobrado al cliente (tarifa plana 6,50 € si hay mercancía).
 
 RF-05 Split funds y retención 14 días (desistimiento)
 
@@ -49,7 +49,9 @@ RF-07 Emails transaccionales
 RF-08 Shipping y estados de VendorOrder
 
 - El productor debe poder cambiar el estado de VendorOrder siguiendo transiciones válidas.
-- Al SHIPPED se crea/actualiza Shipment y se sincroniza el pedido padre.
+- Al SHIPPED se crea/actualiza `Shipment` y se sincroniza el pedido padre.
+- **Estado actual (implementado):** el productor puede **registrar manualmente** `carrier` (texto libre) y `trackingNumber` (texto libre) al marcar SHIPPED desde `/panel/proveedor/pedidos/[id]`. No hay integración con API de transportista.
+- **Fuera de alcance actual:** generación automática de etiqueta adhesiva de caja (PDF/ZPL), impresión térmica y alta del envío en Correos/SEUR/otro. Ver RF-22.
 
 RF-09 Reviews post-compra
 
@@ -111,6 +113,35 @@ RF-21 Tarifa plana de envío (logística)
 - La UI debe mostrar la tarifa plana (sin mensaje de “te faltan X para envío gratis”).
 - Constantes de dominio: `CUSTOMER_SHIPPING_FEE_EUR`, `DEFAULT_MARKETPLACE_COMMISSION_PERCENT`, `DEFAULT_MIN_COMMISSION_EUR`.
 
+RF-22 Etiqueta logística de caja e integración con operador (pendiente de operador)
+
+> Circunstancia documentada (ago-2026): **aún no se ha seleccionado operador logístico**. El dossier (§14.2) describe el objetivo operativo; el software **no** elabora todavía la etiqueta adhesiva de la caja.
+
+**Implementado hoy**
+
+- Cobro de portes al cliente (RF-21).
+- Datos de envío del pedido (dirección).
+- Registro manual de transportista + tracking al marcar SHIPPED (RF-08).
+- Email de aviso de envío con tracking si se informó (RF-07).
+- PDF resumen de pedido / subpedido (justificante interno; **no** es la etiqueta del mensajero).
+- Acceso: productor en `/panel/proveedor/pedidos` → detalle `/panel/proveedor/pedidos/[id]`. Admin consulta en `/admin/pedidos` (sin generar etiqueta carrier).
+
+**No implementado (requisito futuro, tras contrato con operador)**
+
+- Conexión API/portal del transportista (Correos, SEUR u otro).
+- Generación automática de etiqueta adhesiva exterior (código de barras / tracking del carrier).
+- Botón “Imprimir etiqueta” hacia impresora térmica en trastienda Villardeciervos.
+- Flujo de consolidación logística centralizado (puesto de embalaje S.L.) distinto del panel por productor, si se confirma el modelo de consolidación del dossier.
+
+**Workaround operativo hasta la integración**
+
+1. Preparar la caja en trastienda.
+2. Crear el envío en el portal web del transportista elegido.
+3. Imprimir su etiqueta.
+4. Copiar el número de seguimiento en el panel del pedido (RF-08).
+
+El modelo Prisma `Shipment` queda preparado (`carrier`, `trackingNumber`, estados) con comentario de *future carrier integration*.
+
 ### C2. Requisitos No Funcionales
 
 RNF-01 Seguridad
@@ -145,7 +176,13 @@ RNF-07 Separación checkout agro / reserva turística
 
 RNF-08 Transparencia de portes
 
-- El importe de envío cobrado al cliente y la condición de envío gratis deben ser visibles antes de confirmar el pago (carrito y checkout).
+- El importe de envío cobrado al cliente (tarifa plana) debe ser visible antes de confirmar el pago (carrito y checkout).
+- Debe quedar claro que **no** hay envío gratis ni absorción de portes por la S.L.
+
+RNF-09 Desacoplamiento del operador logístico
+
+- Mientras no haya operador contratado, el sistema no debe hardcodear un carrier concreto en la lógica de negocio.
+- La integración de etiquetas (RF-22) será un módulo sustituible por operador (API/credenciales por entorno).
 
 ---
 
@@ -167,7 +204,7 @@ Use cases principales:
 - UC-04 Confirmación de pago (webhook) → marcar pedido pagado
 - UC-05 Crear payouts retenidos (heldForWithdrawal + releasesAt)
 - UC-06 Liberar payouts maduros (cron)
-- UC-07 Productor confirma y envía pedido (shipping operativo)
+- UC-07 Productor confirma y envía pedido (shipping operativo; **tracking manual**)
 - UC-08 Envío de email de shipment
 - UC-09 Consumidor deja review post-compra
 - UC-10 Admin consulta KPIs y rentabilidad
@@ -177,7 +214,8 @@ Use cases principales:
 - UC-14 Añadir pack (lote) al carrito y reservar noche fuera
 - UC-15 Aplicar cupón / registrar afiliado en pedido
 - UC-16 Admin gestiona turismo (alojamientos, packs, cupones, afiliados)
-- UC-17 Calcular y aplicar tarifa plana de envío (6,50 €; sin gratuidad)
+- UC-17 Calcular y aplicar tarifa plana de envío (6,50 €; sin gratuidad) — en diagrama F2: elipse `UC18`
+- UC-19 Generar/imprimir etiqueta de caja vía operador logístico (**futuro**; RF-22; pendiente de elegir operador)
 
 ---
 
@@ -220,12 +258,20 @@ Precondiciones:
 
 - Actor: `VENDOR` autenticado y propietario del `VendorOrder`.
 - Transición válida (PENDING/CONFIRMED/IN_PREPARATION → SHIPPED).
+- Acceso UI: `/panel/proveedor/pedidos/[id]`.
+
+Datos de entrada (estado actual):
+
+- `carrier` (opcional, texto libre; ej. “Correos”, “SEUR”).
+- `trackingNumber` (opcional, texto libre).
 
 Postcondiciones:
 
 - `VendorOrder.status = SHIPPED`
-- `Shipment.status = SHIPPED`, `shippedAt = now`
-- Email best-effort enviado al comprador con tracking.
+- `Shipment` creado/actualizado: `status = SHIPPED`, `shippedAt = now`, `carrier` / `trackingNumber` si se informaron
+- Email best-effort al comprador con tracking si existe
+
+**Limitación explícita:** este flujo **no** genera ni imprime la etiqueta adhesiva del transportista. Ver E9 / RF-22.
 
 ### E4. Reviews post-compra
 
@@ -303,6 +349,29 @@ Postcondiciones:
 - La S.L. **no** absorbe portes; el cliente paga siempre la tarifa.
 - UI: muestra tarifa plana (sin progreso hacia envío gratis).
 
+### E9. Etiqueta de caja e integración con operador (futuro — RF-22 / UC-19)
+
+Precondiciones (cuando se active):
+
+- Operador logístico seleccionado y contrato/credenciales configurados.
+- Pedido pagado con dirección de envío completa.
+- Puesto de embalaje (productor o consolidación S.L. en Villardeciervos) autenticado.
+
+Flujo objetivo:
+
+1. Usuario solicita “Generar etiqueta” desde el panel de pedido / pantalla de consolidación.
+2. El sistema crea el envío en la API/portal del operador.
+3. Se obtiene tracking + fichero de etiqueta (PDF/ZPL).
+4. Se actualiza `Shipment.carrier` / `Shipment.trackingNumber`.
+5. Se permite imprimir en impresora térmica local.
+
+Postcondiciones:
+
+- Etiqueta imprimible del carrier asociada al `VendorOrder` / envío consolidado.
+- Cliente puede seguir el tracking (email / ficha de pedido).
+
+**Estado hoy:** no implementado; workaround = portal del transportista + copiar tracking (RF-08).
+
 ---
 
 ## F. Diagramas UML (los 4 principales + otros útiles)
@@ -310,6 +379,8 @@ Postcondiciones:
 > Nota: Los diagramas se expresan con Mermaid para integrarlos en documentación.
 
 ### F1. Diagrama de clases (estático)
+
+> `Shipment.carrier` / `trackingNumber` se rellenan hoy a mano (RF-08). La generación de etiqueta del operador (PDF/ZPL) es **RF-22 / UC-19**.
 
 ```mermaid
 classDiagram
@@ -450,7 +521,7 @@ flowchart LR
   UC03(["Realizar checkout"])
   UC04(["Dejar review"])
   UC05(["Confirmar pedido"])
-  UC06(["Marcar envío SHIPPED"])
+  UC06(["Marcar envío SHIPPED (tracking manual)"])
   UC07(["Marcar entregado"])
   UC08(["Ver KPIs"])
   UC09(["Ver rentabilidad"])
@@ -463,6 +534,7 @@ flowchart LR
   UC16(["Añadir pack lote al carrito"])
   UC17(["Admin turismo"])
   UC18(["Aplicar tarifa plana envío"])
+  UC19(["Generar etiqueta operador — futuro RF-22"])
 
   %% Relaciones
   Consumidor --- UC01
@@ -476,6 +548,7 @@ flowchart LR
   Productor --- UC05
   Productor --- UC06
   Productor --- UC07
+  Productor --- UC19
 
   Admin --- UC08
   Admin --- UC09
@@ -483,6 +556,7 @@ flowchart LR
   Admin --- UC11
   Admin --- UC12
   Admin --- UC17
+  Admin --- UC19
 
   Stripe --- UC13
   Cron   --- UC14

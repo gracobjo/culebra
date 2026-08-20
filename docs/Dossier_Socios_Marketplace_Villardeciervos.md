@@ -572,42 +572,79 @@ Ejemplo de pantalla de estado de pedido (captura local):
 
 ## 12) Glosario de términos
 
-> Para facilitar la lectura a todos los perfiles, explicamos aquí los conceptos técnicos y de negocio que aparecen en este documento.
+> Para facilitar la lectura a todos los perfiles, explicamos aquí los conceptos técnicos y de negocio que aparecen en este documento. Los **acrónimos** se escriben primero desplegados y luego en lenguaje llano.
+
+### 12.1 Acrónimos (lectura rápida)
+
+| Acrónimo | Significa… | En este proyecto, en cristiano |
+|---|---|---|
+| **GMV** | *Gross Merchandise Value* (valor bruto de mercancía) | Dinero de **todas las ventas de los productores** en la plataforma. **No** es lo que gana la S.L.; es el “volumen de tienda”. |
+| **CAC** | *Customer Acquisition Cost* (coste de adquisición de cliente) | **Cuánto cuesta, de media, conseguir un pedido con anuncios de pago.** Ej.: 250 € de ads ÷ 50 pedidos ≈ CAC 5 €. |
+| **ROAS** | *Return On Ad Spend* (retorno del gasto en anuncios) | **Cuánto se vende por cada euro de publicidad.** ROAS 4× = por 1 € de anuncio, ~4 € de ventas (GMV). |
+| **SEO** | *Search Engine Optimization* | Aparecer en Google **sin pagar** por cada clic (contenido, fichas, enlaces). Parte del tráfico “orgánico”. |
+| **Ads / Paid Media** | Publicidad de pago / medios de pago | Anuncios en Meta, Google, etc. Presupuesto Año 1 ~**250 €/mes**. |
+| **Meta Ads** | Anuncios en la red de Meta | Publicidad en **Facebook e Instagram**. |
+| **CTA** | *Call To Action* (llamada a la acción) | Botón o frase que pide un paso concreto: “Entrar en la tienda”, “Comprar”, “Firmar”. |
+| **KPI** | *Key Performance Indicator* | Número que miramos para saber si vamos bien (pedidos/mes, valoración, % a tiempo…). |
+| **SLA** | *Service Level Agreement* | Compromiso de servicio medible (ej.: preparar el pedido en &lt; 24 h). |
+| **UI / UX** | *User Interface / User Experience* | **UI** = cómo se ve la web. **UX** = si es fácil y agradable usarla. |
+| **SaaS** | *Software as a Service* | Programa en la nube que se paga por uso (correo, contabilidad, hosting…). |
+| **NAS** | *Network Attached Storage* | Disco duro compartido en la red de la oficina. |
+| **DAW** | Desarrollo de Aplicaciones Web | Titulación FP de desarrollo web; puede aportar el equipo o un proveedor. |
+| **DAFO** | Debilidades, Amenazas, Fortalezas, Oportunidades | Cuadro de análisis estratégico del proyecto (§10). |
+| **RGPD** | Reglamento General de Protección de Datos | Norma europea de privacidad (datos de clientes y productores). |
+| **INE** | Instituto Nacional de Estadística | Fuente oficial de demografía, turismo, gasto de hogares, etc. (§1.bis). |
+| **EOTR / ETR** | Encuesta de Ocupación en Alojamientos de Turismo Rural / Encuesta de Turismo de Residentes | Estadísticas INE de viajeros y pernoctaciones (contexto de mercado, no promesa de ventas). |
+| **ICECYL** | Instituto para la Competitividad Empresarial de Castilla y León | Organismo de la Junta relacionado con ayudas a empresas (línea de referencia del expediente). |
+| **PyG** | Pérdidas y Ganancias | Cuenta de resultados: ingresos − gastos = resultado del periodo. |
+| **IS** | Impuesto sobre Sociedades | Impuesto sobre el beneficio de la S.L. (en el Excel, orientativo). |
+| **IVA** | Impuesto sobre el Valor Añadido | Impuesto al consumo; en las PyG del dossier suele ir **fuera** del modelo simplificado. |
+| **QR** | *Quick Response* (código QR) | Cuadradito que se escanea con el móvil (ej. en el showroom) para abrir la tienda. |
+| **S.L.** | Sociedad Limitada | Forma jurídica de la empresa; la responsabilidad se limita al capital aportado. |
+| **FBA** | *Fulfillment by Amazon* | Logística de Amazon (almacenaje y envío). Aquí se cita solo para **comparar** comisiones frente a marketplaces grandes. |
+
+### 12.2 Términos del embudo de captación (§9.B)
+
+| Término | Qué significa en este contexto |
+|---|---|
+| **Embudo (visita → pedido)** | Camino del cliente: entra en la web → mira productos → paga → pedido confirmado. Arriba hay muchas visitas; abajo, pocas compras. |
+| **Sesión** | Una visita a la web (abrir la tienda). La misma persona puede generar varias sesiones. |
+| **Conversión (sesión → pedido)** | % de visitas que acaban comprando. **~2 %** = de cada 100 visitas, unas 2 compran. |
+| **Ticket medio** | Importe medio de la cesta de productos (aquí **~65 €**). El envío de 6,50 € lo paga el cliente aparte. |
+| **Tráfico / visitas** | Gente que entra en la web. Puede ser de anuncios, Google, WhatsApp, visita física, etc. |
+| **Tráfico orgánico** | Visitas **sin** pagar anuncio por clic (SEO, marca, recomendaciones, redes propias). |
+| **Retargeting** | Volver a mostrar anuncios a quien ya visitó la web o dejó el carrito a medias. |
+| **Umbral de corte (ads)** | Regla práctica: si el CAC o el ROAS salen mal un tiempo, se **recorta o se para** ese anuncio; no se sigue gastando a ciegas. |
+| **Subsidiar portes** | Que la S.L. pague el envío “para vender más”. En el modelo v4 **no se hace**: el cliente paga siempre la tarifa plana. |
+
+### 12.3 Resto de términos del dossier
 
 | Término | Qué significa en este contexto |
 |---|---|
 | **Marketplace** | Plataforma web donde varios vendedores independientes ofrecen sus productos en un único escaparate digital (como Amazon, pero rural y propio). |
 | **Multi-vendedor** | El sistema permite que varios artesanos o productores tengan su propia "tienda" dentro de la misma plataforma, sin interferir unos con otros. |
-| **S.L. (Sociedad Limitada)** | Forma jurídica de empresa en España con responsabilidad económica limitada al capital aportado por los socios. |
-| **Stripe Connect** | Servicio de pagos internacionales que permite dividir automáticamente el dinero de una venta entre el marketplace y cada vendedor, cumpliendo la normativa financiera europea. |
+| **Stripe Connect** | Servicio de pagos que permite dividir automáticamente el dinero de una venta entre el marketplace y cada vendedor, cumpliendo la normativa financiera europea. |
 | **Bizum** | Sistema de pago instantáneo entre particulares o a comercios, muy popular en España, que opera a través del móvil vinculado a una cuenta bancaria. |
 | **Payout** | Transferencia del dinero recaudado desde la plataforma hacia la cuenta bancaria del productor. En este modelo se retiene 14 días por ley antes de liberarlo. |
 | **Retención de 14 días** | Obligación legal (Directiva europea de consumo) que permite al comprador desistir de la compra. Durante ese plazo, el dinero queda retenido antes de pagarse al productor. |
 | **Split automatizado** | División automática del importe de cada venta: un porcentaje va al marketplace (comisión) y el resto al productor, sin intervención manual. |
 | **Webhook** | Notificación automática que envía Stripe al sistema en tiempo real cuando ocurre un evento, por ejemplo cuando un pago se confirma. |
-| **SLA (Service Level Agreement)** | Acuerdo de nivel de servicio: compromiso medible de calidad y tiempo de respuesta. Aquí define, por ejemplo, que el productor debe preparar el pedido en menos de 24 horas. |
-| **KPI (Key Performance Indicator)** | Indicador clave de rendimiento. Métrica concreta que permite saber si el negocio va bien, por ejemplo: % de pedidos preparados a tiempo o valoración media del cliente. |
-| **EBITDA** | Beneficio de la empresa antes de descontar impuestos, amortizaciones y gastos financieros. Es el indicador de rentabilidad operativa más usado en análisis de negocio. |
+| **EBITDA** | Beneficio de la empresa antes de descontar impuestos, amortizaciones y gastos financieros. Indicador de rentabilidad operativa. |
 | **Punto de equilibrio** | Momento en que los ingresos cubren exactamente todos los costes. A partir de ese punto, la empresa empieza a generar beneficio real. |
+| **Take rate** | % que se queda la S.L. sobre el GMV (aquí ~**17 %** de comisión). |
 | **Rappel** | Descuento retroactivo sobre la comisión que se aplica al productor cuando supera un determinado volumen de ventas acumulado en el año. Incentiva la fidelidad y el crecimiento. |
-| **Comisión** | Porcentaje que el marketplace retiene sobre cada venta como contraprestación por el servicio (escaparate, pagos, logística, soporte). |
+| **Comisión** | Porcentaje que el marketplace retiene sobre cada venta como contraprestación por el servicio (escaparate, pagos, logística, soporte). Por defecto **17 %**. |
+| **Comisión mínima** | Suelo de **4,00 €** por subpedido de productor: se cobra el mayor entre el 17 % del merchandise y 4 €. |
 | **Consolidación logística** | Agrupar en un único envío los productos de distintos artesanos que compró el mismo cliente, para reducir costes y simplificar la recepción. |
 | **Umbral de envío gratuito** | **Eliminado en el modelo v4.** Ya no aplica: no hay cesta a partir de la cual el envío sea gratis. |
 | **Tarifa plana de envío** | Precio fijo de **6,50 €** que el cliente paga siempre, independiente del número de artesanos en el pedido. La S.L. no absorbe el porte. |
-| **Comisión mínima** | Suelo de **4,00 €** por pedido: se cobra el mayor entre el 17 % del merchandise y 4 €. |
 | **Grupo piloto** | Conjunto reducido de 5 productores de máxima confianza que prueban el sistema antes del lanzamiento público para detectar errores y generar primeras ventas reales. |
 | **Sandbox** | Entorno de pruebas seguro, separado del sistema real, donde se pueden simular compras, pagos y flujos sin mover dinero real ni afectar a clientes. |
 | **Ejecución tecnológica (modelo del proyecto)** | Combinación de recursos internos, personal especializado y/o servicios externos para desarrollar y mantener la plataforma. La dirección del proyecto supervisa entregables y validación; no depende de un único perfil. |
-| **DAW (Desarrollo de Aplicaciones Web)** | Titulación FP que acredita capacidad para diseñar y mantener aplicaciones web. Puede aportarse al proyecto vía equipo interno o proveedor; **no** es requisito único ni figura imprescindible del expediente. |
-| **SaaS (Software as a Service)** | Modelo de software en la nube que se paga por uso mensual o anual, sin necesidad de comprar ni instalar nada. Por ejemplo, las herramientas de correo, contabilidad o diseño que usamos en el día a día. |
-| **NAS (Network Attached Storage)** | Dispositivo de almacenamiento conectado a la red local, como un disco duro compartido accesible desde varios ordenadores de la oficina. |
-| **Firewall** | Sistema de seguridad (hardware o software) que controla y filtra el tráfico de red para proteger los equipos de accesos no autorizados. |
-| **UI/UX** | UI (Interfaz de Usuario): diseño visual de la web o app. UX (Experiencia de Usuario): facilidad e intuición con que el usuario navega por ella. |
 | **Backend** | Parte del sistema que el usuario no ve: base de datos, lógica de negocio, procesamiento de pedidos y pagos. Se ejecuta en el servidor. |
 | **Frontend** | Parte visible de la web o app con la que interactúa directamente el usuario: menús, botones, pantallas de compra, etc. |
 | **Responsivo** | Diseño web que se adapta automáticamente a cualquier tamaño de pantalla (móvil, tablet, ordenador). |
-| **DAFO** | Análisis estratégico que estudia las Debilidades, Amenazas, Fortalezas y Oportunidades de un proyecto o empresa. |
-| **CTA (Call to Action)** | Llamada a la acción: mensaje directo que invita al interlocutor a dar un paso concreto (firmar, invertir, contactar, etc.). |
+| **Firewall** | Sistema de seguridad (hardware o software) que controla y filtra el tráfico de red para proteger los equipos de accesos no autorizados. |
 | **Pipeline de captación** | Proceso estructurado para identificar, contactar y convertir a nuevos productores o clientes en participantes activos de la plataforma. |
 | **Fondos La Raya** | Programa de financiación europeo orientado a proyectos de desarrollo rural en zonas fronterizas o despobladas, como la comarca de Zamora. |
 
@@ -703,7 +740,26 @@ Al operar como **meros distribuidores logísticos** —sin manipular directament
 
 Aunque se respetan al 100% las etiquetas originales de los artesanos en el interior, la normativa de transporte de la UE y el estándar del comercio electrónico exigen que la caja exterior esté correctamente identificada.
 
-El sistema imprimirá automáticamente una **etiqueta logística exterior única** con los siguientes elementos:
+#### Dos etiquetas distintas (no confundir)
+
+| Tipo | Dónde va | Quién la pone | Qué dice |
+|------|----------|---------------|----------|
+| **Etiqueta del alimento** | En el tarro, embutido, botella… | El **productor** (en su obrador) | Ingredientes, alérgenos, RGSEAA, etc. La S.L. **no** la hace ni la toca. |
+| **Etiqueta adhesiva de la caja** | En la **caja de cartón exterior** | La **oficina de Villardeciervos** (equipo de la S.L.) | Destinatario, remitente, código de barras del transportista (seguimiento), pictogramas, marca *Sabores de la Culebra*. |
+
+El productor entrega el producto **ya cerrado y etiquetado**. En la trastienda solo se mete en la caja máster y se pega la etiqueta **de envío**.
+
+#### Cómo se obtiene la etiqueta adhesiva de la caja
+
+1. El cliente paga en la web (incluye los **6,50 €** de envío).
+2. En la oficina se prepara el pedido (picking → caja → acolchado → precinto).
+3. El **sistema / panel** genera la etiqueta de envío con el transportista contratado (Correos, SEUR u otro): dirección + **código de barras / tracking**.
+4. Se imprime en una **impresora de etiquetas** (térmica, rollo adhesivo).
+5. Se pega en la caja y se deja en la zona de recogida del mensajero.
+
+**Quién “saca” la etiqueta:** una persona del **equipo de operaciones de la S.L.** en Villardeciervos (no el productor ni el cliente). En el piloto (~1–2 pedidos/día) lo puede asumir el propio equipo sin una plantilla grande.
+
+#### Qué contiene la etiqueta logística exterior
 
 | Elemento | Contenido |
 |---|---|
@@ -711,7 +767,36 @@ El sistema imprimirá automáticamente una **etiqueta logística exterior única
 | **Datos del distribuidor** | [Nombre S.L.] · Villardeciervos (Zamora) · CIF: [el vuestro] |
 | **Mención comercial obligatoria** | *"Distribuido por [S.L.]. Contiene productos alimenticios no perecederos envasados en origen por productores autorizados."* |
 | **Código de barras de envío (tracking)** | Código que lee el transportista (Correos/SEUR) y permite al cliente seguir el pedido desde el marketplace |
-| **Pictogramas de seguridad logística** | 🍷 Frágil · ↑↑ Manténgase en posición vertical (para botellas y botes de vidrio) |
+| **Pictogramas de seguridad logística** | Frágil · Manténgase en posición vertical (para botellas y botes de vidrio) |
+
+#### Infraestructura: qué se compra y cuánto cuesta
+
+No es un almacén industrial. Partida de **logística ligera / mobiliario y equipamiento** (orden de magnitud del dossier):
+
+| Concepto | Para qué | Coste orientativo |
+|----------|----------|-------------------|
+| **Cajas** (S / M / L) | Embalaje exterior | Incluidas en el lote de arranque |
+| **Báscula** | Pesar el paquete | Dentro de la partida |
+| **Impresora de etiquetas** + rollos adhesivos | Imprimir la pegatina de envío | Dentro de la partida |
+| **Total partida logística de arranque** | Cajas + báscula + impresora | **~1.500 €** (elegible / justificable en expediente) |
+
+En memorias del proyecto el rango de **adecuación local + logística ligera** puede situarse en **~2.500–4.000 €** (obra menor + este kit). Lo concreto de esta sección para “solo logística de paquete” es **~1.500 €**.
+
+Esos **1.500 €** son **compra de equipo e inventario inicial**, no el coste de cada envío. El papel adhesivo / rollo supone **céntimos por caja** (gasto de material de la S.L.).
+
+#### No confundir “etiqueta” con los 6,50 € de envío
+
+Cuando el modelo habla de “coste de etiqueta ~5–6,50 €” se refiere al **porte / servicio del transportista** (llevar el paquete a casa del cliente), **no** al precio del papel adhesivo.
+
+| Concepto | Quién lo paga | Orden de magnitud |
+|----------|---------------|-------------------|
+| Pegatina + tinta del rollo | S.L. (material) | Céntimos por caja |
+| Impresora + báscula + cajas iniciales | Inversión (~1.500 € partida logística) | Una vez (o reposición de cajas) |
+| **Envío al cliente (6,50 €)** | **El cliente**, siempre | Por cada pedido |
+
+La S.L. **no absorbe** el porte: cobra 6,50 € al cliente y con eso se cubre, de forma orientativa, lo que cuesta mandar el paquete.
+
+**En una frase:** la etiqueta adhesiva de la caja la **imprime y pega el equipo de la S.L. en Villardeciervos**, con la impresora del kit logístico; el productor solo entrega el alimento ya etiquetado; el cliente paga el envío (6,50 €), no la impresora.
 
 ---
 
