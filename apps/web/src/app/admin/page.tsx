@@ -16,6 +16,12 @@ export default async function AdminDashboardPage() {
     { href: "/admin/liquidaciones", label: "Liquidaciones pendientes", value: stats.payoutsPending },
     { href: "/admin/pedidos", label: "Pedidos totales", value: stats.ordersTotal },
     { href: "/admin/usuarios", label: "Usuarios", value: stats.usersTotal },
+    {
+      href: "/admin/plan",
+      label: "Plan financiero",
+      value: "GMV · PyG",
+      isText: true as const,
+    },
   ];
 
   return (
@@ -28,7 +34,13 @@ export default async function AdminDashboardPage() {
             className="rounded-3xl border border-stone-200 bg-white p-5 hover:border-emerald-800"
           >
             <p className="text-sm text-stone-500">{card.label}</p>
-            <p className="mt-2 text-3xl font-semibold">{card.value}</p>
+            <p
+              className={`mt-2 font-semibold ${
+                "isText" in card && card.isText ? "text-2xl" : "text-3xl"
+              }`}
+            >
+              {card.value}
+            </p>
           </Link>
         ))}
       </div>

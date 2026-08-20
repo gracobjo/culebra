@@ -26,6 +26,7 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin/liquidaciones` | Payouts a productores |
 | `/admin/usuarios` | Suspender o reactivar cuentas |
 | `/admin/kpis` | KPIs artesanos |
+| `/admin/plan` | Plan financiero 5 años (Excel + embudo §9.B + GMV real) |
 | `/admin/rentabilidad` | Rentabilidad por transaccion |
 | `/admin/rappels` | Rappels teoricos |
 | `/admin/piloto` | Grupo piloto |

@@ -315,7 +315,7 @@ Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red
 
 Punto de equilibrio operativo orientativo: entorno del **mes 7+** / consolidación en año 2–3 según GMV.
 
-**Anexos contractuales:** **§9.A** (GMV ↔ pedidos ↔ clientes) y **§9.B** (embudo de conversión web Año 1). Marco de referencia para el Pacto de Socios; no son previsión garantizada.
+**Anexos contractuales:** **§9.A** (GMV ↔ pedidos ↔ clientes) y **§9.B** (embudo de conversión web Año 1). Marco de referencia para el Pacto de Socios; no son previsión garantizada. Cuadro de mando operativo en el panel: **`/admin/plan`** (incluye descarga del Excel de cuenta de resultados).
 
 ---
 
