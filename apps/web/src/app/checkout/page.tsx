@@ -60,9 +60,25 @@ export default async function CheckoutPage() {
                 <span>-{formatPrice(cart.discountAmount)}</span>
               </p>
             ) : null}
+            <p className="flex justify-between text-sm">
+              <span>Envio</span>
+              <span>
+                {cart.shippingFree ? (
+                  <span className="text-emerald-900">Gratis</span>
+                ) : (
+                  formatPrice(cart.shippingAmount)
+                )}
+              </span>
+            </p>
+            {!cart.shippingFree ? (
+              <p className="text-xs text-stone-500">
+                Anade {formatPrice(cart.amountToFreeShipping)} mas para envio gratis
+                (umbral {formatPrice(cart.freeShippingThreshold)}).
+              </p>
+            ) : null}
             <p className="flex justify-between font-medium">
               <span>Total</span>
-              <span>{formatPrice(cart.total)}</span>
+              <span>{formatPrice(cart.grandTotal)}</span>
             </p>
           </div>
           {affiliateCode ? (

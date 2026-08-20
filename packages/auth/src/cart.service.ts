@@ -3,6 +3,7 @@ import { prisma } from "@culebra/db";
 
 import type { AddCartItemInput, ApplyCartCouponInput } from "./cart.schemas.js";
 import { computeCouponDiscount, getActiveCouponByCode } from "./coupon.service.js";
+import { computeShippingQuote } from "./shipping.service.js";
 import { generateSecureToken } from "./token.js";
 import { getPublicTourismPackBySlug } from "./tourism-pack.service.js";
 
@@ -30,7 +31,14 @@ export type CartRecord = {
   subtotal: string;
   couponCode: string | null;
   discountAmount: string;
+  /** Merchandise after discount, before shipping. */
   total: string;
+  shippingAmount: string;
+  shippingFree: boolean;
+  amountToFreeShipping: string;
+  freeShippingThreshold: string;
+  /** Merchandise + shipping charged to customer. */
+  grandTotal: string;
   items: CartItemRecord[];
 };
 
@@ -134,6 +142,7 @@ async function mapCart(cart: {
   }
 
   const total = Math.max(0, subtotalNumber - Number(discountAmount)).toFixed(2);
+  const shipping = computeShippingQuote(Number(total));
 
   return {
     id: cart.id,
@@ -143,6 +152,11 @@ async function mapCart(cart: {
     couponCode,
     discountAmount,
     total,
+    shippingAmount: shipping.shippingAmount.toFixed(2),
+    shippingFree: shipping.shippingFree,
+    amountToFreeShipping: shipping.amountToFreeShipping.toFixed(2),
+    freeShippingThreshold: shipping.threshold.toFixed(2),
+    grandTotal: shipping.grandTotal.toFixed(2),
     items,
   };
 }

@@ -9,6 +9,7 @@ import {
   checkoutSchema,
   clearCartCoupon,
   createOrderCheckoutSession,
+  FREE_SHIPPING_THRESHOLD_EUR,
   getOrCreateCart,
   isStripeConfigured,
   removeCartItem,
@@ -207,6 +208,11 @@ export async function loadCart() {
       couponCode: null,
       discountAmount: "0.00",
       total: "0.00",
+      shippingAmount: "0.00",
+      shippingFree: false,
+      amountToFreeShipping: FREE_SHIPPING_THRESHOLD_EUR.toFixed(2),
+      freeShippingThreshold: FREE_SHIPPING_THRESHOLD_EUR.toFixed(2),
+      grandTotal: "0.00",
       items: [],
     };
   }

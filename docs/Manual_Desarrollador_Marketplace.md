@@ -136,6 +136,17 @@ Migración: `packages/db/prisma/migrations/20260820130000_tourism_module/`
 
 Hub UX: `/tienda` (agro + entradas turismo). `/categorias` (índice) redirige a `/tienda`.
 
+### B8c. Envío con umbral gratuito
+
+Regla en `packages/auth/src/shipping.service.ts` (`computeShippingQuote`):
+
+- Merchandise (tras cupón) **&lt; 49 €** → cliente paga **4,95 €** (`Order.shippingAmount`)
+- Merchandise **≥ 49 €** → envío gratis; la S.L. absorbe ~5 € de coste logístico desde su comisión; el productor conserva el **85 %**
+
+Constantes: `@culebra/domain` (`FREE_SHIPPING_THRESHOLD_EUR`, `CUSTOMER_SHIPPING_FEE_EUR`, `MARKETPLACE_SHIPPING_COST_EUR`).
+
+Migración: `20260820140000_order_shipping_amount`.
+
 ### B9. Diagramas y modelado
 
 Para cambios en BD o lógica:

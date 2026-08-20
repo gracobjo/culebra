@@ -135,6 +135,13 @@ export type {
 } from "./cart.schemas.js";
 export { checkoutCart } from "./checkout.service.js";
 export type { OrderSummary } from "./checkout.service.js";
+export { computeShippingQuote } from "./shipping.service.js";
+export type { ShippingQuote } from "./shipping.service.js";
+export {
+  CUSTOMER_SHIPPING_FEE_EUR,
+  FREE_SHIPPING_THRESHOLD_EUR,
+  MARKETPLACE_SHIPPING_COST_EUR,
+} from "@culebra/domain";
 export {
   createOrderCheckoutSession,
   createVendorStripeOnboardingLink,

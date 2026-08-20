@@ -89,9 +89,29 @@ export default async function CartPage() {
                 <span>-{formatPrice(cart.discountAmount)}</span>
               </div>
             ) : null}
+            <div className="flex items-center justify-between">
+              <span>Envio</span>
+              <span>
+                {cart.shippingFree ? (
+                  <span className="font-medium text-emerald-900">Gratis</span>
+                ) : (
+                  formatPrice(cart.shippingAmount)
+                )}
+              </span>
+            </div>
+            {!cart.shippingFree ? (
+              <p className="text-sm text-stone-600">
+                Te faltan {formatPrice(cart.amountToFreeShipping)} para envio gratis
+                (a partir de {formatPrice(cart.freeShippingThreshold)}).
+              </p>
+            ) : (
+              <p className="text-sm text-emerald-800">
+                Has superado {formatPrice(cart.freeShippingThreshold)}: envio gratis.
+              </p>
+            )}
             <div className="flex items-center justify-between border-t border-stone-300 pt-2 font-medium">
               <span>Total</span>
-              <span className="text-xl font-semibold">{formatPrice(cart.total)}</span>
+              <span className="text-xl font-semibold">{formatPrice(cart.grandTotal)}</span>
             </div>
             {cart.couponCode && Number(cart.discountAmount) === 0 ? (
               <form action={clearCouponAction} className="pt-1 text-sm text-amber-800">

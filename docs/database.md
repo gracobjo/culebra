@@ -25,7 +25,7 @@ FASE 2 completada: esquema Prisma, migracion inicial, seed de roles y categorias
 | Turismo | `Accommodation`, `AccommodationProduct`, `TourismPack`, `TourismPackItem` |
 | Promocion | `Coupon`, `CouponRedemption`, `AffiliateCode` |
 | Carrito | `Cart` (+ `couponCode`), `CartItem` (soporta invitado via `sessionId`) |
-| Pedidos | `Order` (+ `discountAmount`, `couponCode`, `affiliateCode`), `OrderItem`, `VendorOrder`, `VendorOrderItem` |
+| Pedidos | `Order` (+ `discountAmount`, `shippingAmount`, `couponCode`, `affiliateCode`), `OrderItem`, `VendorOrder`, `VendorOrderItem` |
 | Pagos | `Payment`, `Refund`, `Payout` |
 | Envios | `Shipment` |
 | Otros | `Address`, `Review`, `Favorite`, `Notification`, `AuditLog` |

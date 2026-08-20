@@ -10,7 +10,7 @@
 El proyecto crea una **S.L. tecnológica** que lanza un **marketplace multi-vendedor** para dinamizar el entorno rural de Villardeciervos (Zamora), integrando:
 
 - **Captación de productores locales** (con enfoque inicial en **no perecederos**).
-- **Compra unificada**: un cliente compra productos de distintos artesanos en una sola cesta, con **tarifa plana rural** y **consolidación** logística.
+- **Compra unificada**: un cliente compra productos de distintos artesanos en una sola cesta, con **umbral de envío gratis (≥ 49 €)** / **4,95 €** por debajo, y **consolidación** logística.
 - **Pago avanzado con split automatizado** por **Stripe Connect**, con **retención legal de 14 días** (desistimiento).
 - **Operativa y SLA** para proteger la reputación del portal (preparación + calidad + penalización).
 - **Herramientas de control** para socios: panel admin con KPIs, rentabilidad, rappels, grupo piloto y sandbox de validación.
@@ -106,7 +106,8 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 ### Consumidores (CONSUMERS)
 
 - Catálogo unificado (varios artesanos en una sola compra).
-- Envío con tarifa plana y consolidación.
+- **Envío con umbral:** 4,95 € si el pedido (tras descuentos) es &lt; 49 €; **gratis a partir de 49 €** (la S.L. absorbe el porte desde su comisión; el productor conserva el 85 %).
+- Consolidación logística multiproductor cuando aplica.
 - Pago moderno (tarjeta + wallets + **Bizum**).
 - Experiencia fiable por SLA del productor.
 
@@ -137,6 +138,21 @@ Tramos de facturación anual acumulada:
 | Bronce | hasta 5.000 €/año | 15% | estándar |
 | Plata | 5.001–15.000 €/año | 12% | rappel del 3% (retroactivo/abono) |
 | Oro | > 15.000 €/año | 10% | comisión final 10% + beneficios de posicionamiento |
+
+### 3.4 Umbral de envío gratuito (repercusión logística)
+
+Estrategia recomendada e **implementada en software** (`computeShippingQuote`):
+
+| Merchandise (productos − cupón) | Cliente | Quién sufraga el porte |
+|--------------------------------|--------:|------------------------|
+| **&lt; 49 €** | Paga **4,95 €** | Cliente (cargo de envío) |
+| **≥ 49 €** | **Gratis** | Marketplace (absorbe ~5 € de etiqueta desde la comisión ~15 %) |
+
+**Por qué no se carga al productor el envío gratis:** al superar 49 € (cesta unificada multiproductor), el ticket medio tiende a subir; la comisión de la S.L. genera colchón suficiente para absorber el coste de transporte **sin reducir el 85 %** del productor.
+
+Ejemplo orientativo (ticket 68,50 €): comisión 15 % ≈ 10,27 € → menos ~5 € de etiqueta ≈ **~5,27 €** de margen de intermediación; productor recibe su 85 % íntegro.
+
+Constantes: umbral 49 €, cargo cliente 4,95 €, coste interno orientativo 5 €. Detalle técnico: `docs/cart.md`.
 
 ---
 
@@ -186,10 +202,11 @@ SLA del productor:
 - Preferencia de consumo (no caducidad cercana): 90 días (45 en quesos).
 - Penalizaciones: suspensión temporal o depósito físico de stock.
 
-Tarifa plana rural y consolidación:
+Tarifa / umbral de envío y consolidación:
 
-- Coste de envío objetivo 4,50–5,50 € (paquetes hasta 2 kg).
-- Consolidación si compra a varios artesanos.
+- **Regla de producto:** &lt; 49 € → cliente paga **4,95 €**; ≥ 49 € → **envío gratis** (absorbido por la S.L. vía comisión).
+- Coste interno de etiqueta orientativo ~**5 €** (paquetes hasta ~2 kg).
+- Consolidación si compra a varios artesanos (un solo envío al cliente cuando la operativa lo permita).
 
 ---
 
@@ -397,7 +414,8 @@ Ejemplo de pantalla de estado de pedido (captura local):
 | **Rappel** | Descuento retroactivo sobre la comisión que se aplica al productor cuando supera un determinado volumen de ventas acumulado en el año. Incentiva la fidelidad y el crecimiento. |
 | **Comisión** | Porcentaje que el marketplace retiene sobre cada venta como contraprestación por el servicio (escaparate, pagos, logística, soporte). |
 | **Consolidación logística** | Agrupar en un único envío los productos de distintos artesanos que compró el mismo cliente, para reducir costes y simplificar la recepción. |
-| **Tarifa plana rural** | Precio fijo de envío independientemente del número de artesanos incluidos en el pedido, diseñado para hacer competitivo el coste logístico en zonas rurales. |
+| **Umbral de envío gratuito** | Regla comercial: a partir de un importe de cesta (49 € tras descuentos) el cliente no paga portes; por debajo paga una tarifa fija (4,95 €). El envío gratis lo sufraga el marketplace con su comisión, no el productor. |
+| **Tarifa plana rural** | Precio fijo de envío (4,95 €) por debajo del umbral, independiente del número de artesanos en el pedido, pensado para hacer competitivo el porte rural. |
 | **Grupo piloto** | Conjunto reducido de 5 productores de máxima confianza que prueban el sistema antes del lanzamiento público para detectar errores y generar primeras ventas reales. |
 | **Sandbox** | Entorno de pruebas seguro, separado del sistema real, donde se pueden simular compras, pagos y flujos sin mover dinero real ni afectar a clientes. |
 | **Ejecución tecnológica (modelo del proyecto)** | Combinación de recursos internos, personal especializado y/o servicios externos para desarrollar y mantener la plataforma. La dirección del proyecto supervisa entregables y validación; no depende de un único perfil. |

@@ -12,8 +12,8 @@ const items = [
     description: "Origen y alergenos solo si el productor los indica.",
   },
   {
-    title: "Envio por productor",
-    description: "Cada productor prepara y envia su parte del pedido.",
+    title: "Envio con umbral",
+    description: "4,95 € si el pedido es menor de 49 €; gratis a partir de 49 €.",
   },
 ];
 

@@ -24,11 +24,13 @@ RF-03 Carrito multi-proveedor
 
 - El consumidor debe poder añadir productos de diferentes productores.
 - El backend debe calcular comisión marketplace y neto por productor.
+- El carrito debe mostrar subtotal, descuentos, **envío** y total a pagar, incluyendo el progreso hacia el umbral de envío gratis.
 
 RF-04 Checkout con Stripe Connect + Bizum
 
 - Debe existir flujo de checkout que habilite tarjeta y Bizum.
 - Debe crear sesión Stripe con metadata del pedido.
+- El importe de pago debe incluir `shippingAmount` cobrado al cliente (0 si envío gratis).
 
 RF-05 Split funds y retención 14 días (desistimiento)
 
@@ -101,6 +103,14 @@ RF-20 Admin turismo
 
 - Admin debe poder gestionar alojamientos, packs, cupones y códigos de afiliado desde `/admin/turismo`.
 
+RF-21 Umbral de envío gratuito (logística)
+
+- Si el merchandise del pedido (subtotal − cupón) es **&lt; 49 €**, el cliente paga **4,95 €** de envío (`Order.shippingAmount`).
+- Si el merchandise es **≥ 49 €**, el envío es **gratis** para el cliente (`shippingAmount = 0`).
+- El coste logístico del envío gratis lo **absorbe el marketplace** desde su comisión; el productor conserva su **85 %** íntegro sobre el producto (no se le descuenta el porte).
+- La UI debe informar “te faltan X € para envío gratis” cuando aplique.
+- Constantes de dominio: `FREE_SHIPPING_THRESHOLD_EUR`, `CUSTOMER_SHIPPING_FEE_EUR`, `MARKETPLACE_SHIPPING_COST_EUR`.
+
 ### C2. Requisitos No Funcionales
 
 RNF-01 Seguridad
@@ -133,6 +143,10 @@ RNF-07 Separación checkout agro / reserva turística
 
 - La reserva de alojamiento no debe mezclarse en el mismo checkout de productos (evita complejidad legal/pago de estancias y mantiene el núcleo agroalimentario del expediente).
 
+RNF-08 Transparencia de portes
+
+- El importe de envío cobrado al cliente y la condición de envío gratis deben ser visibles antes de confirmar el pago (carrito y checkout).
+
 ---
 
 ## D. Casos de Uso (Use Cases) — Alto nivel
@@ -148,12 +162,12 @@ Actores:
 Use cases principales:
 
 - UC-01 Consultar catálogo y hub `/tienda`
-- UC-02 Gestionar carrito multi-vendor (incl. cupón)
-- UC-03 Realizar checkout (Stripe Connect + Bizum; cupón/afiliado opcionales)
+- UC-02 Gestionar carrito multi-vendor (incl. cupón y umbral de envío)
+- UC-03 Realizar checkout (Stripe Connect + Bizum; cupón/afiliado/envío)
 - UC-04 Confirmación de pago (webhook) → marcar pedido pagado
 - UC-05 Crear payouts retenidos (heldForWithdrawal + releasesAt)
 - UC-06 Liberar payouts maduros (cron)
-- UC-07 Productor confirma y envía pedido (shipping)
+- UC-07 Productor confirma y envía pedido (shipping operativo)
 - UC-08 Envío de email de shipment
 - UC-09 Consumidor deja review post-compra
 - UC-10 Admin consulta KPIs y rentabilidad
@@ -163,6 +177,7 @@ Use cases principales:
 - UC-14 Añadir pack (lote) al carrito y reservar noche fuera
 - UC-15 Aplicar cupón / registrar afiliado en pedido
 - UC-16 Admin gestiona turismo (alojamientos, packs, cupones, afiliados)
+- UC-17 Calcular y aplicar umbral de envío gratuito (4,95 € / gratis ≥ 49 €)
 
 ---
 
@@ -250,7 +265,7 @@ Flujo:
 1. Consumidor en `/packs/[slug]` añade el **lote** al carrito (`addPackToCart`).
 2. Si el pack tiene cupón asociado, se intenta aplicar al carrito.
 3. Consumidor abre el enlace de reserva del alojamiento (fuera del marketplace).
-4. Checkout del carrito solo cobra productos (+ descuento cupón si aplica).
+4. Checkout del carrito cobra productos (+ descuento cupón si aplica) **y** el envío según umbral (RF-21).
 
 Postcondiciones:
 
@@ -266,8 +281,27 @@ Precondiciones:
 Postcondiciones:
 
 - `Cart.couponCode` / `Order.couponCode`, `Order.discountAmount`.
-- `Payment.amount` = total tras descuento.
+- `Payment.amount` = merchandise tras descuento **+** `shippingAmount`.
 - `CouponRedemption` + incremento de `redemptionCount`.
+
+### E8. Umbral de envío gratuito
+
+Precondiciones:
+
+- Carrito con al menos una línea de producto.
+
+Regla (`computeShippingQuote`):
+
+| Merchandise (subtotal − cupón) | `Order.shippingAmount` |
+|--------------------------------|-----------------------:|
+| &lt; 49 € | 4,95 € |
+| ≥ 49 € | 0 € (gratis) |
+
+Postcondiciones:
+
+- `Order.totalAmount` = merchandise + `shippingAmount`.
+- El neto al productor **no** se reduce por el porte gratis; el marketplace absorbe el coste interno (~5 €) desde su comisión.
+- UI: mensaje de progreso hacia el umbral si el envío no es gratis.
 
 ---
 
@@ -301,6 +335,9 @@ classDiagram
     orderNumber
     status
     customerEmail
+    subtotalGross
+    discountAmount
+    shippingAmount
     totalAmount
     createdAt
   }
@@ -409,7 +446,7 @@ flowchart LR
 
   %% Casos de uso (elipses)
   UC01(["Consultar hub /tienda y catálogo"])
-  UC02(["Gestionar carrito + cupón"])
+  UC02(["Gestionar carrito + cupón + umbral envío"])
   UC03(["Realizar checkout"])
   UC04(["Dejar review"])
   UC05(["Confirmar pedido"])
@@ -425,6 +462,7 @@ flowchart LR
   UC15(["Consultar alojamientos / reserva externa"])
   UC16(["Añadir pack lote al carrito"])
   UC17(["Admin turismo"])
+  UC18(["Aplicar umbral envío gratis"])
 
   %% Relaciones
   Consumidor --- UC01
@@ -433,6 +471,7 @@ flowchart LR
   Consumidor --- UC04
   Consumidor --- UC15
   Consumidor --- UC16
+  Consumidor --- UC18
 
   Productor --- UC05
   Productor --- UC06

@@ -168,6 +168,18 @@ export const VendorPayoutMethod = {
 /** Comision marketplace por defecto cuando no hay regla ni contrato especifico. */
 export const DEFAULT_MARKETPLACE_COMMISSION_PERCENT = 15;
 
+/** Umbral de envío gratuito (merchandise tras descuento). */
+export const FREE_SHIPPING_THRESHOLD_EUR = 49;
+
+/** Importe de envío que paga el cliente por debajo del umbral. */
+export const CUSTOMER_SHIPPING_FEE_EUR = 4.95;
+
+/**
+ * Coste interno orientativo de etiqueta/transporte que absorbe el marketplace
+ * cuando el envío es gratis (no se cobra al productor ni se descuenta de su 85 %).
+ */
+export const MARKETPLACE_SHIPPING_COST_EUR = 5;
+
 export type ContractStatus =
   | "DRAFT"
   | "PENDING_SIGNATURE"

@@ -23,6 +23,7 @@ import {
   sendVendorNewOrderEmail,
 } from "./email.service.js";
 import { notifyCheckout } from "./notifications.service.js";
+import { computeShippingQuote } from "./shipping.service.js";
 import { recordOrderDocuments } from "./stored-document.service.js";
 
 type CartOwner = {
@@ -39,6 +40,8 @@ export type OrderSummary = {
   taxTotal: string;
   subtotalGross: string;
   discountAmount: string;
+  shippingAmount: string;
+  shippingFree: boolean;
   couponCode: string | null;
   affiliateCode: string | null;
   vendorCount: number;
@@ -144,7 +147,11 @@ export async function checkoutCart(
     }
   }
 
-  const totalAmount = Number(Math.max(0, subtotalGross - discountAmount).toFixed(2));
+  const merchandiseTotal = Number(
+    Math.max(0, subtotalGross - discountAmount).toFixed(2),
+  );
+  const shipping = computeShippingQuote(merchandiseTotal);
+  const totalAmount = shipping.grandTotal;
 
   const vendorIdsUnique = vendorIds;
   const orderNumber = await nextOrderNumber();
@@ -171,6 +178,7 @@ export async function checkoutCart(
         taxTotal,
         totalAmount,
         discountAmount,
+        shippingAmount: shipping.shippingAmount,
         couponCode: resolvedCoupon?.code ?? null,
         affiliateCode,
         netToVendorsTotal: subtotalGross,
@@ -316,6 +324,8 @@ export async function checkoutCart(
     taxTotal: String(order.taxTotal),
     subtotalGross: String(order.subtotalGross),
     discountAmount: String(order.discountAmount ?? 0),
+    shippingAmount: String(order.shippingAmount ?? 0),
+    shippingFree: Number(order.shippingAmount ?? 0) === 0 && merchandiseTotal >= shipping.threshold,
     couponCode: order.couponCode ?? null,
     affiliateCode: order.affiliateCode ?? null,
     vendorCount: vendorIdsUnique.length,

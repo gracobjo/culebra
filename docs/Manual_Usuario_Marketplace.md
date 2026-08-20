@@ -59,6 +59,7 @@ Rutas típicas:
 - Añade productos (o un pack completo: añade sus líneas de producto).
 - Puedes aplicar un **cupón** en `/carrito` (código; descuento % o fijo según reglas).
 - Si llegas con `?ref=CODIGO` (afiliado de un alojamiento), el código se guarda en cookie y se asocia al pedido en checkout.
+- **Envío:** si el importe de productos (tras descuento) es **menor de 49 €**, pagas **4,95 €** de envío; a partir de **49 €** el envío es **gratis**. El carrito te indica cuánto falta para el umbral.
 - El sistema prepara el pedido agregando vendedores implicados.
 
 #### 4) Checkout y pago avanzado (Stripe Connect + Bizum)
