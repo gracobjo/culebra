@@ -1,4 +1,4 @@
-# Dossier para Socios — Marketplace Villardeciervos
+# Dossier Marketplace Villardeciervos
 
 
 ![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
