@@ -49,6 +49,7 @@ function alignForwardedHostHeaders(request: NextRequest): Headers {
 export async function middleware(request: NextRequest) {
   const requestHeaders = alignForwardedHostHeaders(request);
   const pathname = request.nextUrl.pathname;
+  const ref = request.nextUrl.searchParams.get("ref");
 
   const token = await getToken({
     req: request,
@@ -74,9 +75,20 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next({
+  const response = NextResponse.next({
     request: { headers: requestHeaders },
   });
+
+  if (ref && /^[A-Za-z0-9_-]{2,40}$/.test(ref)) {
+    response.cookies.set("culebra_ref", ref.toUpperCase(), {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30,
+    });
+  }
+
+  return response;
 }
 
 export const config = {

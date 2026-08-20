@@ -103,6 +103,20 @@ export default async function OrderConfirmationPage({ params, searchParams }: Or
             <span className="shrink-0">{formatPrice(item.subtotalGross)}</span>
           </li>
         ))}
+        {Number(order.discountAmount) > 0 ? (
+          <li className="flex justify-between gap-4 text-sm text-emerald-900">
+            <span>Descuento</span>
+            <span>-{formatPrice(order.discountAmount)}</span>
+          </li>
+        ) : null}
+        <li className="flex justify-between gap-4 text-sm">
+          <span>Envio</span>
+          <span>
+            {Number(order.shippingAmount) > 0
+              ? formatPrice(order.shippingAmount)
+              : "Gratis"}
+          </span>
+        </li>
         <li className="flex justify-between border-t border-stone-100 pt-3 font-medium">
           <span>Total</span>
           <span>{formatPrice(order.totalAmount)}</span>

@@ -41,8 +41,8 @@ export default async function HomePage() {
             pedido.
           </p>
           <div className="btn-group">
-            <Link className="btn btn-primary w-full sm:w-auto" href="/productos">
-              Descubrir productos
+            <Link className="btn btn-primary w-full sm:w-auto" href="/tienda">
+              Entrar en la tienda
             </Link>
             <Link className="btn btn-secondary w-full sm:w-auto" href="/como-funciona">
               Como funciona
@@ -77,17 +77,41 @@ export default async function HomePage() {
       <section id="categorias" className="mt-14 sm:mt-16">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 className="text-xl font-semibold sm:text-2xl">Categorias</h2>
-            <p className="mt-1 text-sm text-stone-600">Explora por tipo de producto</p>
+            <h2 className="text-xl font-semibold sm:text-2xl">Tienda de la comarca</h2>
+            <p className="mt-1 text-sm text-stone-600">
+              Agroalimentario, alojamientos y packs (checkout separado)
+            </p>
           </div>
-          <Link href="/categorias" className="shrink-0 text-sm text-emerald-800">
-            Ver todas
+          <Link href="/tienda" className="shrink-0 text-sm text-emerald-800">
+            Ver tienda
           </Link>
         </div>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.slice(0, 6).map((category) => (
+          {categories.slice(0, 4).map((category) => (
             <CategoryCard key={category.id} category={category} />
           ))}
+          <Link
+            href="/alojamientos"
+            className="group flex min-w-0 flex-col rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
+          >
+            <h3 className="text-lg font-semibold leading-snug group-hover:text-emerald-900">
+              Turismo rural
+            </h3>
+            <p className="mt-2 line-clamp-2 text-sm text-stone-600">
+              Alojamientos de la sierra. Reserva en su canal habitual.
+            </p>
+          </Link>
+          <Link
+            href="/packs"
+            className="group flex min-w-0 flex-col rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
+          >
+            <h3 className="text-lg font-semibold leading-snug group-hover:text-emerald-900">
+              Packs
+            </h3>
+            <p className="mt-2 line-clamp-2 text-sm text-stone-600">
+              Noche + lote gourmet. La estancia fuera; el lote en el carrito.
+            </p>
+          </Link>
         </div>
       </section>
 

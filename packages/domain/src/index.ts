@@ -168,6 +168,18 @@ export const VendorPayoutMethod = {
 /** Comision marketplace por defecto cuando no hay regla ni contrato especifico. */
 export const DEFAULT_MARKETPLACE_COMMISSION_PERCENT = 15;
 
+/** Umbral de envío gratuito (merchandise tras descuento). */
+export const FREE_SHIPPING_THRESHOLD_EUR = 49;
+
+/** Importe de envío que paga el cliente por debajo del umbral. */
+export const CUSTOMER_SHIPPING_FEE_EUR = 4.95;
+
+/**
+ * Coste interno orientativo de etiqueta/transporte que absorbe el marketplace
+ * cuando el envío es gratis (no se cobra al productor ni se descuenta de su 85 %).
+ */
+export const MARKETPLACE_SHIPPING_COST_EUR = 5;
+
 export type ContractStatus =
   | "DRAFT"
   | "PENDING_SIGNATURE"
@@ -192,3 +204,43 @@ export const CommissionRuleType = {
   FIXED: "FIXED",
   CATEGORY: "CATEGORY",
 } as const satisfies Record<string, CommissionRuleType>;
+
+export type AccommodationStatus = "DRAFT" | "PUBLISHED" | "DISABLED";
+
+export const AccommodationStatus = {
+  DRAFT: "DRAFT",
+  PUBLISHED: "PUBLISHED",
+  DISABLED: "DISABLED",
+} as const satisfies Record<string, AccommodationStatus>;
+
+export type AccommodationBookingChannel =
+  | "BOOKING"
+  | "WEBSITE"
+  | "WHATSAPP"
+  | "PHONE"
+  | "EMAIL"
+  | "OTHER";
+
+export const AccommodationBookingChannel = {
+  BOOKING: "BOOKING",
+  WEBSITE: "WEBSITE",
+  WHATSAPP: "WHATSAPP",
+  PHONE: "PHONE",
+  EMAIL: "EMAIL",
+  OTHER: "OTHER",
+} as const satisfies Record<string, AccommodationBookingChannel>;
+
+export type TourismPackStatus = "DRAFT" | "PUBLISHED" | "DISABLED";
+
+export const TourismPackStatus = {
+  DRAFT: "DRAFT",
+  PUBLISHED: "PUBLISHED",
+  DISABLED: "DISABLED",
+} as const satisfies Record<string, TourismPackStatus>;
+
+export type CouponDiscountType = "PERCENTAGE" | "FIXED";
+
+export const CouponDiscountType = {
+  PERCENTAGE: "PERCENTAGE",
+  FIXED: "FIXED",
+} as const satisfies Record<string, CouponDiscountType>;

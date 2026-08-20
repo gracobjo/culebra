@@ -156,6 +156,32 @@ enum NotificationType {
   SYSTEM
 }
 
+enum AccommodationStatus {
+  DRAFT
+  PUBLISHED
+  DISABLED
+}
+
+enum AccommodationBookingChannel {
+  BOOKING
+  WEBSITE
+  WHATSAPP
+  PHONE
+  EMAIL
+  OTHER
+}
+
+enum TourismPackStatus {
+  DRAFT
+  PUBLISHED
+  DISABLED
+}
+
+enum CouponDiscountType {
+  PERCENTAGE
+  FIXED
+}
+
 // ---------------------------------------------------------------------------
 // Users & RBAC
 // ---------------------------------------------------------------------------
@@ -186,6 +212,7 @@ model User {
   auditLogs           AuditLog[]           @relation("AuditActor")
   storedDocuments     StoredDocument[]     @relation("StoredDocumentOwner")
   contractAcceptances ContractAcceptance[]
+  couponRedemptions   CouponRedemption[]
 }
 
 model Role {
@@ -438,6 +465,8 @@ model Product {
   cartItems   CartItem[]
   favorites   Favorite[]
   reviews     Review[]
+  packItems   TourismPackItem[]
+  accommodations AccommodationProduct[]
 
   @@unique([vendorId, slug])
   @@index([status])
@@ -500,12 +529,13 @@ model Inventory {
 // ---------------------------------------------------------------------------
 
 model Cart {
-  id        String     @id @default(cuid())
-  userId    String?
-  sessionId String?    @unique
-  status    CartStatus @default(ACTIVE)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id         String     @id @default(cuid())
+  userId     String?
+  sessionId  String?    @unique
+  status     CartStatus @default(ACTIVE)
+  couponCode String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 
   user  User?      @relation(fields: [userId], references: [id])
   items CartItem[]
@@ -550,20 +580,27 @@ model Order {
   taxTotal                Decimal     @default(0) @db.Decimal(12, 2)
   totalAmount             Decimal     @db.Decimal(12, 2)
   netToVendorsTotal       Decimal     @default(0) @db.Decimal(12, 2)
+  discountAmount          Decimal     @default(0) @db.Decimal(12, 2)
+  shippingAmount          Decimal     @default(0) @db.Decimal(12, 2)
+  couponCode              String?
+  affiliateCode           String?
   notes                   String?     @db.Text
   createdAt               DateTime    @default(now())
   updatedAt               DateTime    @updatedAt
 
-  user         User?         @relation(fields: [userId], references: [id])
-  items        OrderItem[]
-  vendorOrders VendorOrder[]
-  payment      Payment?
-  refunds      Refund[]
+  user              User?              @relation(fields: [userId], references: [id])
+  items             OrderItem[]
+  vendorOrders      VendorOrder[]
+  payment           Payment?
+  refunds           Refund[]
+  couponRedemptions CouponRedemption[]
 
   @@index([userId])
   @@index([customerEmail])
   @@index([status])
   @@index([createdAt])
+  @@index([affiliateCode])
+  @@index([couponCode])
 }
 
 model OrderItem {
@@ -893,4 +930,142 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([actorUserId])
   @@index([createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// Turismo territorial (fases 2–3): alojamientos, packs, cupones, afiliación
+// ---------------------------------------------------------------------------
+
+model Accommodation {
+  id              String                      @id @default(cuid())
+  name            String
+  slug            String                      @unique
+  shortDescription String?                    @db.Text
+  longDescription String?                     @db.Text
+  kind            String                      @default("CASA_RURAL") // CASA_RURAL | HOSTAL | HOTEL | APARTAMENTO
+  city            String?
+  municipality    String?
+  province        String                      @default("Zamora")
+  address         String?
+  phone           String?
+  email           String?
+  whatsapp        String?
+  websiteUrl      String?
+  bookingUrl      String?
+  bookingChannel  AccommodationBookingChannel @default(WEBSITE)
+  imageUrl        String?
+  capacity        Int?
+  status          AccommodationStatus         @default(DRAFT)
+  sortOrder       Int                         @default(0)
+  createdAt       DateTime                    @default(now())
+  updatedAt       DateTime                    @updatedAt
+
+  products      AccommodationProduct[]
+  packs         TourismPack[]
+  affiliateCodes AffiliateCode[]
+
+  @@index([status, sortOrder])
+  @@index([city])
+}
+
+model AccommodationProduct {
+  accommodationId String
+  productId       String
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+
+  accommodation Accommodation @relation(fields: [accommodationId], references: [id], onDelete: Cascade)
+  product       Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([accommodationId, productId])
+}
+
+model TourismPack {
+  id               String            @id @default(cuid())
+  slug             String            @unique
+  name             String
+  shortDescription String?           @db.Text
+  longDescription  String?           @db.Text
+  accommodationId  String?
+  nightsHint       String?           // e.g. "2 noches (reserva externa)"
+  imageUrl         String?
+  status           TourismPackStatus @default(DRAFT)
+  sortOrder        Int               @default(0)
+  couponId         String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  accommodation Accommodation?    @relation(fields: [accommodationId], references: [id], onDelete: SetNull)
+  coupon        Coupon?           @relation(fields: [couponId], references: [id], onDelete: SetNull)
+  items         TourismPackItem[]
+
+  @@index([status, sortOrder])
+}
+
+model TourismPackItem {
+  id        String @id @default(cuid())
+  packId    String
+  productId String
+  quantity  Int    @default(1)
+  sortOrder Int    @default(0)
+
+  pack    TourismPack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  product Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([packId, productId])
+}
+
+model Coupon {
+  id              String             @id @default(cuid())
+  code            String             @unique
+  name            String
+  description     String?            @db.Text
+  discountType    CouponDiscountType
+  discountValue   Decimal            @db.Decimal(12, 2)
+  minOrderAmount  Decimal?           @db.Decimal(12, 2)
+  maxRedemptions  Int?
+  redemptionCount Int                @default(0)
+  startsAt        DateTime?
+  endsAt          DateTime?
+  isActive        Boolean            @default(true)
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  packs       TourismPack[]
+  redemptions CouponRedemption[]
+
+  @@index([isActive, code])
+}
+
+model CouponRedemption {
+  id        String   @id @default(cuid())
+  couponId  String
+  orderId   String
+  userId    String?
+  amount    Decimal  @db.Decimal(12, 2)
+  createdAt DateTime @default(now())
+
+  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  order  Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user   User?  @relation(fields: [userId], references: [id])
+
+  @@unique([couponId, orderId])
+  @@index([orderId])
+}
+
+model AffiliateCode {
+  id              String   @id @default(cuid())
+  code            String   @unique
+  label           String
+  accommodationId String?
+  isActive        Boolean  @default(true)
+  clickCount      Int      @default(0)
+  orderCount      Int      @default(0)
+  notes           String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  accommodation Accommodation? @relation(fields: [accommodationId], references: [id], onDelete: SetNull)
+
+  @@index([isActive, code])
 }

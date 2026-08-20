@@ -21,8 +21,8 @@ type SiteHeaderNavProps = {
 };
 
 const links = [
+  { href: "/tienda", label: "Tienda" },
   { href: "/productos", label: "Productos" },
-  { href: "/categorias", label: "Categorias" },
   { href: "/productores", label: "Productores" },
 ];
 

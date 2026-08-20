@@ -20,10 +20,17 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin` | Resumen de pendientes |
 | `/admin/productores` | Aprobar, rechazar o suspender |
 | `/admin/productos` | Publicar o rechazar fichas |
+| `/admin/turismo` | Alojamientos, packs, cupones y afiliados |
 | `/admin/contratos` | Crear versiones y enviar a firma |
 | `/admin/pedidos` | Consultar pedidos de la plataforma |
 | `/admin/liquidaciones` | Payouts a productores |
 | `/admin/usuarios` | Suspender o reactivar cuentas |
+| `/admin/kpis` | KPIs artesanos |
+| `/admin/plan` | Plan financiero 5 años (Excel + embudo §9.B + GMV real) |
+| `/admin/rentabilidad` | Rentabilidad por transaccion |
+| `/admin/rappels` | Rappels teoricos |
+| `/admin/piloto` | Grupo piloto |
+| `/admin/sandbox` | Simulacion end-to-end |
 
 Las reglas de comision se gestionan en la ficha del productor (`/admin/productores/:id`):
 
@@ -32,6 +39,16 @@ Las reglas de comision se gestionan en la ficha del productor (`/admin/productor
 - Para **subir o bajar** la comision: introduce el nuevo % y pulsa *Actualizar comision (%)*. Solo aplica a pedidos futuros.
 
 Ver detalle en `docs/commissions.md`.
+
+## Turismo (admin)
+
+En `/admin/turismo` se gestionan entidades que **no** pasan por el checkout de noches:
+
+- Alojamientos publicados en `/alojamientos` (URL de reserva externa + productos relacionados).
+- Packs (`/packs`): lote = productos del carrito; noche = enlace al alojamiento.
+- Cupones y codigos de afiliado (`?ref=`).
+
+Ver `docs/tourism.md`.
 
 ## API extra
 

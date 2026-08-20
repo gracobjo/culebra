@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { loadCart, removeCartItemAction, updateCartItemAction } from "./actions";
+import {
+  clearCouponAction,
+  loadCart,
+  removeCartItemAction,
+  updateCartItemAction,
+} from "./actions";
+import { CartCouponForm } from "@/components/cart/cart-coupon-form";
 import { formatPrice } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
@@ -70,9 +76,51 @@ export default async function CartPage() {
             </article>
           ))}
 
-          <div className="flex items-center justify-between rounded-3xl bg-stone-100 px-4 py-5 sm:px-6">
-            <span className="font-medium">Subtotal</span>
-            <span className="text-xl font-semibold">{formatPrice(cart.subtotal)}</span>
+          <CartCouponForm couponCode={cart.couponCode} />
+
+          <div className="space-y-2 rounded-3xl bg-stone-100 px-4 py-5 sm:px-6">
+            <div className="flex items-center justify-between">
+              <span>Subtotal</span>
+              <span>{formatPrice(cart.subtotal)}</span>
+            </div>
+            {Number(cart.discountAmount) > 0 ? (
+              <div className="flex items-center justify-between text-emerald-900">
+                <span>Descuento{cart.couponCode ? ` (${cart.couponCode})` : ""}</span>
+                <span>-{formatPrice(cart.discountAmount)}</span>
+              </div>
+            ) : null}
+            <div className="flex items-center justify-between">
+              <span>Envio</span>
+              <span>
+                {cart.shippingFree ? (
+                  <span className="font-medium text-emerald-900">Gratis</span>
+                ) : (
+                  formatPrice(cart.shippingAmount)
+                )}
+              </span>
+            </div>
+            {!cart.shippingFree ? (
+              <p className="text-sm text-stone-600">
+                Te faltan {formatPrice(cart.amountToFreeShipping)} para envio gratis
+                (a partir de {formatPrice(cart.freeShippingThreshold)}).
+              </p>
+            ) : (
+              <p className="text-sm text-emerald-800">
+                Has superado {formatPrice(cart.freeShippingThreshold)}: envio gratis.
+              </p>
+            )}
+            <div className="flex items-center justify-between border-t border-stone-300 pt-2 font-medium">
+              <span>Total</span>
+              <span className="text-xl font-semibold">{formatPrice(cart.grandTotal)}</span>
+            </div>
+            {cart.couponCode && Number(cart.discountAmount) === 0 ? (
+              <form action={clearCouponAction} className="pt-1 text-sm text-amber-800">
+                El cupon no aplica al importe actual.{" "}
+                <button type="submit" className="underline">
+                  Quitar cupon
+                </button>
+              </form>
+            ) : null}
           </div>
 
           <Link

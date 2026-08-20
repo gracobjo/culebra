@@ -26,8 +26,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     id: "envio",
     question: "¿Cómo funciona el envío?",
     answer:
-      "Cada productor prepara y envía su parte del pedido. Cuando tu subpedido se marca como enviado, recibirás un email con la información de transporte y seguimiento si el productor la ha indicado. Los plazos dependen del producto y del artesano.",
-    keywords: ["envio", "envío", "transporte", "seguimiento", "tracking", "entrega", "recibir"],
+      "Si el importe de productos (tras descuentos) es menor de 49 €, el envío cuesta 4,95 €. A partir de 49 € el envío es gratis. Cada productor prepara su parte del pedido; cuando se marca como enviado recibirás email de seguimiento si el productor lo indica.",
+    keywords: ["envio", "envío", "transporte", "seguimiento", "tracking", "entrega", "recibir", "gratis", "4,95", "49"],
   },
   {
     id: "devoluciones",

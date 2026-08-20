@@ -22,8 +22,10 @@ FASE 2 completada: esquema Prisma, migracion inicial, seed de roles y categorias
 | Contratos | `VendorContract`, `VendorContractVersion`, `ContractAcceptance` |
 | Comisiones | `CommissionRule` (versionadas) |
 | Catalogo | `Category`, `Product`, `ProductVariant`, `ProductImage`, `Inventory` |
-| Carrito | `Cart`, `CartItem` (soporta invitado via `sessionId`) |
-| Pedidos | `Order`, `OrderItem`, `VendorOrder`, `VendorOrderItem` |
+| Turismo | `Accommodation`, `AccommodationProduct`, `TourismPack`, `TourismPackItem` |
+| Promocion | `Coupon`, `CouponRedemption`, `AffiliateCode` |
+| Carrito | `Cart` (+ `couponCode`), `CartItem` (soporta invitado via `sessionId`) |
+| Pedidos | `Order` (+ `discountAmount`, `shippingAmount`, `couponCode`, `affiliateCode`), `OrderItem`, `VendorOrder`, `VendorOrderItem` |
 | Pagos | `Payment`, `Refund`, `Payout` |
 | Envios | `Shipment` |
 | Otros | `Address`, `Review`, `Favorite`, `Notification`, `AuditLog` |
@@ -60,7 +62,10 @@ FASE 2 completada: esquema Prisma, migracion inicial, seed de roles y categorias
 3. Vinos (+ 4 subcategorias)
 4. Licores (+ 2 subcategorias)
 5. Miel y productos apicolas (+ 4 subcategorias)
-6. Productos tradicionales
+6. Reposteria (+ 3 subcategorias)
+7. Productos tradicionales
+
+Seed turismo (tras migracion `20260820130000_tourism_module`): alojamientos, pack, cupon `SIERRA10`, afiliado `CASAFOZ`. Ver `docs/tourism.md`.
 
 ## Roles iniciales (seed)
 

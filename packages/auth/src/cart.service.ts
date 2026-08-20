@@ -1,8 +1,11 @@
 import { ProductStatus, VendorStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
-import type { AddCartItemInput } from "./cart.schemas.js";
+import type { AddCartItemInput, ApplyCartCouponInput } from "./cart.schemas.js";
+import { computeCouponDiscount, getActiveCouponByCode } from "./coupon.service.js";
+import { computeShippingQuote } from "./shipping.service.js";
 import { generateSecureToken } from "./token.js";
+import { getPublicTourismPackBySlug } from "./tourism-pack.service.js";
 
 export type CartItemRecord = {
   id: string;
@@ -26,6 +29,16 @@ export type CartRecord = {
   sessionId: string | null;
   itemCount: number;
   subtotal: string;
+  couponCode: string | null;
+  discountAmount: string;
+  /** Merchandise after discount, before shipping. */
+  total: string;
+  shippingAmount: string;
+  shippingFree: boolean;
+  amountToFreeShipping: string;
+  freeShippingThreshold: string;
+  /** Merchandise + shipping charged to customer. */
+  grandTotal: string;
   items: CartItemRecord[];
 };
 
@@ -62,9 +75,10 @@ const cartInclude = {
   },
 };
 
-function mapCart(cart: {
+async function mapCart(cart: {
   id: string;
   sessionId: string | null;
+  couponCode?: string | null;
   items: Array<{
     id: string;
     productId: string;
@@ -85,7 +99,7 @@ function mapCart(cart: {
       inventory: Array<{ stock: number }>;
     } | null;
   }>;
-}): CartRecord {
+}): Promise<CartRecord> {
   const items = cart.items.map((item) => {
     const stock = item.variant
       ? item.variant.inventory.reduce((sum, row) => sum + row.stock, 0)
@@ -111,15 +125,38 @@ function mapCart(cart: {
     };
   });
 
-  const subtotal = items
-    .reduce((sum, item) => sum + Number(item.lineTotal), 0)
-    .toFixed(2);
+  const subtotalNumber = items.reduce((sum, item) => sum + Number(item.lineTotal), 0);
+  const subtotal = subtotalNumber.toFixed(2);
+  let discountAmount = "0.00";
+  const couponCode = cart.couponCode ?? null;
+
+  if (couponCode) {
+    try {
+      const coupon = await getActiveCouponByCode(couponCode);
+      if (coupon) {
+        discountAmount = computeCouponDiscount(coupon, subtotalNumber).toFixed(2);
+      }
+    } catch {
+      discountAmount = "0.00";
+    }
+  }
+
+  const total = Math.max(0, subtotalNumber - Number(discountAmount)).toFixed(2);
+  const shipping = computeShippingQuote(Number(total));
 
   return {
     id: cart.id,
     sessionId: cart.sessionId,
     itemCount: items.reduce((sum, item) => sum + item.quantity, 0),
     subtotal,
+    couponCode,
+    discountAmount,
+    total,
+    shippingAmount: shipping.shippingAmount.toFixed(2),
+    shippingFree: shipping.shippingFree,
+    amountToFreeShipping: shipping.amountToFreeShipping.toFixed(2),
+    freeShippingThreshold: shipping.threshold.toFixed(2),
+    grandTotal: shipping.grandTotal.toFixed(2),
     items,
   };
 }
@@ -157,7 +194,62 @@ export async function getOrCreateCart(owner: CartOwner): Promise<CartRecord> {
     });
   }
 
-  return mapCart(cart);
+  return await mapCart(cart);
+}
+
+export async function applyCartCoupon(
+  owner: CartOwner,
+  input: ApplyCartCouponInput,
+): Promise<CartRecord> {
+  const cart = await getOrCreateCart(owner);
+  const coupon = await getActiveCouponByCode(input.code);
+  if (!coupon) {
+    throw new Error("COUPON_INVALID");
+  }
+  computeCouponDiscount(coupon, Number(cart.subtotal));
+
+  await prisma.cart.update({
+    where: { id: cart.id },
+    data: { couponCode: coupon.code },
+  });
+  return getOrCreateCart(owner);
+}
+
+export async function clearCartCoupon(owner: CartOwner): Promise<CartRecord> {
+  const cart = await getOrCreateCart(owner);
+  await prisma.cart.update({
+    where: { id: cart.id },
+    data: { couponCode: null },
+  });
+  return getOrCreateCart(owner);
+}
+
+/** Añade al carrito todos los productos del pack (noche = reserva externa). */
+export async function addPackToCart(
+  owner: CartOwner,
+  packSlug: string,
+): Promise<CartRecord> {
+  const pack = await getPublicTourismPackBySlug(packSlug);
+  if (!pack || pack.items.length === 0) {
+    throw new Error("PACK_NOT_AVAILABLE");
+  }
+
+  for (const item of pack.items) {
+    await addCartItem(owner, {
+      productId: item.productId,
+      quantity: item.quantity,
+    });
+  }
+
+  if (pack.couponCode) {
+    try {
+      await applyCartCoupon(owner, { code: pack.couponCode });
+    } catch {
+      // El pack se añade aunque el cupón no aplique (p. ej. mínimo de pedido).
+    }
+  }
+
+  return getOrCreateCart(owner);
 }
 
 async function mergeGuestCart(userId: string, sessionId: string) {
@@ -180,6 +272,13 @@ async function mergeGuestCart(userId: string, sessionId: string) {
       data: { userId, sessionId: null },
     });
     return;
+  }
+
+  if (!userCart.couponCode && guest.couponCode) {
+    await prisma.cart.update({
+      where: { id: userCart.id },
+      data: { couponCode: guest.couponCode },
+    });
   }
 
   type MergeItem = {

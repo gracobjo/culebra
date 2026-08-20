@@ -9,15 +9,24 @@ const initialState: CartActionState = {};
 type CheckoutFormProps = {
   defaultEmail?: string;
   defaultName?: string;
+  couponCode?: string | null;
+  affiliateCode?: string | null;
 };
 
-export function CheckoutForm({ defaultEmail, defaultName }: CheckoutFormProps) {
+export function CheckoutForm({
+  defaultEmail,
+  defaultName,
+  couponCode,
+  affiliateCode,
+}: CheckoutFormProps) {
   const [state, formAction, pending] = useActionState(checkoutAction, initialState);
   const [sameAddress, setSameAddress] = useState(true);
   const [firstName, lastName] = (defaultName ?? "").split(" ").filter(Boolean);
 
   return (
     <form action={formAction} className="space-y-6">
+      {couponCode ? <input type="hidden" name="couponCode" value={couponCode} /> : null}
+      {affiliateCode ? <input type="hidden" name="affiliateCode" value={affiliateCode} /> : null}
       <section className="space-y-4">
         <h2 className="text-lg font-medium">Datos de contacto</h2>
         <div className="grid gap-4 sm:grid-cols-2">

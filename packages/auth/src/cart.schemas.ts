@@ -33,9 +33,35 @@ export const checkoutSchema = z.object({
   billing: addressSnapshotSchema.optional(),
   billingSameAsShipping: z.boolean().optional(),
   notes: z.string().trim().max(2000).optional(),
+  couponCode: z
+    .string()
+    .trim()
+    .max(40)
+    .optional()
+    .transform((value) =>
+      value ? value.toUpperCase().replace(/\s+/g, "") : undefined,
+    ),
+  affiliateCode: z
+    .string()
+    .trim()
+    .max(40)
+    .optional()
+    .transform((value) =>
+      value ? value.toUpperCase().replace(/\s+/g, "") : undefined,
+    ),
+});
+
+export const applyCartCouponSchema = z.object({
+  code: z
+    .string()
+    .trim()
+    .min(3)
+    .max(40)
+    .transform((value) => value.toUpperCase().replace(/\s+/g, "")),
 });
 
 export type AddCartItemInput = z.infer<typeof addCartItemSchema>;
 export type UpdateCartItemInput = z.infer<typeof updateCartItemSchema>;
 export type AddressSnapshot = z.infer<typeof addressSnapshotSchema>;
 export type CheckoutInput = z.infer<typeof checkoutSchema>;
+export type ApplyCartCouponInput = z.infer<typeof applyCartCouponSchema>;

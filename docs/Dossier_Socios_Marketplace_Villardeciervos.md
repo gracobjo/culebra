@@ -1,6 +1,5 @@
-# Dossier para Socios — Marketplace Villardeciervos
+# Dossier Marketplace Villardeciervos
 
-Versión: para presentación interna (convencer a futuros socios)
 
 ![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
 
@@ -11,12 +10,87 @@ Versión: para presentación interna (convencer a futuros socios)
 El proyecto crea una **S.L. tecnológica** que lanza un **marketplace multi-vendedor** para dinamizar el entorno rural de Villardeciervos (Zamora), integrando:
 
 - **Captación de productores locales** (con enfoque inicial en **no perecederos**).
-- **Compra unificada**: un cliente compra productos de distintos artesanos en una sola cesta, con **tarifa plana rural** y **consolidación** logística.
+- **Compra unificada**: un cliente compra productos de distintos artesanos en una sola cesta, con **umbral de envío gratis (≥ 49 €)** / **4,95 €** por debajo, y **consolidación** logística.
 - **Pago avanzado con split automatizado** por **Stripe Connect**, con **retención legal de 14 días** (desistimiento).
 - **Operativa y SLA** para proteger la reputación del portal (preparación + calidad + penalización).
 - **Herramientas de control** para socios: panel admin con KPIs, rentabilidad, rappels, grupo piloto y sandbox de validación.
 
 Diferenciador clave: **showroom físico rural + consolidación logística** en Villardeciervos, algo que agregadores digitales de capital no igualan.
+
+**Documentación del expediente.** Para socios que participen en solicitudes o justificación de ayudas: [`Marco_Documentacion_Expediente.md`](./Marco_Documentacion_Expediente.md) (memoria de proyecto vs justificativa vs cuaderno de ejecución).
+
+---
+
+## 1.bis) Evidencia de mercado y territorio (datos oficiales)
+
+Base estadística para socios (no infla demanda; separa **dato oficial** e **hipótesis**). Detalle: `docs/datos_ine/Tabla_Maestra_Mercado.md` y Excel `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` (hoja `00_KPI_Dashboard`).
+
+### Demografía — Villardeciervos (Padrón / INE)
+
+| Año | Habitantes |
+|----:|-----------:|
+| 2019 | 413 |
+| 2025 | 383 |
+
+Variación ≈ **−7,3 %**. Justifica diversificación económica digital; **no** se promete “fijar población”.
+
+### Turismo rural — provincia de Zamora (INE EOTR)
+
+| Año | Viajeros | Pernoctaciones | Notas |
+|----:|---------:|---------------:|-------|
+| 2019 | 73.640 | 164.480 | Pre-COVID |
+| 2021 | 48.024 | 121.874 | Recuperación |
+| 2022 | 67.224 | 149.204 | Fuerte recuperación |
+| 2024 | **71.909** | **139.587** | ~1,94 noches/viajero |
+| 2025 | 52.353 | 114.653 | Año completo |
+
+Fuente: tablas INE **2073** (y corte TPX **75448** alineado a 2024). Villardeciervos **no** es punto turístico EOTR → no inventamos viajeros municipales.
+
+Estacionalidad 2024 (viajeros): pico **agosto 12.151**; otoño activo (sep–oct). Hipótesis comercial: `visita → producto → compra online → recompra`.
+
+### Contexto regional — Castilla y León (INE ETR 2025)
+
+- **14,44 M** viajes de residentes con destino CyL  
+- **61,56 M** pernoctaciones  
+- **3.004,1 M€** gasto turístico (208 €/persona; 49 €/día)  
+
+Es **contexto regional**, no cuota atribuible a Villardeciervos/Sierra.
+
+### Afluencia específica — Sierra de la Culebra (Junta CyL)
+
+- Centro del Lobo: **>42.000** visitantes en **2019**; **>160.000** acumulados desde 2015  
+- Centros REN Zamora: **>96.000** visitantes en 2019  
+- Berrea (sep–oct) y turismo de naturaleza promocionados por Junta/Diputación  
+
+Correcto: “el Centro del Lobo recibió >42.000 visitantes”. Incorrecto: “la Sierra recibe 42.000 turistas”.
+
+### Demanda alimentaria (INE EPF 2024)
+
+Gasto medio hogares en alimentos y bebidas no alcohólicas: **5.391 €/año** (15,8 % del presupuesto). Categorías relevantes: carne 3,6 %; leche/quesos/huevos 2,0 %. Dimensiona el mercado de categorías; **no** el gasto en productos de la Culebra.
+
+### Tesis comercial (Sanabria–La Carballeda + recompra online)
+
+```text
+TERRITORIO (productos + naturaleza + turismo Sanabria/Carballeda/Culebra)
+    → MARKETPLACE
+    → RESIDENTE / TURISTA (Galicia, Madrid, CyL, norte…) / CONSUMIDOR NACIONAL
+    → COMPRA ONLINE → RECOMPRA
+```
+
+**Procedencia — dos capas:**
+
+1. **Provincia Zamora (INE EOTR tabular CCAA):** pendiente de extracción; 75448 solo da Residentes ES / extranjero.  
+2. **Comarca Sanabria–La Carballeda (síntesis de trabajo):** motor turístico provincial (Lago de Sanabria, Puebla, A-52, AVE Sanabria AV). Órdenes de magnitud orientativos:
+
+| Procedencia | ~Cuota | Nota |
+|-------------|-------:|------|
+| Galicia | 42 % | Principal emisor; proximidad |
+| Madrid | 25 % | Verano / Semana Santa; estancias más largas |
+| Castilla y León | 18 % | Alta repetición |
+| Asturias + País Vasco | 10 % | Activo / montaña |
+| Resto | 5 % | Residual |
+
+Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/persona. Serie 2019–2025: resiliencia rural, boom 2020–21, estabilización y alargamiento de temporada con AVE. **No** atribuir estas cuotas a Villardeciervos ni a la serie provincial sin tabla INE.
 
 ---
 
@@ -32,7 +106,8 @@ Diferenciador clave: **showroom físico rural + consolidación logística** en V
 ### Consumidores (CONSUMERS)
 
 - Catálogo unificado (varios artesanos en una sola compra).
-- Envío con tarifa plana y consolidación.
+- **Envío con umbral:** 4,95 € si el pedido (tras descuentos) es &lt; 49 €; **gratis a partir de 49 €** (la S.L. absorbe el porte desde su comisión; el productor conserva el 85 %).
+- Consolidación logística multiproductor cuando aplica.
 - Pago moderno (tarjeta + wallets + **Bizum**).
 - Experiencia fiable por SLA del productor.
 
@@ -63,6 +138,21 @@ Tramos de facturación anual acumulada:
 | Bronce | hasta 5.000 €/año | 15% | estándar |
 | Plata | 5.001–15.000 €/año | 12% | rappel del 3% (retroactivo/abono) |
 | Oro | > 15.000 €/año | 10% | comisión final 10% + beneficios de posicionamiento |
+
+### 3.4 Umbral de envío gratuito (repercusión logística)
+
+Estrategia recomendada e **implementada en software** (`computeShippingQuote`):
+
+| Merchandise (productos − cupón) | Cliente | Quién sufraga el porte |
+|--------------------------------|--------:|------------------------|
+| **&lt; 49 €** | Paga **4,95 €** | Cliente (cargo de envío) |
+| **≥ 49 €** | **Gratis** | Marketplace (absorbe ~5 € de etiqueta desde la comisión ~15 %) |
+
+**Por qué no se carga al productor el envío gratis:** al superar 49 € (cesta unificada multiproductor), el ticket medio tiende a subir; la comisión de la S.L. genera colchón suficiente para absorber el coste de transporte **sin reducir el 85 %** del productor.
+
+Ejemplo orientativo (ticket 68,50 €): comisión 15 % ≈ 10,27 € → menos ~5 € de etiqueta ≈ **~5,27 €** de margen de intermediación; productor recibe su 85 % íntegro.
+
+Constantes: umbral 49 €, cargo cliente 4,95 €, coste interno orientativo 5 €. Detalle técnico: `docs/cart.md`.
 
 ---
 
@@ -112,10 +202,11 @@ SLA del productor:
 - Preferencia de consumo (no caducidad cercana): 90 días (45 en quesos).
 - Penalizaciones: suspensión temporal o depósito físico de stock.
 
-Tarifa plana rural y consolidación:
+Tarifa / umbral de envío y consolidación:
 
-- Coste de envío objetivo 4,50–5,50 € (paquetes hasta 2 kg).
-- Consolidación si compra a varios artesanos.
+- **Regla de producto:** &lt; 49 € → cliente paga **4,95 €**; ≥ 49 € → **envío gratis** (absorbido por la S.L. vía comisión).
+- Coste interno de etiqueta orientativo ~**5 €** (paquetes hasta ~2 kg).
+- Consolidación si compra a varios artesanos (un solo envío al cliente cuando la operativa lo permita).
 
 ---
 
@@ -125,7 +216,7 @@ Tarifa plana rural y consolidación:
 |---:|---|---|
 | 1 | Legal + inicio infraestructura | tramitación, socio roles, habilitación local |
 | 2 | Obra civil + arquitectura | hardware subvencionado, diseño UI/UX |
-| 3 | Backend con IA | motor, catálogo, perfiles |
+| 3 | Backend y catálogo | motor multi-vendedor, perfiles, paneles (interno y/o proveedor) |
 | 4 | Pagos + logística | Stripe Connect + Bizum, frontend responsivo |
 | 5 | Cloud + ciberseguridad + beta | migración, pruebas de estrés, auditoría |
 | 6 | Lanzamiento comercial | apertura pública y cierre expediente |
@@ -135,7 +226,7 @@ Diagrama:
 ```mermaid
 flowchart LR
   M1[Mes 1\nLegal + Infra] --> M2[Mes 2\nObra + Arquitectura]
-  M2 --> M3[Mes 3\nBackend IA]
+  M2 --> M3[Mes 3\nBackend + Catálogo]
   M3 --> M4[Mes 4\nPagos + Logística]
   M4 --> M5[Mes 5\nCloud + Beta]
   M5 --> M6[Mes 6\nLanzamiento]
@@ -150,7 +241,7 @@ flowchart LR
 Validará:
 
 - Stripe Connect (pasarela avanzada),
-- logística hacia Madrid,
+- logística hacia demanda nacional y turística (Castilla y León, comunidades limítrofes y resto de España; sin presuponer un polo único),
 - prueba real del flujo para generar “efecto llamada”.
 
 ### Fases
@@ -168,9 +259,9 @@ Validará:
 
 ---
 
-## 8) Control y KPIs (métrica = reputación)
+## 8) Control y KPIs (métrica = reputación + negocio)
 
-KPIs de preparación y calidad:
+### 8.1 KPIs operativos (piloto / lanzamiento)
 
 | Métrica KPI | Objetivo | Crítico |
 |---|---:|---:|
@@ -178,58 +269,265 @@ KPIs de preparación y calidad:
 | Roturas de stock | <1% | >3% |
 | Incidencias de embalaje defectuoso | 0% | >2% |
 | Valoraciones web | >4,5/5 | <4,0/5 |
+| Pedidos con trazabilidad completa | ≥90% | <80% |
+| Clientes recurrentes (repiten compra) | a medir en piloto | — |
 
-KPIs de rentabilidad:
+### 8.2 KPIs económicos (marketplace de intermediación)
 
-- Beneficio por transacción = comisiones − costes imputables
-  (amortización maquinaria, envasado, transporte y costes asociados).
+| KPI | Definición | Uso |
+|---|---|---|
+| **GMV** | Ventas de vendedores en la plataforma | Actividad; **no** es ingreso de la SL |
+| **Ingresos SL** | Comisión **15%** × GMV | Facturación propia |
+| **Take rate** | Ingresos / GMV | Debe situarse ~15% |
+| **Cobertura de gastos** | Ingresos / Gastos | >100% = umbral operativo |
+| **Resultado neto** | Tras gastos, amortización e IS orientativo | Viabilidad |
+| **GMV de equilibrio** | ≈ gastos fijos ÷ 15% | Base ~5.900–9.200 €/mes · Alt. alquiler ~8.200–11.500 €/mes |
+| **GMV / vendedor / mes** | GMV ÷ n.º vendedores activos | Intensidad comercial |
 
----
+Cuadro de mando visual (gráficos dinámicos): Excel `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` → hoja **`00_KPI_Dashboard`**.
 
-## 9) Viabilidad financiera (a 3 años)
+KPIs de rentabilidad por pedido:
 
-### Inversión elegible (mínimo)
-
-| Partida | Importe neto | Justificación |
-|---|---:|---|
-| Desarrollo tecnológico | 24.000 € | DAW (6 meses) |
-| Hardware informático | 3.000 € | portátiles + NAS |
-| Red + ciberseguridad | 1.500 € | firewall + routers |
-| Logística | 1.500 € | báscula + impresora etiquetas |
-| **Total** | **30.000 €** | umbral |
-
-### Gastos de lanzamiento ordinarios (no subvencionables)
-
-- Constitución S.L.: 350 €
-- Tasas legalización y depósito: 320 €/año
-- SaaS no permanente: 1.500 €
-- Caja complementaria: 10.000 €
-- Caja total inicial: **40.000 €**
-
-### Proyección (escenario pesimista)
-
-| Concepto | Año 1 (6 meses) | Año 2 | Año 3 |
-|---|---:|---:|---:|
-| Ingresos totales | 7.500 € | 30.000 € | 55.000 € |
-| EBITDA | +700 € | +14.400 € | +35.400 € |
-| Beneficio neto disponible | +595 € | +12.240 € | +30.090 € |
-
-Punto de equilibrio estimado: **Mes 7**.
+- Beneficio por transacción ≈ comisión − (cuota de medios de pago + coste operativo imputable).
+- En modelo intermediación **no** se imputa COGS de mercancía (el stock es del vendedor).
 
 ---
 
+## 9) Viabilidad financiera (a 5 años — escenario conservador)
+
+### Inversión elegible (mínimo ~30.000 €)
+
+Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red, adecuación, logística ligera). El desarrollo se plantea como **activo / servicio especializado** bajo dirección del equipo promotor, combinando recursos internos, personal especializado y/o servicios tecnológicos externos según fase.
+
+### Proyección conservadora (comisión 15% sobre GMV)
+
+| Concepto | Año 1 (6 meses venta) | Año 2 | Año 3 | Año 4 | Año 5 |
+|---|---:|---:|---:|---:|---:|
+| GMV vendedores | 40.000 € | 140.000 € | 220.000 € | 280.000 € | 360.000 € |
+| Ingresos SL (15%) | **6.000 €** | **21.000 €** | **33.000 €** | **42.000 €** | **54.000 €** |
+| Resultado neto (orientativo, **base comodato**) | ≈ −4.400 € | ≈ +500 € | ≈ +7.800 € | ≈ +14.700 € | ≈ +23.900 € |
+
+- Y1 en pérdida es coherente con arranque + amortización desde lanzamiento.  
+- Drivers: 5 → 8 → 11 → 13–15 vendedores.  
+- **Objetivo financiero:** recuperar inversión de referencia **30.000 €** y al menos **15%** en dividendos (4.500 €) → neto acumulado mínimo **34.500 €**. El conservador **base** proyecta ≈ **41.400 €** acumulados en 5 años.  
+- **Alternativa alquiler** (plan §5.F): EBITDA Año 1 ≈ −1.400 € / Año 2 ≈ +7.200 €; neto Excel acum. ~23.100 € — documentada, no sustituye al base.  
+- Escenarios **Realista** y **Optimista** en el mismo Excel (hipótesis de sensibilidad).  
+- **GMV ≠ ventas propias de la SL.** IS orientativo; IVA fuera de la PyG.
+
+Punto de equilibrio operativo orientativo (base): entorno del **mes 7+** / ~**5.900–9.200 € GMV/mes**. Con alternativa alquiler: ~**8.200–11.500 €/mes**.
+
+**Anexos contractuales:** **§9.A** (GMV ↔ pedidos ↔ clientes) y **§9.B** (embudo de conversión web Año 1). Marco de referencia para el Pacto de Socios; no son previsión garantizada. Cuadro de mando operativo en el panel: **`/admin/plan`** (incluye descarga del Excel de cuenta de resultados).
+
+---
+
+## 9.A) Anexo — Hipótesis económica contrastada (Pacto de Socios)
+
+> **Naturaleza.** Hipótesis de trabajo contrastada con la proyección conservadora de §9 (ticket medio **65 €**, comisión **15 %**). No constituye compromiso de resultado ni cifra auditada de demanda. Sirve para que los socios compartan la misma lectura operativa y financiera antes de firmar.
+
+### A.1 Conversión de GMV a pedidos reales
+
+Criterio de prudencia: **ticket medio 65 €** por cesta unificada.
+
+| Horizonte | GMV (conservador) | Pedidos equivalentes | Ritmo orientativo | Lectura operativa |
+|---|---:|---:|---|---|
+| **Año 1** (6 meses de venta) | 40.000 € | ~**615** (~100/mes) | **3–4 cajas/día** en trastienda | Volumen absorbible por el nodo de Villardeciervos sin estructura extra |
+| **Año 2** | 140.000 € | ~**2.150** | ~**6 pedidos/día** | Consolidación; resultado neto orientativo ≈ **+500 €** (base comodato; alt. alquiler más estrecha) |
+| **Año 5** (madurez) | 360.000 € | ~**5.530** | ~**15 pedidos/día** | Umbral donde conviene optimizar empaquetado/consolidación para mantener el SLA 24 h |
+
+Cálculo: `pedidos ≈ GMV ÷ 65 €`.
+
+### A.2 Gasto medio anual y base de clientes fieles
+
+En e-grocery general en España, el comprador habitual suele comprar 1–2 veces al mes y puede superar ~800 €/año. En un **nicho territorial** (La Raya / Sierra de la Culebra) el patrón esperado es distinto: **3–4 compras anuales** de mayor ticket (Navidad, puentes, reposición gourmet), no compra semanal.
+
+**Objetivo de captación Año 2 (coherente con 140.000 € GMV):**
+
+- Base activa orientativa: **~700 clientes recurrentes** en toda España  
+- Comportamiento: **3 compras × 65 €** ≈ **195 €/cliente/año**  
+- Comprobación: `700 × 3 × 65 € ≈ 136.500 €` ≈ **140.000 € GMV**
+
+Captar ~700 usuarios (visita física + online + campañas) es un objetivo **conservador** frente al flujo turístico comarcal, no una promesa de conversión automática.
+
+### A.3 Auditoría del flujo de comisiones (15 % / 85 %)
+
+```text
+[CLIENTE COMPRA ONLINE] ──► Pago total de la cesta (ej. 65 €)
+                │
+                ▼
+        [MOTOR STRIPE CONNECT]
+                │
+    ┌───────────┴───────────┐
+    ▼                       ▼
+[INGRESOS S.L. ~15 %]   [LIQUIDACIÓN PRODUCTORES ~85 %]
+Año 1:  6.000 €         Año 1: 34.000 € repartidos
+Año 3: 33.000 €         Año 3: 187.000 € repartidos
+(opex, SaaS, gestoría)  (retención legal 14 días en wallet)
+```
+
+| Año | GMV | Caja comisión S.L. (15 %) | Reparto productores (85 %) |
+|---:|---:|---:|---:|
+| 1 | 40.000 € | 6.000 € | 34.000 € |
+| 2 | 140.000 € | 21.000 € | 119.000 € |
+| 3 | 220.000 € | 33.000 € | 187.000 € |
+| 5 | 360.000 € | 54.000 € | 306.000 € |
+
+**Matices que los socios aceptan al anexar este documento:**
+
+1. **Y1 contable** puede cerrar en pérdida orientativa (≈ −4.400 € en PyG prudente base) aunque el volumen de pedidos sea manejable: amortización, medios de pago y opex.
+2. El **15 % no es margen neto puro**: comisiones Stripe y, cuando aplique, absorción del **envío gratis ≥ 49 €** reducen la caja de la S.L.; el productor conserva su **85 %** sobre el bruto de producto.
+3. El resultado Año 2 ≈ **+500 €** (base) es **equilibrio fino**, no holgura: desviaciones de ticket o CAC lo afectan.
+4. El control de captación digital está en **§9.B** (embudo web, CAC, ROAS); este §9.A fija solo la equivalencia GMV ↔ pedidos ↔ clientes.
+5. **Alternativa alquiler** (plan §5.F): documentada; no es el caso base del Pacto hasta que los socios la activen.
+
+### A.4 Conclusión financiera para firma de socios
+
+Los números son **viables como hipótesis** porque el mercado gourmet online soporta cestas altas y el ingreso de la S.L. se basa en el **15 % del éxito de la venta (GMV)**, sin cuotas fijas a artesanos. El crecimiento de la S.L. va en paralelo a la digitalización real de los productores, con Villardeciervos como nodo de consolidación.
+
+Al firmar / anexar este §9.A al Pacto de Socios, las partes reconocen:
+
+- la tabla GMV–comisiones de §9 y este contraste con ticket **65 €**;
+- que se trata de **previsión de diseño**, no de garantía de facturación;
+- que el embudo de conversión para los ~615 pedidos del Año 1 se rige por **§9.B**.
+
+---
+
+## 9.B) Anexo — Métricas de conversión web (Año 1)
+
+> **Naturaleza.** Anexo operativo del Pacto de Socios: traduce los **~615 pedidos / 40.000 € GMV** del Año 1 (6 meses de venta) en un embudo medible. Hipótesis de diseño alineada al presupuesto Paid Media (**500 €/mes**, **3.000 €** en 6 meses) del plan de viabilidad. No garantiza tráfico ni conversión.
+
+### B.1 Objetivo comercial Año 1
+
+| Indicador | Valor de referencia |
+|---|---:|
+| GMV | 40.000 € |
+| Ticket medio | 65 € |
+| Pedidos totales (6 meses) | ~**615** |
+| Pedidos / mes | ~**100** |
+| Comisión bruta S.L. (15 %) | ~**9,75 €** / pedido |
+| Margen de comisión usable (tras Stripe + parte de porte gratis)* | ~**8–10 €** / pedido |
+
+\*Orientativo. Si el ticket ≥ 49 € con envío absorbido, el colchón se estrecha; conviene empujar cestas multiproductor y controlar CAC.
+
+### B.2 Embudo de referencia (visita → pedido)
+
+Hipótesis prudente de **conversión sesión → pedido = 2 %** (rango de control **1,5–3 %**).
+
+| Escalón | Fórmula / lectura | Valor orientativo |
+|---|---|---:|
+| Pedidos / mes | Objetivo | **100** |
+| Sesiones / mes (a 2 %) | `100 ÷ 0,02` | **~5.000** |
+| Sesiones / mes (rango) | 1,5 % … 3 % | **~3.300 – 6.700** |
+| Sesiones totales Año 1 (6 meses) | × 6 a 2 % | **~30.000** |
+| Visitantes únicos / mes (aprox.) | ~0,7–0,85 sesiones/usuario | **~4.000–4.500** |
+
+```text
+Tráfico (sesiones)
+        │  ~5.000 / mes
+        ▼
+Ficha / catálogo / tienda
+        │  engagement OK
+        ▼
+Añadir al carrito
+        │
+        ▼
+Checkout + pago
+        │  conversión global ~2 %
+        ▼
+Pedido confirmado  (~100 / mes → ~615 en 6 meses)
+```
+
+### B.3 Mix de captación (de dónde salen las sesiones)
+
+No todo el tráfico es de pago. Mix de diseño Año 1:
+
+| Canal | % sesiones (hipótesis) | Sesiones / mes (~5.000) | Notas |
+|---|---:|---:|---|
+| **Orgánico + SEO + referidos** | 25 % | ~1.250 | Marca, productor, turismo, WhatsApp |
+| **Showroom / QR / visita física** | 20 % | ~1.000 | Nodo Villardeciervos + alojamientos partners |
+| **Meta Ads** | 30 % | ~1.500 | Prioridad awareness + descubrimiento |
+| **Google Ads (Search/Shopping)** | 20 % | ~1.000 | Demanda caliente |
+| **Retargeting / email** | 5 % | ~250 | Recuperación carrito / visitantes |
+
+Presupuesto medios: **500 €/mes** (Meta ~250 €, Google ~200 €, retargeting/email ~50 €). LinkedIn solo en ventana B2B otoño, reasignando cupo, sin romper el techo de **3.000 €**.
+
+### B.4 CAC, ROAS y umbrales de corte
+
+| Métrica | Definición | Umbral Año 1 |
+|---|---|---|
+| **CAC máximo** | Coste ads atribuible ÷ pedidos de pago | **&lt; 8–10 €** (≤ margen de comisión usable) |
+| **CAC objetivo** | Misma fórmula, operación sana | **≤ 6 €** |
+| **ROAS mínimo (ads)** | GMV atribuido a ads ÷ gasto ads | **≥ 3–4×** |
+| **ROAS objetivo** | Idem | **≥ 5×** |
+| **Gasto ads / mes** | Techo Lean | **500 €** (pausar o recortar canal si cae el ROAS) |
+| **Pedidos desde ads / mes** | Con CAC 6 € y 450 € en Meta+Google | **~75** (el resto ~25 vía orgánico/físico) |
+
+Comprobación de coherencia (ads):  
+`500 €/mes ÷ CAC 6 € ≈ 83 pedidos de pago` → encaja con ~100 pedidos totales si orgánico + físico aportan el resto.  
+ROAS 4× sobre 500 € ⇒ GMV ads ~**2.000 €/mes** (~**12.000 €** en 6 meses); el resto del GMV (hasta 40.000 €) debe venir de orgánico, físico y recurrencia.
+
+### B.5 Controles mensuales (qué miran los socios)
+
+Cada mes operativo del Año 1 se revisa:
+
+1. Pedidos reales vs **100** (alerta si &lt; 70 dos meses seguidos).
+2. Ticket medio vs **65 €** (alerta si &lt; 49 € de forma sostenida → riesgo de portes).
+3. Conversión sesión → pedido vs **2 %** (alerta si &lt; 1,5 %).
+4. CAC y ROAS vs umbrales de **B.4**; pausar el canal que incumpla.
+5. % pedidos con envío gratis (≥ 49 €) y margen neto tras porte absorbido.
+
+### B.6 Conclusión para el Pacto
+
+Con ticket **65 €**, conversión **~2 %** y techo ads **500 €/mes**, los **~615 pedidos** del Año 1 son un objetivo **operativamente medible**, no solo una fila de Excel. El riesgo principal no es la trastienda (3–4 cajas/día), sino **fallar el embudo** (poco tráfico o CAC &gt; comisión).
+
+Al anexar §9.B, los socios aceptan estos umbrales como **criterio de gobierno comercial** del piloto y se comprometen a ajustar presupuesto/canales según B.4–B.5, sin alterar por sí solos la tabla GMV de §9 salvo acuerdo.
+
+---
+
+## 9.bis) Equipo y ejecución tecnológica
+
+El marketplace **no** se construye alrededor de un único perfil técnico imprescindible. La ejecución se organiza así:
+
+```text
+                    EMPRESA (S.L.)
+                       │
+             Dirección del proyecto
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+   Desarrollo       Seguridad      Servicios
+   tecnológico      y RGPD        especializados
+        │
+        ▼
+ Empresa tecnológica
+ especializada (si procede)
+```
+
+**Formulación operativa:** el desarrollo tecnológico podrá ejecutarse mediante **recursos internos**, **contratación de personal especializado** y/o **contratación de servicios tecnológicos externos especializados**, en función de las necesidades técnicas y de la fase de ejecución.
+
+Capacidades que el proyecto debe cubrir (entre promotores y proveedores):
+
+- desarrollo web y mantenimiento;
+- comercio electrónico y operaciones de marketplace;
+- marketing digital;
+- cumplimiento RGPD;
+- relación con productores;
+- gestión financiera y seguimiento del expediente.
+
+La **IA** (p. ej. asistentes de código) apoya desarrollo y fichas de producto; no sustituye arquitectura, seguridad ni validación funcional. El seguimiento contractual de cada inversión se registra en el [`Cuaderno de Ejecución y Justificación`](./Cuaderno_Ejecucion_Justificacion.md).
+
+---
 ## 10) DAFO (resumen)
 
 **Fortalezas**
 
-- 74% inversión cubierta.
+- Potencial de cobertura vía ayudas hasta **74%** sobre base elegible (**hipótesis**; ver plan de viabilidad — no ayuda concedida).
 - Modelo tecnológico escalable sin riesgo de stock.
 - Coste fijo cero en local (cesión por socio).
-- Perfil DAW cualificado con optimización por IA.
+- Modelo de ejecución tecnológica flexible (interno + servicios especializados), con entregables verificables.
 
 **Debilidades**
 
-- Dependencia de un único desarrollador web.
+- Necesidad de coordinar bien recursos internos y proveedores (contratos, plazos, documentación para justificación).
 - Falta de marca inicial.
 - Necesidad de adelantar liquidez.
 - Estacionalidad de tienda física.
@@ -237,7 +535,7 @@ Punto de equilibrio estimado: **Mes 7**.
 **Oportunidades**
 
 - Alto ticket medio gourmet.
-- 68% turistas proceden de Madrid (patrón web).
+- Demanda nacional y turística diversificada; en **Sanabria–La Carballeda** la síntesis prioriza Galicia, Madrid y CyL (ver §1). Las cuotas CCAA **provinciales** oficiales siguen pendientes de extracción INE.
 - Campañas en invierno con inversión rural.
 - Fondos europeos complementarios (La Raya).
 
@@ -282,10 +580,12 @@ Ejemplo de pantalla de estado de pedido (captura local):
 | **Rappel** | Descuento retroactivo sobre la comisión que se aplica al productor cuando supera un determinado volumen de ventas acumulado en el año. Incentiva la fidelidad y el crecimiento. |
 | **Comisión** | Porcentaje que el marketplace retiene sobre cada venta como contraprestación por el servicio (escaparate, pagos, logística, soporte). |
 | **Consolidación logística** | Agrupar en un único envío los productos de distintos artesanos que compró el mismo cliente, para reducir costes y simplificar la recepción. |
-| **Tarifa plana rural** | Precio fijo de envío independientemente del número de artesanos incluidos en el pedido, diseñado para hacer competitivo el coste logístico en zonas rurales. |
+| **Umbral de envío gratuito** | Regla comercial: a partir de un importe de cesta (49 € tras descuentos) el cliente no paga portes; por debajo paga una tarifa fija (4,95 €). El envío gratis lo sufraga el marketplace con su comisión, no el productor. |
+| **Tarifa plana rural** | Precio fijo de envío (4,95 €) por debajo del umbral, independiente del número de artesanos en el pedido, pensado para hacer competitivo el porte rural. |
 | **Grupo piloto** | Conjunto reducido de 5 productores de máxima confianza que prueban el sistema antes del lanzamiento público para detectar errores y generar primeras ventas reales. |
 | **Sandbox** | Entorno de pruebas seguro, separado del sistema real, donde se pueden simular compras, pagos y flujos sin mover dinero real ni afectar a clientes. |
-| **DAW (Desarrollo de Aplicaciones Web)** | Titulación oficial de Formación Profesional que acredita al desarrollador para diseñar, programar y mantener aplicaciones web. |
+| **Ejecución tecnológica (modelo del proyecto)** | Combinación de recursos internos, personal especializado y/o servicios externos para desarrollar y mantener la plataforma. La dirección del proyecto supervisa entregables y validación; no depende de un único perfil. |
+| **DAW (Desarrollo de Aplicaciones Web)** | Titulación FP que acredita capacidad para diseñar y mantener aplicaciones web. Puede aportarse al proyecto vía equipo interno o proveedor; **no** es requisito único ni figura imprescindible del expediente. |
 | **SaaS (Software as a Service)** | Modelo de software en la nube que se paga por uso mensual o anual, sin necesidad de comprar ni instalar nada. Por ejemplo, las herramientas de correo, contabilidad o diseño que usamos en el día a día. |
 | **NAS (Network Attached Storage)** | Dispositivo de almacenamiento conectado a la red local, como un disco duro compartido accesible desde varios ordenadores de la oficina. |
 | **Firewall** | Sistema de seguridad (hardware o software) que controla y filtra el tráfico de red para proteger los equipos de accesos no autorizados. |
@@ -407,7 +707,7 @@ El sistema imprimirá automáticamente una **etiqueta logística exterior única
 Flujo de trabajo real para empaquetar pedidos consolidados:
 
 ```
-1. RECEPCIÓN   → El Socio Comercial recibe en el local las unidades
+1. RECEPCIÓN   → El equipo de operaciones recibe en el local las unidades
                  cerradas y etiquetadas que traen los productores piloto.
 
 2. COTEJO      → Se verifica que el precinto de seguridad del productor
@@ -431,7 +731,7 @@ Flujo de trabajo real para empaquetar pedidos consolidados:
 Con este enfoque, el proyecto se convierte en un modelo de **pura intermediación tecnológica y de servicios**:
 
 - Los **productores** hacen lo que mejor saben (envasar con su registro sanitario propio).
-- La **S.L.** aporta la tecnología web con IA y el canal de distribución rural.
+- La **S.L.** aporta la plataforma tecnológica, la coordinación del canal y la distribución rural.
 - El **riesgo operativo** queda reducido a la cifra más baja posible en el mercado actual.
 
 > Toda la cadena logística, los requisitos de etiquetado y la operativa están perfectamente definidos para la **mínima inversión** y la **máxima elegibilidad de subvención**.
@@ -478,9 +778,9 @@ La conexión es crítica para la gestión del marketplace en tiempo real y la si
 
 | Herramienta | Uso | Coste mensual |
 |---|---|---:|
-| **Alojamiento web (AWS / Azure)** | Servidor virtualizado escalable, SSL y CDN para carga rápida desde Madrid | ~25 € |
+| **Alojamiento web (AWS / Azure)** | Servidor virtualizado escalable, SSL y CDN para carga rápida en todo el territorio nacional | ~25 € |
 | **Stripe Connect** | Pasarela de pagos — sin coste fijo; comisión variable descontada de cada transacción | 0 € fijo |
-| **GitHub Copilot / Claude Pro** | Asistente IA para el DAW: resolución de bugs y optimización de código | ~20 € |
+| **GitHub Copilot / Claude Pro** | Asistentes IA de apoyo al desarrollo (equipo interno o proveedor): revisión de código, bugs y documentación | ~20 € |
 
 #### B. Gestión, ofimática y facturación
 
@@ -496,19 +796,39 @@ La conexión es crítica para la gestión del marketplace en tiempo real y la si
 
 ### 📊 15.4 Cuadro Resumen: Partida de Costes Fijos Operativos
 
-La partida presupuestada de **"Gastos de Oficina, Suministros y Gestoría"** se valida matemáticamente:
+#### Escenario base (comodato)
+
+La partida presupuestada de **"Gastos de Oficina, Suministros y Gestoría"** se valida así:
 
 | Concepto | Coste mensual |
 |---|---:|
 | Luz del local | 50 € |
 | Internet rural de alta velocidad | 30 € |
-| Suscripciones de software (SaaS) | 100 € |
+| Suscripciones de software (SaaS)* | 100 € |
 | Cuota fija de gestoría (contabilidad e impuestos) | 120 € |
-| **TOTAL COSTES FIJOS OPERATIVOS** | **300 € / mes** |
+| **TOTAL COSTES FIJOS OPERATIVOS (base)** | **300 € / mes** |
 
-> **Coste anual total: 3.600 € / año** — exactamente la partida presupuestada.
+\*En el plan de viabilidad §5.B el cloud/SaaS del marketplace puede ir en fila propia; aquí se valida el bloque “oficina” del dossier.
 
-**Conclusión para los socios:** Los 3.600 € anuales cubren al céntimo la totalidad de los costes fijos de suministros, internet, licencias de software y asesoría contable. Sin gasto de alquiler (local cedido en comodato), la startup operará con una de las **estructuras de costes fijos más ligeras y seguras del mercado tecnológico actual**.
+> **Coste anual base: 3.600 € / año.** Sin alquiler (local en comodato del escenario base).
+
+#### Alternativa — local en alquiler (decisión pendiente)
+
+Si no se firma comodato, el plan de viabilidad §5.F contempla:
+
+| Concepto | Coste mensual |
+|---|---:|
+| Alquiler | **300 €** |
+| Luz | **100 €** |
+| Teléfono | **50 €** |
+| Materiales de higiene / limpieza | **50 €** |
+| Internet | 30 € |
+| Gestoría | 120 € |
+| **TOTAL partida local + gestoría/internet (alt.)** | **650 € / mes** |
+
+> **7.800 € / año** (Año 1 con 6 meses de venta: 3.900 €). EBITDA Año 1 del plan pasa de +700 € (base) a **−1.400 €** (alternativa). Detalle en `Plan_Viabilidad_Marketplace_Villardeciervos.md` §5.F.
+
+**Conclusión para los socios:** el **base** sigue siendo comodato + estructura ligera (~300 €/mes). La **alternativa con alquiler** está documentada para decidir sin rehacer el plan entero.
 
 ---
 
@@ -540,7 +860,8 @@ Antes de mostrar el software, la arquitectura técnica o los planes de viabilida
 Solicitamos compromiso de socios con una visión clara:
 
 - Validar rápido el piloto (Mes 2–6).
+- Anexar al Pacto de Socios **§9.A** (hipótesis económica) y **§9.B** (embudo de conversión web Año 1) como marco de referencia compartido.
 - Activar pipeline de captación y recurrencia con rappels y SLA.
-- Escalar con control (KPIs/rentabilidad) y cumplimiento legal (retención 14 días).
+- Escalar con control (KPIs/rentabilidad, umbrales CAC/ROAS de §9.B) y cumplimiento legal (retención 14 días).
 - Firmar el NDA antes de cualquier reunión técnica o comercial con terceros.
 

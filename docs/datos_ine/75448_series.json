@@ -1,0 +1,1951 @@
+[{"FK_Operacion":241, "Nombre":"Albacete, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Albacete, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Alicante, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Almería, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Araba, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Asturias, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ávila, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Badajoz, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Balears, Illes, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Barcelona, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Bizkaia, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Burgos, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cáceres, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cádiz, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cantabria, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Castellón, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ciudad Real, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Córdoba, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Coruña, A, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Cuenca, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Gipuzkoa, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Girona, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Granada, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Guadalajara, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huelva, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Huesca, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Jaén, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"León, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lleida, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Lugo, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Madrid, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Málaga, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Murcia, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Navarra, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Ourense, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palencia, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Palmas, Las, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Pontevedra, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Rioja, La, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Salamanca, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Santa Cruz de Tenerife, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Segovia, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Sevilla, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Soria, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Tarragona, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Teruel, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Toledo, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valencia, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Valladolid, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zamora, No Residentes, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Total, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, Residentes en España, Diciembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Total", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Enero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Febrero", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Marzo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Abril", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Mayo", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Junio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Julio", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Agosto", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Septiembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Octubre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Noviembre", "Decimales":0}
+,{"FK_Operacion":241, "Nombre":"Zaragoza, No Residentes, Diciembre", "Decimales":0}
+]

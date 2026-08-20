@@ -12,7 +12,7 @@ FASE 14 completada: sitemap dinamico, robots, metadatos canonicos y datos estruc
 ### Sitemap y robots
 
 - `GET /sitemap.xml` — generado desde `apps/web/src/app/sitemap.ts`
-- Incluye rutas estaticas, productos publicados, productores activos y categorias
+- Incluye rutas estaticas (`/`, `/tienda`, `/productos`, `/alojamientos`, `/packs`, …), productos publicados, productores activos, categorias, alojamientos y packs publicados
 - `GET /robots.txt` — bloquea areas privadas y referencia el sitemap
 
 ### Metadatos

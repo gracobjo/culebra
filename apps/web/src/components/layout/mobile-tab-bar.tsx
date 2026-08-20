@@ -19,9 +19,14 @@ const tabs = [
   { id: "home", href: "/", label: "Inicio", match: (path: string) => path === "/" },
   {
     id: "products",
-    href: "/productos",
-    label: "Productos",
-    match: (path: string) => path.startsWith("/productos") || path.startsWith("/categorias"),
+    href: "/tienda",
+    label: "Tienda",
+    match: (path: string) =>
+      path.startsWith("/tienda") ||
+      path.startsWith("/productos") ||
+      path.startsWith("/categorias") ||
+      path.startsWith("/alojamientos") ||
+      path.startsWith("/packs"),
   },
   {
     id: "cart",

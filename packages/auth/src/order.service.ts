@@ -56,6 +56,8 @@ export type OrderDetail = {
   totalAmount: string;
   taxTotal: string;
   subtotalGross: string;
+  discountAmount: string;
+  shippingAmount: string;
   paymentStatus: string | null;
   vendorCount: number;
   shippingAddress: AddressSnapshot | null;
@@ -229,6 +231,8 @@ function mapOrderDetail(order: {
   totalAmount: unknown;
   taxTotal: unknown;
   subtotalGross: unknown;
+  discountAmount?: unknown;
+  shippingAmount?: unknown;
   shippingAddressSnapshot: unknown;
   createdAt: Date;
   items: Parameters<typeof mapOrderItem>[0][];
@@ -247,6 +251,8 @@ function mapOrderDetail(order: {
     totalAmount: decimalToString(order.totalAmount),
     taxTotal: decimalToString(order.taxTotal),
     subtotalGross: decimalToString(order.subtotalGross),
+    discountAmount: decimalToString(order.discountAmount ?? 0),
+    shippingAmount: decimalToString(order.shippingAmount ?? 0),
     paymentStatus: order.payment?.status ?? null,
     vendorCount: vendorOrders.length,
     shippingAddress: asAddress(order.shippingAddressSnapshot),
