@@ -17,6 +17,68 @@ El proyecto crea una **S.L. tecnológica** que lanza un **marketplace multi-vend
 
 Diferenciador clave: **showroom físico rural + consolidación logística** en Villardeciervos, algo que agregadores digitales de capital no igualan.
 
+**Documentación del expediente.** Para socios que participen en solicitudes o justificación de ayudas: [`Marco_Documentacion_Expediente.md`](./Marco_Documentacion_Expediente.md) (memoria de proyecto vs justificativa vs cuaderno de ejecución).
+
+---
+
+## 1.bis) Evidencia de mercado y territorio (datos oficiales)
+
+Base estadística para socios (no infla demanda; separa **dato oficial** e **hipótesis**). Detalle: `docs/datos_ine/Tabla_Maestra_Mercado.md` y Excel `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` (hoja `00_KPI_Dashboard`).
+
+### Demografía — Villardeciervos (Padrón / INE)
+
+| Año | Habitantes |
+|----:|-----------:|
+| 2019 | 413 |
+| 2025 | 383 |
+
+Variación ≈ **−7,3 %**. Justifica diversificación económica digital; **no** se promete “fijar población”.
+
+### Turismo rural — provincia de Zamora (INE EOTR)
+
+| Año | Viajeros | Pernoctaciones | Notas |
+|----:|---------:|---------------:|-------|
+| 2019 | 73.640 | 164.480 | Pre-COVID |
+| 2021 | 48.024 | 121.874 | Recuperación |
+| 2022 | 67.224 | 149.204 | Fuerte recuperación |
+| 2024 | **71.909** | **139.587** | ~1,94 noches/viajero |
+| 2025 | 52.353 | 114.653 | Año completo |
+
+Fuente: tablas INE **2073** (y corte TPX **75448** alineado a 2024). Villardeciervos **no** es punto turístico EOTR → no inventamos viajeros municipales.
+
+Estacionalidad 2024 (viajeros): pico **agosto 12.151**; otoño activo (sep–oct). Hipótesis comercial: `visita → producto → compra online → recompra`.
+
+### Contexto regional — Castilla y León (INE ETR 2025)
+
+- **14,44 M** viajes de residentes con destino CyL  
+- **61,56 M** pernoctaciones  
+- **3.004,1 M€** gasto turístico (208 €/persona; 49 €/día)  
+
+Es **contexto regional**, no cuota atribuible a Villardeciervos/Sierra.
+
+### Afluencia específica — Sierra de la Culebra (Junta CyL)
+
+- Centro del Lobo: **>42.000** visitantes en **2019**; **>160.000** acumulados desde 2015  
+- Centros REN Zamora: **>96.000** visitantes en 2019  
+- Berrea (sep–oct) y turismo de naturaleza promocionados por Junta/Diputación  
+
+Correcto: “el Centro del Lobo recibió >42.000 visitantes”. Incorrecto: “la Sierra recibe 42.000 turistas”.
+
+### Demanda alimentaria (INE EPF 2024)
+
+Gasto medio hogares en alimentos y bebidas no alcohólicas: **5.391 €/año** (15,8 % del presupuesto). Categorías relevantes: carne 3,6 %; leche/quesos/huevos 2,0 %. Dimensiona el mercado de categorías; **no** el gasto en productos de la Culebra.
+
+### Tesis comercial (sin eje Madrid)
+
+```text
+TERRITORIO (productos + naturaleza + turismo)
+    → MARKETPLACE
+    → RESIDENTE / TURISTA / CONSUMIDOR NACIONAL
+    → COMPRA ONLINE → RECOMPRA
+```
+
+La procedencia por CCAA de los viajeros rurales de Zamora está **pendiente de extracción INE**; hasta entonces no se declara un mercado principal.
+
 ---
 
 ## 2) A quién sirve (actores y propuesta de valor)
@@ -124,7 +186,7 @@ Tarifa plana rural y consolidación:
 |---:|---|---|
 | 1 | Legal + inicio infraestructura | tramitación, socio roles, habilitación local |
 | 2 | Obra civil + arquitectura | hardware subvencionado, diseño UI/UX |
-| 3 | Backend con IA | motor, catálogo, perfiles |
+| 3 | Backend y catálogo | motor multi-vendedor, perfiles, paneles (interno y/o proveedor) |
 | 4 | Pagos + logística | Stripe Connect + Bizum, frontend responsivo |
 | 5 | Cloud + ciberseguridad + beta | migración, pruebas de estrés, auditoría |
 | 6 | Lanzamiento comercial | apertura pública y cierre expediente |
@@ -134,7 +196,7 @@ Diagrama:
 ```mermaid
 flowchart LR
   M1[Mes 1\nLegal + Infra] --> M2[Mes 2\nObra + Arquitectura]
-  M2 --> M3[Mes 3\nBackend IA]
+  M2 --> M3[Mes 3\nBackend + Catálogo]
   M3 --> M4[Mes 4\nPagos + Logística]
   M4 --> M5[Mes 5\nCloud + Beta]
   M5 --> M6[Mes 6\nLanzamiento]
@@ -149,7 +211,7 @@ flowchart LR
 Validará:
 
 - Stripe Connect (pasarela avanzada),
-- logística hacia Madrid,
+- logística hacia demanda nacional y turística (Castilla y León, comunidades limítrofes y resto de España; sin presuponer un polo único),
 - prueba real del flujo para generar “efecto llamada”.
 
 ### Fases
@@ -167,9 +229,9 @@ Validará:
 
 ---
 
-## 8) Control y KPIs (métrica = reputación)
+## 8) Control y KPIs (métrica = reputación + negocio)
 
-KPIs de preparación y calidad:
+### 8.1 KPIs operativos (piloto / lanzamiento)
 
 | Métrica KPI | Objetivo | Crítico |
 |---|---:|---:|
@@ -177,58 +239,98 @@ KPIs de preparación y calidad:
 | Roturas de stock | <1% | >3% |
 | Incidencias de embalaje defectuoso | 0% | >2% |
 | Valoraciones web | >4,5/5 | <4,0/5 |
+| Pedidos con trazabilidad completa | ≥90% | <80% |
+| Clientes recurrentes (repiten compra) | a medir en piloto | — |
 
-KPIs de rentabilidad:
+### 8.2 KPIs económicos (marketplace de intermediación)
 
-- Beneficio por transacción = comisiones − costes imputables
-  (amortización maquinaria, envasado, transporte y costes asociados).
+| KPI | Definición | Uso |
+|---|---|---|
+| **GMV** | Ventas de vendedores en la plataforma | Actividad; **no** es ingreso de la SL |
+| **Ingresos SL** | Comisión **15%** × GMV | Facturación propia |
+| **Take rate** | Ingresos / GMV | Debe situarse ~15% |
+| **Cobertura de gastos** | Ingresos / Gastos | >100% = umbral operativo |
+| **Resultado neto** | Tras gastos, amortización e IS orientativo | Viabilidad |
+| **GMV de equilibrio** | ≈ gastos fijos ÷ 15% | ~9.700 €/mes (fase Y2+, con amort.) |
+| **GMV / vendedor / mes** | GMV ÷ n.º vendedores activos | Intensidad comercial |
 
----
+Cuadro de mando visual (gráficos dinámicos): Excel `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` → hoja **`00_KPI_Dashboard`**.
 
-## 9) Viabilidad financiera (a 3 años)
+KPIs de rentabilidad por pedido:
 
-### Inversión elegible (mínimo)
-
-| Partida | Importe neto | Justificación |
-|---|---:|---|
-| Desarrollo tecnológico | 24.000 € | DAW (6 meses) |
-| Hardware informático | 3.000 € | portátiles + NAS |
-| Red + ciberseguridad | 1.500 € | firewall + routers |
-| Logística | 1.500 € | báscula + impresora etiquetas |
-| **Total** | **30.000 €** | umbral |
-
-### Gastos de lanzamiento ordinarios (no subvencionables)
-
-- Constitución S.L.: 350 €
-- Tasas legalización y depósito: 320 €/año
-- SaaS no permanente: 1.500 €
-- Caja complementaria: 10.000 €
-- Caja total inicial: **40.000 €**
-
-### Proyección (escenario pesimista)
-
-| Concepto | Año 1 (6 meses) | Año 2 | Año 3 |
-|---|---:|---:|---:|
-| Ingresos totales | 7.500 € | 30.000 € | 55.000 € |
-| EBITDA | +700 € | +14.400 € | +35.400 € |
-| Beneficio neto disponible | +595 € | +12.240 € | +30.090 € |
-
-Punto de equilibrio estimado: **Mes 7**.
+- Beneficio por transacción ≈ comisión − (cuota de medios de pago + coste operativo imputable).
+- En modelo intermediación **no** se imputa COGS de mercancía (el stock es del vendedor).
 
 ---
 
+## 9) Viabilidad financiera (a 5 años — escenario conservador)
+
+### Inversión elegible (mínimo ~30.000 €)
+
+Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red, adecuación, logística ligera). El desarrollo se plantea como **activo / servicio especializado** bajo dirección del equipo promotor, combinando recursos internos, personal especializado y/o servicios tecnológicos externos según fase.
+
+### Proyección conservadora (comisión 15% sobre GMV)
+
+| Concepto | Año 1 (6 meses venta) | Año 2 | Año 3 | Año 4 | Año 5 |
+|---|---:|---:|---:|---:|---:|
+| GMV vendedores | 50.000 € | 200.000 € | 366.667 € | 440.000 € | 528.000 € |
+| Ingresos SL (15%) | **7.500 €** | **30.000 €** | **55.000 €** | **66.000 €** | **79.200 €** |
+| Resultado neto (orientativo) | ≈ −4.900 € | ≈ +1.600 € | ≈ +17.300 € | ≈ +25.700 € | ≈ +35.800 € |
+
+- Y1 en pérdida es coherente con arranque + amortización desde lanzamiento.  
+- Drivers: 5 → 10 → 15 → 18–20 vendedores.  
+- Escenarios **Realista** y **Optimista** en el mismo Excel (hipótesis de sensibilidad).  
+- **GMV ≠ ventas propias de la SL.** IS orientativo; IVA fuera de la PyG.
+
+Punto de equilibrio operativo orientativo: entorno del **mes 7+** / consolidación en año 2 según GMV.
+
+---
+
+## 9.bis) Equipo y ejecución tecnológica
+
+El marketplace **no** se construye alrededor de un único perfil técnico imprescindible. La ejecución se organiza así:
+
+```text
+                    EMPRESA (S.L.)
+                       │
+             Dirección del proyecto
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+   Desarrollo       Seguridad      Servicios
+   tecnológico      y RGPD        especializados
+        │
+        ▼
+ Empresa tecnológica
+ especializada (si procede)
+```
+
+**Formulación operativa:** el desarrollo tecnológico podrá ejecutarse mediante **recursos internos**, **contratación de personal especializado** y/o **contratación de servicios tecnológicos externos especializados**, en función de las necesidades técnicas y de la fase de ejecución.
+
+Capacidades que el proyecto debe cubrir (entre promotores y proveedores):
+
+- desarrollo web y mantenimiento;
+- comercio electrónico y operaciones de marketplace;
+- marketing digital;
+- cumplimiento RGPD;
+- relación con productores;
+- gestión financiera y seguimiento del expediente.
+
+La **IA** (p. ej. asistentes de código) apoya desarrollo y fichas de producto; no sustituye arquitectura, seguridad ni validación funcional. El seguimiento contractual de cada inversión se registra en el [`Cuaderno de Ejecución y Justificación`](./Cuaderno_Ejecucion_Justificacion.md).
+
+---
 ## 10) DAFO (resumen)
 
 **Fortalezas**
 
-- 74% inversión cubierta.
+- Potencial de cobertura vía ayudas hasta **74%** sobre base elegible (**hipótesis**; ver plan de viabilidad — no ayuda concedida).
 - Modelo tecnológico escalable sin riesgo de stock.
 - Coste fijo cero en local (cesión por socio).
-- Perfil DAW cualificado con optimización por IA.
+- Modelo de ejecución tecnológica flexible (interno + servicios especializados), con entregables verificables.
 
 **Debilidades**
 
-- Dependencia de un único desarrollador web.
+- Necesidad de coordinar bien recursos internos y proveedores (contratos, plazos, documentación para justificación).
 - Falta de marca inicial.
 - Necesidad de adelantar liquidez.
 - Estacionalidad de tienda física.
@@ -236,7 +338,7 @@ Punto de equilibrio estimado: **Mes 7**.
 **Oportunidades**
 
 - Alto ticket medio gourmet.
-- 68% turistas proceden de Madrid (patrón web).
+- Demanda nacional y turística diversificada (Castilla y León, limítrofes y resto de España); la cuota por CCAA se fijará con datos INE de procedencia (pendiente), no por intuición ni por un único polo urbano.
 - Campañas en invierno con inversión rural.
 - Fondos europeos complementarios (La Raya).
 
@@ -284,7 +386,8 @@ Ejemplo de pantalla de estado de pedido (captura local):
 | **Tarifa plana rural** | Precio fijo de envío independientemente del número de artesanos incluidos en el pedido, diseñado para hacer competitivo el coste logístico en zonas rurales. |
 | **Grupo piloto** | Conjunto reducido de 5 productores de máxima confianza que prueban el sistema antes del lanzamiento público para detectar errores y generar primeras ventas reales. |
 | **Sandbox** | Entorno de pruebas seguro, separado del sistema real, donde se pueden simular compras, pagos y flujos sin mover dinero real ni afectar a clientes. |
-| **DAW (Desarrollo de Aplicaciones Web)** | Titulación oficial de Formación Profesional que acredita al desarrollador para diseñar, programar y mantener aplicaciones web. |
+| **Ejecución tecnológica (modelo del proyecto)** | Combinación de recursos internos, personal especializado y/o servicios externos para desarrollar y mantener la plataforma. La dirección del proyecto supervisa entregables y validación; no depende de un único perfil. |
+| **DAW (Desarrollo de Aplicaciones Web)** | Titulación FP que acredita capacidad para diseñar y mantener aplicaciones web. Puede aportarse al proyecto vía equipo interno o proveedor; **no** es requisito único ni figura imprescindible del expediente. |
 | **SaaS (Software as a Service)** | Modelo de software en la nube que se paga por uso mensual o anual, sin necesidad de comprar ni instalar nada. Por ejemplo, las herramientas de correo, contabilidad o diseño que usamos en el día a día. |
 | **NAS (Network Attached Storage)** | Dispositivo de almacenamiento conectado a la red local, como un disco duro compartido accesible desde varios ordenadores de la oficina. |
 | **Firewall** | Sistema de seguridad (hardware o software) que controla y filtra el tráfico de red para proteger los equipos de accesos no autorizados. |
@@ -406,7 +509,7 @@ El sistema imprimirá automáticamente una **etiqueta logística exterior única
 Flujo de trabajo real para empaquetar pedidos consolidados:
 
 ```
-1. RECEPCIÓN   → El Socio Comercial recibe en el local las unidades
+1. RECEPCIÓN   → El equipo de operaciones recibe en el local las unidades
                  cerradas y etiquetadas que traen los productores piloto.
 
 2. COTEJO      → Se verifica que el precinto de seguridad del productor
@@ -430,7 +533,7 @@ Flujo de trabajo real para empaquetar pedidos consolidados:
 Con este enfoque, el proyecto se convierte en un modelo de **pura intermediación tecnológica y de servicios**:
 
 - Los **productores** hacen lo que mejor saben (envasar con su registro sanitario propio).
-- La **S.L.** aporta la tecnología web con IA y el canal de distribución rural.
+- La **S.L.** aporta la plataforma tecnológica, la coordinación del canal y la distribución rural.
 - El **riesgo operativo** queda reducido a la cifra más baja posible en el mercado actual.
 
 > Toda la cadena logística, los requisitos de etiquetado y la operativa están perfectamente definidos para la **mínima inversión** y la **máxima elegibilidad de subvención**.
@@ -477,9 +580,9 @@ La conexión es crítica para la gestión del marketplace en tiempo real y la si
 
 | Herramienta | Uso | Coste mensual |
 |---|---|---:|
-| **Alojamiento web (AWS / Azure)** | Servidor virtualizado escalable, SSL y CDN para carga rápida desde Madrid | ~25 € |
+| **Alojamiento web (AWS / Azure)** | Servidor virtualizado escalable, SSL y CDN para carga rápida en todo el territorio nacional | ~25 € |
 | **Stripe Connect** | Pasarela de pagos — sin coste fijo; comisión variable descontada de cada transacción | 0 € fijo |
-| **GitHub Copilot / Claude Pro** | Asistente IA para el DAW: resolución de bugs y optimización de código | ~20 € |
+| **GitHub Copilot / Claude Pro** | Asistentes IA de apoyo al desarrollo (equipo interno o proveedor): revisión de código, bugs y documentación | ~20 € |
 
 #### B. Gestión, ofimática y facturación
 
