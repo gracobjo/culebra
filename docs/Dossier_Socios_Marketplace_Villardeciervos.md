@@ -315,6 +315,78 @@ Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red
 
 Punto de equilibrio operativo orientativo: entorno del **mes 7+** / consolidación en año 2–3 según GMV.
 
+**Anexo contractual (hipótesis contrastada):** ver **§9.A** — traducción GMV → pedidos, base de clientes recurrentes y flujo de comisiones. Destinado a anexarse al Pacto de Socios como marco económico de referencia (no como previsión garantizada).
+
+---
+
+## 9.A) Anexo — Hipótesis económica contrastada (Pacto de Socios)
+
+> **Naturaleza.** Hipótesis de trabajo contrastada con la proyección conservadora de §9 (ticket medio **65 €**, comisión **15 %**). No constituye compromiso de resultado ni cifra auditada de demanda. Sirve para que los socios compartan la misma lectura operativa y financiera antes de firmar.
+
+### A.1 Conversión de GMV a pedidos reales
+
+Criterio de prudencia: **ticket medio 65 €** por cesta unificada.
+
+| Horizonte | GMV (conservador) | Pedidos equivalentes | Ritmo orientativo | Lectura operativa |
+|---|---:|---:|---|---|
+| **Año 1** (6 meses de venta) | 40.000 € | ~**615** (~100/mes) | **3–4 cajas/día** en trastienda | Volumen absorbible por el nodo de Villardeciervos sin estructura extra |
+| **Año 2** | 140.000 € | ~**2.150** | ~**6 pedidos/día** | Consolidación; resultado neto orientativo ≈ **+500 €** (equilibrio fino) |
+| **Año 5** (madurez) | 360.000 € | ~**5.530** | ~**15 pedidos/día** | Umbral donde conviene optimizar empaquetado/consolidación para mantener el SLA 24 h |
+
+Cálculo: `pedidos ≈ GMV ÷ 65 €`.
+
+### A.2 Gasto medio anual y base de clientes fieles
+
+En e-grocery general en España, el comprador habitual suele comprar 1–2 veces al mes y puede superar ~800 €/año. En un **nicho territorial** (La Raya / Sierra de la Culebra) el patrón esperado es distinto: **3–4 compras anuales** de mayor ticket (Navidad, puentes, reposición gourmet), no compra semanal.
+
+**Objetivo de captación Año 2 (coherente con 140.000 € GMV):**
+
+- Base activa orientativa: **~700 clientes recurrentes** en toda España  
+- Comportamiento: **3 compras × 65 €** ≈ **195 €/cliente/año**  
+- Comprobación: `700 × 3 × 65 € ≈ 136.500 €` ≈ **140.000 € GMV**
+
+Captar ~700 usuarios (visita física + online + campañas) es un objetivo **conservador** frente al flujo turístico comarcal, no una promesa de conversión automática.
+
+### A.3 Auditoría del flujo de comisiones (15 % / 85 %)
+
+```text
+[CLIENTE COMPRA ONLINE] ──► Pago total de la cesta (ej. 65 €)
+                │
+                ▼
+        [MOTOR STRIPE CONNECT]
+                │
+    ┌───────────┴───────────┐
+    ▼                       ▼
+[INGRESOS S.L. ~15 %]   [LIQUIDACIÓN PRODUCTORES ~85 %]
+Año 1:  6.000 €         Año 1: 34.000 € repartidos
+Año 3: 33.000 €         Año 3: 187.000 € repartidos
+(opex, SaaS, gestoría)  (retención legal 14 días en wallet)
+```
+
+| Año | GMV | Caja comisión S.L. (15 %) | Reparto productores (85 %) |
+|---:|---:|---:|---:|
+| 1 | 40.000 € | 6.000 € | 34.000 € |
+| 2 | 140.000 € | 21.000 € | 119.000 € |
+| 3 | 220.000 € | 33.000 € | 187.000 € |
+| 5 | 360.000 € | 54.000 € | 306.000 € |
+
+**Matices que los socios aceptan al anexar este documento:**
+
+1. **Y1 contable** puede cerrar en pérdida orientativa (≈ −4.400 € en PyG prudente) aunque el volumen de pedidos sea manejable: amortización, medios de pago y opex.
+2. El **15 % no es margen neto puro**: comisiones Stripe y, cuando aplique, absorción del **envío gratis ≥ 49 €** reducen la caja de la S.L.; el productor conserva su **85 %** sobre el bruto de producto.
+3. El resultado Año 2 ≈ **+500 €** es **equilibrio fino**, no holgura: desviaciones de ticket o CAC lo afectan.
+4. La **conversión web** (sesiones → pedido, CAC, ROAS) se documentará en anexo operativo posterior; este §9.A fija solo la equivalencia GMV ↔ pedidos ↔ clientes.
+
+### A.4 Conclusión financiera para firma de socios
+
+Los números son **viables como hipótesis** porque el mercado gourmet online soporta cestas altas y el ingreso de la S.L. se basa en el **15 % del éxito de la venta (GMV)**, sin cuotas fijas a artesanos. El crecimiento de la S.L. va en paralelo a la digitalización real de los productores, con Villardeciervos como nodo de consolidación.
+
+Al firmar / anexar este §9.A al Pacto de Socios, las partes reconocen:
+
+- la tabla GMV–comisiones de §9 y este contraste con ticket **65 €**;
+- que se trata de **previsión de diseño**, no de garantía de facturación;
+- que el siguiente control de riesgo comercial es el **embudo de conversión** (tráfico, CAC y pedidos/mes hacia los ~615 del Año 1).
+
 ---
 
 ## 9.bis) Equipo y ejecución tecnológica
@@ -674,6 +746,7 @@ Antes de mostrar el software, la arquitectura técnica o los planes de viabilida
 Solicitamos compromiso de socios con una visión clara:
 
 - Validar rápido el piloto (Mes 2–6).
+- Anexar al Pacto de Socios la **hipótesis económica contrastada (§9.A)** — GMV ↔ pedidos (ticket 65 €) ↔ base de clientes — como marco de referencia compartido.
 - Activar pipeline de captación y recurrencia con rappels y SLA.
 - Escalar con control (KPIs/rentabilidad) y cumplimiento legal (retención 14 días).
 - Firmar el NDA antes de cualquier reunión técnica o comercial con terceros.
