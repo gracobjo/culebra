@@ -315,7 +315,7 @@ Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red
 
 Punto de equilibrio operativo orientativo: entorno del **mes 7+** / consolidación en año 2–3 según GMV.
 
-**Anexo contractual (hipótesis contrastada):** ver **§9.A** — traducción GMV → pedidos, base de clientes recurrentes y flujo de comisiones. Destinado a anexarse al Pacto de Socios como marco económico de referencia (no como previsión garantizada).
+**Anexos contractuales:** **§9.A** (GMV ↔ pedidos ↔ clientes) y **§9.B** (embudo de conversión web Año 1). Marco de referencia para el Pacto de Socios; no son previsión garantizada.
 
 ---
 
@@ -375,7 +375,7 @@ Año 3: 33.000 €         Año 3: 187.000 € repartidos
 1. **Y1 contable** puede cerrar en pérdida orientativa (≈ −4.400 € en PyG prudente) aunque el volumen de pedidos sea manejable: amortización, medios de pago y opex.
 2. El **15 % no es margen neto puro**: comisiones Stripe y, cuando aplique, absorción del **envío gratis ≥ 49 €** reducen la caja de la S.L.; el productor conserva su **85 %** sobre el bruto de producto.
 3. El resultado Año 2 ≈ **+500 €** es **equilibrio fino**, no holgura: desviaciones de ticket o CAC lo afectan.
-4. La **conversión web** (sesiones → pedido, CAC, ROAS) se documentará en anexo operativo posterior; este §9.A fija solo la equivalencia GMV ↔ pedidos ↔ clientes.
+4. El control de captación digital está en **§9.B** (embudo web, CAC, ROAS); este §9.A fija solo la equivalencia GMV ↔ pedidos ↔ clientes.
 
 ### A.4 Conclusión financiera para firma de socios
 
@@ -385,7 +385,99 @@ Al firmar / anexar este §9.A al Pacto de Socios, las partes reconocen:
 
 - la tabla GMV–comisiones de §9 y este contraste con ticket **65 €**;
 - que se trata de **previsión de diseño**, no de garantía de facturación;
-- que el siguiente control de riesgo comercial es el **embudo de conversión** (tráfico, CAC y pedidos/mes hacia los ~615 del Año 1).
+- que el embudo de conversión para los ~615 pedidos del Año 1 se rige por **§9.B**.
+
+---
+
+## 9.B) Anexo — Métricas de conversión web (Año 1)
+
+> **Naturaleza.** Anexo operativo del Pacto de Socios: traduce los **~615 pedidos / 40.000 € GMV** del Año 1 (6 meses de venta) en un embudo medible. Hipótesis de diseño alineada al presupuesto Paid Media (**500 €/mes**, **3.000 €** en 6 meses) del plan de viabilidad. No garantiza tráfico ni conversión.
+
+### B.1 Objetivo comercial Año 1
+
+| Indicador | Valor de referencia |
+|---|---:|
+| GMV | 40.000 € |
+| Ticket medio | 65 € |
+| Pedidos totales (6 meses) | ~**615** |
+| Pedidos / mes | ~**100** |
+| Comisión bruta S.L. (15 %) | ~**9,75 €** / pedido |
+| Margen de comisión usable (tras Stripe + parte de porte gratis)* | ~**8–10 €** / pedido |
+
+\*Orientativo. Si el ticket ≥ 49 € con envío absorbido, el colchón se estrecha; conviene empujar cestas multiproductor y controlar CAC.
+
+### B.2 Embudo de referencia (visita → pedido)
+
+Hipótesis prudente de **conversión sesión → pedido = 2 %** (rango de control **1,5–3 %**).
+
+| Escalón | Fórmula / lectura | Valor orientativo |
+|---|---|---:|
+| Pedidos / mes | Objetivo | **100** |
+| Sesiones / mes (a 2 %) | `100 ÷ 0,02` | **~5.000** |
+| Sesiones / mes (rango) | 1,5 % … 3 % | **~3.300 – 6.700** |
+| Sesiones totales Año 1 (6 meses) | × 6 a 2 % | **~30.000** |
+| Visitantes únicos / mes (aprox.) | ~0,7–0,85 sesiones/usuario | **~4.000–4.500** |
+
+```text
+Tráfico (sesiones)
+        │  ~5.000 / mes
+        ▼
+Ficha / catálogo / tienda
+        │  engagement OK
+        ▼
+Añadir al carrito
+        │
+        ▼
+Checkout + pago
+        │  conversión global ~2 %
+        ▼
+Pedido confirmado  (~100 / mes → ~615 en 6 meses)
+```
+
+### B.3 Mix de captación (de dónde salen las sesiones)
+
+No todo el tráfico es de pago. Mix de diseño Año 1:
+
+| Canal | % sesiones (hipótesis) | Sesiones / mes (~5.000) | Notas |
+|---|---:|---:|---|
+| **Orgánico + SEO + referidos** | 25 % | ~1.250 | Marca, productor, turismo, WhatsApp |
+| **Showroom / QR / visita física** | 20 % | ~1.000 | Nodo Villardeciervos + alojamientos partners |
+| **Meta Ads** | 30 % | ~1.500 | Prioridad awareness + descubrimiento |
+| **Google Ads (Search/Shopping)** | 20 % | ~1.000 | Demanda caliente |
+| **Retargeting / email** | 5 % | ~250 | Recuperación carrito / visitantes |
+
+Presupuesto medios: **500 €/mes** (Meta ~250 €, Google ~200 €, retargeting/email ~50 €). LinkedIn solo en ventana B2B otoño, reasignando cupo, sin romper el techo de **3.000 €**.
+
+### B.4 CAC, ROAS y umbrales de corte
+
+| Métrica | Definición | Umbral Año 1 |
+|---|---|---|
+| **CAC máximo** | Coste ads atribuible ÷ pedidos de pago | **&lt; 8–10 €** (≤ margen de comisión usable) |
+| **CAC objetivo** | Misma fórmula, operación sana | **≤ 6 €** |
+| **ROAS mínimo (ads)** | GMV atribuido a ads ÷ gasto ads | **≥ 3–4×** |
+| **ROAS objetivo** | Idem | **≥ 5×** |
+| **Gasto ads / mes** | Techo Lean | **500 €** (pausar o recortar canal si cae el ROAS) |
+| **Pedidos desde ads / mes** | Con CAC 6 € y 450 € en Meta+Google | **~75** (el resto ~25 vía orgánico/físico) |
+
+Comprobación de coherencia (ads):  
+`500 €/mes ÷ CAC 6 € ≈ 83 pedidos de pago` → encaja con ~100 pedidos totales si orgánico + físico aportan el resto.  
+ROAS 4× sobre 500 € ⇒ GMV ads ~**2.000 €/mes** (~**12.000 €** en 6 meses); el resto del GMV (hasta 40.000 €) debe venir de orgánico, físico y recurrencia.
+
+### B.5 Controles mensuales (qué miran los socios)
+
+Cada mes operativo del Año 1 se revisa:
+
+1. Pedidos reales vs **100** (alerta si &lt; 70 dos meses seguidos).
+2. Ticket medio vs **65 €** (alerta si &lt; 49 € de forma sostenida → riesgo de portes).
+3. Conversión sesión → pedido vs **2 %** (alerta si &lt; 1,5 %).
+4. CAC y ROAS vs umbrales de **B.4**; pausar el canal que incumpla.
+5. % pedidos con envío gratis (≥ 49 €) y margen neto tras porte absorbido.
+
+### B.6 Conclusión para el Pacto
+
+Con ticket **65 €**, conversión **~2 %** y techo ads **500 €/mes**, los **~615 pedidos** del Año 1 son un objetivo **operativamente medible**, no solo una fila de Excel. El riesgo principal no es la trastienda (3–4 cajas/día), sino **fallar el embudo** (poco tráfico o CAC &gt; comisión).
+
+Al anexar §9.B, los socios aceptan estos umbrales como **criterio de gobierno comercial** del piloto y se comprometen a ajustar presupuesto/canales según B.4–B.5, sin alterar por sí solos la tabla GMV de §9 salvo acuerdo.
 
 ---
 
@@ -746,8 +838,8 @@ Antes de mostrar el software, la arquitectura técnica o los planes de viabilida
 Solicitamos compromiso de socios con una visión clara:
 
 - Validar rápido el piloto (Mes 2–6).
-- Anexar al Pacto de Socios la **hipótesis económica contrastada (§9.A)** — GMV ↔ pedidos (ticket 65 €) ↔ base de clientes — como marco de referencia compartido.
+- Anexar al Pacto de Socios **§9.A** (hipótesis económica) y **§9.B** (embudo de conversión web Año 1) como marco de referencia compartido.
 - Activar pipeline de captación y recurrencia con rappels y SLA.
-- Escalar con control (KPIs/rentabilidad) y cumplimiento legal (retención 14 días).
+- Escalar con control (KPIs/rentabilidad, umbrales CAC/ROAS de §9.B) y cumplimiento legal (retención 14 días).
 - Firmar el NDA antes de cualquier reunión técnica o comercial con terceros.
 
