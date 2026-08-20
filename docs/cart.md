@@ -9,20 +9,20 @@ FASE 6 completada: carrito con invitado, checkout con datos de envio/facturacion
 
 ## Extension: cupones, afiliacion (`?ref=`), packs (añaden lineas de producto). La **noche de alojamiento no entra en el carrito**.
 
-## Envio (umbral gratuito)
+## Envio (tarifa plana)
 
 Regla programada (`computeShippingQuote`):
 
-| Merchandise (subtotal − cupón) | Cliente paga |
-|--------------------------------|-------------:|
-| &lt; **49 €** | **4,95 €** de envío |
-| ≥ **49 €** | **Gratis** |
+| Merchandise | Cliente paga |
+|-------------|-------------:|
+| Cualquier importe &gt; 0 | **6,50 €** (tarifa plana) |
+| Carrito vacío | **0 €** |
 
-Constantes en `@culebra/domain`: `FREE_SHIPPING_THRESHOLD_EUR`, `CUSTOMER_SHIPPING_FEE_EUR`, `MARKETPLACE_SHIPPING_COST_EUR` (~5 € coste interno orientativo).
+Constantes en `@culebra/domain`: `CUSTOMER_SHIPPING_FEE_EUR` (6,50 €). `FREE_SHIPPING_THRESHOLD_EUR` queda deprecado (sin umbral de gratuidad).
 
-**Quién sufraga el envío gratis:** la S.L. lo absorbe desde su comisión (~15 %). El productor **no** pierde neto: sigue recibiendo su 85 % sobre el bruto de producto. El envío cobrado al cliente (&lt;49 €) es ingreso/passthrough logístico de la plataforma, no del productor.
+**Quién paga el porte:** siempre el cliente. La S.L. **no absorbe** etiquetas. Comisión por defecto **17 %** (+ mínimo **4 €** por subpedido de productor).
 
-En carrito/checkout se muestra “te faltan X € para envío gratis”. `Order.shippingAmount` + `Order.totalAmount` incluyen el cargo al cliente.
+En carrito/checkout se muestra la tarifa plana. `Order.shippingAmount` + `Order.totalAmount` incluyen el cargo al cliente.
 
 ## Carrito
 

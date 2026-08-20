@@ -84,7 +84,7 @@ export default async function AdminPilotoPage() {
             5 artesanos piloto de Zamora validarán la pasarela de pagos (Stripe Connect + Bizum),
             el flujo logístico hacia Madrid y servirán de "efecto llamada" para captar los
             siguientes 20–30 artesanos de La Raya en la campaña de invierno.
-            Condiciones fundadores: <strong>10% de comisión el primer año</strong> (vs. 15% estándar).
+            Condiciones fundadores: <strong>12% de comisión el primer año</strong> (vs. 17% estándar).
           </p>
           <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[

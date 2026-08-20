@@ -166,19 +166,28 @@ export const VendorPayoutMethod = {
 } as const satisfies Record<string, VendorPayoutMethod>;
 
 /** Comision marketplace por defecto cuando no hay regla ni contrato especifico. */
-export const DEFAULT_MARKETPLACE_COMMISSION_PERCENT = 15;
-
-/** Umbral de envío gratuito (merchandise tras descuento). */
-export const FREE_SHIPPING_THRESHOLD_EUR = 49;
-
-/** Importe de envío que paga el cliente por debajo del umbral. */
-export const CUSTOMER_SHIPPING_FEE_EUR = 4.95;
+export const DEFAULT_MARKETPLACE_COMMISSION_PERCENT = 17;
 
 /**
- * Coste interno orientativo de etiqueta/transporte que absorbe el marketplace
- * cuando el envío es gratis (no se cobra al productor ni se descuenta de su 85 %).
+ * Suelo de comision por subpedido de productor (vendor order):
+ * se aplica max(porcentaje, este minimo), sin superar el bruto del productor.
  */
-export const MARKETPLACE_SHIPPING_COST_EUR = 5;
+export const DEFAULT_MIN_COMMISSION_EUR = 4;
+
+/**
+ * @deprecated No hay envío gratis. Se mantiene exportado por compatibilidad de API;
+ * `computeShippingQuote` ya no usa umbral.
+ */
+export const FREE_SHIPPING_THRESHOLD_EUR = Number.POSITIVE_INFINITY;
+
+/** Tarifa plana de envío que paga siempre el cliente. */
+export const CUSTOMER_SHIPPING_FEE_EUR = 6.5;
+
+/**
+ * Coste interno orientativo de etiqueta (referencia operativa).
+ * La S.L. no lo absorbe: lo cubre el cargo al cliente.
+ */
+export const MARKETPLACE_SHIPPING_COST_EUR = 6.5;
 
 export type ContractStatus =
   | "DRAFT"

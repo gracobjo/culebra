@@ -132,7 +132,7 @@ export function PlanDashboard({ live }: { live: LivePlanStats }) {
             hint: `Hipótesis plan: ${formatPrice(AVG_TICKET_EUR)}`,
           },
           {
-            label: "Comisión est. 15 %",
+            label: `Comisión est. ${Math.round(COMMISSION_RATE * 100)} %`,
             value: formatPrice(live.estimatedCommission),
             hint: `Vendedores activos: ${live.vendorsActive}`,
           },
@@ -148,7 +148,8 @@ export function PlanDashboard({ live }: { live: LivePlanStats }) {
       <section className="rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
         <h3 className="text-lg font-semibold">Proyección anual — {scenario.label}</h3>
         <p className="mt-1 text-sm text-stone-500">
-          Objetivo neto acumulado 5 años ≥ {formatPrice(NET_ACCUM_TARGET)}. Proyectado:{" "}
+          Referencia neto acumulado 5 años (caso base): ~{formatPrice(NET_ACCUM_TARGET)} (aceptable
+          vs aportación real ~10.400 €). Proyectado escenario:{" "}
           {formatPrice(scenario.netAccum5y)}.
         </p>
         <div className="mt-4 overflow-x-auto">
@@ -157,7 +158,7 @@ export function PlanDashboard({ live }: { live: LivePlanStats }) {
               <tr className="border-b border-stone-200 text-stone-500">
                 <th className="pb-2 pr-3 font-medium">Año</th>
                 <th className="pb-2 pr-3 font-medium">GMV</th>
-                <th className="pb-2 pr-3 font-medium">Ingresos 15 %</th>
+                <th className="pb-2 pr-3 font-medium">Ingresos {Math.round(COMMISSION_RATE * 100)} %</th>
                 <th className="pb-2 pr-3 font-medium">Pedidos (~{AVG_TICKET_EUR} €)</th>
                 <th className="pb-2 pr-3 font-medium">Neto</th>
                 <th className="pb-2 pr-3 font-medium">Acumulado</th>
@@ -275,7 +276,8 @@ export function PlanDashboard({ live }: { live: LivePlanStats }) {
             Comparar mensualmente GMV/pedidos reales con la fila Año 1 del escenario conservador.
           </li>
           <li>
-            Ticket medio &lt; 49 € de forma sostenida: riesgo de márgenes por portes absorbidos.
+            Ticket medio &lt; 35 € de forma sostenida: más peso del mínimo 4 €/pedido; vigilar take rate.
+            Confirmar que el 100 % de pedidos cobra envío al cliente (sin portes absorbidos).
           </li>
           <li>
             El Excel descargable sigue siendo la hoja de trabajo contable detallada (PyG mensual);

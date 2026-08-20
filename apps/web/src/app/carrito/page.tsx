@@ -91,24 +91,12 @@ export default async function CartPage() {
             ) : null}
             <div className="flex items-center justify-between">
               <span>Envio</span>
-              <span>
-                {cart.shippingFree ? (
-                  <span className="font-medium text-emerald-900">Gratis</span>
-                ) : (
-                  formatPrice(cart.shippingAmount)
-                )}
-              </span>
+              <span>{formatPrice(cart.shippingAmount)}</span>
             </div>
-            {!cart.shippingFree ? (
-              <p className="text-sm text-stone-600">
-                Te faltan {formatPrice(cart.amountToFreeShipping)} para envio gratis
-                (a partir de {formatPrice(cart.freeShippingThreshold)}).
-              </p>
-            ) : (
-              <p className="text-sm text-emerald-800">
-                Has superado {formatPrice(cart.freeShippingThreshold)}: envio gratis.
-              </p>
-            )}
+            <p className="text-sm text-stone-600">
+              Tarifa plana de envio ({formatPrice(cart.shippingAmount || "6.50")}). El porte lo paga
+              siempre el cliente.
+            </p>
             <div className="flex items-center justify-between border-t border-stone-300 pt-2 font-medium">
               <span>Total</span>
               <span className="text-xl font-semibold">{formatPrice(cart.grandTotal)}</span>

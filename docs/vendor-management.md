@@ -42,7 +42,7 @@ FASE 4 completada: onboarding, perfil, pagina publica, panel productor y moderac
 - `/quiero-vender` — alta inicial
 - `/panel/proveedor` — panel privado
 - `/panel/proveedor/pagos` — metodo de cobro (Stripe Connect o PayPal)
-- `/panel/proveedor/liquidaciones` — comision efectiva (15 % por defecto), historial y reintento de payouts
+- `/panel/proveedor/liquidaciones` — comision efectiva (17 % por defecto), historial y reintento de payouts
 - `/productores` — listado publico
 - `/productores/[slug]` — ficha publica
 
@@ -52,7 +52,7 @@ En todas las paginas del panel productor aparece una barra ambar si el metodo el
 
 ## Comision del marketplace
 
-Por defecto **15 %** sobre el bruto del productor. El admin puede modificarlo por productor en `/admin/productores/:id`. Detalle en `docs/commissions.md`.
+Por defecto **17 %** sobre el bruto del productor. El admin puede modificarlo por productor en `/admin/productores/:id`. Detalle en `docs/commissions.md`.
 
 ## Moderacion
 

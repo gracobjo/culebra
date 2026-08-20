@@ -713,7 +713,7 @@ async function seedVendorsAndProducts() {
           vendorId: vendor.id,
           versionNumber: 1,
           ruleType: "PERCENTAGE",
-          percentage: 15,
+          percentage: 17,
           validFrom: new Date(),
           notes: "Comision por defecto de la plataforma (seed)",
         },

@@ -28,7 +28,7 @@ export default function HowItWorksPage() {
           },
           {
             title: "2. Carrito y checkout",
-            body: "Anade productos de uno o varios productores. Envio: 4,95 € si el pedido (tras descuentos) es menor de 49 €; gratis a partir de 49 €. Puedes comprar como invitado o con cuenta.",
+            body: "Anade productos de uno o varios productores. Envio con tarifa plana de 6,50 € (siempre a cargo del cliente). Puedes comprar como invitado o con cuenta.",
           },
           {
             title: "3. Pago seguro",
@@ -36,7 +36,7 @@ export default function HowItWorksPage() {
           },
           {
             title: "4. Preparacion y envio",
-            body: "Cada productor gestiona su subpedido: confirma, prepara y registra el envio. El coste logistico del envio gratis lo absorbe la plataforma desde su comision; el productor conserva su 85 %.",
+            body: "Cada productor gestiona su subpedido: confirma, prepara y registra el envio. La plataforma retiene un 17 % de comision (minimo 4 € por subpedido); el productor conserva el resto. El porte lo paga el cliente.",
           },
         ].map((block) => (
           <article key={block.title} className="rounded-3xl border border-stone-200 bg-white p-6">

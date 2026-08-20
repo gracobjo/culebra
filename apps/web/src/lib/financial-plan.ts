@@ -2,6 +2,8 @@
  * Modelo financiero del marketplace (espejo del Excel
  * Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx + anexos §9.A/§9.B del dossier).
  * Fuente de verdad operativa en panel admin: /admin/plan
+ *
+ * v4 (ago-2026): comisión 17 %, GMV prudente, sin envío gratis; prioriza elegibilidad de ayuda.
  */
 
 export type PlanScenarioId = "conservador" | "realista" | "optimista";
@@ -9,16 +11,21 @@ export type PlanScenarioId = "conservador" | "realista" | "optimista";
 export type PlanYearRow = {
   year: number;
   gmv: number;
-  revenue: number; // comisión 15 %
+  revenue: number; // comisión 17 %
   net: number;
 };
 
-export const COMMISSION_RATE = 0.15;
+export const COMMISSION_RATE = 0.17;
+export const COMMISSION_MIN_EUR = 4;
+export const SHIPPING_FLAT_EUR = 6.5;
 export const AVG_TICKET_EUR = 65;
-export const GMV_BREAKEVEN_MONTHLY = 11_400;
-export const INVESTMENT_REF = 30_000;
-export const DIVIDEND_TARGET = 4_500; // 15 % sobre inversión
-export const NET_ACCUM_TARGET = INVESTMENT_REF + DIVIDEND_TARGET; // 34.500
+/** GMV mensuales orientativos Y3+ con opex contenido (~ gastos fijos ÷ 17 %) */
+export const GMV_BREAKEVEN_MONTHLY = 9_500;
+export const INVESTMENT_REF = 40_000;
+export const SUBSIDY_AT_74_PCT = 29_600;
+export const PARTNER_CONTRIBUTION = 10_400; // 40k − 29,6k
+export const DIVIDEND_TARGET = 0; // caso base no prioriza dividendos
+export const NET_ACCUM_TARGET = -3_680; // referencia dossier (aceptable vs aportación 10,4k)
 
 /** Pesos estacionales EOTR Zamora (viajeros 2024) — mismo criterio que populate_pyg_excel.py */
 export const SEASON_WEIGHTS = [
@@ -57,62 +64,63 @@ export const PLAN_SCENARIOS: Record<
   conservador: {
     id: "conservador",
     label: "Conservador",
-    description: "Referencia del Pacto de Socios / memoria ICECYL.",
+    description:
+      "Caso base de firma / justificación: GMV prudente, comisión 17 %, sin envío gratis.",
     years: [
-      { year: 1, gmv: 40_000, revenue: 6_000, net: -4_380 },
-      { year: 2, gmv: 140_000, revenue: 21_000, net: 459 },
-      { year: 3, gmv: 220_000, revenue: 33_000, net: 7_803 },
-      { year: 4, gmv: 280_000, revenue: 42_000, net: 14_688 },
-      { year: 5, gmv: 360_000, revenue: 54_000, net: 23_868 },
+      { year: 1, gmv: 16_000, revenue: 2_720, net: -4_380 },
+      { year: 2, gmv: 55_000, revenue: 9_350, net: -5_450 },
+      { year: 3, gmv: 90_000, revenue: 15_300, net: -1_600 },
+      { year: 4, gmv: 120_000, revenue: 20_400, net: 2_200 },
+      { year: 5, gmv: 145_000, revenue: 24_650, net: 5_550 },
     ],
-    netAccum5y: 41_438,
-    vendorsY3: 11,
+    netAccum5y: -3_680,
+    vendorsY3: 8,
   },
   realista: {
     id: "realista",
     label: "Realista",
-    description: "Sensibilidad al alza (más vendedores y gasto).",
+    description: "Sensibilidad al alza (más captación); no es el caso base de justificación.",
     years: [
-      { year: 1, gmv: 75_000, revenue: 11_250, net: -4_425 },
-      { year: 2, gmv: 260_000, revenue: 39_000, net: 153 },
-      { year: 3, gmv: 400_000, revenue: 60_000, net: 7_752 },
-      { year: 4, gmv: 520_000, revenue: 78_000, net: 16_453 },
-      { year: 5, gmv: 680_000, revenue: 102_000, net: 32_201 },
+      { year: 1, gmv: 28_000, revenue: 4_760, net: -4_200 },
+      { year: 2, gmv: 95_000, revenue: 16_150, net: -1_700 },
+      { year: 3, gmv: 150_000, revenue: 25_500, net: 4_050 },
+      { year: 4, gmv: 200_000, revenue: 34_000, net: 9_300 },
+      { year: 5, gmv: 250_000, revenue: 42_500, net: 14_600 },
     ],
-    netAccum5y: 52_134,
-    vendorsY3: 14,
+    netAccum5y: 22_050,
+    vendorsY3: 11,
   },
   optimista: {
     id: "optimista",
     label: "Optimista",
-    description: "Techo de sensibilidad; no es el caso base de firma.",
+    description: "Techo de sensibilidad; no usar como base ante la administración.",
     years: [
-      { year: 1, gmv: 110_000, revenue: 16_500, net: -3_510 },
-      { year: 2, gmv: 400_000, revenue: 60_000, net: 3_876 },
-      { year: 3, gmv: 620_000, revenue: 93_000, net: 13_790 },
-      { year: 4, gmv: 800_000, revenue: 120_000, net: 21_757 },
-      { year: 5, gmv: 1_050_000, revenue: 157_500, net: 39_367 },
+      { year: 1, gmv: 40_000, revenue: 6_800, net: -4_200 },
+      { year: 2, gmv: 140_000, revenue: 23_800, net: 970 },
+      { year: 3, gmv: 220_000, revenue: 37_400, net: 7_840 },
+      { year: 4, gmv: 300_000, revenue: 51_000, net: 15_400 },
+      { year: 5, gmv: 380_000, revenue: 64_600, net: 23_000 },
     ],
-    netAccum5y: 75_280,
-    vendorsY3: 18,
+    netAccum5y: 43_010,
+    vendorsY3: 14,
   },
 };
 
 /** Embudo Año 1 (dossier §9.B) — anclado al conservador */
 export const CONVERSION_Y1 = {
-  gmv: 40_000,
+  gmv: 16_000,
   ticket: AVG_TICKET_EUR,
-  ordersTotal: Math.round(40_000 / AVG_TICKET_EUR), // ~615
-  ordersPerMonth: 100,
+  ordersTotal: Math.round(16_000 / AVG_TICKET_EUR), // ~246
+  ordersPerMonth: 42,
   conversionRate: 0.02,
-  sessionsPerMonth: 5_000,
-  sessionsRange: [3_300, 6_700] as const,
-  adsBudgetMonthly: 500,
-  adsBudgetY1: 3_000,
-  cacTarget: 6,
-  cacMax: 10,
+  sessionsPerMonth: 2_100,
+  sessionsRange: [1_400, 2_800] as const,
+  adsBudgetMonthly: 250,
+  adsBudgetY1: 1_500,
+  cacTarget: 5,
+  cacMax: 8,
   roasMin: 3.5,
-  commissionPerOrder: 40_000 * COMMISSION_RATE / Math.round(40_000 / AVG_TICKET_EUR),
+  commissionPerOrder: (16_000 * COMMISSION_RATE) / Math.round(16_000 / AVG_TICKET_EUR),
 } as const;
 
 export const EXCEL_PUBLIC_PATH =
@@ -120,6 +128,10 @@ export const EXCEL_PUBLIC_PATH =
 
 export function ordersFromGmv(gmv: number, ticket = AVG_TICKET_EUR): number {
   return Math.round(gmv / ticket);
+}
+
+export function commissionForOrder(merchandiseEur: number): number {
+  return Math.max(merchandiseEur * COMMISSION_RATE, COMMISSION_MIN_EUR);
 }
 
 export function monthlyGmvProfile(

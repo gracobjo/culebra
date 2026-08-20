@@ -14,8 +14,8 @@ const RAPPEL_TIERS = [
     name: "Bronce",
     minRevenue: 0,
     maxRevenue: 5000,
-    commissionPct: 15,
-    effectivePct: 15,
+    commissionPct: 17,
+    effectivePct: 17,
     rebatePct: 0,
     color: "bg-amber-100 border-amber-200 text-amber-900",
     badge: "bg-amber-200 text-amber-900",
@@ -27,8 +27,8 @@ const RAPPEL_TIERS = [
     name: "Plata",
     minRevenue: 5001,
     maxRevenue: 15000,
-    commissionPct: 15,
-    effectivePct: 12,
+    commissionPct: 17,
+    effectivePct: 14,
     rebatePct: 3,
     color: "bg-slate-100 border-slate-200 text-slate-900",
     badge: "bg-slate-300 text-slate-900",
@@ -44,8 +44,8 @@ const RAPPEL_TIERS = [
     name: "Oro",
     minRevenue: 15001,
     maxRevenue: Infinity,
-    commissionPct: 15,
-    effectivePct: 10,
+    commissionPct: 17,
+    effectivePct: 12,
     rebatePct: 5,
     color: "bg-yellow-50 border-yellow-300 text-yellow-900",
     badge: "bg-yellow-300 text-yellow-900",
@@ -57,7 +57,7 @@ const RAPPEL_TIERS = [
       "Reunión trimestral de cuenta con socios S.L.",
     ],
     target:
-      "Productores digitalizados que ya venden en su canal propio. La comisión efectiva del 10% es el argumento definitivo frente al 15% de Amazon sin cuotas ni logística FBA.",
+      "Productores digitalizados que ya venden en su canal propio. La comisión efectiva del 12% es el argumento frente a marketplaces generalistas sin cuotas ni logística FBA.",
   },
 ];
 
@@ -160,8 +160,8 @@ const COMPETITIVE_ANALYSIS = [
   },
   {
     competitor: "Sierra de la Culebra Marketplace",
-    commission: "15% todo incluido (efectivo 10–15% con rappel)",
-    effective: "10–15%",
+    commission: "17% todo incluido (efectivo 12–17% con rappel)",
+    effective: "12–17%",
     verdict: "✓ El más competitivo",
     color: "text-emerald-700",
   },
@@ -237,7 +237,7 @@ export default async function AdminRappelsPage() {
         <div>
           <h2 className="text-base font-semibold">Plan de tramos de comisión</h2>
           <p className="mt-1 text-sm text-stone-500">
-            Siempre se cobra el 15% en cada transacción vía Stripe Connect. Al cierre del año
+            Siempre se cobra el 17% en cada transacción vía Stripe Connect (mínimo 4 € por subpedido). Al cierre del año
             natural se calcula el tramo alcanzado y se emite el abono correspondiente.
           </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
@@ -394,7 +394,7 @@ export default async function AdminRappelsPage() {
         <div className="rounded-3xl border border-stone-200 bg-white p-6">
           <h2 className="text-base font-semibold">Análisis de competitividad de la tarifa</h2>
           <p className="mt-1 text-sm text-stone-500">
-            ¿Por qué el 15% todo incluido es el argumento más poderoso frente a la competencia?
+            ¿Por qué el 17% todo incluido es el argumento más poderoso frente a la competencia?
           </p>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full min-w-[600px] text-sm">
@@ -466,7 +466,7 @@ export default async function AdminRappelsPage() {
             <li className="flex gap-3">
               <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-200 text-xs font-bold">1</span>
               <span>
-                <strong>Durante el año:</strong> Stripe Connect retiene automáticamente el 15% en
+                <strong>Durante el año:</strong> Stripe Connect retiene automáticamente el 17% en
                 cada transacción. Sin cambios de código.
               </span>
             </li>

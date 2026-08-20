@@ -167,6 +167,7 @@ export type { PayoutRecord } from "./payout.service.js";
 export {
   createCommissionRuleForAdmin,
   DEFAULT_MARKETPLACE_COMMISSION_PERCENT,
+  DEFAULT_MIN_COMMISSION_EUR,
   ensureDefaultCommissionRuleForVendor,
   getActiveCommissionRules,
   getEffectiveCommissionPercent,

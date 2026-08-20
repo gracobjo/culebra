@@ -87,7 +87,7 @@ export function CommissionRuleForm({ vendorId }: { vendorId: string }) {
         min="0"
         max="100"
         defaultValue="15"
-        placeholder="Porcentaje (defecto 15%)"
+        placeholder="Porcentaje (defecto 17%)"
         className="w-full rounded-xl border border-stone-300 px-3 py-2 text-sm"
       />
       <input

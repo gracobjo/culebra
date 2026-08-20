@@ -24,7 +24,7 @@ RF-03 Carrito multi-proveedor
 
 - El consumidor debe poder añadir productos de diferentes productores.
 - El backend debe calcular comisión marketplace y neto por productor.
-- El carrito debe mostrar subtotal, descuentos, **envío** y total a pagar, incluyendo el progreso hacia el umbral de envío gratis.
+- El carrito debe mostrar subtotal, descuentos, **envío** (tarifa plana) y total a pagar.
 
 RF-04 Checkout con Stripe Connect + Bizum
 
@@ -103,13 +103,13 @@ RF-20 Admin turismo
 
 - Admin debe poder gestionar alojamientos, packs, cupones y códigos de afiliado desde `/admin/turismo`.
 
-RF-21 Umbral de envío gratuito (logística)
+RF-21 Tarifa plana de envío (logística)
 
-- Si el merchandise del pedido (subtotal − cupón) es **&lt; 49 €**, el cliente paga **4,95 €** de envío (`Order.shippingAmount`).
-- Si el merchandise es **≥ 49 €**, el envío es **gratis** para el cliente (`shippingAmount = 0`).
-- El coste logístico del envío gratis lo **absorbe el marketplace** desde su comisión; el productor conserva su **85 %** íntegro sobre el producto (no se le descuenta el porte).
-- La UI debe informar “te faltan X € para envío gratis” cuando aplique.
-- Constantes de dominio: `FREE_SHIPPING_THRESHOLD_EUR`, `CUSTOMER_SHIPPING_FEE_EUR`, `MARKETPLACE_SHIPPING_COST_EUR`.
+- Si el merchandise del pedido (subtotal − cupón) es **&gt; 0**, el cliente paga **6,50 €** de envío (`Order.shippingAmount`).
+- **No hay envío gratis** ni absorción de portes por el marketplace.
+- Comisión por defecto **17 %** con mínimo **4 €** por subpedido de productor (`DEFAULT_MIN_COMMISSION_EUR`).
+- La UI debe mostrar la tarifa plana (sin mensaje de “te faltan X para envío gratis”).
+- Constantes de dominio: `CUSTOMER_SHIPPING_FEE_EUR`, `DEFAULT_MARKETPLACE_COMMISSION_PERCENT`, `DEFAULT_MIN_COMMISSION_EUR`.
 
 ### C2. Requisitos No Funcionales
 
@@ -162,7 +162,7 @@ Actores:
 Use cases principales:
 
 - UC-01 Consultar catálogo y hub `/tienda`
-- UC-02 Gestionar carrito multi-vendor (incl. cupón y umbral de envío)
+- UC-02 Gestionar carrito multi-vendor (incl. cupón y tarifa plana de envío)
 - UC-03 Realizar checkout (Stripe Connect + Bizum; cupón/afiliado/envío)
 - UC-04 Confirmación de pago (webhook) → marcar pedido pagado
 - UC-05 Crear payouts retenidos (heldForWithdrawal + releasesAt)
@@ -177,7 +177,7 @@ Use cases principales:
 - UC-14 Añadir pack (lote) al carrito y reservar noche fuera
 - UC-15 Aplicar cupón / registrar afiliado en pedido
 - UC-16 Admin gestiona turismo (alojamientos, packs, cupones, afiliados)
-- UC-17 Calcular y aplicar umbral de envío gratuito (4,95 € / gratis ≥ 49 €)
+- UC-17 Calcular y aplicar tarifa plana de envío (6,50 €; sin gratuidad)
 
 ---
 
@@ -265,7 +265,7 @@ Flujo:
 1. Consumidor en `/packs/[slug]` añade el **lote** al carrito (`addPackToCart`).
 2. Si el pack tiene cupón asociado, se intenta aplicar al carrito.
 3. Consumidor abre el enlace de reserva del alojamiento (fuera del marketplace).
-4. Checkout del carrito cobra productos (+ descuento cupón si aplica) **y** el envío según umbral (RF-21).
+4. Checkout del carrito cobra productos (+ descuento cupón si aplica) **y** el envío según tarifa plana (RF-21).
 
 Postcondiciones:
 
@@ -284,7 +284,7 @@ Postcondiciones:
 - `Payment.amount` = merchandise tras descuento **+** `shippingAmount`.
 - `CouponRedemption` + incremento de `redemptionCount`.
 
-### E8. Umbral de envío gratuito
+### E8. Tarifa plana de envío
 
 Precondiciones:
 
@@ -294,14 +294,14 @@ Regla (`computeShippingQuote`):
 
 | Merchandise (subtotal − cupón) | `Order.shippingAmount` |
 |--------------------------------|-----------------------:|
-| &lt; 49 € | 4,95 € |
-| ≥ 49 € | 0 € (gratis) |
+| &gt; 0 € | 6,50 € (tarifa plana) |
+| 0 € | 0 € |
 
 Postcondiciones:
 
 - `Order.totalAmount` = merchandise + `shippingAmount`.
-- El neto al productor **no** se reduce por el porte gratis; el marketplace absorbe el coste interno (~5 €) desde su comisión.
-- UI: mensaje de progreso hacia el umbral si el envío no es gratis.
+- La S.L. **no** absorbe portes; el cliente paga siempre la tarifa.
+- UI: muestra tarifa plana (sin progreso hacia envío gratis).
 
 ---
 
@@ -446,7 +446,7 @@ flowchart LR
 
   %% Casos de uso (elipses)
   UC01(["Consultar hub /tienda y catálogo"])
-  UC02(["Gestionar carrito + cupón + umbral envío"])
+  UC02(["Gestionar carrito + cupón + tarifa envío"])
   UC03(["Realizar checkout"])
   UC04(["Dejar review"])
   UC05(["Confirmar pedido"])
@@ -462,7 +462,7 @@ flowchart LR
   UC15(["Consultar alojamientos / reserva externa"])
   UC16(["Añadir pack lote al carrito"])
   UC17(["Admin turismo"])
-  UC18(["Aplicar umbral envío gratis"])
+  UC18(["Aplicar tarifa plana envío"])
 
   %% Relaciones
   Consumidor --- UC01

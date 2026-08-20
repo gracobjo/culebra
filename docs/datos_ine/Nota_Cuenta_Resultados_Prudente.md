@@ -1,55 +1,70 @@
-# Cuenta de resultados 5 años — v3 (GMV conservador; base comodato)
+# Cuenta de resultados 5 años — v4 (GMV prudente; comisión 17 %; sin envío gratis)
 
 Fichero: `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx`  
-Script: `docs/datos_ine/populate_pyg_excel.py`
+Script: `docs/datos_ine/populate_pyg_excel.py`  
+Dossier: `docs/Dossier_Socios_Marketplace_Villardeciervos.md` (revisión ago-2026)
 
-## Escenario base (referencia)
+## Tesis financiera (v4)
 
-Local en **comodato** (sin fila de alquiler en la PyG). Opex oficina contenido.
+El objetivo del caso base **no** es maximizar el beneficio a 5 años, sino:
 
-## Objetivo financiero (conservador base)
+1. **Estructurar inversión elegible 30–40.000 €** y captar la máxima ayuda (hasta **74 %** a fondo perdido).
+2. Mantener una **operativa viable de bajo riesgo** (el cliente paga siempre el porte).
+3. Aceptar un **neto acumulado ligeramente negativo** (~−3,7 k€ a −5 k€) porque la aportación real de socios es solo **~10.400 €**.
+
+### Cálculo de referencia — inversión 40.000 €
 
 | Concepto | Importe |
 |----------|--------:|
-| Inversión de referencia | 30.000 € |
-| Dividendos mínimos (15%) | 4.500 € |
-| **Neto acumulado mínimo 5 años** | **34.500 €** |
-| Neto acumulado proyectado (conservador) | ≈ **41.400 €** |
+| Inversión elegible | 40.000 € |
+| Ayuda ICECYL (40 %) | 16.000 € |
+| Complemento Diputación (hasta 74 %) | 13.600 € |
+| **Subvención total** | **29.600 €** |
+| **Aportación real socios** | **10.400 €** |
 
-## Escenario CONSERVADOR (referencia)
+## Política comercial (hipótesis nuevas)
 
-| Año | GMV | Ingresos 15% | Neto | Acumulado |
-|----:|----:|-------------:|-----:|----------:|
-| 1 | 40.000 | 6.000 | ≈ −4.380 | ≈ −4.380 |
-| 2 | 140.000 | 21.000 | ≈ +460 | ≈ −3.920 |
-| 3 | 220.000 | 33.000 | ≈ +7.800 | ≈ +3.880 |
-| 4 | 280.000 | 42.000 | ≈ +14.700 | ≈ +18.570 |
-| 5 | 360.000 | 54.000 | ≈ +23.900 | ≈ +41.440 |
-
-Drivers: 5 → 8 → 11 → 13 → 15 vendedores. Opex contenido alineado al volumen.
-
-## Alternativa — local en alquiler (plan §5.F)
-
-Decisión pendiente. Costes mensuales de sensibilidad:
-
-| Concepto | €/mes |
+| Elemento | Valor |
 |----------|------:|
-| Alquiler | 300 |
-| Luz | 100 |
-| Teléfono | 50 |
-| Higiene / limpieza | 50 |
-| **Subtotal local** | **500** |
-| + internet + gestoría (partida) | **650** total partida |
+| Comisión base | **17 %** |
+| Mínimo por pedido | **4,00 €** (se aplica el mayor entre 17 % y 4 €) |
+| Envío | **Tarifa plana 6,50 €** — siempre a cargo del cliente |
+| Absorción de portes por la S.L. | **Ninguna** |
+| Retención legal | **14 días** |
+| Rappels orientativos | Bronce 17 % · Plata 14 % · Oro 12 % |
 
-Efecto en plan simplificado §5.B: EBITDA Y1 **−1.400 €** / Y2 **+7.200 €** (frente a +700 / +14.400 del base).  
-Si se modela en Excel con esos opex, el neto acum. conservador cae a ~**23.100 €** (por debajo de 34.500 €).
+## Escenario CONSERVADOR (referencia de firma / justificación)
 
-## Otros escenarios (alza)
+| Año | GMV | Ingresos 17 % | Gastos (orden) | Neto (orden) | Acumulado |
+|----:|----:|-------------:|---------------:|-------------:|----------:|
+| 1 | 16.000 | 2.720 | ≈ 7.100 | ≈ −4.380 | ≈ −4.380 |
+| 2 | 55.000 | 9.350 | ≈ 14.800 | ≈ −5.450 | ≈ −9.830 |
+| 3 | 90.000 | 15.300 | ≈ 16.900 | ≈ −1.600 | ≈ −11.430 |
+| 4 | 120.000 | 20.400 | ≈ 18.200 | ≈ +2.200 | ≈ −9.230 |
+| 5 | 145.000 | 24.650 | ≈ 19.100 | ≈ +5.550 | ≈ **−3.680** |
 
-| Escenario | GMV Y1 → Y5 | Neto acum. 5 años (orden) |
-|-----------|-------------|---------------------------:|
-| Realista | 75k → 680k | ≈ 52.000 € |
-| Optimista | 110k → 1,05M | ≈ 75.000 € |
+El Excel mensual puede diferir en cientos de euros por estacionalidad e IS orientativo; el **orden de magnitud** es el de esta tabla.
+
+**Hipótesis de actividad (ticket medio 65 €):**
+
+| Año | Pedidos/mes | Pedidos/día | GMV |
+|----:|------------:|------------:|----:|
+| 1 (6 meses) | 40–45 | 1,4–1,5 | 16.000 |
+| 2 | 70–75 | 2,4–2,5 | 55.000 |
+| 3 | 110–120 | 3,7–4 | 90.000 |
+| 4 | ≈ 150 | ≈ 5 | 120.000 |
+| 5 | 180–190 | ≈ 6,2 | 145.000 |
+
+## Escenarios de sensibilidad (no son el caso base)
+
+| Escenario | GMV Y1 → Y5 | Lectura |
+|-----------|-------------|---------|
+| Realista | 28k → 250k | Crecimiento si captura turística/digital mejora |
+| Optimista | 40k → 380k | Techo ambicioso; **no** usar en justificación ante administración |
+
+## Local en alquiler
+
+Sigue documentado como alternativa (plan §5.F). El caso base asume **comodato**.
 
 ## Dashboard KPI
 

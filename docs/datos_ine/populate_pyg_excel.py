@@ -24,27 +24,31 @@ MONTHS = [
 ]
 Y1_ACTIVE = {7, 8, 9, 10, 11, 12}
 HEADERS = [
-    "Año", "Mes", "GMV vendedores", "Ingresos comisión (15%)", "Coste medios pago",
+    "Año", "Mes", "GMV vendedores", "Ingresos comisión (17%)", "Coste medios pago",
     "Personal", "Transportes/logística", "Marketing", "Hosting/software",
     "Gestoría/contabilidad", "Seguros", "Telefonía/Internet", "Suministros/oficina",
     "Otros corrientes", "Amortizaciones", "Gastos financieros", "Total gastos",
     "Resultado antes impuestos", "Impuesto Sociedades", "Resultado neto",
 ]
 
-# GMV anual por escenario (conservador recalibrado: recuperar inversión 30k + ≥15% dividendos en 5 años)
-# Objetivo: neto acumulado ≥ 30.000 × 1,15 = 34.500 € con volúmenes más modestos que la v1.
+# v4 — GMV prudente (dossier revisado ago-2026):
+# Prioridad = elegibilidad ayuda 30-40k (hasta 74 %) + operativa viable, NO maximizar beneficio corto plazo.
+# Comisión 17 % + mínimo 4 €/pedido (modelo PyG usa 17 % sobre GMV; el mínimo se materializa en tickets bajos).
+# Sin envío gratis: el cliente paga siempre tarifa plana 6,50 €; la S.L. no absorbe etiquetas.
 GMV = {
-    "conservador": {1: 40_000, 2: 140_000, 3: 220_000, 4: 280_000, 5: 360_000},
-    "realista": {1: 75_000, 2: 260_000, 3: 400_000, 4: 520_000, 5: 680_000},
-    "optimista": {1: 110_000, 2: 400_000, 3: 620_000, 4: 800_000, 5: 1_050_000},
+    "conservador": {1: 16_000, 2: 55_000, 3: 90_000, 4: 120_000, 5: 145_000},
+    # Sensibilidad al alza (no es caso base de firma / justificación)
+    "realista": {1: 28_000, 2: 95_000, 3: 150_000, 4: 200_000, 5: 250_000},
+    "optimista": {1: 40_000, 2: 140_000, 3: 220_000, 4: 300_000, 5: 380_000},
 }
 
-COMISION = 0.15
+COMISION = 0.17
 IS = 0.15
 PCT_PAGO = 0.015
-AMORT_ANUAL = 6_000.0  # 30k / 5 años; en Y1 solo H2 (lanzamiento)
-INVERSION_REF = 30_000.0
-DIVIDENDO_OBJ_PCT = 0.15  # ≥15% sobre la inversión en el horizonte de 5 años
+AMORT_ANUAL = 6_000.0  # amortización contable sobre ~30k capitalizados; inversión elegible puede ser 40k
+INVERSION_REF = 40_000.0  # base elegible de referencia (ICECYL + Diputación)
+APORTACION_SOCIOS = 10_400.0  # 40k − 29,6k subvención al 74 %
+DIVIDENDO_OBJ_PCT = 0.0  # el caso base no prioriza dividendos; objetivo = no agotar aportación
 
 
 def money_fmt(cell):
@@ -72,62 +76,71 @@ def gmv_month(scenario: str, year: int, month: int) -> float:
 
 
 def opex(scenario: str, year: int, month: int) -> dict[str, float]:
-    """Costes mensuales (sin medios de pago ni amortización)."""
+    """Costes mensuales (sin medios de pago ni amortización).
+
+    Conservador calibrado a PyG dossier v4:
+    gastos ≈ 7,1k / 14,8k / 16,9k / 17,8k / 18,1k → neto acum. ~−3,7k.
+    Transportes = logística de oficina / consolidación ligera (NO etiquetas:
+    el cliente paga siempre 6,50 €; la S.L. no absorbe portes).
+    """
     launched = not (year == 1 and month not in Y1_ACTIVE)
 
-    # Conservador: opex contenido alineado a GMV más modesto (sin marketing agresivo)
     if scenario == "conservador":
         if year == 1 and not launched:
             return dict(
-                personal=0, transportes=0, marketing=0, hosting=80,
-                gestoria=120, seguros=30, telefonia=35, suministros=40,
-                otros=25, fin=10,
+                personal=0, transportes=10, marketing=0, hosting=40,
+                gestoria=55, seguros=12, telefonia=15, suministros=18,
+                otros=12, fin=5,
             )
-        personal = 0 if year == 1 else 150
         if year == 1:
-            marketing, hosting = 350, 180  # ~2.100 mkt + ~1.560 host en H2 (+H1 mínimo)
-        elif year == 2:
-            marketing, hosting = 400, 220
-        else:
-            marketing, hosting = 550, 250
+            return dict(
+                personal=0, transportes=25, marketing=200, hosting=90,
+                gestoria=70, seguros=15, telefonia=20, suministros=22,
+                otros=15, fin=8,
+            )
+        # Y2–Y5 calibrados a gastos anuales objetivo del dossier
+        personal = [0, 60, 100, 120, 140][year - 1]
+        marketing = [0, 250, 300, 310, 320][year - 1]
+        hosting = [0, 145, 165, 175, 180][year - 1]
+        transportes = [0, 35, 40, 45, 45][year - 1]
         return dict(
-            personal=personal, transportes=0, marketing=marketing, hosting=hosting,
-            gestoria=120, seguros=30, telefonia=35, suministros=40,
-            otros=25, fin=10,
+            personal=personal, transportes=transportes, marketing=marketing, hosting=hosting,
+            gestoria=90, seguros=22, telefonia=28, suministros=30,
+            otros=22, fin=10,
         )
 
     if scenario == "realista":
         if year == 1 and not launched:
             return dict(
-                personal=0, transportes=0, marketing=50, hosting=120,
-                gestoria=150, seguros=40, telefonia=45, suministros=55,
-                otros=40, fin=15,
+                personal=0, transportes=15, marketing=30, hosting=60,
+                gestoria=70, seguros=18, telefonia=22, suministros=28,
+                otros=20, fin=10,
             )
-        personal = [0, 500, 750, 1000, 1000][year - 1]
-        marketing = [700, 1000, 1500, 1667, 1833][year - 1] if launched or year > 1 else 50
+        personal = [0, 100, 150, 200, 250][year - 1]
+        marketing = 280 if (year == 1 and launched) else [0, 320, 400, 450, 500][year - 1]
         if year == 1 and launched:
-            marketing = 700  # ~4.200 en H2 + algo H1
-        hosting = [220, 420, 500, 580, 670][year - 1]
+            marketing = 280
+        hosting = [100, 180, 220, 250, 280][year - 1]
         return dict(
-            personal=personal, transportes=50, marketing=marketing, hosting=hosting,
-            gestoria=180, seguros=50, telefonia=55, suministros=70,
-            otros=60, fin=25,
+            personal=personal, transportes=40, marketing=marketing, hosting=hosting,
+            gestoria=100, seguros=25, telefonia=30, suministros=35,
+            otros=28, fin=12,
         )
 
-    # optimista
+    # optimista (escenario positivo; no base de justificación)
     if year == 1 and not launched:
         return dict(
-            personal=0, transportes=0, marketing=100, hosting=150,
-            gestoria=180, seguros=50, telefonia=55, suministros=70,
-            otros=60, fin=25,
+            personal=0, transportes=20, marketing=50, hosting=80,
+            gestoria=90, seguros=25, telefonia=30, suministros=35,
+            otros=25, fin=12,
         )
-    personal = [0, 1000, 1500, 2000, 2500][year - 1]
-    marketing = 1000 if (year == 1 and launched) else [1000, 1500, 2333, 2917, 3333][year - 1]
-    hosting = [250, 500, 670, 830, 1000][year - 1]
+    personal = [0, 200, 350, 450, 550][year - 1]
+    marketing = 400 if (year == 1 and launched) else [0, 450, 600, 750, 900][year - 1]
+    hosting = [120, 220, 280, 320, 360][year - 1]
     return dict(
-        personal=personal, transportes=100, marketing=marketing, hosting=hosting,
-        gestoria=200, seguros=60, telefonia=60, suministros=80,
-        otros=80, fin=40,
+        personal=personal, transportes=50, marketing=marketing, hosting=hosting,
+        gestoria=120, seguros=35, telefonia=40, suministros=45,
+        otros=35, fin=18,
     )
 
 
@@ -226,7 +239,7 @@ def write_resumen_block(ws, start_row: int, scenario: str, label: str, fill: Pat
     ws.cell(start_row, 1).value = label
     ws.cell(start_row, 1).font = Font(bold=True)
     ws.cell(start_row, 1).fill = fill
-    headers = ["Año", "GMV", "Ingresos 15%", "Total gastos", "RAI", "IS", "Neto", "Margen neto"]
+    headers = ["Año", "GMV", "Ingresos 17%", "Total gastos", "RAI", "IS", "Neto", "Margen neto"]
     for i, h in enumerate(headers, 1):
         cell = ws.cell(start_row + 1, i, h)
         style_header(cell)
@@ -377,7 +390,7 @@ def write_kpi_dashboard(wb):
         (11, "GMV equilibrio mes", round((150 + 550 + 250 + 120 + 30 + 35 + 40 + 25 + 10 + AMORT_ANUAL / 12) / COMISION, 0)),
         (12, "Vendedores obj. Y3", 11),
         (13, "Comisión marketplace", COMISION),
-        (14, "Inv. + 15% dividendos", INVERSION_REF * (1 + DIVIDENDO_OBJ_PCT)),
+        (14, "Aportacion socios (74% ayuda)", APORTACION_SOCIOS),
     ]
     style_header(ws_d.cell(4, 10, "KPI"))
     style_header(ws_d.cell(4, 11, "Valor"))
@@ -400,7 +413,7 @@ def write_kpi_dashboard(wb):
     ws.merge_cells("A1:L1")
     ws["A2"] = (
         "Los gráficos leen KPI_Datos. Si modificas PyG Conservador, recalcula Excel (F9) y los gráficos se actualizan. "
-        "GMV ≠ ingreso SL (ingreso = 15% comisión)."
+        "GMV ≠ ingreso SL (ingreso = 17% comisión)."
     )
     ws.merge_cells("A2:L2")
     ws["A2"].alignment = Alignment(wrap_text=True)
@@ -514,8 +527,8 @@ def write_kpi_dashboard(wb):
     ws["A58"].font = Font(bold=True)
     legend = [
         "GMV: volumen de ventas de vendedores (actividad; no es facturación propia de la SL).",
-        "Ingresos: comisión 15% sobre GMV (ingreso de la SL).",
-        "Take rate: Ingresos / GMV (debe ser ~15%).",
+        "Ingresos: comisión 17% sobre GMV (ingreso de la SL).",
+        "Take rate: Ingresos / GMV (debe ser ~17%).",
         "Cobertura de gastos: Ingresos / Gastos (>100% = ingresos cubren gastos).",
         "Margen neto: Resultado neto / Ingresos.",
         "Estacionalidad: refleja pico turístico estival (alineado a EOTR Zamora).",
@@ -580,7 +593,7 @@ def build():
     for col in "ABC":
         style_header(ws_par[f"{col}1"])
     params = [
-        (2, "% comisión", COMISION, "Ingresos SL = GMV × 15%"),
+        (2, "% comisión", COMISION, "Ingresos SL = GMV × 17%"),
         (3, "IVA referencia", 0.21, "No entra en PyG operativa"),
         (4, "IS orientativo", IS, "No es liquidación fiscal"),
         (5, "Escenario de referencia", "CONSERVADOR", "PyG Conservador = base memoria/ICECYL"),
@@ -590,8 +603,8 @@ def build():
         (9, "% medios de pago / GMV", PCT_PAGO, "Pasarela/Connect orientativo"),
         (10, "Amortización anual", AMORT_ANUAL, "30.000/5; en Y1 solo jul–dic"),
         (11, "Inversión referencia", INVERSION_REF, "Activo tecnológico / umbral ICECYL"),
-        (12, "Objetivo dividendos 5 años", DIVIDENDO_OBJ_PCT, "≥15% sobre la inversión (además de recuperarla)"),
-        (13, "Neto acumulado mínimo", INVERSION_REF * (1 + DIVIDENDO_OBJ_PCT), "Recuperar 30k + 4,5k dividendos"),
+        (12, "Objetivo dividendos 5 anos", DIVIDENDO_OBJ_PCT, "Caso base: no prioriza dividendos; prioriza elegibilidad"),
+        (13, "Aportacion real socios", APORTACION_SOCIOS, "40k elegible - 29,6k subvencion (74%)"),
         (14, "Compras mercancía", 0, "Intermediación: sin COGS"),
         (15, "Suavizado Y1", "Sí", "Amort. y marketing comercial desde lanzamiento; H1 costes mínimos"),
     ]
@@ -617,7 +630,7 @@ def build():
 
     clear_sheet(ws_res)
 
-    ws_res["A1"] = "Resumen anual — tres escenarios (ingresos = GMV × 15%)"
+    ws_res["A1"] = "Resumen anual — tres escenarios (ingresos = GMV × 17%)"
     ws_res["A1"].font = Font(bold=True, size=13, color="2F5233")
     ws_res.merge_cells("A1:H1")
 
@@ -649,14 +662,14 @@ def build():
     ws_d["A1"] = "Drivers (conservador) y punto de equilibrio"
     ws_d["A1"].font = Font(bold=True, size=13, color="2F5233")
     drivers = [
-        # Año, vendedores, GMV€/vend/mes, meses venta, GMV anual, ingresos 15%
+        # Año, vendedores, GMV€/vend/mes, meses venta, GMV anual, ingresos 17%
         (1, 5, 1_333.33, 6, 40_000, 6_000),
         (2, 8, 1_458.33, 12, 140_000, 21_000),
         (3, 11, 1_666.67, 12, 220_000, 33_000),
         (4, 13, 1_794.87, 12, 280_000, 42_000),
         (5, 15, 2_000.00, 12, 360_000, 54_000),
     ]
-    hdr = ["Año", "Vendedores", "GMV €/vend/mes", "Meses venta", "GMV anual", "Ingresos 15%"]
+    hdr = ["Año", "Vendedores", "GMV €/vend/mes", "Meses venta", "GMV anual", "Ingresos 17%"]
     for i, h in enumerate(hdr, 1):
         style_header(ws_d.cell(3, i, h))
     for i, row in enumerate(drivers):
@@ -672,7 +685,7 @@ def build():
     ws_d["A11"] = "Gastos fijos mensuales ≈"
     ws_d["B11"] = round(fixed, 2)
     money_fmt(ws_d["B11"])
-    ws_d["A12"] = "GMV mínimo mensual (÷15%)"
+    ws_d["A12"] = "GMV mínimo mensual (÷17%)"
     ws_d["B12"] = round(fixed / COMISION, 2)
     money_fmt(ws_d["B12"])
     ws_d["A13"] = "Con 11 vendedores → GMV/vend/mes"
@@ -683,7 +696,7 @@ def build():
     ws_d["A16"] = "Inversión de referencia"
     ws_d["B16"] = INVERSION_REF
     money_fmt(ws_d["B16"])
-    ws_d["A17"] = "Dividendos mínimos (15%)"
+    ws_d["A17"] = "Aportacion socios (sin subvencion al 74%)"
     ws_d["B17"] = INVERSION_REF * DIVIDENDO_OBJ_PCT
     money_fmt(ws_d["B17"])
     ws_d["A18"] = "Neto acumulado objetivo (5 años)"
@@ -721,7 +734,7 @@ def build():
     ws_e["A1"] = "Comparativa rápida (detalle mensual en PyG Conservador / Realista / Optimista)"
     ws_e["A1"].font = Font(bold=True, size=12, color="2F5233")
     ws_e.merge_cells("A1:F1")
-    for i, h in enumerate(["Escenario", "Año", "GMV", "Ingresos 15%", "Gastos", "RAI"], 1):
+    for i, h in enumerate(["Escenario", "Año", "GMV", "Ingresos 17%", "Gastos", "RAI"], 1):
         style_header(ws_e.cell(3, i, h))
     fills = {
         "conservador": PatternFill("solid", fgColor="F8D7DA"),
@@ -756,7 +769,7 @@ def build():
         clear_sheet(ws_n)
         notes = [
             ("GMV", "No es ingreso de la SL."),
-            ("Ingresos", "15% comisión sobre GMV."),
+            ("Ingresos", "17% comisión sobre GMV."),
             ("Y1 suavizado", "Amortización y marketing comercial desde julio; H1 costes mínimos de estructura."),
             ("3 PyG", "Conservador = referencia. Realista/Optimista = sensibilidad mensual completa."),
             ("Compras", "0 € — sin reventa de stock."),

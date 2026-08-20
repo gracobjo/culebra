@@ -140,10 +140,10 @@ Hub UX: `/tienda` (agro + entradas turismo). `/categorias` (índice) redirige a 
 
 Regla en `packages/auth/src/shipping.service.ts` (`computeShippingQuote`):
 
-- Merchandise (tras cupón) **&lt; 49 €** → cliente paga **4,95 €** (`Order.shippingAmount`)
-- Merchandise **≥ 49 €** → envío gratis; la S.L. absorbe ~5 € de coste logístico desde su comisión; el productor conserva el **85 %**
+- Merchandise &gt; 0 → cliente paga **6,50 €** (`Order.shippingAmount`); no hay envío gratis
+- La S.L. no absorbe portes; comisión por defecto **17 %** (mínimo **4 €** por subpedido)
 
-Constantes: `@culebra/domain` (`FREE_SHIPPING_THRESHOLD_EUR`, `CUSTOMER_SHIPPING_FEE_EUR`, `MARKETPLACE_SHIPPING_COST_EUR`).
+Constantes: `@culebra/domain` (`CUSTOMER_SHIPPING_FEE_EUR = 6.5`, `DEFAULT_MARKETPLACE_COMMISSION_PERCENT = 17`, `DEFAULT_MIN_COMMISSION_EUR = 4`).
 
 Migración: `20260820140000_order_shipping_amount`.
 

@@ -1,4 +1,4 @@
-import { AuditAction, CommissionRuleType, ContractStatus, DEFAULT_MARKETPLACE_COMMISSION_PERCENT } from "@culebra/domain";
+import { AuditAction, CommissionRuleType, ContractStatus, DEFAULT_MARKETPLACE_COMMISSION_PERCENT, DEFAULT_MIN_COMMISSION_EUR } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
 import type { CommissionRuleCreateInput } from "./commission.schemas.js";
@@ -29,7 +29,7 @@ export type LineCommission = {
   ruleId: string | null;
 };
 
-export { DEFAULT_MARKETPLACE_COMMISSION_PERCENT };
+export { DEFAULT_MARKETPLACE_COMMISSION_PERCENT, DEFAULT_MIN_COMMISSION_EUR };
 
 export type EffectiveCommission = {
   percent: number;
@@ -233,9 +233,10 @@ export function finalizeVendorCommission(params: {
   lineCommissionTotal: number;
   fixedFee: number;
 }): VendorCommissionBreakdown {
-  const marketplaceCommission = roundMoney(
-    Math.min(params.vendorGross, params.lineCommissionTotal + params.fixedFee),
-  );
+  const uncapped = roundMoney(params.lineCommissionTotal + params.fixedFee);
+  // Suelo 4 € por subpedido de productor (sin superar el bruto).
+  const withFloor = roundMoney(Math.max(uncapped, DEFAULT_MIN_COMMISSION_EUR));
+  const marketplaceCommission = roundMoney(Math.min(params.vendorGross, withFloor));
   return {
     lineCommissionTotal: roundMoney(params.lineCommissionTotal),
     fixedFee: roundMoney(params.fixedFee),
@@ -430,7 +431,7 @@ export async function getEffectiveCommissionPercent(
   };
 }
 
-/** Crea regla PERCENTAGE al 15% si el productor no tiene ninguna activa. */
+/** Crea regla PERCENTAGE al porcentaje por defecto si el productor no tiene ninguna activa. */
 export async function ensureDefaultCommissionRuleForVendor(
   vendorId: string,
   actorUserId: string,

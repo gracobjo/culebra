@@ -13,7 +13,7 @@ const items = [
   },
   {
     title: "Envio con umbral",
-    description: "4,95 € si el pedido es menor de 49 €; gratis a partir de 49 €.",
+    description: "Tarifa plana 6,50 €; siempre a cargo del cliente.",
   },
 ];
 

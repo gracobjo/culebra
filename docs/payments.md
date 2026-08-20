@@ -29,7 +29,7 @@ Si el productor tiene el metodo configurado y activo, tras la retencion de 14 di
 
 Si no ha completado el alta, el `Payout` queda `PENDING` y se reintenta desde `/panel/proveedor/liquidaciones` o al completar la configuracion.
 
-Comision marketplace: por defecto **15%** (`DEFAULT_MARKETPLACE_COMMISSION_PERCENT`). El admin puede subir o bajar el porcentaje por productor en `/admin/productores/:id`. Los contratos nuevos incluyen 15% si no se indica otro valor.
+Comision marketplace: por defecto **17%** (`DEFAULT_MARKETPLACE_COMMISSION_PERCENT`). El admin puede subir o bajar el porcentaje por productor en `/admin/productores/:id`. Los contratos nuevos incluyen 15% si no se indica otro valor.
 
 ## Alta del productor (Stripe)
 
