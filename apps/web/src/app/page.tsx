@@ -27,12 +27,12 @@ export default async function HomePage() {
       <JsonLd data={buildOrganizationJsonLd()} />
       <JsonLd data={buildWebSiteJsonLd()} />
 
-      <section className="grid min-w-0 gap-10 lg:grid-cols-5 lg:items-start lg:gap-12">
+      <section className="grid min-w-0 gap-10 overflow-visible lg:grid-cols-5 lg:items-start lg:gap-12">
         <div className="min-w-0 space-y-6 lg:col-span-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 sm:text-sm">
+          <p className="text-caps-label text-emerald-700 sm:text-sm">
             Del territorio a tu mesa
           </p>
-          <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-pretty text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Productos autenticos de la Sierra de la Culebra
           </h1>
           <p className="max-w-xl text-base text-stone-600 sm:text-lg">
@@ -40,7 +40,7 @@ export default async function HomePage() {
             directamente a productores locales con pago seguro y seguimiento del
             pedido.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="btn-group">
             <Link className="btn btn-primary w-full sm:w-auto" href="/productos">
               Descubrir productos
             </Link>
@@ -53,16 +53,20 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="min-w-0 rounded-3xl bg-gradient-to-br from-emerald-900 to-emerald-950 p-6 text-white shadow-xl sm:p-8 lg:col-span-2 lg:sticky lg:top-24">
-          <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">Territorio</p>
-          <h2 className="mt-3 text-2xl font-semibold">Sierra de la Culebra</h2>
-          <p className="mt-4 text-emerald-50/90">
-            Un marketplace pensado para conectar elaboradores de Villardeciervos
-            y su entorno con compradores que valoran el origen y la calidad.
-          </p>
-          <Link href="/productores" className="mt-6 inline-block text-sm underline">
-            Conocer productores
-          </Link>
+        <div className="min-w-0 self-start lg:col-span-2 lg:sticky lg:top-24">
+          <div className="panel-shell bg-gradient-to-br from-emerald-900 to-emerald-950 text-white shadow-xl">
+            <div className="panel-inset">
+              <p className="text-caps-label text-emerald-200">Territorio</p>
+              <h2 className="mt-4 text-2xl font-semibold leading-snug">Sierra de la Culebra</h2>
+              <p className="mt-4 text-base leading-relaxed text-emerald-50/90">
+                Un marketplace pensado para conectar elaboradores de Villardeciervos
+                y su entorno con compradores que valoran el origen y la calidad.
+              </p>
+              <Link href="/productores" className="text-link-underline mt-6 text-sm text-white">
+                Conocer productores
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

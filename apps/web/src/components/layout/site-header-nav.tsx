@@ -71,7 +71,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
   const roleLabel = user ? getRoleLabel(user.roles) : "";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 pt-[env(safe-area-inset-top)] backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 pt-[env(safe-area-inset-top)] backdrop-blur supports-[backdrop-filter]:bg-white/90">
       <div className="site-container flex max-w-6xl items-center justify-between gap-3 py-3 sm:py-4">
         <Link href="/" className="shrink-0" aria-label="Sabores de la Culebra — Inicio">
           <Image
@@ -84,47 +84,49 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
           />
         </Link>
 
-        <nav className="hidden shrink-0 items-center gap-4 text-sm lg:flex xl:gap-6">
+        <nav className="hidden min-w-0 shrink items-center gap-3 text-sm lg:flex xl:gap-5">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-emerald-800">
+            <Link key={link.href} href={link.href} className="shrink-0 hover:text-emerald-800">
               {link.label}
             </Link>
           ))}
-          <Link href="/carrito" className="hover:text-emerald-800">
+          <Link href="/carrito" className="shrink-0 hover:text-emerald-800">
             Carrito ({cartCount})
           </Link>
           {isLoggedIn && user ? (
             <>
               {!user.roles.includes("VENDOR") ? (
-                <Link href="/cuenta/pedidos" className="hover:text-emerald-800">
+                <Link href="/cuenta/pedidos" className="shrink-0 hover:text-emerald-800">
                   Pedidos
                 </Link>
               ) : null}
-              <Link
-                href={accountHref}
-                className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-2.5 py-1 hover:border-emerald-200 hover:bg-emerald-50"
-                title={user.email}
-              >
-                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-xs font-medium text-white">
-                  {getInitial(user.name)}
-                </span>
-                <span className="flex flex-col leading-tight">
-                  <span className="font-medium text-stone-900">{getDisplayName(user.name)}</span>
-                  <span className="text-[11px] text-stone-500">{roleLabel}</span>
-                </span>
-              </Link>
-              {isAdmin ? (
-                <Link href="/admin" className="hover:text-emerald-800">
-                  Admin
+              <div className="flex shrink-0 items-center gap-2 border-l border-stone-200 pl-3 xl:gap-3 xl:pl-4">
+                <Link
+                  href={accountHref}
+                  className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-2.5 py-1 hover:border-emerald-200 hover:bg-emerald-50"
+                  title={user.email}
+                >
+                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-xs font-medium text-white">
+                    {getInitial(user.name)}
+                  </span>
+                  <span className="flex flex-col leading-tight">
+                    <span className="font-medium text-stone-900">{getDisplayName(user.name)}</span>
+                    <span className="text-[11px] text-stone-500">{roleLabel}</span>
+                  </span>
                 </Link>
-              ) : null}
-              <SignOutButton
-                className="text-sm text-stone-600 underline-offset-2 hover:text-emerald-900 hover:underline"
-                label="Salir"
-              />
+                {isAdmin ? (
+                  <Link href="/admin" className="shrink-0 hover:text-emerald-800">
+                    Admin
+                  </Link>
+                ) : null}
+                <SignOutButton
+                  className="shrink-0 text-sm text-stone-600 underline-offset-2 hover:text-emerald-900 hover:underline"
+                  label="Salir"
+                />
+              </div>
             </>
           ) : (
-            <Link href="/login" className="hover:text-emerald-800">
+            <Link href="/login" className="shrink-0 hover:text-emerald-800">
               Entrar
             </Link>
           )}
@@ -243,6 +245,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
             {isLoggedIn ? (
               <div className="mt-2 border-t border-stone-100 pt-2">
                 <SignOutButton
+                  formClassName="w-full"
                   className="w-full rounded-xl px-3 py-3 text-left text-sm font-medium text-red-800 hover:bg-red-50"
                   label="Cerrar sesion"
                 />
