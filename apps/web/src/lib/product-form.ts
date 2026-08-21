@@ -45,10 +45,10 @@ export function parseProductForm(formData: FormData): ProductCreateInput {
     })
     .filter((variant): variant is NonNullable<typeof variant> => Boolean(variant));
 
+  // Guardar rutas relativas (/uploads/...) para que funcionen en cualquier puerto
+  // local y no dependan de NEXT_PUBLIC_APP_URL (p. ej. :3000 vs :3001).
   const imageUrl = String(formData.get("imageUrl") ?? "").trim();
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
-  const normalizedImageUrl =
-    imageUrl.startsWith("/") && appUrl ? `${appUrl}${imageUrl}` : imageUrl;
+  const normalizedImageUrl = imageUrl.startsWith("blob:") ? "" : imageUrl;
 
   return {
     name: String(formData.get("name") ?? ""),

@@ -1,9 +1,9 @@
 # 📋 DOSSIER CONSOLIDADO DE CONSTITUCIÓN Y PLAN DE VIABILIDAD
 **Proyecto:** Plataforma Marketplace Rural (Villardeciervos)  
 **Ubicación:** Villardeciervos, Zamora (Comarca de La Carballeda)  
-**Escenario Financiero:** Prudente / Conservador  
-**Fecha de simulación:** Agosto 2026
-
+**Escenario Financiero:** Estrictamente prudente (base) · Optimista solo como contraste (§5.J)  
+**Fecha de simulación:** Agosto 2026  
+**Fuente canónica de PyG:** este documento (§5). El Plan de Negocio Completo remite aquí.
 ---
 
 ## 1. 🏢 ESTRUCTURA SOCIETARIA Y ORGANIZATIVA
@@ -16,11 +16,11 @@ La empresa se constituirá bajo la forma jurídica de **Sociedad de Responsabili
 * **Retribución:** El cargo será explícitamente **gratuito** en estatutos para no generar incompatibilidades con las nóminas técnicas ante las inspecciones del ICECYL.
 
 ### B. Distribución del Capital Social y Roles
-El Capital Social inicial se fija en **30.000 €**, dividido en participaciones de 1 € de valor nominal.
+El Capital Social inicial se fija en **40.000 €**, dividido en participaciones de 1 € de valor nominal. Cubre la **caja total de arranque** del proyecto (§3.A: 30.000 € elegibles ICECYL + 10.000 € de gasto corriente no subvencionable), de modo que no hace falta un préstamo de socios complementario para SaaS, marketing y constitución.
 
-* **Socio 1 (Promotor / Inversor - 60%):** Aporta 18.000 € en efectivo. Rol: Dirección de negocio, finanzas y gestión de subvenciones.
-* **Socio 2 (Propietario / Gestor del Local - 20%):** Aporta 6.000 € en efectivo +, en el **escenario base**, formalización de comodato del local. Rol: Atención presencial estacional en la tienda física. **Alternativa** (decisión pendiente): arrendamiento a 300 €/mes (ver §5.F).
-* **Socio 3 (Desarrollador DAW - 20%):** Aporta 6.000 € en efectivo. Rol: Desarrollo íntegro de la plataforma (Meses 1-6) y posterior mantenimiento técnico del entorno.
+* **Socio 1 (Promotor / Inversor - 60%):** Aporta **24.000 €** en efectivo. Rol: Dirección de negocio, finanzas y gestión de subvenciones.
+* **Socio 2 (Propietario / Gestor del Local - 20%):** Aporta **8.000 €** en efectivo +, en el **escenario base**, formalización de comodato del local. Rol: Atención presencial estacional en la tienda física y preparación de pedidos; **alta en RETA** (autónomo societario) con empadronamiento en Villardeciervos. **Alternativa** (decisión pendiente): arrendamiento a 300 €/mes (ver §5.I).
+* **Socio 3 (Desarrollador DAW - 20%):** Aporta **8.000 €** en efectivo. Rol: Desarrollo íntegro de la plataforma (Meses 1-6) y posterior mantenimiento técnico del entorno.
 
 ### C. Clasificación de Actividades (CNAE Oficiales)
 * **CNAE Principal: 62.01 - Actividades de programación informática.** (Núcleo del autodesarrollo y base de la innovación para el ICECYL).
@@ -73,8 +73,9 @@ Al situarse el centro de trabajo en el entorno rural de Zamora, el proyecto cali
 
 1. **Ayuda Base ICECYL (40% sobre base elegible):** **12.000 €** (A fondo perdido tras auditoría de inversión).
 2. **Complemento Diputación de Zamora / Plan de La Raya (34% adicional):** **10.200 €** (Concesión directa acumulable al validar la resolución del ICECYL).
-3. **Subvención Total Recuperada (74% de la inversión):** **22.200 €**
-4. **Esfuerzo Financiero Neto de los Socios:** **17.800 €** (Coste real del negocio tras ingresar las ayudas).
+3. **Subvención Total Recuperada (74% de la base elegible):** **22.200 €**
+4. **Capital social desembolsado:** **40.000 €** (cubre elegible + corriente).
+5. **Esfuerzo Financiero Neto de los Socios:** **17.800 €** (40.000 € − 22.200 € de ayudas sobre la parte elegible; el gasto corriente de 10.000 € lo asumen íntegramente los socios).
 
 ---
 
@@ -107,158 +108,325 @@ Al situarse el centro de trabajo en el entorno rural de Zamora, el proyecto cali
 
 ---
 
-## 5. 📉 PLAN DE VIABILIDAD ECONÓMICA (CRITERIO PRUDENTE)
+## 5. 📉 PLAN DE VIABILIDAD ECONÓMICA (ESCENARIO BASE = ESTRICTAMENTE PRUDENTE)
 
-Este plan asume una proyección de ingresos de carácter pesimista (reducción del 50% sobre la capacidad estimada) y un comportamiento comercial estacional para la tienda física del municipio.
+> **Documento canónico** de proyecciones para socios e inspección. El `Plan_Negocio_Completo_…` remite a este §5.  
+> Tesis: **elegibilidad de ayuda + supervivencia con costes bajos**. No se promete recuperación rápida ni dividendos tempranos.
 
-**Escenario base (cuadros 5.B–5.E):** local en **comodato** (sin alquiler) + suministros ligeros / gestoría (~300 €/mes en la partida de oficina).  
-**Escenario alternativo (§5.F):** decisión de ocupación aún abierta → **alquiler 300 € + luz 100 € + teléfono 50 € + higiene 50 €** (y el resto de partida). No sustituye al base; sirve para sensibilidad.
+### 5.0 Mensaje claro para socios (antes de las tablas)
 
-### A. Operativa del Modelo Híbrido (Digital + Físico)
-* **Tienda Física Estacional:** Atendida presencialmente por el **Socio 2** (Coste de personal: 0 €) concentrando las aperturas en fines de semana, Semana Santa y periodo estival (junio-septiembre). Genera flujo de caja y ventas de productos típicos (embutido, vino, miel) desde el primer mes.
-* **Fase de Mantenimiento Técnico (Mes 7+):** El programador DAW finaliza su contrato de desarrollo y pasa a un contrato de mantenimiento de **mínimo técnico** (2 a 5 horas semanales o bajo factura de retén mercantil de 250 €/mes), minimizando los costes fijos de la S.L.
-* **Ocupación del local:** el **base** asume comodato (anexo §6). Si los socios optan por arrendamiento, aplicar la **alternativa §5.F**.
+1. Los **40.000 €** de capital social **se quedan en la S.L.** La recuperación principal no son dividendos tempranos, sino: (a) cobro de la subvención si se justifica bien; (b) valor futuro de la sociedad en una posible transmisión.
+2. Mientras no se cobre la ayuda, el **riesgo de caja** se acerca a los **40.000 €** desembolsados, no solo a los ~17.800 € “netos tras ayuda”.
+3. Los **Años 1–2** son de **construir y justificar**, no de repartir dinero relevante.
+4. El **Socio 2** debe estar en **RETA** (cuota real); las ayudas al autoempleo, si llegan, **compensan parcialmente**, no anulan el coste.
+5. La S.L. **no absorbe portes**: el cliente paga siempre la tarifa plana de envío (~**6,50 €**).
 
-### B. Proyección de Resultados a 3 Años (escenario base — comodato)
+### A. Hipótesis de partida (declaradas)
 
-| Concepto de la Cuenta de Explotación | Año 1 (6 meses venta) | Año 2 (Consolidación) | Año 3 (Madurez) |
-| :--- | :---: | :---: | :---: |
-| **Ingresos Totales (Comisiones + Tienda)** | **7.500 €** | **30.000 €** | **55.000 €** |
-| Gastos de Marketing Digital | -3.000 € | -8.000 € | -12.000 € |
-| Gastos de Cloud, Servidores y SaaS | -2.000 € | -4.000 € | -4.000 € |
-| Mantenimiento Técnico (Programador DAW) | 0 € *(En inversión)* | -3.000 € | -3.000 € |
-| Suministros, Gestoría y Oficina Local | -1.800 € | -3.600 € | -3.600 € |
-| **Resultado de Explotación (EBITDA)** | **+700 €** | **+14.400 €** | **+35.400 €** |
-| Impuesto de Sociedades (15% Emprendedores) | -105 € | -2.160 € | -5.310 € |
-| **BENEFICIO NETO LIMPIO** | **+595 €** | **+12.240 €** | **+30.090 €** |
+| Concepto | Valor | Comentario |
+| :--- | :--- | :--- |
+| Comisión marketplace | **17 %** | Modelo vigente en plataforma; mínimo **4 €**/subpedido |
+| Envío | Tarifa plana **~6,50 €**, siempre al cliente | La S.L. **no** absorbe el porte |
+| Ticket medio | **~62–65 €** | Gourmet rural; el porte va aparte |
+| Local (base) | **Comodato** | Sin alquiler (anexo §6) |
+| Administrador | **Gratuito** | Estatutos |
+| Socio 2 (tienda) | Alta **RETA** | Coste neto orientativo en PyG |
+| Desarrollo DAW (Meses 1–6) | En **inversión** elegible | No es gasto de explotación en Año 1 |
+| Marketing | Techo **~300–400 €/mes** | Lean; sin “quemar” CAC |
 
-### C. Umbral de Rentabilidad (Breakeven) y Retorno (ROI) — base
-* **Punto de Equilibrio Mensual:** Se alcanza en el **Mes 7**. Al estabilizarse los gastos corrientes fijos en apenas ~880 €/mes (incluyendo el retén del programador DAW, la nube y la gestoría), la viabilidad se asegura con un volumen mínimo de transacciones en el marketplace y ventas en el local.
-* **Retorno del Capital de los Socios:** Los socios recuperan íntegramente su aportación neta de riesgo (17.800 €) durante el transcurso del **Año 2**, momento en el que el beneficio neto acumulado de la empresa y la entrada de las subvenciones consolidan la caja de la S.L. en positivo permanente.
-* **Alternativa con alquiler:** ver §5.F (EBITDA más estrecho; GMV de equilibrio más alto).
+**Escenario alternativo (§5.I):** alquiler del local (sensibilidad). No sustituye al base.
 
-### D. Desglose de gastos de promoción (Paid Media — Año 1)
+### B. Volumen de actividad (muy contenido)
 
-Para promocionar la aplicación, captar tráfico de compradores (prioridad **Madrid / Castilla y León / Galicia** según síntesis Sanabria–Carballeda) y atraer propietarios de casas rurales y artesanos, se plantea una estrategia **Lean** de canales digitales por subasta (alta conversión relativa al presupuesto).
+| Año | Pedidos / mes (media) | Pedidos / día aprox. | GMV anual | Ingresos S.L. (17 %) |
+| :--- | :---: | :---: | ---: | ---: |
+| 1 (6 meses venta) | 35–40 | 1,2–1,4 | **14.000 €** | **2.380 €** |
+| 2 | 60–70 | 2,1–2,3 | **48.000 €** | **8.160 €** |
+| 3 | 95–105 | 3,2–3,5 | **75.000 €** | **12.750 €** |
+| 4 | ~130 | ≈ 4,3 | **100.000 €** | **17.000 €** |
+| 5 | ~160 | ≈ 5,3 | **125.000 €** | **21.250 €** |
 
-#### D.1 Meta Ads (Facebook e Instagram) — canal prioritario de lanzamiento
+Estas cifras son deliberadamente bajas (~1–5 pedidos/día). El proyecto puede operar, pero **no genera beneficios relevantes** en los primeros años.
 
-* **Función:** Marca *Sabores de la Culebra*; formatos Reels/Carrusel (lotes gourmet, territorio, casas rurales). Segmentación: intereses en ecoturismo, turismo rural, gastronomía gourmet y escapadas.
-* **Costes de mercado (alimentación/turismo, España, órdenes de magnitud):** CPC ~0,35–0,70 €; CPM ~3–5 €.
-* **Presupuesto mínimo arranque:** ~300–500 €/mes (~10–15 €/día).
+### C. Operativa del modelo híbrido
 
-#### D.2 Google Ads (Búsqueda + Shopping) — demanda caliente
+* **Tienda física estacional:** Socio 2 (RETA); aperturas fines de semana / Semana Santa / verano. No se cuenta nómina de empleado; sí la **cuota de autónomo societario** (fila RETA).
+* **Mantenimiento técnico (Mes 7+):** retén bajo (~200 €/mes → **2.400 €/año**).
+* **Ocupación:** base = comodato. Si hay arrendamiento → §5.I.
 
-* **Función:** Capturar búsquedas activas (“miel de brezo”, “embutidos Zamora”, “casa rural Villardeciervos”, etc.) y fichas Shopping (foto + precio + marca).
-* **Costes de mercado:** CPC gourmet ~0,40–1,20 €; términos de alojamiento rural pueden subir a ~1,50 €.
-* **Presupuesto mínimo arranque:** ~400–600 €/mes.
-
-#### D.3 LinkedIn Ads (B2B — campaña estacional)
-
-* **Función:** Cestas corporativas / Navidad (meses 4–6 del Año 1 operativo); segmentación RR. HH. / gerencia en empresas ≥50 empleados (Madrid y CyL).
-* **Costes:** CPC ~3,50–6,00 € (canal caro, tickets altos).
-* **Presupuesto:** ~400 €/mes **solo** en ventana otoño–invierno (no es gasto fijo todo el año).
-
-#### D.4 Distribución del presupuesto Año 1 (6 meses de operaciones)
-
-Partida total de marketing digital del escenario prudente: **3.000 €** (= **500 €/mes** de media).
-
-| Canal | Inversión mensual | % | Objetivo |
-| :--- | ---: | ---: | :--- |
-| Meta Ads (Instagram/Facebook) | 250 € | 50 % | Awareness + compras por impulso / descubrimiento |
-| Google Ads (Search/Shopping) | 200 € | 40 % | Ventas de demanda activa |
-| Retargeting / email (SaaS) | 50 € | 10 % | Recuperar visitas sin compra |
-| **Total medios** | **500 €** | **100 %** | Alineado con la fila “Gastos de Marketing Digital” (−3.000 € Año 1) |
-
-*Nota:* LinkedIn se financia **reasignando** parte del cupo Meta/Google en la campaña de otoño (p. ej. 1–2 meses a 400 €), sin romper el techo anual de 3.000 €, o se dota con el margen de “Gastos de Lanzamiento” (partida 7) si se acelera B2B.
-
-### E. ¿Es rentable esta inversión en promoción? (comisión 15 % + opex) — base
-
-**Marco de ingresos:** la S.L. cobra ~**15 %** sobre el GMV del marketplace (el productor se queda ~85 %). El marketing no se “repercute” al productor: se paga con el margen de intermediación (+ tienda física estacional, si aplica).
-
-**Opex de referencia (escenario base — comodato):**
-
-| Concepto | Año 1 (6 meses venta) | Mensualizado orientativo |
-| :--- | ---: | ---: |
-| Marketing digital | 3.000 € | **500 €** |
-| Cloud / SaaS | 2.000 € | ~333 € |
-| Oficina / gestoría / suministros | 1.800 € | ~300 € |
-| Mantenimiento técnico | 0 € (en inversión) | — |
-| **Opex operativo Año 1** | **6.800 €** | **~1.130 €/mes** (media 6 meses) |
-| Tras Mes 7 (fijos sin pico de lanzamiento) | — | **~880 €/mes** (+ marketing si se mantiene) |
-
-**Ingresos Año 1 del propio plan:** 7.500 € (comisiones + tienda) → EBITDA **+700 €** tras pagar los 3.000 € de Paid Media. Es decir: **con las hipótesis del cuadro 5.B (base), la inversión de 3.000 € es compatible con resultado positivo (aunque estrecho)**.
-
-**Lectura por GMV (solo comisión 15 %, sin tienda física):**
-
-| Escenario | GMV periodo | Ingresos S.L. (15 %) | Marketing | Margen bruto tras ads* |
-| :--- | ---: | ---: | ---: | ---: |
-| Conservador Excel Y1 | 40.000 € (año) | 6.000 € | 3.000 € | 3.000 € (antes de cloud/oficina) |
-| Plan 5.B “ingresos totales” Y1 | — | 7.500 € | 3.000 € | 4.500 € (antes de cloud/oficina) |
-| Equilibrio mensual solo digital | GMV ≈ **5.900–9.200 €/mes**** | ≈ 880–1.380 € | 0–500 € ads | Cubre opex fijo ± marketing |
-
-\*Antes de cloud, gestoría, envíos absorbidos (≥49 €) y Stripe.  
-\*\*~880 €/mes fijos ⇒ GMV mínimo ≈ 880 / 0,15 ≈ **5.900 €/mes**. Con marketing continuo a 500 € ⇒ opex ≈ 1.380 €/mes ⇒ GMV ≈ **9.200 €/mes** (~110.000 € GMV/año).
-
-**Veredicto prudente (base):**
-
-1. **Sí es rentable como apuesta de arranque** si se mantiene el techo de **500 €/mes** y el Año 1 cierra cerca de los **7.500 €** de ingresos del plan (o ≥6.000 € de comisión pura): el Paid Media no tumba el EBITDA.
-2. **No es rentable “por sí solo” mes a mes** si el GMV digital se queda muy por debajo de ~6.000–9.000 €/mes y se mantiene publicidad a 500 € sin conversión: el CAC comería casi toda la comisión.
-3. **Año 2** (GMV conservador ~140.000 € → comisión ~21.000 €; marketing −8.000 €) el ratio mejora: la publicidad pasa a ser **inversión de crecimiento**, no un lastre, siempre que el ticket medio y el umbral de envío gratis (≥49 €) empujen cestas multiproductor.
-4. **LinkedIn** solo compensa en campaña corta B2B (cestas): no debe ser gasto fijo mensual del Lean.
-5. Si la ocupación del local pasa a **alquiler**, usar la sensibilidad de **§5.F** (no invalidar el base hasta que se decida).
-
-**Condiciones de control (recomendadas):** CAC &lt; margen de comisión por pedido; pausar Google/Meta si el ROAS cae &lt; ~3–4× gasto en ads; priorizar Meta+Google y retargeting barato antes que LinkedIn continuo.
-
-### F. Alternativa — Local en alquiler (decisión pendiente)
-
-> **Naturaleza.** Escenario de sensibilidad. La forma de ocupación del inmueble **aún no está cerrada**. Si no hay comodato, el plan contempla estos costes mensuales de local **en lugar de** asumir cesión gratuita.
-
-#### F.1 Costes mensuales del local (alternativa)
-
-| Concepto | Importe / mes | Notas |
-| :--- | ---: | :--- |
-| Alquiler del local | **300 €** | Sustituye al comodato del escenario base |
-| Luz | **100 €** | (en base la luz iba en el bloque ~300 € de oficina) |
-| Teléfono | **50 €** | Línea / móvil corporativo |
-| Materiales de higiene, limpieza, etc. | **50 €** | Consumibles del local |
-| **Subtotal local** | **500 €** | |
-| Internet rural | 30 € | Fibra o contingencia satélite |
-| Gestoría (cuota fija) | 120 € | Contabilidad e impuestos |
-| **Total partida oficina / local / gestoría** | **650 €** | **7.800 € / año** |
-
-*Año 1 (6 meses de venta):* **3.900 €** en esta partida (frente a 1.800 € del base).  
-Cloud/SaaS del marketplace siguen en su fila propia (sin duplicar).
-
-#### F.2 Cuenta de explotación alternativa (mismos ingresos)
+### D. Cuenta de resultados prudente (Años 1–3) — base comodato
 
 | Concepto | Año 1 (6 meses) | Año 2 | Año 3 |
-| :--- | :---: | :---: | :---: |
-| Ingresos totales | 7.500 € | 30.000 € | 55.000 € |
-| Marketing + Cloud + Mant. DAW | -5.000 € | -15.000 € | -19.000 € |
-| Local + gestoría/internet (alt.) | -3.900 € | -7.800 € | -7.800 € |
-| **EBITDA** | **−1.400 €** | **+7.200 €** | **+28.200 €** |
-| IS 15 % | 0 € | -1.080 € | -4.230 € |
-| **Neto** | **−1.400 €** | **+6.120 €** | **+23.970 €** |
+| :--- | ---: | ---: | ---: |
+| **Ingresos (comisiones 17 %)** | **2.380 €** | **8.160 €** | **12.750 €** |
+| Marketing digital | −2.000 € | −4.500 € | −5.500 € |
+| Cloud / SaaS / herramientas | −1.800 € | −3.600 € | −3.600 € |
+| Gestoría + suministros + oficina | −1.800 € | −3.600 € | −3.600 € |
+| RETA Socio 2 (neto orientativo) | −1.200 € | −2.400 € | −2.400 € |
+| Mantenimiento técnico | 0 € | −2.400 € | −2.400 € |
+| **Total gastos** | **≈ 6.800 €** | **≈ 16.500 €** | **≈ 17.500 €** |
+| **Resultado antes de IS** | **≈ −4.420 €** | **≈ −8.340 €** | **≈ −4.750 €** |
+| Impuesto de Sociedades | 0 € | 0 € | 0 € |
+| **Resultado neto** | **≈ −4.420 €** | **≈ −8.340 €** | **≈ −4.750 €** |
 
-#### F.3 Break-even y lectura
+**Neto acumulado a 3 años: ≈ −17.500 €** (orden de magnitud −16.000 a −18.000 €; el Excel mensual cierra ≈ **−17.300 €** a 3 años y ≈ **−16.600 €** a 5 años).
+
+*Nota RETA:* la fila es **coste neto orientativo** tras eventual compensación parcial por ayudas al autoempleo (hipótesis; no concedidas). Sin ayudas, el coste bruto de cuota sería mayor.
+
+### E. Lectura honesta (retorno y riesgo)
+
+* El proyecto **sigue en pérdidas** al menos los tres primeros años con este volumen.
+* La **subvención** (~**22.200 €** sobre 30.000 € elegibles) es lo que hace **defendible** el caso desde capital propio: esfuerzo neto de referencia **≈ 17.800 €** (40.000 − 22.200), **si y cuando** se cobra la ayuda.
+* **No hay base realista de dividendos** significativos en los Años 1–3.
+* **Años 1–2:** supervivencia + justificación. **Dividendos relevantes:** solo si el volumen crece de verdad (orientativo Año 4–5+).
+* **Upside principal para socios:** valor de la S.L. (activo tecnológico + marca + contratos) en una posible transmisión, no el reparto temprano.
+* Detalle del break-even: **§5.F**. Comparativa cerrada **15 % vs 17 %**: **§5.G**. Sensibilidad de costes: **§5.M**.
+
+### F. Punto de equilibrio operativo (Mes 7+)
+
+#### F.1 Costes fijos mensuales (base contenido)
+
+| Partida | Importe / mes | Notas |
+| :--- | ---: | :--- |
+| Cloud / SaaS / herramientas | **300 €** | Hosting, herramientas, email, etc. |
+| Gestoría + suministros + internet + oficina | **300 €** | Comodato (sin alquiler) |
+| Cuota RETA Socio 2 (neto orientativo) | **200 €** | Tras posibles ayudas al autoempleo |
+| Mantenimiento técnico mínimo | **200 €** | Retén del desarrollador |
+| Marketing base (mantenimiento) | **250 €** | Se puede subir o bajar |
+| **Total costes fijos mensuales** | **≈ 1.250 €** | Escenario contenido |
+
+* Marketing casi a cero en meses flojos → fijo hacia **~1.000 €**.  
+* Publicidad más agresiva → fijo hacia **1.400–1.500 €**.
+
+#### F.2 Margen de contribución (comisión vigente **17 %**)
+
+| Concepto | Por 100 € GMV | Por pedido (ticket **62 €**) |
+| :--- | ---: | ---: |
+| Comisión bruta | 17,00 € | 10,54 € |
+| Medios de pago ≈ 1,5 % | −1,50 € | ≈ −0,93 € |
+| **Margen de contribución** | **≈ 15,50 €** | **≈ 9,61 €** |
+
+*(Stripe en el análisis de sensibilidad por pedido a menudo se redondea a ~1,15 € sobre ticket 62 € → margen ≈ **9,39 €**/pedido.)*
+
+La S.L. **no** resta portes: el cliente paga la tarifa plana.
+
+#### F.3 Break-even en GMV mensual
+
+`GMV equilibrio ≈ costes fijos ÷ 0,155` (margen unitario tras Stripe a 17 %).
+
+| Nivel de costes fijos | GMV equilibrio / mes | Pedidos/mes (ticket 62 €) | Pedidos/día aprox. |
+| :--- | ---: | ---: | ---: |
+| **1.000 €** (muy contenido) | ≈ **6.450 €** | ≈ 104 | ≈ 3,5 |
+| **1.250 €** (base) | ≈ **8.065 €** | ≈ **130** | ≈ **4,3** |
+| **1.450 €** (más marketing) | ≈ **9.350 €** | ≈ 151 | ≈ 5,0 |
+
+**Referencia base:** con **1.250 €** de fijos hace falta **≈ 8.100 € GMV/mes** (~**130 pedidos/mes**, ~**4,3 pedidos/día**) solo para no perder dinero operativo.
+
+#### F.4 Evolución hacia el equilibrio (volumen prudente)
+
+| Año | GMV medio / mes | Margen contribución aprox. | Fijos | Resultado mensual orientativo |
+| :--- | ---: | ---: | ---: | :--- |
+| 1 (media 6 meses venta) | ≈ 2.300 € | ≈ 360 € | ≈ 1.100 € | Pérdida |
+| 2 | ≈ 4.000 € | ≈ 620 € | ≈ 1.250 € | Pérdida |
+| 3 | ≈ 6.250 € | ≈ 970 € | ≈ 1.250 € | Pérdida moderada |
+| 4 | ≈ 8.300 € | ≈ 1.285 € | ≈ 1.250 € | **Cerca del equilibrio** |
+| 5 | ≈ 10.400 € | ≈ 1.610 € | ≈ 1.300 € | Beneficio pequeño |
+
+Con el volumen prudente de Villardeciervos, el **equilibrio realista se sitúa en torno al Año 4**. Los Años 1–3 quedan por debajo del umbral.
+
+#### F.5 Sensibilidades
+
+| Variable | Impacto en el break-even |
+| :--- | :--- |
+| Comisión 17 % (vs 15 %) | Baja el GMV de equilibrio ~1.200 €/mes (ver §5.G) |
+| Marketing a 100–150 €/mes | Baja el umbral de forma relevante |
+| Ticket medio 70–75 € | Menos pedidos necesarios |
+| RETA más alto de lo previsto | Empeora el equilibrio |
+| Local en alquiler (+300 €) | GMV equilibrio hacia **~10.000–11.000 €/mes** |
+
+### G. Comparativa cerrada: comisión **15 %** vs **17 %** (escenario prudente)
+
+> Decisión del plan: **17 %** base + mínimo **4 €**/subpedido + rappels (§5.K).  
+> Hipótesis: ticket medio **62 €** · Stripe ≈ **1,5 %** · envío **siempre al cliente** · fijos Mes 7+ ≈ **1.250 €/mes**.
+
+#### G.1 Margen por pedido y por GMV
+
+| Concepto | Comisión **15 %** | Comisión **17 %** | Diferencia |
+| :--- | ---: | ---: | ---: |
+| Comisión bruta por pedido (62 €) | 9,30 € | 10,54 € | **+1,24 €** |
+| Coste Stripe aprox. | −1,15 € | −1,15 € | — |
+| **Margen neto por pedido** | **8,15 €** | **9,39 €** | **+1,24 €** |
+| Margen por cada 100 € de GMV | 13,50 € | 15,50 € | **+2,00 €** |
+| % que recibe el productor | 85 % | 83 % | **−2 puntos** |
+
+#### G.2 Punto de equilibrio (fijos 1.250 €/mes)
+
+| Indicador | **15 %** | **17 %** | Mejora |
+| :--- | ---: | ---: | ---: |
+| GMV de equilibrio mensual | 9.260 € | **8.065 €** | **−1.195 €** |
+| Pedidos/mes (ticket 62 €) | 149 | **130** | −19 |
+| Pedidos/día aprox. | 5,0 | **4,3** | −0,7 |
+
+Con el **17 %** hace falta ~**13 % menos de volumen** para empatar.
+
+#### G.3 Resultado de los 3 primeros años (GMV prudente)
+
+GMV: Año 1 (6 meses) **14.000 €** · Año 2 **48.000 €** · Año 3 **75.000 €**.
+
+| Concepto | Año 1 | Año 2 | Año 3 | **Acumulado 3 años** |
+| :--- | ---: | ---: | ---: | ---: |
+| **Ingresos 15 %** | 2.100 € | 7.200 € | 11.250 € | 20.550 € |
+| **Neto orientativo 15 %** | −4.900 € | −9.700 € | −6.900 € | **−21.500 €** |
+| **Ingresos 17 %** | 2.380 € | 8.160 € | 12.750 € | 23.290 € |
+| **Neto orientativo 17 %** | −4.220 € | −7.940 € | −4.100 € | **−16.260 €** |
+| **Mejora con 17 %** | +680 € | +1.760 € | +2.800 € | **+5.240 €** |
+
+#### G.4 Conclusión y recomendación
+
+* El **17 %** mejora el margen por pedido (**+1,24 €**) y baja el break-even en casi **1.200 €** de GMV/mes.
+* En el escenario prudente a 3 años, las pérdidas acumuladas son **~5.240 € menores** que con el 15 %.
+* El impacto al productor es **moderado** (−2 puntos: 83 % vs 85 %) y se mitiga con:
+  - rappels por volumen (**14 % / 12 %** en tramos altos, §5.K);
+  - consolidación logística multiproductor;
+  - showroom físico y acompañamiento (§5.L).
+
+**Recomendación adoptada:** comisión base del **17 %**, complementada con **rappels por volumen** y **mínimo por pedido (4 €)**, como equilibrio entre sostenibilidad de la S.L. y atractivo para los productores locales.
+
+*Nota:* sensibilidades a 16 % / 18 % se omiten aquí a propósito; la decisión cerrada del expediente es **15 % vs 17 % → 17 %**.
+
+### H. Paid Media (techo Lean del escenario base)
+
+| Concepto | Año 1 (6 meses) | Año 2 | Año 3 |
+| :--- | ---: | ---: | ---: |
+| Presupuesto marketing | **2.000 €** (~330 €/mes) | **4.500 €** | **5.500 €** |
+
+Canales: Meta + Google Search/Shopping prioritarios; LinkedIn solo campaña corta B2B.  
+**Control:** pausar ads si ROAS &lt; ~3–4×; CAC debe caber en el margen de contribución (~**9,4 €**/pedido a ticket 62 € y 17 %, tras Stripe).
+
+### I. Alternativa — Local en alquiler (sensibilidad)
+
+Mismos ingresos del §5.D; +**~3.600 €/año** de alquiler (300 €/mes) respecto al base (ajustando la partida oficina).
 
 | Indicador | Base (comodato) | Alternativa (alquiler) |
 | :--- | ---: | ---: |
-| Fijos tras Mes 7 | ~880 €/mes | ~**1.230 €/mes** |
-| Idem + ads 500 € | ~1.380 €/mes | ~**1.730 €/mes** |
-| GMV equilibrio (15 %) | ~5.900 / 9.200 €/mes | ~**8.200 / 11.500 €/mes** |
-| EBITDA Año 1 (plan 5.B) | +700 € | **−1.400 €** |
-| EBITDA Año 2 | +14.400 € | **+7.200 €** |
-| Ahorro si se firma comodato | — | **+3.600 €/año** (solo alquiler) |
+| Neto Año 1 | ≈ −4.420 € | ≈ **−6.500 €** |
+| Neto Año 2 | ≈ −8.340 € | ≈ **−11.900 €** |
+| Neto Año 3 | ≈ −4.750 € | ≈ **−8.400 €** |
+| Acum. 3 años | ≈ −17.500 € | ≈ **−27.000 €** |
+| GMV equilibrio (fijos +300 €) | ≈ 8.100 €/mes | ≈ **10.000–11.000 €/mes** |
 
-En el Excel / dossier, el escenario **conservador de referencia** sigue siendo el de comodato (neto acum. ~41.400 €). La alternativa con alquiler degrada el neto acum. conservador a ~**23.100 €** y deja el objetivo 34.500 € condicionado a comodato, más GMV o escenario realista/optimista.
+Conclusión: el **comodato** no es un detalle menor; sin él el colchón de la subvención se consume antes.
+
+### J. Escenario optimista / tracción fuerte (NO es el base)
+
+Solo para contraste. **No** usar como criterio prudente ante socios ni ante revisión técnica.
+
+| Concepto | Año 1 (6 m) | Año 2 | Año 3 |
+| :--- | :---: | :---: | :---: |
+| Ingresos (hipótesis alta) | 7.500 € | 30.000 € | 55.000 € |
+| Resultado neto ilustrativo | +595 € | +12.240 € | +30.090 € |
+
+Implica GMV del orden de **~180.000–200.000 €** en Año 2 a comisión 17 %: **fuera** del ritmo 1–3 pedidos/día del caso base rural. Se conserva aquí para no confundir “posible” con “prudente”.
+
+### K. Sistema de rappels por volumen (Bronce / Plata / Oro)
+
+**Comisión estándar en pedido:** **17 %** (+ mínimo **4 €**/subpedido).  
+**Rappels:** Opción A **retroactiva** al cierre del año natural (no escalonado en tiempo real al inicio).
+
+| Tramo | Facturación anual neta | Comisión efectiva | Rappel |
+| :--- | ---: | :---: | :---: |
+| Bronce | Hasta 5.000 € | 17 % | — |
+| Plata | 5.001 – 15.000 € | 14 % | 3 % |
+| Oro | > 15.000 € | 12 % | 5 % |
+
+* Durante el año se cobra siempre el 17 %. Al cierre se abona la diferencia si el productor alcanza Plata u Oro.
+* Base = producto neto (sin portes); sin cancelados/devoluciones; abono en **60 días**; preaviso de cambio de tramos **3 meses**.
+* Protege el margen en productores pequeños (mayoría al arranque) y premia el volumen frente a Amazon u otros canales.
+
+Detalle contractual: `docs/Clausula_Comision_Rappels_Productor.md`.
+
+### L. Captación de productores y multi-homing
+
+**Objetivo realista:** ser el canal **principal o prioritario**, no el único. Exclusividad total al inicio = poco viable y contraproducente.
+
+| Fase | Qué se hace | Oferta clave |
+| :--- | :--- | :--- |
+| **1. Piloto (5)** | Validar flujo end-to-end | Comisión **12–14 %** año 1; fotos/fichas; WhatsApp; prioridad web |
+| **2. Expansión local** | Puerta a puerta + referidos del piloto | Sin stock comprado; cesta unificada; showroom; rappels |
+| **3. Ya digitalizados** | Web propia / Amazon | Menos CAC; consolidación; territorio |
+
+**Palancas anti-fuga:** rappels 17/14/12 · coste de cambio (fichas) · consolidación logística · showroom · trato humano. Exclusividad solo parcial (campañas/lotes), nunca total al arranque.
+
+**Meta:** **10–15 productores activos** en 18–24 meses. Detalle y argumentario: dossier §7.
+
+### M. Sensibilidad de costes (impacto en break-even y Y1–Y3)
+
+> Variables que más mueven el resultado. Referencia: comisión **17 %**, ticket **62 €**, fijos Mes 7+ **1.250 €**, GMV prudente 14k / 48k / 75k → acum. 3 años ≈ **−16.260 €**, equilibrio ≈ **8.065 € GMV/mes**.
+
+#### M.1 Sensibilidad a los costes fijos mensuales
+
+| Costes fijos / mes | GMV equilibrio | Pedidos/mes | Impacto Año 2 | Impacto acum. 3 años |
+| :--- | ---: | ---: | :--- | :--- |
+| **1.000 €** (muy contenido) | 6.450 € | 104 | Mejora ≈ +3.000 € | Mejora ≈ **+7.500 €** |
+| **1.250 €** (base) | 8.065 € | 130 | — | — |
+| **1.450 €** | 9.355 € | 151 | Empeora ≈ −2.400 € | Empeora ≈ **−6.000 €** |
+| **1.650 €** (alquiler / más estructura) | 10.645 € | 172 | Empeora ≈ −4.800 € | Empeora ≈ **−12.000 €** |
+
+Cada **+200 €/mes** de fijos empeora el acum. a 3 años en torno a **4.500–6.000 €**.
+
+#### M.2 Sensibilidad al marketing mensual
+
+| Marketing / mes | Fijos resultantes | Lectura Año 2 |
+| :--- | ---: | :--- |
+| **100 €** | ≈ 1.100 € | Mejor (solo mantenimiento mínimo) |
+| **250 €** (base) | 1.250 € | Equilibrio razonable |
+| **400 €** | ≈ 1.400 € | Peor (exige mejor conversión) |
+| **600 €** | ≈ 1.600 € | Claramente peor (solo con tracción clara) |
+
+#### M.3 Sensibilidad al RETA del Socio 2 (neto)
+
+| Coste neto / mes | Impacto anual | Impacto acum. 3 años | Comentario |
+| :--- | ---: | ---: | :--- |
+| **100 €** (buena ayuda autoempleo) | −1.200 € | −3.600 € | Favorable |
+| **200 €** (base) | −2.400 € | −7.200 € | Referencia |
+| **300 €** (sin compensar) | −3.600 € | −10.800 € | Empeora de forma relevante |
+
+#### M.4 Casos combinados (evaluación)
+
+| Escenario | Fijos / mes | Comisión | Acum. 3 años (aprox.) | Evaluación |
+| :--- | ---: | :---: | ---: | :--- |
+| Optimista operativo | 1.050 € | 17 % | −10.000 / −12.000 € | Mucho más manejable |
+| **Base prudente** | **1.250 €** | **17 %** | **−16.260 €** | **Referencia** |
+| Con alquiler del local | 1.550 € | 17 % | −22.000 / −24.000 € | Claramente peor |
+| Comisión 15 % + fijos base | 1.250 € | 15 % | −21.500 € | Peor que el base (§5.G) |
+| 17 % + marketing alto | 1.450 € | 17 % | −20.000 / −22.000 € | Se come parte de la ventaja |
+
+#### M.5 Prioridad de variables (control)
+
+| Prioridad | Variable | Impacto | Capacidad de control |
+| :---: | :--- | :--- | :--- |
+| 1 | Costes fijos (local, estructura, personal) | Muy alto | Alta (comodato vs alquiler, RETA, marketing) |
+| 2 | Comisión | Alto | Alta (decisión: **17 %**) |
+| 3 | Marketing | Medio-alto | Alta |
+| 4 | Coste RETA Socio 2 | Medio | Media (ayudas al autoempleo) |
+| 5 | Ticket medio | Medio | Media (mix y cestas) |
+
+#### M.6 Conclusión operativa
+
+1. El factor que más mueve el resultado es el **nivel de costes fijos**: comodato + estructura ligera es **crítico**.
+2. Subir de 15 % a **17 %** mejora el escenario de forma medible (§5.G).
+3. Marketing contenido (**~250–300 €/mes** de media) hasta haber tracción real.
+4. Vigilar el **RETA**; cualquier ayuda al autoempleo mejora el cuadro.
+5. El **alquiler** degrada mucho las cifras (§5.I) y debe evitarse si es posible.
+
+**Recomendación:** mantener como base **comisión 17 % + fijos ≈ 1.250 €**. Cualquier desviación al alza en estructura debe compensarse con más volumen (o, en último caso, revisar comisión).
 
 ---
 
+
 ## 6. 📝 ANEXO: MODELO DEL CONTRATO DE COMODATO (ESCENARIO BASE)
 
-> Modelo alineado al **escenario base** de §5. Si los socios eligen alquiler, no se firma este anexo y aplica la **alternativa §5.F**.
+> Modelo alineado al **escenario base** de §5. Si los socios eligen alquiler, no se firma este anexo y aplica la **alternativa §5.I**.
 
 **CONTRATO DE COMODATO DE BIEN INMUEBLE PARA USO COMERCIAL Y TECNOLÓGICO**
 

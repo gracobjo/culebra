@@ -6,7 +6,6 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "jsx": "preserve",
     "incremental": true,
     "isolatedModules": true,

@@ -11,10 +11,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "paths": {
-      "@culebra/domain/*": ["packages/domain/src/*"],
-      "@culebra/shared/*": ["packages/shared/src/*"]
+      "@culebra/domain/*": ["./packages/domain/src/*"],
+      "@culebra/shared/*": ["./packages/shared/src/*"]
     }
   }
 }

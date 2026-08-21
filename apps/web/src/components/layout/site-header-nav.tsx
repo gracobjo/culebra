@@ -95,11 +95,15 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
           </Link>
           {isLoggedIn && user ? (
             <>
-              {!user.roles.includes("VENDOR") ? (
+              {user.roles.includes("VENDOR") ? (
+                <Link href="/panel/proveedor/productos" className="shrink-0 hover:text-emerald-800">
+                  Mis productos
+                </Link>
+              ) : (
                 <Link href="/cuenta/pedidos" className="shrink-0 hover:text-emerald-800">
                   Pedidos
                 </Link>
-              ) : null}
+              )}
               <div className="flex shrink-0 items-center gap-2 border-l border-stone-200 pl-3 xl:gap-3 xl:pl-4">
                 <Link
                   href={accountHref}
@@ -215,6 +219,15 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
             >
               Consultar pedido
             </Link>
+            {isLoggedIn && user && user.roles.includes("VENDOR") ? (
+              <Link
+                href="/panel/proveedor/productos"
+                className="rounded-xl px-3 py-3 font-medium text-emerald-900 hover:bg-emerald-50"
+                onClick={() => setOpen(false)}
+              >
+                Mis productos
+              </Link>
+            ) : null}
             {isLoggedIn && user && !user.roles.includes("VENDOR") ? (
               <Link
                 href="/cuenta/pedidos"

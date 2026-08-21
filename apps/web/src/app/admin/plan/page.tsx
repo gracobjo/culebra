@@ -5,7 +5,7 @@ import { OrderStatus, VendorStatus } from "@culebra/domain";
 import { COMMISSION_RATE } from "@/lib/financial-plan";
 import { PlanDashboard, type LivePlanStats } from "./plan-dashboard";
 
-export const metadata = { title: "Plan financiero | Admin" };
+export const metadata = { title: "Plan y simulación | Admin" };
 
 const PAID_STATUSES: OrderStatus[] = [
   OrderStatus.PAID,
@@ -60,7 +60,7 @@ export default async function AdminPlanPage() {
   const live = await getLivePlanStats();
 
   return (
-    <AdminShell title="Plan financiero">
+    <AdminShell title="Plan y simulación">
       <PlanDashboard live={live} />
     </AdminShell>
   );

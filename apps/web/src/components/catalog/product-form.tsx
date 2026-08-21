@@ -98,6 +98,24 @@ export function ProductForm({ categories, product }: ProductFormProps) {
         </p>
       ) : null}
       <form action={formAction} className="space-y-4">
+        <section
+          id="foto"
+          className="scroll-mt-28 rounded-2xl border border-emerald-200 bg-emerald-50/50 p-4 sm:p-5"
+        >
+          <h2 className="text-base font-semibold text-emerald-950">Foto del producto</h2>
+          <p className="mt-1 text-sm text-emerald-900/80">
+            Es lo primero que ve el cliente. Una foto clara mejora mucho las ventas.
+          </p>
+          <div className="mt-4">
+            <ImageUploader
+              currentUrl={product?.images[0]?.url ?? ""}
+              placeholderUrl={placeholderUrl}
+              inputName="imageUrl"
+              disabled={!editable}
+            />
+          </div>
+        </section>
+
         <div>
           <label className="mb-1 block text-sm font-medium" htmlFor="name">
             Nombre *
@@ -326,17 +344,6 @@ export function ProductForm({ categories, product }: ProductFormProps) {
             defaultValue={product?.conservation ?? ""}
             disabled={!editable}
             className="w-full rounded-xl border border-stone-300 px-4 py-3 disabled:bg-stone-100"
-          />
-        </div>
-        <div>
-          <label className="mb-2 block text-sm font-medium">
-            Foto del producto
-          </label>
-          <ImageUploader
-            currentUrl={product?.images[0]?.url ?? ""}
-            placeholderUrl={placeholderUrl}
-            inputName="imageUrl"
-            disabled={!editable}
           />
         </div>
 

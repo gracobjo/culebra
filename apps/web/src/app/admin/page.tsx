@@ -18,8 +18,8 @@ export default async function AdminDashboardPage() {
     { href: "/admin/usuarios", label: "Usuarios", value: stats.usersTotal },
     {
       href: "/admin/plan",
-      label: "Plan financiero",
-      value: "GMV · PyG",
+      label: "Plan / simulación",
+      value: "Decisiones",
       isText: true as const,
     },
   ];

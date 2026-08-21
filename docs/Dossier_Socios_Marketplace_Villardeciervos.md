@@ -11,7 +11,7 @@ El proyecto crea una **S.L. tecnológica** que lanza un **marketplace multi-vend
 
 1. **Estructurar una inversión elegible de 30–40.000 €** que permita captar la máxima subvención posible (**hasta el 74 %** a fondo perdido: ICECYL + complemento Diputación).
 2. Construir una **operativa viable de bajo riesgo** (intermediación sin stock propio, portes a cargo del cliente, comisión con suelo).
-3. Aceptar un horizonte de **crecimiento prudente**: el escenario base proyecta un neto acumulado ligeramente negativo (~−3.700 €), coherente con una aportación real de socios de solo **~10.400 €** sobre 40.000 € elegibles.
+3. Aceptar un horizonte de **crecimiento prudente**: el escenario base proyecta pérdidas en Y1–Y3 (neto acum. 3 años ≈ **−17.500 €**) y solo equilibrio fino hacia Y5; coherente con aportación real tras ayuda de **~10.400–17.800 €** según marco de elegibilidad.
 
 Sobre **40.000 €** de inversión elegible (cálculo de referencia):
 
@@ -141,21 +141,41 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 - **17 %** como comisión estándar del marketplace sobre el ingreso neto de la venta (modelo base).
 - **Mínimo por pedido: 4,00 €.** Se aplica **lo que sea mayor** entre el 17 % del merchandise y 4,00 €.
   - Umbral de indiferencia: `4 ÷ 0,17 ≈ 23,5 €` de merchandise. Por debajo de ~23,5 € manda el mínimo; por encima, el 17 %.
+- **Justificación 15 % vs 17 % (cerrada):** el 17 % mejora ~**+1,24 €**/pedido de margen, baja el break-even ~**1.200 € GMV/mes** y reduce pérdidas a 3 años en ~**5.240 €**, con impacto moderado al productor (−2 pp). Detalle: `Plan_Viabilidad_Marketplace_Villardeciervos.md` §5.G.
 
 ### 3.2 Retención de 14 días (cumplimiento legal)
 
 - El productor recibe su payout con retención durante **14 días**.
 - Liberación automática al vencimiento (cron/webhook).
 
-### 3.3 Rappels (plan alternativo para fidelizar volumen)
+### 3.3 Rappels por volumen (Opción A — retroactivo)
 
-Tramos de facturación anual acumulada (coherentes con comisión base 17 %):
+**Decisión:** tramos **Bronce / Plata / Oro** con comisión base **17 %**. Durante el año se cobra siempre el 17 %; al cierre del **año natural** se abona el rappel si corresponde. No se usa (de momento) la comisión escalonada en tiempo real.
 
-| Tramo | Facturación anual | Comisión efectiva | Mecánica del rappel |
-|---|---:|---:|---|
-| Bronce | hasta 5.000 €/año | **17 %** | estándar |
-| Plata | 5.001–15.000 €/año | **14 %** | rappel del 3 % (retroactivo/abono) |
-| Oro | > 15.000 €/año | **12 %** | comisión final 12 % + beneficios de posicionamiento |
+| Tramo | Facturación anual neta del productor | Comisión efectiva | Rappel |
+|---|---:|---:|---:|
+| **Bronce** | Hasta 5.000 € | **17 %** | Ninguno |
+| **Plata** | 5.001 – 15.000 € | **14 %** | **3 %** |
+| **Oro** | Más de 15.000 € | **12 %** | **5 %** (+ beneficios de posicionamiento según disponibilidad) |
+
+*Variante agresiva (no activa):* umbrales 6.000 / 18.000 € y Oro al 11–12 %. Solo si se quiere incentivar más volumen en una fase posterior.
+
+**Mecánica (Opción A — recomendada):**
+1. En cada pedido se detrae el **17 %** (o el mínimo 4 € si es mayor).
+2. Al cerrar el año natural se suma la facturación neta de producto (sin portes, sin cancelados/devoluciones).
+3. Si entra en Plata u Oro, se abona la diferencia (3 % o 5 % sobre toda la base del año).
+4. Plazo de abono: **60 días** tras el 31 de diciembre (transferencia o compensación en liquidaciones).
+
+**Ejemplo:** productor con 16.500 € de facturación neta anual → comisión bruta cobrada 17 % = 2.805 € → rappel Oro 5 % = 825 € → comisión neta S.L. = **1.980 € (12 %)**.
+
+**Reglas de gestión:**
+- Base = precio neto de producto (sin portes, impuestos, cupones).
+- Sin rappel sobre pedidos cancelados o devueltos.
+- Cada año se calcula de forma independiente (no consolida derechos al año siguiente).
+- Modificación de tramos: preaviso mínimo **3 meses**; sin efecto retroactivo sobre el año en curso.
+- Control: panel admin `/admin/rappels` (y Excel al inicio si hace falta).
+
+Texto contractual listo: [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) y cláusula en `Legal_NDA_Acuerdo_Confidencialidad.md` (adhesión productor).
 
 ### 3.4 Política de envíos (sin gratuidad)
 
@@ -257,28 +277,95 @@ flowchart LR
 
 ---
 
-## 7) Captación: Grupo Piloto + Fases operativas
+## 7) Captación de productores y riesgo de multi-homing
 
-### Grupo Piloto (5 productores de máxima confianza)
+> **Tesis:** no pelear por exclusividad al inicio. Objetivo = ser el **canal principal o prioritario**, no el único. Aceptar multi-homing y competir por comodidad, consolidación logística, showroom y rappels.
 
-Validará:
+### 7.1 Diagnóstico del riesgo real
 
-- Stripe Connect (pasarela avanzada),
-- logística hacia demanda nacional y turística (Castilla y León, comunidades limítrofes y resto de España; sin presuponer un polo único),
-- prueba real del flujo para generar “efecto llamada”.
+| Comportamiento del productor | Probabilidad | Riesgo para la S.L. |
+|---|---|---|
+| Web propia + ferias | Alta | Medio (competencia parcial) |
+| Amazon / Etsy | Media-baja (muchos aún no digitalizados) | Alto si se digitalizan |
+| Varios marketplaces regionales | Media | Alto (multi-homing) |
+| Exclusividad total con nosotros | Muy baja | — |
+| Probaros y quedarse si funciona | Alta | **Oportunidad** |
 
-### Fases
+Pedir exclusividad total al principio es **casi imposible y poco recomendable**.
 
-- **Fase 1 (Mes 2):** selección del “menú gourmet” (miel, embutidos de caza, queso de autor, vinos/licores, conservas/mermeladas).
-- **Fase 2 (Mes 3):** visitas “puerta a puerta” (café en taller) + propuesta asimétrica:
-  - comisión reducida **12 % primer año** para fundadores (vs 17 % estándar),
-  - fotografía y fichas técnicas con apoyo/IA,
-  - modalidad B con consolidación: el productor deja stock en trastienda.
-- **Fase 3 (Mes 5):** beta:
-  - 5 compras simuladas con Bizum/tarjeta,
-  - verificación de alertas,
-  - auditoría logística 24/48h,
-  - validación split de fondos (**17 % S.L. / 83 % productor**, o mínimo 4 €).
+### 7.2 Estrategia por fases
+
+#### Fase 1 — Grupo piloto (5 productores de máxima confianza)
+
+- **Objetivo:** validar flujo completo (alta, pedidos, preparación, pago, consolidación).
+- **Perfil:** artesanos conocidos, no perecedero de calidad, cierta predisposición digital.
+- **Oferta de arranque:**
+  - comisión reducida **12–14 % el primer año** (vs 17 % estándar);
+  - ayuda real con fotos, fichas y optimización;
+  - prioridad de posicionamiento en la web;
+  - acompañamiento personal (visitas, WhatsApp directo).
+- Validará Stripe Connect, logística a demanda nacional/turística y el “efecto llamada”.
+
+#### Fase 2 — Expansión local (puerta a puerta + referidos)
+
+- Visitas en taller/obrador (muy efectivo en medio rural).
+- Argumentario:
+  - “No te compramos stock, solo cobras si vendes”.
+  - “Un solo envío aunque el cliente compre a varios productores”.
+  - “Showroom físico en Villardeciervos que da confianza”.
+  - “Comisión competitiva + rappels si creces con nosotros”.
+- Usar al piloto como **prescriptores** (boca-oreja).
+
+#### Fase 3 — Productores ya digitalizados
+
+- Enfoque en quien ya vende online (web propia o Amazon).
+- Propuesta: menos CAC, consolidación logística, presencia territorial, menos dependencia de la publicidad de los grandes.
+
+### 7.3 Cómo reducir que se vayan a otros marketplaces
+
+| Palanca | Acción concreta | Efectividad |
+|---|---|---|
+| Comisión y rappels | 17 % base + rappels 14 % / 12 % | Alta |
+| Coste de cambio | Ayuda intensa con fichas, fotos y catálogo al entrar | Alta |
+| Consolidación logística | Diferencial difícil de copiar por Amazon o webs individuales | Muy alta |
+| Showroom físico | Confianza y prueba de producto | Alta |
+| Acompañamiento humano | Trato cercano, incidencias rápidas | Alta (rural) |
+| Datos y feedback | Informes sencillos de ventas y valoraciones | Media |
+| Exclusividad parcial | Solo referencias o campañas (ej. lotes Navidad) | Media |
+| Exclusividad total | **Evitar al principio** (espanta) | Baja / contraproducente |
+
+### 7.4 Argumentario comercial (guion)
+
+> No te pedimos que dejes de vender en otros sitios.  
+> Te ofrecemos un canal adicional con ventajas reales: comisión clara y rappels si creces; el cliente puede comprar tus productos junto con los de otros artesanos en un solo envío; presencia física en Villardeciervos; ayuda con fichas y fotos; cobro automático y transparente.  
+> Si te funciona, irás metiendo más producto. Si no, no pierdes nada.
+
+### 7.5 Riesgos y mitigación
+
+| Riesgo | Mitigación |
+|---|---|
+| Se digitaliza y se va a Amazon | Mejor acompañamiento + consolidación + rappels atractivos |
+| Multi-homing (varios marketplaces) | Aceptarlo; competir por ser el que mejor le funciona |
+| Deja de subir stock / responde mal | SLA claro + penalizaciones progresivas (aviso → suspensión) |
+| Grandes exigen condiciones especiales | Rappels o condiciones solo con alto volumen |
+| Dependencia de muy pocos productores | Objetivo: **10–15 productores activos en 18–24 meses** |
+
+### 7.6 Indicadores de captación y retención
+
+- Productores **activos** (≥ 1 venta en últimos 90 días).
+- % del piloto activos a los 6 y 12 meses.
+- Facturación media por productor.
+- % que alcanza tramo Plata u Oro.
+- Tiempo medio desde el alta hasta la primera venta.
+- Nº que también vende en Amazon/Etsy (grado de multi-homing).
+
+### 7.7 Calendario operativo (enlace con desarrollo)
+
+- **Mes 2:** selección del “menú gourmet” (miel, embutidos, queso, vinos/licores, conservas).
+- **Mes 3:** visitas puerta a puerta + oferta fundadores (12–14 % año 1 + fotos/fichas + consolidación).
+- **Mes 5:** beta con 5 compras controladas, alertas, auditoría logística, split 17 % / 83 % (o mínimo 4 €).
+
+Panel: `/admin/piloto`.
 
 ---
 
@@ -294,6 +381,10 @@ Validará:
 | Valoraciones web | >4,5/5 | <4,0/5 |
 | Pedidos con trazabilidad completa | ≥90% | <80% |
 | Clientes recurrentes (repiten compra) | a medir en piloto | — |
+| Productores activos (venta en 90 días) | crecer hacia 10–15 en 18–24 m | estancamiento &lt; 5 |
+| % piloto activos a 6 / 12 meses | ≥ 80 % / ≥ 60 % | abandono masivo |
+| Tiempo alta → 1.ª venta | &lt; 30 días | &gt; 60 días |
+| Multi-homing (Amazon/Etsy detectado) | a medir (no es fallo) | — |
 
 ### 8.2 KPIs económicos (marketplace de intermediación)
 
@@ -304,7 +395,7 @@ Validará:
 | **Take rate** | Ingresos / GMV | Debe situarse ~17 % |
 | **Cobertura de gastos** | Ingresos / Gastos | >100% = umbral operativo |
 | **Resultado neto** | Tras gastos, amortización e IS orientativo | Viabilidad; caso base acepta pérdidas iniciales |
-| **GMV de equilibrio** | ≈ gastos fijos ÷ 17 % | Orientativo ~**8.000–10.000 €/mes** en fase Y3+ (opex contenido) |
+| **GMV de equilibrio** | ≈ gastos fijos ÷ margen contribución (~15,5 % a comisión 17 %) | Base: **≈ 8.100 €/mes** (~130 pedidos; ~4,3/día) con fijos 1.250 € |
 | **GMV / vendedor / mes** | GMV ÷ n.º vendedores activos | Intensidad comercial |
 
 Cuadro de mando visual (gráficos dinámicos): Excel `Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx` → hoja **`00_KPI_Dashboard`**.
@@ -324,24 +415,26 @@ Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red
 
 **Prioridad del caso base:** justificar y ejecutar la inversión elegible para maximizar la ayuda (hasta **74 %**), no demostrar un ROI agresivo. Sobre 40.000 €: subvención de referencia **29.600 €** → aportación real socios **10.400 €**.
 
-### Proyección conservadora (comisión 17 % sobre GMV; sin envío gratis)
+### Proyección conservadora (comisión 17 % sobre GMV; sin envío gratis; RETA incluido)
+
+> Alineada al **Plan de Viabilidad §5** (escenario estrictamente prudente). Canónica para socios e inspección.
 
 | Concepto | Año 1 (6 meses venta) | Año 2 | Año 3 | Año 4 | Año 5 |
 |---|---:|---:|---:|---:|---:|
-| Pedidos / mes (orientativo) | 40–45 | 70–75 | 110–120 | ≈ 150 | 180–190 |
-| GMV vendedores | **16.000 €** | **55.000 €** | **90.000 €** | **120.000 €** | **145.000 €** |
-| Ingresos SL (17 %) | **2.720 €** | **9.350 €** | **15.300 €** | **20.400 €** | **24.650 €** |
-| Gastos estimados | ≈ 7.100 € | ≈ 14.800 € | ≈ 16.900 € | ≈ 18.200 € | ≈ 19.100 € |
-| Resultado neto (orientativo, **base comodato**) | ≈ **−4.380 €** | ≈ **−5.450 €** | ≈ **−1.600 €** | ≈ **+2.200 €** | ≈ **+5.550 €** |
+| Pedidos / mes (orientativo) | 35–40 | 60–70 | 95–105 | ≈ 130 | ≈ 160 |
+| GMV vendedores | **14.000 €** | **48.000 €** | **75.000 €** | **100.000 €** | **125.000 €** |
+| Ingresos SL (17 %) | **2.380 €** | **8.160 €** | **12.750 €** | **17.000 €** | **21.250 €** |
+| Gastos estimados (incl. RETA neto) | ≈ 6.800 € | ≈ 16.500 € | ≈ 17.500 € | ≈ 18.500 € | ≈ 19.000 € |
+| Resultado neto (orientativo, **base comodato**) | ≈ **−4.420 €** | ≈ **−8.340 €** | ≈ **−4.750 €** | ≈ **−1.500 €** | ≈ **+2.250 €** |
 
-- **Neto acumulado 5 años ≈ −3.680 €.** Aceptable frente a aportación real de **10.400 €** y frente al antiguo modelo (GMV demasiado alto + portes absorbidos).
-- Y1–Y3 en pérdida / equilibrio fino es coherente con arranque + amortización + opex de estructura.
-- Drivers: ~5 → 6–8 → 8–10 vendedores activos (crecimiento ambicioso solo en escenarios Realista/Optimista).
-- **No** se fija como objetivo recuperar 30.000 € + 15 % de dividendos en el caso base; ese enfoque se sustituye por **elegibilidad + no agotar la aportación**.
-- Escenarios **Realista** y **Optimista** en el Excel = sensibilidad al alza; **no** usar el Optimista como base ante la administración.
+- **Neto acumulado 3 años ≈ −17.500 €**; a 5 años ≈ **−16.800 €**.
+- La viabilidad de los primeros años descansa en **cobrar la subvención**, costes bajos y **no** absorber portes — no en dividendos tempranos.
+- Con marco de inversión elegible **40.000 €** (hipótesis dossier): aportación real ≈ **10.400 €** tras 74 %. Con marco Plan de Viabilidad (**30.000 €** elegibles + 10.000 € corriente / capital 40.000 €): esfuerzo neto ≈ **17.800 €**.
+- **No** se proyectan dividendos relevantes en Y1–Y3 del caso base.
+- Escenarios **Realista** y **Optimista** en el panel/Excel = sensibilidad al alza; el antiguo PyG con +12 k€ / +30 k€ en Y2–Y3 es **optimista de contraste**, no “prudente”.
 - **GMV ≠ ventas propias de la SL.** IS orientativo; IVA fuera de la PyG.
 
-Punto de equilibrio operativo orientativo (base): entorno de **~8.000–10.000 € GMV/mes** en fase Y3+ con opex contenido (ingresos 17 % cubriendo gastos corrientes + cuota prorateada).
+Punto de equilibrio operativo (base, comisión **17 %**): **≈ 8.100 € GMV/mes** (~**130 pedidos/mes**, ~**4,3 pedidos/día**) con fijos **≈ 1.250 €/mes**. Con el GMV prudente, el equilibrio cómodo se retrasa al **Año 4**. Detalle: `Plan_Viabilidad_Marketplace_Villardeciervos.md` §5.F–§5.G. Sensibilidad de costes (fijos, marketing, RETA, alquiler): **§5.M**.
 
 **Anexos contractuales:** **§9.A** (GMV ↔ pedidos ↔ clientes) y **§9.B** (embudo de conversión web Año 1). Cuadro de mando: **`/admin/plan`** + Excel de cuenta de resultados.
 
@@ -357,9 +450,10 @@ Criterio de prudencia: **ticket medio 65 €** por cesta unificada.
 
 | Horizonte | GMV (conservador) | Pedidos equivalentes | Ritmo orientativo | Lectura operativa |
 |---|---:|---:|---|---|
-| **Año 1** (6 meses de venta) | 16.000 € | ~**246** (~41–45/mes) | **~1,4–1,5 pedidos/día** | Volumen absorbible sin estructura extra; lejos de 3–4/día del modelo anterior |
-| **Año 2** | 55.000 € | ~**846** (~70–75/mes) | **~2,4–2,5 pedidos/día** | Consolidación lenta; neto orientativo negativo (~−5,5 k€) |
-| **Año 5** (madurez prudente) | 145.000 € | ~**2.230** (~185/mes) | **~6 pedidos/día** | Umbral manejable con consolidación ligera y SLA 24 h |
+| **Año 1** (6 meses de venta) | 14.000 € | ~**215** (~36–40/mes) | **~1,2–1,4 pedidos/día** | Volumen absorbible sin estructura extra |
+| **Año 2** | 48.000 € | ~**738** (~60–70/mes) | **~2,1–2,3 pedidos/día** | Consolidación lenta; neto ≈ −8,3 k€ |
+| **Año 3** | 75.000 € | ~**1.154** (~95–105/mes) | **~3,2–3,5 pedidos/día** | Aún en pérdida / equilibrio fino |
+| **Año 5** (madurez prudente) | 125.000 € | ~**1.923** (~160/mes) | **≈ 5,3 pedidos/día** | Primer tramo con neto positivo orientativo |
 
 Cálculo: `pedidos ≈ GMV ÷ 65 €`.
 
@@ -367,13 +461,13 @@ Cálculo: `pedidos ≈ GMV ÷ 65 €`.
 
 Patrón esperado en nicho territorial: **2–4 compras anuales** de ticket gourmet, no compra semanal.
 
-**Objetivo de captación Año 2 (coherente con 55.000 € GMV):**
+**Objetivo de captación Año 2 (coherente con 48.000 € GMV):**
 
-- Base activa orientativa: **~280–300 clientes** con actividad en el año  
+- Base activa orientativa: **~240–260 clientes** con actividad en el año  
 - Comportamiento: **~3 compras × 65 €** ≈ **195 €/cliente/año**  
-- Comprobación: `282 × 3 × 65 € ≈ 55.000 € GMV`
+- Comprobación: `246 × 3 × 65 € ≈ 48.000 € GMV`
 
-Captar ~300 usuarios (visita física + online + campañas modestas) es un objetivo **prudente**, alineado a no presuponer 3–4 pedidos/día en Y1.
+Captar ~250 usuarios (visita física + online + campañas modestas) es un objetivo **prudente**, alineado a no presuponer 3–4 pedidos/día en Y1.
 
 ### A.3 Auditoría del flujo de comisiones (17 % / 83 %)
 
@@ -386,18 +480,18 @@ Captar ~300 usuarios (visita física + online + campañas modestas) es un objeti
     ┌───────────┴───────────┐
     ▼                       ▼
 [INGRESOS S.L. ~17 %]   [LIQUIDACIÓN PRODUCTORES ~83 %]
-Año 1:  2.720 €         Año 1: ~13.280 € repartidos
-Año 3: 15.300 €         Año 3: ~74.700 € repartidos
-(opex, SaaS, gestoría)  (retención legal 14 días)
+Año 1:  2.380 €         Año 1: ~11.620 € repartidos
+Año 3: 12.750 €         Año 3: ~62.250 € repartidos
+(opex, SaaS, gestoría, RETA)  (retención legal 14 días)
 (+ envío 6,50 € lo paga el cliente; no resta a la comisión)
 ```
 
 | Año | GMV | Caja comisión S.L. (17 %) | Reparto productores (83 %) |
 |---:|---:|---:|---:|
-| 1 | 16.000 € | 2.720 € | 13.280 € |
-| 2 | 55.000 € | 9.350 € | 45.650 € |
-| 3 | 90.000 € | 15.300 € | 74.700 € |
-| 5 | 145.000 € | 24.650 € | 120.350 € |
+| 1 | 14.000 € | 2.380 € | 11.620 € |
+| 2 | 48.000 € | 8.160 € | 39.840 € |
+| 3 | 75.000 € | 12.750 € | 62.250 € |
+| 5 | 125.000 € | 21.250 € | 103.750 € |
 
 **Matices que los socios aceptan al anexar este documento:**
 
@@ -411,10 +505,10 @@ Año 3: 15.300 €         Año 3: ~74.700 € repartidos
 
 Los números son **defendibles ante la administración** porque:
 
-- el GMV es **prudente** (no presupone 3–4 pedidos/día en Y1);
-- la aportación real de capital es baja (**~10.400 €**);
+- el GMV es **estrictamente prudente** (~1,2–1,4 pedidos/día en Y1);
+- la aportación real tras ayuda se sitúa en **~10.400–17.800 €** según marco de elegibilidad;
 - la operativa no depende de subsidiar envíos;
-- el neto acumulado negativo (~−3,7 k€) no compromete la lógica de ayuda.
+- Y1–Y3 en pérdida (~−17,5 k€ acum.) es el caso base: la subvención + costes bajos sostienen el proyecto, no los dividendos tempranos.
 
 Al firmar / anexar este §9.A, las partes reconocen la tabla GMV–comisiones de §9, el ticket **65 €**, y que se trata de **previsión de diseño**, no de garantía.
 
@@ -422,16 +516,16 @@ Al firmar / anexar este §9.A, las partes reconocen la tabla GMV–comisiones de
 
 ## 9.B) Anexo — Métricas de conversión web (Año 1)
 
-> **Naturaleza.** Anexo operativo: traduce los **~246 pedidos / 16.000 € GMV** del Año 1 (6 meses) en un embudo medible. Presupuesto Paid Media **contenido** (**~250 €/mes**, **~1.500 €** en 6 meses). No garantiza tráfico ni conversión.
+> **Naturaleza.** Anexo operativo: traduce los **~215 pedidos / 14.000 € GMV** del Año 1 (6 meses) en un embudo medible. Presupuesto Paid Media **contenido** (**~300–350 €/mes**, **~2.000 €** en 6 meses). No garantiza tráfico ni conversión.
 
 ### B.1 Objetivo comercial Año 1
 
 | Indicador | Valor de referencia |
 |---|---:|
-| GMV | 16.000 € |
+| GMV | 14.000 € |
 | Ticket medio | 65 € |
-| Pedidos totales (6 meses) | ~**246** |
-| Pedidos / mes | ~**40–45** |
+| Pedidos totales (6 meses) | ~**215** |
+| Pedidos / mes | ~**36–40** |
 | Comisión bruta S.L. (17 %) | ~**11,05 €** / pedido (ticket 65 €) |
 | Margen de comisión usable (tras Stripe ~1,5 %) | ~**9,5–10,5 €** / pedido |
 | Envío | **6,50 €** siempre al cliente (no resta a la comisión) |
@@ -442,14 +536,14 @@ Hipótesis prudente de **conversión sesión → pedido = 2 %** (rango **1,5–3
 
 | Escalón | Fórmula / lectura | Valor orientativo |
 |---|---|---:|
-| Pedidos / mes | Objetivo | **~42** |
-| Sesiones / mes (a 2 %) | `42 ÷ 0,02` | **~2.100** |
-| Sesiones / mes (rango) | 1,5 % … 3 % | **~1.400 – 2.800** |
-| Sesiones totales Año 1 (6 meses) | × 6 a 2 % | **~12.600** |
+| Pedidos / mes | Objetivo | **~36** |
+| Sesiones / mes (a 2 %) | `36 ÷ 0,02` | **~1.800** |
+| Sesiones / mes (rango) | 1,5 % … 3 % | **~1.200 – 2.400** |
+| Sesiones totales Año 1 (6 meses) | × 6 a 2 % | **~10.800** |
 
 ```text
 Tráfico (sesiones)
-        │  ~2.100 / mes
+        │  ~1.800 / mes
         ▼
 Ficha / catálogo / tienda
         ▼
@@ -491,7 +585,7 @@ Comprobación: `250 € ÷ CAC 5 € ≈ 50 pedidos de pago` → encaja con ~42 
 
 ### B.6 Conclusión para el Pacto
 
-Con ticket **65 €**, conversión **~2 %** y ads **~250 €/mes**, los **~246 pedidos** del Año 1 son un objetivo **medible y defendible**. El riesgo principal no es saturar la trastienda, sino **fallar el embudo** o volver a subsidiar portes.
+Con ticket **65 €**, conversión **~2 %** y ads **~250 €/mes**, los **~215 pedidos** del Año 1 son un objetivo **medible y defendible**. El riesgo principal no es saturar la trastienda, sino **fallar el embudo** o volver a subsidiar portes.
 
 ---
 ## 9.bis) Equipo y ejecución tecnológica
@@ -538,7 +632,7 @@ La **IA** (p. ej. asistentes de código) apoya desarrollo y fichas de producto; 
 
 **Debilidades**
 
-- Caso base con **neto acumulado ligeramente negativo** a 5 años (transparencia frente a administración y socios).
+- Caso base con **pérdidas en Y1–Y3** y neto acum. 5 años ≈ **−16,8 k€** (transparencia frente a administración y socios; la subvención sostiene el capital).
 - Necesidad de coordinar recursos internos y proveedores (contratos, plazos, justificación).
 - Marca inicial débil y liquidez a adelantar hasta el cobro de ayudas.
 - Estacionalidad de tienda física / turismo.
@@ -630,7 +724,7 @@ Ejemplo de pantalla de estado de pedido (captura local):
 | **Split automatizado** | División automática del importe de cada venta: un porcentaje va al marketplace (comisión) y el resto al productor, sin intervención manual. |
 | **Webhook** | Notificación automática que envía Stripe al sistema en tiempo real cuando ocurre un evento, por ejemplo cuando un pago se confirma. |
 | **EBITDA** | Beneficio de la empresa antes de descontar impuestos, amortizaciones y gastos financieros. Indicador de rentabilidad operativa. |
-| **Punto de equilibrio** | Momento en que los ingresos cubren exactamente todos los costes. A partir de ese punto, la empresa empieza a generar beneficio real. |
+| **Punto de equilibrio** | Momento en que los ingresos cubren exactamente los costes fijos (tras margen de contribución). En el caso base: **≈ 8.100 € GMV/mes** (~4,3 pedidos/día) con comisión 17 % y fijos ~1.250 €; orientativo **Año 4** con volumen prudente. |
 | **Take rate** | % que se queda la S.L. sobre el GMV (aquí ~**17 %** de comisión). |
 | **Rappel** | Descuento retroactivo sobre la comisión que se aplica al productor cuando supera un determinado volumen de ventas acumulado en el año. Incentiva la fidelidad y el crecimiento. |
 | **Comisión** | Porcentaje que el marketplace retiene sobre cada venta como contraprestación por el servicio (escaparate, pagos, logística, soporte). Por defecto **17 %**. |
@@ -638,7 +732,9 @@ Ejemplo de pantalla de estado de pedido (captura local):
 | **Consolidación logística** | Agrupar en un único envío los productos de distintos artesanos que compró el mismo cliente, para reducir costes y simplificar la recepción. |
 | **Umbral de envío gratuito** | **Eliminado en el modelo v4.** Ya no aplica: no hay cesta a partir de la cual el envío sea gratis. |
 | **Tarifa plana de envío** | Precio fijo de **6,50 €** que el cliente paga siempre, independiente del número de artesanos en el pedido. La S.L. no absorbe el porte. |
-| **Grupo piloto** | Conjunto reducido de 5 productores de máxima confianza que prueban el sistema antes del lanzamiento público para detectar errores y generar primeras ventas reales. |
+| **Grupo piloto** | Conjunto reducido de **5 productores** de máxima confianza que prueban el sistema antes del lanzamiento público. Oferta típica: comisión **12–14 %** el primer año, ayuda con fichas/fotos y acompañamiento cercano. |
+| **Multi-homing** | Que el productor venda a la vez en varios canales (web propia, Amazon, otros marketplaces). En el modelo se **acepta**; se compite por ser el canal más cómodo y rentable, no por exclusividad total. |
+| **Canal prioritario** | Objetivo realista de captación: que el productor use Sabores de la Culebra como su canal principal o preferente, aunque mantenga otros. |
 | **Sandbox** | Entorno de pruebas seguro, separado del sistema real, donde se pueden simular compras, pagos y flujos sin mover dinero real ni afectar a clientes. |
 | **Ejecución tecnológica (modelo del proyecto)** | Combinación de recursos internos, personal especializado y/o servicios externos para desarrollar y mantener la plataforma. La dirección del proyecto supervisa entregables y validación; no depende de un único perfil. |
 | **Backend** | Parte del sistema que el usuario no ve: base de datos, lógica de negocio, procesamiento de pedidos y pagos. Se ejecuta en el servidor. |
@@ -957,9 +1053,10 @@ Antes de mostrar el software, la arquitectura técnica o los planes de viabilida
 
 Solicitamos compromiso de socios con una visión clara:
 
-- Validar rápido el piloto (Mes 2–6).
+- Validar rápido el piloto (Mes 2–6) **sin exigir exclusividad**.
 - Anexar al Pacto de Socios **§9.A** (hipótesis económica) y **§9.B** (embudo de conversión web Año 1) como marco de referencia compartido.
-- Activar pipeline de captación y recurrencia con rappels y SLA.
+- Convertirse en canal **prioritario** (consolidación + showroom + rappels + trato humano); meta **10–15 productores activos** en 18–24 meses.
+- Activar pipeline de captación y recurrencia con rappels y SLA; medir multi-homing y retención del piloto.
 - Escalar con control (KPIs/rentabilidad, umbrales CAC/ROAS de §9.B) y cumplimiento legal (retención 14 días).
 - Firmar el NDA antes de cualquier reunión técnica o comercial con terceros.
 

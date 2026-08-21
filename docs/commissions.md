@@ -27,6 +27,18 @@ Por linea, en este orden:
 
 Ademas, una regla `FIXED` vigente suma una cuota por subpedido del productor. Tras sumar lineas + fijo se aplica el **minimo 4 €** (sin superar el bruto). El neto nunca es negativo.
 
+## Rappels por volumen (politica comercial)
+
+Tramos anuales (Opción A — rappel **retroactivo** al cierre del año natural; durante el año se cobra siempre el 17 %):
+
+| Tramo | Facturacion anual neta | Comision efectiva | Rappel |
+|-------|------------------------|-------------------|--------|
+| Bronce | Hasta 5.000 € | 17 % | — |
+| Plata | 5.001 – 15.000 € | 14 % | 3 % |
+| Oro | > 15.000 € | 12 % | 5 % |
+
+Detalle contractual: [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md). Panel: `/admin/rappels`.
+
 ### Ejemplo (producto 100 €, sin reglas ni contrato)
 
 | Concepto | Importe |

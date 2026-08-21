@@ -1,15 +1,23 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPublicProductBySlug, listAccommodationsForProduct } from "@culebra/auth";
+import {
+  getPublicProductBySlug,
+  getVendorByUserId,
+  listAccommodationsForProduct,
+} from "@culebra/auth";
+import { auth } from "@/auth";
 import { formatPrice } from "@/lib/format";
 import { AddToCartForm } from "@/components/cart/add-to-cart-form";
+import { OwnerProductToolbar } from "@/components/catalog/owner-product-toolbar";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 import { TrustStrip } from "@/components/ux/trust-strip";
 import { JsonLd } from "@/components/ux/json-ld";
 import { buildBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/seo";
 import { buildPageMetadata } from "@/lib/site";
+import { toPublicImageSrc } from "@/lib/product-image";
 import { bookingCtaLabel, resolveBookingHref } from "@/lib/tourism";
+
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
 };
@@ -27,7 +35,9 @@ export async function generateMetadata({ params }: ProductPageProps) {
     title: product.name,
     description,
     path: `/productos/${slug}`,
-    image: product.images[0]?.url,
+    image: product.images[0]?.url
+      ? toPublicImageSrc(product.images[0].url)
+      : undefined,
   });
 }
 
@@ -40,6 +50,17 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   }
 
   const stays = await listAccommodationsForProduct(product.id, 4);
+
+  const session = await auth();
+  let isOwner = false;
+  if (session?.user?.id && session.user.roles?.includes("VENDOR")) {
+    try {
+      const vendor = await getVendorByUserId(session.user.id);
+      isOwner = Boolean(vendor && vendor.id === product.vendorId);
+    } catch {
+      isOwner = false;
+    }
+  }
 
   const image = product.images[0];
   const breadcrumbItems = [
@@ -61,17 +82,43 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <JsonLd data={breadcrumbJsonLd} />
       <Breadcrumbs items={breadcrumbItems} />
 
+      {isOwner ? (
+        <OwnerProductToolbar
+          productId={product.id}
+          productName={product.name}
+          hasOwnImage={Boolean(image)}
+        />
+      ) : null}
+
       <article className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-12">
-        <div className="flex aspect-square min-h-56 items-center justify-center overflow-hidden rounded-3xl bg-stone-100 text-stone-500 lg:sticky lg:top-24 lg:self-start">
+        <div className="relative flex aspect-square min-h-56 items-center justify-center overflow-hidden rounded-3xl bg-stone-100 text-stone-500 lg:sticky lg:top-24 lg:self-start">
           {image ? (
             <img
-              src={image.url}
+              src={toPublicImageSrc(image.url)}
               alt={image.altText ?? product.name}
               className="h-full w-full object-cover"
             />
           ) : (
-            "Sin imagen"
+            <div className="flex flex-col items-center gap-2 px-6 text-center">
+              <span>Sin imagen</span>
+              {isOwner ? (
+                <Link
+                  href={`/panel/proveedor/productos/${product.id}#foto`}
+                  className="rounded-full bg-emerald-800 px-4 py-2 text-sm font-medium text-white"
+                >
+                  Subir foto
+                </Link>
+              ) : null}
+            </div>
           )}
+          {isOwner && image ? (
+            <Link
+              href={`/panel/proveedor/productos/${product.id}#foto`}
+              className="absolute bottom-4 right-4 rounded-full bg-white/95 px-4 py-2 text-sm font-medium text-emerald-900 shadow-sm ring-1 ring-stone-200 hover:bg-white"
+            >
+              Cambiar foto
+            </Link>
+          ) : null}
         </div>
 
         <div>

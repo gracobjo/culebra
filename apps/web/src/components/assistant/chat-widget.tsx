@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { toPublicImageSrc } from "@/lib/product-image";
 
 type ChatRole = "user" | "assistant";
 
@@ -41,6 +43,7 @@ function isAssistantEnabledClient(): boolean {
 }
 
 export function ChatWidget() {
+  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: "assistant", content: STARTER_MESSAGE },
@@ -54,6 +57,10 @@ export function ChatWidget() {
   const panelId = useId();
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (open && listRef.current) {
       listRef.current.scrollTop = listRef.current.scrollHeight;
     }
@@ -65,7 +72,7 @@ export function ChatWidget() {
     }
   }, [open]);
 
-  if (!isAssistantEnabledClient()) {
+  if (!isAssistantEnabledClient() || !mounted) {
     return null;
   }
 
@@ -114,14 +121,15 @@ export function ChatWidget() {
     void sendMessage(input);
   }
 
-  return (
-    <>
+  const ui = (
+    <div className="pointer-events-none fixed inset-0 z-[100]">
       {open ? (
         <section
           id={panelId}
           role="dialog"
           aria-label="Asistente del marketplace"
-          className="fixed bottom-24 right-4 z-[60] flex max-h-[min(32rem,calc(100dvh-7rem))] w-[min(100vw-2rem,24rem)] flex-col overflow-hidden rounded-2xl border border-stone-200 bg-[#fdfbf7] shadow-xl lg:bottom-6"
+          aria-modal="false"
+          className="pointer-events-auto absolute bottom-24 right-4 flex max-h-[min(32rem,calc(100dvh-7rem))] w-[min(100vw-2rem,24rem)] flex-col overflow-hidden rounded-2xl border border-stone-200 bg-[#fdfbf7] shadow-xl lg:bottom-6"
         >
           <header className="flex items-center justify-between gap-3 border-b border-stone-200 bg-[#065f46] px-4 py-3 text-white">
             <div>
@@ -161,19 +169,24 @@ export function ChatWidget() {
                 <p className="text-xs font-medium uppercase tracking-wide text-stone-500">
                   Productos sugeridos
                 </p>
-                {products.map((product) => (
+                {products.map((product) => {
+                  const imageSrc = product.imageUrl
+                    ? toPublicImageSrc(product.imageUrl)
+                    : null;
+                  return (
                   <Link
                     key={product.slug}
                     href={product.url}
                     className="flex gap-3 rounded-xl border border-stone-200 bg-white p-2 transition hover:border-emerald-700"
                   >
                     <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-stone-100">
-                      {product.imageUrl ? (
+                      {imageSrc ? (
                         <Image
-                          src={product.imageUrl}
+                          src={imageSrc}
                           alt={product.name}
                           fill
                           sizes="56px"
+                          unoptimized={imageSrc.startsWith("/uploads/")}
                           className="object-cover"
                         />
                       ) : (
@@ -194,7 +207,8 @@ export function ChatWidget() {
                       ) : null}
                     </div>
                   </Link>
-                ))}
+                  );
+                })}
               </div>
             ) : null}
 
@@ -261,12 +275,14 @@ export function ChatWidget() {
         type="button"
         aria-expanded={open}
         aria-controls={open ? panelId : undefined}
-        className="fixed bottom-24 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#065f46] text-2xl text-white shadow-lg transition hover:bg-emerald-900 lg:bottom-6"
+        className="pointer-events-auto absolute bottom-24 right-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#065f46] text-2xl text-white shadow-lg transition hover:bg-emerald-900 lg:bottom-6"
         onClick={() => setOpen((value) => !value)}
         aria-label={open ? "Cerrar asistente" : "Abrir asistente"}
       >
         {open ? "✕" : "💬"}
       </button>
-    </>
+    </div>
   );
+
+  return createPortal(ui, document.body);
 }

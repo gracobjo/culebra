@@ -120,7 +120,7 @@ Y en prueba de conformidad con lo establecido, ambas partes firman el presente A
 
 ## DOC-02 · Contrato de Adhesión Comercial y Acuerdo de Nivel de Servicio (SLA)
 
-**Uso recomendado:** Firmar con cada productor artesano que se incorpore a la plataforma como vendedor. Regula la comisión del 15%, el plan de rappels por tramos, el flujo de cobros con retención de 14 días y las obligaciones logísticas de calidad (SLA).
+**Uso recomendado:** Firmar con cada productor artesano que se incorpore a la plataforma como vendedor. Regula la comisión del **17 %** (mínimo 4 €/subpedido), el plan de rappels por tramos (Bronce/Plata/Oro, rappel retroactivo), el flujo de cobros con retención de 14 días y las obligaciones logísticas de calidad (SLA).
 
 ---
 
@@ -164,21 +164,25 @@ Ambas partes acuerdan expresamente que la Plataforma actúa exclusivamente como 
 
 **3.1 Comisión estándar**
 
-La Plataforma aplicará una retención fija del **15% (quince por ciento) más IVA** sobre la Base Imponible del Precio de Venta al Público (PVP) establecido por el Productor por cada transacción efectiva realizada en la web.
+La Plataforma aplicará una retención del **17 % (diecisiete por ciento)** sobre el precio de venta de los productos (impuestos excluidos), una vez descontados cupones o descuentos aplicados en la compra. Cuando el importe resultante sea inferior a **4,00 €** por subpedido, se aplicará dicho mínimo. La comisión se detraerá automáticamente en el proceso de liquidación de cada pedido a través de la pasarela de pagos. Los gastos de envío los abona el cliente (tarifa plana); la Plataforma **no absorbe** portes.
 
-**3.2 Plan de rappels por volumen anual**
+**3.2 Plan de rappels por volumen anual (Opción A — retroactivo)**
 
-Para incentivar y premiar el volumen de ventas, se establece el siguiente sistema de rappels abonables al vencimiento del año natural:
+Para incentivar y premiar el volumen de ventas, se establece el siguiente sistema de rappels, calculado sobre la facturación neta de productos del Productor en cada **año natural** (1 de enero – 31 de diciembre):
 
-| Tramo | Facturación neta anual | Comisión final | Mecánica |
-|---|---:|---:|---|
-| **Bronce** | Hasta 5.000 € / año | 15% | Estándar — sin rappel |
-| **Plata** | De 5.001 € a 15.000 € / año | 12% | Al cierre del año, la Plataforma emite abono/factura rectificativa por el 3% de diferencia sobre las ventas de este tramo |
-| **Oro** | Más de 15.000 € / año | 10% | Al cierre del año, la Plataforma emite el abono correspondiente para fijar la comisión neta en el 10% |
+| Tramo | Facturación neta anual | Comisión efectiva | Rappel aplicable |
+|---|---:|---:|---:|
+| **Bronce** | Hasta 5.000 € | **17 %** | Ninguno |
+| **Plata** | De 5.001 € a 15.000 € | **14 %** | **3 %** |
+| **Oro** | Más de 15.000 € | **12 %** | **5 %** |
+
+El rappel tiene carácter **retroactivo**: durante el año se aplica siempre el 17 % (o el mínimo de 4,00 €). Al cierre del año, la Plataforma calcula el tramo alcanzado y, en su caso, abona la diferencia por transferencia o compensación en liquidaciones, dentro de los **60 días naturales** siguientes al 31 de diciembre. La base excluye portes, impuestos, cupones y pedidos cancelados o devueltos. El tramo de un año no consolida derechos para el siguiente. La Plataforma podrá modificar tramos o porcentajes con **preaviso de tres (3) meses**, sin efecto retroactivo sobre el año en curso.
+
+Texto completo de la cláusula: `docs/Clausula_Comision_Rappels_Productor.md`.
 
 **3.3 Flujo de cobros y liquidaciones**
 
-Las transacciones se procesarán a través de la pasarela **Stripe Connect**. El sistema descontará automáticamente la comisión de la Plataforma en el momento del pago. El saldo restante correspondiente al Productor (85%, 88% o 90% según tramo) quedará **retenido en su monedero virtual durante 14 días naturales** en cumplimiento del derecho legal de desistimiento del consumidor. Pasado este plazo, los fondos se transferirán automáticamente a la cuenta bancaria del Productor.
+Las transacciones se procesarán a través de la pasarela **Stripe Connect** (u operador equivalente). El sistema descontará automáticamente la comisión de la Plataforma en el momento del pago. El saldo restante correspondiente al Productor quedará **retenido durante 14 días naturales** en cumplimiento del derecho legal de desistimiento del consumidor. Pasado este plazo, los fondos se transferirán a la cuenta designada por el Productor. Los rappels anuales, cuando procedan, se liquidan aparte según la cláusula 3.2.
 
 ---
 

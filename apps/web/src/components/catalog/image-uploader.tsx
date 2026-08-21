@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { toPublicImageSrc } from "@/lib/product-image";
 
 type ImageUploaderProps = {
   /** URL actual guardada en BD (puede ser vacío si no hay imagen propia) */
@@ -19,7 +20,9 @@ export function ImageUploader({
   inputName = "imageUrl",
   disabled = false,
 }: ImageUploaderProps) {
-  const [preview, setPreview] = useState<string>(currentUrl || "");
+  const [preview, setPreview] = useState<string>(
+    currentUrl ? toPublicImageSrc(currentUrl) : "",
+  );
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -34,7 +37,6 @@ export function ImageUploader({
     setError("");
     setUploading(true);
 
-    // Preview local inmediato
     const objectUrl = URL.createObjectURL(file);
     setPreview(objectUrl);
 
@@ -69,65 +71,90 @@ export function ImageUploader({
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
 
+  function openPicker() {
+    if (!disabled && !uploading) fileInputRef.current?.click();
+  }
+
   return (
     <div className="space-y-3">
-      {/* Hidden input que envía el Server Action */}
       <input type="hidden" name={inputName} value={preview} />
 
-      {/* Preview */}
-      <div
-        className={`relative aspect-[4/3] w-full max-w-sm overflow-hidden rounded-2xl border-2 ${
-          isPlaceholder ? "border-dashed border-stone-300" : "border-stone-200"
-        } bg-stone-100`}
+      <button
+        type="button"
+        disabled={disabled || uploading}
+        onClick={openPicker}
+        className={`group relative aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border-2 text-left transition ${
+          isPlaceholder
+            ? "border-dashed border-emerald-400 bg-emerald-50/40"
+            : "border-stone-200 bg-stone-100"
+        } ${disabled ? "cursor-not-allowed opacity-70" : "cursor-pointer hover:border-emerald-600"}`}
+        aria-label={preview ? "Cambiar foto del producto" : "Subir foto del producto"}
       >
         <Image
           src={displaySrc}
           alt="Imagen del producto"
           fill
-          sizes="(max-width: 640px) 100vw, 384px"
-          className={`object-cover ${isPlaceholder ? "opacity-50" : ""}`}
+          sizes="(max-width: 640px) 100vw, 448px"
+          unoptimized={displaySrc.startsWith("/uploads/") || displaySrc.startsWith("blob:")}
+          className={`object-cover ${isPlaceholder ? "opacity-40" : ""}`}
         />
-        {isPlaceholder && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-stone-500">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+
+        {isPlaceholder && !uploading ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center text-emerald-900">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
             </svg>
-            <span className="text-xs">Sin foto propia · usando imagen de categoría</span>
+            <span className="text-sm font-medium">Pulsa para subir la foto</span>
+            <span className="text-xs text-emerald-900/70">
+              Sin foto propia · se muestra la de categoría
+            </span>
           </div>
-        )}
+        ) : null}
 
-        {/* Botón quitar imagen actual */}
-        {!isPlaceholder && !disabled && (
-          <button
-            type="button"
-            onClick={handleRemove}
-            className="absolute right-2 top-2 rounded-full bg-white/90 p-1 shadow hover:bg-red-50"
-            title="Eliminar imagen"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        )}
-
-        {uploading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white/70">
-            <span className="text-sm text-stone-600">Subiendo...</span>
+        {!isPlaceholder && !disabled && !uploading ? (
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 py-3 opacity-100 sm:opacity-0 sm:transition sm:group-hover:opacity-100">
+            <span className="text-sm font-medium text-white">Cambiar foto</span>
           </div>
-        )}
-      </div>
+        ) : null}
 
-      {/* Botón seleccionar */}
-      {!disabled && (
-        <div className="flex items-center gap-3">
+        {uploading ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-white/75">
+            <span className="text-sm font-medium text-stone-700">Subiendo…</span>
+          </div>
+        ) : null}
+      </button>
+
+      {!disabled ? (
+        <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
             disabled={uploading}
-            onClick={() => fileInputRef.current?.click()}
-            className="rounded-xl border border-emerald-700 px-4 py-2 text-sm font-medium text-emerald-800 hover:bg-emerald-50 disabled:opacity-60"
+            onClick={openPicker}
+            className="min-h-10 rounded-full bg-emerald-800 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-900 disabled:opacity-60"
           >
-            {uploading ? "Subiendo..." : preview ? "Cambiar foto" : "Subir foto del producto"}
+            {uploading ? "Subiendo…" : preview ? "Cambiar foto" : "Subir foto"}
           </button>
+          {!isPlaceholder ? (
+            <button
+              type="button"
+              onClick={handleRemove}
+              className="min-h-10 rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-50"
+            >
+              Quitar foto
+            </button>
+          ) : null}
           <span className="text-xs text-stone-500">JPG, PNG o WebP · máx. 5 MB</span>
           <input
             ref={fileInputRef}
@@ -137,9 +164,14 @@ export function ImageUploader({
             onChange={handleFileChange}
           />
         </div>
-      )}
+      ) : null}
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error ? <p className="text-sm text-red-600">{error}</p> : null}
+      {!error && preview ? (
+        <p className="text-xs text-stone-500">
+          Foto lista. Pulsa «Guardar cambios» abajo para publicarla en la ficha.
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -87,20 +87,20 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    remotePatterns: [
+    remotePatterns: Array.from({ length: 11 }, (_, i) => 3000 + i).flatMap((port) => [
       {
-        protocol: "http",
+        protocol: "http" as const,
         hostname: "localhost",
-        port: "3000",
+        port: String(port),
         pathname: "/uploads/products/**",
       },
       {
-        protocol: "http",
+        protocol: "http" as const,
         hostname: "127.0.0.1",
-        port: "3000",
+        port: String(port),
         pathname: "/uploads/products/**",
       },
-    ],
+    ]),
   },
   async headers() {
     return [

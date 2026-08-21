@@ -25,18 +25,19 @@ MONTHS = [
 Y1_ACTIVE = {7, 8, 9, 10, 11, 12}
 HEADERS = [
     "Año", "Mes", "GMV vendedores", "Ingresos comisión (17%)", "Coste medios pago",
-    "Personal", "Transportes/logística", "Marketing", "Hosting/software",
+    "Personal/RETA", "Transportes/logística", "Marketing", "Hosting/software",
     "Gestoría/contabilidad", "Seguros", "Telefonía/Internet", "Suministros/oficina",
     "Otros corrientes", "Amortizaciones", "Gastos financieros", "Total gastos",
     "Resultado antes impuestos", "Impuesto Sociedades", "Resultado neto",
 ]
 
-# v4 — GMV prudente (dossier revisado ago-2026):
-# Prioridad = elegibilidad ayuda 30-40k (hasta 74 %) + operativa viable, NO maximizar beneficio corto plazo.
-# Comisión 17 % + mínimo 4 €/pedido (modelo PyG usa 17 % sobre GMV; el mínimo se materializa en tickets bajos).
-# Sin envío gratis: el cliente paga siempre tarifa plana 6,50 €; la S.L. no absorbe etiquetas.
+# v5 — GMV estrictamente prudente (Plan Viabilidad §5 / dossier ago-2026):
+# Prioridad = elegibilidad ayuda + supervivencia; NO maximizar beneficio corto plazo.
+# Comisión 17 % + mínimo 4 €/pedido (modelo PyG usa 17 % sobre GMV).
+# Sin envío gratis: cliente paga tarifa plana 6,50 €; la S.L. no absorbe etiquetas.
+# Personal incluye cuota RETA neta orientativa del Socio 2 (tienda).
 GMV = {
-    "conservador": {1: 16_000, 2: 55_000, 3: 90_000, 4: 120_000, 5: 145_000},
+    "conservador": {1: 14_000, 2: 48_000, 3: 75_000, 4: 100_000, 5: 125_000},
     # Sensibilidad al alza (no es caso base de firma / justificación)
     "realista": {1: 28_000, 2: 95_000, 3: 150_000, 4: 200_000, 5: 250_000},
     "optimista": {1: 40_000, 2: 140_000, 3: 220_000, 4: 300_000, 5: 380_000},
@@ -45,10 +46,13 @@ GMV = {
 COMISION = 0.17
 IS = 0.15
 PCT_PAGO = 0.015
-AMORT_ANUAL = 6_000.0  # amortización contable sobre ~30k capitalizados; inversión elegible puede ser 40k
-INVERSION_REF = 40_000.0  # base elegible de referencia (ICECYL + Diputación)
-APORTACION_SOCIOS = 10_400.0  # 40k − 29,6k subvención al 74 %
-DIVIDENDO_OBJ_PCT = 0.0  # el caso base no prioriza dividendos; objetivo = no agotar aportación
+# Amortización contable ligera: el plan narrativo prioriza caja operativa;
+# se mantiene pero calibrada para no distorsionar el caso base (~3k/año).
+AMORT_ANUAL = 3_000.0
+INVERSION_REF = 40_000.0  # capital social / caja arranque (elegible puede ser 30k)
+APORTACION_SOCIOS = 17_800.0  # marco Plan Viabilidad: 40k − 22,2k (74% sobre 30k elegibles)
+APORTACION_SOCIOS_40K_ELEGIBLE = 10_400.0  # hipótesis dossier si elegible = 40k
+DIVIDENDO_OBJ_PCT = 0.0  # caso base: no prioriza dividendos
 
 
 def money_fmt(cell):
@@ -78,35 +82,38 @@ def gmv_month(scenario: str, year: int, month: int) -> float:
 def opex(scenario: str, year: int, month: int) -> dict[str, float]:
     """Costes mensuales (sin medios de pago ni amortización).
 
-    Conservador calibrado a PyG dossier v4:
-    gastos ≈ 7,1k / 14,8k / 16,9k / 17,8k / 18,1k → neto acum. ~−3,7k.
-    Transportes = logística de oficina / consolidación ligera (NO etiquetas:
-    el cliente paga siempre 6,50 €; la S.L. no absorbe portes).
+    Conservador calibrado al Plan de Viabilidad §5 (estrictamente prudente):
+    netos objetivo ≈ −4,4 / −8,3 / −4,8 / −1,5 / +2,3 k€
+    (tras pago 1,5 % y amort. 3k/año). Personal = RETA + retén técnico Y2+.
+    Transportes = logística oficina (NO etiquetas: cliente paga 6,50 €).
     """
     launched = not (year == 1 and month not in Y1_ACTIVE)
 
     if scenario == "conservador":
         if year == 1 and not launched:
+            # H1: estructura mínima (~90 €/mes)
             return dict(
-                personal=0, transportes=10, marketing=0, hosting=40,
-                gestoria=55, seguros=12, telefonia=15, suministros=18,
-                otros=12, fin=5,
+                personal=0, transportes=5, marketing=0, hosting=25,
+                gestoria=30, seguros=5, telefonia=8, suministros=10,
+                otros=5, fin=2,
             )
         if year == 1:
+            # H2: ~2.000 mkt + 1.200 RETA + cloud/oficina → opex H2 alto, total Y1 gast≈6,8k
             return dict(
-                personal=0, transportes=25, marketing=200, hosting=90,
-                gestoria=70, seguros=15, telefonia=20, suministros=22,
-                otros=15, fin=8,
+                personal=200, transportes=20, marketing=333, hosting=100,
+                gestoria=80, seguros=10, telefonia=20, suministros=25,
+                otros=15, fin=5,
             )
-        # Y2–Y5 calibrados a gastos anuales objetivo del dossier
-        personal = [0, 60, 100, 120, 140][year - 1]
-        marketing = [0, 250, 300, 310, 320][year - 1]
-        hosting = [0, 145, 165, 175, 180][year - 1]
-        transportes = [0, 35, 40, 45, 45][year - 1]
+        # Y2–Y5: opex caja calibrado para gast total (con pago+amort) ≈ plan §5
+        personal = [0, 350, 350, 350, 350][year - 1]  # RETA ~200 + retén ~150
+        marketing = [0, 375, 458, 500, 500][year - 1]
+        hosting = [0, 120, 120, 120, 110][year - 1]
+        transportes = [0, 25, 30, 35, 35][year - 1]
+        gestoria = [0, 80, 80, 80, 80][year - 1]
         return dict(
             personal=personal, transportes=transportes, marketing=marketing, hosting=hosting,
-            gestoria=90, seguros=22, telefonia=28, suministros=30,
-            otros=22, fin=10,
+            gestoria=gestoria, seguros=15, telefonia=18, suministros=22,
+            otros=15, fin=6,
         )
 
     if scenario == "realista":
@@ -359,7 +366,7 @@ def write_kpi_dashboard(wb):
     # Año 3 filas PyG: 27-38
     cats = [
         ("Medios de pago", "E"),
-        ("Personal", "F"),
+        ("Personal/RETA", "F"),
         ("Transportes", "G"),
         ("Marketing", "H"),
         ("Hosting/software", "I"),
@@ -387,10 +394,10 @@ def write_kpi_dashboard(wb):
         (8, "Margen neto Y3", "=F7"),
         (9, "Take rate", "=G7"),
         (10, "Cobertura gastos Y3", "=H7"),
-        (11, "GMV equilibrio mes", round((150 + 550 + 250 + 120 + 30 + 35 + 40 + 25 + 10 + AMORT_ANUAL / 12) / COMISION, 0)),
-        (12, "Vendedores obj. Y3", 11),
+        (11, "GMV equilibrio mes", round((400 + 458 + 300 + 150 + 30 + 40 + 40 + 25 + 10 + AMORT_ANUAL / 12) / COMISION, 0)),
+        (12, "Vendedores obj. Y3", 8),
         (13, "Comisión marketplace", COMISION),
-        (14, "Aportacion socios (74% ayuda)", APORTACION_SOCIOS),
+        (14, "Aportacion socios (Plan)", APORTACION_SOCIOS),
     ]
     style_header(ws_d.cell(4, 10, "KPI"))
     style_header(ws_d.cell(4, 11, "Valor"))
@@ -601,12 +608,15 @@ def build():
         (7, "GMV Y2 conservador", GMV["conservador"][2], f"→ {GMV['conservador'][2]*COMISION:,.0f} € comisión"),
         (8, "GMV Y3 conservador", GMV["conservador"][3], f"→ {GMV['conservador'][3]*COMISION:,.0f} € comisión"),
         (9, "% medios de pago / GMV", PCT_PAGO, "Pasarela/Connect orientativo"),
-        (10, "Amortización anual", AMORT_ANUAL, "30.000/5; en Y1 solo jul–dic"),
-        (11, "Inversión referencia", INVERSION_REF, "Activo tecnológico / umbral ICECYL"),
+        (10, "Amortización anual", AMORT_ANUAL, "Amort. contable ligera; Y1 solo jul–dic"),
+        (11, "Inversión / capital social", INVERSION_REF, "Caja arranque 40k (elegible tip. 30k)"),
         (12, "Objetivo dividendos 5 anos", DIVIDENDO_OBJ_PCT, "Caso base: no prioriza dividendos; prioriza elegibilidad"),
-        (13, "Aportacion real socios", APORTACION_SOCIOS, "40k elegible - 29,6k subvencion (74%)"),
-        (14, "Compras mercancía", 0, "Intermediación: sin COGS"),
-        (15, "Suavizado Y1", "Sí", "Amort. y marketing comercial desde lanzamiento; H1 costes mínimos"),
+        (13, "Aportacion neto socios (Plan)", APORTACION_SOCIOS, "40k − 22,2k ayuda (74% sobre 30k elegibles)"),
+        (14, "Aportacion si elegible 40k", APORTACION_SOCIOS_40K_ELEGIBLE, "Hipótesis dossier: 40k − 29,6k"),
+        (15, "Compras mercancía", 0, "Intermediación: sin COGS"),
+        (16, "Envío", "Cliente paga 6,50 €", "S.L. no absorbe portes"),
+        (17, "Suavizado Y1", "Sí", "Amort. y marketing comercial desde lanzamiento; H1 costes mínimos"),
+        (18, "RETA Socio 2", "Sí (neto orient.)", "Incluido en Personal/RETA"),
     ]
     for r, a, b, c in params:
         ws_par.cell(r, 1).value = a
@@ -663,11 +673,11 @@ def build():
     ws_d["A1"].font = Font(bold=True, size=13, color="2F5233")
     drivers = [
         # Año, vendedores, GMV€/vend/mes, meses venta, GMV anual, ingresos 17%
-        (1, 5, 1_333.33, 6, 40_000, 6_000),
-        (2, 8, 1_458.33, 12, 140_000, 21_000),
-        (3, 11, 1_666.67, 12, 220_000, 33_000),
-        (4, 13, 1_794.87, 12, 280_000, 42_000),
-        (5, 15, 2_000.00, 12, 360_000, 54_000),
+        (1, 5, round(14_000 / 5 / 6, 2), 6, 14_000, round(14_000 * COMISION)),
+        (2, 6, round(48_000 / 6 / 12, 2), 12, 48_000, round(48_000 * COMISION)),
+        (3, 8, round(75_000 / 8 / 12, 2), 12, 75_000, round(75_000 * COMISION)),
+        (4, 9, round(100_000 / 9 / 12, 2), 12, 100_000, round(100_000 * COMISION)),
+        (5, 10, round(125_000 / 10 / 12, 2), 12, 125_000, round(125_000 * COMISION)),
     ]
     hdr = ["Año", "Vendedores", "GMV €/vend/mes", "Meses venta", "GMV anual", "Ingresos 17%"]
     for i, h in enumerate(hdr, 1):
@@ -678,8 +688,8 @@ def build():
             if c in (3, 5, 6):
                 money_fmt(ws_d.cell(4 + i, c))
 
-    # equilibrio Y3+ (opex conservador contenido + amortización)
-    fixed = 150 + 550 + 250 + 120 + 30 + 35 + 40 + 25 + 10 + (AMORT_ANUAL / 12)
+    # equilibrio Y3+ (opex conservador + RETA + amortización)
+    fixed = 400 + 458 + 300 + 150 + 25 + 30 + 40 + 25 + 10 + (AMORT_ANUAL / 12)
     ws_d["A10"] = "Umbral orientativo Y3+ (con amortización; opex contenido)"
     ws_d["A10"].font = Font(bold=True)
     ws_d["A11"] = "Gastos fijos mensuales ≈"
@@ -688,26 +698,26 @@ def build():
     ws_d["A12"] = "GMV mínimo mensual (÷17%)"
     ws_d["B12"] = round(fixed / COMISION, 2)
     money_fmt(ws_d["B12"])
-    ws_d["A13"] = "Con 11 vendedores → GMV/vend/mes"
-    ws_d["B13"] = round((fixed / COMISION) / 11, 2)
+    ws_d["A13"] = "Con 8 vendedores → GMV/vend/mes"
+    ws_d["B13"] = round((fixed / COMISION) / 8, 2)
     money_fmt(ws_d["B13"])
     ws_d["A15"] = "Objetivo financiero (conservador)"
     ws_d["A15"].font = Font(bold=True)
     ws_d["A16"] = "Inversión de referencia"
     ws_d["B16"] = INVERSION_REF
     money_fmt(ws_d["B16"])
-    ws_d["A17"] = "Aportacion socios (sin subvencion al 74%)"
-    ws_d["B17"] = INVERSION_REF * DIVIDENDO_OBJ_PCT
+    ws_d["A17"] = "Aportacion socios (Plan Viabilidad ≈17,8k)"
+    ws_d["B17"] = APORTACION_SOCIOS
     money_fmt(ws_d["B17"])
-    ws_d["A18"] = "Neto acumulado objetivo (5 años)"
-    ws_d["B18"] = INVERSION_REF * (1 + DIVIDENDO_OBJ_PCT)
+    ws_d["A18"] = "Aportacion si elegible 40k (≈10,4k)"
+    ws_d["B18"] = APORTACION_SOCIOS_40K_ELEGIBLE
     money_fmt(ws_d["B18"])
     cons = annual_totals("conservador")
     cum = sum(t["neto"] for t in cons)
     ws_d["A19"] = "Neto acumulado proyectado (conservador)"
     ws_d["B19"] = round(cum, 0)
     money_fmt(ws_d["B19"])
-    ws_d["C19"] = "OK" if cum >= INVERSION_REF * (1 + DIVIDENDO_OBJ_PCT) else "REVISAR"
+    ws_d["C19"] = "Pérdida esperada Y1–Y3; subvención sostiene"
     for c, w in enumerate([38, 14, 16, 12, 12, 14], 1):
         ws_d.column_dimensions[get_column_letter(c)].width = w
 
@@ -769,12 +779,14 @@ def build():
         clear_sheet(ws_n)
         notes = [
             ("GMV", "No es ingreso de la SL."),
-            ("Ingresos", "17% comisión sobre GMV."),
+            ("Ingresos", "17% comisión sobre GMV (mín. 4 €/pedido en operativa)."),
             ("Y1 suavizado", "Amortización y marketing comercial desde julio; H1 costes mínimos de estructura."),
-            ("3 PyG", "Conservador = referencia. Realista/Optimista = sensibilidad mensual completa."),
+            ("RETA", "Cuota neta orientativa Socio 2 incluida en Personal/RETA."),
+            ("Envío", "Tarifa plana ~6,50 € siempre al cliente; S.L. no absorbe portes."),
+            ("3 PyG", "Conservador = Plan Viabilidad §5. Realista/Optimista = sensibilidad."),
             ("Compras", "0 € — sin reventa de stock."),
             ("IS/IVA", "IS orientativo; IVA fuera de PyG."),
-            ("Subvenciones", "No incluidas como ingreso de explotación."),
+            ("Subvenciones", "No incluidas como ingreso de explotación (entran en caja al cobro)."),
             ("Dashboard", "Abrir hoja 00_KPI_Dashboard: gráficos dinámicos desde KPI_Datos / PyG."),
         ]
         ws_n["A1"] = "Tema"

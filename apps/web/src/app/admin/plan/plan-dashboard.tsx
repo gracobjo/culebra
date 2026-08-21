@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { PlanSimulator } from "@/components/admin/plan-simulator";
 import { formatPrice } from "@/lib/format";
 import {
   AVG_TICKET_EUR,
@@ -9,6 +10,7 @@ import {
   EXCEL_PUBLIC_PATH,
   GMV_BREAKEVEN_MONTHLY,
   NET_ACCUM_TARGET,
+  PARTNER_CONTRIBUTION,
   PLAN_SCENARIOS,
   accumulateNet,
   monthlyGmvProfile,
@@ -73,17 +75,19 @@ export function PlanDashboard({ live }: { live: LivePlanStats }) {
 
   return (
     <div className="space-y-8">
+      <PlanSimulator />
+
       <section className="rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="max-w-2xl">
             <p className="text-sm uppercase tracking-[0.18em] text-emerald-800">
-              Herramienta de gestión
+              Escenarios de referencia
             </p>
-            <h2 className="mt-1 text-xl font-semibold">Plan financiero 5 años</h2>
+            <h2 className="mt-1 text-xl font-semibold">Plan financiero 5 años (Excel / dossier)</h2>
             <p className="mt-2 text-sm text-stone-600">
-              Espejo operativo del Excel de cuenta de resultados y de los anexos §9.A / §9.B del
-              dossier. GMV ≠ ingreso de la S.L. (ingreso = comisión {Math.round(COMMISSION_RATE * 100)}{" "}
-              %).
+              Escenarios fijos del modelo (conservador / realista / optimista). Para decidir con
+              variables usa la simulación de arriba. GMV ≠ ingreso S.L. (comisión{" "}
+              {Math.round(COMMISSION_RATE * 100)} %).
             </p>
           </div>
           <a
@@ -149,7 +153,7 @@ export function PlanDashboard({ live }: { live: LivePlanStats }) {
         <h3 className="text-lg font-semibold">Proyección anual — {scenario.label}</h3>
         <p className="mt-1 text-sm text-stone-500">
           Referencia neto acumulado 5 años (caso base): ~{formatPrice(NET_ACCUM_TARGET)} (aceptable
-          vs aportación real ~10.400 €). Proyectado escenario:{" "}
+          vs aportación neta ~{formatPrice(PARTNER_CONTRIBUTION)}). Proyectado escenario:{" "}
           {formatPrice(scenario.netAccum5y)}.
         </p>
         <div className="mt-4 overflow-x-auto">

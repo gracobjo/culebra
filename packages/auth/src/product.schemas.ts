@@ -17,7 +17,15 @@ export const productVariantInputSchema = z.object({
 });
 
 export const productImageInputSchema = z.object({
-  url: z.string().trim().url().max(500),
+  url: z
+    .string()
+    .trim()
+    .max(500)
+    .refine(
+      (value) =>
+        value.startsWith("/uploads/") || z.string().url().safeParse(value).success,
+      { message: "URL de imagen no válida" },
+    ),
   altText: z.string().trim().max(200).optional(),
 });
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ProductRecord } from "@culebra/auth";
 import { formatPrice } from "@/lib/format";
+import { toPublicImageSrc } from "@/lib/product-image";
 
 // Mapa de slug de categoría → imagen placeholder en /public/categories/
 // Se usa cuando el productor aún no ha subido foto propia del producto.
@@ -33,9 +34,11 @@ const CATEGORY_PLACEHOLDER: Record<string, string> = {
   "productos-tradicionales":        "/categories/productos-tradicionales.png",
 };
 
-function getProductImage(product: ProductRecord): { src: string; isPlaceholder: boolean } {
+export function getProductImage(product: ProductRecord): { src: string; isPlaceholder: boolean } {
   const uploaded = product.images[0];
-  if (uploaded?.url) return { src: uploaded.url, isPlaceholder: false };
+  if (uploaded?.url) {
+    return { src: toPublicImageSrc(uploaded.url), isPlaceholder: false };
+  }
 
   const categoryName = (product.category?.name ?? "").toLowerCase();
   if (categoryName.includes("repost")) {
@@ -71,6 +74,7 @@ export function ProductCard({ product }: ProductCardProps) {
           alt={product.images[0]?.altText ?? product.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          unoptimized={imageSrc.startsWith("/uploads/")}
           className={`object-cover transition group-hover:scale-[1.02] ${isPlaceholder ? "opacity-80" : ""}`}
         />
         {soldOut ? (

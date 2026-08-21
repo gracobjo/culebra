@@ -3,7 +3,7 @@
  * Modelo_Cuenta_Resultados_Marketplace_5_anos.xlsx + anexos §9.A/§9.B del dossier).
  * Fuente de verdad operativa en panel admin: /admin/plan
  *
- * v4 (ago-2026): comisión 17 %, GMV prudente, sin envío gratis; prioriza elegibilidad de ayuda.
+ * v5 (ago-2026): GMV estrictamente prudente (14→125k), comisión 17 %, RETA, sin envío gratis.
  */
 
 export type PlanScenarioId = "conservador" | "realista" | "optimista";
@@ -20,12 +20,12 @@ export const COMMISSION_MIN_EUR = 4;
 export const SHIPPING_FLAT_EUR = 6.5;
 export const AVG_TICKET_EUR = 65;
 /** GMV mensuales orientativos Y3+ con opex contenido (~ gastos fijos ÷ 17 %) */
-export const GMV_BREAKEVEN_MONTHLY = 9_500;
+export const GMV_BREAKEVEN_MONTHLY = 8_065; // fijos ~1.250 € ÷ margen ~15,5 % (comisión 17 % − Stripe 1,5 %)
 export const INVESTMENT_REF = 40_000;
-export const SUBSIDY_AT_74_PCT = 29_600;
-export const PARTNER_CONTRIBUTION = 10_400; // 40k − 29,6k
+export const SUBSIDY_AT_74_PCT = 22_200; // 74 % sobre 30k elegibles (Plan Viabilidad)
+export const PARTNER_CONTRIBUTION = 17_800; // Plan Viabilidad: 40k − 22,2k (74% sobre 30k elegibles)
 export const DIVIDEND_TARGET = 0; // caso base no prioriza dividendos
-export const NET_ACCUM_TARGET = -3_680; // referencia dossier (aceptable vs aportación 10,4k)
+export const NET_ACCUM_TARGET = -16_586; // Excel conservador v5 (populate_pyg_excel)
 
 /** Pesos estacionales EOTR Zamora (viajeros 2024) — mismo criterio que populate_pyg_excel.py */
 export const SEASON_WEIGHTS = [
@@ -65,15 +65,15 @@ export const PLAN_SCENARIOS: Record<
     id: "conservador",
     label: "Conservador",
     description:
-      "Caso base de firma / justificación: GMV prudente, comisión 17 %, sin envío gratis.",
+      "Caso base: GMV estrictamente prudente, comisión 17 %, RETA, sin absorción de portes.",
     years: [
-      { year: 1, gmv: 16_000, revenue: 2_720, net: -4_380 },
-      { year: 2, gmv: 55_000, revenue: 9_350, net: -5_450 },
-      { year: 3, gmv: 90_000, revenue: 15_300, net: -1_600 },
-      { year: 4, gmv: 120_000, revenue: 20_400, net: 2_200 },
-      { year: 5, gmv: 145_000, revenue: 24_650, net: 5_550 },
+      { year: 1, gmv: 14_000, revenue: 2_380, net: -4_718 },
+      { year: 2, gmv: 48_000, revenue: 8_160, net: -7_872 },
+      { year: 3, gmv: 75_000, revenue: 12_750, net: -4_743 },
+      { year: 4, gmv: 100_000, revenue: 17_000, net: -1_432 },
+      { year: 5, gmv: 125_000, revenue: 21_250, net: 2_179 },
     ],
-    netAccum5y: -3_680,
+    netAccum5y: -16_586,
     vendorsY3: 8,
   },
   realista: {
@@ -108,19 +108,19 @@ export const PLAN_SCENARIOS: Record<
 
 /** Embudo Año 1 (dossier §9.B) — anclado al conservador */
 export const CONVERSION_Y1 = {
-  gmv: 16_000,
+  gmv: 14_000,
   ticket: AVG_TICKET_EUR,
-  ordersTotal: Math.round(16_000 / AVG_TICKET_EUR), // ~246
-  ordersPerMonth: 42,
+  ordersTotal: Math.round(14_000 / AVG_TICKET_EUR), // ~215
+  ordersPerMonth: 36,
   conversionRate: 0.02,
-  sessionsPerMonth: 2_100,
-  sessionsRange: [1_400, 2_800] as const,
-  adsBudgetMonthly: 250,
-  adsBudgetY1: 1_500,
+  sessionsPerMonth: 1_800,
+  sessionsRange: [1_200, 2_400] as const,
+  adsBudgetMonthly: 330,
+  adsBudgetY1: 2_000,
   cacTarget: 5,
   cacMax: 8,
   roasMin: 3.5,
-  commissionPerOrder: (16_000 * COMMISSION_RATE) / Math.round(16_000 / AVG_TICKET_EUR),
+  commissionPerOrder: (14_000 * COMMISSION_RATE) / Math.round(14_000 / AVG_TICKET_EUR),
 } as const;
 
 export const EXCEL_PUBLIC_PATH =

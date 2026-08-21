@@ -7,7 +7,7 @@ const links = [
   { href: "/admin/sandbox", label: "Sandbox" },
   { href: "/admin/piloto", label: "Grupo Piloto" },
   { href: "/admin/kpis", label: "KPIs artesanos" },
-  { href: "/admin/plan", label: "Plan financiero" },
+  { href: "/admin/plan", label: "Plan / simulación" },
   { href: "/admin/rentabilidad", label: "Rentabilidad" },
   { href: "/admin/rappels", label: "Rappels" },
   { href: "/admin/productores", label: "Productores" },

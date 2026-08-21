@@ -39,15 +39,34 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
 
   return (
     <PageShell width="md">
-      <Link href="/panel/proveedor/productos" className="text-sm text-emerald-800">
-        ← Volver a productos
-      </Link>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+        <Link href="/panel/proveedor/productos" className="text-emerald-800">
+          ← Mis productos
+        </Link>
+        {product.status === "PUBLISHED" ? (
+          <Link
+            href={`/productos/${product.slug}`}
+            className="text-stone-600 underline-offset-2 hover:underline"
+          >
+            Ver ficha pública
+          </Link>
+        ) : null}
+      </div>
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-        <h1 className="break-words text-2xl font-semibold sm:text-3xl">{product.name}</h1>
+        <div>
+          <p className="text-xs uppercase tracking-[0.2em] text-emerald-800">Editar producto</p>
+          <h1 className="mt-1 break-words text-2xl font-semibold sm:text-3xl">{product.name}</h1>
+        </div>
         <span className="rounded-full bg-stone-100 px-4 py-2 text-sm">
           {productStatusLabels[product.status] ?? product.status}
         </span>
       </div>
+      <p className="mt-4 text-sm text-stone-600">
+        La foto está al principio del formulario.{" "}
+        <a href="#foto" className="font-medium text-emerald-800 underline">
+          Ir a la foto
+        </a>
+      </p>
       {product.rejectionReason ? (
         <p className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-800">
           Motivo de rechazo: {product.rejectionReason}
