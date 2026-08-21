@@ -18,6 +18,16 @@ Tras el checkout, si `STRIPE_SECRET_KEY` es una clave `sk_...`:
 
 Si Stripe no esta configurado, el pedido queda en `PAYMENT_PENDING` (modo desarrollo).
 
+## Sandbox admin (sin Stripe real)
+
+En `/admin/sandbox` se puede simular el ciclo completo:
+
+1. Crear pedido (checkout real con usuario seed).
+2. Simular pago OK → `markOrderPaid` + creación de payouts retenidos 14 días.
+3. Confirmar + enviar, fast-forward de `releasesAt`, liberar payouts (marca `PAID` sin Transfer) y marcar entregado.
+
+Detalle operativo: [Manual de usuario §A4.5](./Manual_Usuario_Marketplace.md) · [Manual de desarrollador §B8.2](./Manual_Desarrollador_Marketplace.md) · [admin.md](./admin.md).
+
 ## Split a productores
 
 El productor elige en `/panel/proveedor/pagos`:

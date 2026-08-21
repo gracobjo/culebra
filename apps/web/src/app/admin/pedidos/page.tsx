@@ -26,7 +26,12 @@ export default async function AdminOrdersPage() {
               <span className="text-sm">{orderStatusLabels[order.status] ?? order.status}</span>
             </div>
             <p className="mt-1 text-sm text-stone-600">
-              {order.customerEmail} · {formatPrice(order.totalAmount)} · {formatDate(order.createdAt)}
+              {order.customerEmail} · Total {formatPrice(order.totalAmount)} ·{" "}
+              {formatDate(order.createdAt)}
+            </p>
+            <p className="mt-1 text-xs text-stone-500">
+              Desglose: productos (bruto artesanos) {formatPrice(order.subtotalGross)} + envío{" "}
+              {formatPrice(order.shippingAmount)} = {formatPrice(order.totalAmount)}
             </p>
           </li>
         ))}

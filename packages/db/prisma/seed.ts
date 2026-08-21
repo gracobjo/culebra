@@ -941,6 +941,44 @@ async function seedTourismModule() {
   }
 }
 
+async function seedPilotCategories() {
+  const pilotCategories: Array<{
+    name: string;
+    slug: string;
+    icon: string;
+    sortOrder: number;
+  }> = [
+    // Agroalimentario (catálogo gourmet de lanzamiento)
+    { name: "Miel", slug: "miel", icon: "🍯", sortOrder: 10 },
+    { name: "Embutidos de Caza", slug: "embutidos-de-caza", icon: "🦌", sortOrder: 20 },
+    { name: "Queso de Autor", slug: "queso-de-autor", icon: "🧀", sortOrder: 30 },
+    { name: "Vinos y Licores", slug: "vinos-y-licores", icon: "🍷", sortOrder: 40 },
+    { name: "Conservas y Mermeladas", slug: "conservas-y-mermeladas", icon: "🫙", sortOrder: 50 },
+    { name: "Repostería artesana", slug: "reposteria-artesana", icon: "🥖", sortOrder: 60 },
+    { name: "Aceites y condimentos", slug: "aceites-y-condimentos", icon: "🫒", sortOrder: 70 },
+    // Hostelería / turismo rural (efecto llamada territorial)
+    { name: "Restaurantes y mesones", slug: "restaurantes-y-mesones", icon: "🍽️", sortOrder: 110 },
+    { name: "Casas rurales", slug: "casas-rurales", icon: "🏡", sortOrder: 120 },
+    { name: "Hoteles y alojamientos", slug: "hoteles-y-alojamientos", icon: "🏨", sortOrder: 130 },
+    { name: "Bares y tapas", slug: "bares-y-tapas", icon: "🍺", sortOrder: 140 },
+    { name: "Catering y eventos", slug: "catering-y-eventos", icon: "🎉", sortOrder: 150 },
+    { name: "Turismo activo / experiencias", slug: "turismo-activo-experiencias", icon: "🥾", sortOrder: 160 },
+  ];
+
+  for (const item of pilotCategories) {
+    await prisma.pilotCategory.upsert({
+      where: { slug: item.slug },
+      create: item,
+      update: {
+        name: item.name,
+        icon: item.icon,
+        sortOrder: item.sortOrder,
+        isActive: true,
+      },
+    });
+  }
+}
+
 async function main() {
   console.log("Seeding roles...");
   await seedRoles();
@@ -962,17 +1000,21 @@ async function main() {
   console.log("Seeding tourism module (alojamientos, packs, cupones, afiliados)...");
   await seedTourismModule();
 
+  console.log("Seeding pilot categories...");
+  await seedPilotCategories();
+
   const roleCount = await prisma.role.count();
   const categoryCount = await prisma.category.count();
   const vendorCount = await prisma.vendor.count();
   const productCount = await prisma.product.count();
   const userCount = await prisma.user.count();
   const accommodationCount = await prisma.accommodation.count();
+  const pilotCategoryCount = await prisma.pilotCategory.count();
 
   console.log(
     `Seed completed: ${roleCount} roles, ${categoryCount} categories, ` +
     `${vendorCount} vendors, ${productCount} products, ${userCount} users, ` +
-    `${accommodationCount} accommodations.`
+    `${accommodationCount} accommodations, ${pilotCategoryCount} pilot categories.`
   );
 }
 

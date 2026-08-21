@@ -647,6 +647,10 @@ export async function shipVendorOrder(
 export type AdminOrderListItem = OrderListItem & {
   customerEmail: string;
   paymentStatus: string | null;
+  /** Suma de líneas de producto (base de liquidación a artesanos, antes de comisión). */
+  subtotalGross: string;
+  /** Envío a cargo del cliente (no forma parte del bruto del productor). */
+  shippingAmount: string;
 };
 
 export async function listOrdersForAdmin(params?: {
@@ -676,6 +680,8 @@ export async function listOrdersForAdmin(params?: {
         orderNumber: string;
         status: string;
         totalAmount: unknown;
+        subtotalGross: unknown;
+        shippingAmount: unknown;
         createdAt: Date;
         customerEmail: string;
         items: unknown[];
@@ -686,6 +692,8 @@ export async function listOrdersForAdmin(params?: {
         orderNumber: order.orderNumber,
         status: order.status,
         totalAmount: decimalToString(order.totalAmount),
+        subtotalGross: decimalToString(order.subtotalGross),
+        shippingAmount: decimalToString(order.shippingAmount ?? 0),
         vendorCount: order.vendorOrders.length,
         itemCount: order.items.length,
         createdAt: order.createdAt,

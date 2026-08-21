@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { PilotStatus, PilotTaskStatus } from "@prisma/client";
 import {
   createPilotProducer,
@@ -8,11 +8,12 @@ import {
   updateTaskStatus,
 } from "./actions";
 import {
-  PILOT_CATEGORIES,
   STATUS_META,
   TASK_STATUS_META,
   PHASE_LABELS,
-} from "./page";
+} from "./pilot-constants";
+import type { PilotCategoryRow } from "./pilot-category-manager";
+import type { RoadmapMonth, RoadmapStep } from "./pilot-roadmap";
 
 // ---------------------------------------------------------------------------
 // Types (replicated from Prisma to avoid deep import issues in client)
@@ -38,7 +39,7 @@ type Producer = {
   email: string | null;
   location: string | null;
   status: PilotStatus;
-  commissionPct: unknown; // Decimal
+  commissionPct: number;
   founderDiscount: boolean;
   notes: string | null;
   visitDate: Date | null;
@@ -118,25 +119,43 @@ function TaskRow({ task }: { task: Task }) {
 // Phase section
 // ---------------------------------------------------------------------------
 
-function PhaseSection({ phase, tasks }: { phase: number; tasks: Task[] }) {
+function PhaseSection({
+  phase,
+  tasks,
+  highlighted = false,
+}: {
+  phase: number;
+  tasks: Task[];
+  highlighted?: boolean;
+}) {
   const meta = PHASE_LABELS[phase];
   const done = tasks.filter((t) => t.status === "DONE").length;
   const pct = tasks.length > 0 ? Math.round((done / tasks.length) * 100) : 0;
 
   return (
-    <div className={`rounded-2xl border p-4 ${meta.color}`}>
+    <div
+      className={`rounded-2xl border p-4 ${meta.color} ${
+        highlighted ? "ring-2 ring-emerald-500 ring-offset-2" : ""
+      }`}
+    >
       <div className="flex items-center justify-between gap-2 mb-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wide text-stone-500">{meta.month}</span>
+          <span className="text-xs font-semibold uppercase tracking-wide text-stone-500">
+            {meta.month}
+          </span>
           <p className="text-sm font-medium text-stone-800">{meta.label}</p>
         </div>
-        <span className="text-xs font-semibold text-stone-500">{done}/{tasks.length}</span>
+        <span className="text-xs font-semibold text-stone-500">
+          {done}/{tasks.length}
+        </span>
       </div>
       <div className="mb-3 h-1.5 rounded-full bg-white/60">
         <div className="h-1.5 rounded-full bg-emerald-500" style={{ width: `${pct}%` }} />
       </div>
       <ul className="divide-y divide-white/50">
-        {tasks.map((t) => <TaskRow key={t.id} task={t} />)}
+        {tasks.map((t) => (
+          <TaskRow key={t.id} task={t} />
+        ))}
       </ul>
     </div>
   );
@@ -146,9 +165,23 @@ function PhaseSection({ phase, tasks }: { phase: number; tasks: Task[] }) {
 // Producer card
 // ---------------------------------------------------------------------------
 
-function ProducerCard({ producer }: { producer: Producer }) {
-  const [open, setOpen] = useState(false);
+function ProducerCard({
+  producer,
+  categories,
+  focusPhase = null,
+  forceOpen = false,
+}: {
+  producer: Producer;
+  categories: PilotCategoryRow[];
+  focusPhase?: 1 | 2 | 3 | null;
+  forceOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(forceOpen);
   const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (forceOpen) setOpen(true);
+  }, [forceOpen, focusPhase]);
 
   const tasksByPhase: Record<number, Task[]> = { 1: [], 2: [], 3: [] };
   for (const t of producer.tasks) {
@@ -159,19 +192,29 @@ function ProducerCard({ producer }: { producer: Producer }) {
   const doneTasks = producer.tasks.filter((t) => t.status === "DONE").length;
   const progress = totalTasks > 0 ? Math.round((doneTasks / totalTasks) * 100) : 0;
 
+  const phaseTasks =
+    focusPhase != null
+      ? (tasksByPhase[focusPhase] ?? [])
+      : [];
+  const phaseDone = phaseTasks.filter((t) => t.status === "DONE").length;
+
   const statusOrder: PilotStatus[] = [
     "IDENTIFIED", "CONTACTED", "NEGOTIATING", "ONBOARDED", "BETA_TESTING", "ACTIVE", "DECLINED",
   ];
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white overflow-hidden">
+    <div
+      className={`rounded-3xl border bg-white overflow-hidden ${
+        forceOpen ? "border-emerald-400 shadow-sm" : "border-stone-200"
+      }`}
+    >
       {/* Header */}
       <div
         className="flex cursor-pointer items-start gap-4 p-5 hover:bg-stone-50"
         onClick={() => setOpen((o) => !o)}
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-lg select-none">
-          {CATEGORY_ICONS[producer.category] ?? "🌿"}
+          {categoryIcon(producer.category, categories)}
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
@@ -179,7 +222,7 @@ function ProducerCard({ producer }: { producer: Producer }) {
             <StatusBadge status={producer.status} />
             {producer.founderDiscount && (
               <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
-                Fundador 10%
+                Fundador 12%
               </span>
             )}
           </div>
@@ -187,6 +230,11 @@ function ProducerCard({ producer }: { producer: Producer }) {
             {producer.category}
             {producer.location ? ` · ${producer.location}` : ""}
           </p>
+          {focusPhase != null && phaseTasks.length > 0 ? (
+            <p className="mt-1 text-xs font-medium text-emerald-800">
+              Fase {focusPhase}: {phaseDone}/{phaseTasks.length} tareas hechas
+            </p>
+          ) : null}
           <div className="mt-2 flex items-center gap-2">
             <div className="h-1.5 flex-1 rounded-full bg-stone-100">
               <div className="h-1.5 rounded-full bg-emerald-500" style={{ width: `${progress}%` }} />
@@ -200,7 +248,6 @@ function ProducerCard({ producer }: { producer: Producer }) {
       {/* Expanded */}
       {open && (
         <div className="border-t border-stone-100 p-5 space-y-5">
-          {/* Info del productor */}
           <div className="grid gap-3 sm:grid-cols-2 text-sm">
             {[
               ["Contacto", producer.contactPerson],
@@ -227,7 +274,6 @@ function ProducerCard({ producer }: { producer: Producer }) {
             ) : null}
           </div>
 
-          {/* Cambiar estado */}
           <div>
             <p className="text-xs font-medium uppercase tracking-wide text-stone-500 mb-2">Cambiar estado</p>
             <div className="flex flex-wrap gap-2">
@@ -247,21 +293,24 @@ function ProducerCard({ producer }: { producer: Producer }) {
             </div>
           </div>
 
-          {/* Notas */}
           {producer.notes ? (
             <div className="rounded-2xl bg-stone-50 p-3 text-sm text-stone-600 italic">
               {producer.notes}
             </div>
           ) : null}
 
-          {/* Tareas por fase */}
           <div className="space-y-3">
             <p className="text-xs font-medium uppercase tracking-wide text-stone-500">
               Tareas por fase
             </p>
             {[1, 2, 3].map((phase) =>
               tasksByPhase[phase]?.length ? (
-                <PhaseSection key={phase} phase={phase} tasks={tasksByPhase[phase]} />
+                <PhaseSection
+                  key={phase}
+                  phase={phase}
+                  tasks={tasksByPhase[phase]}
+                  highlighted={focusPhase === phase}
+                />
               ) : null,
             )}
           </div>
@@ -277,14 +326,34 @@ const CATEGORY_ICONS: Record<string, string> = {
   "Queso de Autor": "🧀",
   "Vinos y Licores": "🍷",
   "Conservas y Mermeladas": "🫙",
+  "Repostería artesana": "🥖",
+  "Aceites y condimentos": "🫒",
+  "Restaurantes y mesones": "🍽️",
+  "Casas rurales": "🏡",
+  "Hoteles y alojamientos": "🏨",
+  "Bares y tapas": "🍺",
+  "Catering y eventos": "🎉",
+  "Turismo activo / experiencias": "🥾",
 };
+
+function categoryIcon(name: string, categories: PilotCategoryRow[]): string {
+  const fromDb = categories.find((c) => c.name === name)?.icon;
+  return fromDb || CATEGORY_ICONS[name] || "🌿";
+}
 
 // ---------------------------------------------------------------------------
 // New producer form
 // ---------------------------------------------------------------------------
 
-function NewProducerForm({ onClose }: { onClose: () => void }) {
+function NewProducerForm({
+  onClose,
+  categories,
+}: {
+  onClose: () => void;
+  categories: PilotCategoryRow[];
+}) {
   const [pending, startTransition] = useTransition();
+  const activeCategories = categories.filter((c) => c.isActive);
 
   return (
     <form
@@ -305,7 +374,16 @@ function NewProducerForm({ onClose }: { onClose: () => void }) {
         <div>
           <label className="block text-xs font-medium text-stone-600 mb-1">Categoría *</label>
           <select name="category" required className="w-full rounded-xl border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
-            {PILOT_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+            {activeCategories.length === 0 ? (
+              <option value="">Sin categorías activas</option>
+            ) : (
+              activeCategories.map((c) => (
+                <option key={c.id} value={c.name}>
+                  {c.icon ? `${c.icon} ` : ""}
+                  {c.name}
+                </option>
+              ))
+            )}
           </select>
         </div>
         <div>
@@ -349,37 +427,60 @@ function NewProducerForm({ onClose }: { onClose: () => void }) {
 // Main board
 // ---------------------------------------------------------------------------
 
-export function PilotBoard({ producers }: { producers: Producer[] }) {
+export function PilotBoard({
+  producers,
+  categories,
+  focusMonth = null,
+  focusStep = null,
+}: {
+  producers: Producer[];
+  categories: PilotCategoryRow[];
+  focusMonth?: RoadmapMonth | null;
+  focusStep?: RoadmapStep | null;
+}) {
   const [showForm, setShowForm] = useState(false);
 
-  // Agrupar por categoría para detectar huecos en el catálogo gourmet
-  const coveredCategories = new Set(producers.filter(p => p.status !== "DECLINED").map((p) => p.category));
-  const missingCategories = PILOT_CATEGORIES.filter((c) => !coveredCategories.has(c));
+  const activeCategoryNames = categories.filter((c) => c.isActive).map((c) => c.name);
+  const coveredCategories = new Set(
+    producers.filter((p) => p.status !== "DECLINED").map((p) => p.category),
+  );
+  const missingCategories = activeCategoryNames.filter((c) => !coveredCategories.has(c));
 
   const active = producers.filter((p) => p.status !== "DECLINED");
   const declined = producers.filter((p) => p.status === "DECLINED");
 
+  const filteredActive =
+    focusStep?.statusFilter && focusStep.statusFilter.length > 0
+      ? active.filter((p) => focusStep.statusFilter!.includes(p.status))
+      : active;
+
+  const focusPhase = focusStep?.taskPhase ?? null;
+
   return (
     <div className="space-y-6">
       {/* Alerta de categorías sin cubrir */}
-      {missingCategories.length > 0 && (
+      {missingCategories.length > 0 && !focusMonth ? (
         <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm">
-          <p className="font-medium text-amber-800">Categorías del catálogo gourmet sin productor asignado:</p>
+          <p className="font-medium text-amber-800">Categorías activas sin productor asignado:</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {missingCategories.map((c) => (
               <span key={c} className="rounded-full bg-amber-100 border border-amber-200 px-3 py-0.5 text-xs font-medium text-amber-700">
-                {CATEGORY_ICONS[c]} {c}
+                {categoryIcon(c, categories)} {c}
               </span>
             ))}
           </div>
         </div>
-      )}
+      ) : null}
 
       {/* Controles */}
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-stone-500">
-          {active.length} productor{active.length !== 1 ? "es" : ""} en seguimiento
-          {declined.length > 0 ? ` · ${declined.length} declinado${declined.length !== 1 ? "s" : ""}` : ""}
+          {focusMonth
+            ? `${filteredActive.length} productor${filteredActive.length !== 1 ? "es" : ""} en Mes ${focusMonth}`
+            : `${active.length} productor${active.length !== 1 ? "es" : ""} en seguimiento`}
+          {!focusMonth && declined.length > 0
+            ? ` · ${declined.length} declinado${declined.length !== 1 ? "s" : ""}`
+            : ""}
         </p>
         {!showForm && (
           <button onClick={() => setShowForm(true)} className="btn btn-primary text-sm">
@@ -389,29 +490,49 @@ export function PilotBoard({ producers }: { producers: Producer[] }) {
       </div>
 
       {/* Formulario */}
-      {showForm && <NewProducerForm onClose={() => setShowForm(false)} />}
+      {showForm && (
+        <NewProducerForm onClose={() => setShowForm(false)} categories={categories} />
+      )}
 
       {/* Tarjetas activas */}
-      {active.length === 0 && !showForm ? (
+      {filteredActive.length === 0 && !showForm ? (
         <div className="rounded-3xl border border-dashed border-stone-300 p-10 text-center text-stone-400">
-          <p className="text-4xl mb-3">🌱</p>
-          <p className="font-medium">Aún no hay productores piloto registrados.</p>
-          <p className="text-sm mt-1">Añade los 5 candidatos del catálogo gourmet de lanzamiento.</p>
+          <p className="text-4xl mb-3">{focusMonth ? "🔍" : "🌱"}</p>
+          <p className="font-medium">
+            {focusMonth
+              ? `Nadie está en el estado de Mes ${focusMonth} todavía.`
+              : "Aún no hay productores piloto registrados."}
+          </p>
+          <p className="text-sm mt-1">
+            {focusMonth
+              ? "Cambia el estado de un productor o quita el filtro de la hoja de ruta."
+              : "Añade los candidatos del catálogo de lanzamiento."}
+          </p>
         </div>
       ) : (
         <div className="grid gap-4 lg:grid-cols-2">
-          {active.map((p) => <ProducerCard key={p.id} producer={p} />)}
+          {filteredActive.map((p) => (
+            <ProducerCard
+              key={p.id}
+              producer={p}
+              categories={categories}
+              focusPhase={focusPhase}
+              forceOpen={Boolean(focusMonth)}
+            />
+          ))}
         </div>
       )}
 
-      {/* Declinados (colapsados) */}
-      {declined.length > 0 && (
+      {/* Declinados (colapsados) — solo sin filtro de mes */}
+      {!focusMonth && declined.length > 0 && (
         <details className="rounded-2xl border border-stone-200">
           <summary className="cursor-pointer px-5 py-3 text-sm text-stone-500 hover:bg-stone-50">
             {declined.length} productor{declined.length !== 1 ? "es" : ""} declinado{declined.length !== 1 ? "s" : ""}
           </summary>
           <div className="grid gap-3 p-4 lg:grid-cols-2">
-            {declined.map((p) => <ProducerCard key={p.id} producer={p} />)}
+            {declined.map((p) => (
+              <ProducerCard key={p.id} producer={p} categories={categories} />
+            ))}
           </div>
         </details>
       )}
@@ -422,7 +543,11 @@ export function PilotBoard({ producers }: { producers: Producer[] }) {
           Referencia — Checklist de cada fase
         </p>
         <div className="grid gap-4 sm:grid-cols-3 text-xs text-stone-600">
-          <div>
+          <div
+            className={`rounded-2xl p-3 ${
+              focusPhase === 1 ? "bg-amber-100 ring-2 ring-amber-400" : ""
+            }`}
+          >
             <p className="font-semibold text-amber-700 mb-1">Fase 1 (Mes 2) · Selección</p>
             <ul className="space-y-0.5 list-disc list-inside">
               <li>Investigar empresa y catálogo</li>
@@ -430,23 +555,31 @@ export function PilotBoard({ producers }: { producers: Producer[] }) {
               <li>Verificar no-perecederos</li>
             </ul>
           </div>
-          <div>
-            <p className="font-semibold text-blue-700 mb-1">Fase 2 (Mes 3) · Captación</p>
+          <div
+            className={`rounded-2xl p-3 ${
+              focusPhase === 2 ? "bg-blue-100 ring-2 ring-blue-400" : ""
+            }`}
+          >
+            <p className="font-semibold text-blue-700 mb-1">Fase 2 (Mes 3–4) · Captación / onboarding</p>
             <ul className="space-y-0.5 list-disc list-inside">
               <li>Visita presencial</li>
-              <li>Oferta Fundadores 10%</li>
+              <li>Oferta Fundadores 12%</li>
               <li>Fotografía + fichas IA</li>
               <li>Firma contrato + Stripe</li>
               <li>Depósito stock trastienda</li>
             </ul>
           </div>
-          <div>
+          <div
+            className={`rounded-2xl p-3 ${
+              focusPhase === 3 ? "bg-violet-100 ring-2 ring-violet-400" : ""
+            }`}
+          >
             <p className="font-semibold text-violet-700 mb-1">Fase 3 (Mes 5) · Beta</p>
             <ul className="space-y-0.5 list-disc list-inside">
               <li>Pedidos simulados (Bizum + tarjeta)</li>
               <li>Verificar SMS/email artesano</li>
-              <li>Auditar entrega 24/48h Madrid</li>
-              <li>Validar split 10%/90% Stripe</li>
+              <li>Auditar entrega 24/48h (demanda nacional)</li>
+              <li>Validar split 12%/88% Stripe</li>
               <li>Recoger testimonio marketing</li>
             </ul>
           </div>

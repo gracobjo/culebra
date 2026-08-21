@@ -5,7 +5,7 @@
 
 ## Estado
 
-FASE 11 completada: panel web para moderar productores, productos, contratos, pedidos, liquidaciones y usuarios.
+FASE 11 completada: panel web para moderar productores, productos, contratos, pedidos, liquidaciones y usuarios. Ampliado con KPIs, plan/simulador, piloto, sandbox y turismo.
 
 ## Acceso
 
@@ -26,19 +26,36 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin/liquidaciones` | Payouts a productores |
 | `/admin/usuarios` | Suspender o reactivar cuentas |
 | `/admin/kpis` | KPIs artesanos |
-| `/admin/plan` | Plan financiero 5 años (Excel + embudo §9.B + GMV real) |
+| `/admin/plan` | Plan financiero 5 años + simulador (sliders / gráficos) |
 | `/admin/rentabilidad` | Rentabilidad por transaccion |
-| `/admin/rappels` | Rappels teoricos |
-| `/admin/piloto` | Grupo piloto |
-| `/admin/sandbox` | Simulacion end-to-end |
+| `/admin/rappels` | Rappels: proyección, cierre de año y pendientes de abono |
+| `/admin/piloto` | Grupo piloto (productores fundadores + CRUD categorías BD) |
+| `/admin/sandbox` | Simulacion end-to-end sin Stripe real |
+| `/admin/auditoria` | Logs de auditoria |
 
 Las reglas de comision se gestionan en la ficha del productor (`/admin/productores/:id`):
 
-- **Comision por defecto de la plataforma:** 15 %.
-- Al **aprobar** un productor (`ACTIVE`) se crea regla al 15 % si no tenia ninguna.
+- **Comision por defecto de la plataforma:** **17 %** (`DEFAULT_MARKETPLACE_COMMISSION_PERCENT`).
+- Al **aprobar** un productor (`ACTIVE`) se crea regla al porcentaje por defecto si no tenia ninguna.
 - Para **subir o bajar** la comision: introduce el nuevo % y pulsa *Actualizar comision (%)*. Solo aplica a pedidos futuros.
+- Productores piloto / fundadores pueden acordar **12 %** el primer año (ver plan y clausula de rappels).
 
 Ver detalle en `docs/commissions.md`.
+
+## Sandbox (`/admin/sandbox`)
+
+Valida el ciclo completo en local. Flujo:
+
+1. Crear pedido → `PAYMENT_PENDING`
+2. Simular pago OK → `PAID` + payout retenido 14 dias
+3. Confirmar + Enviar → VendorOrder `SHIPPED`
+4. Fast-forward retencion → adelanta `releasesAt` (no libera dinero)
+5. Liberar payouts → payout `PAID` (sin Stripe)
+6. Marcar entregado → `DELIVERED` (boton activo solo con lineas `SHIPPED`)
+
+Cada accion redirige con query (`?created=`, `?paid=`, `?shipped=`, `?retention=`, `?released=`, `?delivered=` o `?error=`) y muestra banner. Codigo: `apps/web/src/app/admin/sandbox/`.
+
+Manual de usuario §A4.5 y manual de desarrollador §B8.2.
 
 ## Turismo (admin)
 

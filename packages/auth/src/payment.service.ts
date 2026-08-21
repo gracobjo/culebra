@@ -397,17 +397,20 @@ export async function markOrderPaid(params: {
   paymentIntentId?: string;
   chargeId?: string;
 }) {
-  const payment = params.paymentIntentId
+  let payment = params.paymentIntentId
     ? await prisma.payment.findFirst({
         where: { stripePaymentIntentId: params.paymentIntentId },
         include: { order: true },
       })
-    : params.orderNumber
-      ? await prisma.payment.findFirst({
-          where: { order: { orderNumber: params.orderNumber } },
-          include: { order: true },
-        })
-      : null;
+    : null;
+
+  // Si el PI aún no está guardado (sandbox / race del webhook), localizar por pedido.
+  if (!payment && params.orderNumber) {
+    payment = await prisma.payment.findFirst({
+      where: { order: { orderNumber: params.orderNumber } },
+      include: { order: true },
+    });
+  }
 
   if (!payment) {
     return null;

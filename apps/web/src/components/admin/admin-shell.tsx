@@ -1,24 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PageShell } from "@/components/layout/page-shell";
-
-const links = [
-  { href: "/admin", label: "Resumen" },
-  { href: "/admin/sandbox", label: "Sandbox" },
-  { href: "/admin/piloto", label: "Grupo Piloto" },
-  { href: "/admin/kpis", label: "KPIs artesanos" },
-  { href: "/admin/plan", label: "Plan / simulación" },
-  { href: "/admin/rentabilidad", label: "Rentabilidad" },
-  { href: "/admin/rappels", label: "Rappels" },
-  { href: "/admin/productores", label: "Productores" },
-  { href: "/admin/productos", label: "Productos" },
-  { href: "/admin/turismo", label: "Turismo" },
-  { href: "/admin/contratos", label: "Contratos" },
-  { href: "/admin/pedidos", label: "Pedidos" },
-  { href: "/admin/liquidaciones", label: "Liquidaciones" },
-  { href: "/admin/usuarios", label: "Usuarios" },
-  { href: "/admin/auditoria", label: "Auditoria" },
-];
+import { AdminNav } from "@/components/admin/admin-nav";
 
 export function AdminShell({
   title,
@@ -47,17 +30,7 @@ export function AdminShell({
           <h1 className="mt-1 text-2xl font-semibold sm:text-3xl">{title}</h1>
         </div>
       </div>
-      <nav className="mt-6 flex flex-wrap gap-2">
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="inline-flex min-h-10 items-center rounded-full border border-stone-300 px-4 py-2 text-sm hover:border-emerald-800"
-          >
-            {link.label}
-          </Link>
-        ))}
-      </nav>
+      <AdminNav />
       <div className="mt-8">{children}</div>
     </PageShell>
   );

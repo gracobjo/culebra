@@ -86,8 +86,8 @@ Rutas típicas:
                  desistimiento). El cliente puede devolver sin preguntas.
 
 3. SPLIT       → Stripe divide el importe automáticamente:
-                   · 15% → comisión del marketplace (S.L.)
-                   · 85% → payout del productor artesano
+                   · 17% → comisión del marketplace (S.L.) por defecto
+                   · resto → payout del productor artesano
                    · ~1–2% → comisión propia de Stripe (descontada del total)
 
 4. LIBERACIÓN  → Al día 15, el CronJob nocturno comprueba los payouts
@@ -178,16 +178,18 @@ El flujo de productos está diseñado para que el productor:
 
 Flujo recomendado:
 1. Ve al panel productor:
-   - `/panel/proveedor/productos`
+   - `/panel/proveedor/productos` (**Mis productos**)
    - pulsa **“Nuevo producto”**.
 2. Rellena los datos requeridos:
    - `Nombre`
    - `Categoría`
    - `Precio (EUR)`
-3. (Opcional) Sube la foto del producto.
+3. (Recomendado) Sube la **foto propia** del producto al inicio del formulario (`#foto`).
    - Si no subes foto, el sistema muestra un PNG por defecto según la categoría.
-4. Pulsa **“Crear producto”**.
-   - El producto se guarda inicialmente en `DRAFT`.
+   - En la lista «Mis productos» verás miniatura, aviso de productos sin foto y el botón **Añadir foto** / **Cambiar foto**.
+4. Pulsa **“Crear producto”** / **“Guardar cambios”**.
+   - La foto se sube al servidor y la URL se guarda al guardar el formulario.
+   - El producto se guarda inicialmente en `DRAFT` (alta) o mantiene su estado (edición).
 5. Pulsa **“Enviar a revisión”**.
    - Solo se habilita si el producto está en `DRAFT` o `REJECTED`.
 
@@ -201,6 +203,7 @@ Requisito de contrato:
 Publicación y visibilidad:
 - El catálogo público `/productos` muestra únicamente productos en estado `PUBLISHED`.
 - Hasta que el admin publique, el producto no aparecerá en el catálogo.
+- Si eres el dueño de la ficha publicada, verás un aviso en la ficha pública con acceso rápido a editar / cambiar foto.
 
 #### 4) Edición de productos publicados
 
@@ -255,26 +258,44 @@ Más detalle: [payments.md](./payments.md) y [commissions.md](./commissions.md).
 
 #### 3) Rappels por productor / por tramo
 
-- Panel `/admin/rappels`: calcula tramos por facturación anual y “rappel” anual (abono teórico).
+- Panel `/admin/rappels`: proyección en vivo, cierre de año (`RappelSettlement`) y abono (transferencia o compensación).
 
 #### 4) Grupo Piloto (Mes 2–6)
 
 - Panel `/admin/piloto`:
-  - gestión de 5 productores piloto,
+  - gestión de productores piloto (objetivo: 5),
   - checklist por fase (selección, captación puerta a puerta, beta/ensayo),
-  - estado del onboarding (y tareas por productor).
+  - estado del onboarding y tareas por productor,
+  - KPIs de progreso del programa (onboarded/activos, tareas completadas),
+  - **CRUD de categorías** (agro + hostelería/turismo) persistidas en BD; el desplegable del alta usa solo categorías activas.
 
 #### 5) Sandbox (validación rápida end-to-end)
 
-- Panel `/admin/sandbox`:
-  - crea un pedido sandbox (listo para pago),
-  - simula pago OK sin Stripe real,
-  - simula confirmación + envío por productor,
-  - fast-forward retención de payouts,
-  - libera payouts en modo sandbox,
-  - marca entregado.
+Panel `/admin/sandbox`. Sirve para validar en local el flujo real **sin Stripe real**. Cada paso muestra un banner de éxito o error en la parte superior.
 
-#### 6) Turismo territorial (fases 2–3)
+**Orden recomendado:**
+
+| Paso | Botón | Qué ocurre | Estados resultantes | Avisos |
+|------|-------|------------|---------------------|--------|
+| 1 | **Crear pedido sandbox** | Checkout real con usuario seed (`laura.garcia@example.com`) y un producto publicado con stock | Pedido `PAYMENT_PENDING`, pago `PAYMENT_PENDING`, VendorOrder `PENDING` | Email comprador + email artesano (+ Telegram admin si está configurado) |
+| 2 | **Simular pago OK** | Simula webhook Stripe; crea payout retenido 14 días | Pedido `PAID`, pago `PAYMENT_PAID`, payout `PENDING` + retenido | Telegram admin (pago confirmado) |
+| 3 | **Confirmar + Enviar** | Como el panel productor: confirma y marca envío con tracking `SANDBOX-…` | VendorOrder `SHIPPED`, pedido `SHIPPED` | Email de envío al comprador |
+| 4 | **Fast-forward retención** | Adelanta `releasesAt` al pasado; **no** libera el dinero | Payout sigue retenido, pero ya “vencido” | Solo banner en pantalla |
+| 5 | **Liberar payouts** | Simula transferencia al artesano (sin llamar a Stripe) | Payout `PAID`, `heldForWithdrawal=false` | Solo banner en pantalla |
+| 6 | **Marcar entregado** | Solo activo si hay líneas en `SHIPPED` | VendorOrder `DELIVERED` | Banner en pantalla |
+
+Notas:
+
+- «Marcar entregado» se habilita cuando el VendorOrder está en `SHIPPED` y se desactiva al pasar a `DELIVERED`.
+- «Fast-forward» y «Liberar payouts» requieren un payout retenido (paso 2).
+- En local, los emails se imprimen en la terminal del servidor (`[EMAIL] To: …`).
+- Errores de consola del tipo *“message channel closed”* suelen ser de **extensiones del navegador**, no del marketplace.
+
+#### 6) Plan / simulación financiera
+
+- Panel `/admin/plan`: PyG base del plan de viabilidad + **simulador** (comisión, fijos, RETA, marketing, ticket, escala GMV) con gráficos de decisión.
+
+#### 7) Turismo territorial (fases 2–3)
 
 - Panel `/admin/turismo`:
   - alta de **alojamientos** (enlace de reserva Booking/web/WhatsApp, productos relacionados),

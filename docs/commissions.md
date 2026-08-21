@@ -39,6 +39,15 @@ Tramos anuales (Opción A — rappel **retroactivo** al cierre del año natural;
 
 Detalle contractual: [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md). Panel: `/admin/rappels`.
 
+### Liquidacion anual (`RappelSettlement`)
+
+1. Durante el año la proyección en `/admin/rappels` es solo estimativa (pedidos no cancelados/devueltos).
+2. **Cerrar año** congela un `RappelSettlement` por productor con rappel > 0 (`PENDING`, vencimiento ≈ 1 de marzo = +60 días).
+3. Importe = facturación neta del año × % del tramo (3 % Plata / 5 % Oro).
+4. Admin marca abonado: `TRANSFER` o `PAYOUT_OFFSET` (compensación en liquidaciones). El productor lo ve en `/panel/proveedor/liquidaciones`.
+
+Codigo: `apps/web/src/lib/rappels.ts`, `apps/web/src/app/admin/rappels/`.
+
 ### Ejemplo (producto 100 €, sin reglas ni contrato)
 
 | Concepto | Importe |

@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { getEffectiveCommissionPercent, getVendorByUserId, listCommissionRulesForUser, listPayoutsForVendor } from "@culebra/auth";
 import { DEFAULT_MARKETPLACE_COMMISSION_PERCENT } from "@culebra/domain";
 import type { CommissionRuleRecord, PayoutRecord } from "@culebra/auth";
+import { prisma } from "@culebra/db";
 import { formatDate, formatPrice } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 import { RetryPayoutsButton } from "@/components/vendor/retry-payouts-button";
@@ -35,21 +36,31 @@ export default async function VendorSettlementsPage() {
   let payouts;
   let rules;
   let effectiveCommission;
+  let rappelSettlements: Awaited<ReturnType<typeof prisma.rappelSettlement.findMany>> = [];
   try {
     const vendor = await getVendorByUserId(session.user.id);
     if (!vendor) {
       throw new Error("VENDOR_NOT_FOUND");
     }
-    [payouts, rules, effectiveCommission] = await Promise.all([
+    [payouts, rules, effectiveCommission, rappelSettlements] = await Promise.all([
       listPayoutsForVendor(session.user.id),
       listCommissionRulesForUser(session.user.id),
       getEffectiveCommissionPercent(vendor.id),
+      prisma.rappelSettlement.findMany({
+        where: { vendorId: vendor.id },
+        orderBy: [{ year: "desc" }],
+      }),
     ]);
   } catch {
     redirect("/quiero-vender");
   }
 
   const activeRules = rules.filter((rule: CommissionRuleRecord) => rule.isActive);
+  const rappelStatusLabels: Record<string, string> = {
+    PENDING: "Pendiente de abono",
+    PAID: "Abonado",
+    CANCELLED: "Cancelado",
+  };
 
   return (
     <PageShell width="lg">
@@ -111,6 +122,59 @@ export default async function VendorSettlementsPage() {
           </ul>
         )}
       </section>
+
+      {rappelSettlements.length > 0 ? (
+        <section className="mt-8 rounded-3xl border border-amber-200 bg-amber-50/40 p-5 sm:p-6">
+          <h2 className="text-lg font-semibold">Rappels por volumen</h2>
+          <p className="mt-2 text-sm text-stone-600">
+            Abono anual según tramo (Plata/Oro) tras el cierre del año natural.
+          </p>
+          <ul className="mt-4 space-y-3">
+            {rappelSettlements.map((r) => (
+              <li
+                key={r.id}
+                className="rounded-xl border border-amber-100 bg-white px-4 py-3 text-sm"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="font-medium">
+                    Año {r.year} · {r.tierName}
+                  </span>
+                  <span
+                    className={
+                      r.status === "PENDING"
+                        ? "text-amber-800"
+                        : r.status === "PAID"
+                          ? "text-emerald-800"
+                          : "text-stone-500"
+                    }
+                  >
+                    {rappelStatusLabels[r.status] ?? r.status}
+                  </span>
+                </div>
+                <p className="mt-2 text-stone-600">
+                  Facturación {formatPrice(Number(r.annualRevenue))} · Rappel{" "}
+                  <strong>{formatPrice(Number(r.rebateAmount))}</strong>
+                </p>
+                {r.status === "PENDING" ? (
+                  <p className="mt-1 text-xs text-amber-700">
+                    Vence el {formatDate(r.dueAt)}
+                  </p>
+                ) : null}
+                {r.status === "PAID" && r.paidAt ? (
+                  <p className="mt-1 text-xs text-stone-500">
+                    Abonado el {formatDate(r.paidAt)}
+                    {r.paymentMethod === "TRANSFER"
+                      ? " · transferencia"
+                      : r.paymentMethod === "PAYOUT_OFFSET"
+                        ? " · compensación en liquidaciones"
+                        : ""}
+                  </p>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <section className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

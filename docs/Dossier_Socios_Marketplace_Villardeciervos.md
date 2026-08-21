@@ -173,7 +173,7 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 - Sin rappel sobre pedidos cancelados o devueltos.
 - Cada año se calcula de forma independiente (no consolida derechos al año siguiente).
 - Modificación de tramos: preaviso mínimo **3 meses**; sin efecto retroactivo sobre el año en curso.
-- Control: panel admin `/admin/rappels` (y Excel al inicio si hace falta).
+- Control: panel admin `/admin/rappels` con proyección en vivo, cierre de año (`RappelSettlement`) y marcar abonado (transferencia o compensación). Vista productor en liquidaciones.
 
 Texto contractual listo: [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) y cláusula en `Legal_NDA_Acuerdo_Confidencialidad.md` (adhesión productor).
 

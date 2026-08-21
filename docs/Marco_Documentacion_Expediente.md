@@ -219,6 +219,8 @@ El archivo `Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md` es un 
 4. No prometer en proyecto lo que no se pueda demostrar en justificación.  
 5. Registrar cada euro subvencionable con su cadena documental completa.
 
+Materiales de captación / demos (PPTX, PNG, MP4): [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md).
+
 ---
 
 *Documento interno de metodología. No sustituye las bases reguladoras de cada convocatoria.*

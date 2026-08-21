@@ -68,7 +68,7 @@ RF-11 Panel Rentabilidad
 
 RF-12 Panel Rappels
 
-- Debe calcular tramos y rappel teórico por productor en base a facturación anual.
+- Debe calcular tramos y rappel por productor en base a facturación anual; al cierre del año natural congela liquidaciones `RappelSettlement` (pendiente de abono → abonado).
 
 RF-13 Grupo Piloto
 

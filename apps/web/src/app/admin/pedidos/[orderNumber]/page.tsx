@@ -38,9 +38,21 @@ export default async function AdminOrderDetailPage({ params }: PageProps) {
             <span>{formatPrice(item.subtotalGross)}</span>
           </li>
         ))}
+        <li className="flex justify-between border-t border-stone-200 pt-2 text-stone-600">
+          <span>Productos (bruto artesanos)</span>
+          <span>{formatPrice(order.subtotalGross)}</span>
+        </li>
+        <li className="flex justify-between text-stone-600">
+          <span>Envío (a cargo del cliente)</span>
+          <span>{formatPrice(order.shippingAmount)}</span>
+        </li>
         <li className="flex justify-between border-t border-stone-200 pt-2 font-medium">
-          <span>Total</span>
+          <span>Total cobrado al cliente</span>
           <span>{formatPrice(order.totalAmount)}</span>
+        </li>
+        <li className="pt-1 text-xs text-stone-500">
+          El total = productos + envío. La comisión del marketplace se aplica solo sobre el bruto
+          de productos; el envío no entra en la liquidación del artesano.
         </li>
       </ul>
     </AdminShell>

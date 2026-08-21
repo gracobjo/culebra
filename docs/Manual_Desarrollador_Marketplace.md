@@ -43,30 +43,43 @@ Especificacion OpenAPI: `apps/api/src/openapi/spec.ts` — activada por defecto 
 
 Flujo implementado (alto nivel):
 
-- Tras pago confirmado (`checkout.session.completed` / `payment_intent.succeeded`) el sistema marca el pedido como pagado.
+- Tras pago confirmado (`checkout.session.completed` / `payment_intent.succeeded`) el sistema marca el pedido como pagado (`markOrderPaid`).
 - Al marcar el pedido como pagado, se crean payouts para cada `VendorOrder`, quedando:
   - `heldForWithdrawal=true`
-  - `releasesAt = createdAt + 14 días`
-- Liberación:
-  - mediante cron/webhook (`releaseMaturedPayouts`) o en sandbox actual (actualiza payouts directamente).
+  - `releasesAt = now + 14 días`
+- Liberación en producción:
+  - cron `releaseMaturedPayouts` (`/api/cron/release-payouts`) cuando `releasesAt` ha vencido.
+- Liberación en sandbox admin:
+  1. asociar un `stripePaymentIntentId` sintético al `Payment`,
+  2. `markOrderPaid({ orderNumber, paymentIntentId })`,
+  3. opcionalmente adelantar `releasesAt` (fast-forward),
+  4. marcar payout `PAID` sin llamar a Stripe.
+
+**Importante (`markOrderPaid`):** si se pasa `paymentIntentId` que aún no está en BD, la función hace fallback por `orderNumber`. El sandbox primero hace `payment.updateMany` con el PI sintético y después llama a `markOrderPaid` (mismo patrón que el webhook).
 
 Archivos clave:
 
 - `packages/auth/src/payment.service.ts`
+- `apps/web/src/app/admin/sandbox/actions.ts`
 - `apps/web/src/app/api/cron/release-payouts/route.ts`
 - `apps/web/src/app/api/stripe/webhook/route.ts`
 
-### B5. Emails transaccionales
+### B5. Emails y notificaciones
 
-Templates y envío:
+Templates y envío (`packages/auth/src/email.service.ts`):
 
-- Confirmación de pedido: `sendOrderConfirmationEmail`
-- Envío: `sendShipmentNotificationEmail`
+| Evento | Destinatario | Función |
+|--------|--------------|---------|
+| Checkout / pedido creado | Comprador | `sendOrderConfirmationEmail` |
+| Checkout | Cada artesano del pedido | `sendVendorNewOrderEmail` |
+| Marca envío (`SHIPPED`) | Comprador | `sendShipmentNotificationEmail` |
 
-Arquitectura:
+En desarrollo sin proveedor SMTP, los emails se imprimen en consola: `[EMAIL] To: … | Subject: …`.
 
-- `packages/auth/src/email.service.ts` (proveedor configurable / dev console)
-- Llamadas desde `checkout.service.ts` y `order.service.ts`
+Telegram (best-effort, `notifications.service.ts`):
+
+- `notifyCheckout` tras checkout
+- `notifyPaymentConfirmed` tras `markOrderPaid`
 
 ### B6. Documentos PDF (pedidos y cambios de producto)
 
@@ -108,14 +121,71 @@ Flujo:
   - validación de que el producto está en el pedido,
   - prevención de duplicidad.
 
-### B8. Admin: KPIs, rentabilidad, rappels, piloto, sandbox y turismo
+### B8. Admin: KPIs, rentabilidad, rappels, piloto, sandbox, plan y turismo
 
-- `apps/web/src/app/admin/kpis/page.tsx`
-- `apps/web/src/app/admin/rentabilidad/page.tsx`
-- `apps/web/src/app/admin/rappels/page.tsx`
-- `apps/web/src/app/admin/piloto/*`
-- `apps/web/src/app/admin/sandbox/*`
-- `apps/web/src/app/admin/turismo/*` — alojamientos, packs, cupones, afiliados
+| Ruta | Código |
+|------|--------|
+| KPIs | `apps/web/src/app/admin/kpis/page.tsx` |
+| Rentabilidad | `apps/web/src/app/admin/rentabilidad/page.tsx` |
+| Rappels | `apps/web/src/app/admin/rappels/page.tsx`, `actions.ts`, `lib/rappels.ts` |
+| Plan + simulador | `apps/web/src/app/admin/plan/*`, `lib/financial-simulation.ts`, `components/admin/plan-simulator.tsx` |
+| Piloto | `apps/web/src/app/admin/piloto/*` |
+| Sandbox | `apps/web/src/app/admin/sandbox/*` |
+| Turismo | `apps/web/src/app/admin/turismo/*` |
+
+#### B8.1 Grupo piloto — Server vs Client
+
+- `page.tsx` es **Server Component** (puede exportar `metadata` y cargar datos con Prisma).
+- `pilot-board.tsx` / `pilot-workspace.tsx` son Client Components.
+- Las constantes de estado/fase viven en `pilot-constants.ts`.
+- **Categorías:** modelo `PilotCategory` (CRUD admin persistente). UI: `pilot-category-manager.tsx`. Acciones: `createPilotCategory` / `updatePilotCategory` / `deletePilotCategory` (soft-delete si hay productores usando el nombre).
+- Seed inicial: agro (miel, embutidos, queso, vinos, conservas, repostería, aceites) + hostelería (restaurantes, casas rurales, hoteles, bares, catering, turismo activo).
+- **Ficha de propuesta de valor:** modelo `PilotValueProposition`, ruta `/admin/piloto/[id]/propuesta` (editor + `?print=1`).
+- Hoja de ruta Mes 2–6: `pilot-roadmap.ts` + filtro en `pilot-workspace.tsx`.
+- **No** importar constantes desde `page.tsx` hacia un Client Component: Next trataría la página como client y fallaría el export de `metadata`.
+
+#### B8.2 Sandbox — acciones y redirect con feedback
+
+Server actions en `apps/web/src/app/admin/sandbox/actions.ts`:
+
+| Acción | Query de éxito | Notas |
+|--------|----------------|-------|
+| `createSandboxOrder` | `?created=` | Requiere seed consumer + producto PUBLISHED con stock |
+| `simulatePaymentOk` | `?paid=` | Asocia PI sandbox + `markOrderPaid` |
+| `simulateConfirmAndShip` | `?shipped=` | `PENDING`→`CONFIRMED`→`SHIPPED` |
+| `simulateFastForwardRetention` | `?retention=` | Solo mueve `releasesAt` al pasado |
+| `simulateReleasePayouts` | `?released=` | Marca payout `PAID` sin Stripe |
+| `simulateDeliver` | `?delivered=` | Solo líneas en `SHIPPED` |
+
+UI:
+
+- Botones con `useFormStatus` (`sandbox-submit-button.tsx`).
+- Banners según `searchParams`.
+- «Marcar entregado» habilitado si `any(vo.status === "SHIPPED")` (no si ya están todos `DELIVERED`).
+
+Tras cambios en `packages/auth`, recompilar: `npm run build --workspace @culebra/auth` (Next resuelve `@culebra/auth` a `dist/`).
+
+#### B8.3 Rappels — liquidación anual (`RappelSettlement`)
+
+Política Opción A (retroactiva): durante el año se cobra siempre el 17 %; al cierre del año natural se congela el abono.
+
+| Pieza | Ubicación |
+|-------|-----------|
+| Tramos + cálculo | `apps/web/src/lib/rappels.ts` |
+| Cerrar año / marcar abonado | `apps/web/src/app/admin/rappels/actions.ts` |
+| UI admin | `/admin/rappels` |
+| Vista productor | `/panel/proveedor/liquidaciones` |
+| Modelo | `RappelSettlement` + enums `RappelSettlementStatus`, `RappelPaymentMethod` |
+| Migración | `packages/db/prisma/migrations/20260821120000_rappel_settlements` |
+
+Flujo:
+
+1. Proyección en vivo (pedidos no `CANCELLED`/`RETURNED`) — no crea deuda.
+2. **Cerrar año** → `createMany` de liquidaciones con `rebateAmount > 0`, estado `PENDING`, `dueAt` ≈ 1 de marzo (+60 días).
+3. Importe = facturación neta × % tramo (Plata 3 % / Oro 5 %).
+4. Admin marca `PAID` (`TRANSFER` o `PAYOUT_OFFSET`) o `CANCELLED`.
+
+Ver `docs/commissions.md` y `docs/Clausula_Comision_Rappels_Productor.md`.
 
 ### B8b. Turismo territorial (fases 2–3) — diseño
 
@@ -188,17 +258,24 @@ Una vez que el admin la envíe a firma y a ti te aparezca `pendingVersion`, podr
 
 Después de tener contrato activo, el botón **“Enviar a revisión”** vuelve a funcionar y el admin ya puede revisar/publicar.
 
-### B10. Imágenes por categoría y placeholders (incluye “Reposteria”)
+### B10. Imágenes de producto (upload, placeholders y Next Image)
 
 #### B10.1. Requisito
-Si un productor no sube foto, el sistema debe mostrar un **PNG por defecto** según la categoría (incluyendo nuevas categorías como “Reposteria”).
+Si un productor no sube foto, el sistema muestra un **PNG por defecto** según la categoría (incluye “Reposteria”).
 
-#### B10.2. Soluciones aplicadas
-- Se añadió la categoría “Reposteria” en el `seed.ts` para que aparezca en `listCategories()`.
-- Se añadió el PNG de placeholder en:
-  - `apps/web/public/categories/reposteria.png`
-- El form y las tarjetas de producto usan un placeholder calculado en función de la categoría/subcategoría seleccionada.
-- Para evitar problemas de validación al enviar la foto:
-  - se normaliza la `imageUrl` a URL absoluta en el `parseProductForm`,
-  - y se configuró `next/image` para permitir `localhost` en dev (`remotePatterns`).
+#### B10.2. Upload y almacenamiento
+- API: `POST /api/upload/product-image` → guarda en `apps/web/public/uploads/products/` y devuelve ruta relativa `/uploads/products/<uuid>.ext`.
+- El schema de producto acepta URL absoluta **o** ruta relativa que empiece por `/uploads/` (`productImageInputSchema`).
+- Al guardar el formulario se persiste la ruta **relativa** (no se fuerza `NEXT_PUBLIC_APP_URL`), para que funcione si Next arranca en `:3001` u otro puerto.
+
+#### B10.3. Visualización
+- `toPublicImageSrc()` (`apps/web/src/lib/product-image.ts`) convierte URLs absolutas `localhost` de uploads a path relativo.
+- `getProductImage()` en `product-card.tsx` usa esa normalización.
+- Miniaturas de uploads usan `unoptimized` en `next/image` para evitar timeouts del optimizador en local.
+- `next.config.ts` admite `remotePatterns` para `localhost`/`127.0.0.1` en puertos 3000–3010 (por si quedan URLs absolutas antiguas en BD).
+
+#### B10.4. Placeholders
+- PNG en `apps/web/public/categories/`.
+- Categoría “Reposteria” en `seed.ts`.
+- Mapa slug → imagen en `product-card.tsx`.
 
