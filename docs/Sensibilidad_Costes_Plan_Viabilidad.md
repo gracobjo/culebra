@@ -1,6 +1,6 @@
 # Sensibilidad de costes — Plan de viabilidad
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 **Escenario prudente — Marketplace Villardeciervos**
 

@@ -1,6 +1,6 @@
 # Flujo de caja — escenario prudente
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 Modelo de **tesorería real** del marketplace Villardeciervos, alineado al plan de viabilidad. Complementa el PyG contable (que puede ser negativo mientras la caja sigue siendo positiva gracias al capital y la subvención).
 

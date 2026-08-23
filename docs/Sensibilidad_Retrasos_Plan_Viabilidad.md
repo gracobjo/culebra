@@ -1,6 +1,6 @@
 # Sensibilidad con retrasos — tesorería
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 Simulación centrada en la **variable más crítica** del proyecto: el **momento de cobro de la subvención**, junto con posibles retrasos en el **lanzamiento** y en la **generación de ventas (GMV)**.
 

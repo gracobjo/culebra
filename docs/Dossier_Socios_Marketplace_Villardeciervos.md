@@ -1,7 +1,7 @@
 # Dossier Marketplace Villardeciervos
 
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 ---
 
@@ -33,7 +33,8 @@ El marketplace integra:
 - **Operativa y SLA** para proteger la reputación del portal.
 - **Herramientas de control** para socios: panel admin con KPIs, rentabilidad, rappels, grupo piloto y sandbox.
 
-Diferenciador clave: **showroom físico rural + consolidación logística** en Villardeciervos, algo que agregadores digitales de capital no igualan.
+Diferenciador clave: **showroom físico rural + consolidación logística** en Villardeciervos, algo que agregadores digitales de capital no igualan.  
+**Concepto de tienda** (referente La Abacería → híbrido escaparate/trastienda): [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).
 
 **Documentación del expediente.** Para socios que participen en solicitudes o justificación de ayudas: [`Marco_Documentacion_Expediente.md`](./Marco_Documentacion_Expediente.md) (memoria de proyecto vs justificativa vs cuaderno de ejecución).
 
@@ -283,7 +284,8 @@ flowchart LR
 
 > **Tesis:** no pelear por exclusividad al inicio. Objetivo = ser el **canal principal o prioritario**, no el único. Aceptar multi-homing y competir por comodidad, consolidación logística, showroom y rappels.  
 > **Estrategia operativa completa (segmentos, fases, KPIs, riesgos):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
-> **Argumentario y guion de visita:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).
+> **Argumentario y guion de visita:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
+> **Concepto de showroom / tienda física:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).
 
 ### 7.1 Diagnóstico del riesgo real
 
@@ -765,7 +767,7 @@ El etiquetado y la preparación logística centralizada desde la oficina de Vill
 
 Para unificar la oferta artesanal bajo una marca potente que enamore al consumidor de las grandes ciudades, se propone registrar un nombre comercial con arraigo:
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 - **Nombre comercial propuesto:** *Sabores de la Culebra* (o *La Raya Gourmet Marketplace*).
 - **Concepto de logotipo:** Isotipo limpio que combine la silueta geométrica y elegante de un lobo ibérico o la orografía de la sierra, con trazos orgánicos que simulen elementos naturales (hoja de encina o gota de miel).
@@ -826,6 +828,8 @@ Para el lanzamiento del grupo piloto, si se necesitan menos de 500 unidades por 
 ---
 
 ## 14) Modelo Logístico: Distribuidores, no Envasadores
+
+> Layout del local (showroom delante / trastienda detrás): [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).
 
 Al operar como **meros distribuidores logísticos** —sin manipular directamente el producto alimenticio— habéis tomado la decisión operativa más eficiente y segura para el lanzamiento en Villardeciervos. Esta estrategia reduce drásticamente las barreras burocráticas iniciales, minimiza la responsabilidad legal ante las autoridades de Consumo y permite arrancar de forma inmediata.
 

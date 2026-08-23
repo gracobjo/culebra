@@ -1,6 +1,6 @@
 # Panel de administracion
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 
 ## Estado

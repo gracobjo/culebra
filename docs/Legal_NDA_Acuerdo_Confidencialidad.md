@@ -1,6 +1,6 @@
 # Documentos Legales — Marketplace Villardeciervos
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 
 > Carpeta de modelos jurídicos para uso interno de la S.L. en constitución.

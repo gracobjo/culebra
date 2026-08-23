@@ -35,4 +35,5 @@ Archivos en la **raíz del repositorio** (no en `docs/`, para facilitar descarga
 - **Argumentario comercial + guion de visita al obrador:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).
 - **Estrategia de captación (fases A–D, KPIs):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).
 - **Resumen ejecutivo para socios (una página):** [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md).
+- **Concepto de tienda / showroom (Abacería → híbrido logística):** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).
 - Captación y multi-homing: `docs/Dossier_Socios_Marketplace_Villardeciervos.md` §7.

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { auth } from "@/auth";
-import { signOutAction } from "./actions";
+import { signOutAction } from "@/app/actions/auth";
 import { PageShell } from "@/components/layout/page-shell";
 
 export default async function AccountPage() {

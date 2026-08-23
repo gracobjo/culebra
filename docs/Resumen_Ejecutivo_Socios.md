@@ -1,12 +1,12 @@
 # Resumen ejecutivo — Socios
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 **Marketplace Villardeciervos – Sabores de la Culebra**
 
 Documento de una página para presentar el proyecto a socios (decisión de constitución). Complementa el dossier detallado y el plan de viabilidad.
 
-**Referencias:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) · [`Plan_Viabilidad_Marketplace_Villardeciervos.md`](../Plan_Viabilidad_Marketplace_Villardeciervos.md) · [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md)
+**Referencias:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) · [`Plan_Viabilidad_Marketplace_Villardeciervos.md`](../Plan_Viabilidad_Marketplace_Villardeciervos.md) · [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md)
 
 ---
 

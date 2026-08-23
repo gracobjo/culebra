@@ -1,12 +1,12 @@
 # Argumentario de captación de productores (tienda + consolidación)
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 **Marketplace Villardeciervos / Sabores de la Culebra**
 
 Cómo hablar con productores locales para que lleven producto a la tienda de Villardeciervos: en **su lenguaje**, con **beneficios concretos**, no con el proyecto en abstracto.
 
-**Complementa:** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`.
+**Complementa:** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`.
 
 ---
 

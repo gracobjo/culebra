@@ -1,6 +1,6 @@
 # Comparativa de comisión: 15 % vs 17 %
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 **Escenario prudente — Marketplace Villardeciervos (Sabores de la Culebra)**
 

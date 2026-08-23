@@ -1,12 +1,12 @@
 # Estrategia de captación de productores
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 **Marketplace Villardeciervos – Sabores de la Culebra**
 
 Plan operativo para incorporar y retener productores. Complementa el argumentario de visita y el dossier de socios.
 
-**Referencias:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`
+**Referencias:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`
 
 ---
 
@@ -139,6 +139,7 @@ Seguimiento operativo en `/admin/piloto` y KPIs de productores activos.
 1. Empezar **pequeño y con confianza** (5 productores piloto).
 2. Priorizar **visita presencial** y prueba de bajo riesgo.
 3. **No pedir exclusividad.**
-4. Diferenciarse por **consolidación logística** + **showroom en la sierra** + trato cercano.
+4. Diferenciarse por **consolidación logística** + **showroom en la sierra** + trato cercano.  
+   Concepto físico: [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).
 5. Usar condiciones de arranque ventajosas y **rappels** para fidelizar.
 6. Medir y cuidar mucho la experiencia de los primeros productores: son el mejor argumento de venta.

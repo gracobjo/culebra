@@ -1,6 +1,6 @@
 # Manual de Desarrollador — Marketplace Villardeciervos
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 **Documentos relacionados:** [Requisitos / UC / UML](./Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [Turismo](./tourism.md) · [Base de datos](./database.md) · [Catálogo](./catalog.md)
 
@@ -138,6 +138,7 @@ Flujo:
 | Argumentario captación productores | [`docs/Argumentario_Captacion_Productores.md`](../../docs/Argumentario_Captacion_Productores.md) · materiales [`Materiales_Presentacion_Captacion.md`](../../docs/Materiales_Presentacion_Captacion.md) |
 | Estrategia captación productores | [`docs/Estrategia_Captacion_Productores.md`](../../docs/Estrategia_Captacion_Productores.md) |
 | Resumen ejecutivo socios | [`docs/Resumen_Ejecutivo_Socios.md`](../../docs/Resumen_Ejecutivo_Socios.md) |
+| Concepto tienda / showroom | [`docs/Concepto_Tienda_Showroom_Villardeciervos.md`](../../docs/Concepto_Tienda_Showroom_Villardeciervos.md) |
 | Sandbox | `apps/web/src/app/admin/sandbox/*` |
 | Turismo | `apps/web/src/app/admin/turismo/*` |
 

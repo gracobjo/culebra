@@ -1,6 +1,6 @@
 # Turismo territorial (fases 2–3)
 
-![Logo Sabores de la Culebra](./imagenes/logo_sabores_culebra.png)
+![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 ## Principio de diseno
 
