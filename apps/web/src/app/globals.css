@@ -2,6 +2,14 @@
 
 :root {
   color-scheme: light;
+  --cream: #f7f4ee;
+  --monte: #1b4332;
+  --monte-mid: #2d6a4f;
+  --accent-gold: #a8874a;
+  --ink: #1c1917;
+  --muted: #57534e;
+  --line: #e7e5e4;
+  --shadow-soft: 0 12px 40px -18px rgb(27 67 50 / 0.28);
 }
 
 html {
@@ -13,16 +21,8 @@ body {
   margin: 0;
   min-height: 100vh;
   min-height: 100dvh;
-  background: #f7f4ee;
-  color: #1f2937;
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  background: var(--cream);
+  color: var(--ink);
   line-height: 1.5;
 }
 
@@ -34,7 +34,7 @@ form.inline-form {
 }
 
 :focus-visible {
-  outline: 2px solid #065f46;
+  outline: 2px solid var(--monte-mid);
   outline-offset: 2px;
 }
 
@@ -58,16 +58,15 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Edge/Chromium: letter-spacing y subrayados se recortan en cajas con border-radius */
 @layer components {
   .text-caps-label {
     display: block;
     padding-block: 0.125rem;
     padding-inline: 0.0625rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     line-height: 1.75;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
   }
 
@@ -101,32 +100,47 @@ a {
 
   .btn {
     display: inline-flex;
-    min-height: 2.75rem;
+    min-height: 2.85rem;
     max-width: 100%;
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 1.6rem;
     text-align: center;
     font-size: 0.875rem;
     font-weight: 500;
+    letter-spacing: 0.01em;
     line-height: 1.35;
     white-space: normal;
     word-break: break-word;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
   }
 
   .btn-primary {
-    background: #065f46;
+    background: var(--monte);
     color: #fff;
+    box-shadow: 0 10px 28px -14px rgb(27 67 50 / 0.55);
+  }
+
+  .btn-primary:hover {
+    background: var(--monte-mid);
   }
 
   .btn-secondary {
-    border: 1px solid #d6d3d1;
+    border: 1px solid var(--line);
     background: #fff;
-    color: #1c1917;
+    color: var(--ink);
   }
 
-  /* Grupo de botones: margen explícito (más fiable que gap solo en Edge) */
+  .btn-secondary:hover {
+    border-color: color-mix(in srgb, var(--monte-mid) 35%, var(--line));
+  }
+
   .btn-group {
     display: flex;
     flex-direction: column;
@@ -147,5 +161,31 @@ a {
       margin-bottom: 0;
       margin-right: 0.75rem;
     }
+  }
+
+  .shop-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    border: 1px solid rgb(231 229 228 / 0.9);
+    background: #fff;
+    box-shadow: 0 8px 30px -20px rgb(28 25 23 / 0.35);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .shop-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--monte-mid) 40%, var(--line));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shop-card-territory {
+    border-color: color-mix(in srgb, var(--accent-gold) 28%, var(--line));
+    background: linear-gradient(180deg, #fff 0%, #fbf8f2 100%);
   }
 }

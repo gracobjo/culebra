@@ -30,23 +30,22 @@ export default async function HomePage() {
 
       <section className="grid min-w-0 gap-10 overflow-visible lg:grid-cols-5 lg:items-start lg:gap-12">
         <div className="min-w-0 space-y-6 lg:col-span-3">
-          <p className="text-caps-label text-emerald-700 sm:text-sm">
-            Del territorio a tu mesa
+          <p className="text-caps-label text-emerald-800 sm:text-sm">
+            Escaparate de la comarca
           </p>
-          <h1 className="text-pretty text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-            Productos autenticos de la Sierra de la Culebra
+          <h1 className="text-pretty text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
+            Productos auténticos de la Sierra de la Culebra
           </h1>
-          <p className="max-w-xl text-base text-stone-600 sm:text-lg">
-            Embutidos, quesos, vinos, miel y elaboraciones tradicionales. Compra
-            directamente a productores locales con pago seguro y seguimiento del
-            pedido.
+          <p className="max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg">
+            Embutidos, quesos, miel y elaboraciones de productores locales. Un solo
+            envío. Confianza, territorio y comodidad.
           </p>
           <div className="btn-group">
             <Link className="btn btn-primary w-full sm:w-auto" href="/tienda">
               Entrar en la tienda
             </Link>
             <Link className="btn btn-secondary w-full sm:w-auto" href="/como-funciona">
-              Como funciona
+              Cómo funciona
             </Link>
             <Link className="btn btn-secondary w-full sm:w-auto" href="/quiero-vender">
               Soy productor
@@ -68,13 +67,18 @@ export default async function HomePage() {
                 </div>
               ))}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/95 via-emerald-900/88 to-emerald-950/70" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0f241c]/95 via-[var(--monte)]/88 to-[#0f241c]/65" />
             <div className="panel-inset relative">
-              <p className="text-caps-label text-emerald-200">Territorio</p>
-              <h2 className="mt-4 text-2xl font-semibold leading-snug">Sierra de la Culebra</h2>
+              <p className="text-caps-label text-[color-mix(in_srgb,var(--accent-gold)_70%,white)]">
+                Territorio
+              </p>
+              <h2 className="mt-4 text-2xl font-semibold leading-snug tracking-tight">
+                Sierra de la Culebra
+              </h2>
               <p className="mt-4 text-base leading-relaxed text-emerald-50/90">
-                Un marketplace pensado para conectar elaboradores de Villardeciervos
-                y su entorno con compradores que valoran el origen y la calidad.
+                Un escaparate pensado para conectar elaboradores de Villardeciervos
+                y su entorno con compradores que buscan origen, calidad y un solo
+                envío.
               </p>
               <Link href="/productores" className="text-link-underline mt-6 text-sm text-white">
                 Conocer productores

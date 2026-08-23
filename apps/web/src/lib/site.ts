@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Sierra de la Culebra Marketplace",
-  shortName: "Sierra de la Culebra",
+  name: "Sabores de la Culebra",
+  shortName: "Sabores de la Culebra",
   description:
-    "Marketplace de productos tradicionales y agroalimentarios de la Sierra de la Culebra. Compra directa a productores locales.",
+    "Escaparate gourmet de la Sierra de la Culebra: embutidos, quesos, miel y elaboraciones de productores locales. Un solo envío. Confianza, territorio y comodidad.",
   locale: "es_ES",
   region: "Sierra de la Culebra, Zamora",
   keywords: [
+    "Sabores de la Culebra",
     "Sierra de la Culebra",
     "marketplace",
     "productos locales",
