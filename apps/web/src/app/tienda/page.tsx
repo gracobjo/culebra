@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { listCategories } from "@culebra/auth";
 import { ShopHubTile } from "@/components/catalog/shop-hub-tile";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
+import { getCategoryImageSrc, STOREFRONT_MOSAIC } from "@/lib/category-images";
 import { buildPageMetadata } from "@/lib/site";
 
 export const metadata = buildPageMetadata({
@@ -30,15 +32,28 @@ export default async function TiendaPage() {
     <PageShell>
       <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Tienda" }]} />
 
-      <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-800">
-        Catalogo
-      </p>
-      <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">Tienda de la comarca</h1>
-      <p className="mt-4 max-w-2xl text-stone-600">
-        El nucleo es agroalimentario: categorias con stock, variantes y compra en el
-        marketplace. Turismo rural y packs se abren aparte: la noche se reserva en el
-        canal del alojamiento; el lote gourmet si entra en el carrito.
-      </p>
+      <section className="relative mt-6 overflow-hidden rounded-[2rem] border border-emerald-900/10 bg-emerald-950 text-white shadow-lg">
+        <div className="absolute inset-0 grid grid-cols-3 gap-0.5 opacity-40 sm:grid-cols-6">
+          {STOREFRONT_MOSAIC.map((src) => (
+            <div key={src} className="relative min-h-[7rem] sm:min-h-full">
+              <Image src={src} alt="" fill className="object-cover" sizes="20vw" />
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950 via-emerald-950/92 to-emerald-950/55" />
+        <div className="relative px-6 py-10 sm:px-10 sm:py-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">
+            Escaparate de la comarca
+          </p>
+          <h1 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
+            Tienda de la Sierra de la Culebra
+          </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-emerald-50/90">
+            Embutidos, quesos, miel, vinos y elaboraciones de productores locales.
+            Elige categoría, llena la cesta y recibe un solo envío.
+          </p>
+        </div>
+      </section>
 
       <section className="mt-10">
         <h2 className="text-sm font-medium uppercase tracking-[0.14em] text-stone-500">
@@ -50,6 +65,7 @@ export default async function TiendaPage() {
               key={category.id}
               href={`/categorias/${category.slug}`}
               title={category.name}
+              imageSrc={getCategoryImageSrc(category.slug, category.name)}
               description={
                 category.description?.trim() ||
                 CATEGORY_BLURBS[category.slug] ||
@@ -74,6 +90,7 @@ export default async function TiendaPage() {
             href="/alojamientos"
             eyebrow="Fase 2"
             title="Turismo rural"
+            imageSrc="/categories/productos-tradicionales.png"
             description="Alojamientos y casas de la sierra. Enlace a su reserva (web, Booking o WhatsApp)."
             externalHint
           />
@@ -81,6 +98,7 @@ export default async function TiendaPage() {
             href="/packs"
             eyebrow="Fase 3"
             title="Packs y experiencias"
+            imageSrc="/categories/miel-y-productos-apicolas.png"
             description="Noche + lote gourmet: reservas la estancia fuera; el lote se compra aqui."
           />
         </div>

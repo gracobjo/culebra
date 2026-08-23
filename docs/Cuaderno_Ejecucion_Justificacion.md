@@ -59,12 +59,15 @@
 | Hito | Mes previsto | Entregable | Indicador (objetivo → resultado) | Evidencia | Estado |
 |------|-------------|------------|----------------------------------|-----------|--------|
 | H1 | 1 | S.L. constituida; plan de proyecto cerrado | Objetivo: constitución → Resultado: | Escritura, CIF | pendiente |
-| H2 | 2 | Arquitectura y entorno base | Objetivo: arquitectura documentada → Resultado: | Repositorio, documentación | pendiente |
-| H3 | 2–3 | Catálogo + panel productor en beta | Objetivo: módulo usable → Resultado: | Capturas, acceso piloto | pendiente |
-| H4 | 3–4 | Pedidos end-to-end | Objetivo: flujo completo → Resultado: | Logs, pedidos prueba | pendiente |
-| H5 | 4 | Pagos + retención 14 días validados | Objetivo: 5 validaciones → Resultado: | Informes pasarela | pendiente |
+| H2 | 2 | Arquitectura y entorno base (**A.1**) | Objetivo: arquitectura documentada → Resultado: docs + schema + wireframes en repo | [`architecture.md`](./architecture.md), [`Wireframes_UIUX_Contrato_AI.md`](./Wireframes_UIUX_Contrato_AI.md), Prisma | **tecnico OK** (pendiente factura A.I) |
+| H3 | 2–3 | Catálogo + panel productor en beta (**A.2**) | Objetivo: módulo usable → Resultado: `/tienda` + `/panel/proveedor` | Capturas, acceso piloto, [`Entregables_Contrato_AI_…`](./Entregables_Contrato_AI_Nucleo_Marketplace.md) | **tecnico OK** |
+| H4 | 3–4 | Pedidos end-to-end (**A.3**) | Objetivo: flujo completo → Resultado: carrito agrupado + `VendorOrder` | `/carrito`, `/checkout`, pedidos prueba | **tecnico OK** |
+| H4b | 3–4 | Admin + comisión base (**A.5a**) | Objetivo: panel usable + 17 % → Resultado: `/admin` + `CommissionRule` | `/admin/entregables-ai` | **tecnico OK** |
+| H5 | 4 | Pagos + retención 14 días validados (**A.4 / A.II**) | Objetivo: 5 validaciones → Resultado: | Informes pasarela | pendiente |
 | H6 | 5 | Beta con piloto (5 productores) | Objetivo: 5 productores → Resultado: | Altas, contratos adhesión | pendiente |
 | H7 | 6 | Lanzamiento público | Objetivo: apertura → Resultado: | URL producción, acta interna | pendiente |
+
+**Acta técnica A.I:** checklist en [`Entregables_Contrato_AI_Nucleo_Marketplace.md`](./Entregables_Contrato_AI_Nucleo_Marketplace.md) §6 y panel `/admin/entregables-ai`.
 
 ---
 

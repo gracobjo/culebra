@@ -86,6 +86,8 @@ Contratos Facturas Pagos
 | 1 | **Memoria de Proyecto empresarial** | Convencer: historia empresarial y territorial del proyecto | [`Memoria_Proyecto_ICECYL_Diputacion_Zamora.md`](./Memoria_Proyecto_ICECYL_Diputacion_Zamora.md) |
 | 2 | **Cuaderno de Ejecución y Justificación** | Control interno durante la ejecución: presupuesto, contratos, facturas, hitos, evidencias | [`Cuaderno_Ejecucion_Justificacion.md`](./Cuaderno_Ejecucion_Justificacion.md) |
 | 3 | **Memoria Técnica Justificativa** | Acreditar ante la Administración que el gasto es subvencionable | [`Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md`](./Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md) *(borrador marco; se redactará al cierre)* |
+| 4 | **Entregables contrato A.I** | Mapa de cumplimiento técnico del núcleo (A.1–A.3 + A.5a) con rutas y criterios | [`Entregables_Contrato_AI_Nucleo_Marketplace.md`](./Entregables_Contrato_AI_Nucleo_Marketplace.md) · panel `/admin/entregables-ai` |
+| 5 | **Wireframes UI/UX (A.1)** | Artefacto de diseño de pantallas del núcleo | [`Wireframes_UIUX_Contrato_AI.md`](./Wireframes_UIUX_Contrato_AI.md) |
 
 **No convertir** la Memoria de Proyecto en una justificativa. Mantener tonos distintos:
 

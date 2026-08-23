@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { listCategories, listPublicProducts, listPublicVendors } from "@culebra/auth";
 import { CategoryCard } from "@/components/catalog/category-card";
 import { ProductCard } from "@/components/catalog/product-card";
@@ -54,8 +55,21 @@ export default async function HomePage() {
         </div>
 
         <div className="min-w-0 self-start lg:col-span-2 lg:sticky lg:top-24">
-          <div className="panel-shell bg-gradient-to-br from-emerald-900 to-emerald-950 text-white shadow-xl">
-            <div className="panel-inset">
+          <div className="panel-shell relative overflow-hidden text-white shadow-xl">
+            <div className="absolute inset-0 grid grid-cols-2 gap-0.5 opacity-50">
+              {[
+                "/categories/embutidos-y-productos-carnicos.png",
+                "/categories/quesos-y-lacteos.png",
+                "/categories/miel-y-productos-apicolas.png",
+                "/categories/vinos.png",
+              ].map((src) => (
+                <div key={src} className="relative">
+                  <Image src={src} alt="" fill className="object-cover" sizes="20vw" />
+                </div>
+              ))}
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/95 via-emerald-900/88 to-emerald-950/70" />
+            <div className="panel-inset relative">
               <p className="text-caps-label text-emerald-200">Territorio</p>
               <h2 className="mt-4 text-2xl font-semibold leading-snug">Sierra de la Culebra</h2>
               <p className="mt-4 text-base leading-relaxed text-emerald-50/90">

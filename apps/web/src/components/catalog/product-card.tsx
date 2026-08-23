@@ -2,37 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ProductRecord } from "@culebra/auth";
 import { formatPrice } from "@/lib/format";
+import { getCategoryImageSrc } from "@/lib/category-images";
 import { toPublicImageSrc } from "@/lib/product-image";
-
-// Mapa de slug de categoría → imagen placeholder en /public/categories/
-// Se usa cuando el productor aún no ha subido foto propia del producto.
-const CATEGORY_PLACEHOLDER: Record<string, string> = {
-  "embutidos-y-productos-carnicos": "/categories/embutidos-y-productos-carnicos.png",
-  "jamon":                          "/categories/embutidos-y-productos-carnicos.png",
-  "chorizo":                        "/categories/embutidos-y-productos-carnicos.png",
-  "salchichon":                     "/categories/embutidos-y-productos-carnicos.png",
-  "otros-embutidos":                "/categories/embutidos-y-productos-carnicos.png",
-  "productos-derivados-del-cerdo":  "/categories/embutidos-y-productos-carnicos.png",
-  "quesos-y-lacteos":               "/categories/quesos-y-lacteos.png",
-  "queso-de-oveja":                 "/categories/quesos-y-lacteos.png",
-  "queso-de-cabra":                 "/categories/quesos-y-lacteos.png",
-  "queso-de-vaca":                  "/categories/quesos-y-lacteos.png",
-  "otros-productos-lacteos":        "/categories/quesos-y-lacteos.png",
-  "miel-y-productos-apicolas":      "/categories/miel-y-productos-apicolas.png",
-  "miel":                           "/categories/miel-y-productos-apicolas.png",
-  "polen":                          "/categories/miel-y-productos-apicolas.png",
-  "jalea-real":                     "/categories/miel-y-productos-apicolas.png",
-  "otros-productos-apicolas":       "/categories/miel-y-productos-apicolas.png",
-  "vinos":                          "/categories/vinos.png",
-  "vinos-tintos":                   "/categories/vinos.png",
-  "vinos-blancos":                  "/categories/vinos.png",
-  "vinos-rosados":                  "/categories/vinos.png",
-  "vinos-otros":                    "/categories/vinos.png",
-  "licores":                        "/categories/licores.png",
-  "orujo":                          "/categories/licores.png",
-  "licores-tradicionales":          "/categories/licores.png",
-  "productos-tradicionales":        "/categories/productos-tradicionales.png",
-};
 
 export function getProductImage(product: ProductRecord): { src: string; isPlaceholder: boolean } {
   const uploaded = product.images[0];
@@ -40,14 +11,11 @@ export function getProductImage(product: ProductRecord): { src: string; isPlaceh
     return { src: toPublicImageSrc(uploaded.url), isPlaceholder: false };
   }
 
-  const categoryName = (product.category?.name ?? "").toLowerCase();
-  if (categoryName.includes("repost")) {
-    return { src: "/categories/reposteria.png", isPlaceholder: true };
-  }
-
   const slug = product.subcategory?.slug ?? product.category?.slug ?? "";
-  const placeholder = CATEGORY_PLACEHOLDER[slug] ?? "/categories/productos-tradicionales.png";
-  return { src: placeholder, isPlaceholder: true };
+  return {
+    src: getCategoryImageSrc(slug, product.category?.name),
+    isPlaceholder: true,
+  };
 }
 
 type ProductCardProps = {

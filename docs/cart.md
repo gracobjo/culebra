@@ -7,6 +7,8 @@
 
 FASE 6 completada: carrito con invitado, checkout con datos de envio/facturacion y pedido interno dividido por productor.
 
+**Desglose por productor (A.3):** en `/carrito` las líneas se agrupan por vendedor con subtotal por productor; el pedido confirmado mantiene el seguimiento por `VendorOrder`.
+
 ## Extension: cupones, afiliacion (`?ref=`), packs (añaden lineas de producto). La **noche de alojamiento no entra en el carrito**.
 
 ## Envio (tarifa plana)

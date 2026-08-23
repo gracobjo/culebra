@@ -11,27 +11,15 @@ import {
   type ProductFormState,
 } from "@/app/panel/proveedor/productos/actions";
 import { ImageUploader } from "@/components/catalog/image-uploader";
-
-const CATEGORY_PLACEHOLDER: Record<string, string> = {
-  "embutidos-y-productos-carnicos": "/categories/embutidos-y-productos-carnicos.png",
-  "jamon": "/categories/embutidos-y-productos-carnicos.png",
-  "chorizo": "/categories/embutidos-y-productos-carnicos.png",
-  "quesos-y-lacteos": "/categories/quesos-y-lacteos.png",
-  "miel-y-productos-apicolas": "/categories/miel-y-productos-apicolas.png",
-  "vinos": "/categories/vinos.png",
-  "licores": "/categories/licores.png",
-};
+import { getCategoryImageSrc } from "@/lib/category-images";
 
 function getPlaceholderFromSelection(params: {
   categoryName?: string;
   categorySlug?: string;
   subcategorySlug?: string;
 }): string {
-  const name = (params.categoryName ?? "").toLowerCase();
-  if (name.includes("repost")) return "/categories/reposteria.png";
-
   const slug = params.subcategorySlug ?? params.categorySlug ?? "";
-  return CATEGORY_PLACEHOLDER[slug] ?? "/categories/productos-tradicionales.png";
+  return getCategoryImageSrc(slug, params.categoryName);
 }
 
 const initialState: ProductFormState = {};

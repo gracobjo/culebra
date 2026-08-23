@@ -15,13 +15,45 @@ export const metadata = {
   title: "Carrito | Sierra de la Culebra Marketplace",
 };
 
+type CartItemView = Awaited<ReturnType<typeof loadCart>>["items"][number];
+
+function groupItemsByVendor(items: CartItemView[]) {
+  const groups = new Map<
+    string,
+    { vendorId: string; vendorName: string; items: CartItemView[]; subtotal: number }
+  >();
+
+  for (const item of items) {
+    const existing = groups.get(item.vendorId);
+    const line = Number(item.lineTotal);
+    if (existing) {
+      existing.items.push(item);
+      existing.subtotal += line;
+    } else {
+      groups.set(item.vendorId, {
+        vendorId: item.vendorId,
+        vendorName: item.vendorName,
+        items: [item],
+        subtotal: line,
+      });
+    }
+  }
+
+  return [...groups.values()];
+}
+
 export default async function CartPage() {
   const cart = await loadCart();
+  const vendorGroups = groupItemsByVendor(cart.items);
 
   return (
     <PageShell width="lg">
       <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Carrito" }]} />
       <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">Carrito</h1>
+      <p className="mt-2 max-w-2xl text-sm text-stone-600">
+        Cesta unificada: un solo pedido y un solo envío. Los productos se agrupan por
+        productor para que veas el desglose antes de pagar.
+      </p>
 
       {cart.items.length === 0 ? (
         <div className="mt-10">
@@ -33,47 +65,69 @@ export default async function CartPage() {
           />
         </div>
       ) : (
-        <div className="mt-8 space-y-4">
-          {cart.items.map((item) => (
-            <article
-              key={item.id}
-              className="flex flex-col gap-4 rounded-3xl border border-stone-200 bg-white p-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:p-5"
+        <div className="mt-8 space-y-6">
+          {vendorGroups.map((group) => (
+            <section
+              key={group.vendorId}
+              className="overflow-hidden rounded-3xl border border-stone-200 bg-white"
             >
-              <div className="min-w-0">
-                <Link href={`/productos/${item.slug}`} className="font-medium">
-                  {item.productName}
-                </Link>
-                {item.variantLabel ? (
-                  <p className="text-sm text-stone-500">{item.variantLabel}</p>
-                ) : null}
-                <p className="text-sm text-stone-600">{item.vendorName}</p>
-                <p className="mt-1 text-sm">{formatPrice(item.unitPrice)}</p>
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-stone-100 bg-emerald-50/60 px-4 py-3 sm:px-5">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-800">
+                    Productor
+                  </p>
+                  <h2 className="text-base font-semibold text-stone-900">{group.vendorName}</h2>
+                </div>
+                <p className="text-sm tabular-nums text-stone-700">
+                  Subtotal {formatPrice(group.subtotal.toFixed(2))}
+                </p>
               </div>
-              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
-                <form action={updateCartItemAction} className="flex flex-1 items-center gap-2 sm:flex-none">
-                  <input type="hidden" name="itemId" value={item.id} />
-                  <input
-                    name="quantity"
-                    type="number"
-                    inputMode="numeric"
-                    min="1"
-                    max={item.stock}
-                    defaultValue={item.quantity}
-                    className="min-h-11 w-24 rounded-xl border border-stone-300 px-3 py-2"
-                    aria-label="Cantidad"
-                  />
-                  <button type="submit" className="min-h-11 text-sm text-emerald-800">
-                    Actualizar
-                  </button>
-                </form>
-                <form action={removeCartItemAction}>
-                  <input type="hidden" name="itemId" value={item.id} />
-                  <button type="submit" className="min-h-11 text-sm text-stone-500">
-                    Quitar
-                  </button>
-                </form>
+              <div className="divide-y divide-stone-100">
+                {group.items.map((item) => (
+                  <article
+                    key={item.id}
+                    className="flex flex-col gap-4 p-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:p-5"
+                  >
+                    <div className="min-w-0">
+                      <Link href={`/productos/${item.slug}`} className="font-medium">
+                        {item.productName}
+                      </Link>
+                      {item.variantLabel ? (
+                        <p className="text-sm text-stone-500">{item.variantLabel}</p>
+                      ) : null}
+                      <p className="mt-1 text-sm">{formatPrice(item.unitPrice)}</p>
+                    </div>
+                    <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+                      <form
+                        action={updateCartItemAction}
+                        className="flex flex-1 items-center gap-2 sm:flex-none"
+                      >
+                        <input type="hidden" name="itemId" value={item.id} />
+                        <input
+                          name="quantity"
+                          type="number"
+                          inputMode="numeric"
+                          min="1"
+                          max={item.stock}
+                          defaultValue={item.quantity}
+                          className="min-h-11 w-24 rounded-xl border border-stone-300 px-3 py-2"
+                          aria-label="Cantidad"
+                        />
+                        <button type="submit" className="min-h-11 text-sm text-emerald-800">
+                          Actualizar
+                        </button>
+                      </form>
+                      <form action={removeCartItemAction}>
+                        <input type="hidden" name="itemId" value={item.id} />
+                        <button type="submit" className="min-h-11 text-sm text-stone-500">
+                          Quitar
+                        </button>
+                      </form>
+                    </div>
+                  </article>
+                ))}
               </div>
-            </article>
+            </section>
           ))}
 
           <CartCouponForm couponCode={cart.couponCode} />
@@ -94,8 +148,8 @@ export default async function CartPage() {
               <span>{formatPrice(cart.shippingAmount)}</span>
             </div>
             <p className="text-sm text-stone-600">
-              Tarifa plana de envio ({formatPrice(cart.shippingAmount || "6.50")}). El porte lo paga
-              siempre el cliente.
+              Tarifa plana de envio ({formatPrice(cart.shippingAmount || "6.50")}). El porte lo
+              paga siempre el cliente. Un solo envío consolidado aunque haya varios productores.
             </p>
             <div className="flex items-center justify-between border-t border-stone-300 pt-2 font-medium">
               <span>Total</span>
