@@ -119,7 +119,8 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 ## 2) A quién sirve (actores y propuesta de valor)
 
 > **Posicionamiento (activador del territorio vs competencia, sin erosionar margen):** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
-> **Flujo operativo del piloto (decisiones cerradas A/B/C, SLA, roles, liquidación):** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).
+> **Flujo operativo del piloto (decisiones cerradas A/B/C, SLA, roles, liquidación):** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).  
+> **Riesgos multimarca + umbrales medidos en `/admin/kpis`:** [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md).
 
 ### Productores (VENDORS)
 

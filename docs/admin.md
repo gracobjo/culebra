@@ -25,7 +25,7 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin/pedidos` | Consultar pedidos de la plataforma |
 | `/admin/liquidaciones` | Payouts a productores |
 | `/admin/usuarios` | Suspender o reactivar cuentas |
-| `/admin/kpis` | KPIs artesanos |
+| `/admin/kpis` | KPIs por artesano + **riesgos del modelo** (incidencias, GMV, activos) |
 | `/admin/plan` | Plan financiero 5 años + simulador (15/17 %, costes, caja, retrasos, contingencia) |
 | `/admin/rentabilidad` | Rentabilidad por transaccion |
 | `/admin/rappels` | Rappels: proyección, cierre de año y pendientes de abono |
@@ -66,6 +66,19 @@ En `/admin/turismo` se gestionan entidades que **no** pasan por el checkout de n
 - Cupones y codigos de afiliado (`?ref=`).
 
 Ver `docs/tourism.md`.
+
+## KPIs y riesgos (`/admin/kpis`)
+
+Bloque **Riesgos del modelo multimarca** (mes en curso):
+
+| Métrica | Alerta | Crítico |
+|---------|--------|---------|
+| % subpedidos con incidencia (SLA breached, tarde &gt;24 h, cancelados) | &gt; 10 % | &gt; 15 % |
+| Concentración GMV top 3 productores | &gt; 65 % | &gt; 70 % |
+| Máx. cuota GMV de un productor | &gt; 25 % | &gt; 30 % |
+| Productores con venta en 90 días | &lt; 5 | &lt; 3 |
+
+También: % pedidos multiproductor, GMV del mes, tabla de cuotas por productor, y KPIs individuales (preparación &lt;24 h, roturas, embalaje, valoraciones). Código: `apps/web/src/lib/admin-risk-metrics.ts`. Doc: [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md).
 
 ## API extra
 

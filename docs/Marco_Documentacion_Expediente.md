@@ -227,6 +227,7 @@ El archivo `Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md` es un 
 Materiales de captación / demos (PPTX, PNG, MP4): [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md).  
 Argumentario y guion de visita al obrador: [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
 Flujo operativo del piloto (decisiones A/B/C, SLA, roles): [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).  
+Riesgos del modelo multimarca (SLA, GMV, multi-homing): [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md).  
 Estrategia de captación de productores (fases, KPIs, riesgos): [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
 Resumen ejecutivo para socios (una página): [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md).  
 Concepto de tienda / showroom (referente La Abacería): [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  

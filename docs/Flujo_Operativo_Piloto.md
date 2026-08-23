@@ -6,7 +6,7 @@
 
 **Objetivo del piloto:** validar el circuito completo con **5 productores** y volumen bajo (orientativo: **1–5 pedidos/día**), sin romper el modelo (**sin compra de stock**, comisión base **17 %**, porte **6,50 €** al cliente).
 
-**Referencias:** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`tourism.md`](./tourism.md) · [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · [`Legal_NDA_Acuerdo_Confidencialidad.md`](./Legal_NDA_Acuerdo_Confidencialidad.md) DOC-02 · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §5–§7 y §14 · panel `/admin/piloto`
+**Referencias:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`tourism.md`](./tourism.md) · [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · [`Legal_NDA_Acuerdo_Confidencialidad.md`](./Legal_NDA_Acuerdo_Confidencialidad.md) DOC-02 · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §5–§7 y §14 · panel `/admin/piloto` · `/admin/kpis`
 
 ---
 
@@ -195,15 +195,15 @@ Tramos: [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Prod
 
 ## 13. Indicadores mínimos (90 días)
 
+Medición operativa en **`/admin/kpis`** (bloque riesgos + KPIs por artesano). Detalle de umbrales: [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md).
+
 - Nº de pedidos totales y por productor  
 - **% de pedidos multiproductor** (consolidación real)  
-- Tiempo medio de preparación  
-- % cumplimiento SLA **24 h**  
-- Incidencias (rotura stock, retrasos, daños)  
-- Nº de productores activos al final del piloto  
+- Tiempo medio / % cumplimiento SLA **24 h**  
+- **% subpedidos con incidencia** (alerta &gt;10–15 %)  
+- **Concentración GMV** (top 3 y máx. por productor)  
+- Nº de productores activos (venta en 90 d)  
 - Feedback cualitativo productores y clientes  
-
-Seguimiento: `/admin/piloto`, `/admin/kpis`, checklist interno.
 
 ---
 
