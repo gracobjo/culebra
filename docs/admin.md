@@ -26,7 +26,7 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin/liquidaciones` | Payouts a productores |
 | `/admin/usuarios` | Suspender o reactivar cuentas |
 | `/admin/kpis` | KPIs artesanos |
-| `/admin/plan` | Plan financiero 5 años + simulador (sliders / gráficos) |
+| `/admin/plan` | Plan financiero 5 años + simulador (15/17 %, costes, caja, retrasos, contingencia) |
 | `/admin/rentabilidad` | Rentabilidad por transaccion |
 | `/admin/rappels` | Rappels: proyección, cierre de año y pendientes de abono |
 | `/admin/piloto` | Grupo piloto (productores fundadores + CRUD categorías BD) |

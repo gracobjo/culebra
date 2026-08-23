@@ -129,6 +129,11 @@ Flujo:
 | Rentabilidad | `apps/web/src/app/admin/rentabilidad/page.tsx` |
 | Rappels | `apps/web/src/app/admin/rappels/page.tsx`, `actions.ts`, `lib/rappels.ts` |
 | Plan + simulador | `apps/web/src/app/admin/plan/*`, `lib/financial-simulation.ts`, `components/admin/plan-simulator.tsx` |
+| Comparativa 15 % vs 17 % | [`docs/Comparativa_Comision_15_vs_17.md`](../../docs/Comparativa_Comision_15_vs_17.md) · `compareCommissionRates()` |
+| Sensibilidad de costes | [`docs/Sensibilidad_Costes_Plan_Viabilidad.md`](../../docs/Sensibilidad_Costes_Plan_Viabilidad.md) · `sensitivityFixedCosts()` etc. |
+| Flujo de caja | [`docs/Flujo_Caja_Plan_Viabilidad.md`](../../docs/Flujo_Caja_Plan_Viabilidad.md) · `runCashFlowModel()`, `sensitivitySubsidyTiming()` |
+| Sensibilidad retrasos | [`docs/Sensibilidad_Retrasos_Plan_Viabilidad.md`](../../docs/Sensibilidad_Retrasos_Plan_Viabilidad.md) · `sensitivitySubsidyDelay()` etc. |
+| Plan contingencia tesorería | [`docs/Plan_Contingencia_Tesoreria.md`](../../docs/Plan_Contingencia_Tesoreria.md) · `resolveCashAlertLevel()`, `CONTINGENCY_SCENARIOS` |
 | Piloto | `apps/web/src/app/admin/piloto/*` |
 | Sandbox | `apps/web/src/app/admin/sandbox/*` |
 | Turismo | `apps/web/src/app/admin/turismo/*` |

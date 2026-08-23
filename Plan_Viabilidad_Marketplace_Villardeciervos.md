@@ -180,7 +180,7 @@ Estas cifras son deliberadamente bajas (~1–5 pedidos/día). El proyecto puede 
 * **No hay base realista de dividendos** significativos en los Años 1–3.
 * **Años 1–2:** supervivencia + justificación. **Dividendos relevantes:** solo si el volumen crece de verdad (orientativo Año 4–5+).
 * **Upside principal para socios:** valor de la S.L. (activo tecnológico + marca + contratos) en una posible transmisión, no el reparto temprano.
-* Detalle del break-even: **§5.F**. Comparativa cerrada **15 % vs 17 %**: **§5.G**. Sensibilidad de costes: **§5.M**.
+* Detalle del break-even: **§5.F**. Comparativa cerrada **15 % vs 17 %**: **§5.G**. Sensibilidad de costes: **§5.M**. Flujo de caja: **§5.N**.
 
 ### F. Punto de equilibrio operativo (Mes 7+)
 
@@ -247,7 +247,8 @@ Con el volumen prudente de Villardeciervos, el **equilibrio realista se sitúa e
 ### G. Comparativa cerrada: comisión **15 %** vs **17 %** (escenario prudente)
 
 > Decisión del plan: **17 %** base + mínimo **4 €**/subpedido + rappels (§5.K).  
-> Hipótesis: ticket medio **62 €** · Stripe ≈ **1,5 %** · envío **siempre al cliente** · fijos Mes 7+ ≈ **1.250 €/mes**.
+> Hipótesis: ticket medio **62 €** · Stripe ≈ **1,5 %** · envío **siempre al cliente** · fijos Mes 7+ ≈ **1.250 €/mes**.  
+> **Documento técnico:** [`docs/Comparativa_Comision_15_vs_17.md`](docs/Comparativa_Comision_15_vs_17.md).
 
 #### G.1 Margen por pedido y por GMV
 
@@ -361,7 +362,8 @@ Detalle contractual: `docs/Clausula_Comision_Rappels_Productor.md`.
 
 ### M. Sensibilidad de costes (impacto en break-even y Y1–Y3)
 
-> Variables que más mueven el resultado. Referencia: comisión **17 %**, ticket **62 €**, fijos Mes 7+ **1.250 €**, GMV prudente 14k / 48k / 75k → acum. 3 años ≈ **−16.260 €**, equilibrio ≈ **8.065 € GMV/mes**.
+> Variables que más mueven el resultado. Referencia: comisión **17 %**, ticket **62 €**, fijos Mes 7+ **1.250 €**, GMV prudente 14k / 48k / 75k → acum. 3 años ≈ **−16.260 €**, equilibrio ≈ **8.065 € GMV/mes**.  
+> **Documento técnico:** [`docs/Sensibilidad_Costes_Plan_Viabilidad.md`](docs/Sensibilidad_Costes_Plan_Viabilidad.md) · panel `/admin/plan`.
 
 #### M.1 Sensibilidad a los costes fijos mensuales
 
@@ -420,6 +422,127 @@ Cada **+200 €/mes** de fijos empeora el acum. a 3 años en torno a **4.500–6
 5. El **alquiler** degrada mucho las cifras (§5.I) y debe evitarse si es posible.
 
 **Recomendación:** mantener como base **comisión 17 % + fijos ≈ 1.250 €**. Cualquier desviación al alza en estructura debe compensarse con más volumen (o, en último caso, revisar comisión).
+
+### N. Flujo de caja (tesorería real — escenario prudente)
+
+> Complementa el PyG (§5.D): la caja puede ser positiva aunque el resultado contable acumulado sea negativo.  
+> **Documento técnico:** [`docs/Flujo_Caja_Plan_Viabilidad.md`](docs/Flujo_Caja_Plan_Viabilidad.md) · panel `/admin/plan`.
+
+#### N.1 Hipótesis
+
+| Concepto | Valor |
+| :--- | ---: |
+| Capital social (Mes 0) | **40.000 €** |
+| Inversión elegible (Meses 1–6) | **30.000 €** |
+| Subvención (74 % × 30.000 €) | **22.200 €** |
+| Cobro central subvención | **Mes 12** |
+| Caja mínima antes de subvención | **≈ 8.000 – 10.000 €** |
+| Caja al cierre A1 (con subvención M12) | **≈ 29.900 €** |
+| Caja al cierre A3 | **≈ 16.810 €** |
+
+#### N.2 Lectura y recomendaciones
+
+1. Meses 1–9: caja sostenida por capital social; inversión consume ~30.000 €.
+2. **Cobro subvención = punto de inflexión** (variable de mayor impacto en tesorería).
+3. A2–A3: pérdidas contables moderadas, caja aún positiva gracias al colchón.
+4. Colchón mínimo recomendado: **6.000 – 8.000 €**; sin dividendos hasta justificar la ayuda.
+5. Evitar alquiler; prever apoyo socios si cobro retrasa más allá de **Mes 14–15**.
+
+### O. Sensibilidad con retrasos (subvención, lanzamiento, GMV)
+
+> Variable crítica: **momento de cobro de la subvención** (22.200 €).  
+> **Documento técnico:** [`docs/Sensibilidad_Retrasos_Plan_Viabilidad.md`](docs/Sensibilidad_Retrasos_Plan_Viabilidad.md) · panel `/admin/plan`.
+
+#### O.1 Retraso en cobro de subvención
+
+| Momento de cobro | Retraso vs base | Caja mínima aprox. | Caja cierre A1 | Riesgo | Apoyo socios |
+| :--- | :--- | ---: | ---: | :--- | :--- |
+| Mes 9-10 | −2 / −3 meses | 13.000 – 15.000 € | 32.000 – 34.000 € | Bajo | No |
+| **Mes 12** | **0 (base)** | **8.500 – 9.500 €** | **≈ 29.900 €** | **Medio** | **No (justo)** |
+| Mes 14 | +2 meses | 5.500 – 6.500 € | 27.000 – 28.000 € | Alto | Recomendable |
+| Mes 16 | +4 meses | 3.000 – 4.500 € | 25.000 – 26.500 € | Muy alto | Probable préstamo/aportación |
+| Mes 18+ | +6 meses o más | < 2.500 € | < 25.000 € | Crítico | Casi seguro |
+| No se cobra / −50 % | — | < 2.000 € | 15.000 – 18.000 € | Crítico | Sí |
+
+Cada mes de retraso reduce la caja mínima en torno a **1.100 – 1.300 €**. A partir del **Mes 14–15** el colchón se vuelve peligroso.
+
+#### O.2 Escenarios combinados (lanzamiento + subvención)
+
+| Escenario | Lanzamiento | Cobro subvención | Caja mínima aprox. | Evaluación |
+| :--- | :---: | :---: | ---: | :--- |
+| Favorable | Mes 6 | Mes 10 | 14.000 – 16.000 € | Cómodo |
+| **Base** | **Mes 6** | **Mes 12** | **8.500 – 9.500 €** | **Aceptable** |
+| Retraso moderado | Mes 7-8 | Mes 14 | 4.500 – 6.000 € | Tenso |
+| Retraso fuerte | Mes 8-9 | Mes 16 | 2.000 – 3.500 € | Alto riesgo |
+| Doble retraso + GMV −20 % | Mes 8 | Mes 16 | < 2.000 € | Crítico |
+
+#### O.3 Sensibilidad al GMV (subvención en Mes 12)
+
+| Nivel de GMV | A1 | A2 | Caja cierre A2 (aprox.) | Comentario |
+| :--- | ---: | ---: | ---: | :--- |
+| Base prudente | 14.000 € | 48.000 € | ≈ 21.500 € | Referencia |
+| −20 % | 11.200 € | 38.400 € | ≈ 18.000 – 19.000 € | Todavía manejable |
+| −40 % | 8.400 € | 28.800 € | ≈ 14.000 – 15.500 € | Caja más justa |
+| Ventas casi nulas A1 | 4.000 € | 30.000 € | ≈ 12.000 – 13.500 € | Dependencia total de la subvención |
+
+El retraso o debilidad en ventas empeora la caja, pero tiene **menos impacto inmediato** que un retraso prolongado en el cobro de la ayuda.
+
+#### O.4 Mapa de riesgo y recomendaciones
+
+| Situación | Probabilidad | Impacto | Prioridad |
+| :--- | :--- | :--- | :--- |
+| Retraso cobro subvención (2–4 meses) | Media-Alta | Muy alto | **Máxima** |
+| Retraso lanzamiento (1–2 meses) | Media | Medio | Alta |
+| GMV por debajo de lo prudente | Media | Medio | Alta |
+| Subvención denegada o muy reducida | Baja-Media | Crítico | **Máxima (plan B)** |
+| Costes fijos más altos de lo previsto | Media | Alto | Alta |
+
+**Conclusiones:**
+
+1. El mayor riesgo de caja no es el volumen de ventas, sino el **retraso en el cobro de la subvención**.
+2. El escenario base deja un colchón aceptable pero no holgado (≈ 8.500–9.500 € de caja mínima).
+3. A partir de un retraso de 3–4 meses (cobro Mes 15–16) el proyecto entra en zona de riesgo alto; conviene tener previsto apoyo de socios.
+4. Un retraso combinado (lanzamiento tarde + cobro tarde) puede poner la caja en situación crítica.
+
+**Recomendaciones prácticas:** priorizar calidad y rapidez de la justificación; mantener colchón mínimo de **7.000–8.000 €**; preacordar préstamo participativo o aportación de socios si el cobro se retrasa más allá del Mes 14; no comprometer gastos adicionales hasta confirmar el calendario de pago de la ayuda.
+
+### P. Plan de Contingencia de Tesorería
+
+> Objetivo: sostener obligaciones críticas (proveedores, RETA, gestoría, cloud, mantenimiento) ante retrasos de subvención o ventas flojas.  
+> **Documento técnico:** [`docs/Plan_Contingencia_Tesoreria.md`](docs/Plan_Contingencia_Tesoreria.md) · panel `/admin/plan`.
+
+#### P.1 Niveles de alerta
+
+| Nivel | Caja disponible | Situación | Acción principal |
+| :--- | ---: | :--- | :--- |
+| **Verde** | > 12.000 € | Normal | Seguimiento mensual ordinario |
+| **Amarillo** | 8.000 – 12.000 € | Vigilancia | Congelar gastos no críticos + seguimiento quincenal |
+| **Naranja** | 5.000 – 8.000 € | Tensión | Contención + preparar apoyo de socios |
+| **Rojo** | < 5.000 € | Crítico | Activar apoyo de socios de inmediato |
+
+**Caja mínima de seguridad:** **7.000 €**.
+
+#### P.2 Escenarios y respuesta
+
+| Escenario | Disparador | Probabilidad | Impacto | Respuesta clave |
+| :--- | :--- | :--- | :--- | :--- |
+| **A** Moderado | Cobro Mes 13–15 | Media-Alta | Medio-Alto | Congelar no críticos; marketing 100–150 €/mes; preparar apoyo |
+| **B** Importante | Cobro Mes 16–18 | Media | Alto | Activar apoyo socios; fijos ≈ 900–1.000 €/mes; solo gastos vitales |
+| **C** Grave / recorte | > Mes 18 o ayuda reducida | Baja-Media | Crítico | Junta urgente; aporte/préstamo; valorar continuidad o suspensión mínima |
+
+#### P.3 Apoyo de socios (preacordar en Pacto)
+
+- **Préstamo participativo:** 8.000–12.000 € orientativos; interés bajo/0 % 12 meses; devolución con caja estable > 15.000 € o con cargo a la subvención.
+- **Ampliación de capital:** si el préstamo no basta.
+- **Plazo de respuesta:** máximo **15 días naturales** desde nivel Rojo o Naranja avanzado.
+
+#### P.4 Gobierno
+
+- Responsable: **Administrador / Socio 1**.
+- Frecuencia: Verde mensual · Amarillo quincenal · Naranja/Rojo semanal.
+- Reportar: saldo, previsión 30/60/90 días, estado de justificación, desviaciones presupuestarias.
+
+**Cláusula resumida (Pacto de Socios):** por debajo de **8.000 €** se activa contención; por debajo de **5.000 €** o retraso de subvención **> 4 meses** se activa el mecanismo de apoyo de socios.
 
 ---
 

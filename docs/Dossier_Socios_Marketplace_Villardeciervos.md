@@ -141,7 +141,7 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 - **17 %** como comisión estándar del marketplace sobre el ingreso neto de la venta (modelo base).
 - **Mínimo por pedido: 4,00 €.** Se aplica **lo que sea mayor** entre el 17 % del merchandise y 4,00 €.
   - Umbral de indiferencia: `4 ÷ 0,17 ≈ 23,5 €` de merchandise. Por debajo de ~23,5 € manda el mínimo; por encima, el 17 %.
-- **Justificación 15 % vs 17 % (cerrada):** el 17 % mejora ~**+1,24 €**/pedido de margen, baja el break-even ~**1.200 € GMV/mes** y reduce pérdidas a 3 años en ~**5.240 €**, con impacto moderado al productor (−2 pp). Detalle: `Plan_Viabilidad_Marketplace_Villardeciervos.md` §5.G.
+- **Justificación 15 % vs 17 % (cerrada):** el 17 % mejora ~**+1,24 €**/pedido de margen, baja el break-even ~**1.200 € GMV/mes** y reduce pérdidas a 3 años en ~**5.240 €**, con impacto moderado al productor (−2 pp). Detalle: [`docs/Comparativa_Comision_15_vs_17.md`](docs/Comparativa_Comision_15_vs_17.md) · `Plan_Viabilidad_Marketplace_Villardeciervos.md` §5.G.
 
 ### 3.2 Retención de 14 días (cumplimiento legal)
 
@@ -1054,7 +1054,7 @@ Antes de mostrar el software, la arquitectura técnica o los planes de viabilida
 Solicitamos compromiso de socios con una visión clara:
 
 - Validar rápido el piloto (Mes 2–6) **sin exigir exclusividad**.
-- Anexar al Pacto de Socios **§9.A** (hipótesis económica) y **§9.B** (embudo de conversión web Año 1) como marco de referencia compartido.
+- Anexar al Pacto de Socios **§9.A** (hipótesis económica), **§9.B** (embudo de conversión web Año 1) y el **Plan de Contingencia de Tesorería** ([`docs/Plan_Contingencia_Tesoreria.md`](docs/Plan_Contingencia_Tesoreria.md) · Plan §5.P) como marco de referencia compartido.
 - Convertirse en canal **prioritario** (consolidación + showroom + rappels + trato humano); meta **10–15 productores activos** en 18–24 meses.
 - Activar pipeline de captación y recurrencia con rappels y SLA; medir multi-homing y retención del piloto.
 - Escalar con control (KPIs/rentabilidad, umbrales CAC/ROAS de §9.B) y cumplimiento legal (retención 14 días).

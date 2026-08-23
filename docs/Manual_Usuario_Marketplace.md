@@ -106,8 +106,8 @@ Rutas típicas:
 |---|---|---:|
 | Importe pagado por el cliente | — | 50,00 € |
 | Comisión Stripe (1,5% + 0,25 €) | 50 × 0,015 + 0,25 | −1,00 € |
-| Comisión marketplace (15%) | 50 × 0,15 | −7,50 € |
-| **Payout neto al productor** | 50 − 1,00 − 7,50 | **41,50 €** |
+| Comisión marketplace (17%) | 50 × 0,17 | −8,50 € |
+| **Payout neto al productor** | 50 − 1,00 − 8,50 | **40,50 €** |
 
 ##### Ejemplo real — Bizum
 
@@ -117,8 +117,8 @@ Rutas típicas:
 |---|---|---:|
 | Importe pagado por el cliente | — | 50,00 € |
 | Comisión Stripe Bizum (0,8% + 0,25 €) | 50 × 0,008 + 0,25 | −0,65 € |
-| Comisión marketplace (15%) | 50 × 0,15 | −7,50 € |
-| **Payout neto al productor** | 50 − 0,65 − 7,50 | **41,85 €** |
+| Comisión marketplace (17%) | 50 × 0,17 | −8,50 € |
+| **Payout neto al productor** | 50 − 0,65 − 8,50 | **40,85 €** |
 
 > Bizum es ligeramente más barato para el productor porque la comisión de Stripe es menor que con tarjeta.
 

@@ -30,5 +30,6 @@ Archivos en la **raíz del repositorio** (no en `docs/`, para facilitar descarga
 ## Relación con la plataforma
 
 - Comisión y rappels documentados en `docs/commissions.md` y operativos en `/admin/rappels` (`RappelSettlement`).
+- Comparativa cerrada **15 % vs 17 %**: `docs/Comparativa_Comision_15_vs_17.md` (escenario prudente).
 - Argumentario contractual: `docs/Clausula_Comision_Rappels_Productor.md`.
 - Captación y multi-homing: `docs/Dossier_Socios_Marketplace_Villardeciervos.md` §3–4.

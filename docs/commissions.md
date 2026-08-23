@@ -9,6 +9,8 @@ FASE 10 completada: reglas de comision versionadas, snapshot en el pedido y liqu
 
 Comision por defecto de la plataforma: **17%** (`DEFAULT_MARKETPLACE_COMMISSION_PERCENT` en `@culebra/domain`), con suelo de **4 €** por subpedido (`DEFAULT_MIN_COMMISSION_EUR` en `finalizeVendorCommission`).
 
+**Justificacion de la tarifa:** comparativa cerrada **15 % vs 17 %** en [`Comparativa_Comision_15_vs_17.md`](./Comparativa_Comision_15_vs_17.md). Sensibilidad de costes en [`Sensibilidad_Costes_Plan_Viabilidad.md`](./Sensibilidad_Costes_Plan_Viabilidad.md). Decision adoptada: **17 %** base + rappels + minimo 4 €.
+
 ## Principios
 
 - Las reglas no se editan: cada cambio crea una version nueva.
