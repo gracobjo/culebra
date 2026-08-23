@@ -3,7 +3,8 @@
 **Ubicación:** Villardeciervos, Zamora (Comarca de La Carballeda)  
 **Escenario Financiero:** Estrictamente prudente (base) · Optimista solo como contraste (§5.J)  
 **Fecha de simulación:** Agosto 2026  
-**Fuente canónica de PyG:** este documento (§5). El Plan de Negocio Completo remite aquí.
+**Fuente canónica de PyG:** este documento (§5). El Plan de Negocio Completo remite aquí.  
+**Resumen ejecutivo (una página, decisión de socios):** [`docs/Resumen_Ejecutivo_Socios.md`](docs/Resumen_Ejecutivo_Socios.md).
 ---
 
 ## 1. 🏢 ESTRUCTURA SOCIETARIA Y ORGANIZATIVA

@@ -7,6 +7,8 @@
 
 ## 1) Resumen ejecutivo (por qué invertir)
 
+> **Versión de una página (decisión de constitución):** [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md).
+
 El proyecto crea una **S.L. tecnológica** que lanza un **marketplace multi-vendedor** para dinamizar el entorno rural de Villardeciervos (Zamora). La tesis de inversión para socios **no** es maximizar la rentabilidad a corto plazo, sino:
 
 1. **Estructurar una inversión elegible de 30–40.000 €** que permita captar la máxima subvención posible (**hasta el 74 %** a fondo perdido: ICECYL + complemento Diputación).
@@ -279,7 +281,9 @@ flowchart LR
 
 ## 7) Captación de productores y riesgo de multi-homing
 
-> **Tesis:** no pelear por exclusividad al inicio. Objetivo = ser el **canal principal o prioritario**, no el único. Aceptar multi-homing y competir por comodidad, consolidación logística, showroom y rappels.
+> **Tesis:** no pelear por exclusividad al inicio. Objetivo = ser el **canal principal o prioritario**, no el único. Aceptar multi-homing y competir por comodidad, consolidación logística, showroom y rappels.  
+> **Estrategia operativa completa (segmentos, fases, KPIs, riesgos):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
+> **Argumentario y guion de visita:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).
 
 ### 7.1 Diagnóstico del riesgo real
 
@@ -309,12 +313,14 @@ Pedir exclusividad total al principio es **casi imposible y poco recomendable**.
 #### Fase 2 — Expansión local (puerta a puerta + referidos)
 
 - Visitas en taller/obrador (muy efectivo en medio rural).
-- Argumentario:
+- **Guion y argumentario completo:** [`docs/Argumentario_Captacion_Productores.md`](docs/Argumentario_Captacion_Productores.md).
+- Argumentario breve:
   - “No te compramos stock, solo cobras si vendes”.
   - “Un solo envío aunque el cliente compre a varios productores”.
   - “Showroom físico en Villardeciervos que da confianza”.
   - “Comisión competitiva + rappels si creces con nosotros”.
 - Usar al piloto como **prescriptores** (boca-oreja).
+- Empezar casi siempre por **escaparate** o **stock mínimo** (no depósito completo).
 
 #### Fase 3 — Productores ya digitalizados
 
@@ -336,9 +342,12 @@ Pedir exclusividad total al principio es **casi imposible y poco recomendable**.
 
 ### 7.4 Argumentario comercial (guion)
 
+> Documento operativo completo (beneficios, modalidades de compromiso, miedos, guion de visita al obrador, objeciones y seguimiento): [`docs/Argumentario_Captacion_Productores.md`](docs/Argumentario_Captacion_Productores.md).
+
 > No te pedimos que dejes de vender en otros sitios.  
 > Te ofrecemos un canal adicional con ventajas reales: comisión clara y rappels si creces; el cliente puede comprar tus productos junto con los de otros artesanos en un solo envío; presencia física en Villardeciervos; ayuda con fichas y fotos; cobro automático y transparente.  
-> Si te funciona, irás metiendo más producto. Si no, no pierdes nada.
+> Si te funciona, irás metiendo más producto. Si no, no pierdes nada.  
+> **Empezamos con poco y si no te compensa, lo recoges. ¿Probamos con dos referencias?**
 
 ### 7.5 Riesgos y mitigación
 

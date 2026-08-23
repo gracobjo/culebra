@@ -135,6 +135,9 @@ Flujo:
 | Sensibilidad retrasos | [`docs/Sensibilidad_Retrasos_Plan_Viabilidad.md`](../../docs/Sensibilidad_Retrasos_Plan_Viabilidad.md) · `sensitivitySubsidyDelay()` etc. |
 | Plan contingencia tesorería | [`docs/Plan_Contingencia_Tesoreria.md`](../../docs/Plan_Contingencia_Tesoreria.md) · `resolveCashAlertLevel()`, `CONTINGENCY_SCENARIOS` |
 | Piloto | `apps/web/src/app/admin/piloto/*` |
+| Argumentario captación productores | [`docs/Argumentario_Captacion_Productores.md`](../../docs/Argumentario_Captacion_Productores.md) · materiales [`Materiales_Presentacion_Captacion.md`](../../docs/Materiales_Presentacion_Captacion.md) |
+| Estrategia captación productores | [`docs/Estrategia_Captacion_Productores.md`](../../docs/Estrategia_Captacion_Productores.md) |
+| Resumen ejecutivo socios | [`docs/Resumen_Ejecutivo_Socios.md`](../../docs/Resumen_Ejecutivo_Socios.md) |
 | Sandbox | `apps/web/src/app/admin/sandbox/*` |
 | Turismo | `apps/web/src/app/admin/turismo/*` |
 

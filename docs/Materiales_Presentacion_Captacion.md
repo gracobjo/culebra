@@ -32,4 +32,7 @@ Archivos en la **raíz del repositorio** (no en `docs/`, para facilitar descarga
 - Comisión y rappels documentados en `docs/commissions.md` y operativos en `/admin/rappels` (`RappelSettlement`).
 - Comparativa cerrada **15 % vs 17 %**: `docs/Comparativa_Comision_15_vs_17.md` (escenario prudente).
 - Argumentario contractual: `docs/Clausula_Comision_Rappels_Productor.md`.
-- Captación y multi-homing: `docs/Dossier_Socios_Marketplace_Villardeciervos.md` §3–4.
+- **Argumentario comercial + guion de visita al obrador:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).
+- **Estrategia de captación (fases A–D, KPIs):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).
+- **Resumen ejecutivo para socios (una página):** [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md).
+- Captación y multi-homing: `docs/Dossier_Socios_Marketplace_Villardeciervos.md` §7.

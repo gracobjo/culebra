@@ -220,6 +220,9 @@ El archivo `Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md` es un 
 5. Registrar cada euro subvencionable con su cadena documental completa.
 
 Materiales de captación / demos (PPTX, PNG, MP4): [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md).  
+Argumentario y guion de visita al obrador: [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
+Estrategia de captación de productores (fases, KPIs, riesgos): [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
+Resumen ejecutivo para socios (una página): [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md).  
 Comparativa financiera 15 % vs 17 %: [`Comparativa_Comision_15_vs_17.md`](./Comparativa_Comision_15_vs_17.md).  
 Sensibilidad de costes (break-even, fijos, marketing, RETA): [`Sensibilidad_Costes_Plan_Viabilidad.md`](./Sensibilidad_Costes_Plan_Viabilidad.md).  
 Flujo de caja y tesorería (capital, subvención, colchón): [`Flujo_Caja_Plan_Viabilidad.md`](./Flujo_Caja_Plan_Viabilidad.md).  
