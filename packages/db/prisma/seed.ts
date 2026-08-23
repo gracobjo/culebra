@@ -17,13 +17,21 @@ const categories: CategorySeed[] = [
   {
     name: "Embutidos y productos carnicos",
     slug: "embutidos-y-productos-carnicos",
+    description:
+      "Curados de la comarca: pieza, loncheados al vacío de caza y formatos gourmet (tacos). Sin frío; vigilar consumo preferente en formatos abiertos.",
     sortOrder: 1,
     children: [
       { name: "Jamon", slug: "jamon", sortOrder: 1 },
       { name: "Chorizo", slug: "chorizo", sortOrder: 2 },
       { name: "Salchichon", slug: "salchichon", sortOrder: 3 },
-      { name: "Otros embutidos", slug: "otros-embutidos", sortOrder: 4 },
-      { name: "Productos derivados del cerdo", slug: "productos-derivados-del-cerdo", sortOrder: 5 },
+      {
+        name: "Loncheados y tacos",
+        slug: "loncheados-y-tacos",
+        description: "Sobres al vacío y porciones listas (ciervo, jabalí, chorizo zamorano).",
+        sortOrder: 4,
+      },
+      { name: "Otros embutidos", slug: "otros-embutidos", sortOrder: 5 },
+      { name: "Productos derivados del cerdo", slug: "productos-derivados-del-cerdo", sortOrder: 6 },
     ],
   },
   {
@@ -71,18 +79,43 @@ const categories: CategorySeed[] = [
   {
     name: "Reposteria",
     slug: "reposteria",
+    description:
+      "Repostería seca de La Raya (soles de Aliste, rosquillas de Ramos, magdalenas de Sanabria). Sin frío; consumo preferente 30–60 días.",
     sortOrder: 6,
     children: [
-      { name: "Tartas", slug: "tartas", sortOrder: 1 },
-      { name: "Postres", slug: "postres", sortOrder: 2 },
-      { name: "Dulces", slug: "dulces", sortOrder: 3 },
+      {
+        name: "Dulces secos de La Raya",
+        slug: "dulces-secos-la-raya",
+        description: "Soles de Aliste, rosquillas de Ramos y similares.",
+        sortOrder: 1,
+      },
+      { name: "Magdalenas y bizcochos", slug: "magdalenas-y-bizcochos", sortOrder: 2 },
+      { name: "Tartas", slug: "tartas", sortOrder: 3 },
+      { name: "Postres", slug: "postres", sortOrder: 4 },
+      { name: "Dulces", slug: "dulces", sortOrder: 5 },
     ],
   },
   {
     name: "Productos tradicionales",
     slug: "productos-tradicionales",
-    description: "Categoria preparada para futuras incorporaciones.",
+    description:
+      "Despensa de territorio: harina de castaña de Sanabria, mermeladas bajas en azúcar, legumbres y conservas artesanas.",
     sortOrder: 7,
+    children: [
+      {
+        name: "Harinas y castaña",
+        slug: "harinas-y-castana",
+        description: "Harina de castaña de Sanabria y elaboraciones afines.",
+        sortOrder: 1,
+      },
+      {
+        name: "Mermeladas y confituras",
+        slug: "mermeladas-y-confituras",
+        description: "Mermeladas artesanas de frutos de la sierra, preferente bajas en azúcar.",
+        sortOrder: 2,
+      },
+      { name: "Legumbres y conservas", slug: "legumbres-y-conservas", sortOrder: 3 },
+    ],
   },
 ];
 

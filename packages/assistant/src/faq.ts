@@ -26,8 +26,28 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     id: "envio",
     question: "¿Cómo funciona el envío?",
     answer:
-      "Si el importe de productos (tras descuentos) es menor de 49 €, el envío cuesta 4,95 €. A partir de 49 € el envío es gratis. Cada productor prepara su parte del pedido; cuando se marca como enviado recibirás email de seguimiento si el productor lo indica.",
-    keywords: ["envio", "envío", "transporte", "seguimiento", "tracking", "entrega", "recibir", "gratis", "4,95", "49"],
+      "El envío es tarifa plana de 6,50 € pagada siempre por el cliente (sin umbral de envío gratis). Puedes comprar a varios productores en un solo pedido; consolidamos cuando procede. Cuando el pedido se marca como enviado recibirás seguimiento si el productor indica transportista y tracking.",
+    keywords: ["envio", "envío", "transporte", "seguimiento", "tracking", "entrega", "recibir", "6,50", "tarifa"],
+  },
+  {
+    id: "conservacion",
+    question: "¿Los productos necesitan nevera? ¿Cuánto duran?",
+    answer:
+      "El surtido de arranque está pensado para ir sin refrigeración (trastienda de paquetería limpia). Aun así, algunos formatos tienen consumo preferente corto: repostería seca tipo soles de Aliste o rosquillas suele etiquetarse en 30–60 días; loncheados de caza o tacos de chorizo, 60–90 días; harina de castaña y mermeladas bajas en azúcar, en torno a 90 días. La pieza entera de embutido, la miel o el vino aguantan más. Cada ficha muestra la fecha del productor.",
+    keywords: [
+      "nevera",
+      "frio",
+      "frío",
+      "caducidad",
+      "consumo preferente",
+      "soles",
+      "aliste",
+      "loncheado",
+      "castaña",
+      "mermelada",
+      "conservacion",
+      "conservación",
+    ],
   },
   {
     id: "devoluciones",

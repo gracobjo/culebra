@@ -24,6 +24,8 @@ Constantes en `@culebra/domain`: `CUSTOMER_SHIPPING_FEE_EUR` (6,50 €). `FREE_S
 
 **Quién paga el porte:** siempre el cliente. La S.L. **no absorbe** etiquetas. Comisión por defecto **17 %** (+ mínimo **4 €** por subpedido de productor).
 
+Comparativa de portes con plataformas gourmet de Zamora (Pedro y Ana gratis ≥ 100 €, Exquisiteza ~6,5–7,5 € con bonificación ~90–100 €): [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) §4.
+
 En carrito/checkout se muestra la tarifa plana. `Order.shippingAmount` + `Order.totalAmount` incluyen el cargo al cliente.
 
 ## Carrito

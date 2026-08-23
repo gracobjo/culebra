@@ -6,7 +6,7 @@
 
 Cómo hablar con productores locales para que lleven producto a la tienda de Villardeciervos: en **su lenguaje**, con **beneficios concretos**, no con el proyecto en abstracto.
 
-**Complementa:** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`.
+**Complementa:** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`.
 
 ---
 
@@ -77,7 +77,8 @@ Dejan más cantidad y vosotros gestionáis la preparación de sus pedidos online
 
 | Miedo del productor | Respuesta efectiva |
 |---------------------|--------------------|
-| «Se me va a picar o caducar» | Solo trabajamos no perecederos o con mucho margen de consumo preferente. Además, rotamos y os avisamos. |
+| «Se me va a picar o caducar» | Trabajamos sin nevera, pero con **fechas claras**: miel/vino aguantan; un sol de Aliste o un loncheado tiene ventana corta (30–90 días). Rotamos y os avisamos. Ver guía de conservación. |
+| «Ya estoy en Exquisiteza / TodeToro / Gourmet Box» | Perfecto: no pedimos exclusividad. Somos canal **extra** con showroom en Villardeciervos y cesta de la comarca. Detalle competencia: [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md). |
 | «Me van a controlar el precio» | Tú fijas el PVP. Nosotros solo aplicamos la comisión acordada. |
 | «Si no se vende me lo como yo» | Empezamos con poco stock. Si no rota, lo recoges. No hay compra obligatoria por nuestra parte. |
 | «Es un lío llevarlo» | Quedamos un día fijo de reparto o lo recogemos nosotros si hay varios en la misma zona. |

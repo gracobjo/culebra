@@ -6,7 +6,7 @@
 
 Documento de una página para presentar el proyecto a socios (decisión de constitución). Complementa el dossier detallado y el plan de viabilidad.
 
-**Referencias:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) · [`Plan_Viabilidad_Marketplace_Villardeciervos.md`](../Plan_Viabilidad_Marketplace_Villardeciervos.md) · [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md)
+**Referencias:** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) · [`Plan_Viabilidad_Marketplace_Villardeciervos.md`](../Plan_Viabilidad_Marketplace_Villardeciervos.md) · [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md)
 
 ---
 

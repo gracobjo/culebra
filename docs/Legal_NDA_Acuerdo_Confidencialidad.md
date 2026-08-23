@@ -195,7 +195,7 @@ El Productor se compromete formalmente a cumplir los siguientes indicadores de c
 | **Sincronización de inventario** | 4 horas | El Productor actualizará el stock disponible en su panel de control en un plazo máximo de 4 horas ante cualquier rotura de stock en su canal físico, evitando ventas web sin mercancía real. |
 | **Preparación del pedido** | 24 horas hábiles | Desde la recepción de la alerta automática de venta, el Productor entregará el artículo en el punto de consolidación de Villardeciervos. |
 | **Hora de corte (cut-off)** | 13:00 h | Los pedidos recibidos antes de las 13:00 h quedarán entregados en el centro de consolidación esa misma tarde para su salida con el transportista diario. |
-| **Consumo preferente mínimo** | 90 días (45 para quesos) | El Productor garantiza que todos los productos tienen una fecha de consumo preferente mínima de 90 días naturales desde la entrega (45 días para quesos curados). |
+| **Consumo preferente mínimo** | Por familia (ver guía) | Días **restantes** al envío: general **90**; repostería seca **≥ 30** (rec. 45); loncheados/tacos **≥ 60**; quesos **≥ 45**; harina de castaña / mermelada baja azúcar **≥ 60** (obj. 90). Guía: `docs/Catalogo_Productos_La_Raya_Conservacion.md`. |
 | **Reposición por defecto de origen** | 48 horas | Si un producto sufre daños durante el transporte por defecto de fábrica o mal ajuste del envase original, el Productor repondrá el artículo a su costa en menos de 48 horas. |
 
 ---

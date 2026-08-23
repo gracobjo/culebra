@@ -35,6 +35,13 @@ Punto de entrada “Tienda de la comarca”:
 
 No se afirma denominacion de origen, certificacion o premio si el productor no lo documenta. El campo `origin` es opcional y se muestra solo si existe.
 
+## Conservación y consumo preferente (La Raya)
+
+El arranque prioriza productos **sin refrigeración**, pero varias familias tienen ventana corta de consumo preferente (repostería seca 30–60 días; loncheados 60–90; harina de castaña / mermelada baja en azúcar ~90).
+
+Guía completa, tabla y **SLA por familia**: [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md).  
+Productores objetivo embutidos/caza: [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md).
+
 ## Variantes
 
 Un producto puede tener formatos:

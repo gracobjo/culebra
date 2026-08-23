@@ -6,6 +6,7 @@ export const CATEGORY_PLACEHOLDER: Record<string, string> = {
   salchichon: "/categories/embutidos-y-productos-carnicos.png",
   "otros-embutidos": "/categories/embutidos-y-productos-carnicos.png",
   "productos-derivados-del-cerdo": "/categories/embutidos-y-productos-carnicos.png",
+  "loncheados-y-tacos": "/categories/embutidos-y-productos-carnicos.png",
   "quesos-y-lacteos": "/categories/quesos-y-lacteos.png",
   "queso-de-oveja": "/categories/quesos-y-lacteos.png",
   "queso-de-cabra": "/categories/quesos-y-lacteos.png",
@@ -25,6 +26,11 @@ export const CATEGORY_PLACEHOLDER: Record<string, string> = {
   orujo: "/categories/licores.png",
   "licores-tradicionales": "/categories/licores.png",
   "productos-tradicionales": "/categories/productos-tradicionales.png",
+  "dulces-secos-la-raya": "/categories/reposteria.png",
+  "magdalenas-y-bizcochos": "/categories/reposteria.png",
+  "harinas-y-castana": "/categories/productos-tradicionales.png",
+  "mermeladas-y-confituras": "/categories/productos-tradicionales.png",
+  "legumbres-y-conservas": "/categories/productos-tradicionales.png",
   reposteria: "/categories/reposteria.png",
 };
 

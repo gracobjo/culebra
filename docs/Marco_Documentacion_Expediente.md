@@ -88,6 +88,9 @@ Contratos Facturas Pagos
 | 3 | **Memoria Técnica Justificativa** | Acreditar ante la Administración que el gasto es subvencionable | [`Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md`](./Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md) *(borrador marco; se redactará al cierre)* |
 | 4 | **Entregables contrato A.I** | Mapa de cumplimiento técnico del núcleo (A.1–A.3 + A.5a) con rutas y criterios | [`Entregables_Contrato_AI_Nucleo_Marketplace.md`](./Entregables_Contrato_AI_Nucleo_Marketplace.md) · panel `/admin/entregables-ai` |
 | 5 | **Wireframes UI/UX (A.1)** | Artefacto de diseño de pantallas del núcleo | [`Wireframes_UIUX_Contrato_AI.md`](./Wireframes_UIUX_Contrato_AI.md) |
+| 6 | **Catálogo La Raya / conservación** | Familias de producto sin frío, umbrales de consumo preferente y SLA por familia | [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) |
+| 7 | **Productores objetivo embutidos/caza** | Fichas de captación (La Culebra, Palacio, Pascualín, Lema) | [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) |
+| 8 | **Competencia gourmet Zamora** | Exquisiteza, Gourmet Box, TodeToro, Pedro y Ana — diferenciación | [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) |
 
 **No convertir** la Memoria de Proyecto en una justificativa. Mantener tonos distintos:
 

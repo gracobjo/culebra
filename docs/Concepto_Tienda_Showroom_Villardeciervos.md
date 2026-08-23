@@ -6,7 +6,7 @@
 
 Concepto de punto físico: **híbrido “Abacería delante / logística detrás”**. Escaparate gourmet de confianza + centro de consolidación de pedidos + oficina técnica, en local en **comodato**.
 
-**Referencias:** [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §14 · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · Plan de viabilidad §6 (comodato)
+**Referencias:** [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §14 · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · Plan de viabilidad §6 (comodato)
 
 ---
 
@@ -30,7 +30,7 @@ Legalmente el espacio opera como **oficina y almacén de paquetería limpia** (d
 
 ![Fachada de La Abacería, Zamora — referente de escaparate](./imagenes/referencia_la_abaceria_zamora.jpg)
 
-**Fuente:** [La Abacería, el más bello escaparate de los productos gourmet de Zamora](https://hosteleriaenzamora.com/la-abaceria-el-mas-bello-escaparate-de-los-productos-gourmet-de-zamora/) (Hostelería en Zamora, Ana Pedrero). Ubicación: Ramos Carrión 9, casco antiguo de Zamora.
+**Fuente:** [La Abacería, el más bello escaparate de los productos gourmet de Zamora](https://hosteleriaenzamora.com/la-abaceria-el-mas-bello-escaparate-de-los-productos-gourmet-de-zamora/) (Hostelería en Zamora, Ana Pedrero). Ficha corporativa: **Ramos Carrión 4**, 49001 Zamora (tel. +34 980 533 727); Entrevinos Gourmet / La Abacería, S.L. privada. Detalle: [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md).
 
 | Tomar | Adaptar | Evitar |
 |-------|---------|--------|
@@ -118,7 +118,7 @@ Reglas alineadas al argumentario de captación:
 2. Cada producto visible con **QR** a ficha online / productor (puente físico → marketplace).
 3. **Stock mínimo** o solo escaparate al inicio; la S.L. **no compra** género.
 4. Rotación: si no se mueve, se avisa y se recoge (prueba reversible).
-5. Priorizar **no perecederos** o largo consumo preferente.
+5. Priorizar productos **sin refrigeración**; aplicar SLA de consumo preferente **por familia** (repostería seca 30–60 días de etiqueta; loncheados 60–90; despensa artesana ~90). Ver [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md).
 6. Iluminación dirigida a producto; evitar vitrina vacía o “estantería de oficina”.
 
 Modalidades de compromiso del productor (escaparate → depósito): ver [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) §4.
@@ -173,15 +173,27 @@ Elegible / justificable según marco de inversión del expediente; facturar a no
 
 ## 9. Diferencia frente a La Abacería (elevator pitch)
 
-| | La Abacería (Zamora ciudad) | Sabores de la Culebra (Villardeciervos) |
-|--|-----------------------------|----------------------------------------|
-| Modelo | Tienda gourmet física | Marketplace + showroom + consolidación |
+| | La Abacería / Entrevinos (Zamora ciudad) | Sabores de la Culebra (Villardeciervos) |
+|--|------------------------------------------|----------------------------------------|
+| Modelo | Tienda gourmet física (S.L. retail) | Marketplace + showroom + consolidación |
+| Ingresos | Margen minorista/mayorista + catas/eventos | **Comisión** sobre GMV del productor |
 | Stock | Compra / selección comercial propia | **Sin compra de stock**; depósito / exposición |
+| Sede | Ramos Carrión 4, casco antiguo | Villardeciervos (comodato) |
 | Alcance | Provincia / gourmet urbano | Territorio Culebra / La Raya + envío unificado |
 | Tráfico | Casco antiguo, alto paso | Rural, turístico y por cita / pedido |
 | Trasera | Retail | **Centro de consolidación** de pedidos online |
 
 > Montamos un escaparate con el mimo de una buena abacería zamorana, pero detrás hay un sistema para que el cliente compre a varios artesanos y reciba **un solo paquete**. El productor prueba con poco género; nosotros no le compramos el almacén.
+
+### Frente a plataformas gourmet digitales de Zamora
+
+Existen ya canales multimarca online (Exquisiteza, Gourmet Box Zamora, TodeToro, Embutidos Pedro y Ana). Detalle: [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md).
+
+| Ellos | Nosotros |
+|-------|----------|
+| Escaparate digital provincial, Toro (Maltrasa) o cestas | Nodo **Villardeciervos** + territorio Culebra/La Raya |
+| Cesta multiproductor online | Igual **+ showroom físico + consolidación en trastienda** |
+| Algunos compran / seleccionan stock | **Sin compra de stock**; el productor sigue siendo el dueño |
 
 ---
 
@@ -192,5 +204,6 @@ Elegible / justificable según marco de inversión del expediente; facturar a no
 | Este archivo | Concepto de tienda / showroom |
 | [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) | El showroom como prueba física de captación |
 | [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) | Lenguaje ante el productor (escaparate, poco stock) |
+| [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) | Referentes digitales provinciales |
 | [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §14 | Legalidad y protocolo de trastienda |
 | [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) | Foto de referencia e infografías |

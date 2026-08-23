@@ -15,13 +15,16 @@ export const metadata = buildPageMetadata({
 });
 
 const CATEGORY_BLURBS: Record<string, string> = {
-  "embutidos-y-productos-carnicos": "Curados e ibéricos de la comarca.",
+  "embutidos-y-productos-carnicos":
+    "Pieza, loncheados de caza y tacos gourmet. Sin frío; rotación según consumo preferente.",
   "quesos-y-lacteos": "Oveja, cabra y mezcla de obradores cercanos.",
   vinos: "Tintos, blancos y rosados del entorno.",
   licores: "Orujos y licores de tradición. Edad verificada en el checkout.",
   "miel-y-productos-apicolas": "Miel de brezo, polen y elaboraciones apícolas.",
-  reposteria: "Dulces y elaboraciones de obrador.",
-  "productos-tradicionales": "Legumbres, conservas y despensa de territorio.",
+  reposteria:
+    "Soles de Aliste, rosquillas de Ramos y magdalenas de Sanabria. Dulces secos sin nevera.",
+  "productos-tradicionales":
+    "Harina de castaña, mermeladas bajas en azúcar, legumbres y conservas de La Raya.",
 };
 
 export default async function TiendaPage() {

@@ -118,6 +118,8 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 
 ## 2) A quién sirve (actores y propuesta de valor)
 
+> **Posicionamiento (activador del territorio vs competencia, sin erosionar margen):** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).
+
 ### Productores (VENDORS)
 
 - **Cero coste de entrada** y sin riesgo de compra/stock por parte del marketplace.
@@ -128,7 +130,7 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 ### Consumidores (CONSUMERS)
 
 - Catálogo unificado (varios artesanos en una sola compra).
-- **Envío con tarifa plana:** **6,50 €** por pedido, **siempre a cargo del cliente**. No hay umbral de envío gratis; la S.L. **no absorbe** el coste de etiqueta.
+- **Envío con tarifa plana:** **6,50 €** por pedido, **siempre a cargo del cliente**. No hay umbral de envío gratis; la S.L. **no absorbe** el coste de etiqueta. Comparativa con gourmet zamoranas (gratis desde ~90–100 €): [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) §4.
 - Consolidación logística multiproductor cuando aplica.
 - Pago moderno (tarjeta + wallets + **Bizum**).
 - Experiencia fiable por SLA del productor.
@@ -240,7 +242,7 @@ sequenceDiagram
 
 ## 5) Logística + SLA (por qué el marketplace no “falla”)
 
-Catálogo inicial: **no perecederos** (miel, embutido curado, queso madurado, vino/licores, legumbres secas, conservas).
+Catálogo inicial: productos **estables sin refrigeración** de La Raya / Culebra / Aliste / Sanabria — miel, embutido (pieza y loncheados/tacos), queso madurado, vino/licores, repostería seca (soles, rosquillas), harina de castaña, mermeladas bajas en azúcar, legumbres. Atención: varios formatos tienen consumo preferente **30–90 días** (no “infinitos”). Detalle: [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md).
 
 SLA del productor:
 
@@ -286,9 +288,12 @@ flowchart LR
 ## 7) Captación de productores y riesgo de multi-homing
 
 > **Tesis:** no pelear por exclusividad al inicio. Objetivo = ser el **canal principal o prioritario**, no el único. Aceptar multi-homing y competir por comodidad, consolidación logística, showroom y rappels.  
+> **Posicionamiento (qué sí / adaptar / no):** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
 > **Estrategia operativa completa (segmentos, fases, KPIs, riesgos):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
 > **Argumentario y guion de visita:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
-> **Concepto de showroom / tienda física:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).
+> **Concepto de showroom / tienda física:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  
+> **Competencia digital provincial:** [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) (Exquisiteza, Gourmet Box, TodeToro, Pedro y Ana).  
+> **Productores embutidos/caza:** [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md).
 
 ### 7.1 Diagnóstico del riesgo real
 
@@ -296,6 +301,7 @@ flowchart LR
 |---|---|---|
 | Web propia + ferias | Alta | Medio (competencia parcial) |
 | Amazon / Etsy | Media-baja (muchos aún no digitalizados) | Alto si se digitalizan |
+| Plataformas gourmet Zamora (Exquisiteza, Gourmet Box, TodeToro…) | Media-alta | Alto (multi-homing provincial) |
 | Varios marketplaces regionales | Media | Alto (multi-homing) |
 | Exclusividad total con nosotros | Muy baja | — |
 | Probaros y quedarse si funciona | Alta | **Oportunidad** |

@@ -6,7 +6,7 @@
 
 Plan operativo para incorporar y retener productores. Complementa el argumentario de visita y el dossier de socios.
 
-**Referencias:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`
+**Referencias:** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`
 
 ---
 
@@ -35,7 +35,7 @@ Plan operativo para incorporar y retener productores. Complementa el argumentari
 ### Fase 1 — Grupo piloto (Meses 1–4)
 
 - **Objetivo:** 5 productores.
-- **Selección:** gente conocida, de confianza y con producto fácil de consolidar (miel, embutido curado, legumbres, queso de larga duración…).
+- **Selección:** gente conocida, de confianza y con producto fácil de consolidar **sin nevera** (miel, embutido —también loncheados—, legumbres, harina de castaña, mermelada, repostería seca de Aliste/Sanabria, queso de larga duración…). Umbrales de consumo preferente: [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md).
 - **Condiciones especiales de arranque:**
   - Comisión reducida el primer año (**12–14 %**).
   - Ayuda real con fotos y fichas.
@@ -84,7 +84,7 @@ Detalle de lenguaje y objeciones: [`Argumentario_Captacion_Productores.md`](./Ar
 
 | Paso | Acción |
 |------|--------|
-| **1. Identificación** | Listado de productores prioritarios por categoría (miel, embutido, queso, legumbres, dulces…). |
+| **1. Identificación** | Listado por categoría. Embutidos/caza: [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) (La Culebra, Palacio, Pascualín, Lema). |
 | **2. Primer contacto** | Preferible visita presencial. Si no, WhatsApp o llamada corta para pedir cita en el obrador. |
 | **3. Visita al obrador** | Escuchar cómo venden ahora → explicar el modelo en lenguaje sencillo → proponer prueba con **2–3 referencias** y poca cantidad. Guion: [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md). |
 | **4. Cierre de la prueba** | Dejar hoja resumen + condiciones. Quedar fecha para recoger el primer stock o para que ellos lo traigan. |
@@ -101,6 +101,7 @@ Detalle de lenguaje y objeciones: [`Argumentario_Captacion_Productores.md`](./Ar
 | Contrato de adhesión sencillo (comisión, rappels, SLA, duración, baja) | [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) |
 | Tarifas claras y rappels (17 % → 14 % → 12 %) | [`commissions.md`](./commissions.md) |
 | Argumentario de objeciones | [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) |
+| Fichas productores embutidos/caza | [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) |
 | Testimonios del grupo piloto | Cuando existan (prueba social) |
 | Resumen ejecutivo para socios | [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) |
 
@@ -128,6 +129,7 @@ Seguimiento operativo en `/admin/piloto` y KPIs de productores activos.
 |--------|------------|
 | No quieren dejar stock | Empezar solo con escaparate o con preparación bajo pedido |
 | Prefieren vender a La Abacería u otros | Presentarlo como **canal complementario**, nunca como sustituto |
+| Ya están en Exquisiteza / TodeToro / Gourmet Box | Canal **adicional**: showroom Villardeciervos + consolidación Culebra; ver [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) |
 | Incumplen plazos de preparación | SLA claro + avisos + posible suspensión temporal |
 | Se dan de alta y no suben producto | Seguimiento proactivo los primeros meses |
 | Piden exclusividad al revés o condiciones especiales | Solo negociar con los de más volumen y cuando haya tracción |
