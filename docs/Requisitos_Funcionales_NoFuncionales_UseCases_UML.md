@@ -2,7 +2,25 @@
 
 ![Logo Sabores de la Culebra](./imagenes/logo.png)
 
-**Documentos relacionados:** [Manual de usuario](./Manual_Usuario_Marketplace.md) · [Manual de desarrollador](./Manual_Desarrollador_Marketplace.md) · [Turismo](./tourism.md)
+**Documentos relacionados:** [Manual de usuario](./Manual_Usuario_Marketplace.md) · [Manual de desarrollador](./Manual_Desarrollador_Marketplace.md) · [Turismo](./tourism.md) · [Carrito](./cart.md) · [Entregables A.I](./Entregables_Contrato_AI_Nucleo_Marketplace.md) · [Wireframes UI/UX](./Wireframes_UIUX_Contrato_AI.md)
+
+**Última revisión:** ago-2026 — alineación con contrato A.I (núcleo 14.500 €: A.1–A.3 + A.5a), desglose de cesta por productor, hub/tienda visual y checklist `/admin/entregables-ai`.
+
+---
+
+## B. Mapa WBS ↔ requisitos (expediente)
+
+| Partida | Subpartida | Importe | RF / UC principales | Estado software |
+|---------|------------|--------:|---------------------|-----------------|
+| **A.I** | A.1 Arquitectura, BD, UI/UX | 3.500 € | RF-01, RF-02, RF-15, RF-25 · wireframes | Cumplido (repo) |
+| **A.I** | A.2 Catálogo + panel productor | 5.000 € | RF-02, RF-15 · UC-01, UC-21 | Cumplido |
+| **A.I** | A.3 Pedidos, carrito, checkout | 4.000 € | RF-03, RF-21, RF-23 · UC-02, UC-03, UC-17, UC-18 | Cumplido |
+| **A.I** | A.5a Comisión + admin usable | 2.000 € | RF-10…14, RF-24, RF-26 · UC-10…12, UC-20 | Cumplido |
+| **A.II** | A.4 Pagos / retención 14 d | 4.000 € | RF-04…06 · UC-03…06 | Implementado (cierre A.II) |
+| **A.II** | A.5b Cierre fino admin | 1.000 € | contratos versionados, rappels, auditoría | Parcial / adelantado |
+| **A.II** | A.6 Seguridad y producción | 3.500 € | RNF-01…03, despliegue | En curso / checklist A.II |
+
+Detalle de aceptación técnica A.I: [`Entregables_Contrato_AI_Nucleo_Marketplace.md`](./Entregables_Contrato_AI_Nucleo_Marketplace.md).
 
 ---
 
@@ -19,12 +37,14 @@ RF-02 Catálogo, hub tienda y categorías
 
 - El consumidor debe poder ver el hub `/tienda`, categorías agro y productos publicados.
 - Las entradas de turismo/packs en el hub no deben mezclar la reserva de noche en el checkout de productos.
+- Las categorías del hub y las tarjetas de categoría deben mostrar **imagen** (foto de producto o placeholder por slug en `/public/categories/`).
 
 RF-03 Carrito multi-proveedor
 
 - El consumidor debe poder añadir productos de diferentes productores.
 - El backend debe calcular comisión marketplace y neto por productor.
 - El carrito debe mostrar subtotal, descuentos, **envío** (tarifa plana) y total a pagar.
+- La UI del carrito debe **agrupar líneas por productor** con subtotal por vendedor (cesta unificada + desglose visible). Ver RF-23.
 
 RF-04 Checkout con Stripe Connect + Bizum
 
@@ -82,6 +102,7 @@ RF-15 Hub tienda de la comarca
 
 - Debe existir `/tienda` que agrupe categorías agroalimentarias y entradas a turismo/packs.
 - `/categorias` (índice) puede redirigir al hub; las fichas `/categorias/[slug]` siguen siendo catálogo agro.
+- El hub debe transmitir sensación de **escaparate** (hero/mosaico de producto + tiles con imagen), no un listado textual frío.
 
 RF-16 Directorio de alojamientos (fase 2)
 
@@ -142,6 +163,29 @@ RF-22 Etiqueta logística de caja e integración con operador (pendiente de oper
 
 El modelo Prisma `Shipment` queda preparado (`carrier`, `trackingNumber`, estados) con comentario de *future carrier integration*.
 
+RF-23 Desglose por productor (cesta y pedido) — A.3
+
+- En `/carrito`, las líneas deben agruparse por `vendorId` mostrando nombre del productor y subtotal del grupo.
+- En `/pedido/[orderNumber]`, el seguimiento debe desglosarse por `VendorOrder` (estados por productor).
+- El checkout debe crear un `VendorOrder` por productor distinto (`checkout.service`).
+- Un solo envío consolidado / tarifa plana al cliente aunque haya varios productores (RF-21).
+
+RF-24 Comisión marketplace y panel admin núcleo — A.5a
+
+- Debe existir regla de comisión por defecto (17 % + mínimo 4 €) y soporte de `CommissionRule` versionado.
+- El panel `/admin` debe permitir gestionar productores, productos, pedidos, liquidaciones y consultar comisión por productor.
+- **Fuera de A.5a (A.5b):** cierre contractual legal definitivo y moderación avanzada; no bloquea el panel usable.
+
+RF-25 Identidad visual de escaparate (home, tienda, admin)
+
+- Home, `/tienda` y resumen `/admin` deben usar mosaico/imágenes de producto (categorías) para transmitir que se opera una **tienda** de territorio, no un panel genérico.
+- Placeholders centralizados en `apps/web/src/lib/category-images.ts`.
+
+RF-26 Checklist entregables contrato A.I
+
+- Admin debe poder abrir `/admin/entregables-ai` con el estado de A.1 / A.2 / A.3 / A.5a y enlaces a rutas de verificación.
+- La documentación de aceptación vive en `docs/Entregables_Contrato_AI_Nucleo_Marketplace.md` y wireframes en `docs/Wireframes_UIUX_Contrato_AI.md`.
+
 ### C2. Requisitos No Funcionales
 
 RNF-01 Seguridad
@@ -184,6 +228,20 @@ RNF-09 Desacoplamiento del operador logístico
 - Mientras no haya operador contratado, el sistema no debe hardcodear un carrier concreto en la lógica de negocio.
 - La integración de etiquetas (RF-22) será un módulo sustituible por operador (API/credenciales por entorno).
 
+RNF-10 Trazabilidad de entregables WBS
+
+- Los entregables de software del núcleo deben poder mapearse a partidas A.I / A.II (contrato menor ≤ 15.000 € por servicio).
+- Evidencias: repositorio, docs de entregables, Cuaderno de ejecución, panel `/admin/entregables-ai`.
+
+RNF-11 Experiencia de tienda (no dashboard frío)
+
+- Las superficies de catálogo y el resumen admin deben incluir ancla visual de producto (imágenes reales o placeholders de categoría).
+- Tipografía y layout coherentes con [`ux.md`](./ux.md) y wireframes A.1.
+
+RNF-12 Entorno técnico reproducible
+
+- El entorno común (Docker / seed / docs `architecture` + `database`) debe permitir levantar el marketplace multi-vendedor de forma reproducible (criterio A.1).
+
 ---
 
 ## D. Casos de Uso (Use Cases) — Alto nivel
@@ -198,9 +256,9 @@ Actores:
 
 Use cases principales:
 
-- UC-01 Consultar catálogo y hub `/tienda`
-- UC-02 Gestionar carrito multi-vendor (incl. cupón y tarifa plana de envío)
-- UC-03 Realizar checkout (Stripe Connect + Bizum; cupón/afiliado/envío)
+- UC-01 Consultar catálogo y hub `/tienda` (tiles con imagen / escaparate)
+- UC-02 Gestionar carrito multi-vendor (cupón, tarifa plana, **agrupación por productor**)
+- UC-03 Realizar checkout (Stripe Connect + Bizum; cupón/afiliado/envío; split `VendorOrder`)
 - UC-04 Confirmación de pago (webhook) → marcar pedido pagado
 - UC-05 Crear payouts retenidos (heldForWithdrawal + releasesAt)
 - UC-06 Liberar payouts maduros (cron)
@@ -215,7 +273,10 @@ Use cases principales:
 - UC-15 Aplicar cupón / registrar afiliado en pedido
 - UC-16 Admin gestiona turismo (alojamientos, packs, cupones, afiliados)
 - UC-17 Calcular y aplicar tarifa plana de envío (6,50 €; sin gratuidad) — en diagrama F2: elipse `UC18`
+- UC-18 Ver seguimiento de pedido **por productor** (`/pedido/[orderNumber]`)
 - UC-19 Generar/imprimir etiqueta de caja vía operador logístico (**futuro**; RF-22; pendiente de elegir operador)
+- UC-20 Admin consulta checklist entregables A.I (`/admin/entregables-ai`)
+- UC-21 Productor gestiona catálogo propio (productos, precios, stock) en `/panel/proveedor`
 
 ---
 
@@ -372,6 +433,39 @@ Postcondiciones:
 
 **Estado hoy:** no implementado; workaround = portal del transportista + copiar tracking (RF-08).
 
+### E10. Carrito multi-vendor con desglose por productor (RF-23 / UC-02)
+
+Precondiciones:
+
+- Carrito con líneas de ≥ 1 productor (idealmente ≥ 2 para validar desglose).
+
+Flujo:
+
+1. Consumidor añade productos desde fichas distintas.
+2. En `/carrito` ve secciones por productor + subtotal de cada grupo.
+3. Totales globales: merchandise, cupón, envío plano, grand total.
+4. Checkout genera un `VendorOrder` por `vendorId`.
+
+Postcondiciones:
+
+- UI muestra desglose; persistencia con `CartItem` → líneas de pedido por productor.
+
+### E11. Checklist entregables A.I (RF-26 / UC-20)
+
+Precondiciones:
+
+- Actor ADMIN autenticado.
+
+Flujo:
+
+1. Abrir `/admin/entregables-ai`.
+2. Revisar bloques A.1 / A.2 / A.3 / A.5a y enlaces de verificación.
+3. Completar acta en `Entregables_Contrato_AI_Nucleo_Marketplace.md` §6 (Cuaderno).
+
+Postcondiciones:
+
+- Evidencia de revisión técnica del núcleo (sin sustituir factura/pago).
+
 ---
 
 ## F. Diagramas UML (los 4 principales + otros útiles)
@@ -400,6 +494,35 @@ classDiagram
     tradeName
     stripeAccountId
     stripeChargesEnabled
+  }
+  class Product{
+    id
+    vendorId
+    slug
+    basePrice
+    stock
+    status
+  }
+  class Cart{
+    id
+    userId
+    sessionId
+    couponCode
+  }
+  class CartItem{
+    id
+    cartId
+    productId
+    vendorId
+    quantity
+    unitPrice
+  }
+  class CommissionRule{
+    id
+    type
+    value
+    vendorId
+    validFrom
   }
   class Order{
     id
@@ -491,7 +614,12 @@ classDiagram
 
   User "1" --> "0..*" Role : has
   User "1" --> "0..1" Vendor : becomes
+  User "1" --> "0..1" Cart : mayHave
+  Vendor "1" --> "0..*" Product : sells
   Vendor "1" --> "0..*" VendorOrder : owns
+  Vendor "0..1" --> "0..*" CommissionRule : optional
+  Cart "1" --> "0..*" CartItem
+  CartItem "*" --> "1" Product
   Order "1" --> "0..1" Payment
   Order "1" --> "1..*" VendorOrder
   Order "0..*" --> "0..1" Coupon : mayRedeem
@@ -516,12 +644,12 @@ flowchart LR
   Stripe(["💳 StripeWebhook"])
 
   %% Casos de uso (elipses)
-  UC01(["Consultar hub /tienda y catálogo"])
-  UC02(["Gestionar carrito + cupón + tarifa envío"])
+  UC01(["Consultar hub /tienda visual"])
+  UC02(["Carrito multi-vendor + desglose productor"])
   UC03(["Realizar checkout"])
   UC04(["Dejar review"])
   UC05(["Confirmar pedido"])
-  UC06(["Marcar envío SHIPPED (tracking manual)"])
+  UC06(["Marcar envío SHIPPED tracking manual"])
   UC07(["Marcar entregado"])
   UC08(["Ver KPIs"])
   UC09(["Ver rentabilidad"])
@@ -534,7 +662,10 @@ flowchart LR
   UC16(["Añadir pack lote al carrito"])
   UC17(["Admin turismo"])
   UC18(["Aplicar tarifa plana envío"])
+  UC18b(["Seguimiento pedido por productor"])
   UC19(["Generar etiqueta operador — futuro RF-22"])
+  UC20(["Checklist entregables A.I"])
+  UC21(["Gestionar catálogo panel proveedor"])
 
   %% Relaciones
   Consumidor --- UC01
@@ -544,11 +675,13 @@ flowchart LR
   Consumidor --- UC15
   Consumidor --- UC16
   Consumidor --- UC18
+  Consumidor --- UC18b
 
   Productor --- UC05
   Productor --- UC06
   Productor --- UC07
   Productor --- UC19
+  Productor --- UC21
 
   Admin --- UC08
   Admin --- UC09
@@ -557,6 +690,7 @@ flowchart LR
   Admin --- UC12
   Admin --- UC17
   Admin --- UC19
+  Admin --- UC20
 
   Stripe --- UC13
   Cron   --- UC14
@@ -617,18 +751,18 @@ stateDiagram-v2
 ```mermaid
 flowchart TB
   subgraph Cliente
-    UI[apps/web (Next.js App Router)]
+    UI[apps/web Next.js App Router]
   end
   subgraph Servidor
-    API[API routes (webhook/cron/admin)]
-    Auth[@culebra/auth (lógica pagos/email/shipping/reviews)]
+    API[API routes webhook/cron/admin]
+    Auth["@culebra/auth"]
   end
   subgraph Persistencia
     DB[(PostgreSQL)]
   end
   subgraph Terceros
     Stripe[Stripe Checkout + Connect]
-    Email[Proveedor email (Resend/SendGrid/console dev)]
+    Email[Proveedor email]
   end
 
   UI --> API
@@ -642,11 +776,24 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-  Web[apps/web] --> Auth[@culebra/auth]
-  Web --> DB[@culebra/db (Prisma)]
+  Web[apps/web] --> Auth["@culebra/auth"]
+  Web --> DB["@culebra/db Prisma"]
   Auth --> Stripe[Stripe SDK]
   Auth --> Email[Email provider]
-  Auth --> Storage[Assets/Storage si aplica]
+  Auth --> Storage[Assets/Storage]
+```
+
+### F8. Flujo cesta unificada → desglose por productor (A.3)
+
+```mermaid
+flowchart LR
+  Add[Añadir productos N productores] --> CartUI[Carrito agrupado por vendor]
+  CartUI --> Checkout[Checkout]
+  Checkout --> Order[Order padre]
+  Order --> VO1[VendorOrder A]
+  Order --> VO2[VendorOrder B]
+  VO1 --> Track[Seguimiento por productor]
+  VO2 --> Track
 ```
 
 ---
@@ -656,4 +803,5 @@ flowchart LR
 - Guía de pruebas end-to-end (incluye sandbox).
 - Checklist de despliegue para producción.
 - Plantillas de UAT para el Grupo Piloto.
-
+- Acta interna A.I: [`Entregables_Contrato_AI_Nucleo_Marketplace.md`](./Entregables_Contrato_AI_Nucleo_Marketplace.md) §6.
+- Wireframes: [`Wireframes_UIUX_Contrato_AI.md`](./Wireframes_UIUX_Contrato_AI.md).
