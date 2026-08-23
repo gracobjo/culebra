@@ -13,6 +13,8 @@ El nucleo del expediente y del checkout es **agroalimentario**.
 
 No se modela el alojamiento como `Vendor` de checkout.
 
+**Decisión piloto:** se vende el **lote gourmet** (carrito + comisión marketplace). Noche / experiencia = enlace externo, sin asumir reserva ni portes del pack. Ver [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §11.
+
 ## Modelos Prisma
 
 - `Accommodation`, `AccommodationProduct`

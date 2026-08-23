@@ -6,7 +6,7 @@
 
 Concepto de punto físico: **híbrido “Abacería delante / logística detrás”**. Escaparate gourmet de confianza + centro de consolidación de pedidos + oficina técnica, en local en **comodato**.
 
-**Referencias:** [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §14 · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · Plan de viabilidad §6 (comodato)
+**Referencias:** [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §14 · [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · Plan de viabilidad §6 (comodato)
 
 ---
 
@@ -102,11 +102,13 @@ CALLE
 
 | Flujo | Recorrido |
 |-------|-----------|
-| **Visitante** | Calle → escaparate → showroom → mostrador (compra física puntual / QR a web) |
+| **Visitante** | Calle → escaparate → showroom → compra física **vía tablet/pedido en sistema (misma comisión 17 %)** o **QR a web** si no hay TPV |
 | **Pedido online** | Panel → picking en trastienda → caja → etiqueta → zona de recogida mensajero |
-| **Productor** | Cita → entrega en mostrador/trastienda → reposición escaparate o stock mínimo |
+| **Productor** | Cita → entrega en mostrador/trastienda → reposición escaparate o stock mínimo (modalidades A/B/C) |
 
 La trastienda debe quedar **separada visualmente** del showroom (biombo, estantería de fondo, cortina o muro ligero): el visitante percibe boutique, no almacén.
+
+**Venta física:** misma comisión que online (**17 %**, mín. 4 €). Sin caja paralela fuera del sistema. Detalle: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §11.
 
 ---
 
@@ -121,7 +123,7 @@ Reglas alineadas al argumentario de captación:
 5. Priorizar productos **sin refrigeración**; aplicar SLA de consumo preferente **por familia** (repostería seca 30–60 días de etiqueta; loncheados 60–90; despensa artesana ~90). Ver [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md).
 6. Iluminación dirigida a producto; evitar vitrina vacía o “estantería de oficina”.
 
-Modalidades de compromiso del productor (escaparate → depósito): ver [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) §4.
+Modalidades de compromiso del productor (**A / B / C**): [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §3 · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) §4.
 
 ---
 

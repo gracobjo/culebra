@@ -6,7 +6,7 @@
 
 Cómo hablar con productores locales para que lleven producto a la tienda de Villardeciervos: en **su lenguaje**, con **beneficios concretos**, no con el proyecto en abstracto.
 
-**Complementa:** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`.
+**Complementa:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`.
 
 ---
 
@@ -51,25 +51,25 @@ Hay que responder estas cinco de forma **clara y concreta** antes de hablar de p
 
 ---
 
-## 4. Fórmulas prácticas (de menos a más compromiso)
+## 4. Fórmulas prácticas (modalidades A / B / C)
 
-Ofrece distintas modalidades. **Empieza casi siempre por la 1 o la 2.** No pidas el máximo compromiso al principio.
+Canónico operativo: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §3.
 
-### 1. Solo escaparate / exposición
+**Regla del piloto:** por defecto oferta **C (híbrida)**; arranque real en **A** hasta primera rotación; **B** solo con rotación demostrada. No pidas el máximo compromiso al principio.
 
-Dejan **2–4 referencias** para que se vean en la tienda. No es stock de venta obligatoria. Sirve para generar confianza y pedidos online.
+### A. Escaparate + bajo pedido
 
-### 2. Stock mínimo de reposición
+Dejan **2–4 referencias** visibles en showroom. Cuando llega un pedido online, preparan y llevan a Villardeciervos en **24 h**. Ideal para empezar.
 
-Dejan una cantidad pequeña (lo que baste para **2–4 semanas**). Vosotros avisáis cuando baje.
+### B. Stock mínimo en trastienda
 
-### 3. Consolidación de pedidos online
+Dejan **4–12 unidades** de 2–3 referencias estables. La trastienda prepara el pedido. Solo cuando ya haya rotación.
 
-Cuando llega un pedido, ellos preparan su parte y la dejan en la tienda (o la llevan un día concreto). Vosotros consolidáis y enviáis.
+### C. Híbrida (oferta estándar)
 
-### 4. Depósito más completo (para los más confiados)
+Stock mínimo de lo que más rota + resto bajo pedido. La más flexible para el piloto.
 
-Dejan más cantidad y vosotros gestionáis la preparación de sus pedidos online.
+*(Depósito más completo = evolución de B cuando el productor confía y el producto gira.)*
 
 ---
 
@@ -98,15 +98,14 @@ Dejan más cantidad y vosotros gestionáis la preparación de sus pedidos online
 
 ## 7. Incentivos de arranque (opcional pero útil)
 
-Para los primeros productores:
+Para los primeros productores (fundadores piloto):
 
-- Comisión más baja el primer año (ej. **12–14 %**).
+- Comisión **12 % fijo el primer año** (vs 17 % estándar; sin rappel adicional a la baja ese año).
 - Ayuda real con **fotos y fichas** de producto.
 - Colocación preferente en la tienda y en la web.
 - Compromiso de comunicación de ventas **semanal o quincenal** al principio.
 
-Detalle de comisión y rappels: [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md).
-
+Detalle: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md).
 ---
 
 ## 8. Frase de cierre que suele funcionar

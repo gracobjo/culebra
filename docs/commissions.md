@@ -11,6 +11,10 @@ Comision por defecto de la plataforma: **17%** (`DEFAULT_MARKETPLACE_COMMISSION_
 
 **Justificacion de la tarifa:** comparativa cerrada **15 % vs 17 %** en [`Comparativa_Comision_15_vs_17.md`](./Comparativa_Comision_15_vs_17.md). Sensibilidad de costes en [`Sensibilidad_Costes_Plan_Viabilidad.md`](./Sensibilidad_Costes_Plan_Viabilidad.md). Decision adoptada: **17 %** base + rappels + minimo 4 €.
 
+**Piloto / fundadores:** comisión **12 % fijo el primer año** (regla en panel por productor). Ese año **no** se aplica rappel adicional a la baja. Año 2+ → esquema estándar. Detalle operativo: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §12.
+
+**Venta física showroom:** misma comisión que online (17 % o 12 % fundadores). Sin tarifa distinta.
+
 ## Principios
 
 - Las reglas no se editan: cada cambio crea una version nueva.
@@ -33,13 +37,15 @@ Ademas, una regla `FIXED` vigente suma una cuota por subpedido del productor. Tr
 
 Tramos anuales (Opción A — rappel **retroactivo** al cierre del año natural; durante el año se cobra siempre el 17 %):
 
-| Tramo | Facturacion anual neta | Comision efectiva | Rappel |
+| Tramo | Facturación anual neta | Comisión efectiva | Rappel |
 |-------|------------------------|-------------------|--------|
 | Bronce | Hasta 5.000 € | 17 % | — |
-| Plata | 5.001 – 15.000 € | 14 % | 3 % |
+| Plata | 5.001–15.000 € | 14 % | 3 % |
 | Oro | > 15.000 € | 12 % | 5 % |
 
-Detalle contractual: [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md). Panel: `/admin/rappels`.
+Los rappels están **activos desde el año 1** del productor en el modelo estándar (liquidación al cierre). No se liquidan en cada pedido.
+
+Detalle contractual: [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md). Panel: `/admin/rappels`. Flujo piloto: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).
 
 ### Liquidacion anual (`RappelSettlement`)
 

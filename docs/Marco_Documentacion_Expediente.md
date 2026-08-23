@@ -226,9 +226,11 @@ El archivo `Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md` es un 
 
 Materiales de captación / demos (PPTX, PNG, MP4): [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md).  
 Argumentario y guion de visita al obrador: [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
+Flujo operativo del piloto (decisiones A/B/C, SLA, roles): [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).  
 Estrategia de captación de productores (fases, KPIs, riesgos): [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
 Resumen ejecutivo para socios (una página): [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md).  
 Concepto de tienda / showroom (referente La Abacería): [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  
+Posicionamiento activador del territorio: [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
 Comparativa financiera 15 % vs 17 %: [`Comparativa_Comision_15_vs_17.md`](./Comparativa_Comision_15_vs_17.md).  
 Sensibilidad de costes (break-even, fijos, marketing, RETA): [`Sensibilidad_Costes_Plan_Viabilidad.md`](./Sensibilidad_Costes_Plan_Viabilidad.md).  
 Flujo de caja y tesorería (capital, subvención, colchón): [`Flujo_Caja_Plan_Viabilidad.md`](./Flujo_Caja_Plan_Viabilidad.md).  

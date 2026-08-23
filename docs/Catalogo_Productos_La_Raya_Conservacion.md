@@ -6,7 +6,7 @@
 
 Guía de producto para surtido **estable a temperatura ambiente** (sin frío industrial), típico de **La Raya / Aliste / Sanabria / Sierra de la Culebra**. Complementa el enfoque “no perecederos” del dossier: muchos artículos **no necesitan nevera**, pero sí tienen **ventana corta de consumo preferente** por oxidación, textura o aroma.
 
-**Referencias:** [`catalog.md`](./catalog.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Legal_NDA_Acuerdo_Confidencialidad.md`](./Legal_NDA_Acuerdo_Confidencialidad.md) · Plan de Negocio §6 (SLA)
+**Referencias:** [`catalog.md`](./catalog.md) · [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Legal_NDA_Acuerdo_Confidencialidad.md`](./Legal_NDA_Acuerdo_Confidencialidad.md) · Plan de Negocio §6 (SLA)
 
 > **Nota:** umbrales orientativos de productores artesanos. Cada ficha debe llevar su fecha de consumo preferente real. No sustituye normativa alimentaria ni el RGSEAA del elaborador.
 

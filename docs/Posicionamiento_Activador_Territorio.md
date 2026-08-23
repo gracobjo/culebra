@@ -6,7 +6,7 @@
 
 Cómo ser un **activador del territorio** (no “una tienda más de chorizo”) frente a Exquisiteza, Abacería, Gourmet Box y charcuterías online, **sin romper** comisión **17 %**, portes **6,50 €** al cliente ni el modelo **sin compra de stock**.
 
-**Referencias:** [`business-model.md`](./business-model.md) · [`Comparativa_Comision_15_vs_17.md`](./Comparativa_Comision_15_vs_17.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`tourism.md`](./tourism.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md)
+**Referencias:** [`business-model.md`](./business-model.md) · [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Comparativa_Comision_15_vs_17.md`](./Comparativa_Comision_15_vs_17.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`tourism.md`](./tourism.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md)
 
 ---
 

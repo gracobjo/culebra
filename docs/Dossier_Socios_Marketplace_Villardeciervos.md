@@ -118,7 +118,8 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 
 ## 2) A quién sirve (actores y propuesta de valor)
 
-> **Posicionamiento (activador del territorio vs competencia, sin erosionar margen):** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).
+> **Posicionamiento (activador del territorio vs competencia, sin erosionar margen):** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
+> **Flujo operativo del piloto (decisiones cerradas A/B/C, SLA, roles, liquidación):** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).
 
 ### Productores (VENDORS)
 
@@ -244,12 +245,12 @@ sequenceDiagram
 
 Catálogo inicial: productos **estables sin refrigeración** de La Raya / Culebra / Aliste / Sanabria — miel, embutido (pieza y loncheados/tacos), queso madurado, vino/licores, repostería seca (soles, rosquillas), harina de castaña, mermeladas bajas en azúcar, legumbres. Atención: varios formatos tienen consumo preferente **30–90 días** (no “infinitos”). Detalle: [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md).
 
-SLA del productor:
+SLA del productor (detalle operativo: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md)):
 
 - **Stock (SLA 4h)** tras rotura.
 - **Preparación (SLA 24h)** desde notificación.
 - **Cut-off**: pedidos antes de 13:00h se preparan el mismo día.
-- Preferencia de consumo (no caducidad cercana): 90 días (45 en quesos).
+- Preferencia de consumo restante al envío: **por familia** (30 / 60 / ≥90; quesos 45) — [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) §6. La regla plana “90 días para todo” queda sustituida.
 - Penalizaciones: suspensión temporal o depósito físico de stock.
 
 Tarifa de envío y consolidación:
@@ -288,6 +289,7 @@ flowchart LR
 ## 7) Captación de productores y riesgo de multi-homing
 
 > **Tesis:** no pelear por exclusividad al inicio. Objetivo = ser el **canal principal o prioritario**, no el único. Aceptar multi-homing y competir por comodidad, consolidación logística, showroom y rappels.  
+> **Flujo operativo del piloto:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).  
 > **Posicionamiento (qué sí / adaptar / no):** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
 > **Estrategia operativa completa (segmentos, fases, KPIs, riesgos):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
 > **Argumentario y guion de visita:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
@@ -315,7 +317,7 @@ Pedir exclusividad total al principio es **casi imposible y poco recomendable**.
 - **Objetivo:** validar flujo completo (alta, pedidos, preparación, pago, consolidación).
 - **Perfil:** artesanos conocidos, no perecedero de calidad, cierta predisposición digital.
 - **Oferta de arranque:**
-  - comisión reducida **12–14 % el primer año** (vs 17 % estándar);
+  - comisión reducida **12 % fijo el primer año** (fundadores; vs 17 % estándar; sin rappel adicional a la baja ese año) — [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §12;
   - ayuda real con fotos, fichas y optimización;
   - prioridad de posicionamiento en la web;
   - acompañamiento personal (visitas, WhatsApp directo).
