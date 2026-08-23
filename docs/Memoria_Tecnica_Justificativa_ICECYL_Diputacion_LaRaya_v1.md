@@ -565,39 +565,62 @@ C) **Fondo de maniobra**: caja necesaria para operar durante los primeros meses 
 
 **Criterio.** Se detalla por subpartidas aunque todas figuren como **potencialmente elegibles / a confirmar** con ICECYL. Ninguna partida se presenta como elegible de forma definitiva hasta validación de bases y justificación documental (facturas, nóminas, extractos).
 
-**Nota de fuentes.** El plan de viabilidad fija adecuación de oficina en **2.500 €** y equipamiento informático en **2.000 €**. Esta memoria alinea esas partidas y **reequilibra** el desarrollo tecnológico (−1.000 €) para mantener el umbral de **30.000 €** de inversión potencial.
+**Nota de fuentes.** El plan de viabilidad fija adecuación de oficina en **2.500 €** y equipamiento informático en **2.000 €**. Esta memoria alinea esas partidas y mantiene el umbral de **30.000 €** de inversión potencial.
 
-**Reequilibrio aplicado (respecto al desglose previo):**
-- D. Adecuación de espacio: **1.000 → 2.500 €** (+1.500 €)
-- B. Equipamiento informático: **2.500 → 2.000 €** (−500 €)
-- A. Desarrollo tecnológico: **24.000 → 23.000 €** (−1.000 €)
-- C y E: sin cambio
-- **Total: 30.000 €** (sin variación)
+#### 25.2.0 Umbral de contrato menor (LCSP art. 118) y ajuste del desarrollo tecnológico
 
-#### A) Resumen por partida
+Umbrales vigentes (IVA excluido; sin cambio en 2026):
+
+| Tipo de contrato | Umbral máximo (sin IVA) |
+|------------------|------------------------:|
+| Obras | 40.000 € |
+| Suministros | 15.000 € |
+| Servicios | 15.000 € |
+
+Si un gasto subvencionable **supera** ese umbral, las bases (y art. 31.3 LGS) exigen **como mínimo tres ofertas** de proveedores distintos antes de contratar.
+
+| Partida | Tipo | Importe (sin IVA) | ¿3 ofertas? |
+|---------|------|------------------:|:-----------:|
+| A.I Desarrollo núcleo marketplace | Servicio | **14.500 €** | **No** (≤ 15.000 €) |
+| A.II Pagos, seguridad y producción | Servicio | **8.500 €** | **No** (≤ 15.000 €) |
+| B Equipamiento informático | Suministro | 2.000 € | No |
+| C Red y ciberseguridad | Suministro | 1.500 € | No |
+| D Adecuación de espacio | Obra / acondicionamiento | 2.500 € | No |
+| E Logística ligera y puestos | Suministro | 1.000 € | No |
+
+**Ajuste aplicado:** el antiguo bloque único de desarrollo (**23.000 €**) se **desagrega en dos contratos de servicio** con objeto y entregables distintos (A.I y A.II), cada uno ≤ **15.000 €** sin IVA, para no superar el umbral de contrato menor.  
+**Advertencia:** no es fraccionamiento artificial: A.I = núcleo funcional (arquitectura, catálogo, pedidos); A.II = pagos/liquidaciones, cierre admin y puesta en producción segura. Contratos, facturas y entregables deben quedar separados.
+
+#### A) Resumen por partida (contratación)
 
 | Código | Partida | Importe neto (previsión) | Elegibilidad |
 |--------|---------|-------------------------:|--------------|
-| A | Desarrollo tecnológico (marketplace) | 23.000 € | potencialmente elegible / a confirmar |
+| **A.I** | Desarrollo núcleo marketplace (servicio) | **14.500 €** | potencialmente elegible / a confirmar |
+| **A.II** | Desarrollo pagos, seguridad y producción (servicio) | **8.500 €** | potencialmente elegible / a confirmar |
 | B | Equipamiento informático | 2.000 € | potencialmente elegible / a confirmar |
 | C | Red y ciberseguridad | 1.500 € | potencialmente elegible / a confirmar |
 | D | Adecuación de espacio operativo | 2.500 € | potencialmente elegible / a confirmar |
 | E | Equipamiento logístico ligero y puestos | 1.000 € | potencialmente elegible / a confirmar |
 | | **Total inversión subvencionable potencial** | **30.000 €** | confirmación ICECYL requerida |
 
-#### B) Subpartidas — A. Desarrollo tecnológico (23.000 €)
+*Suma A.I + A.II = **23.000 €** (mismo esfuerzo tecnológico total que el desglose previo; distinta estructura de contratación).*
 
-Reparto interno **indicativo** del coste de desarrollo como servicio externalizado (equipo técnico especializado y entregables de activo inmaterial), orientado a resultados verificables. No constituye contrato ni tarifa homologada.
+#### B) Subpartidas — Desarrollo tecnológico (WBS interno A.1–A.6 → contratos A.I / A.II)
 
-| Código | Subpartida | Importe | Finalidad / entregable | Indicador de resultado | Elegibilidad |
-|--------|------------|--------:|------------------------|------------------------|--------------|
-| A.1 | Arquitectura, base de datos y diseño UI/UX | 3.500 € | Modelo de datos multi-vendedor, wireframes y arquitectura base | Arquitectura documentada y entorno base operativo | potencialmente elegible / a confirmar |
-| A.2 | Catálogo multi-vendedor y paneles de productor | 5.000 € | Perfiles, productos, precios, stock y panel proveedor | Módulo catálogo + panel productor en beta | potencialmente elegible / a confirmar |
-| A.3 | Pedidos, carrito y checkout | 4.000 € | Cesta unificada, desglose por productor y estados de pedido | Flujo de pedido end-to-end en piloto | potencialmente elegible / a confirmar |
-| A.4 | Pagos, liquidaciones y retención 14 días | 4.000 € | Integración con pasarela externa, split y retención legal | 5 validaciones de pago/retención en beta | potencialmente elegible / a confirmar |
-| A.5 | Contratos, comisiones y panel de administración | 3.000 € | Condiciones versionadas, comisiones y moderación admin | Panel admin operativo (validación, contratos, comisiones) | potencialmente elegible / a confirmar |
-| A.6 | Seguridad, auditoría, pruebas y puesta en producción | 3.500 € | Auth/RBAC, auditoría, rate limits, pruebas y despliegue | Checklist de seguridad + beta desplegada | potencialmente elegible / a confirmar |
-| **A** | **Subtotal desarrollo tecnológico** | **23.000 €** | Activo tecnológico del marketplace | Plataforma en beta + piloto | a confirmar |
+Reparto interno **indicativo**. No constituye contrato ni tarifa homologada.
+
+| Código | Subpartida | Importe | Contrato de servicio | Finalidad / entregable | Elegibilidad |
+|--------|------------|--------:|:--------------------:|------------------------|--------------|
+| A.1 | Arquitectura, base de datos y diseño UI/UX | 3.500 € | **A.I** | Modelo de datos multi-vendedor, wireframes y arquitectura base | a confirmar |
+| A.2 | Catálogo multi-vendedor y paneles de productor | 5.000 € | **A.I** | Perfiles, productos, precios, stock y panel proveedor | a confirmar |
+| A.3 | Pedidos, carrito y checkout | 4.000 € | **A.I** | Cesta unificada, desglose por productor y estados de pedido | a confirmar |
+| A.5a | Contratos, comisiones y admin (fase núcleo) | 2.000 € | **A.I** | Reglas de comisión y panel admin base | a confirmar |
+| | **Subtotal contrato A.I** | **14.500 €** | | Núcleo funcional usable | |
+| A.4 | Pagos, liquidaciones y retención 14 días | 4.000 € | **A.II** | Pasarela, split y retención legal | a confirmar |
+| A.5b | Contratos, comisiones y admin (cierre) | 1.000 € | **A.II** | Cierre de condiciones versionadas y moderación | a confirmar |
+| A.6 | Seguridad, auditoría, pruebas y puesta en producción | 3.500 € | **A.II** | Auth/RBAC, auditoría, pruebas y despliegue | a confirmar |
+| | **Subtotal contrato A.II** | **8.500 €** | | Pagos + seguridad + producción | |
+| | **Total desarrollo tecnológico** | **23.000 €** | | Activo tecnológico del marketplace | a confirmar |
 
 #### C) Subpartidas — B. Equipamiento informático (2.000 €)
 
@@ -641,7 +664,8 @@ Alineado con el plan de viabilidad (reforma del local: electricidad, pintura, cl
 
 | Concepto | Importe |
 |----------|--------:|
-| A. Desarrollo tecnológico | 23.000 € |
+| A.I Desarrollo núcleo marketplace | **14.500 €** |
+| A.II Pagos, seguridad y producción | **8.500 €** |
 | B. Equipamiento informático | 2.000 € |
 | C. Red y ciberseguridad | 1.500 € |
 | D. Adecuación de espacio operativo | 2.500 € |
@@ -755,7 +779,8 @@ Para cada gasto subvencionable, la justificación definitiva deberá poder recon
 
 | Partida | Previsto | Ejecutado | Justificado | Admitido | Observaciones |
 |---------|--------:|----------:|------------:|---------:|---------------|
-| A. Desarrollo tecnológico | 23.000 € | | | | |
+| A.I Desarrollo núcleo marketplace | 14.500 € | | | | ≤ umbral servicio 15.000 € |
+| A.II Pagos, seguridad y producción | 8.500 € | | | | ≤ umbral servicio 15.000 € |
 | B. Equipamiento | 2.000 € | | | | |
 | C. Red / ciberseguridad | 1.500 € | | | | |
 | D. Adecuación espacio | 2.500 € | | | | |

@@ -509,7 +509,7 @@ Las fuentes internas coinciden en un **proyecto de arranque del orden de 40.000 
 
 | Partida (agrupada) | Orden de magnitud (neto) | Notas |
 |--------------------|--------------------------:|-------|
-| Desarrollo tecnológico (servicios especializados / personal, según fase) | 23.000–24.000 € | Partida principal; ver desglose en memoria técnica marco |
+| Desarrollo tecnológico — **dos servicios** (A.I núcleo + A.II pagos/seguridad) | **14.500 € + 8.500 €** (= 23.000 €) | Cada contrato ≤ 15.000 € (umbral contrato menor LCSP); ver memoria técnica §25.2 |
 | Equipamiento informático, red y seguridad | 3.000–4.500 € | Varía según fuente |
 | Adecuación de local / logística ligera (báscula, etiquetado, mobiliario) | 2.500–4.000 € | Varía según fuente |
 | **Objetivo de inversión alineada a umbral** | **~30.000 €** | Pendiente de presupuesto definitivo |

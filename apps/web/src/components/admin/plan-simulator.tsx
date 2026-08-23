@@ -29,6 +29,8 @@ import {
   DEFAULT_LAUNCH_MONTH,
   DEFAULT_SUBSIDY_MONTH,
   DELAY_MANAGEMENT_TIPS,
+  DEVELOPMENT_SERVICE_TOTAL,
+  INVESTMENT_BREAKDOWN,
   INVESTMENT_ELIGIBLE,
   PARTNER_PACT_CLAUSE_SUMMARY,
   PARTNER_SUPPORT_MECHANISMS,
@@ -696,6 +698,38 @@ function CashFlowSection({
           </div>
         ))}
       </div>
+
+      <section className="overflow-x-auto rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
+        <h3 className="font-semibold">Desglose inversión elegible (contrato menor)</h3>
+        <p className="mt-1 text-sm text-stone-600">
+          Desarrollo en dos servicios ≤ 15.000 € sin IVA cada uno (A.I + A.II ={" "}
+          {formatPrice(DEVELOPMENT_SERVICE_TOTAL)}). Plan Viabilidad §3.A · memoria §25.2.
+        </p>
+        <table className="mt-4 w-full min-w-[28rem] text-left text-sm">
+          <thead>
+            <tr className="border-b border-stone-200 text-stone-500">
+              <th className="pb-2 pr-3 font-medium">Código</th>
+              <th className="pb-2 pr-3 font-medium">Partida</th>
+              <th className="pb-2 font-medium">Importe</th>
+            </tr>
+          </thead>
+          <tbody>
+            {INVESTMENT_BREAKDOWN.map((row) => (
+              <tr key={row.code} className="border-b border-stone-100">
+                <td className="py-2 pr-3 font-medium tabular-nums">{row.code}</td>
+                <td className="py-2 pr-3 text-stone-600">{row.label}</td>
+                <td className="py-2 tabular-nums">{formatPrice(row.amount)}</td>
+              </tr>
+            ))}
+            <tr>
+              <td className="pt-3 pr-3 font-semibold" colSpan={2}>
+                Total elegible
+              </td>
+              <td className="pt-3 font-semibold tabular-nums">{formatPrice(INVESTMENT_ELIGIBLE)}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
       <section className="rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
         <SliderRow

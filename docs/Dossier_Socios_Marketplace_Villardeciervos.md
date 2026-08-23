@@ -11,18 +11,21 @@
 
 El proyecto crea una **S.L. tecnológica** que lanza un **marketplace multi-vendedor** para dinamizar el entorno rural de Villardeciervos (Zamora). La tesis de inversión para socios **no** es maximizar la rentabilidad a corto plazo, sino:
 
-1. **Estructurar una inversión elegible de 30–40.000 €** que permita captar la máxima subvención posible (**hasta el 74 %** a fondo perdido: ICECYL + complemento Diputación).
+1. **Estructurar una inversión elegible de 30.000 €** (capital social **40.000 €** = elegible + corriente) que permita captar la máxima subvención posible (**hasta el 74 %** a fondo perdido: ICECYL + complemento Diputación / La Raya).
 2. Construir una **operativa viable de bajo riesgo** (intermediación sin stock propio, portes a cargo del cliente, comisión con suelo).
-3. Aceptar un horizonte de **crecimiento prudente**: el escenario base proyecta pérdidas en Y1–Y3 (neto acum. 3 años ≈ **−17.500 €**) y solo equilibrio fino hacia Y5; coherente con aportación real tras ayuda de **~10.400–17.800 €** según marco de elegibilidad.
+3. Aceptar un horizonte de **crecimiento prudente**: el escenario base proyecta pérdidas en Y1–Y3 (neto acum. 3 años ≈ **−17.500 €**) y solo equilibrio fino hacia Y5; esfuerzo neto tras ayuda ≈ **17.800 €**.
 
-Sobre **40.000 €** de inversión elegible (cálculo de referencia):
+Sobre **30.000 €** de inversión elegible (marco canónico Plan de Viabilidad / memoria §25):
 
 | Concepto | Importe |
 |---|---:|
-| Ayuda ICECYL (40 %) | 16.000 € |
-| Complemento Diputación (hasta 74 %) | 13.600 € |
-| **Subvención total** | **29.600 €** |
-| **Aportación real de los socios** | **10.400 €** |
+| Ayuda ICECYL (40 %) | 12.000 € |
+| Complemento Diputación / La Raya (hasta 74 %) | 10.200 € |
+| **Subvención total (74 %)** | **22.200 €** |
+| Capital social / caja | **40.000 €** |
+| **Esfuerzo neto de referencia** | **≈ 17.800 €** |
+
+*Desarrollo tecnológico en dos contratos de servicio (A.I **14.500 €** + A.II **8.500 €**) ≤ umbral contrato menor.*
 
 El marketplace integra:
 
@@ -132,7 +135,7 @@ Estancia media comarcal ~**2,4 noches**; gasto diario estimado **48–62 €**/p
 
 ### Socios (ADMIN/INVERSIONISTAS)
 
-- Modelo pensado para **elegibilidad de ayuda** + operativa sostenible (riesgo de capital propio bajo: ~10.400 € sobre 40.000 € elegibles).
+- Modelo pensado para **elegibilidad de ayuda** + operativa sostenible (esfuerzo neto tras 74 % sobre 30 k€ elegibles ≈ **17.800 €**; capital **40.000 €**).
 - Control por métricas: KPIs, rentabilidad por transacción, rappels y seguimiento piloto.
 
 ---
@@ -420,11 +423,23 @@ KPIs de rentabilidad por pedido:
 
 ## 9) Viabilidad financiera (a 5 años — escenario conservador)
 
-### Inversión elegible (30–40.000 €) y lógica de ayuda
+### Inversión elegible (30.000 €) y lógica de ayuda
 
-Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red, adecuación, logística ligera). El desarrollo se plantea como **activo / servicio especializado** bajo dirección del equipo promotor.
+Alineada al **Plan de Viabilidad §3.A** y memoria técnica §25.2. El desarrollo tecnológico se contrata en **dos servicios** ≤ **15.000 €** sin IVA cada uno (umbral contrato menor LCSP art. 118), con objeto y entregables distintos:
 
-**Prioridad del caso base:** justificar y ejecutar la inversión elegible para maximizar la ayuda (hasta **74 %**), no demostrar un ROI agresivo. Sobre 40.000 €: subvención de referencia **29.600 €** → aportación real socios **10.400 €**.
+| Partida | Importe | Notas |
+|---|---:|---|
+| **A.I** Núcleo marketplace | **14.500 €** | Arquitectura, catálogo, pedidos/checkout, admin base |
+| **A.II** Pagos, seguridad y producción | **8.500 €** | Pasarela/retención 14 d, cierre admin, seguridad, despliegue |
+| Adecuación de oficina | 2.500 € | Electricidad, pintura, climatización |
+| Equipamiento informático | 2.000 € | Portátiles, pantallas, NAS |
+| Red y ciberseguridad | 1.500 € | Router, firewall, SAI |
+| Mobiliario y logística ligera | **1.000 €** | Puestos, báscula, etiquetadora |
+| **Total elegible ICECYL** | **30.000 €** | |
+| SaaS + lanzamiento (corriente) | 10.000 € | No subvencionable como inversión |
+| **Capital / caja total** | **40.000 €** | |
+
+**Prioridad del caso base:** justificar y ejecutar la inversión elegible para maximizar la ayuda (hasta **74 %** sobre **30.000 €** → **≈ 22.200 €**), no demostrar un ROI agresivo. Esfuerzo neto de referencia tras ayuda: **≈ 17.800 €**. (La hipótesis antigua de “40.000 € 100 % elegibles → 29.600 € / 10.400 €” queda como **contraste**, no como marco canónico del Plan de Viabilidad.)
 
 ### Proyección conservadora (comisión 17 % sobre GMV; sin envío gratis; RETA incluido)
 
@@ -440,7 +455,7 @@ Alineada al plan de viabilidad / memoria técnica (desarrollo, equipamiento, red
 
 - **Neto acumulado 3 años ≈ −17.500 €**; a 5 años ≈ **−16.800 €**.
 - La viabilidad de los primeros años descansa en **cobrar la subvención**, costes bajos y **no** absorber portes — no en dividendos tempranos.
-- Con marco de inversión elegible **40.000 €** (hipótesis dossier): aportación real ≈ **10.400 €** tras 74 %. Con marco Plan de Viabilidad (**30.000 €** elegibles + 10.000 € corriente / capital 40.000 €): esfuerzo neto ≈ **17.800 €**.
+- Marco canónico: **30.000 €** elegibles + **10.000 €** corriente / capital **40.000 €** → esfuerzo neto ≈ **17.800 €** tras 74 % (≈ 22.200 €).
 - **No** se proyectan dividendos relevantes en Y1–Y3 del caso base.
 - Escenarios **Realista** y **Optimista** en el panel/Excel = sensibilidad al alza; el antiguo PyG con +12 k€ / +30 k€ en Y2–Y3 es **optimista de contraste**, no “prudente”.
 - **GMV ≠ ventas propias de la SL.** IS orientativo; IVA fuera de la PyG.
@@ -517,7 +532,7 @@ Año 3: 12.750 €         Año 3: ~62.250 € repartidos
 Los números son **defendibles ante la administración** porque:
 
 - el GMV es **estrictamente prudente** (~1,2–1,4 pedidos/día en Y1);
-- la aportación real tras ayuda se sitúa en **~10.400–17.800 €** según marco de elegibilidad;
+- la aportación real tras ayuda se sitúa en **≈ 17.800 €** (marco canónico 30 k€ elegibles / 40 k€ capital);
 - la operativa no depende de subsidiar envíos;
 - Y1–Y3 en pérdida (~−17,5 k€ acum.) es el caso base: la subvención + costes bajos sostienen el proyecto, no los dividendos tempranos.
 
@@ -636,7 +651,7 @@ La **IA** (p. ej. asistentes de código) apoya desarrollo y fichas de producto; 
 
 **Fortalezas**
 
-- Cobertura potencial vía ayudas hasta **74 %** sobre base elegible 30–40 k€ (**hipótesis**; no ayuda concedida) → aportación real socios ~**10.400 €**.
+- Cobertura potencial vía ayudas hasta **74 %** sobre **30.000 €** elegibles (**hipótesis**; no ayuda concedida) → esfuerzo neto ≈ **17.800 €** (capital 40.000 €).
 - Modelo de intermediación **sin stock propio** y **sin absorber portes**.
 - Comisión **17 % + mínimo 4 €** protege el margen en tickets bajos.
 - Coste fijo cero en local (cesión por socio) + ejecución tecnológica flexible con entregables verificables.
@@ -823,7 +838,7 @@ Para el lanzamiento del grupo piloto, si se necesitan menos de 500 unidades por 
 
 **Inversión estimada de arranque:** lote repartido entre los tres tamaños (300 uds. S + 500 uds. M + 200 uds. L) con logotipo personalizado → **aproximadamente 1.200 € – 1.500 €**.
 
-> Este gasto encaja dentro de los **1.500 €** reservados en presupuesto para "Mobiliario y Equipamiento Logístico", siendo **100% elegible** para recuperar el **74% de subvención combinada**.
+> Las **cajas** (consumible de lanzamiento) se imputan preferentemente a **gasto corriente / lanzamiento** (partida no elegible del Plan §3.A), no a la partida elegible **E (1.000 €)** de mobiliario + báscula + etiquetadora. Evitar mezclar consumibles de packaging con el activo logístico subvencionable.
 
 ---
 
@@ -840,7 +855,7 @@ Al operar como **meros distribuidores logísticos** —sin manipular directament
 | Ventaja | Detalle |
 |---|---|
 | **Exención del Registro Sanitario Industrial (RGSEAA)** | Al no abrir ni manipular el producto (no se toca el embutido, el queso ni la miel), no es necesario tramitar el Registro de Envasadores. El responsable sanitario único ante la Junta de Castilla y León sigue siendo el productor artesano, cuyo número de registro consta en el envase interior. |
-| **Coste cero en maquinaria de envasado** | Sin envasado en sede, se elimina la compra de termoselladoras, sistemas al vacío o líneas de esterilización. Los 1.500 € de la partida logística se destinan íntegramente a cajas, báscula e impresora de etiquetas. |
+| **Coste cero en maquinaria de envasado** | Sin envasado en sede, se elimina la compra de termoselladoras, sistemas al vacío o líneas de esterilización. La partida elegible de logística (**1.000 €**) cubre báscula + impresora de etiquetas + puestos; las cajas van a corriente/lanzamiento. |
 | **Simplificación del local** | El espacio físico en Villardeciervos es legalmente una **oficina y almacén logístico de paquetería limpia**. Sanidad no exige azulejos, lavabos de pedal ni protocolos APPCC complejos. |
 
 ---
@@ -880,18 +895,19 @@ El productor entrega el producto **ya cerrado y etiquetado**. En la trastienda s
 
 #### Infraestructura: qué se compra y cuánto cuesta
 
-No es un almacén industrial. Partida de **logística ligera / mobiliario y equipamiento** (orden de magnitud del dossier):
+No es un almacén industrial. Partida elegible **E (1.000 €)** del Plan §3.A = mobiliario + báscula + etiquetadora. Las **cajas** van a corriente/lanzamiento.
 
 | Concepto | Para qué | Coste orientativo |
 |----------|----------|-------------------|
-| **Cajas** (S / M / L) | Embalaje exterior | Incluidas en el lote de arranque |
-| **Báscula** | Pesar el paquete | Dentro de la partida |
-| **Impresora de etiquetas** + rollos adhesivos | Imprimir la pegatina de envío | Dentro de la partida |
-| **Total partida logística de arranque** | Cajas + báscula + impresora | **~1.500 €** (elegible / justificable en expediente) |
+| **Báscula** | Pesar el paquete | Dentro de E (~300 €) |
+| **Impresora de etiquetas** + rollos | Pegatina de envío | Dentro de E (~300 €) |
+| **Puestos / mobiliario ligero** | Preparación | Dentro de E (~400 €) |
+| **Subtotal elegible E** | Activo logístico | **1.000 €** |
+| **Cajas** (S / M / L) | Embalaje exterior | ~1.200–1.500 € (**corriente**) |
 
-En memorias del proyecto el rango de **adecuación local + logística ligera** puede situarse en **~2.500–4.000 €** (obra menor + este kit). Lo concreto de esta sección para “solo logística de paquete” es **~1.500 €**.
+En memorias del proyecto el rango de **adecuación local + logística ligera elegible** es **2.500 € (D) + 1.000 € (E)**. El packaging consumible no se mezcla con E.
 
-Esos **1.500 €** son **compra de equipo e inventario inicial**, no el coste de cada envío. El papel adhesivo / rollo supone **céntimos por caja** (gasto de material de la S.L.).
+Esos **1.000 €** elegibles son **compra de equipo** (báscula, etiquetadora, puestos), no el coste de cada envío ni el lote de cajas. El papel adhesivo / rollo supone **céntimos por caja** (gasto de material de la S.L.). Las cajas iniciales van a corriente.
 
 #### No confundir “etiqueta” con los 6,50 € de envío
 
@@ -900,7 +916,8 @@ Cuando el modelo habla de “coste de etiqueta ~5–6,50 €” se refiere al **
 | Concepto | Quién lo paga | Orden de magnitud |
 |----------|---------------|-------------------|
 | Pegatina + tinta del rollo | S.L. (material) | Céntimos por caja |
-| Impresora + báscula + cajas iniciales | Inversión (~1.500 € partida logística) | Una vez (o reposición de cajas) |
+| Impresora + báscula + puestos | Inversión elegible E (**1.000 €**) | Una vez |
+| Cajas iniciales | Corriente / lanzamiento | ~1.200–1.500 € (reposición) |
 | **Envío al cliente (6,50 €)** | **El cliente**, siempre | Por cada pedido |
 
 La S.L. **no absorbe** el porte: cobra 6,50 € al cliente y con eso se cubre, de forma orientativa, lo que cuesta mandar el paquete.

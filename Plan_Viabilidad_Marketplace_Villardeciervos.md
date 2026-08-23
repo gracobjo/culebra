@@ -58,16 +58,21 @@ El presupuesto se ha ajustado estrictamente al **mínimo elegible de 30.000 €*
 
 ### A. Desglose del Presupuesto del Proyecto
 
+> **Ajuste contrato menor (LCSP art. 118):** el desarrollo tecnológico se contrata en **dos servicios** ≤ **15.000 €** sin IVA cada uno (A.I + A.II). Detalle: memoria técnica §25.2 · borrador 4447-1001.
+
 | Partida Presupuestaria | Coste Neto | Carácter Técnico / Tipo de Justificación | ¿Elegible ICECYL? |
 | :--- | :---: | :--- | :---: |
-| **1. Desarrollo Tecnológico** | 24.000 € | Coste de personal bruto + SS del programador DAW (6 meses) | **SÍ** |
+| **1.a Desarrollo núcleo marketplace (A.I)** | **14.500 €** | Servicio: arquitectura, catálogo, pedidos/checkout, admin base | **SÍ** |
+| **1.b Pagos, seguridad y producción (A.II)** | **8.500 €** | Servicio: pasarela/retención 14 d, cierre admin, seguridad y despliegue | **SÍ** |
 | **2. Adecuación de Oficina** | 2.500 € | Reforma del local (Electricidad, pintura, climatización); base = comodato; alt. = alquiler | **SÍ** |
 | **3. Equipamiento Informático** | 2.000 € | Ordenadores portátiles de desarrollo, pantallas y servidor NAS | **SÍ** |
 | **4. Seguridad y Redes** | 1.500 € | Router profesional, Firewall físico y sistemas SAI | **SÍ** |
 | **5. Mobiliario y Logística** | 1.000 € | Puestos de trabajo, báscula de pesaje y etiquetadora | **SÍ** |
 | **6. Software y Nube (SaaS)** | 5.000 € | Suscripciones y pasarelas anuales en la nube (AWS/Shopify/IA) | NO *(Gasto Corriente)* |
-| **7. Gastos de Lanzamiento** | 4.000 € | Consultoría de negocio previa, marketing inicial y constitución | NO *(Gasto Corriente)* |
+| **7. Gastos de Lanzamiento** | 5.000 € | Consultoría de negocio previa, marketing inicial y constitución | NO *(Gasto Corriente)* |
 | **TOTAL PROYECTO INICIAL** | **40.000 €** | **Caja necesaria para iniciar operaciones** | **30.000 € Elegibles** |
+
+*Elegible 1.a+1.b+2+3+4+5 = **30.000 €**. Corriente 6+7 = **10.000 €**.*
 
 ### B. Plan de Subvenciones Combinadas (Efecto Multiplicador)
 Al situarse el centro de trabajo en el entorno rural de Zamora, el proyecto califica para la máxima intensidad de ayudas mediante la cofinanciación de Fondos Europeos en cascada:

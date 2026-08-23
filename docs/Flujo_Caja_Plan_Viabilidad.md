@@ -14,6 +14,7 @@ Modelo de **tesorería real** del marketplace Villardeciervos, alineado al plan 
 |----------|------:|
 | Capital social desembolsado | **40.000 €** (Mes 0) |
 | Inversión elegible | **30.000 €** (Meses 1–6) |
+| — de la cual desarrollo A.I + A.II | **14.500 € + 8.500 €** (= 23.000 €; dos servicios ≤ 15.000 €) |
 | Subvención esperada (74 % sobre 30.000 €) | **22.200 €** |
 | Momento estimado de cobro | Entre **Mes 10 y Mes 14** (tras justificación) |
 | Escenario central de cobro | **Mes 12** |
@@ -57,7 +58,7 @@ Modelo de **tesorería real** del marketplace Villardeciervos, alineado al plan 
 | Ingresos por comisiones (17 %) | 2.380 € | 8.160 € | 12.750 € |
 | **Total entradas** | **64.580 €** | **8.160 €** | **12.750 €** |
 | **Salidas** | | | |
-| Inversión (desarrollo, equipos, obras…) | 30.000 € | — | — |
+| Inversión (A.I+A.II desarrollo, equipos, obras…) | 30.000 € | — | — |
 | Gastos operativos (marketing, cloud, gestoría, RETA, mantenimiento…) | 6.800 € | 16.500 € | 17.500 € |
 | **Total salidas** | **36.800 €** | **16.500 €** | **17.500 €** |
 | **Flujo neto del periodo** | **+27.780 €** | **−8.340 €** | **−4.750 €** |

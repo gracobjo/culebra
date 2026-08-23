@@ -23,9 +23,9 @@ El cliente compra productos de varios artesanos en un solo pedido y recibe un **
 | Concepto | Valor |
 |----------|------:|
 | Inversión total inicial | **40.000 €** |
-| Inversión elegible (ICECYL) | **30.000 €** |
+| Inversión elegible (ICECYL) | **30.000 €** (A.I **14.500 €** + A.II **8.500 €** + resto) |
 | Subvención objetivo (ICECYL + Plan La Raya) | Hasta **74 %** (≈ **22.200 €**) |
-| Aportación neta estimada de los socios | **15.000 – 18.000 €** |
+| Aportación neta estimada de los socios | **≈ 17.800 €** |
 | Comisión base | **17 %** (rappels por volumen a **14 %** y **12 %**) |
 | Envío | Pagado **siempre** por el cliente |
 | Modelo de local | **Comodato** (escenario base) |

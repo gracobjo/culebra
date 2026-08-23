@@ -24,6 +24,8 @@ export const GMV_BREAKEVEN_MONTHLY = 8_065; // fijos ~1.250 € ÷ margen ~15,5 
 export const INVESTMENT_REF = 40_000;
 export const SUBSIDY_AT_74_PCT = 22_200; // 74 % sobre 30k elegibles (Plan Viabilidad)
 export const PARTNER_CONTRIBUTION = 17_800; // Plan Viabilidad: 40k − 22,2k (74% sobre 30k elegibles)
+/** Elegible: A.I 14.500 + A.II 8.500 + B–E 7.000 = 30.000 (contrato menor) */
+export const INVESTMENT_ELIGIBLE_REF = 30_000;
 export const DIVIDEND_TARGET = 0; // caso base no prioriza dividendos
 export const NET_ACCUM_TARGET = -16_586; // Excel conservador v5 (populate_pyg_excel)
 

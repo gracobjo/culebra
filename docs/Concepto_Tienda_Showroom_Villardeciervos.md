@@ -140,7 +140,7 @@ Modalidades de compromiso del productor (escaparate → depósito): ver [`Argume
 
 ## 7. Presupuesto de adecuación (orden de magnitud)
 
-Anclado al dossier: adecuación local + logística ligera **≈ 2.500–4.000 €**; kit logístico de arranque **≈ 1.500 €** (cajas, báscula, impresora).
+Anclado al dossier / Plan §3.A: adecuación local **D 2.500 €** + logística ligera elegible **E 1.000 €** (báscula, etiquetadora, puestos). Las **cajas** (~1.200–1.500 €) van a corriente/lanzamiento, no a E.
 
 | Prioridad | Partida | Orientación |
 |:---------:|---------|-------------|

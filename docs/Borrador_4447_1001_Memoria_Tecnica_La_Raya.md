@@ -69,7 +69,7 @@ Centro de trabajo en **Villardeciervos**: oficina técnica, showroom/escaparate 
 
 **Producción — Equipos necesarios (inmovilizados)**
 
-- Activo inmaterial: desarrollo del marketplace (arquitectura, catálogo, pedidos, pagos, contratos/comisiones, seguridad y puesta en producción).  
+- Activo inmaterial: desarrollo del marketplace en **dos contratos de servicio** (núcleo funcional ≤ 14.500 €; pagos/seguridad/producción ≤ 8.500 €), cada uno por debajo del umbral de contrato menor de servicios (15.000 € sin IVA).  
 - Equipamiento informático: puestos de trabajo, pantallas/periféricos, NAS.  
 - Red y ciberseguridad: router, firewall, SAI.  
 - Adecuación del espacio: electricidad/puntos de red, pintura, climatización básica.  
@@ -99,46 +99,50 @@ En Villardeciervos no existe actualmente una infraestructura digital local equiv
 
 ### Descripción de los gastos para los que se solicita la ayuda
 
-*(Línea 1: gastos subvencionados en el marco de la ayuda ICECYL de creación de empresas — mismos conceptos de la inversión potencial del expediente.)*
+*(Línea 1: gastos alineados a la ayuda ICECYL. Desarrollo tecnológico desagregado en **dos servicios** ≤ 15.000 € sin IVA cada uno — umbral contrato menor LCSP art. 118.)*
 
 | Descripción del gasto | Línea subvencionable | Sublínea |
 |-----------------------|:--------------------:|----------|
-| Desarrollo tecnológico del marketplace (arquitectura, catálogo, pedidos, pagos, contratos/comisiones, seguridad y producción) | **1** | A — Desarrollo tecnológico |
+| Desarrollo **núcleo** marketplace (arquitectura, catálogo, pedidos/checkout, admin base) — contrato A.I | **1** | A.I — Servicio ≤ 14.500 € |
+| Desarrollo **pagos, seguridad y producción** (pasarela/retención, cierre admin, despliegue) — contrato A.II | **1** | A.II — Servicio ≤ 8.500 € |
 | Equipamiento informático (puestos, pantallas/periféricos, NAS) | **1** | B — Equipamiento informático |
 | Red y ciberseguridad (router, firewall, SAI) | **1** | C — Red y ciberseguridad |
 | Adecuación del espacio operativo (electricidad/red, pintura, climatización) | **1** | D — Adecuación de espacio |
 | Equipamiento logístico ligero y puestos (mobiliario, báscula, impresora de etiquetas) | **1** | E — Logística ligera / puestos |
 
-*No se incluyen como inversión de esta memoria: SaaS/nube corriente, marketing operativo, gestoría, constitución societaria ni fondo de maniobra (~10.000 €), salvo que ICECYL los admita expresamente en su resolución.*
+*No se incluyen como inversión: SaaS/nube corriente, marketing operativo, gestoría, constitución ni fondo de maniobra (~10.000 €), salvo admisión expresa de ICECYL.*
 
 ---
 
 ## PÁGINA 3 — Presupuesto de la inversión
 
-**Importes:** según expediente interno, **sin IVA** (neto).  
-**IVA incluido:** pendiente de facturas/proformas.  
-**Proveedor:** pendiente de adjudicación / ofertas.
+**Importes:** **sin IVA** (neto). **IVA incluido** y **proveedor:** pendientes de proformas.  
+**Contrato menor:** ninguna partida de servicio supera **15.000 €** sin IVA.
 
 | Descripción del gasto | Proveedor | Importe IVA incluido | Importe sin IVA |
 |-----------------------|-----------|---------------------:|----------------:|
-| A. Desarrollo tecnológico marketplace (A.1–A.6) | `[Proveedor/es técnico/s o personal capitalizable — pendiente]` | `[ ]` | **23.000 €** |
+| A.I Desarrollo núcleo marketplace | `[Proveedor servicio 1 — pendiente]` | `[ ]` | **14.500 €** |
+| A.II Pagos, seguridad y producción | `[Proveedor servicio 2 — pendiente]` | `[ ]` | **8.500 €** |
 | B. Equipamiento informático | `[Proveedor/es — pendiente]` | `[ ]` | **2.000 €** |
 | C. Red y ciberseguridad | `[Proveedor/es — pendiente]` | `[ ]` | **1.500 €** |
-| D. Adecuación de espacio operativo | `[Proveedor/es obra/instalación — pendiente]` | `[ ]` | **2.500 €** |
+| D. Adecuación de espacio operativo | `[Proveedor/es obra — pendiente]` | `[ ]` | **2.500 €** |
 | E. Logística ligera y puestos | `[Proveedor/es — pendiente]` | `[ ]` | **1.000 €** |
 | **Total inversión** | | **`[suma con IVA]`** | **30.000 €** |
 
-### Desglose opcional de la partida A (si el formulario admite más filas)
+### Desglose interno WBS (referencia; no obliga a más filas en el PDF)
 
-| Descripción | Proveedor | IVA incl. | Sin IVA |
-|-------------|-----------|----------:|--------:|
-| A.1 Arquitectura, base de datos y UI/UX | `[ ]` | `[ ]` | 3.500 € |
-| A.2 Catálogo multi-vendedor y panel productor | `[ ]` | `[ ]` | 5.000 € |
-| A.3 Pedidos, carrito y checkout | `[ ]` | `[ ]` | 4.000 € |
-| A.4 Pagos, liquidaciones y retención 14 días | `[ ]` | `[ ]` | 4.000 € |
-| A.5 Contratos, comisiones y panel administración | `[ ]` | `[ ]` | 3.000 € |
-| A.6 Seguridad, auditoría, pruebas y producción | `[ ]` | `[ ]` | 3.500 € |
-| **Subtotal A** | | | **23.000 €** |
+| Descripción | Contrato | Sin IVA |
+|-------------|:--------:|--------:|
+| A.1 Arquitectura, BD y UI/UX | A.I | 3.500 € |
+| A.2 Catálogo + panel productor | A.I | 5.000 € |
+| A.3 Pedidos, carrito y checkout | A.I | 4.000 € |
+| A.5a Admin/comisiones (fase núcleo) | A.I | 2.000 € |
+| **Subtotal A.I** | | **14.500 €** |
+| A.4 Pagos, liquidaciones, retención 14 d | A.II | 4.000 € |
+| A.5b Admin/comisiones (cierre) | A.II | 1.000 € |
+| A.6 Seguridad, pruebas y producción | A.II | 3.500 € |
+| **Subtotal A.II** | | **8.500 €** |
+| **Total desarrollo (A.I + A.II)** | | **23.000 €** |
 
 ---
 
@@ -148,7 +152,8 @@ En Villardeciervos no existe actualmente una infraestructura digital local equiv
 - [ ] IAE confirmado por gestoría  
 - [ ] Marcar solo **Línea 1**  
 - [ ] Adjuntar **Resolución de concesión ICECYL** (obligatorio L1)  
-- [ ] Cerrar proveedores + proformas (con/sin IVA)  
+- [ ] Cerrar **dos** proveedores/proformas de desarrollo (A.I y A.II) + resto de partidas  
+- [ ] Verificar que ningún contrato de servicio supera **15.000 €** sin IVA  
 - [ ] Cuantificar % mujeres / jóvenes / discapacidad  
 - [ ] Firmar comodato / acreditar centro de trabajo en Villardeciervos  
 - [ ] Declaración minimis + ficha de terceros (modelos Diputación)

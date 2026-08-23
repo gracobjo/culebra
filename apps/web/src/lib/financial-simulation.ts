@@ -78,6 +78,16 @@ export const DEFAULT_SIMULATION: SimulationInputs = {
 export const CAPITAL_REF = 40_000;
 export const SUBSIDY_REF = 22_200; // 74 % sobre 30k elegibles
 export const INVESTMENT_ELIGIBLE = 30_000;
+/** Desglose canónico (Plan Viabilidad §3.A / memoria §25.2 — contrato menor) */
+export const INVESTMENT_BREAKDOWN = [
+  { code: "A.I", label: "Desarrollo núcleo marketplace", amount: 14_500 },
+  { code: "A.II", label: "Pagos, seguridad y producción", amount: 8_500 },
+  { code: "B", label: "Equipamiento informático", amount: 2_000 },
+  { code: "C", label: "Red y ciberseguridad", amount: 1_500 },
+  { code: "D", label: "Adecuación de espacio", amount: 2_500 },
+  { code: "E", label: "Logística ligera y puestos", amount: 1_000 },
+] as const;
+export const DEVELOPMENT_SERVICE_TOTAL = 23_000; // A.I + A.II
 export const DEFAULT_SUBSIDY_MONTH = 12;
 export const DEFAULT_LAUNCH_MONTH = 6;
 export const PARTNER_NET_REF = CAPITAL_REF - SUBSIDY_REF;

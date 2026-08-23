@@ -21,7 +21,8 @@
 
 | Código partida | Partida | Presupuesto | Contratado | Ejecutado | Pagado | Justificado | Admitido | Evidencia principal |
 |----------------|---------|----------:|-----------:|----------:|-------:|------------:|---------:|---------------------|
-| A | Desarrollo tecnológico (marketplace) | 23.000 € | | | | | | |
+| A.I | Desarrollo núcleo marketplace (servicio) | 14.500 € | | | | | | |
+| A.II | Pagos, seguridad y producción (servicio) | 8.500 € | | | | | | |
 | B | Equipamiento informático | 2.000 € | | | | | | |
 | C | Red y ciberseguridad | 1.500 € | | | | | | |
 | D | Adecuación de espacio operativo | 2.500 € | | | | | | |
@@ -30,7 +31,7 @@
 | — | Fondo de maniobra | 10.000 € | | | | | | no subvencionable |
 | | **Total inversión subvencionable potencial** | **30.000 €** | | | | | | |
 
-*Presupuesto inicial alineado con [`Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md`](./Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md) §25. Actualizar columnas Contratado → Admitido durante la ejecución.*
+*Presupuesto alineado con [`Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md`](./Memoria_Tecnica_Justificativa_ICECYL_Diputacion_LaRaya_v1.md) §25.2 (ajuste contrato menor: A.I + A.II ≤ 15.000 € c/u).*
 
 ---
 
@@ -38,7 +39,8 @@
 
 | ID | Proveedor | Servicio / bien | Partida | Contrato | Inicio | Fin | Importe (neto) | Subvencionable | Facturado | Pagado | Entregables | Carpeta |
 |----|-----------|-----------------|---------|----------|--------|-----|---------------:|----------------|----------:|-------:|-------------|---------|
-| P001 | *(pendiente)* | Desarrollo plataforma marketplace | A | CT-001 | | | 23.000 € | a confirmar | | | Módulos A.1–A.6 | |
+| P001a | *(pendiente)* | Desarrollo núcleo marketplace | A.I | CT-001a | | | **14.500 €** | a confirmar | | | A.1–A.3 + A.5a | |
+| P001b | *(pendiente)* | Pagos, seguridad y producción | A.II | CT-001b | | | **8.500 €** | a confirmar | | | A.4 + A.5b + A.6 | |
 | P002 | *(pendiente)* | Equipamiento informático | B | CT-002 | | | 2.000 € | a confirmar | | | Albaranes / facturas | |
 | P003 | *(pendiente)* | Red y ciberseguridad | C | CT-003 | | | 1.500 € | a confirmar | | | Instalación + facturas | |
 | P004 | *(pendiente)* | Adecuación local | D | CT-004 | | | 2.500 € | a confirmar | | | Facturas obra / materiales | |

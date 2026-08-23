@@ -8,19 +8,22 @@ Dossier: `docs/Dossier_Socios_Marketplace_Villardeciervos.md` (revisión ago-202
 
 El objetivo del caso base **no** es maximizar el beneficio a 5 años, sino:
 
-1. **Estructurar inversión elegible 30–40.000 €** y captar la máxima ayuda (hasta **74 %** a fondo perdido).
+1. **Estructurar inversión elegible 30.000 €** (capital **40.000 €** = elegible + corriente) y captar la máxima ayuda (hasta **74 %** a fondo perdido).
 2. Mantener una **operativa viable de bajo riesgo** (el cliente paga siempre el porte).
-3. Aceptar un **neto acumulado ligeramente negativo** (~−3,7 k€ a −5 k€) porque la aportación real de socios es solo **~10.400 €**.
+3. Aceptar un **neto acumulado negativo en Y1–Y3** (~−16–17 k€ a 3 años en el escenario prudente vigente) porque la viabilidad inicial descansa en **cobrar la subvención**, no en dividendos tempranos.
 
-### Cálculo de referencia — inversión 40.000 €
+### Cálculo de referencia — elegible 30.000 € (canónico)
 
 | Concepto | Importe |
 |----------|--------:|
-| Inversión elegible | 40.000 € |
-| Ayuda ICECYL (40 %) | 16.000 € |
-| Complemento Diputación (hasta 74 %) | 13.600 € |
-| **Subvención total** | **29.600 €** |
-| **Aportación real socios** | **10.400 €** |
+| Inversión elegible | **30.000 €** (A.I 14.500 + A.II 8.500 + B–E 7.000) |
+| Capital social / caja | **40.000 €** |
+| Ayuda ICECYL (40 %) | 12.000 € |
+| Complemento Diputación / La Raya (hasta 74 %) | 10.200 € |
+| **Subvención total (74 %)** | **22.200 €** |
+| **Esfuerzo neto de referencia** | **≈ 17.800 €** |
+
+*La hipótesis antigua “40.000 € 100 % elegibles → 29.600 / 10.400” queda como contraste, no como marco del Plan de Viabilidad.*
 
 ## Política comercial (hipótesis nuevas)
 
