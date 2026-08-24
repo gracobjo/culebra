@@ -55,6 +55,22 @@ export default async function AdminDashboardPage() {
       hint: "Operativa de envíos",
     },
     {
+      href: "/admin/showroom",
+      label: "Showroom",
+      value: "Margen",
+      isText: true as const,
+      image: "/categories/miel-y-productos-apicolas.png",
+      hint: "Optimización 90 días",
+    },
+    {
+      href: "/admin/turismo",
+      label: "Alojamientos",
+      value: "Canal",
+      isText: true as const,
+      image: "/categories/vinos.png",
+      hint: "Métricas casas rurales",
+    },
+    {
       href: "/admin/usuarios",
       label: "Usuarios",
       value: stats.usersTotal,

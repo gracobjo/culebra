@@ -235,6 +235,8 @@ Resumen ejecutivo para socios (una página): [`Resumen_Ejecutivo_Socios.md`](./R
 Concepto de tienda / showroom (referente La Abacería): [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  
 Showroom como canal de ingresos (cestas, envío desde tienda, márgenes): [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · panel `/admin/showroom`.  
 Optimización showroom (motor de margen + plan 90 días): [`Showroom_Optimizacion_90_Dias.md`](./Showroom_Optimizacion_90_Dias.md) · simulador en `/admin/showroom`.  
+Estrategia alojamientos rurales (canal captación, métricas 90 días): [`Estrategia_Alojamientos_Rurales.md`](./Estrategia_Alojamientos_Rurales.md) · panel `/admin/turismo`.  
+Relaciones con hosteleros (contraprestaciones + CRM + ficha de colaboración): [`Relaciones_Hosteleros_Contraprestaciones.md`](./Relaciones_Hosteleros_Contraprestaciones.md) · `/admin/turismo`.  
 Alternativa local en propiedad (obra / ICECYL): [`Showroom_Alternativa_Local_Propiedad.md`](./Showroom_Alternativa_Local_Propiedad.md).  
 Packaging cestas/showroom (kraft + mosaico geométrico; lockup corporativo en documentos): [`Packaging_Sabores_Culebra.md`](./Packaging_Sabores_Culebra.md) · panel `/admin/packaging`.  
 Posicionamiento activador del territorio: [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  

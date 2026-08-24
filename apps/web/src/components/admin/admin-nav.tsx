@@ -18,7 +18,7 @@ const links = [
   { href: "/admin/rappels", label: "Rappels" },
   { href: "/admin/productores", label: "Productores" },
   { href: "/admin/productos", label: "Productos" },
-  { href: "/admin/turismo", label: "Turismo" },
+  { href: "/admin/turismo", label: "Turismo / alojamientos" },
   { href: "/admin/contratos", label: "Contratos" },
   { href: "/admin/pedidos", label: "Pedidos" },
   { href: "/admin/liquidaciones", label: "Liquidaciones" },

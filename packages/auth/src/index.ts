@@ -345,3 +345,34 @@ export {
 export type { SiteSocialLinksRecord } from "./site-social-links.service.js";
 export { siteSocialLinksUpsertSchema } from "./site-social-links.schemas.js";
 export type { SiteSocialLinksUpsertInput } from "./site-social-links.schemas.js";
+
+export {
+  addLodgingRelationEventForAdmin,
+  getLodgingCrmSummary,
+  getLodgingOfferContacts,
+  getLodgingRelationById,
+  listLodgingRelationsForAdmin,
+  summarizeLodgingCrm,
+  upsertLodgingOfferContacts,
+  upsertLodgingRelationForAdmin,
+} from "./lodging-relation.service.js";
+export type {
+  LodgingCrmSummary,
+  LodgingOfferContactsRecord,
+  LodgingRelationEventRecord,
+  LodgingRelationRecord,
+} from "./lodging-relation.service.js";
+export {
+  lodgingCollabModalitySchema,
+  lodgingOfferContactsSchema,
+  lodgingRelationEventSchema,
+  lodgingRelationEventTypeSchema,
+  lodgingRelationStatusSchema,
+  lodgingRelationUpsertSchema,
+  lodgingWelcomeModeSchema,
+} from "./lodging-relation.schemas.js";
+export type {
+  LodgingOfferContactsInput,
+  LodgingRelationEventInput,
+  LodgingRelationUpsertInput,
+} from "./lodging-relation.schemas.js";

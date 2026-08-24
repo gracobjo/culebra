@@ -42,6 +42,10 @@ export default async function AdminShowroomPage() {
         <Link href="/admin/plan" className="text-emerald-800 underline">
           Plan financiero
         </Link>
+        {" · "}
+        <Link href="/admin/turismo" className="text-emerald-800 underline">
+          Alojamientos (canal)
+        </Link>
         .
       </p>
 

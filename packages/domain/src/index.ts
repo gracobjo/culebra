@@ -253,3 +253,63 @@ export const CouponDiscountType = {
   PERCENTAGE: "PERCENTAGE",
   FIXED: "FIXED",
 } as const satisfies Record<string, CouponDiscountType>;
+
+export type LodgingRelationStatus =
+  | "PROSPECT"
+  | "CONTACTED"
+  | "MATERIAL_PLACED"
+  | "ACTIVE"
+  | "PAUSED"
+  | "ENDED";
+
+export const LodgingRelationStatus = {
+  PROSPECT: "PROSPECT",
+  CONTACTED: "CONTACTED",
+  MATERIAL_PLACED: "MATERIAL_PLACED",
+  ACTIVE: "ACTIVE",
+  PAUSED: "PAUSED",
+  ENDED: "ENDED",
+} as const satisfies Record<string, LodgingRelationStatus>;
+
+export type LodgingCollabModality =
+  | "PRESENCE_RECOMMEND"
+  | "WELCOME_BASKET"
+  | "COMMISSION_SALE"
+  | "NIGHT_PACK";
+
+export const LodgingCollabModality = {
+  PRESENCE_RECOMMEND: "PRESENCE_RECOMMEND",
+  WELCOME_BASKET: "WELCOME_BASKET",
+  COMMISSION_SALE: "COMMISSION_SALE",
+  NIGHT_PACK: "NIGHT_PACK",
+} as const satisfies Record<string, LodgingCollabModality>;
+
+export type LodgingWelcomeMode = "SPECIAL_PRICE" | "CONSIGNMENT";
+
+export const LodgingWelcomeMode = {
+  SPECIAL_PRICE: "SPECIAL_PRICE",
+  CONSIGNMENT: "CONSIGNMENT",
+} as const satisfies Record<string, LodgingWelcomeMode>;
+
+export type LodgingRelationEventType =
+  | "CONTACT"
+  | "MATERIAL"
+  | "REFERRAL"
+  | "BASKET"
+  | "THANK_YOU_GIFT"
+  | "COMMISSION"
+  | "AGREEMENT"
+  | "NOTE"
+  | "STATUS_CHANGE";
+
+export const LodgingRelationEventType = {
+  CONTACT: "CONTACT",
+  MATERIAL: "MATERIAL",
+  REFERRAL: "REFERRAL",
+  BASKET: "BASKET",
+  THANK_YOU_GIFT: "THANK_YOU_GIFT",
+  COMMISSION: "COMMISSION",
+  AGREEMENT: "AGREEMENT",
+  NOTE: "NOTE",
+  STATUS_CHANGE: "STATUS_CHANGE",
+} as const satisfies Record<string, LodgingRelationEventType>;

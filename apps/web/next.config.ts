@@ -72,7 +72,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   reactStrictMode: true,
-  transpilePackages: ["@culebra/db", "@culebra/domain", "@culebra/assistant"],
+  transpilePackages: ["@culebra/auth", "@culebra/db", "@culebra/domain", "@culebra/assistant"],
   serverExternalPackages: ["@prisma/client", "bcryptjs", "pdfkit", "fontkit"],
   experimental: {
     serverActions: {

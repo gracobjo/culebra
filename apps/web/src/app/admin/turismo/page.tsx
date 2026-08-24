@@ -1,12 +1,19 @@
+import Link from "next/link";
 import {
+  getLodgingOfferContacts,
   listAccommodationsForAdmin,
   listAffiliateCodesForAdmin,
   listCouponsForAdmin,
+  listLodgingRelationsForAdmin,
   listPublicProducts,
   listTourismPacksForAdmin,
+  summarizeLodgingCrm,
 } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
+import { AlojamientosEstrategia } from "@/components/admin/alojamientos-estrategia";
+import { LodgingCompensationPlaybook } from "@/components/admin/lodging-compensation-playbook";
+import { LodgingCrmBoard } from "@/components/admin/lodging-crm-board";
 import { publishAccommodationAction } from "./actions";
 import {
   CreateAccommodationForm,
@@ -19,26 +26,64 @@ export const metadata = { title: "Turismo | Admin" };
 
 export default async function AdminTourismPage() {
   await requireAdmin();
-  const [accommodations, packs, coupons, affiliates, productsResult] = await Promise.all([
-    listAccommodationsForAdmin(),
-    listTourismPacksForAdmin(),
-    listCouponsForAdmin(),
-    listAffiliateCodesForAdmin(),
-    listPublicProducts({ limit: 60 }),
-  ]);
+  const [accommodations, packs, coupons, affiliates, productsResult, relations, offerContacts] =
+    await Promise.all([
+      listAccommodationsForAdmin(),
+      listTourismPacksForAdmin(),
+      listCouponsForAdmin(),
+      listAffiliateCodesForAdmin(),
+      listPublicProducts({ limit: 60 }),
+      listLodgingRelationsForAdmin(),
+      getLodgingOfferContacts(),
+    ]);
+  const crmSummary = summarizeLodgingCrm(relations);
 
   const products = productsResult.items.map((item) => ({ id: item.id, name: item.name }));
   const accommodationOptions = accommodations.map((item) => ({ id: item.id, name: item.name }));
   const couponOptions = coupons.map((item) => ({ id: item.id, code: item.code }));
 
   return (
-    <AdminShell title="Turismo (fases 2–3)">
-      <p className="max-w-3xl text-stone-600">
-        Directorio de alojamientos (reserva externa), packs noche+lote, cupones y afiliacion.
-        El nucleo agroalimentario sigue siendo el checkout principal.
+    <AdminShell title="Turismo — alojamientos como canal">
+      <p className="max-w-3xl text-sm text-stone-600">
+        Estrategia de captación, contraprestaciones justas y CRM de relaciones con hosteleros.
+        Playbook:{" "}
+        <code className="rounded bg-stone-100 px-1 text-xs">
+          docs/Estrategia_Alojamientos_Rurales.md
+        </code>
+        {" · "}
+        <code className="rounded bg-stone-100 px-1 text-xs">
+          docs/Relaciones_Hosteleros_Contraprestaciones.md
+        </code>
+        {" · "}
+        <Link href="/admin/showroom" className="text-emerald-800 underline">
+          Showroom
+        </Link>
+        .
       </p>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+      <div className="mt-8">
+        <LodgingCrmBoard
+          relations={relations}
+          summary={crmSummary}
+          accommodations={accommodationOptions}
+          contacts={offerContacts}
+        />
+      </div>
+
+      <div className="mt-10">
+        <LodgingCompensationPlaybook />
+      </div>
+
+      <div className="mt-10">
+        <AlojamientosEstrategia />
+      </div>
+
+      <h2 className="mt-12 text-lg font-semibold text-stone-900">Operativa del directorio</h2>
+      <p className="mt-1 max-w-3xl text-sm text-stone-500">
+        Alta y publicación de alojamientos, packs y códigos (fases 2–3 del producto turismo).
+      </p>
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <CreateAccommodationForm productOptions={products} />
         <CreateCouponForm />
         <CreatePackForm

@@ -1047,9 +1047,115 @@ model Accommodation {
   products      AccommodationProduct[]
   packs         TourismPack[]
   affiliateCodes AffiliateCode[]
+  lodgingRelation LodgingPartnerRelation?
 
   @@index([status, sortOrder])
   @@index([city])
+}
+
+/// CRM de colaboración con hosteleros / alojamientos rurales (canal showroom).
+enum LodgingRelationStatus {
+  PROSPECT
+  CONTACTED
+  MATERIAL_PLACED
+  ACTIVE
+  PAUSED
+  ENDED
+}
+
+enum LodgingCollabModality {
+  PRESENCE_RECOMMEND
+  WELCOME_BASKET
+  COMMISSION_SALE
+  NIGHT_PACK
+}
+
+enum LodgingWelcomeMode {
+  SPECIAL_PRICE
+  CONSIGNMENT
+}
+
+enum LodgingRelationEventType {
+  CONTACT
+  MATERIAL
+  REFERRAL
+  BASKET
+  THANK_YOU_GIFT
+  COMMISSION
+  AGREEMENT
+  NOTE
+  STATUS_CHANGE
+}
+
+model LodgingPartnerRelation {
+  id                      String                 @id @default(cuid())
+  accommodationId         String?                @unique
+  name                    String
+  contactPerson           String?
+  phone                   String?
+  whatsapp                String?
+  email                   String?
+  city                    String?
+  distanceMinutes         Int?
+  rating                  Decimal?               @db.Decimal(3, 2)
+  status                  LodgingRelationStatus  @default(PROSPECT)
+  /// Nivel operativo 1–5 (máxima intensidad activa)
+  collabLevel             Int                    @default(1)
+  primaryModality         LodgingCollabModality?
+  /// Modalidades aceptadas (JSON string[] de LodgingCollabModality)
+  modalitiesJson          String                 @default("[]")
+  welcomeMode             LodgingWelcomeMode?
+  welcomeSpecialPrice     Decimal?               @db.Decimal(12, 2)
+  /// Cada N clientes referidos → detalle (p. ej. cesta Escapada)
+  referralThreshold       Int                    @default(8)
+  referredClientsCount    Int                    @default(0)
+  thankYouGiftsSent       Int                    @default(0)
+  basketsViaCount         Int                    @default(0)
+  showroomVisitsAttributed Int                   @default(0)
+  onlineOrdersAttributed  Int                    @default(0)
+  materialPlacedAt        DateTime?
+  agreementAcceptedAt     DateTime?
+  agreementNotes          String?                @db.Text
+  nextFollowUpAt          DateTime?
+  notes                   String?                @db.Text
+  createdAt               DateTime               @default(now())
+  updatedAt               DateTime               @updatedAt
+
+  accommodation Accommodation?          @relation(fields: [accommodationId], references: [id], onDelete: SetNull)
+  events        LodgingRelationEvent[]
+
+  @@index([status, updatedAt])
+  @@index([city])
+  @@index([nextFollowUpAt])
+}
+
+model LodgingRelationEvent {
+  id          String                   @id @default(cuid())
+  relationId  String
+  type        LodgingRelationEventType
+  quantity    Int?
+  amount      Decimal?                 @db.Decimal(12, 2)
+  note        String?                  @db.Text
+  occurredAt  DateTime                 @default(now())
+  createdAt   DateTime                 @default(now())
+
+  relation LodgingPartnerRelation @relation(fields: [relationId], references: [id], onDelete: Cascade)
+
+  @@index([relationId, occurredAt])
+  @@index([type])
+}
+
+/// Datos de contacto Sabores para fichas de colaboración (singleton id=1).
+model SiteLodgingOfferContacts {
+  id              Int      @id @default(1)
+  whatsapp        String?
+  phone           String?
+  email           String?
+  websiteUrl      String?
+  contactPerson   String?
+  showroomAddress String?  @default("Villardeciervos (Zamora)")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model AccommodationProduct {
