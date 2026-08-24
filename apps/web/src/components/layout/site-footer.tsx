@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site";
+import { SocialNetworkLinks, type SocialLinksPublic } from "./social-network-links";
 
-export function SiteFooter() {
+export function SiteFooter({ socials }: { socials: SocialLinksPublic | null }) {
   return (
     <footer className="mt-auto border-t border-stone-200/80 bg-[color-mix(in_srgb,var(--cream)_65%,white)]">
       <div className="site-container grid max-w-6xl gap-10 py-12 lg:grid-cols-12">
@@ -23,6 +24,11 @@ export function SiteFooter() {
             Escaparate de productos de autor de la Sierra de la Culebra. Compra a
             productores locales con un solo envío: confianza, territorio y comodidad.
           </p>
+          {socials ? (
+            <div className="mt-5">
+              <SocialNetworkLinks socials={socials} variant="icons" />
+            </div>
+          ) : null}
         </div>
         <nav className="grid gap-2.5 text-sm lg:col-span-3" aria-label="Explorar">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">

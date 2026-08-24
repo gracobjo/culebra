@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
+import { ShowroomOptimizer } from "@/components/admin/showroom-optimizer";
 import {
   INCOME_SOURCES,
   SPACE_ZONES,
@@ -24,23 +25,31 @@ export default async function AdminShowroomPage() {
   await requireAdmin();
 
   return (
-    <AdminShell title="Showroom — ingresos y cestas">
+    <AdminShell title="Showroom — motor de margen">
       <p className="max-w-3xl text-sm text-stone-600">
-        El showroom no es escaparate pasivo: convierte visitas en ingresos sin comprar stock, sin
-        absorber portes y con comisión 17 %. Playbook:{" "}
+        El online prudente no sostiene solo los fijos: el showroom debe ser el principal generador
+        de margen y captación (cestas, experiencia, contactos → pedidos web). Playbook:{" "}
         <code className="rounded bg-stone-100 px-1 text-xs">docs/Showroom_Ingresos_Cestas.md</code>
         {" · "}
         <Link href="/packs" className="text-emerald-800 underline">
-          Ver cestas en /packs
+          Cestas en /packs
         </Link>
         {" · "}
         <Link href="/admin/packaging" className="text-emerald-800 underline">
           Packaging
         </Link>
+        {" · "}
+        <Link href="/admin/plan" className="text-emerald-800 underline">
+          Plan financiero
+        </Link>
         .
       </p>
 
-      <section className="mt-8 overflow-x-auto rounded-3xl border border-stone-200 bg-white">
+      <div className="mt-8">
+        <ShowroomOptimizer />
+      </div>
+
+      <section className="mt-10 overflow-x-auto rounded-3xl border border-stone-200 bg-white">
         <h2 className="border-b border-stone-100 px-5 py-4 text-lg font-semibold">Fuentes de ingreso</h2>
         <table className="min-w-full text-left text-sm">
           <thead className="bg-stone-50 text-xs uppercase tracking-wide text-stone-500">
@@ -66,7 +75,7 @@ export default async function AdminShowroomPage() {
 
       <section className="mt-8 grid gap-6 lg:grid-cols-2">
         <div className="rounded-3xl border border-stone-200 bg-white p-6">
-          <h2 className="text-lg font-semibold">Prioridad de implantación</h2>
+          <h2 className="text-lg font-semibold">Prioridad de implantación comercial</h2>
           <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-stone-700">
             {IMPLANTATION_PRIORITY.map((item) => (
               <li key={item}>{item}</li>
@@ -90,7 +99,7 @@ export default async function AdminShowroomPage() {
 
       <section className="mt-8 overflow-x-auto rounded-3xl border border-stone-200 bg-white">
         <h2 className="border-b border-stone-100 px-5 py-4 text-lg font-semibold">
-          Estimación GMV showroom (prudente)
+          Estimación GMV showroom (prudente, sin optimizar)
         </h2>
         <table className="min-w-full text-left text-sm">
           <thead className="bg-stone-50 text-xs uppercase tracking-wide text-stone-500">
@@ -117,8 +126,8 @@ export default async function AdminShowroomPage() {
           </tbody>
         </table>
         <p className="px-5 py-4 text-xs text-stone-500">
-          Objetivo realista 18–24 meses: 2.500–5.000 € de comisión + catas 800–2.500 € + envíos
-          originados en tienda. Medir visitas → % compra → ticket → pedidos online posteriores.
+          Referencia antigua (escaparate pasivo). Usa el simulador de arriba para el escenario
+          optimizado (ticket 40 €, conversión 35 %, margen showroom 7.500–9.000 €).
         </p>
       </section>
 
@@ -185,7 +194,7 @@ export default async function AdminShowroomPage() {
 
       <p className="mt-8 rounded-3xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-950">
         Reglas: depósito mínimo (no compra de género); porte 6,50 € al cliente si hay envío;
-        3–4 productores por cesta; no bajar del rango 29–45 € (el packaging come margen).
+        3–4 productores por cesta; Comarca 45 € como estrella; no bajar del rango 29–45 €.
       </p>
     </AdminShell>
   );

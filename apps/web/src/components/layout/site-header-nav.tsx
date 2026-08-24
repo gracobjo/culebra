@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import { SignOutButton } from "@/components/auth/sign-out-button";
+import { SocialNetworkLinks, type SocialLinksPublic } from "@/components/layout/social-network-links";
 
 type SessionUser = {
   name: string;
@@ -18,6 +19,7 @@ type SiteHeaderNavProps = {
   isLoggedIn: boolean;
   isAdmin?: boolean;
   user?: SessionUser | null;
+  socials?: SocialLinksPublic | null;
 };
 
 const links = [
@@ -58,7 +60,7 @@ function navLinkClass(active: boolean) {
     : "shrink-0 text-[0.925rem] tracking-wide text-stone-700 transition hover:text-[var(--monte)]";
 }
 
-export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHeaderNavProps) {
+export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user, socials = null }: SiteHeaderNavProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -100,6 +102,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
               {link.label}
             </Link>
           ))}
+          <SocialNetworkLinks socials={socials} variant="icons" size="sm" />
           <Link
             href="/carrito"
             className={`relative inline-flex items-center gap-2 ${navLinkClass(pathname.startsWith("/carrito"))}`}
@@ -159,6 +162,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
+          <SocialNetworkLinks socials={socials} variant="icons" size="sm" />
           <Link
             href="/carrito"
             className="relative inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-stone-200/90 bg-white/70 text-sm"
@@ -277,6 +281,16 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user }: SiteHead
                 Administracion
               </Link>
             ) : null}
+            <Link
+              href="/contacto"
+              className="rounded-xl px-3 py-3 hover:bg-white/80"
+              onClick={() => setOpen(false)}
+            >
+              Contacto
+            </Link>
+            <div className="px-3 py-2">
+              <SocialNetworkLinks socials={socials} variant="icons" />
+            </div>
             {isLoggedIn ? (
               <div className="mt-2 border-t border-stone-200/80 pt-2">
                 <SignOutButton

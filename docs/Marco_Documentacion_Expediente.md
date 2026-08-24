@@ -234,6 +234,8 @@ Estrategia de captación de productores (fases, KPIs, riesgos): [`Estrategia_Cap
 Resumen ejecutivo para socios (una página): [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md).  
 Concepto de tienda / showroom (referente La Abacería): [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  
 Showroom como canal de ingresos (cestas, envío desde tienda, márgenes): [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · panel `/admin/showroom`.  
+Optimización showroom (motor de margen + plan 90 días): [`Showroom_Optimizacion_90_Dias.md`](./Showroom_Optimizacion_90_Dias.md) · simulador en `/admin/showroom`.  
+Alternativa local en propiedad (obra / ICECYL): [`Showroom_Alternativa_Local_Propiedad.md`](./Showroom_Alternativa_Local_Propiedad.md).  
 Packaging cestas/showroom (kraft + mosaico geométrico; lockup corporativo en documentos): [`Packaging_Sabores_Culebra.md`](./Packaging_Sabores_Culebra.md) · panel `/admin/packaging`.  
 Posicionamiento activador del territorio: [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
 Comparativa financiera 15 % vs 17 %: [`Comparativa_Comision_15_vs_17.md`](./Comparativa_Comision_15_vs_17.md).  

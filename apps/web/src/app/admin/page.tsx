@@ -1,15 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAdminDashboardStats } from "@culebra/auth";
+import { getAdminDashboardStats, getSiteSocialLinks } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { STOREFRONT_MOSAIC } from "@/lib/category-images";
+import { SocialNetworkLinks } from "@/components/layout/social-network-links";
 
 export const metadata = { title: "Admin | Sierra de la Culebra" };
 
 export default async function AdminDashboardPage() {
   await requireAdmin();
-  const stats = await getAdminDashboardStats();
+  const [stats, socials] = await Promise.all([
+    getAdminDashboardStats(),
+    getSiteSocialLinks(),
+  ]);
+  const hasSocials = Boolean(
+    socials?.facebookUrl || socials?.instagramUrl || socials?.whatsappUrl,
+  );
 
   const cards = [
     {
@@ -96,12 +103,29 @@ export default async function AdminDashboardPage() {
               pedidos. Mira la vitrina pública cuando quieras ver lo que ve el cliente.
             </p>
           </div>
-          <Link
-            href="/tienda"
-            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-emerald-950 transition hover:bg-emerald-50"
-          >
-            Abrir tienda pública
-          </Link>
+          <div className="flex shrink-0 flex-col items-stretch gap-3 sm:items-end">
+            <div className="flex flex-col items-start gap-2 sm:items-end">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                Redes
+              </p>
+              {hasSocials ? (
+                <SocialNetworkLinks socials={socials} variant="icons" tone="onDark" />
+              ) : (
+                <Link
+                  href="/admin/config"
+                  className="text-sm text-emerald-100 underline-offset-2 hover:underline"
+                >
+                  Configurar Facebook, Instagram y WhatsApp
+                </Link>
+              )}
+            </div>
+            <Link
+              href="/tienda"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-emerald-950 transition hover:bg-emerald-50"
+            >
+              Abrir tienda pública
+            </Link>
+          </div>
         </div>
       </section>
 

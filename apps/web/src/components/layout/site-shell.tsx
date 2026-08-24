@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { loadCart } from "@/app/carrito/actions";
+import { getSiteSocialLinks } from "@culebra/auth";
 import { ChatWidget } from "@/components/assistant/chat-widget";
 import { MobileTabBar } from "./mobile-tab-bar";
 import { SiteFooter } from "./site-footer";
@@ -8,6 +9,7 @@ import { SiteHeaderNav } from "./site-header-nav";
 export async function SiteShell({ children }: { children: React.ReactNode }) {
   const session = await auth();
   const cart = await loadCart();
+  const socials = await getSiteSocialLinks();
   const isLoggedIn = Boolean(session?.user);
   const isAdmin = Boolean(session?.user?.roles?.includes("ADMIN"));
   const user = session?.user
@@ -20,10 +22,16 @@ export async function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <SiteHeaderNav cartCount={cart.itemCount} isLoggedIn={isLoggedIn} isAdmin={isAdmin} user={user} />
+      <SiteHeaderNav
+        cartCount={cart.itemCount}
+        isLoggedIn={isLoggedIn}
+        isAdmin={isAdmin}
+        user={user}
+        socials={socials}
+      />
       <div className="flex min-h-0 flex-1 flex-col pb-20 lg:pb-0">
         {children}
-        <SiteFooter />
+        <SiteFooter socials={socials} />
       </div>
       <MobileTabBar cartCount={cart.itemCount} isLoggedIn={isLoggedIn} user={user} />
       <ChatWidget />

@@ -31,17 +31,57 @@ function mapRow(row: {
   };
 }
 
+function socialLinksFromEnv(): SiteSocialLinksRecord | null {
+  const facebookUrl = emptyToNull(process.env.MARKETPLACE_FACEBOOK_URL);
+  const instagramUrl = emptyToNull(process.env.MARKETPLACE_INSTAGRAM_URL);
+  const whatsappUrl = emptyToNull(process.env.MARKETPLACE_WHATSAPP_URL);
+  if (!facebookUrl && !instagramUrl && !whatsappUrl) return null;
+  return {
+    id: 0,
+    facebookUrl,
+    instagramUrl,
+    whatsappUrl,
+    updatedAt: new Date(0),
+  };
+}
+
+function socialLinksDelegate() {
+  return (
+    prisma as
+      | {
+          siteSocialLinks?: {
+            findUnique: typeof prisma.siteSocialLinks.findUnique;
+            upsert: typeof prisma.siteSocialLinks.upsert;
+          };
+        }
+      | undefined
+  )?.siteSocialLinks;
+}
+
 export async function getSiteSocialLinks() {
-  const row = await prisma.siteSocialLinks.findUnique({ where: { id: 1 } });
-  if (!row) return null;
-  return mapRow(row);
+  try {
+    const delegate = socialLinksDelegate();
+    if (!delegate) return socialLinksFromEnv();
+    const row = await delegate.findUnique({ where: { id: 1 } });
+    if (!row) return socialLinksFromEnv();
+    return mapRow(row);
+  } catch {
+    // Tabla no migrada, cliente Prisma antiguo o BD caída: contacto no debe romper.
+    return socialLinksFromEnv();
+  }
 }
 
 export async function upsertSiteSocialLinksForAdmin(
   input: SiteSocialLinksUpsertInput,
 ): Promise<SiteSocialLinksRecord> {
-  // Single row (id=1). We upsert to keep UX simple in admin.
-  const row = await prisma.siteSocialLinks.upsert({
+  const delegate = socialLinksDelegate();
+  if (!delegate) {
+    throw new Error(
+      "Prisma no tiene SiteSocialLinks. Reinicia el servidor de desarrollo y ejecuta la migración.",
+    );
+  }
+
+  const row = await delegate.upsert({
     where: { id: 1 },
     create: {
       id: 1,
@@ -57,4 +97,3 @@ export async function upsertSiteSocialLinksForAdmin(
   });
   return mapRow(row);
 }
-
