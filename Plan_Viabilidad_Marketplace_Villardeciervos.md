@@ -1,10 +1,14 @@
 # 📋 DOSSIER CONSOLIDADO DE CONSTITUCIÓN Y PLAN DE VIABILIDAD
+
+![Logo Sabores de la Culebra](docs/imagenes/logo.png)
+
 **Proyecto:** Plataforma Marketplace Rural (Villardeciervos)  
 **Ubicación:** Villardeciervos, Zamora (Comarca de La Carballeda)  
 **Escenario Financiero:** Estrictamente prudente (base) · Optimista solo como contraste (§5.J)  
 **Fecha de simulación:** Agosto 2026  
 **Fuente canónica de PyG:** este documento (§5). El Plan de Negocio Completo remite aquí.  
-**Resumen ejecutivo (una página, decisión de socios):** [`docs/Resumen_Ejecutivo_Socios.md`](docs/Resumen_Ejecutivo_Socios.md).
+**Resumen ejecutivo (una página, decisión de socios):** [`docs/Resumen_Ejecutivo_Socios.md`](docs/Resumen_Ejecutivo_Socios.md).  
+**Modelo operativo 3 años (online + showroom/cestas, GMV 38 / 69 / 105 k):** [`docs/Modelo_Financiero_Detallado.md`](docs/Modelo_Financiero_Detallado.md) · `/admin/plan`.
 ---
 
 ## 1. 🏢 ESTRUCTURA SOCIETARIA Y ORGANIZATIVA

@@ -125,9 +125,9 @@ export default async function TiendaPage() {
             href="/packs"
             tone="territory"
             eyebrow="Lote gourmet"
-            title="Packs y experiencias"
+            title="Packs y cestas"
             imageSrc="/categories/miel-y-productos-apicolas.png"
-            description="Noche + lote: la estancia fuera; el lote se compra aquí."
+            description="Cestas del showroom y noche + lote. El envío, si aplica, lo paga el cliente (6,50 €)."
           />
         </div>
       </section>

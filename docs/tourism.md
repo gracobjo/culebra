@@ -15,6 +15,8 @@ No se modela el alojamiento como `Vendor` de checkout.
 
 **Decisión piloto:** se vende el **lote gourmet** (carrito + comisión marketplace). Noche / experiencia = enlace externo, sin asumir reserva ni portes del pack. Ver [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §11.
 
+**Cestas de showroom** (Escapada 29 €, Comarca 45 €, Sierra 65 €) se publican como packs **sin alojamiento**: mismos productos en carrito, misma comisión, envío 6,50 € al cliente. Reserva 89 € se activa en Navidad. Ver [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md).
+
 ## Modelos Prisma
 
 - `Accommodation`, `AccommodationProduct`
@@ -50,6 +52,7 @@ Tras `npm run db:seed` (con migracion aplicada):
 - Cupon `SIERRA10`
 - Afiliado `CASAFOZ` (`/productos?ref=CASAFOZ`)
 - Pack `noche-lote-gourmet-foz`
+- Cestas showroom (sin noche): `cesta-escapada`, `cesta-comarca`, `cesta-sierra`
 
 ## Referencias
 

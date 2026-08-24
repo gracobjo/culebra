@@ -51,6 +51,9 @@ export function SiteFooter() {
           <Link href="/pedido/consultar" className="text-stone-700 transition hover:text-[var(--monte)]">
             Consultar pedido
           </Link>
+          <Link href="/contacto" className="text-stone-700 transition hover:text-[var(--monte)]">
+            Contacto
+          </Link>
           <Link href="/alojamientos" className="text-stone-700 transition hover:text-[var(--monte)]">
             Turismo rural
           </Link>

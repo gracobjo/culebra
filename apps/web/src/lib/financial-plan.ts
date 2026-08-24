@@ -4,6 +4,7 @@
  * Fuente de verdad operativa en panel admin: /admin/plan
  *
  * v5 (ago-2026): GMV estrictamente prudente (14→125k), comisión 17 %, RETA, sin envío gratis.
+ * Modelo operativo 3 años (online + showroom): financial-detailed.ts / docs/Modelo_Financiero_Detallado.md
  */
 
 export type PlanScenarioId = "conservador" | "realista" | "optimista";

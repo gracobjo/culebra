@@ -795,15 +795,16 @@ Para unificar la oferta artesanal bajo una marca potente que enamore al consumid
 ![Logo Sabores de la Culebra](./imagenes/logo.png)
 
 - **Nombre comercial propuesto:** *Sabores de la Culebra* (o *La Raya Gourmet Marketplace*).
-- **Concepto de logotipo:** Isotipo limpio que combine la silueta geométrica y elegante de un lobo ibérico o la orografía de la sierra, con trazos orgánicos que simulen elementos naturales (hoja de encina o gota de miel).
+- **Lockup corporativo (documentos y PDFs):** escudo verde monte + oro (lobo y ciervo), tipografía *SABORES / DE LA CULEBRA* y claim *Esencia artesana de la tierra salvaje*. Es el logo de las memorias.
+- **Mosaico geométrico (packaging de cesta / showroom):** lobo + ciervo a color estilo vitral sobre kraft. Sistema y costes: [`docs/Packaging_Sabores_Culebra.md`](docs/Packaging_Sabores_Culebra.md).
 - **Paleta de colores:** Verde monte (naturaleza de la reserva) · Marrón corcho/tierra · Detalles en oro viejo (calidad premium/gourmet).
-- **Eslogan sugerido:** *"Esencia artesana de la tierra salvaje."*
+- **Eslogan:** *"Esencia artesana de la tierra salvaje."*
 
 ---
 
 ### 📦 13.2 Diseño del Packaging y Tamaños Estándar
 
-Las cajas de envío se fabricarán en **cartón ondulado de alto gramaje (Kraft de doble canal)**. El exterior irá impreso a una sola tinta (Verde monte o Negro) con el logotipo central. El interior incluirá mensajes sobre sostenibilidad y lucha contra la despoblación rural en Zamora.
+Las cajas de envío se fabricarán en **cartón ondulado de alto gramaje (Kraft de doble canal)**. El exterior irá impreso a una sola tinta (Verde monte o Negro) con el **lockup / escudo** central (el mosaico a color no rinde a 1 tinta). El interior incluirá mensajes sobre sostenibilidad y lucha contra la despoblación rural en Zamora.
 
 Se estandarizan **tres tamaños automontables** para cubrir todo el catálogo sin disparar costes de almacenamiento:
 
@@ -812,6 +813,8 @@ Se estandarizan **tres tamaños automontables** para cubrir todo el catálogo si
 | **S** | Gourmet Express | 25 × 15 × 10 cm | Envíos pequeños o individuales | 1–2 tarros de miel, 2 cuñas de queso al vacío, o 3 piezas de embutido | Viruta de madera ecológica o papel de seda |
 | **M** | Cesta Mediana | 35 × 25 × 12 cm | Cesta unificada del marketplace | 1 botella de vino + 1 tarro de miel + 1 cuña de queso + 2 piezas de embutido | Rejilla troquelada de cartón modular para inmovilizar vidrio |
 | **L** | Lote Familiar / Navideño | 40 × 30 × 18 cm | Pedidos de alto volumen, cajas regalo corporativas | Hasta 3 botellas de vino/licor + selección amplia de embutidos, conservas y quesos | Separadores de cartón y papel de seda |
+
+**Cestas de showroom / regalo** (**mosaico geométrico a color** sobre kraft, tag, tarjeta de origen): no son estas cajas de transporte. Sistema, frases y costes unitarios: [`docs/Packaging_Sabores_Culebra.md`](docs/Packaging_Sabores_Culebra.md) · `/admin/packaging`.
 
 ---
 

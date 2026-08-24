@@ -1153,3 +1153,14 @@ model AffiliateCode {
 
   @@index([isActive, code])
 }
+
+/// Configuración global del sitio para enlaces sociales (admin /contacto / pie).
+/// Se usa como singleton: el `id` queda fijo en `1`.
+model SiteSocialLinks {
+  id           Int      @id @default(1)
+  facebookUrl  String?
+  instagramUrl String?
+  whatsappUrl  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

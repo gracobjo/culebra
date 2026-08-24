@@ -32,6 +32,8 @@ import {
   DEVELOPMENT_SERVICE_TOTAL,
   INVESTMENT_BREAKDOWN,
   INVESTMENT_ELIGIBLE,
+  MAX_HORIZON_YEARS,
+  MIN_HORIZON_YEARS,
   PARTNER_PACT_CLAUSE_SUMMARY,
   PARTNER_SUPPORT_MECHANISMS,
   PLAN_BASE_REFERENCE,
@@ -654,6 +656,13 @@ function CashFlowSection({
       gmvScale: inputs.gmvScale,
       fixed: inputs.fixed,
       y1SaleMonths: inputs.y1SaleMonths,
+      basketsY1: inputs.basketsY1,
+      basketGrowth: inputs.basketGrowth,
+      packagingPerBasket: inputs.packagingPerBasket,
+      catasY1: inputs.catasY1,
+      catasGrowth: inputs.catasGrowth,
+      otherIncomeY1: inputs.otherIncomeY1,
+      otherGrowth: inputs.otherGrowth,
       subsidyMonth,
       launchMonth,
     }),
@@ -789,6 +798,8 @@ function CashFlowSection({
               <th className="pb-2 pr-3 font-medium">Capital</th>
               <th className="pb-2 pr-3 font-medium">Subvención</th>
               <th className="pb-2 pr-3 font-medium">Comisiones</th>
+              <th className="pb-2 pr-3 font-medium">Catas + otros</th>
+              <th className="pb-2 pr-3 font-medium">Cajas</th>
               <th className="pb-2 pr-3 font-medium">Inversión</th>
               <th className="pb-2 pr-3 font-medium">Opex</th>
               <th className="pb-2 pr-3 font-medium">Flujo neto</th>
@@ -806,6 +817,12 @@ function CashFlowSection({
                   {row.subsidy > 0 ? formatPrice(row.subsidy) : "—"}
                 </td>
                 <td className="py-2 pr-3 tabular-nums">{formatPrice(row.commissionRevenue)}</td>
+                <td className="py-2 pr-3 tabular-nums">
+                  {row.extraIncome > 0 ? formatPrice(row.extraIncome) : "—"}
+                </td>
+                <td className="py-2 pr-3 tabular-nums">
+                  {row.packaging > 0 ? `−${formatPrice(row.packaging)}` : "—"}
+                </td>
                 <td className="py-2 pr-3 tabular-nums">
                   {row.investment > 0 ? formatPrice(row.investment) : "—"}
                 </td>
@@ -925,16 +942,10 @@ export function PlanSimulator() {
   const [launchMonth, setLaunchMonth] = useState(DEFAULT_LAUNCH_MONTH);
 
   const result = useMemo(() => runSimulation(inputs), [inputs]);
-  const cmp = useMemo(
-    () =>
-      compareCommissions({
-        ticketEur: inputs.ticketEur,
-        gmvScale: inputs.gmvScale,
-        fixed: inputs.fixed,
-        y1SaleMonths: inputs.y1SaleMonths,
-      }),
-    [inputs.ticketEur, inputs.gmvScale, inputs.fixed, inputs.y1SaleMonths],
-  );
+  const cmp = useMemo(() => {
+    const { commissionRate: _ignored, ...base } = inputs;
+    return compareCommissions(base);
+  }, [inputs]);
 
   function patchFixed(partial: Partial<FixedCostParts>) {
     setInputs((prev) => ({
@@ -968,15 +979,22 @@ export function PlanSimulator() {
     return { name: `A${y.year}`, acumulado: Math.round(run), neto: Math.round(y.net) };
   });
 
-  const chartCompare = [1, 2, 3].map((year) => {
-    const a = cmp.pct15.years[year - 1]!;
-    const b = cmp.pct17.years[year - 1]!;
+  const chartCompare = cmp.pct17.years.map((_, i) => {
+    const a = cmp.pct15.years[i]!;
+    const b = cmp.pct17.years[i]!;
     return {
-      name: `A${year}`,
+      name: `A${a.year}`,
       "Neto 15 %": Math.round(a.net),
       "Neto 17 %": Math.round(b.net),
     };
   });
+
+  const chartControllable = result.years.map((y) => ({
+    name: `A${y.year}`,
+    packaging: Math.round(y.packaging),
+    catas: Math.round(y.catas),
+    otros: Math.round(y.otherIncome),
+  }));
 
   const toneClass =
     result.verdictTone === "good"
@@ -991,9 +1009,10 @@ export function PlanSimulator() {
         <p className="text-sm uppercase tracking-[0.18em] text-emerald-800">Simulación</p>
         <h2 className="mt-1 text-xl font-semibold">Decisiones del plan de viabilidad</h2>
         <p className="mt-2 max-w-3xl text-sm text-stone-600">
-          Ajusta las variables del plan (comisión, fijos, RETA, marketing, alquiler, ticket, GMV) y
-          mira el impacto en break-even, PyG a 5 años y la comparativa 15 % vs 17 %. Sirve para
-          decidir antes de comprometer estructura o comisión.
+          Ajusta comisión, fijos, GMV, horizonte, coste de cajas, catas y otros ingresos a la vez.
+          El PyG cubre el número de años que indiques (mínimo {MIN_HORIZON_YEARS}, máximo{" "}
+          {MAX_HORIZON_YEARS}). Sirve para decidir estructura, comisión y líneas controlables antes
+          de comprometer caja.
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
@@ -1052,8 +1071,102 @@ export function PlanSimulator() {
             step={0.05}
             suffix="×"
             onChange={(gmvScale) => setInputs((prev) => ({ ...prev, gmvScale }))}
-            hint="1,0× = 14k / 48k / 75k / 100k / 125k"
+            hint="1,0× = 14k / 48k / 75k / 100k / 125k; después crece con el deslizante de GMV post-Y5"
           />
+
+          <SliderRow
+            label="Años de proyección"
+            value={inputs.horizonYears}
+            min={MIN_HORIZON_YEARS}
+            max={MAX_HORIZON_YEARS}
+            step={1}
+            suffix="años"
+            onChange={(horizonYears) => setInputs((prev) => ({ ...prev, horizonYears }))}
+            hint={`Mínimo ${MIN_HORIZON_YEARS} años. La base Excel cubre 5; el resto se proyecta.`}
+          />
+
+          <SliderRow
+            label="Crecimiento GMV tras año 5"
+            value={inputs.gmvGrowthAfterY5}
+            min={0}
+            max={0.25}
+            step={0.01}
+            suffix="%"
+            onChange={(gmvGrowthAfterY5) => setInputs((prev) => ({ ...prev, gmvGrowthAfterY5 }))}
+            hint="Solo aplica al año 6 y siguientes"
+          />
+
+          <div className="border-t border-stone-100 pt-4">
+            <p className="mb-3 text-sm font-medium">Cajas, catas y otros ingresos</p>
+            <div className="space-y-4">
+              <SliderRow
+                label="Cestas / showroom (año 1)"
+                value={inputs.basketsY1}
+                min={0}
+                max={800}
+                step={10}
+                suffix=""
+                onChange={(basketsY1) => setInputs((prev) => ({ ...prev, basketsY1 }))}
+                hint="Modelo operativo: 380 cestas en Y1"
+              />
+              <SliderRow
+                label="Crecimiento cestas / año"
+                value={inputs.basketGrowth}
+                min={0}
+                max={0.8}
+                step={0.05}
+                suffix="%"
+                onChange={(basketGrowth) => setInputs((prev) => ({ ...prev, basketGrowth }))}
+              />
+              <SliderRow
+                label="Coste caja / packaging por cesta"
+                value={inputs.packagingPerBasket}
+                min={0}
+                max={6}
+                step={0.1}
+                onChange={(packagingPerBasket) =>
+                  setInputs((prev) => ({ ...prev, packagingPerBasket }))
+                }
+                hint="Playbook: Escapada 1,80 € · Comarca 2,40 € · Sierra 3,20 €"
+              />
+              <SliderRow
+                label="Catas / talleres (año 1)"
+                value={inputs.catasY1}
+                min={0}
+                max={4000}
+                step={50}
+                onChange={(catasY1) => setInputs((prev) => ({ ...prev, catasY1 }))}
+                hint="Opcional en el PyG base: 800 € Y1"
+              />
+              <SliderRow
+                label="Crecimiento catas / año"
+                value={inputs.catasGrowth}
+                min={0}
+                max={0.8}
+                step={0.05}
+                suffix="%"
+                onChange={(catasGrowth) => setInputs((prev) => ({ ...prev, catasGrowth }))}
+              />
+              <SliderRow
+                label="Otros ingresos (año 1)"
+                value={inputs.otherIncomeY1}
+                min={0}
+                max={5000}
+                step={50}
+                onChange={(otherIncomeY1) => setInputs((prev) => ({ ...prev, otherIncomeY1 }))}
+                hint="Mesas, merchandising, colaboraciones — 0 si no se activan"
+              />
+              <SliderRow
+                label="Crecimiento otros / año"
+                value={inputs.otherGrowth}
+                min={0}
+                max={0.5}
+                step={0.05}
+                suffix="%"
+                onChange={(otherGrowth) => setInputs((prev) => ({ ...prev, otherGrowth }))}
+              />
+            </div>
+          </div>
 
           <div className="border-t border-stone-100 pt-4">
             <p className="mb-3 text-sm font-medium">
@@ -1154,8 +1267,22 @@ export function PlanSimulator() {
                 value: formatPrice(result.netAccum5y),
               },
               {
+                label: `Neto acum. ${result.years.length} años`,
+                value: formatPrice(result.netAccumHorizon),
+              },
+              {
+                label: "Packaging (horizonte)",
+                value: `−${formatPrice(result.totalPackaging)}`,
+              },
+              {
+                label: "Catas + otros (horizonte)",
+                value: formatPrice(result.totalCatas + result.totalOtherIncome),
+              },
+              {
                 label: "Equilibrio desde",
-                value: result.breakevenYear ? `Año ${result.breakevenYear}` : "Tras Año 5",
+                value: result.breakevenYear
+                  ? `Año ${result.breakevenYear}`
+                  : `Tras año ${result.years.length}`,
               },
               {
                 label: "Aportación neta socios",
@@ -1228,7 +1355,7 @@ export function PlanSimulator() {
             </div>
 
             <div className="rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
-              <h3 className="font-semibold">Neto acumulado 5 años</h3>
+              <h3 className="font-semibold">Neto acumulado ({result.years.length} años)</h3>
               <div className="mt-4 h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartAccum} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
@@ -1259,7 +1386,7 @@ export function PlanSimulator() {
               <div>
                 <h3 className="font-semibold">Comparativa cerrada 15 % vs 17 %</h3>
                 <p className="mt-1 text-sm text-stone-500">
-                  Mismos fijos, ticket y GMV que la simulación. Delta acum. 3 años a favor del 17 %:{" "}
+                  Mismos fijos, ticket, GMV, cajas y catas. Delta acum. 3 años a favor del 17 %:{" "}
                   <strong>{formatPrice(cmp.deltaAccum3y)}</strong>
                 </p>
               </div>
@@ -1283,9 +1410,34 @@ export function PlanSimulator() {
             </div>
           </section>
 
+          <section className="rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
+            <h3 className="font-semibold">Líneas controlables: cajas vs catas y otros</h3>
+            <p className="mt-1 text-sm text-stone-500">
+              Packaging resta margen de cestas. Catas y otros ingresos se pueden activar o cortar
+              con los deslizantes.
+            </p>
+            <div className="mt-4 h-72 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartControllable} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
+                  <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                  <YAxis
+                    tick={{ fontSize: 11 }}
+                    tickFormatter={(v) => `${Math.round(v / 1000)}k`}
+                  />
+                  <Tooltip formatter={(v) => euroTooltip(Number(v))} />
+                  <Legend />
+                  <Bar dataKey="packaging" name="Cajas / packaging" fill="#b45309" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="catas" name="Catas" fill="#047857" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="otros" name="Otros ingresos" fill="#0f766e" radius={[6, 6, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </section>
+
           <section className="overflow-x-auto rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
-            <h3 className="font-semibold">Detalle PyG simulado</h3>
-            <table className="mt-4 w-full min-w-[36rem] text-left text-sm">
+            <h3 className="font-semibold">Detalle PyG simulado ({result.years.length} años)</h3>
+            <table className="mt-4 w-full min-w-[52rem] text-left text-sm">
               <thead>
                 <tr className="border-b border-stone-200 text-stone-500">
                   <th className="pb-2 pr-3">Año</th>
@@ -1293,6 +1445,10 @@ export function PlanSimulator() {
                   <th className="pb-2 pr-3">Ingresos</th>
                   <th className="pb-2 pr-3">Stripe</th>
                   <th className="pb-2 pr-3">Opex</th>
+                  <th className="pb-2 pr-3">Cestas</th>
+                  <th className="pb-2 pr-3">Cajas</th>
+                  <th className="pb-2 pr-3">Catas</th>
+                  <th className="pb-2 pr-3">Otros</th>
                   <th className="pb-2 pr-3">Neto</th>
                   <th className="pb-2">Pedidos</th>
                 </tr>
@@ -1305,6 +1461,14 @@ export function PlanSimulator() {
                     <td className="py-2 pr-3 tabular-nums">{formatPrice(y.revenue)}</td>
                     <td className="py-2 pr-3 tabular-nums">{formatPrice(y.stripe)}</td>
                     <td className="py-2 pr-3 tabular-nums">{formatPrice(y.opex)}</td>
+                    <td className="py-2 pr-3 tabular-nums">{y.baskets.toLocaleString("es-ES")}</td>
+                    <td className="py-2 pr-3 tabular-nums text-amber-800">
+                      −{formatPrice(y.packaging)}
+                    </td>
+                    <td className="py-2 pr-3 tabular-nums text-emerald-800">
+                      {formatPrice(y.catas)}
+                    </td>
+                    <td className="py-2 pr-3 tabular-nums">{formatPrice(y.otherIncome)}</td>
                     <td
                       className={`py-2 pr-3 tabular-nums ${y.net < 0 ? "text-rose-700" : "text-emerald-800"}`}
                     >

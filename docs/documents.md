@@ -14,7 +14,7 @@ Los PDF no se guardan como ficheros en disco: se **generan al descargar** a part
 
 Todos los documentos incluyen en la cabecera:
 
-- **Logo** del marketplace (`apps/web/public/logo.png`)
+- **Logo** corporativo (`apps/web/public/logo1.png`, escudo verde/oro). El mosaico (`logo.png`) es solo packaging.
 - **Nombre** configurado en `MARKETPLACE_NAME` (por defecto: *Sabores de la Culebra*)
 - **Fecha** del pedido o del cambio registrado
 

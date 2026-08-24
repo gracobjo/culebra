@@ -1,5 +1,7 @@
 # Cuaderno de Ejecución y Justificación
 
+![Logo Sabores de la Culebra](./imagenes/logo.png)
+
 **Proyecto:** Marketplace *Sabores de la Culebra* — Villardeciervos (Zamora)  
 **Naturaleza:** Herramienta **interna** de seguimiento. No se presenta tal cual a la Administración.  
 **Función:** Alimentar la Memoria Técnica Justificativa con datos reales (contratos, facturas, pagos, entregables, indicadores).

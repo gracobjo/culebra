@@ -1,5 +1,7 @@
 # Sierra de la Culebra Marketplace
 
+![Logo Sabores de la Culebra](docs/imagenes/logo.png)
+
 Marketplace multi-vendedor especializado en productos tradicionales y agroalimentarios de la Sierra de la Culebra y su entorno.
 
 ## Estado

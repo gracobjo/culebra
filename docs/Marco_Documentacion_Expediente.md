@@ -1,5 +1,7 @@
 # Marco de documentación del expediente
 
+![Logo Sabores de la Culebra](./imagenes/logo.png)
+
 **Proyecto:** Marketplace de productos de la Sierra de la Culebra (*Sabores de la Culebra*)  
 **Sede:** Villardeciervos (Zamora)  
 **Destinatarios institucionales:** ICECYL, Diputación de Zamora, socios
@@ -231,10 +233,13 @@ Riesgos del modelo multimarca (SLA, GMV, multi-homing): [`Riesgos_Modelo_Multima
 Estrategia de captación de productores (fases, KPIs, riesgos): [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
 Resumen ejecutivo para socios (una página): [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md).  
 Concepto de tienda / showroom (referente La Abacería): [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  
+Showroom como canal de ingresos (cestas, envío desde tienda, márgenes): [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · panel `/admin/showroom`.  
+Packaging cestas/showroom (kraft + mosaico geométrico; lockup corporativo en documentos): [`Packaging_Sabores_Culebra.md`](./Packaging_Sabores_Culebra.md) · panel `/admin/packaging`.  
 Posicionamiento activador del territorio: [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
 Comparativa financiera 15 % vs 17 %: [`Comparativa_Comision_15_vs_17.md`](./Comparativa_Comision_15_vs_17.md).  
 Sensibilidad de costes (break-even, fijos, marketing, RETA): [`Sensibilidad_Costes_Plan_Viabilidad.md`](./Sensibilidad_Costes_Plan_Viabilidad.md).  
 Flujo de caja y tesorería (capital, subvención, colchón): [`Flujo_Caja_Plan_Viabilidad.md`](./Flujo_Caja_Plan_Viabilidad.md).  
+Modelo financiero detallado (3 años, online + showroom/cestas): [`Modelo_Financiero_Detallado.md`](./Modelo_Financiero_Detallado.md) · panel `/admin/plan`.  
 Sensibilidad con retrasos (subvención, lanzamiento, GMV): [`Sensibilidad_Retrasos_Plan_Viabilidad.md`](./Sensibilidad_Retrasos_Plan_Viabilidad.md).  
 Plan de Contingencia de Tesorería (alertas, escenarios A/B/C, apoyo socios): [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md).  
 Checklist convocatoria La Raya Línea 1 (Base 8ª, secuencia ICECYL): [`Checklist_Convocatoria_La_Raya_Linea1.md`](./Checklist_Convocatoria_La_Raya_Linea1.md) · panel `/admin/raya`.

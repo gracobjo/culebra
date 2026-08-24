@@ -6,7 +6,7 @@
 
 Concepto de punto físico: **híbrido “Abacería delante / logística detrás”**. Escaparate gourmet de confianza + centro de consolidación de pedidos + oficina técnica, en local en **comodato**.
 
-**Referencias:** [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §14 · [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · Plan de viabilidad §6 (comodato)
+**Referencias:** [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §14 · [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · Plan de viabilidad §6 (comodato)
 
 ---
 
@@ -20,7 +20,7 @@ El local de Villardeciervos cumple **tres funciones** a la vez:
 | **Consolidación logística** | Pedidos online multiproductor | Un solo envío; picking; etiquetado de caja |
 | **Oficina técnica** | Equipo S.L. | Admin, NAS, desarrollo, justificación de ayudas |
 
-El showroom **no** es el negocio principal: es el **diferencial comercial** frente a marketplaces genéricos y el soporte físico de la estrategia de captación (prueba con poco stock).
+El showroom **no** es el negocio principal, pero **tampoco es un escaparate pasivo**: es el **diferencial comercial** (confianza + captura de visita) y un canal de GMV (venta física, «te lo envío», cestas 29/45/65 €). Playbook de ingresos: [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md).
 
 Legalmente el espacio opera como **oficina y almacén de paquetería limpia** (distribuidores, no envasadores): no se abre ni manipula el alimento. Detalle: dossier §14.
 
@@ -85,12 +85,13 @@ CALLE
   │
   ▼
 ┌─────────────────────────────────────────────────────────┐
-│  FACHADA + ESCAPARATE (vitrina / categorías verticales) │
+│  FACHADA + ESCAPARATE (impulso: miel, dulces, cestas)   │
 ├─────────────────────────────────────────────────────────┤
-│  SHOWROOM          │  MOSTRADOR + QR + atención         │
-│  (pocas refs.,     │  (explicar modelo, pedidos,        │
-│   madera, luz)     │   recepción de productores)        │
-├────────────────────┴────────────────────────────────────┤
+│  SHOWROOM              │  PUNTO DE CIERRE               │
+│  · Mesa / isla cestas  │  Tablet/TPV + «te lo envío»    │
+│  · Estantería productor│  QR captación WhatsApp/email   │
+│  · Zona cata pequeña   │                                │
+├────────────────────────┴────────────────────────────────┤
 │  TRASTIENDA — consolidación                             │
 │  (picking · cajas · báscula · impresora etiquetas)      │
 ├─────────────────────────────────────────────────────────┤
@@ -98,11 +99,19 @@ CALLE
 └─────────────────────────────────────────────────────────┘
 ```
 
+| Zona comercial | Función | Objetivo |
+|----------------|---------|----------|
+| Entrada / escaparate | Productos visuales y de impulso | Parar al visitante |
+| Mesa central / isla | Cestas preparadas y «elige 3» | Venta rápida |
+| Estantería por productor | Historia + 2–4 referencias | Confianza y ticket más alto |
+| Zona de cata | Prueba controlada | Convertir «miro» en compro |
+| Punto de cierre | Tablet + envío a casa | No perder la venta |
+
 ### Flujos
 
 | Flujo | Recorrido |
 |-------|-----------|
-| **Visitante** | Calle → escaparate → showroom → compra física **vía tablet/pedido en sistema (misma comisión 17 %)** o **QR a web** si no hay TPV |
+| **Visitante** | Calle → escaparate → showroom → **compra física** (tablet, comisión 17 %) **o** «te lo envío» (porte 6,50 €) **o** QR a web |
 | **Pedido online** | Panel → picking en trastienda → caja → etiqueta → zona de recogida mensajero |
 | **Productor** | Cita → entrega en mostrador/trastienda → reposición escaparate o stock mínimo (modalidades A/B/C) |
 
@@ -119,9 +128,10 @@ Reglas alineadas al argumentario de captación:
 1. **Pocas referencias bien presentadas** mejor que muchas apiladas.
 2. Cada producto visible con **QR** a ficha online / productor (puente físico → marketplace).
 3. **Stock mínimo** o solo escaparate al inicio; la S.L. **no compra** género.
-4. Rotación: si no se mueve, se avisa y se recoge (prueba reversible).
-5. Priorizar productos **sin refrigeración**; aplicar SLA de consumo preferente **por familia** (repostería seca 30–60 días de etiqueta; loncheados 60–90; despensa artesana ~90). Ver [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md).
-6. Iluminación dirigida a producto; evitar vitrina vacía o “estantería de oficina”.
+4. **Cestas de arranque** en isla: Escapada 29 €, Comarca 45 €, Sierra 65 € (3–4 productores por cesta).
+5. Rotación: si no se mueve, se avisa y se recoge (prueba reversible).
+6. Priorizar productos **sin refrigeración**; aplicar SLA de consumo preferente **por familia**.
+7. Iluminación dirigida a producto; evitar vitrina vacía o “estantería de oficina”.
 
 Modalidades de compromiso del productor (**A / B / C**): [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §3 · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) §4.
 
@@ -131,12 +141,13 @@ Modalidades de compromiso del productor (**A / B / C**): [`Flujo_Operativo_Pilot
 
 | Elemento | Uso |
 |----------|-----|
-| **Atención** | Socio 2 (punto físico + preparación); trato cercano, explicación del modelo |
-| **Pizarra / caballete** | Novedades, productores de la semana, horario |
-| **Barril o mesa exterior** | Solo si el portal lo permite; señal de “aquí se puede entrar” |
-| **Degustación** | Puntual / eventos / ferias; no obligatoria a diario |
-| **QR mostrador** | Abrir tienda online o ficha de productor |
+| **Atención** | Socio 2; cierre de venta (llevar / enviar / cesta) |
+| **Pizarra / caballete** | Novedades, productores de la semana, horario, cata del día |
+| **Degustación** | Mini-cata de pago (5–8 €) o gratuita con compra mínima; no obligatoria a diario |
+| **QR mostrador** | Tienda online, ficha de productor **y** captura de WhatsApp/email |
 | **Horario** | Estacional y realista (turismo + operativa); comunicarlo en web y fachada |
+
+Prioridad de implantación comercial: cestas + venta inmediata → envío a casa → captación de contacto → degustación → cata/taller → lotes de temporada. Estimación prudente de comisión showroom: **2.500–5.000 €** en 18–24 meses. Detalle: [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md).
 
 ---
 
@@ -203,7 +214,9 @@ Existen ya canales multimarca online (Exquisiteza, Gourmet Box Zamora, TodeToro,
 
 | Documento | Relación |
 |-----------|----------|
-| Este archivo | Concepto de tienda / showroom |
+| Este archivo | Concepto de tienda / showroom (espacio y merchandising) |
+| [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) | Activación comercial: cestas, márgenes, actividades |
+| [`Packaging_Sabores_Culebra.md`](./Packaging_Sabores_Culebra.md) | Cajas kraft, tag, frases de marca (distinto del envío S/M/L) |
 | [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) | El showroom como prueba física de captación |
 | [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) | Lenguaje ante el productor (escaparate, poco stock) |
 | [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) | Referentes digitales provinciales |

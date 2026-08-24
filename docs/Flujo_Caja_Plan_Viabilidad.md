@@ -4,7 +4,7 @@
 
 Modelo de **tesorería real** del marketplace Villardeciervos, alineado al plan de viabilidad. Complementa el PyG contable (que puede ser negativo mientras la caja sigue siendo positiva gracias al capital y la subvención).
 
-**Referencias:** [`Plan_Viabilidad_Marketplace_Villardeciervos.md`](../Plan_Viabilidad_Marketplace_Villardeciervos.md) §5.N · [`Sensibilidad_Retrasos_Plan_Viabilidad.md`](./Sensibilidad_Retrasos_Plan_Viabilidad.md) · [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md) · [`Sensibilidad_Costes_Plan_Viabilidad.md`](./Sensibilidad_Costes_Plan_Viabilidad.md) · simulador `/admin/plan`.
+**Referencias:** [`Plan_Viabilidad_Marketplace_Villardeciervos.md`](../Plan_Viabilidad_Marketplace_Villardeciervos.md) §5.N · [`Modelo_Financiero_Detallado.md`](./Modelo_Financiero_Detallado.md) · [`Sensibilidad_Retrasos_Plan_Viabilidad.md`](./Sensibilidad_Retrasos_Plan_Viabilidad.md) · [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md) · [`Sensibilidad_Costes_Plan_Viabilidad.md`](./Sensibilidad_Costes_Plan_Viabilidad.md) · simulador `/admin/plan`.
 
 ---
 

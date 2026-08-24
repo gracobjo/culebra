@@ -337,3 +337,11 @@ export type {
   SlaNotification,
   VendorSlaReport,
 } from "./sla.service.js";
+
+export {
+  getSiteSocialLinks,
+  upsertSiteSocialLinksForAdmin,
+} from "./site-social-links.service.js";
+export type { SiteSocialLinksRecord } from "./site-social-links.service.js";
+export { siteSocialLinksUpsertSchema } from "./site-social-links.schemas.js";
+export type { SiteSocialLinksUpsertInput } from "./site-social-links.schemas.js";

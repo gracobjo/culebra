@@ -1,5 +1,7 @@
 # Cláusula — Comisión del marketplace y sistema de rappels por volumen
 
+![Logo Sabores de la Culebra](./imagenes/logo.png)
+
 **Uso:** incorporar al contrato de adhesión del productor / condiciones comerciales.  
 **Alineado con:** comisión base **17 %** + mínimo **4 €**/subpedido; rappels Bronce / Plata / Oro (Opción A retroactiva).  
 **Referencias:** `Dossier_Socios_Marketplace_Villardeciervos.md` §3.3 · `Plan_Viabilidad_Marketplace_Villardeciervos.md` §5.K.

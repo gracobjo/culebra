@@ -1,5 +1,7 @@
 # Memoria de proyecto empresarial
 
+![Logo Sabores de la Culebra](./imagenes/logo.png)
+
 **Marketplace digital de productos agroalimentarios y artesanales**  
 **Sierra de la Culebra y su entorno**
 

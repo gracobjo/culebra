@@ -1,6 +1,6 @@
 /**
  * Simulación decisional alineada al Plan de Viabilidad §5 (F–M) y Plan de Negocio.
- * Permite al admin variar comisión, fijos, RETA, marketing, alquiler, ticket y GMV.
+ * Permite variar comisión, fijos, GMV, horizonte (5–10 años), cajas/packaging, catas y otros ingresos.
  */
 
 export const STRIPE_RATE = 0.015;
@@ -17,6 +17,16 @@ export type FixedCostParts = {
   rent: number; // 0 = comodato; 300 = alquiler tipificado
 };
 
+export const MIN_HORIZON_YEARS = 5;
+export const MAX_HORIZON_YEARS = 10;
+
+/** Cestas Y1 del modelo operativo (docs/Modelo_Financiero_Detallado.md) */
+export const DEFAULT_BASKETS_Y1 = 380;
+/** Coste medio de caja/tag (playbook packaging Comarca) */
+export const DEFAULT_PACKAGING_PER_BASKET = 2.4;
+/** Catas/talleres opcionales Y1 */
+export const DEFAULT_CATAS_Y1 = 800;
+
 export type SimulationInputs = {
   commissionRate: number; // 0.15–0.18
   ticketEur: number;
@@ -24,6 +34,22 @@ export type SimulationInputs = {
   fixed: FixedCostParts;
   /** Meses con venta en Año 1 (plan: jul–dic) */
   y1SaleMonths: number;
+  /** Años a proyectar (mínimo 5) */
+  horizonYears: number;
+  /** Cestas / showroom en año 1 (controla coste de cajas) */
+  basketsY1: number;
+  /** Crecimiento interanual de cestas */
+  basketGrowth: number;
+  /** Coste packaging por cesta (€) */
+  packagingPerBasket: number;
+  /** Ingreso neto catas / talleres año 1 (€) */
+  catasY1: number;
+  catasGrowth: number;
+  /** Otros ingresos controlables año 1 (alquiler mesa, merchandising, etc.) */
+  otherIncomeY1: number;
+  otherGrowth: number;
+  /** Crecimiento GMV a partir del año 6 (la base Excel llega a 5) */
+  gmvGrowthAfterY5: number;
 };
 
 export type YearSimulation = {
@@ -34,6 +60,10 @@ export type YearSimulation = {
   opex: number;
   months: number;
   fixedMonthly: number;
+  baskets: number;
+  packaging: number;
+  catas: number;
+  otherIncome: number;
   net: number;
   orders: number;
 };
@@ -49,10 +79,14 @@ export type SimulationResult = {
   years: YearSimulation[];
   netAccum3y: number;
   netAccum5y: number;
+  netAccumHorizon: number;
+  totalPackaging: number;
+  totalCatas: number;
+  totalOtherIncome: number;
   partnerContribution: number;
   subsidyRef: number;
   capitalRef: number;
-  /** Año en que el GMV medio mensual supera el break-even (1–5 o null) */
+  /** Año en que el GMV medio mensual supera el break-even (o null) */
   breakevenYear: number | null;
   verdict: string;
   verdictTone: "good" | "warn" | "bad";
@@ -73,6 +107,15 @@ export const DEFAULT_SIMULATION: SimulationInputs = {
   gmvScale: 1,
   fixed: { ...DEFAULT_FIXED },
   y1SaleMonths: 6,
+  horizonYears: 7,
+  basketsY1: DEFAULT_BASKETS_Y1,
+  basketGrowth: 0.45,
+  packagingPerBasket: DEFAULT_PACKAGING_PER_BASKET,
+  catasY1: DEFAULT_CATAS_Y1,
+  catasGrowth: 0.55,
+  otherIncomeY1: 0,
+  otherGrowth: 0.1,
+  gmvGrowthAfterY5: 0.12,
 };
 
 export const CAPITAL_REF = 40_000;
@@ -106,6 +149,8 @@ export type CashFlowAnnualRow = {
   capital: number;
   subsidy: number;
   commissionRevenue: number;
+  extraIncome: number;
+  packaging: number;
   totalInflows: number;
   investment: number;
   opex: number;
@@ -126,6 +171,13 @@ export type CashFlowInputs = {
   launchMonth?: number;
   fixed?: FixedCostParts;
   y1SaleMonths?: number;
+  basketsY1?: number;
+  basketGrowth?: number;
+  packagingPerBasket?: number;
+  catasY1?: number;
+  catasGrowth?: number;
+  otherIncomeY1?: number;
+  otherGrowth?: number;
 };
 
 export type CashFlowModelResult = {
@@ -198,7 +250,41 @@ export function sumFixedMonthly(fixed: FixedCostParts): number {
   );
 }
 
-export function runSimulation(inputs: SimulationInputs): SimulationResult {
+export function clampHorizonYears(value: number): number {
+  const n = Number.isFinite(value) ? Math.round(value) : MIN_HORIZON_YEARS;
+  return Math.min(MAX_HORIZON_YEARS, Math.max(MIN_HORIZON_YEARS, n));
+}
+
+function growAmount(base: number, growth: number, yearIndex: number): number {
+  return Math.round(Math.max(0, base) * (1 + growth) ** yearIndex);
+}
+
+export function projectGmvByYear(
+  horizonYears: number,
+  gmvScale: number,
+  gmvGrowthAfterY5: number,
+): number[] {
+  const years = clampHorizonYears(horizonYears);
+  const out: number[] = [];
+  for (let i = 0; i < years; i++) {
+    if (i < BASE_GMV_BY_YEAR.length) {
+      out.push(Math.round(BASE_GMV_BY_YEAR[i]! * gmvScale));
+    } else {
+      out.push(Math.round(out[i - 1]! * (1 + gmvGrowthAfterY5)));
+    }
+  }
+  return out;
+}
+
+export function runSimulation(raw: SimulationInputs): SimulationResult {
+  const inputs: SimulationInputs = {
+    ...DEFAULT_SIMULATION,
+    ...raw,
+    fixed: { ...DEFAULT_FIXED, ...raw.fixed },
+  };
+  const horizonYears = clampHorizonYears(inputs.horizonYears);
+  inputs.horizonYears = horizonYears;
+
   const fixedMonthly = sumFixedMonthly(inputs.fixed);
   const contributionMarginRate = Math.max(0.001, inputs.commissionRate - STRIPE_RATE);
   const gmvBreakevenMonthly = fixedMonthly / contributionMarginRate;
@@ -208,16 +294,20 @@ export function runSimulation(inputs: SimulationInputs): SimulationResult {
 
   // Año 1: fijos algo más bajos en media (plan ~1.100 €) si marketing arranca en H2
   const y1FixedMonthly = fixedMonthly * 0.88;
+  const gmvSeries = projectGmvByYear(horizonYears, inputs.gmvScale, inputs.gmvGrowthAfterY5);
 
-  const years: YearSimulation[] = BASE_GMV_BY_YEAR.map((baseGmv, i) => {
+  const years: YearSimulation[] = gmvSeries.map((gmv, i) => {
     const year = i + 1;
-    const gmv = Math.round(baseGmv * inputs.gmvScale);
     const months = year === 1 ? inputs.y1SaleMonths : 12;
     const fm = year === 1 ? y1FixedMonthly : fixedMonthly;
     const revenue = gmv * inputs.commissionRate;
     const stripe = gmv * STRIPE_RATE;
     const opex = fm * months;
-    const net = revenue - stripe - opex;
+    const baskets = growAmount(inputs.basketsY1, inputs.basketGrowth, i);
+    const packaging = Math.round(baskets * Math.max(0, inputs.packagingPerBasket));
+    const catas = growAmount(inputs.catasY1, inputs.catasGrowth, i);
+    const otherIncome = growAmount(inputs.otherIncomeY1, inputs.otherGrowth, i);
+    const net = revenue - stripe - opex - packaging + catas + otherIncome;
     const orders = Math.round(gmv / ticket);
     return {
       year,
@@ -227,6 +317,10 @@ export function runSimulation(inputs: SimulationInputs): SimulationResult {
       opex,
       months,
       fixedMonthly: fm,
+      baskets,
+      packaging,
+      catas,
+      otherIncome,
       net,
       orders,
     };
@@ -238,8 +332,12 @@ export function runSimulation(inputs: SimulationInputs): SimulationResult {
     return run;
   });
 
-  const netAccum3y = nets[2]!;
-  const netAccum5y = nets[4]!;
+  const netAccum3y = nets[2] ?? run;
+  const netAccum5y = nets[4] ?? run;
+  const netAccumHorizon = nets[nets.length - 1] ?? 0;
+  const totalPackaging = years.reduce((s, y) => s + y.packaging, 0);
+  const totalCatas = years.reduce((s, y) => s + y.catas, 0);
+  const totalOtherIncome = years.reduce((s, y) => s + y.otherIncome, 0);
 
   let breakevenYear: number | null = null;
   for (const y of years) {
@@ -272,7 +370,7 @@ export function runSimulation(inputs: SimulationInputs): SimulationResult {
     verdictTone = "warn";
   } else {
     verdict =
-      "Por debajo del umbral operativo hasta Y5+. Reduce fijos (marketing/RETA/alquiler) o sube GMV/comisión.";
+      "Por debajo del umbral operativo en el horizonte. Reduce fijos, sube GMV/comisión o activa catas y otros ingresos.";
     verdictTone = "bad";
   }
 
@@ -287,6 +385,10 @@ export function runSimulation(inputs: SimulationInputs): SimulationResult {
     years,
     netAccum3y,
     netAccum5y,
+    netAccumHorizon,
+    totalPackaging,
+    totalCatas,
+    totalOtherIncome,
     partnerContribution,
     subsidyRef: SUBSIDY_REF,
     capitalRef: CAPITAL_REF,
@@ -553,15 +655,35 @@ export const COST_SENSITIVITY_PRIORITIES = [
     impact: "Medio",
     control: "Media (mix de productos y cestas)",
   },
+  {
+    priority: 6,
+    variable: "Cestas y coste de cajas",
+    impact: "Medio",
+    control: "Alta (volumen de cestas × €/caja)",
+  },
+  {
+    priority: 7,
+    variable: "Catas y otros ingresos",
+    impact: "Medio-bajo",
+    control: "Alta (se activan o no)",
+  },
 ] as const;
 
 function simInputsFromCash(p: CashFlowInputs): SimulationInputs {
   return {
+    ...DEFAULT_SIMULATION,
     commissionRate: p.commissionRate ?? DEFAULT_SIMULATION.commissionRate,
     ticketEur: DEFAULT_SIMULATION.ticketEur,
     gmvScale: p.gmvScale ?? 1,
     fixed: p.fixed ? { ...p.fixed } : { ...DEFAULT_FIXED },
     y1SaleMonths: p.y1SaleMonths ?? DEFAULT_SIMULATION.y1SaleMonths,
+    basketsY1: p.basketsY1 ?? DEFAULT_SIMULATION.basketsY1,
+    basketGrowth: p.basketGrowth ?? DEFAULT_SIMULATION.basketGrowth,
+    packagingPerBasket: p.packagingPerBasket ?? DEFAULT_SIMULATION.packagingPerBasket,
+    catasY1: p.catasY1 ?? DEFAULT_SIMULATION.catasY1,
+    catasGrowth: p.catasGrowth ?? DEFAULT_SIMULATION.catasGrowth,
+    otherIncomeY1: p.otherIncomeY1 ?? DEFAULT_SIMULATION.otherIncomeY1,
+    otherGrowth: p.otherGrowth ?? DEFAULT_SIMULATION.otherGrowth,
   };
 }
 
@@ -602,10 +724,20 @@ export function runCashFlowModel(params: CashFlowInputs = {}): CashFlowModelResu
   monthOut[5] = 5_750;
   monthOut[6] = 5_750;
 
+  const y1Extra = (sim.years[0]?.catas ?? 0) + (sim.years[0]?.otherIncome ?? 0);
+  const y1Packaging = sim.years[0]?.packaging ?? 0;
+  const y2Extra = (sim.years[1]?.catas ?? 0) + (sim.years[1]?.otherIncome ?? 0);
+  const y2Packaging = sim.years[1]?.packaging ?? 0;
+  const y3Extra = (sim.years[2]?.catas ?? 0) + (sim.years[2]?.otherIncome ?? 0);
+  const y3Packaging = sim.years[2]?.packaging ?? 0;
+
   const revenueMonths = Math.max(1, 13 - launchMonth);
   const monthlyRevY1 = y1Commission / revenueMonths;
+  const monthlyExtraY1 = y1Extra / revenueMonths;
+  const monthlyPackY1 = y1Packaging / revenueMonths;
   for (let m = launchMonth; m <= 12; m++) {
-    monthIn[m] += monthlyRevY1;
+    monthIn[m] += monthlyRevY1 + monthlyExtraY1;
+    monthOut[m] += monthlyPackY1;
   }
 
   for (let m = 7; m <= 12; m++) {
@@ -616,8 +748,8 @@ export function runCashFlowModel(params: CashFlowInputs = {}): CashFlowModelResu
     monthIn[subsidyMonth] += subsidyAmount;
   }
 
-  const y2MonthlyNet = (y2Commission - y2Opex) / 12;
-  const y3MonthlyNet = (y3Commission - y3Opex) / 12;
+  const y2MonthlyNet = (y2Commission + y2Extra - y2Opex - y2Packaging) / 12;
+  const y3MonthlyNet = (y3Commission + y3Extra - y3Opex - y3Packaging) / 12;
   for (let m = 13; m <= 18; m++) {
     if (y2MonthlyNet >= 0) monthIn[m] = y2MonthlyNet;
     else monthOut[m] = -y2MonthlyNet;
@@ -717,10 +849,12 @@ export function runCashFlowModel(params: CashFlowInputs = {}): CashFlowModelResu
     capital,
     subsidy: y1SubsidyInYear,
     commissionRevenue: y1Commission,
-    totalInflows: capital + y1SubsidyInYear + y1Commission,
+    extraIncome: y1Extra,
+    packaging: y1Packaging,
+    totalInflows: capital + y1SubsidyInYear + y1Commission + y1Extra,
     investment: INVESTMENT_ELIGIBLE,
     opex: y1Opex,
-    totalOutflows: INVESTMENT_ELIGIBLE + y1Opex,
+    totalOutflows: INVESTMENT_ELIGIBLE + y1Opex + y1Packaging,
     netPeriod: 0,
     cashEnd: 0,
   };
@@ -729,10 +863,11 @@ export function runCashFlowModel(params: CashFlowInputs = {}): CashFlowModelResu
   y1Row.cashEnd = cashEndY1;
   annual.push(y1Row);
 
-  for (const [year, commission, opex, endBal] of [
-    [2, y2Commission, y2Opex, cashEndY2],
-    [3, y3Commission, y3Opex, monthlyTimeline[24]!.balance],
-  ] as const) {
+  const laterYears: Array<[number, number, number, number, number, number]> = [
+    [2, y2Commission, y2Opex, cashEndY2, y2Extra, y2Packaging],
+    [3, y3Commission, y3Opex, monthlyTimeline[24]!.balance, y3Extra, y3Packaging],
+  ];
+  for (const [year, commission, opex, endBal, extra, packaging] of laterYears) {
     const subsidy =
       year === 2 && subsidyMonth > 12 && subsidyMonth <= 18
         ? subsidyAmount
@@ -744,11 +879,13 @@ export function runCashFlowModel(params: CashFlowInputs = {}): CashFlowModelResu
       capital: 0,
       subsidy,
       commissionRevenue: commission,
-      totalInflows: commission + subsidy,
+      extraIncome: extra,
+      packaging,
+      totalInflows: commission + extra + subsidy,
       investment: 0,
       opex,
-      totalOutflows: opex,
-      netPeriod: commission + subsidy - opex,
+      totalOutflows: opex + packaging,
+      netPeriod: commission + extra + subsidy - opex - packaging,
       cashEnd: endBal,
     };
     annual.push(row);

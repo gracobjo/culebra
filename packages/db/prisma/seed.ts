@@ -972,6 +972,88 @@ async function seedTourismModule() {
       })),
     });
   }
+
+  const basketSpecs: Array<{
+    slug: string;
+    name: string;
+    shortDescription: string;
+    longDescription: string;
+    nightsHint: string;
+    sortOrder: number;
+    itemCount: number;
+  }> = [
+    {
+      slug: "cesta-escapada",
+      name: "Cesta Escapada",
+      shortDescription:
+        "Ticket de impulso (29 €): miel + embutido + queso o conserva. Ideal para llevar del showroom.",
+      longDescription:
+        "Cesta de arranque del showroom. Depósito de 3 productores del piloto. Si se envía, el cliente paga 6,50 €. La S.L. no compra stock.",
+      nightsHint: "Showroom · PVP objetivo 29 €",
+      sortOrder: 10,
+      itemCount: 3,
+    },
+    {
+      slug: "cesta-comarca",
+      name: "Cesta Comarca",
+      shortDescription:
+        "Cesta estrella (45 €): miel, embutidos, queso y un dulce. Regalo equilibrado de la comarca.",
+      longDescription:
+        "Posición competitiva frente a Gourmet Box (40–55 €). 3–4 productores. Comisión 17 %; packaging a cargo de la S.L.",
+      nightsHint: "Showroom y online · PVP objetivo 45 €",
+      sortOrder: 11,
+      itemCount: 4,
+    },
+    {
+      slug: "cesta-sierra",
+      name: "Cesta Sierra",
+      shortDescription:
+        "Regalo de la sierra (65 €): miel, embutidos, queso, dulce y vino o licor de la zona.",
+      longDescription:
+        "Para packs turismo y temporada. Presentación más cuidada. Envío: porte plano 6,50 € al cliente.",
+      nightsHint: "Regalo · PVP objetivo 65 €",
+      sortOrder: 12,
+      itemCount: 5,
+    },
+  ];
+
+  for (const spec of basketSpecs) {
+    const count = Math.min(spec.itemCount, products.length);
+    if (count < 2) continue;
+
+    const basket = await prisma.tourismPack.upsert({
+      where: { slug: spec.slug },
+      update: {
+        name: spec.name,
+        shortDescription: spec.shortDescription,
+        longDescription: spec.longDescription,
+        nightsHint: spec.nightsHint,
+        status: "PUBLISHED",
+        sortOrder: spec.sortOrder,
+        accommodationId: null,
+        couponId: null,
+      },
+      create: {
+        name: spec.name,
+        slug: spec.slug,
+        shortDescription: spec.shortDescription,
+        longDescription: spec.longDescription,
+        nightsHint: spec.nightsHint,
+        status: "PUBLISHED",
+        sortOrder: spec.sortOrder,
+      },
+    });
+
+    await prisma.tourismPackItem.deleteMany({ where: { packId: basket.id } });
+    await prisma.tourismPackItem.createMany({
+      data: products.slice(0, count).map((product, index) => ({
+        packId: basket.id,
+        productId: product.id,
+        quantity: 1,
+        sortOrder: index,
+      })),
+    });
+  }
 }
 
 async function seedPilotCategories() {

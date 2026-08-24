@@ -1,5 +1,7 @@
 # Materiales de presentación y captación
 
+![Logo Sabores de la Culebra](./imagenes/logo.png)
+
 **Fecha de lote:** 21 de agosto de 2026  
 **Uso:** visitas a productores, socios, instituciones y demos del marketplace Sabores de la Culebra / Villardeciervos.
 

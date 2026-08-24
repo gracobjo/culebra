@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { listOrdersForUser } from "@culebra/auth";
 import { formatDate, formatPrice } from "@/lib/format";
@@ -11,6 +12,11 @@ export const metadata = {
 
 export default async function AccountOrdersPage() {
   const session = await auth();
+
+  if (session?.user?.roles?.includes("ADMIN")) {
+    redirect("/admin/pedidos");
+  }
+
   const orders = session?.user?.id ? await listOrdersForUser(session.user.id) : [];
 
   return (

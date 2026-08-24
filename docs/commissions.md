@@ -13,7 +13,7 @@ Comision por defecto de la plataforma: **17%** (`DEFAULT_MARKETPLACE_COMMISSION_
 
 **Piloto / fundadores:** comisión **12 % fijo el primer año** (regla en panel por productor). Ese año **no** se aplica rappel adicional a la baja. Año 2+ → esquema estándar. Detalle operativo: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §12.
 
-**Venta física showroom:** misma comisión que online (17 % o 12 % fundadores). Sin tarifa distinta.
+**Venta física showroom:** misma comisión que online (17 % o 12 % fundadores). Sin tarifa distinta. Cestas y «te lo envío»: el packaging lo asume la S.L. (resta del 17 %); el porte 6,50 € lo paga el cliente. Detalle: [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md).
 
 ## Principios
 

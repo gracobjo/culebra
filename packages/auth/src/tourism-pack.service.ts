@@ -30,6 +30,8 @@ export type PublicTourismPackRecord = TourismPackRecord & {
     city: string | null;
   } | null;
   couponCode: string | null;
+  /** Texto corto del beneficio del cupón (p. ej. «10 % a partir de 20 €»). */
+  couponHint: string | null;
   items: Array<{
     productId: string;
     quantity: number;
@@ -38,8 +40,12 @@ export type PublicTourismPackRecord = TourismPackRecord & {
     basePrice: string;
     imageUrl: string | null;
     vendorName: string;
+    stockAvailable: number;
+    inStock: boolean;
   }>;
   packSubtotal: string;
+  /** true si todos los ítems tienen stock ≥ cantidad del pack. */
+  stockOk: boolean;
 };
 
 function emptyToNull(value?: string | null) {
@@ -68,6 +74,26 @@ function mapPack(row: {
   };
 }
 
+function couponHintFrom(coupon: {
+  code: string;
+  isActive: boolean;
+  discountType: string;
+  discountValue: unknown;
+  minOrderAmount: unknown;
+} | null): string | null {
+  if (!coupon?.isActive) return null;
+  const value = Number(coupon.discountValue);
+  const min = coupon.minOrderAmount != null ? Number(coupon.minOrderAmount) : 0;
+  const discount =
+    coupon.discountType === "PERCENTAGE"
+      ? `${value} %`
+      : `${value.toFixed(2)} €`;
+  if (min > 0) {
+    return `${discount} de descuento con ${coupon.code} (pedido ≥ ${min.toFixed(0)} €)`;
+  }
+  return `${discount} de descuento con ${coupon.code} al añadir el lote`;
+}
+
 const publicPackInclude = {
   accommodation: {
     select: {
@@ -80,7 +106,15 @@ const publicPackInclude = {
       status: true,
     },
   },
-  coupon: { select: { code: true, isActive: true } },
+  coupon: {
+    select: {
+      code: true,
+      isActive: true,
+      discountType: true,
+      discountValue: true,
+      minOrderAmount: true,
+    },
+  },
   items: {
     orderBy: { sortOrder: "asc" as const },
     include: {
@@ -88,6 +122,10 @@ const publicPackInclude = {
         include: {
           images: { orderBy: { sortOrder: "asc" as const }, take: 1 },
           vendor: { select: { tradeName: true } },
+          inventory: {
+            where: { variantId: null },
+            select: { stock: true },
+          },
         },
       },
     },
@@ -117,7 +155,13 @@ function toPublicPack(row: {
     city: string | null;
     status: string;
   } | null;
-  coupon: { code: string; isActive: boolean } | null;
+  coupon: {
+    code: string;
+    isActive: boolean;
+    discountType: string;
+    discountValue: unknown;
+    minOrderAmount: unknown;
+  } | null;
   items: Array<{
     quantity: number;
     product: {
@@ -129,20 +173,26 @@ function toPublicPack(row: {
       deletedAt: Date | null;
       images: Array<{ url: string }>;
       vendor: { tradeName: string };
+      inventory: Array<{ stock: number }>;
     };
   }>;
 }): PublicTourismPackRecord {
   const items = row.items
     .filter((item) => item.product.status === "PUBLISHED" && !item.product.deletedAt)
-    .map((item) => ({
-      productId: item.product.id,
-      quantity: item.quantity,
-      name: item.product.name,
-      slug: item.product.slug,
-      basePrice: String(item.product.basePrice),
-      imageUrl: item.product.images[0]?.url ?? null,
-      vendorName: item.product.vendor.tradeName,
-    }));
+    .map((item) => {
+      const stockAvailable = item.product.inventory.reduce((sum, row) => sum + row.stock, 0);
+      return {
+        productId: item.product.id,
+        quantity: item.quantity,
+        name: item.product.name,
+        slug: item.product.slug,
+        basePrice: String(item.product.basePrice),
+        imageUrl: item.product.images[0]?.url ?? null,
+        vendorName: item.product.vendor.tradeName,
+        stockAvailable,
+        inStock: stockAvailable >= item.quantity,
+      };
+    });
 
   const packSubtotal = items
     .reduce((sum, item) => sum + Number(item.basePrice) * item.quantity, 0)
@@ -162,8 +212,10 @@ function toPublicPack(row: {
           }
         : null,
     couponCode: row.coupon?.isActive ? row.coupon.code : null,
+    couponHint: couponHintFrom(row.coupon),
     items,
     packSubtotal,
+    stockOk: items.length > 0 && items.every((item) => item.inStock),
   };
 }
 

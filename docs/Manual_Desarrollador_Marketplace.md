@@ -105,7 +105,7 @@ API routes:
 
 Configuración:
 
-- Variables `MARKETPLACE_*` en `.env` (nombre, datos fiscales, logo vía `public/logo.png`).
+- Variables `MARKETPLACE_*` en `.env` (nombre, datos fiscales). Logo web/packaging: `public/logo.png` (mosaico). Logo documentos PDF: `public/logo1.png` (escudo).
 - `serverExternalPackages: ["pdfkit", "fontkit"]` en `next.config.ts`.
 - Recompilar auth tras cambios: `npm run build --workspace @culebra/auth`.
 

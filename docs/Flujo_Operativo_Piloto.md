@@ -177,7 +177,11 @@ Mensaje comercial: categoría *ventana corta / consumo de temporada*. Operativa:
 | Venta online | 17 % (+ mín. 4 €) o 12 % fundadores año 1 |
 | Venta física showroom | **Misma** comisión; pedido registrado en sistema (tablet) |
 | Sin TPV listo | Solo escaparate + **QR a web** (sin caja paralela) |
+| Envío desde showroom | Cliente elige en tienda; porte **6,50 €** al cliente |
+| Cestas / lotes | Depósito de 3–4 productores; packaging a cargo S.L. (resta del margen) |
 | Pack turismo | Lote gourmet en carrito; noche/experiencia por **enlace** ([`tourism.md`](./tourism.md)) |
+
+Playbook comercial (actividades, zonas, tickets 29/45/65 €): [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · `/admin/showroom`.
 
 ---
 

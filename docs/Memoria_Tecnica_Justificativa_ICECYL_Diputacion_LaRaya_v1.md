@@ -1,5 +1,7 @@
 # Memoria técnica justificativa (borrador marco v1)
 
+![Logo Sabores de la Culebra](./imagenes/logo.png)
+
 ## 0. Alcance, finalidad y confidencialidad
 
 ### 0.1 Qué es este documento (y qué no es)

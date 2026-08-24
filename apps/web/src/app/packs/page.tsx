@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/site";
 export const metadata = buildPageMetadata({
   title: "Packs",
   description:
-    "Packs noche + lote gourmet de la Sierra de la Culebra. Reserva el alojamiento fuera y compra el lote en el marketplace.",
+    "Cestas gourmet del showroom y packs noche + lote de la Sierra de la Culebra. El lote se compra en el marketplace; la noche se reserva fuera.",
   path: "/packs",
 });
 
@@ -24,10 +24,10 @@ export default async function PacksPage() {
           { label: "Packs" },
         ]}
       />
-      <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">Packs sierra</h1>
+      <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">Packs y cestas</h1>
       <p className="mt-4 max-w-2xl text-stone-600">
-        Combina una estancia en el territorio con un lote gourmet. La noche se reserva en el
-        alojamiento; el lote se compra aqui, con envio a domicilio o para llevar.
+        Cestas del showroom (Escapada, Comarca, Sierra) y packs noche + lote. La estancia se
+        reserva fuera; el lote se compra aquí, para llevar o con envío plano de 6,50 €.
       </p>
 
       {items.length === 0 ? (

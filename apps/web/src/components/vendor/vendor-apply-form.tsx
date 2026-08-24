@@ -18,7 +18,7 @@ export function VendorApplyForm() {
     <form action={formAction} className="space-y-4">
       <div>
         <label className="mb-1 block text-sm font-medium" htmlFor="tradeName">
-          Nombre comercial *
+          Nombre del Productor / Marca *
         </label>
         <input
           id="tradeName"
@@ -51,7 +51,7 @@ export function VendorApplyForm() {
       </div>
       <div>
         <label className="mb-1 block text-sm font-medium" htmlFor="description">
-          Descripcion
+          Tipo de producto (Embutido, miel, reposteria, vino...)
         </label>
         <textarea
           id="description"
@@ -63,7 +63,7 @@ export function VendorApplyForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="mb-1 block text-sm font-medium" htmlFor="city">
-            Municipio
+            Municipio de La Raya / Culebra
           </label>
           <input
             id="city"
@@ -85,7 +85,7 @@ export function VendorApplyForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="mb-1 block text-sm font-medium" htmlFor="phone">
-            Telefono
+            Telefono de contacto
           </label>
           <input
             id="phone"
@@ -111,7 +111,7 @@ export function VendorApplyForm() {
         disabled={pending}
         className="w-full rounded-full bg-emerald-800 px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
       >
-        {pending ? "Enviando..." : "Crear solicitud de productor"}
+        {pending ? "Reservando..." : "Reservar mi plaza en el grupo piloto"}
       </button>
     </form>
   );

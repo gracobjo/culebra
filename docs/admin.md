@@ -20,6 +20,9 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin` | Resumen de pendientes |
 | `/admin/entregables-ai` | Checklist técnico núcleo A.I |
 | `/admin/raya` | Checklist convocatoria **La Raya Línea 1** (docs Base 8ª, secuencia ICECYL → Diputación) |
+| `/admin/config` | Configuración global (redes sociales, pie y contacto) |
+| `/admin/showroom` | Playbook del showroom: ingresos, zonas, cestas y márgenes 17 % |
+| `/admin/packaging` | Cajas kraft + mosaico geométrico, tags, frases y costes por cesta |
 | `/admin/productores` | Aprobar, rechazar o suspender |
 | `/admin/productos` | Publicar o rechazar fichas |
 | `/admin/turismo` | Alojamientos, packs, cupones y afiliados |
@@ -28,7 +31,7 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin/liquidaciones` | Payouts a productores |
 | `/admin/usuarios` | Suspender o reactivar cuentas |
 | `/admin/kpis` | KPIs por artesano + **riesgos del modelo** (incidencias, GMV, activos) |
-| `/admin/plan` | Plan financiero 5 años + simulador (15/17 %, costes, caja, retrasos, contingencia) |
+| `/admin/plan` | Plan 5 años (Excel) + **modelo 3 años online/showroom** + simulador |
 | `/admin/rentabilidad` | Rentabilidad por transaccion |
 | `/admin/rappels` | Rappels: proyección, cierre de año y pendientes de abono |
 | `/admin/piloto` | Grupo piloto (productores fundadores + CRUD categorías BD) |

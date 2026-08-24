@@ -25,6 +25,8 @@ export function formatDocumentDate(value: Date | string): string {
 
 export function resolveMarketplaceLogoPath(): string | null {
   const candidates = [
+    path.join(process.cwd(), "public", "logo1.png"),
+    path.join(process.cwd(), "apps", "web", "public", "logo1.png"),
     path.join(process.cwd(), "public", "logo.png"),
     path.join(process.cwd(), "apps", "web", "public", "logo.png"),
   ];
