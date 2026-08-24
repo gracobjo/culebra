@@ -39,6 +39,9 @@ export type PublicTourismPackRecord = TourismPackRecord & {
     slug: string;
     basePrice: string;
     imageUrl: string | null;
+    categorySlug: string | null;
+    categoryName: string | null;
+    subcategorySlug: string | null;
     vendorName: string;
     stockAvailable: number;
     inStock: boolean;
@@ -122,6 +125,8 @@ const publicPackInclude = {
         include: {
           images: { orderBy: { sortOrder: "asc" as const }, take: 1 },
           vendor: { select: { tradeName: true } },
+          category: { select: { slug: true, name: true } },
+          subcategory: { select: { slug: true } },
           inventory: {
             where: { variantId: null },
             select: { stock: true },
@@ -173,6 +178,8 @@ function toPublicPack(row: {
       deletedAt: Date | null;
       images: Array<{ url: string }>;
       vendor: { tradeName: string };
+      category: { slug: string; name: string } | null;
+      subcategory: { slug: string } | null;
       inventory: Array<{ stock: number }>;
     };
   }>;
@@ -188,6 +195,9 @@ function toPublicPack(row: {
         slug: item.product.slug,
         basePrice: String(item.product.basePrice),
         imageUrl: item.product.images[0]?.url ?? null,
+        categorySlug: item.product.category?.slug ?? null,
+        categoryName: item.product.category?.name ?? null,
+        subcategorySlug: item.product.subcategory?.slug ?? null,
         vendorName: item.product.vendor.tradeName,
         stockAvailable,
         inStock: stockAvailable >= item.quantity,

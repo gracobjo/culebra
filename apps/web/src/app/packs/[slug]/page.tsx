@@ -1,10 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicTourismPackBySlug } from "@culebra/auth";
 import { AddPackToCartButton } from "@/components/catalog/add-pack-to-cart-button";
+import { PackCover } from "@/components/catalog/pack-cover";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
 import { formatPrice } from "@/lib/format";
+import { resolvePackCoverSources, resolvePackItemImage } from "@/lib/pack-images";
 import { buildPageMetadata } from "@/lib/site";
 import { bookingCtaLabel, resolveBookingHref } from "@/lib/tourism";
 
@@ -22,7 +25,7 @@ export async function generateMetadata({ params }: PageProps) {
       pack.shortDescription ??
       `Pack ${pack.name}: lote gourmet${pack.accommodation ? ` + ${pack.accommodation.name}` : ""}.`,
     path: `/packs/${slug}`,
-    image: pack.imageUrl ?? undefined,
+    image: resolvePackCoverSources(pack)[0],
   });
 }
 
@@ -50,13 +53,11 @@ export default async function PackDetailPage({ params }: PageProps) {
       />
 
       <article className="mt-6 grid gap-10 lg:grid-cols-2">
-        <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-3xl bg-stone-100 text-stone-500">
-          {pack.imageUrl ? (
-            <img src={pack.imageUrl} alt="" className="h-full w-full object-cover" />
-          ) : (
-            "Sin imagen"
-          )}
-        </div>
+        <PackCover
+          pack={pack}
+          className="aspect-[4/3] rounded-3xl"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
 
         <div>
           <h1 className="text-3xl font-semibold sm:text-4xl">{pack.name}</h1>
@@ -123,15 +124,26 @@ export default async function PackDetailPage({ params }: PageProps) {
           {pack.items.map((item) => (
             <li
               key={item.productId}
-              className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-stone-200 bg-white px-4 py-3"
+              className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-stone-200 bg-white px-4 py-3"
             >
-              <div>
-                <Link href={`/productos/${item.slug}`} className="font-medium hover:text-emerald-900">
-                  {item.name}
-                </Link>
-                <p className="text-sm text-stone-500">
-                  {item.vendorName} · x{item.quantity}
-                </p>
+              <div className="flex min-w-0 items-center gap-3">
+                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-stone-100">
+                  <Image
+                    src={resolvePackItemImage(item)}
+                    alt=""
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <Link href={`/productos/${item.slug}`} className="font-medium hover:text-emerald-900">
+                    {item.name}
+                  </Link>
+                  <p className="text-sm text-stone-500">
+                    {item.vendorName} · x{item.quantity}
+                  </p>
+                </div>
               </div>
               <span>{formatPrice(Number(item.basePrice) * item.quantity)}</span>
             </li>

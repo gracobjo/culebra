@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { PublicTourismPackRecord } from "@culebra/auth";
 import { formatPrice } from "@/lib/format";
+import { PackCover } from "@/components/catalog/pack-cover";
 
 export function TourismPackCard({ pack }: { pack: PublicTourismPackRecord }) {
   return (
@@ -8,13 +9,7 @@ export function TourismPackCard({ pack }: { pack: PublicTourismPackRecord }) {
       href={`/packs/${pack.slug}`}
       className="group flex flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition hover:border-emerald-300 hover:shadow-md"
     >
-      <div className="flex aspect-[16/10] items-center justify-center bg-stone-100 text-stone-500">
-        {pack.imageUrl ? (
-          <img src={pack.imageUrl} alt="" className="h-full w-full object-cover" />
-        ) : (
-          <span className="text-sm">Pack gourmet</span>
-        )}
-      </div>
+      <PackCover pack={pack} className="aspect-[16/10]" />
       <div className="flex flex-1 flex-col p-5">
         <h2 className="text-xl font-semibold group-hover:text-emerald-900">{pack.name}</h2>
         {pack.accommodation ? (

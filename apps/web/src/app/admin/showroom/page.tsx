@@ -2,6 +2,7 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { ShowroomOptimizer } from "@/components/admin/showroom-optimizer";
+import { PackCover } from "@/components/catalog/pack-cover";
 import {
   INCOME_SOURCES,
   SPACE_ZONES,
@@ -176,7 +177,9 @@ export default async function AdminShowroomPage() {
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         {SHOWROOM_BASKETS.filter((b) => b.launch).map((basket) => (
-          <article key={basket.slug} className="rounded-3xl border border-stone-200 bg-white p-6">
+          <article key={basket.slug} className="overflow-hidden rounded-3xl border border-stone-200 bg-white">
+            <PackCover pack={{ slug: basket.slug, name: basket.name }} className="aspect-[16/9]" />
+            <div className="p-6">
             <h3 className="text-lg font-semibold">
               {basket.name} · {euros(basket.pvp)}
             </h3>
@@ -192,6 +195,7 @@ export default async function AdminShowroomPage() {
               ))}
             </ul>
             <p className="mt-4 text-xs text-stone-500">{basket.idealFor}</p>
+            </div>
           </article>
         ))}
       </div>
