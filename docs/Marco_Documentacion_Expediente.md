@@ -236,7 +236,8 @@ Comparativa financiera 15 % vs 17 %: [`Comparativa_Comision_15_vs_17.md`](./Comp
 Sensibilidad de costes (break-even, fijos, marketing, RETA): [`Sensibilidad_Costes_Plan_Viabilidad.md`](./Sensibilidad_Costes_Plan_Viabilidad.md).  
 Flujo de caja y tesorería (capital, subvención, colchón): [`Flujo_Caja_Plan_Viabilidad.md`](./Flujo_Caja_Plan_Viabilidad.md).  
 Sensibilidad con retrasos (subvención, lanzamiento, GMV): [`Sensibilidad_Retrasos_Plan_Viabilidad.md`](./Sensibilidad_Retrasos_Plan_Viabilidad.md).  
-Plan de Contingencia de Tesorería (alertas, escenarios A/B/C, apoyo socios): [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md).
+Plan de Contingencia de Tesorería (alertas, escenarios A/B/C, apoyo socios): [`Plan_Contingencia_Tesoreria.md`](./Plan_Contingencia_Tesoreria.md).  
+Checklist convocatoria La Raya Línea 1 (Base 8ª, secuencia ICECYL): [`Checklist_Convocatoria_La_Raya_Linea1.md`](./Checklist_Convocatoria_La_Raya_Linea1.md) · panel `/admin/raya`.
 
 ---
 

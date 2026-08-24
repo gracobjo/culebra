@@ -25,7 +25,8 @@ Sobre **30.000 €** de inversión elegible (marco canónico Plan de Viabilidad 
 | Capital social / caja | **40.000 €** |
 | **Esfuerzo neto de referencia** | **≈ 17.800 €** |
 
-*Desarrollo tecnológico en dos contratos de servicio (A.I **14.500 €** + A.II **8.500 €**) ≤ umbral contrato menor.*
+*Desarrollo tecnológico en dos contratos de servicio (A.I **14.500 €** + A.II **8.500 €**) ≤ umbral contrato menor.*  
+Checklist solicitud Diputación L1 (bloqueante: concesión ICECYL): [`Checklist_Convocatoria_La_Raya_Linea1.md`](./Checklist_Convocatoria_La_Raya_Linea1.md) · `/admin/raya`.
 
 El marketplace integra:
 

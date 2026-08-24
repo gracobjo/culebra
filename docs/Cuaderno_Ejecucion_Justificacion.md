@@ -4,7 +4,8 @@
 **Naturaleza:** Herramienta **interna** de seguimiento. No se presenta tal cual a la Administración.  
 **Función:** Alimentar la Memoria Técnica Justificativa con datos reales (contratos, facturas, pagos, entregables, indicadores).
 
-**Marco metodológico:** [`Marco_Documentacion_Expediente.md`](./Marco_Documentacion_Expediente.md)
+**Marco metodológico:** [`Marco_Documentacion_Expediente.md`](./Marco_Documentacion_Expediente.md)  
+**Checklist solicitud Diputación L1:** [`Checklist_Convocatoria_La_Raya_Linea1.md`](./Checklist_Convocatoria_La_Raya_Linea1.md) (`/admin/raya`)
 
 ---
 

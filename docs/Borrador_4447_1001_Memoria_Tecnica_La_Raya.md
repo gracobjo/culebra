@@ -6,7 +6,7 @@
 **Línea:** **1** (complemento ICECYL creación de empresas).  
 **Estado:** borrador interno — **no presentar** hasta constituir la S.L. y disponer de la Resolución ICECYL.
 
-**Fuentes:** `Memoria_Proyecto_ICECYL_Diputacion_Zamora.md` · `Memoria_Tecnica_Justificativa_…` §25 · `Plan_Viabilidad_…` · `Resumen_Ejecutivo_Socios.md` · `Concepto_Tienda_Showroom_Villardeciervos.md`
+**Fuentes:** `Memoria_Proyecto_ICECYL_Diputacion_Zamora.md` · `Memoria_Tecnica_Justificativa_…` §25 · `Plan_Viabilidad_…` · `Resumen_Ejecutivo_Socios.md` · `Concepto_Tienda_Showroom_Villardeciervos.md` · [`Checklist_Convocatoria_La_Raya_Linea1.md`](./Checklist_Convocatoria_La_Raya_Linea1.md)
 
 > Campos entre corchetes `[…]` = pendiente de cerrar (CIF, proveedores, IVA, fechas).
 
@@ -147,6 +147,8 @@ En Villardeciervos no existe actualmente una infraestructura digital local equiv
 ---
 
 ## Checklist antes de pasar a PDF / sede 4447
+
+Estado frente a Base Octava (a–i) y secuencia ICECYL: [`Checklist_Convocatoria_La_Raya_Linea1.md`](./Checklist_Convocatoria_La_Raya_Linea1.md) · panel `/admin/raya`.
 
 - [ ] Razón social, CIF y dirección definitivas  
 - [ ] IAE confirmado por gestoría  

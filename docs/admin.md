@@ -18,6 +18,8 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | Ruta | Funcion |
 |------|---------|
 | `/admin` | Resumen de pendientes |
+| `/admin/entregables-ai` | Checklist técnico núcleo A.I |
+| `/admin/raya` | Checklist convocatoria **La Raya Línea 1** (docs Base 8ª, secuencia ICECYL → Diputación) |
 | `/admin/productores` | Aprobar, rechazar o suspender |
 | `/admin/productos` | Publicar o rechazar fichas |
 | `/admin/turismo` | Alojamientos, packs, cupones y afiliados |
