@@ -347,6 +347,17 @@ export { siteSocialLinksUpsertSchema } from "./site-social-links.schemas.js";
 export type { SiteSocialLinksUpsertInput } from "./site-social-links.schemas.js";
 
 export {
+  deleteHomeHubTileForAdmin,
+  listHomeHubTilesForAdmin,
+  listHomeHubTilesForPublic,
+  seedHomeHubTilesIfEmpty,
+  upsertHomeHubTileForAdmin,
+} from "./home-hub.service.js";
+export type { HomeHubTileRecord } from "./home-hub.service.js";
+export { DEFAULT_HOME_HUB_TILES, homeHubTileUpsertSchema } from "./home-hub.schemas.js";
+export type { HomeHubTileUpsertInput } from "./home-hub.schemas.js";
+
+export {
   addLodgingRelationEventForAdmin,
   getLodgingCrmSummary,
   getLodgingOfferContacts,

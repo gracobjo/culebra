@@ -33,7 +33,7 @@ export async function SiteShell({ children }: { children: React.ReactNode }) {
         {children}
         <SiteFooter socials={socials} />
       </div>
-      <MobileTabBar cartCount={cart.itemCount} isLoggedIn={isLoggedIn} user={user} />
+      <MobileTabBar cartCount={cart.itemCount} isLoggedIn={isLoggedIn} isAdmin={isAdmin} user={user} />
       <ChatWidget />
     </>
   );

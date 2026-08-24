@@ -4,6 +4,7 @@ import { addPackToCart } from "@culebra/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getCartOwner } from "@/lib/cart";
+import { auth } from "@/auth";
 
 export type PackActionState = {
   error?: string;
@@ -17,6 +18,11 @@ export async function addPackToCartAction(
   const slug = String(formData.get("packSlug") ?? "").trim();
   if (!slug) {
     return { error: "Pack no valido." };
+  }
+
+  const session = await auth();
+  if (session?.user?.roles?.includes("ADMIN")) {
+    return { error: "La cuenta de administración no compra. Gestiona pedidos en el panel." };
   }
 
   try {

@@ -1,14 +1,15 @@
-import Link from "next/link";
 import Image from "next/image";
+import { HintedLink } from "@/components/ux/hinted-link";
 
 export type ShopHubTileProps = {
   href: string;
   title: string;
   description: string;
   imageSrc?: string;
+  imageAlt?: string;
+  hint?: string;
   eyebrow?: string;
   externalHint?: boolean;
-  /** Lenguaje visual distinto para turismo/packs (no catálogo agro). */
   tone?: "agro" | "territory";
 };
 
@@ -17,22 +18,31 @@ export function ShopHubTile({
   title,
   description,
   imageSrc,
+  imageAlt,
+  hint,
   eyebrow,
   externalHint,
   tone = "agro",
 }: ShopHubTileProps) {
   const isTerritory = tone === "territory";
+  const actionHint =
+    hint ??
+    (externalHint
+      ? `Abrir ${title}: reserva fuera del marketplace`
+      : `Abrir ${title} y ver productos`);
+  const alt = imageAlt?.trim() || `Imagen de la sección ${title}`;
 
   return (
-    <Link
+    <HintedLink
       href={href}
+      hint={actionHint}
       className={`shop-card group ${isTerritory ? "shop-card-territory" : ""}`}
     >
-      <div className="relative aspect-[5/3.2] overflow-hidden bg-stone-200">
+      <div className="relative aspect-[5/3.2] overflow-hidden rounded-t-[1.5rem] bg-stone-200">
         {imageSrc ? (
           <Image
             src={imageSrc}
-            alt=""
+            alt={alt}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="object-cover transition duration-500 ease-out group-hover:scale-[1.05]"
@@ -69,11 +79,11 @@ export function ShopHubTile({
             Reserva fuera del marketplace · sin checkout aquí
           </p>
         ) : (
-          <p className="mt-3 text-xs font-medium tracking-wide text-[var(--monte-mid)] opacity-0 transition duration-200 group-hover:opacity-100">
+          <p className="mt-3 text-xs font-medium tracking-wide text-[var(--monte-mid)]">
             Ver productos →
           </p>
         )}
       </div>
-    </Link>
+    </HintedLink>
   );
 }

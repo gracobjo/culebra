@@ -40,7 +40,7 @@ export default async function TiendaPage() {
             <div key={src} className="relative min-h-[14rem] sm:min-h-[18rem] lg:min-h-[22rem]">
               <Image
                 src={src}
-                alt=""
+                alt="Producto local de la Sierra de la Culebra"
                 fill
                 priority
                 className="object-cover"
@@ -88,6 +88,8 @@ export default async function TiendaPage() {
               href={`/categorias/${category.slug}`}
               title={category.name}
               imageSrc={getCategoryImageSrc(category.slug, category.name)}
+              imageAlt={`Productos de ${category.name} de la Sierra de la Culebra`}
+              hint={`Abrir la categoría ${category.name}`}
               description={
                 category.description?.trim() ||
                 CATEGORY_BLURBS[category.slug] ||
@@ -118,6 +120,8 @@ export default async function TiendaPage() {
             eyebrow="Sin checkout"
             title="Turismo rural"
             imageSrc="/categories/productos-tradicionales.png"
+            imageAlt="Productos de la sierra que ilustran el territorio y los alojamientos rurales"
+            hint="Ver alojamientos rurales. La reserva se hace fuera del marketplace"
             description="Alojamientos y casas de la sierra. Reserva en su canal habitual."
             externalHint
           />
@@ -127,6 +131,8 @@ export default async function TiendaPage() {
             eyebrow="Lote gourmet"
             title="Packs y cestas"
             imageSrc="/categories/miel-y-productos-apicolas.png"
+            imageAlt="Miel y elaboraciones locales de las cestas y packs gourmet"
+            hint="Ver packs y cestas gourmet"
             description="Cestas del showroom y noche + lote. El envío, si aplica, lo paga el cliente (6,50 €)."
           />
         </div>

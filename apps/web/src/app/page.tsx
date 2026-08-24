@@ -1,11 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { listCategories, listPublicProducts, listPublicVendors } from "@culebra/auth";
-import { CategoryCard } from "@/components/catalog/category-card";
+import {
+  DEFAULT_HOME_HUB_TILES,
+  listHomeHubTilesForPublic,
+  listPublicProducts,
+  listPublicVendors,
+} from "@culebra/auth";
+import { ShopHubTile } from "@/components/catalog/shop-hub-tile";
 import { ProductCard } from "@/components/catalog/product-card";
 import { VendorCard } from "@/components/catalog/vendor-card";
 import { PageShell } from "@/components/layout/page-shell";
 import { TrustStrip } from "@/components/ux/trust-strip";
+import { HintedLink } from "@/components/ux/hinted-link";
 import { JsonLd } from "@/components/ux/json-ld";
 import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "@/lib/seo";
 import { buildPageMetadata, siteConfig } from "@/lib/site";
@@ -16,9 +22,28 @@ export const metadata = buildPageMetadata({
   path: "/",
 });
 
+async function loadHubTiles() {
+  try {
+    if (typeof listHomeHubTilesForPublic !== "function") {
+      return DEFAULT_HOME_HUB_TILES.map((tile, index) => ({
+        id: `default-${tile.slug}`,
+        ...tile,
+        sortOrder: tile.sortOrder ?? (index + 1) * 10,
+      }));
+    }
+    return await listHomeHubTilesForPublic();
+  } catch {
+    return DEFAULT_HOME_HUB_TILES.map((tile, index) => ({
+      id: `default-${tile.slug}`,
+      ...tile,
+      sortOrder: tile.sortOrder ?? (index + 1) * 10,
+    }));
+  }
+}
+
 export default async function HomePage() {
-  const [categories, featuredProducts, featuredVendors] = await Promise.all([
-    listCategories(),
+  const [hubTiles, featuredProducts, featuredVendors] = await Promise.all([
+    loadHubTiles(),
     listPublicProducts({ limit: 4 }),
     listPublicVendors({ limit: 3 }),
   ]);
@@ -41,15 +66,15 @@ export default async function HomePage() {
             envío. Confianza, territorio y comodidad.
           </p>
           <div className="btn-group">
-            <Link className="btn btn-primary w-full sm:w-auto" href="/tienda">
+            <HintedLink className="btn btn-primary w-full sm:w-auto" href="/tienda" hint="Entrar en la tienda de la comarca">
               Entrar en la tienda
-            </Link>
-            <Link className="btn btn-secondary w-full sm:w-auto" href="/como-funciona">
+            </HintedLink>
+            <HintedLink className="btn btn-secondary w-full sm:w-auto" href="/como-funciona" hint="Ver cómo funciona la compra y el envío">
               Cómo funciona
-            </Link>
-            <Link className="btn btn-secondary w-full sm:w-auto" href="/quiero-vender">
+            </HintedLink>
+            <HintedLink className="btn btn-secondary w-full sm:w-auto" href="/quiero-vender" hint="Información para productores que quieren vender">
               Soy productor
-            </Link>
+            </HintedLink>
           </div>
         </div>
 
@@ -63,7 +88,7 @@ export default async function HomePage() {
                 "/categories/vinos.png",
               ].map((src) => (
                 <div key={src} className="relative">
-                  <Image src={src} alt="" fill className="object-cover" sizes="20vw" />
+                  <Image src={src} alt="Producto local de la Sierra de la Culebra" fill className="object-cover" sizes="20vw" />
                 </div>
               ))}
             </div>
@@ -80,9 +105,9 @@ export default async function HomePage() {
                 y su entorno con compradores que buscan origen, calidad y un solo
                 envío.
               </p>
-              <Link href="/productores" className="text-link-underline mt-6 text-sm text-white">
+              <HintedLink href="/productores" hint="Ver el listado de productores locales" className="text-link-underline mt-6 text-sm text-white">
                 Conocer productores
-              </Link>
+              </HintedLink>
             </div>
           </div>
         </div>
@@ -100,36 +125,25 @@ export default async function HomePage() {
               Agroalimentario, alojamientos y packs (checkout separado)
             </p>
           </div>
-          <Link href="/tienda" className="shrink-0 text-sm text-emerald-800">
+          <HintedLink href="/tienda" hint="Ir a la tienda completa de la comarca" className="shrink-0 text-sm text-emerald-800">
             Ver tienda
-          </Link>
+          </HintedLink>
         </div>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.slice(0, 4).map((category) => (
-            <CategoryCard key={category.id} category={category} />
+          {hubTiles.map((tile) => (
+            <ShopHubTile
+              key={tile.id}
+              href={tile.href}
+              title={tile.title}
+              description={tile.description}
+              imageSrc={tile.imageUrl}
+              imageAlt={tile.altText}
+              hint={tile.hintText}
+              tone={tile.tone}
+              externalHint={tile.href.startsWith("/alojamientos")}
+              eyebrow={tile.tone === "territory" ? "Territorio" : undefined}
+            />
           ))}
-          <Link
-            href="/alojamientos"
-            className="group flex min-w-0 flex-col rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
-          >
-            <h3 className="text-lg font-semibold leading-snug group-hover:text-emerald-900">
-              Turismo rural
-            </h3>
-            <p className="mt-2 line-clamp-2 text-sm text-stone-600">
-              Alojamientos de la sierra. Reserva en su canal habitual.
-            </p>
-          </Link>
-          <Link
-            href="/packs"
-            className="group flex min-w-0 flex-col rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
-          >
-            <h3 className="text-lg font-semibold leading-snug group-hover:text-emerald-900">
-              Packs
-            </h3>
-            <p className="mt-2 line-clamp-2 text-sm text-stone-600">
-              Noche + lote gourmet. La estancia fuera; el lote en el carrito.
-            </p>
-          </Link>
         </div>
       </section>
 

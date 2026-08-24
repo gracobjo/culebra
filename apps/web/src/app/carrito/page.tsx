@@ -9,7 +9,8 @@ import { CartCouponForm } from "@/components/cart/cart-coupon-form";
 import { formatPrice } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
-import { EmptyState } from "@/components/ux/empty-state";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Carrito | Sierra de la Culebra Marketplace",
@@ -43,6 +44,11 @@ function groupItemsByVendor(items: CartItemView[]) {
 }
 
 export default async function CartPage() {
+  const session = await auth();
+  if (session?.user?.roles?.includes("ADMIN")) {
+    redirect("/admin");
+  }
+
   const cart = await loadCart();
   const vendorGroups = groupItemsByVendor(cart.items);
 

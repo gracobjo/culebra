@@ -135,12 +135,16 @@ export default async function AdminDashboardPage() {
                 </Link>
               )}
             </div>
-            <Link
+            <a
               href="/tienda"
-              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-emerald-950 transition hover:bg-emerald-50"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Abrir la tienda pública en una pestaña nueva (vista del cliente)"
+              data-hint="Abrir la tienda pública en una pestaña nueva (vista del cliente)"
+              className="a11y-hint inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-emerald-950 transition hover:bg-emerald-50"
             >
               Abrir tienda pública
-            </Link>
+            </a>
           </div>
         </div>
       </section>

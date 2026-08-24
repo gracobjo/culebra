@@ -1,17 +1,19 @@
-import Link from "next/link";
 import Image from "next/image";
 import type { CategoryRecord } from "@culebra/auth";
 import { getCategoryImageSrc } from "@/lib/category-images";
+import { HintedLink } from "@/components/ux/hinted-link";
 
 export function CategoryCard({ category }: { category: CategoryRecord }) {
   const imageSrc = getCategoryImageSrc(category.slug, category.name);
+  const hint = `Abrir la categoría ${category.name} y ver sus productos`;
+  const alt = `Productos de ${category.name} de la Sierra de la Culebra`;
 
   return (
-    <Link href={`/categorias/${category.slug}`} className="shop-card group">
-      <div className="relative aspect-[5/3.2] overflow-hidden bg-stone-200">
+    <HintedLink href={`/categorias/${category.slug}`} hint={hint} className="shop-card group">
+      <div className="relative aspect-[5/3.2] overflow-hidden rounded-t-[1.5rem] bg-stone-200">
         <Image
           src={imageSrc}
-          alt=""
+          alt={alt}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition duration-500 ease-out group-hover:scale-[1.05]"
@@ -33,6 +35,6 @@ export function CategoryCard({ category }: { category: CategoryRecord }) {
           </p>
         ) : null}
       </div>
-    </Link>
+    </HintedLink>
   );
 }

@@ -1270,3 +1270,22 @@ model SiteSocialLinks {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+/// Bloques (divs) del hub «Tienda de la comarca» en inicio / tienda.
+model HomeHubTile {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  href        String
+  description String   @db.Text
+  imageUrl    String
+  altText     String
+  hintText    String
+  tone        String   @default("agro") // agro | territory
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive, sortOrder])
+}

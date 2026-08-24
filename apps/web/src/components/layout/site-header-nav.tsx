@@ -77,6 +77,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user, socials = 
 
   const accountHref = user ? getAccountHref(user.roles) : "/cuenta";
   const roleLabel = user ? getRoleLabel(user.roles) : "";
+  const showCart = !isAdmin;
 
   return (
     <header className="sticky top-0 z-40 border-b border-stone-200/70 bg-[color-mix(in_srgb,var(--cream)_72%,white)] pt-[env(safe-area-inset-top)] shadow-[0_8px_30px_-24px_rgb(28_25_23/0.35)] backdrop-blur-md supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--cream)_55%,white)]">
@@ -97,35 +98,39 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user, socials = 
             <Link
               key={link.href}
               href={link.href}
-              className={navLinkClass(pathname === link.href || pathname.startsWith(`${link.href}/`))}
+                className={`a11y-hint ${navLinkClass(pathname === link.href || pathname.startsWith(`${link.href}/`))}`}
+              title={`Ir a ${link.label}`}
+              data-hint={`Ir a ${link.label}`}
             >
               {link.label}
             </Link>
           ))}
           <SocialNetworkLinks socials={socials} variant="icons" size="sm" />
-          <Link
-            href="/carrito"
-            className={`relative inline-flex items-center gap-2 ${navLinkClass(pathname.startsWith("/carrito"))}`}
-            aria-label={`Carrito, ${cartCount} artículos`}
-          >
-            Carrito
-            {cartCount > 0 ? (
-              <span className="inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--monte)] px-1.5 py-0.5 text-[11px] font-semibold leading-none text-white">
-                {cartCount}
-              </span>
-            ) : null}
-          </Link>
+          {showCart ? (
+            <Link
+              href="/carrito"
+              className={`relative inline-flex items-center gap-2 ${navLinkClass(pathname.startsWith("/carrito"))}`}
+              aria-label={`Carrito, ${cartCount} artículos`}
+            >
+              Carrito
+              {cartCount > 0 ? (
+                <span className="inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--monte)] px-1.5 py-0.5 text-[11px] font-semibold leading-none text-white">
+                  {cartCount}
+                </span>
+              ) : null}
+            </Link>
+          ) : null}
           {isLoggedIn && user ? (
             <>
               {user.roles.includes("VENDOR") ? (
                 <Link href="/panel/proveedor/productos" className={navLinkClass(false)}>
                   Mis productos
                 </Link>
-              ) : (
+              ) : !isAdmin ? (
                 <Link href="/cuenta/pedidos" className={navLinkClass(false)}>
                   Pedidos
                 </Link>
-              )}
+              ) : null}
               <div className="flex shrink-0 items-center gap-2 border-l border-stone-200/80 pl-4 xl:gap-3">
                 <Link
                   href={accountHref}
@@ -163,18 +168,27 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user, socials = 
 
         <div className="flex items-center gap-2 lg:hidden">
           <SocialNetworkLinks socials={socials} variant="icons" size="sm" />
-          <Link
-            href="/carrito"
-            className="relative inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-stone-200/90 bg-white/70 text-sm"
-            aria-label={`Carrito, ${cartCount} articulos`}
-          >
-            <CartIcon />
-            {cartCount > 0 ? (
-              <span className="absolute -right-1 -top-1 inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--monte)] px-1 text-[11px] font-medium text-white">
-                {cartCount}
-              </span>
-            ) : null}
-          </Link>
+          {showCart ? (
+            <Link
+              href="/carrito"
+              className="relative inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-stone-200/90 bg-white/70 text-sm"
+              aria-label={`Carrito, ${cartCount} articulos`}
+            >
+              <CartIcon />
+              {cartCount > 0 ? (
+                <span className="absolute -right-1 -top-1 inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--monte)] px-1 text-[11px] font-medium text-white">
+                  {cartCount}
+                </span>
+              ) : null}
+            </Link>
+          ) : isAdmin ? (
+            <Link
+              href="/admin"
+              className="inline-flex min-h-11 items-center rounded-full border border-stone-200/90 bg-white/70 px-3 text-sm font-medium text-stone-800"
+            >
+              Admin
+            </Link>
+          ) : null}
           <button
             type="button"
             className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-stone-200/90 bg-white/70"
@@ -254,7 +268,7 @@ export function SiteHeaderNav({ cartCount, isLoggedIn, isAdmin, user, socials = 
                 Mis productos
               </Link>
             ) : null}
-            {isLoggedIn && user && !user.roles.includes("VENDOR") ? (
+            {isLoggedIn && user && !user.roles.includes("VENDOR") && !isAdmin ? (
               <Link
                 href="/cuenta/pedidos"
                 className="rounded-xl px-3 py-3 hover:bg-white/80"

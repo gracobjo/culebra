@@ -53,6 +53,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   const session = await auth();
   let isOwner = false;
+  const isAdmin = Boolean(session?.user?.roles?.includes("ADMIN"));
   if (session?.user?.id && session.user.roles?.includes("VENDOR")) {
     try {
       const vendor = await getVendorByUserId(session.user.id);
@@ -186,11 +187,24 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           ) : null}
 
           <div className="mt-8 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm">
-            <AddToCartForm product={product} />
-            <p className="mt-4 text-xs text-stone-500">
-              Pago seguro con Stripe. Envio gestionado por el productor segun sus
-              condiciones indicadas abajo.
-            </p>
+            {isAdmin ? (
+              <p className="text-sm text-stone-600">
+                Estás en modo administración: no se compra desde esta cuenta. Los pedidos se
+                gestionan en{" "}
+                <Link href="/admin/pedidos" className="font-medium text-emerald-800 underline">
+                  /admin/pedidos
+                </Link>
+                .
+              </p>
+            ) : (
+              <>
+                <AddToCartForm product={product} />
+                <p className="mt-4 text-xs text-stone-500">
+                  Pago seguro con Stripe. Envio gestionado por el productor segun sus
+                  condiciones indicadas abajo.
+                </p>
+              </>
+            )}
           </div>
         </div>
       </article>

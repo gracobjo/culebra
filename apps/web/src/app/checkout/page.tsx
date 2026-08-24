@@ -14,6 +14,10 @@ export const metadata = {
 
 export default async function CheckoutPage() {
   const session = await auth();
+  if (session?.user?.roles?.includes("ADMIN")) {
+    redirect("/admin");
+  }
+
   const cart = await loadCart();
   const affiliateCode = await getAffiliateCode();
 

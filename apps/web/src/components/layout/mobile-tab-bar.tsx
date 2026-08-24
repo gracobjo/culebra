@@ -12,6 +12,7 @@ type SessionUser = {
 type MobileTabBarProps = {
   cartCount: number;
   isLoggedIn: boolean;
+  isAdmin?: boolean;
   user?: SessionUser | null;
 };
 
@@ -43,34 +44,40 @@ const tabs = [
   },
 ];
 
-function getAccountHref(user: SessionUser | null | undefined, isLoggedIn: boolean): string {
+function getAccountHref(user: SessionUser | null | undefined, isLoggedIn: boolean, isAdmin?: boolean): string {
   if (!isLoggedIn) return "/login";
+  if (isAdmin) return "/admin";
   if (user?.roles.includes("VENDOR")) return "/panel/proveedor";
   return "/cuenta";
 }
 
-function getAccountLabel(user: SessionUser | null | undefined, isLoggedIn: boolean): string {
+function getAccountLabel(user: SessionUser | null | undefined, isLoggedIn: boolean, isAdmin?: boolean): string {
+  if (isAdmin) return "Admin";
   if (!isLoggedIn || !user) return "Cuenta";
   const first = user.name.trim().split(/\s+/)[0];
   if (!first) return "Cuenta";
   return first.length > 8 ? `${first.slice(0, 7)}…` : first;
 }
 
-export function MobileTabBar({ cartCount, isLoggedIn, user }: MobileTabBarProps) {
+export function MobileTabBar({ cartCount, isLoggedIn, isAdmin, user }: MobileTabBarProps) {
   const pathname = usePathname();
-  const accountHref = getAccountHref(user, isLoggedIn);
-  const accountLabel = getAccountLabel(user, isLoggedIn);
+  const accountHref = getAccountHref(user, isLoggedIn, isAdmin);
+  const accountLabel = getAccountLabel(user, isLoggedIn, isAdmin);
+  const visibleTabs = isAdmin ? tabs.filter((tab) => tab.id !== "cart") : tabs;
 
   return (
     <nav
       className="fixed inset-x-0 bottom-0 z-40 border-t border-stone-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
       aria-label="Navegacion principal"
     >
-      <ul className="site-container grid max-w-6xl grid-cols-4">
-        {tabs.map((tab) => {
+      <ul className={`site-container grid max-w-6xl ${isAdmin ? "grid-cols-3" : "grid-cols-4"}`}>
+        {visibleTabs.map((tab) => {
           const href = tab.id === "account" ? accountHref : tab.href;
           const label = tab.id === "account" ? accountLabel : tab.label;
-          const active = tab.match(pathname);
+          const active =
+            tab.id === "account" && isAdmin
+              ? pathname.startsWith("/admin")
+              : tab.match(pathname);
           return (
             <li key={tab.id}>
               <Link

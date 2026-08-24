@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicTourismPackBySlug } from "@culebra/auth";
+import { auth } from "@/auth";
 import { AddPackToCartButton } from "@/components/catalog/add-pack-to-cart-button";
 import { PackCover } from "@/components/catalog/pack-cover";
 import { PageShell } from "@/components/layout/page-shell";
@@ -33,6 +34,8 @@ export default async function PackDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const pack = await getPublicTourismPackBySlug(slug);
   if (!pack) notFound();
+  const session = await auth();
+  const isAdmin = Boolean(session?.user?.roles?.includes("ADMIN"));
 
   const bookingHref = pack.accommodation
     ? resolveBookingHref({
@@ -78,7 +81,17 @@ export default async function PackDetailPage({ params }: PageProps) {
           ) : null}
 
           <div className="mt-8">
-            <AddPackToCartButton packSlug={pack.slug} />
+            {isAdmin ? (
+              <p className="text-sm text-stone-600">
+                Modo administración: no se añade al carrito. Pedidos en{" "}
+                <Link href="/admin/pedidos" className="font-medium text-emerald-800 underline">
+                  el panel
+                </Link>
+                .
+              </p>
+            ) : (
+              <AddPackToCartButton packSlug={pack.slug} />
+            )}
           </div>
 
           {pack.accommodation ? (

@@ -18,16 +18,27 @@ import {
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getAffiliateCode, getCartOwner, rememberGuestOrder } from "@/lib/cart";
+import { auth } from "@/auth";
 
 export type CartActionState = {
   error?: string;
   success?: string;
 };
 
+async function rejectIfAdmin(): Promise<CartActionState | null> {
+  const session = await auth();
+  if (session?.user?.roles?.includes("ADMIN")) {
+    return { error: "La cuenta de administración no compra. Usa el panel para gestionar pedidos." };
+  }
+  return null;
+}
+
 export async function addToCartAction(
   _prev: CartActionState,
   formData: FormData,
 ): Promise<CartActionState> {
+  const blocked = await rejectIfAdmin();
+  if (blocked) return blocked;
   const parsed = addCartItemSchema.safeParse({
     productId: formData.get("productId"),
     variantId: formData.get("variantId") || undefined,
@@ -115,6 +126,9 @@ export async function checkoutAction(
   _prev: CartActionState,
   formData: FormData,
 ): Promise<CartActionState> {
+  const blocked = await rejectIfAdmin();
+  if (blocked) return blocked;
+
   const billingSame = formData.get("billingSameAsShipping") === "on";
   const affiliateFromForm = String(formData.get("affiliateCode") ?? "").trim();
   const affiliateFromCookie = await getAffiliateCode();

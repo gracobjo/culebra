@@ -43,13 +43,13 @@ export function PackCover({
         >
           {sources.map((src, index) => (
             <div key={`${src}-${index}`} className="relative min-h-0">
-              <Image
-                src={src}
-                alt=""
-                fill
-                sizes={sizes}
-                className="object-cover"
-              />
+        <Image
+          src={src}
+          alt={index === 0 ? pack.name : `Detalle de ${pack.name}`}
+          fill
+          sizes={sizes}
+          className="object-cover"
+        />
             </div>
           ))}
         </div>

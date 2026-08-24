@@ -34,12 +34,15 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       href={`/productos/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
+      title={`Ver ficha de ${product.name}`}
+      aria-label={`Ver ficha de ${product.name}`}
+      data-hint={`Ver ficha de ${product.name}`}
+      className="a11y-hint group flex flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
     >
       <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-stone-100 text-sm text-stone-500">
         <Image
           src={imageSrc}
-          alt={product.images[0]?.altText ?? product.name}
+          alt={product.images[0]?.altText || `Foto de ${product.name}`}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           unoptimized={imageSrc.startsWith("/uploads/")}

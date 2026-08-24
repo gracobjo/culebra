@@ -38,6 +38,31 @@ form.inline-form {
   outline-offset: 2px;
 }
 
+/* Mensaje de acción al pasar el ratón o al enfocar (WAI: propósito del enlace). */
+.a11y-hint {
+  position: relative;
+}
+.a11y-hint[data-hint]:hover::after,
+.a11y-hint[data-hint]:focus-visible::after {
+  content: attr(data-hint);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.4rem);
+  z-index: 60;
+  width: max-content;
+  max-width: min(18rem, 80vw);
+  transform: translateX(-50%);
+  border-radius: 0.65rem;
+  background: #0f241c;
+  color: #f7f4ee;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.35;
+  box-shadow: 0 8px 24px -12px rgb(15 36 28 / 0.6);
+  pointer-events: none;
+}
+
 img,
 video,
 canvas {
@@ -167,7 +192,7 @@ a {
     display: flex;
     min-width: 0;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 1.5rem;
     border: 1px solid rgb(231 229 228 / 0.9);
     background: #fff;
