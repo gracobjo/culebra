@@ -44,15 +44,24 @@ Si Kaggle te descarga un archivo `kaggle.json` con `username` y `key`, colócalo
 %USERPROFILE%\.kaggle\kaggle.json
 ```
 
-### Descargar dataset P1
+### Descargar datasets locales
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 New-Item -ItemType Directory -Force -Path data\kaggle | Out-Null
+
+# P1 tráfico/ticket (ya usado en notebook retail-forecast)
 kaggle datasets download -d mmumairkhattak/retail-sales-forecast-dataset-2026 -p data/kaggle/retail-forecast --unzip
+
+# Impulso / market basket
+kaggle datasets download -d heeraldedhia/groceries-dataset -p data/kaggle/groceries-mba --unzip
+kaggle datasets download -d mittalvasu95/the-bread-basket -p data/kaggle/bread-basket --unzip
+
+# Canal alojamientos
+kaggle datasets download -d jessemostipak/hotel-booking-demand -p data/kaggle/hotel-booking --unzip
 ```
 
-`data/kaggle/` y `.venv/` están en `.gitignore`.
+`data/kaggle/` y `.venv/` están en `.gitignore`. Inventario completo: [`docs/Variables_Decision_Datasets_Kaggle.md`](../docs/Variables_Decision_Datasets_Kaggle.md) §3.
 
 ## Dataset sintético Culebra
 

@@ -109,48 +109,86 @@ Temporada / festivo, evento local, nº alojamientos activos, horas de apertura, 
 
 ---
 
-## 3. Datasets Kaggle recomendados
+## 3. Datasets alineados (recomendados)
+
+Ninguno es “showroom rural Zamora”. Sirven para **aprender relaciones** transferibles a Culebra.
+
+### 3.0 Copias locales en el repo (`data/kaggle/`, gitignored)
+
+| Carpeta local | Dataset Kaggle | Uso Culebra |
+|---------------|----------------|-------------|
+| `data/kaggle/retail-forecast/` | [Retail Sales Forecast 2026](https://www.kaggle.com/datasets/mmumairkhattak/retail-sales-forecast-dataset-2026) | Tráfico → ventas → ticket · festivo/promo · online |
+| `data/kaggle/groceries-mba/` | [Groceries dataset](https://www.kaggle.com/datasets/heeraldedhia/groceries-dataset) | Market basket / co-compra (lista de 8, impulso) |
+| `data/kaggle/bread-basket/` | [The Bread Basket](https://www.kaggle.com/datasets/mittalvasu95/the-bread-basket) | Compra rápida / impulso por hora del día |
+| `data/kaggle/hotel-booking/` | [Hotel booking demand](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand) | Estacionalidad y canales → proxy huéspedes |
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+New-Item -ItemType Directory -Force -Path data\kaggle | Out-Null
+
+kaggle datasets download -d mmumairkhattak/retail-sales-forecast-dataset-2026 -p data/kaggle/retail-forecast --unzip
+kaggle datasets download -d heeraldedhia/groceries-dataset -p data/kaggle/groceries-mba --unzip
+kaggle datasets download -d mittalvasu95/the-bread-basket -p data/kaggle/bread-basket --unzip
+kaggle datasets download -d jessemostipak/hotel-booking-demand -p data/kaggle/hotel-booking --unzip
+```
+
+Credenciales: ver [`ml/README.md`](../ml/README.md).
 
 ### Prioridad 1 — tienda física: tráfico, ventas, ticket
 
 | Dataset | Enlace | Variables análogas | Uso para vosotros |
 |---------|--------|--------------------|-------------------|
-| **Retail Sales Forecast Dataset 2026** | [kaggle.com/datasets/mmumairkhattak/retail-sales-forecast-dataset-2026](https://www.kaggle.com/datasets/mmumairkhattak/retail-sales-forecast-dataset-2026) | `Customer_Footfall`, `Units_Sold`, `Unit_Price`, `Sales_Amount`, `Promotion`, `Holiday`, `Season`, `Online_Orders`, `Inventory_Level`, `Marketing_Spend` | Predecir **sales / units** a partir de footfall, precio, promo, festivo → proxy de **conversión** (`sales_events / footfall`) y **ticket** |
-| **Retail Store Sales Transactions (2022–2024)** | [kaggle.com/datasets/mahmoudmansour22/retail-store-sales-transactions-20222024](https://www.kaggle.com/datasets/mahmoudmansour22/retail-store-sales-transactions-20222024) | `total_spent`, `category`, `quantity`, `discount`, `location` (in-store/online), `customer_segment` | Ticket, mix categoría, online vs físico |
-| **Retail Store Performance** | [kaggle.com/datasets/hanzla121/retail-store-performance-dataset](https://www.kaggle.com/datasets/hanzla121/retail-store-performance-dataset) | Ventas por tienda trial/control | Impacto de “intervenciones” (como montar isla de cestas / impulso) |
-
-**Cómo bajar el primero (ejemplo):**
-
-```bash
-# Requiere cuenta Kaggle + kaggle.json en ~/.kaggle/
-pip install kaggle
-kaggle datasets download -d mmumairkhattak/retail-sales-forecast-dataset-2026 -p ./data/kaggle/retail-forecast --unzip
-```
+| **Retail Sales Forecast Dataset 2026** ★ local | [mmumairkhattak/…](https://www.kaggle.com/datasets/mmumairkhattak/retail-sales-forecast-dataset-2026) | `Customer_Footfall`, `Units_Sold`, `Unit_Price`, `Sales_Amount`, `Promotion`, `Holiday`, `Season`, `Online_Orders`, `Inventory_Level` | Proxy **conversión** y **ticket** |
+| **Store Sales – Favorita** | [competición](https://www.kaggle.com/competitions/store-sales-time-series-forecasting) | `sales`, `family`, `onpromotion`, `holidays_events`, `oil` | Series diarias por familia alimentaria + festivos |
+| **Walmart Sales Forecast** | [aslanahmedov/…](https://www.kaggle.com/datasets/aslanahmedov/walmart-sales-forecast) | Ventas semanales + holidays | Estacionalidad retail |
+| **Supermart Grocery Sales** | [mohamedharris/…](https://www.kaggle.com/datasets/mohamedharris/supermart-grocery-sales-retail-analytics-dataset) | Categoría, ticket grocery | Mix alimentario |
+| **Retail Store Sales Transactions** | [mahmoudmansour22/…](https://www.kaggle.com/datasets/mahmoudmansour22/retail-store-sales-transactions-20222024) | `total_spent`, in-store/online | Ticket, canal físico vs web |
+| **Retail Store Performance** | [hanzla121/…](https://www.kaggle.com/datasets/hanzla121/retail-store-performance-dataset) | Trial/control por tienda | Impacto de intervenciones (isla cestas / impulso) |
 
 ### Prioridad 2 — cesta / impulso / cross-sell
 
 | Dataset | Enlace | Variables análogas | Uso |
 |---------|--------|--------------------|-----|
-| **Instacart Market Basket Analysis** | [kaggle.com/competitions/instacart-market-basket-analysis](https://www.kaggle.com/competitions/instacart-market-basket-analysis) | Órdenes, productos, `add_to_cart_order`, `reordered` | Predecir **qué se añade a la cesta** (miel+loncheado, tote+cesta) · market basket |
-| **Online Retail II (UCI)** | [kaggle.com/datasets/cgrymn/online-retail-ii-uci-dataset](https://www.kaggle.com/datasets/cgrymn/online-retail-ii-uci-dataset) | Invoice, StockCode, Quantity, Price, CustomerID | Ticket, recurrencia, RFM; proxy marketplace online |
-| **Fuzzy Factory (Maven)** | [kaggle.com/datasets/sonalisingh1411/fuzzy-factory-e-commerce-and-marketing-database](https://www.kaggle.com/datasets/sonalisingh1411/fuzzy-factory-e-commerce-and-marketing-database) | Sessions → pageviews → orders, `utm_*`, devices | **Conversión web** y atribución (pedidos online desde showroom / QR) |
+| **Groceries dataset** ★ local | [heeraldedhia/…](https://www.kaggle.com/datasets/heeraldedhia/groceries-dataset) | Transacciones → ítems | Association rules ligeras (miel↔loncheado) |
+| **The Bread Basket** ★ local | [mittalvasu95/…](https://www.kaggle.com/datasets/mittalvasu95/the-bread-basket) | Ticket corto, hora, weekday | **Compra rápida** 12–20 € / impulso |
+| **Bakery Sales** | [akashdeepkuila/…](https://www.kaggle.com/datasets/akashdeepkuila/bakery) | Ventas panadería/café | Ticket corto |
+| **Instacart Market Basket** | [competición](https://www.kaggle.com/competitions/instacart-market-basket-analysis) | `add_to_cart_order`, `reordered` | Co-compra a escala (pesado ~200 MB) |
+| **Online Retail (UCI / Carrie)** | [carrie1/…](https://www.kaggle.com/datasets/carrie1/ecommerce-data) | Invoice, Quantity, Price | Proxy **cestas regalo** / RFM |
+| **Online Retail II (UCI)** | [cgrymn/…](https://www.kaggle.com/datasets/cgrymn/online-retail-ii-uci-dataset) | Idem ampliado | Ticket, recurrencia |
+| **Fuzzy Factory (Maven)** | [sonalisingh1411/…](https://www.kaggle.com/datasets/sonalisingh1411/fuzzy-factory-e-commerce-and-marketing-database) | Sessions → orders, `utm_*` | Conversión web / QR showroom |
 
-### Prioridad 3 — canal alojamientos / turismo
-
-| Dataset | Enlace | Variables análogas | Uso |
-|---------|--------|--------------------|-----|
-| **Hotel booking demand** | [kaggle.com/datasets/jessemostipak/hotel-booking-demand](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand) (versión clásica) | `hotel`, `is_canceled`, `lead_time`, `adr`, `market_segment`, `country`, temporada | Demanda alojamiento, canal, ADR → proxy de **volumen de huéspedes** susceptibles de derivación |
-| **Hotel Booking + indicadores económicos** | [kaggle.com/datasets/mlardi/hotel-booking-demand-with-economic-indicators](https://www.kaggle.com/datasets/mlardi/hotel-booking-demand-with-economic-indicators) | Mismo + CPI, fuel, sentiment | Estacionalidad / entorno macro sobre visitas |
-
-### Prioridad 4 — marketing / captación
+### Prioridad 3 — marketplace multi-productor (análogo Culebra)
 
 | Dataset | Enlace | Uso |
 |---------|--------|-----|
-| **Retail Customer & Transaction** | [kaggle.com/datasets/raghavendragandhi/retail-customer-and-transaction-dataset](https://www.kaggle.com/datasets/raghavendragandhi/retail-customer-and-transaction-dataset) | `conversion_rate`, campaigns, ROI → proxy captación contacto / campañas |
+| **Olist Brazilian E-Commerce** | [olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) | Multi-vendedor, pedidos, reviews, freight, categorías food/drink → proxy productores |
+| **Online Sales – Marketplace** | [shreyanshverma27/…](https://www.kaggle.com/datasets/shreyanshverma27/online-sales-dataset-popular-marketplace-data) | Pedidos marketplace genéricos |
+| **Marketing Insights E-Commerce** | [rishikumarrajvansh/…](https://www.kaggle.com/datasets/rishikumarrajvansh/marketing-insights-for-e-commerce-company) | Campañas → conversión / captación |
 
-### Alternativa académica (fuera de Kaggle, muy citada)
+### Prioridad 4 — canal alojamientos / turismo
 
-[Dominick’s Finer Foods – Kilts Center](https://www.chicagobooth.edu/research/kilts/datasets/dominicks): tráfico diario por tienda + movimiento UPC (precio, unidades, margen). Útil si queréis un benchmark “serio” de retail físico; registro institucional.
+| Dataset | Enlace | Variables análogas | Uso |
+|---------|--------|--------------------|-----|
+| **Hotel booking demand** ★ local | [jessemostipak/…](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand) | `adr`, `market_segment`, `lead_time`, temporada | Volumen huéspedes susceptibles de derivación |
+| **Hotel + indicadores económicos** | [mlardi/…](https://www.kaggle.com/datasets/mlardi/hotel-booking-demand-with-economic-indicators) | + CPI, fuel, sentiment | Macro sobre visitas |
+| **INE EOAT (turismo rural)** | [INE](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176963&menu=ultiDatos&idp=1254735576863) · [datos.gob.es](https://datos.gob.es/en/noticias/main-tourism-datasets-datosgobes) | Viajeros, pernoctaciones, ocupación CyL | Estacionalidad **oficial España** (mejor proxy rural) |
+| **Inside Airbnb (España)** | [insideairbnb.com](https://insideairbnb.com/get-the-data/) | Listings, occupancy proxy | Oferta alojamiento / partners |
+| **Airbnb Barcelona** | [thedevastator/…](https://www.kaggle.com/datasets/thedevastator/analysis-of-barcelona-airbnb-listings) | Listados + reviews | Proxy partners (no rural) |
+
+### Prioridad 5 — producto / marca / afiliados
+
+| Dataset | Enlace | Uso |
+|---------|--------|-----|
+| **Spanish Wine Quality** | [fedesoriano/…](https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-dataset) | Features vino ES → lista de 8 / cestas |
+| **Avocado Prices** | [neuromusic/…](https://www.kaggle.com/datasets/neuromusic/avocado-prices) | Precio agro + estacionalidad (analogía miel/queso) |
+| **Retail Customer & Transaction** | [raghavendragandhi/…](https://www.kaggle.com/datasets/raghavendragandhi/retail-customer-and-transaction-dataset) | Campañas, ROI → captación contacto |
+| **Amazon Affiliate Performance** | [affiliatematic/…](https://www.kaggle.com/datasets/affiliatematic/amazon-affiliate-marketing-performance-dataset) | Proxy atribución partner L3–L4 |
+| **Product Advertising Data** | [singhnavjot2062001/…](https://www.kaggle.com/datasets/singhnavjot2062001/product-advertising-data) | Spend → conversión |
+
+### Alternativas académicas / oficiales (fuera de Kaggle)
+
+- [Dominick’s Finer Foods – Kilts Center](https://www.chicagobooth.edu/research/kilts/datasets/dominicks): tráfico diario + UPC (precio, unidades, margen); registro institucional.
+- **INE** ocupación turismo rural (arriba): preferible a Airbnb urbano para La Raya.
 
 ---
 
@@ -161,12 +199,14 @@ kaggle datasets download -d mmumairkhattak/retail-sales-forecast-dataset-2026 -p
 | Visitas / día | `Customer_Footfall`, traffic | Agregar por día/tienda |
 | Conversión | purchases / footfall (derivada) | Rara vez viene lista |
 | Ticket / AOV | `Sales_Amount/n_tx`, `total_spent`, `adr` | |
-| Unidades SKU | `Units_Sold`, Instacart `order_products` | |
-| Impulso / attach | Items por ticket > 1, o productos “add-on” | Feature engineering |
-| Promo / festivo | `Promotion`, `Holiday`, `Season` | Temporada berrea/Navidad |
-| Pedidos online | `Online_Orders`, Fuzzy Factory orders | |
+| Unidades SKU | `Units_Sold`, Instacart `order_products`, Groceries `itemDescription` | |
+| Impulso / attach | Items por ticket > 1; Bread Basket por `Transaction` | Feature engineering |
+| Compra rápida | Bread Basket: tickets cortos + `Time` / weekday | Proxy 12–20 € |
+| Promo / festivo | `Promotion`, `Holiday`, `Season`, Favorita `holidays_events` | Temporada berrea/Navidad |
+| Pedidos online | `Online_Orders`, Fuzzy Factory orders, Olist `orders` | |
 | Inventario tote | `Inventory_Level` | |
-| Canal hotel | `market_segment`, `distribution_channel` | No es “partner rural”, pero sirve de proxy de canal |
+| Canal hotel | `market_segment`, `distribution_channel`; INE pernoctaciones | Hotel ≠ rural; INE mejor proxy CyL |
+| Marketplace multi-vendor | Olist sellers + order_items | Análogo productores |
 | Captación | campaigns `conversions`, emails | |
 
 ### Dataset sintético Culebra (local)
@@ -184,14 +224,14 @@ Cifras orientadas al showroom rural (fines de semana, temporada, berrea/Navidad,
 
 ## 5. Pipeline sugerido (predicción)
 
-1. **Bajar** Retail Sales Forecast 2026 + Instacart (o Online Retail II) + Hotel booking.  
-2. **Derivar** features: `conversion = f(sales_tx, footfall)`, `aov`, `items_per_basket`, flags festivo/promo.  
+1. **Usar locales** (§3.0): Retail Forecast + Groceries/Bread Basket + Hotel booking. Opcional: Favorita (series), Olist (marketplace), INE EOAT (rural ES).  
+2. **Derivar** features: `conversion = f(sales_tx, footfall)`, `aov`, `items_per_basket`, flags festivo/promo, hora (Bread Basket).  
 3. **Modelos baseline:**  
    - Regresión: predecir `Sales_Amount` o `aov` (RandomForest / XGBoost / Ridge).  
    - Clasificación: ¿compra sí/no dada visita+contexto? (si construís etiqueta).  
-   - Association rules / lift: miel ↔ loncheado, cesta ↔ tote (Instacart).  
-4. **Calibrar** con vuestros datos de `/admin/showroom` (quincenal): mismas columnas (`visits`, `purchases`, `attach`, uds 8 SKU).  
-5. **No mezclar** escalas: reentrenar o fine-tune con filas reales del showroom cuando tengáis ≥ 8–12 quincenas.
+   - Association rules / lift: Groceries o Instacart → miel ↔ loncheado, cesta ↔ tote.  
+4. **Calibrar** con `/admin/showroom` (quincenal) y/o `data/synthetic/culebra_showroom_daily.csv`.  
+5. **No mezclar** escalas: reentrenar con filas reales cuando tengáis ≥ 8–12 quincenas.
 
 ### Esquema mínimo a registrar (para alinear con Kaggle)
 
@@ -208,10 +248,12 @@ holiday_or_event (0/1), season
 ## 6. Limitaciones
 
 - Muchos datasets de “footfall” en Kaggle son **sintéticos** o de gran retail; sirven para **practicar el modelo**, no para cifras absolutas de Villardeciervos.  
-- Hotel booking es de **hoteles** (Portugal / genérico), no casas rurales de La Raya: útil para estacionalidad y canales, no para contraprestaciones L1–L4.  
-- Instacart es **grocery delivery** EE.UU.: útil para **co-ocurrencia** de productos, no para PVP en €.  
-- La predicción útil de negocio nacerá cuando el CSV quincenal del showroom tenga historial; Kaggle acelera el diseño del modelo.
+- Hotel booking es de **hoteles** (Portugal / genérico), no casas rurales de La Raya: útil para estacionalidad y canales; para rural ES preferid **INE EOAT**.  
+- Groceries / Bread Basket / Instacart sirven para **co-ocurrencia**, no para PVP en € del showroom.  
+- Olist es marketplace BR: útil para multi-vendedor y logística, no para comisión 17 % ni packs turismo.  
+- La predicción útil de negocio nacerá cuando el CSV quincenal del showroom tenga historial; Kaggle acelera el diseño del modelo.  
+- `data/kaggle/` está en `.gitignore` (no se sube al remoto).
 
 ---
 
-*Documento vivo. Actualizar cuando se añadan variables al panel o se fijen datasets de entrenamiento en el repo (`data/kaggle/…`, gitignored si son grandes).*
+*Documento vivo. Actualizar cuando se añadan variables al panel o se fijen datasets de entrenamiento en el repo.*
