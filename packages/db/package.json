@@ -18,6 +18,7 @@
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
     "seed": "tsx prisma/seed.ts",
+    "seed:showroom-stats": "tsx prisma/seed-showroom-daily-stats.ts",
     "studio": "prisma studio",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },

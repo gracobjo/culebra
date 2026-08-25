@@ -79,6 +79,12 @@ Abrir con el kernel del `.venv` (Jupyter / VS Code / Cursor).
 
 En **`/admin/showroom/estadisticas`**: formulario diario/quincenal, sync parcial desde pedidos + CRM, EDA con gráficos y **Exportar CSV** (43 columnas, mismo esquema que el sintético).
 
+**Demo local:** botón «Cargar demo sintético» en el panel, o:
+
+```powershell
+npm run seed:showroom-stats --workspace @culebra/db
+```
+
 ## Dataset sintético Culebra
 
 Con el venv activo:

@@ -398,6 +398,7 @@ export {
   summarizeShowroomDailyStats,
   syncShowroomDailyStatsFromSystem,
   upsertShowroomDailyStatForAdmin,
+  importShowroomDailyStatsFromSyntheticCsv,
   SHOWROOM_DAILY_CSV_COLUMNS,
 } from "./showroom-daily-stat.service.js";
 export type {

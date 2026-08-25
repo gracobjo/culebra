@@ -7,8 +7,10 @@ import {
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { ShowroomDailyStatEda } from "@/components/admin/showroom-daily-stat-eda";
+import { ShowroomStatsKpiReport } from "@/components/admin/showroom-stats-kpi-report";
 import {
   ShowroomDailyStatDeleteForm,
+  ShowroomDailyStatDemoPanel,
   ShowroomDailyStatExportLinks,
   ShowroomDailyStatForm,
   ShowroomDailyStatSyncPanel,
@@ -41,6 +43,13 @@ export default async function AdminShowroomStatsPage({ searchParams }: PageProps
       ? dates[Math.max(0, dates.length - 90)]
       : new Date(Date.now() - 90 * 86_400_000).toISOString().slice(0, 10);
 
+  const periodLabel =
+    sp.from && sp.to
+      ? `${sp.from} a ${sp.to}`
+      : dates.length > 0
+        ? `${dates[0]} a ${dates.at(-1)} (${records.length} días)`
+        : "Sin filtro (vacío)";
+
   return (
     <AdminShell title="Showroom — estadísticas y EDA">
       <p className="max-w-3xl text-sm text-stone-600">
@@ -69,12 +78,17 @@ export default async function AdminShowroomStatsPage({ searchParams }: PageProps
         <div className="grid gap-6 lg:grid-cols-2">
           <ShowroomDailyStatForm />
           <div className="space-y-6">
+            <ShowroomDailyStatDemoPanel hasData={records.length > 0} />
             <ShowroomDailyStatSyncPanel defaultFrom={defaultFrom} defaultTo={defaultTo} />
             <ShowroomDailyStatDeleteForm dates={dates} />
           </div>
         </div>
 
         <ShowroomDailyStatEda rows={enriched} summary={summary} />
+      </div>
+
+      <div className="mt-8">
+        <ShowroomStatsKpiReport summary={summary} periodLabel={periodLabel} />
       </div>
     </AdminShell>
   );

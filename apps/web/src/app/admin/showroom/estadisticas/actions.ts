@@ -2,6 +2,7 @@
 
 import {
   deleteShowroomDailyStatForAdmin,
+  importShowroomDailyStatsFromSyntheticCsv,
   showroomDailyStatSyncSchema,
   showroomDailyStatUpsertSchema,
   syncShowroomDailyStatsFromSystem,
@@ -88,6 +89,22 @@ export async function deleteShowroomDailyStatAction(
     return { success: `Día ${date} eliminado.` };
   } catch {
     return { error: "No se pudo eliminar (¿existía el registro?)." };
+  }
+}
+
+export async function importShowroomDemoDataAction(
+  _prev: ShowroomStatsAdminState,
+): Promise<ShowroomStatsAdminState> {
+  await requireAdmin("/admin/showroom/estadisticas");
+
+  try {
+    const result = await importShowroomDailyStatsFromSyntheticCsv({ replace: true });
+    revalidatePath("/admin/showroom/estadisticas");
+    return {
+      success: `Demo cargado: ${result.imported} días (${result.openDays} abiertos). EDA y export CSV listos.`,
+    };
+  } catch {
+    return { error: "No se pudo importar data/synthetic/culebra_showroom_daily.csv." };
   }
 }
 

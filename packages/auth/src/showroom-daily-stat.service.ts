@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { prisma } from "@culebra/db";
 import type { ShowroomDailyStatUpsertInput } from "./showroom-daily-stat.schemas.js";
 
@@ -621,4 +623,138 @@ export function summarizeShowroomDailyStats(
     toteSold,
     toteStockLast: lastOpen?.tote_stock ?? 0,
   };
+}
+
+const DEFAULT_SYNTHETIC_CSV = resolveSyntheticCsvPath();
+
+function resolveSyntheticCsvPath() {
+  const candidates = [
+    resolve(process.cwd(), "data/synthetic/culebra_showroom_daily.csv"),
+    resolve(process.cwd(), "../data/synthetic/culebra_showroom_daily.csv"),
+    resolve(process.cwd(), "../../data/synthetic/culebra_showroom_daily.csv"),
+    resolve(process.cwd(), "../../../data/synthetic/culebra_showroom_daily.csv"),
+  ];
+  for (const path of candidates) {
+    if (existsSync(path)) return path;
+  }
+  return candidates[0]!;
+}
+
+function num(value: string | undefined) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function boolFrom01(value: string | undefined) {
+  return value === "1" || value === "true";
+}
+
+function optionalSegment(value: string | undefined) {
+  if (!value || value === "Closed" || value === "None") return undefined;
+  return value;
+}
+
+function csvRowToUpsertInput(cols: string[], row: string[]): ShowroomDailyStatUpsertInput {
+  const get = (name: string) => row[cols.indexOf(name)] ?? "";
+  return {
+    date: get("date"),
+    open: boolFrom01(get("open")),
+    visits: num(get("visits")),
+    purchases: num(get("purchases")),
+    gmv: num(get("gmv")),
+    avgTicketBase: num(get("avg_ticket_base")),
+    impulseAttachPct: num(get("impulse_attach_pct")),
+    impulseAvgEur: num(get("impulse_avg_eur")),
+    quickBuyPct: num(get("quick_buy_pct")),
+    quickBuyTicket: num(get("quick_buy_ticket")),
+    mielU: num(get("miel_u")),
+    loncheadoU: num(get("loncheado_u")),
+    mermeladaU: num(get("mermelada_u")),
+    quesoU: num(get("queso_u")),
+    toteU: num(get("tote_u")),
+    picosU: num(get("picos_u")),
+    vinoU: num(get("vino_u")),
+    minicataU: num(get("minicata_u")),
+    toteStock: num(get("tote_stock")),
+    onlineOrders: num(get("Online_Orders")),
+    onlineOrdersAttr: num(get("online_orders_attr")),
+    contacts: num(get("contacts")),
+    referredVisits: num(get("referred_visits")),
+    basketsViaLodging: num(get("baskets_via_lodging")),
+    partnersActive: num(get("partners_active")),
+    promotion: get("Promotion") === "Yes",
+    holidayOrEvent: boolFrom01(get("holiday_or_event")),
+    marketSegment: optionalSegment(get("market_segment")),
+    distributionChannel: optionalSegment(get("distribution_channel")),
+    notes: "Importado desde culebra_showroom_daily.csv (demo)",
+  };
+}
+
+function parseSyntheticCsv(content: string): ShowroomDailyStatUpsertInput[] {
+  const lines = content.trim().split(/\r?\n/);
+  if (lines.length < 2) return [];
+  const headers = lines[0]!.split(",");
+  return lines.slice(1).map((line) => csvRowToUpsertInput(headers, line.split(",")));
+}
+
+function upsertInputToCreate(input: ShowroomDailyStatUpsertInput) {
+  return {
+    date: parseDateOnly(input.date),
+    open: input.open,
+    visits: input.visits,
+    purchases: input.purchases,
+    gmv: input.gmv,
+    avgTicketBase: input.avgTicketBase,
+    impulseAttachPct: input.impulseAttachPct,
+    impulseAvgEur: input.impulseAvgEur,
+    quickBuyPct: input.quickBuyPct,
+    quickBuyTicket: input.quickBuyTicket,
+    mielU: input.mielU,
+    loncheadoU: input.loncheadoU,
+    mermeladaU: input.mermeladaU,
+    quesoU: input.quesoU,
+    toteU: input.toteU,
+    picosU: input.picosU,
+    vinoU: input.vinoU,
+    minicataU: input.minicataU,
+    toteStock: input.toteStock,
+    onlineOrders: input.onlineOrders,
+    onlineOrdersAttr: input.onlineOrdersAttr,
+    contacts: input.contacts,
+    referredVisits: input.referredVisits,
+    basketsViaLodging: input.basketsViaLodging,
+    partnersActive: input.partnersActive,
+    promotion: input.promotion,
+    holidayOrEvent: input.holidayOrEvent,
+    marketSegment: input.marketSegment ?? null,
+    distributionChannel: input.distributionChannel ?? null,
+    notes: input.notes ?? null,
+  };
+}
+
+/** Importa el CSV sintético del repo (~730 días) para demo EDA / export. */
+export async function importShowroomDailyStatsFromSyntheticCsv(options?: {
+  csvPath?: string;
+  replace?: boolean;
+}) {
+  const csvPath = options?.csvPath ?? DEFAULT_SYNTHETIC_CSV;
+  const content = readFileSync(csvPath, "utf8");
+  const rows = parseSyntheticCsv(content);
+  if (rows.length === 0) {
+    throw new Error(`CSV vacío o no legible: ${csvPath}`);
+  }
+
+  if (options?.replace !== false) {
+    await prisma.showroomDailyStat.deleteMany({});
+  }
+
+  const BATCH = 100;
+  let imported = 0;
+  for (let i = 0; i < rows.length; i += BATCH) {
+    const chunk = rows.slice(i, i + BATCH).map(upsertInputToCreate);
+    await prisma.showroomDailyStat.createMany({ data: chunk });
+    imported += chunk.length;
+  }
+
+  return { imported, csvPath, openDays: rows.filter((r) => r.open).length };
 }
