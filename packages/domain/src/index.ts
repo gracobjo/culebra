@@ -168,6 +168,9 @@ export const VendorPayoutMethod = {
 /** Comision marketplace por defecto cuando no hay regla ni contrato especifico. */
 export const DEFAULT_MARKETPLACE_COMMISSION_PERCENT = 17;
 
+/** Tope comisión a canales externos (alojamiento, afiliados). */
+export const MAX_EXTERNAL_CHANNEL_COMMISSION_PERCENT = 10;
+
 /**
  * Suelo de comision por subpedido de productor (vendor order):
  * se aplica max(porcentaje, este minimo), sin superar el bruto del productor.
@@ -313,3 +316,17 @@ export const LodgingRelationEventType = {
   NOTE: "NOTE",
   STATUS_CHANGE: "STATUS_CHANGE",
 } as const satisfies Record<string, LodgingRelationEventType>;
+
+export {
+  calculateStackedCommission,
+  classifySlNetMargin,
+  referenceBasketMarginTable,
+  PRODUCER_TIER_COMMISSION_PERCENT,
+  REFERENCE_BASKET_PVP,
+} from "./commission-stack.js";
+export type {
+  MarginDecision,
+  ProducerTierKey,
+  StackedCommissionBreakdown,
+  StackedCommissionInput,
+} from "./commission-stack.js";

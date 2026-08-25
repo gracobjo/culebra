@@ -56,6 +56,7 @@ import {
   type FixedCostParts,
   type SimulationInputs,
 } from "@/lib/financial-simulation";
+import { SimulatorResetButton } from "@/components/admin/simulator-reset-button";
 
 function SliderRow({
   label,
@@ -964,6 +965,15 @@ export function PlanSimulator() {
     }));
   }
 
+  function resetSimulation() {
+    setInputs({
+      ...DEFAULT_SIMULATION,
+      fixed: { ...DEFAULT_SIMULATION.fixed },
+    });
+    setSubsidyMonth(DEFAULT_SUBSIDY_MONTH);
+    setLaunchMonth(DEFAULT_LAUNCH_MONTH);
+  }
+
   const chartAnnual = result.years.map((y) => ({
     name: `A${y.year}`,
     gmv: Math.round(y.gmv),
@@ -1026,6 +1036,7 @@ export function PlanSimulator() {
               {p.label}
             </button>
           ))}
+          <SimulatorResetButton onReset={resetSimulation} />
         </div>
       </section>
 

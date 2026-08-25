@@ -16,6 +16,7 @@ import {
   runLodgingStrategy,
   type LodgingStrategyInputs,
 } from "@/lib/alojamientos-estrategia";
+import { SimulatorResetButton } from "@/components/admin/simulator-reset-button";
 
 function SliderRow({
   label,
@@ -178,6 +179,10 @@ export function AlojamientosEstrategia() {
               {p.label}
             </button>
           ))}
+          <SimulatorResetButton
+            onReset={() => setInputs({ ...DEFAULT_LODGING_STRATEGY })}
+            className="border-sky-300 hover:border-sky-800 hover:bg-sky-50"
+          />
         </div>
       </section>
 

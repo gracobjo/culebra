@@ -75,6 +75,10 @@ export default async function AdminShowroomPage() {
         <Link href="/admin/showroom/estadisticas" className="text-emerald-800 underline">
           Estadísticas y EDA
         </Link>
+        {" · "}
+        <Link href="/admin/showroom/fidelizacion" className="text-emerald-800 underline">
+          Fidelización y premios
+        </Link>
         .
       </p>
 

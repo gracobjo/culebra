@@ -22,6 +22,12 @@ Comision por defecto de la plataforma: **17%** (`DEFAULT_MARKETPLACE_COMMISSION_
 - El importe aplicado se guarda en `OrderItem`, `VendorOrder` y `Payout`.
 - El admin puede **subir o bajar** el porcentaje por productor (0–100 %). Solo afecta a pedidos futuros.
 
+## Modelo consolidado (productor + canal externo)
+
+Visión de negocio completa (Bronce/Plata/Oro + alojamiento/afiliados + tabla de margen por cesta): [`Modelos_Comisiones_Consolidado.md`](./Modelos_Comisiones_Consolidado.md).
+
+**Orden en checkout con afiliado activo:** PVP → descuento canal (8–10 %) → comisión productor sobre el resto (17/14/12 % + mínimo 4 €). Implementado en `checkout.service.ts`. Simulador: `/admin/afiliados`.
+
 ## Resolucion de comision (checkout)
 
 Por linea, en este orden:

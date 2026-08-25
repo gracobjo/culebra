@@ -293,7 +293,8 @@ RNF-14 Separación analítica offline
 
 RNF-15 Navegación admin usable
 
-- El menú del panel debe estar agrupado por secciones (Panel, Catálogo, Operaciones, Negocio, Proyecto, Control) para reducir carga cognitiva.
+- El menú `/admin` debe agrupar enlaces por sección (Panel, Catálogo, Operaciones, Negocio, Proyecto, Control) y resaltar **solo** la ruta activa más específica.
+- Cada enlace debe exponer ayuda breve al hover/focus (`data-hint`) y documentación en [`admin.md`](./admin.md) y manual de usuario §A4.
 
 ---
 

@@ -1,10 +1,13 @@
 "use server";
 
 import {
+  createShowroomFootfallEntry,
   deleteShowroomDailyStatForAdmin,
+  deleteShowroomFootfallEntryForAdmin,
   importShowroomDailyStatsFromSyntheticCsv,
   showroomDailyStatSyncSchema,
   showroomDailyStatUpsertSchema,
+  showroomFootfallCreateSchema,
   syncShowroomDailyStatsFromSystem,
   upsertShowroomDailyStatForAdmin,
 } from "@culebra/auth";
@@ -134,5 +137,52 @@ export async function syncShowroomDailyStatsAction(
     };
   } catch {
     return { error: "Error al sincronizar desde pedidos y CRM." };
+  }
+}
+
+export async function createShowroomFootfallAction(
+  _prev: ShowroomStatsAdminState,
+  formData: FormData,
+): Promise<ShowroomStatsAdminState> {
+  await requireAdmin("/admin/showroom/estadisticas");
+
+  const parsed = showroomFootfallCreateSchema.safeParse({
+    date: formData.get("date"),
+    entryType: formData.get("entryType"),
+    originGroup: formData.get("originGroup"),
+    localityDetail: formData.get("localityDetail"),
+    discoveryChannel: formData.get("discoveryChannel"),
+    contactCaptured: formBool(formData, "contactCaptured"),
+    notes: formData.get("notes"),
+    syncDailyStat: formBool(formData, "syncDailyStat"),
+  });
+
+  if (!parsed.success) {
+    return { error: "Selecciona tipo (visita/compra) y procedencia." };
+  }
+
+  try {
+    await createShowroomFootfallEntry(parsed.data);
+    revalidatePath("/admin/showroom/estadisticas");
+    return { success: "Registro guardado. Sigue con el siguiente cliente." };
+  } catch {
+    return { error: "No se pudo guardar el registro de procedencia." };
+  }
+}
+
+export async function deleteShowroomFootfallAction(
+  _prev: ShowroomStatsAdminState,
+  formData: FormData,
+): Promise<ShowroomStatsAdminState> {
+  await requireAdmin("/admin/showroom/estadisticas");
+  const id = String(formData.get("id") ?? "");
+  if (!id) return { error: "Registro no válido." };
+
+  try {
+    await deleteShowroomFootfallEntryForAdmin(id);
+    revalidatePath("/admin/showroom/estadisticas");
+    return { success: "Registro eliminado." };
+  } catch {
+    return { error: "No se pudo eliminar el registro." };
   }
 }

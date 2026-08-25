@@ -80,9 +80,27 @@ const nextConfig: NextConfig = {
     },
   },
   webpack: (config) => {
+    const authRoot = path.resolve(monorepoRoot, "packages/auth");
+    config.resolve.extensionAlias = {
+      ...config.resolve.extensionAlias,
+      ".js": [".ts", ".tsx", ".js"],
+    };
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@culebra/auth": path.resolve(monorepoRoot, "packages/auth/dist/index.js"),
+      // Solo el barrel principal (coincidencia exacta). Subpaths → módulos client-safe.
+      "@culebra/auth$": path.resolve(authRoot, "dist/index.js"),
+      "@culebra/auth/affiliate.constants": path.resolve(
+        authRoot,
+        "src/affiliate.constants.ts",
+      ),
+      "@culebra/auth/showroom-footfall.schemas": path.resolve(
+        authRoot,
+        "src/showroom-footfall.schemas.ts",
+      ),
+      "@culebra/auth/showroom-loyalty.schemas": path.resolve(
+        authRoot,
+        "src/showroom-loyalty.schemas.ts",
+      ),
     };
     return config;
   },

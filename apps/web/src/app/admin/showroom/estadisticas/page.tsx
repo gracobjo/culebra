@@ -1,12 +1,19 @@
 import Link from "next/link";
 import {
   getShowroomDailyStatsEnrichedForAdmin,
+  getShowroomFootfallOriginSummaryForAdmin,
   listShowroomDailyStatsForAdmin,
+  listShowroomFootfallEntriesForAdmin,
   summarizeShowroomDailyStats,
 } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { ShowroomDailyStatEda } from "@/components/admin/showroom-daily-stat-eda";
+import { ShowroomFootfallInsights } from "@/components/admin/showroom-footfall-insights";
+import {
+  ShowroomFootfallQuickCapture,
+  ShowroomFootfallRecentList,
+} from "@/components/admin/showroom-footfall-panel";
 import { ShowroomStatsKpiReport } from "@/components/admin/showroom-stats-kpi-report";
 import {
   ShowroomDailyStatDeleteForm,
@@ -43,6 +50,23 @@ export default async function AdminShowroomStatsPage({ searchParams }: PageProps
       ? dates[Math.max(0, dates.length - 90)]
       : new Date(Date.now() - 90 * 86_400_000).toISOString().slice(0, 10);
 
+  const footfallFrom = sp.from ?? defaultFrom;
+  const footfallTo = sp.to ?? defaultTo;
+  const footfallPeriodLabel =
+    sp.from && sp.to ? `${sp.from} a ${sp.to}` : `últimos 90 días (${footfallFrom} a ${footfallTo})`;
+
+  const [footfallEntries, footfallSummary] = await Promise.all([
+    listShowroomFootfallEntriesForAdmin({
+      from: footfallFrom,
+      to: footfallTo,
+      limit: 50,
+    }),
+    getShowroomFootfallOriginSummaryForAdmin({
+      from: footfallFrom,
+      to: footfallTo,
+    }),
+  ]);
+
   const periodLabel =
     sp.from && sp.to
       ? `${sp.from} a ${sp.to}`
@@ -53,9 +77,12 @@ export default async function AdminShowroomStatsPage({ searchParams }: PageProps
   return (
     <AdminShell title="Showroom — estadísticas y EDA">
       <p className="max-w-3xl text-sm text-stone-600">
-        Base de datos operativa para ML: captura diaria/quincenal, sincronización parcial desde
-        pedidos y CRM, export CSV (43 columnas) y análisis exploratorio como en los notebooks.
-        Mapa:{" "}
+        Base de datos operativa para ML: captura diaria/quincenal, **procedencia de visitantes**,
+        sincronización parcial desde pedidos y CRM, export CSV y EDA. Guía:{" "}
+        <code className="rounded bg-stone-100 px-1 text-xs">
+          docs/Showroom_Procedencia_Visitantes.md
+        </code>
+        {" · "}
         <code className="rounded bg-stone-100 px-1 text-xs">
           docs/Variables_Decision_Datasets_Kaggle.md
         </code>
@@ -75,6 +102,26 @@ export default async function AdminShowroomStatsPage({ searchParams }: PageProps
       </div>
 
       <div className="mt-8 space-y-8">
+        <ShowroomFootfallQuickCapture />
+
+        <ShowroomFootfallInsights
+          summary={footfallSummary}
+          periodLabel={footfallPeriodLabel}
+          exportFrom={footfallFrom}
+          exportTo={footfallTo}
+        />
+
+        <section className="rounded-2xl border border-stone-200 bg-white p-5">
+          <h3 className="font-semibold text-stone-900">Registros recientes de procedencia</h3>
+          <p className="mt-1 text-sm text-stone-500">
+            Hoja digital equivalente al formulario de 3 campos. Ritual quincenal: revisar KPIs de
+            arriba y exportar CSV.
+          </p>
+          <div className="mt-4">
+            <ShowroomFootfallRecentList entries={footfallEntries} />
+          </div>
+        </section>
+
         <div className="grid gap-6 lg:grid-cols-2">
           <ShowroomDailyStatForm />
           <div className="space-y-6">

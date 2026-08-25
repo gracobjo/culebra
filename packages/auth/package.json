@@ -10,6 +10,21 @@
       "types": "./src/index.ts",
       "import": "./src/index.ts",
       "default": "./src/index.ts"
+    },
+    "./affiliate.constants": {
+      "types": "./src/affiliate.constants.ts",
+      "import": "./src/affiliate.constants.ts",
+      "default": "./src/affiliate.constants.ts"
+    },
+    "./showroom-footfall.schemas": {
+      "types": "./src/showroom-footfall.schemas.ts",
+      "import": "./src/showroom-footfall.schemas.ts",
+      "default": "./src/showroom-footfall.schemas.ts"
+    },
+    "./showroom-loyalty.schemas": {
+      "types": "./src/showroom-loyalty.schemas.ts",
+      "import": "./src/showroom-loyalty.schemas.ts",
+      "default": "./src/showroom-loyalty.schemas.ts"
     }
   },
   "scripts": {

@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { prisma } from "@culebra/db";
-import { savePilotValueProposition } from "../actions";
-import { defaultValueProposition } from "../value-proposition-defaults";
+import { savePilotValueProposition } from "../../actions";
+import { defaultValueProposition } from "../../value-proposition-defaults";
 import { ValuePropositionForm } from "./value-proposition-form";
 
 export const metadata = { title: "Ficha propuesta de valor | Piloto" };

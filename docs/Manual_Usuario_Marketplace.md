@@ -4,7 +4,7 @@
 
 > Basado en las funcionalidades implementadas del marketplace (Villardeciervos).
 
-**Documentos relacionados:** [Requisitos y casos de uso](./Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [Turismo (fases 2–3)](./tourism.md) · [Catálogo](./catalog.md) · [Carrito](./cart.md)
+**Documentos relacionados:** [Requisitos y casos de uso](./Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [Panel admin — menú completo](./admin.md) · [Turismo (fases 2–3)](./tourism.md) · [Catálogo](./catalog.md) · [Carrito](./cart.md)
 
 ---
 
@@ -248,6 +248,69 @@ Más detalle: [payments.md](./payments.md) y [commissions.md](./commissions.md).
 
 ### A4. Funcionalidades del Admin (ADMIN)
 
+Acceso: rol **ADMIN**, ruta base `/admin`. El menú está **agrupado en seis bloques**; cada enlace muestra **debajo del título** una frase breve sobre su función (además del resaltado verde en la página actual).
+
+Referencia técnica completa (cada tarjeta del menú y del resumen): [`admin.md`](./admin.md).
+
+#### Tarjetas del resumen (`/admin`)
+
+Además del menú, la página de inicio muestra **11 tarjetas** con acceso directo: productores pendientes, productos pendientes, contratos por firmar, liquidaciones pendientes, pedidos totales, showroom, stats showroom, alojamientos, usuarios, plan/simulación y entregables A.I. Cada tarjeta muestra un número en vivo o una etiqueta («Margen», «EDA», «Canal»…) y enlaza a su sección. Detalle en [`admin.md`](./admin.md) § Resumen.
+
+#### Mapa del menú
+
+##### Panel
+
+| Enlace | Ruta | Para qué sirve |
+|--------|------|----------------|
+| Resumen | `/admin` | Cuadro de mando: pendientes de productores, productos, contratos y liquidaciones; accesos rápidos a showroom, estadísticas y turismo. |
+| Configuración | `/admin/config` | Redes sociales del sitio; bloques visuales del hub de la tienda; auditoría de accesibilidad (WAI) en páginas públicas. |
+
+##### Catálogo
+
+| Enlace | Ruta | Para qué sirve |
+|--------|------|----------------|
+| Productores | `/admin/productores` | Dar de alta, aprobar, rechazar o suspender artesanos; ajustar comisión % en cada ficha. |
+| Productos | `/admin/productos` | Revisar fichas enviadas por productores y publicarlas o rechazarlas. |
+| Turismo / alojamientos | `/admin/turismo` | Directorio de alojamientos, packs, cupones, afiliados básicos y CRM de hosteleros. Ver §A4.7. |
+| Afiliados | `/admin/afiliados` | Programa de recomendación: códigos `?ref=`, comisiones 8–10 %, ledger y simulador de margen. Ver §A4.8. |
+
+##### Operaciones
+
+| Enlace | Ruta | Para qué sirve |
+|--------|------|----------------|
+| Pedidos | `/admin/pedidos` | Ver pedidos del marketplace y su estado (pago, envío, entrega). |
+| Contratos | `/admin/contratos` | Publicar nuevas versiones del contrato y enviarlas a firma digital. |
+| Liquidaciones | `/admin/liquidaciones` | Seguir pagos netos a productores tras la retención legal de 14 días. |
+| Usuarios | `/admin/usuarios` | Suspender o reactivar cuentas de la plataforma. |
+
+##### Negocio
+
+| Enlace | Ruta | Para qué sirve |
+|--------|------|----------------|
+| KPIs / riesgos | `/admin/kpis` | Desempeño por artesano y alertas del modelo multimarca. Ver §A4.1. |
+| Plan / simulación | `/admin/plan` | Plan económico y simulador de escenarios. Ver §A4.6. |
+| Rentabilidad | `/admin/rentabilidad` | Beneficio neto por transacción con costes imputables. Ver §A4.2. |
+| Rappels | `/admin/rappels` | Bonificaciones por volumen anual a productores. Ver §A4.3. |
+
+##### Proyecto
+
+| Enlace | Ruta | Para qué sirve |
+|--------|------|----------------|
+| Showroom | `/admin/showroom` | Simulador del punto físico: conversión, impulso en caja, lista de 8, cestas y plan 90 días. |
+| Stats showroom | `/admin/showroom/estadisticas` | Registro diario en base de datos, procedencia visitantes, gráficos EDA, informe KPI, export CSV para Python/ML y carga demo. |
+| Fidelización | `/admin/showroom/fidelizacion` | Rasca y gana, sellos, Club WhatsApp y referidos en tienda física. |
+| Packaging | `/admin/packaging` | Diseño de cajas kraft, frases de etiqueta y costes de packaging por cesta. |
+| Grupo piloto | `/admin/piloto` | Programa piloto de productores fundadores. Ver §A4.4. |
+| La Raya L1 | `/admin/raya` | Checklist documental de la convocatoria La Raya (ICECYL + Diputación). |
+| Entregables A.I | `/admin/entregables-ai` | Estado de entregables técnicos del contrato de desarrollo núcleo. |
+| Sandbox | `/admin/sandbox` | Probar el flujo completo de compra sin cobro real. Ver §A4.5. |
+
+##### Control
+
+| Enlace | Ruta | Para qué sirve |
+|--------|------|----------------|
+| Auditoría | `/admin/auditoria` | Historial de acciones administrativas relevantes. |
+
 #### 1) KPIs para evaluar desempeño
 
 - Panel `/admin/kpis` con objetivos y niveles (OK/WARNING/CRITICAL).
@@ -303,4 +366,34 @@ Notas:
   - **packs** (noche + lote; el lote usa productos publicados),
   - **códigos de afiliado** (`?ref=`).
 - Recuerda: publicar un alojamiento no implica checkout de noches en la plataforma.
+
+#### 8) Showroom físico y estadísticas
+
+- **`/admin/showroom`:** simulador del punto de venta (visitas, conversión, ticket, impulso en caja, lista de 8, cestas, plan 90 días). Pasa el ratón sobre las métricas para ver definiciones (p. ej. *attach impulso* = % de tickets con producto extra en mostrador).
+- **`/admin/showroom/estadisticas`:** captura operativa diaria o quincenal, **procedencia de visitantes/compradores** (formulario móvil en 10 s), sincronización desde pedidos/CRM, gráficos EDA, **informe de KPI** (tabla + glosario + descarga `.txt`) y export CSV. Guía: [`Showroom_Procedencia_Visitantes.md`](./Showroom_Procedencia_Visitantes.md).
+- **`/admin/showroom/fidelizacion`:** rasca y gana, tarjeta de sellos, club WhatsApp y trae a un amigo. Guía: [`Showroom_Fidelizacion_Premios.md`](./Showroom_Fidelizacion_Premios.md).
+
+#### 8) Programa de afiliados
+
+- Panel `/admin/afiliados`:
+  - alta por tipo (alojamiento, productor, creador, guía, embajador…),
+  - enlace `?ref=CODIGO` y cookie de atribución,
+  - comisión 8–10 % solo por venta confirmada,
+  - ledger de comisiones y export CSV,
+  - simulador de margen (modelo productor + canal externo).
+- Guías: [`Programa_Afiliados_Sabores_Culebra.md`](./Programa_Afiliados_Sabores_Culebra.md) · [`Modelos_Comisiones_Consolidado.md`](./Modelos_Comisiones_Consolidado.md).
+
+#### 9) Otros módulos de proyecto y control
+
+| Ruta | Uso |
+|------|-----|
+| `/admin/config` | Redes sociales, bloques del hub de la tienda y auditoría WAI. |
+| `/admin/afiliados` | Programa de afiliados y comisiones a canales externos. |
+| `/admin/showroom/fidelizacion` | Fidelización en showroom (premios, sellos, club). |
+| `/admin/packaging` | Frases, tags y costes de cajas kraft por tipo de cesta. |
+| `/admin/raya` | Checklist documental convocatoria La Raya L1. |
+| `/admin/entregables-ai` | Estado de entregables técnicos del contrato núcleo. |
+| `/admin/auditoria` | Registro de acciones administrativas. |
+
+Para moderación diaria del marketplace use **Productores**, **Productos**, **Pedidos** y **Liquidaciones** (sección Catálogo y Operaciones del mapa §A4).
 

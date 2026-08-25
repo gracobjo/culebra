@@ -35,18 +35,16 @@
 
 ### 1.3 Administrador (ADMIN)
 
-Menú agrupado: Panel · Catálogo · Operaciones · Negocio · Proyecto · Control.
+Menú agrupado: Panel · Catálogo · Operaciones · Negocio · Proyecto · Control. **Inventario completo:** [`admin.md`](./admin.md) · manual usuario §A4.
 
-| Módulo | Funcionalidad |
-|--------|---------------|
-| `/admin` | Resumen; enlace tienda pública en pestaña nueva; **sin carrito** (admin no compra) |
-| `/admin/config` | Redes; **CRUD bloques hub**; **auditoría WCAG/WAI** |
-| `/admin/showroom` | Simulador 90 días; lista de 8; tote/proveedores; **métricas de impulso** |
-| `/admin/packaging` | Packaging cestas |
-| `/admin/turismo` | Alojamientos, packs, cupones, afiliados; **CRM hosteleros** |
-| `/admin/plan`, `/kpis`, `/rentabilidad`, `/rappels` | Plan financiero y riesgos |
-| `/admin/piloto`, `/sandbox`, `/raya`, `/entregables-ai` | Piloto, pruebas, expediente |
-| Resto | Productores, productos, contratos, pedidos, liquidaciones, usuarios, auditoría |
+| Sección | Rutas | Funcionalidad |
+|---------|-------|---------------|
+| Panel | `/admin`, `/admin/config` | Resumen de pendientes; redes; CRUD hub; auditoría WAI |
+| Catálogo | `/admin/productores`, `/productos`, `/turismo` | Moderación, comisiones, alojamientos, packs, CRM |
+| Operaciones | `/admin/pedidos`, `/contratos`, `/liquidaciones`, `/usuarios` | Pedidos, contratos, payouts, cuentas |
+| Negocio | `/admin/kpis`, `/plan`, `/rentabilidad`, `/rappels` | KPIs, riesgos, simulador financiero, rappels |
+| Proyecto | `/admin/showroom`, `/showroom/estadisticas`, `/packaging`, `/piloto`, `/raya`, `/entregables-ai`, `/sandbox` | Showroom, **stats + CSV/ML**, packaging, piloto, expediente, pruebas E2E |
+| Control | `/admin/auditoria` | Logs de auditoría |
 
 ### 1.4 Showroom físico (soporte software)
 

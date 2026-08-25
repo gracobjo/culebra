@@ -36,7 +36,7 @@ scripts/
 docker-compose.yml
 ```
 
-Documentación clave: [`docs/Funcionalidades_Python_IA.md`](docs/Funcionalidades_Python_IA.md) · [`docs/Requisitos_Funcionales_NoFuncionales_UseCases_UML.md`](docs/Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [`ml/README.md`](ml/README.md).
+Documentación clave: [`docs/admin.md`](docs/admin.md) (menú completo del panel: cada enlace, tarjetas del resumen y funcionalidades) · [`docs/Funcionalidades_Python_IA.md`](docs/Funcionalidades_Python_IA.md) · [`docs/Requisitos_Funcionales_NoFuncionales_UseCases_UML.md`](docs/Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [`docs/Manual_Usuario_Marketplace.md`](docs/Manual_Usuario_Marketplace.md) · [`ml/README.md`](ml/README.md).
 
 ## Requisitos
 

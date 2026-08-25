@@ -88,6 +88,18 @@ export async function checkoutCart(
   const vendorIds = [...new Set(cart.items.map((item) => item.vendorId))];
   const { rulesByVendor, contractPercentByVendor } = await loadCommissionContext(vendorIds);
 
+  let affiliateCode: string | null = null;
+  let channelCommissionPct = 0;
+  let affiliateVendorId: string | null = null;
+  if (input.affiliateCode) {
+    const affiliate = await getActiveAffiliateByCode(input.affiliateCode);
+    if (affiliate) {
+      affiliateCode = affiliate.code;
+      channelCommissionPct = affiliate.commissionPct;
+      affiliateVendorId = affiliate.vendorId;
+    }
+  }
+
   for (const item of cart.items) {
     if (item.quantity > item.stock) {
       throw new Error("INSUFFICIENT_STOCK");
@@ -96,11 +108,23 @@ export async function checkoutCart(
     const vatRate = Number(item.vatRate);
     const tax = taxFromGross(gross, vatRate);
     const product = productById.get(item.productId);
+
+    let commissionGross = gross;
+    if (
+      channelCommissionPct > 0 &&
+      !(affiliateVendorId && item.vendorId === affiliateVendorId)
+    ) {
+      const channelDeduction = Number(
+        ((gross * channelCommissionPct) / 100).toFixed(2),
+      );
+      commissionGross = Number(Math.max(0, gross - channelDeduction).toFixed(2));
+    }
+
     const commission = await resolveLineCommission({
       vendorId: item.vendorId,
       categoryId: product?.categoryId ?? null,
       subcategoryId: product?.subcategoryId ?? null,
-      gross,
+      gross: commissionGross,
       rules: rulesByVendor.get(item.vendorId) ?? [],
       contractPercent: contractPercentByVendor.get(item.vendorId) ?? null,
     });
@@ -136,14 +160,6 @@ export async function checkoutCart(
         throw error;
       }
       throw new Error("COUPON_INVALID");
-    }
-  }
-
-  let affiliateCode: string | null = null;
-  if (input.affiliateCode) {
-    const affiliate = await getActiveAffiliateByCode(input.affiliateCode);
-    if (affiliate) {
-      affiliateCode = affiliate.code;
     }
   }
 

@@ -324,6 +324,7 @@ model Vendor {
   payouts            Payout[]
   reviews            Review[]
   rappelSettlements  RappelSettlement[]
+  affiliateCodes     AffiliateCode[]
 }
 
 model VendorDocument {
@@ -1244,20 +1245,87 @@ model CouponRedemption {
 }
 
 model AffiliateCode {
-  id              String   @id @default(cuid())
-  code            String   @unique
+  id              String                 @id @default(cuid())
+  code            String                 @unique
   label           String
+  affiliateType   AffiliatePartnerType   @default(LODGING)
+  /// Comisión % sobre PVP productos (sin portes)
+  commissionPct   Decimal                @default(10) @db.Decimal(5, 2)
   accommodationId String?
-  isActive        Boolean  @default(true)
-  clickCount      Int      @default(0)
-  orderCount      Int      @default(0)
-  notes           String?  @db.Text
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  /// Productor colaborador: no comisión sobre sus propias ventas
+  vendorId        String?
+  contactEmail    String?
+  contactPhone    String?
+  cookieDays      Int                    @default(30)
+  payoutMinimum   Decimal                @default(30) @db.Decimal(12, 2)
+  commissionPending Decimal              @default(0) @db.Decimal(12, 2)
+  commissionPaid  Decimal                @default(0) @db.Decimal(12, 2)
+  programStatus   AffiliateProgramStatus @default(ACTIVE)
+  isActive        Boolean                @default(true)
+  clickCount      Int                    @default(0)
+  orderCount      Int                    @default(0)
+  notes           String?                @db.Text
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
 
   accommodation Accommodation? @relation(fields: [accommodationId], references: [id], onDelete: SetNull)
+  vendor        Vendor?          @relation(fields: [vendorId], references: [id], onDelete: SetNull)
+  commissions   AffiliateCommission[]
 
   @@index([isActive, code])
+  @@index([affiliateType])
+  @@index([programStatus])
+}
+
+enum AffiliatePartnerType {
+  LODGING
+  PRODUCER
+  CREATOR
+  GUIDE
+  AMBASSADOR
+  PARTNER_SHOP
+}
+
+enum AffiliateProgramStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+}
+
+enum AffiliateCommissionType {
+  ONLINE_ORDER
+  BASKET_SALE
+  SHOWROOM_SALE
+}
+
+enum AffiliateCommissionStatus {
+  PENDING
+  APPROVED
+  PAID
+  CANCELLED
+}
+
+model AffiliateCommission {
+  id               String                    @id @default(cuid())
+  affiliateId      String
+  affiliate        AffiliateCode             @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  orderId          String?                   @unique
+  orderNumber      String?
+  commissionType   AffiliateCommissionType   @default(ONLINE_ORDER)
+  baseAmount       Decimal                   @db.Decimal(12, 2)
+  commissionPct    Decimal                   @db.Decimal(5, 2)
+  commissionAmount Decimal                   @db.Decimal(12, 2)
+  status           AffiliateCommissionStatus @default(PENDING)
+  eventDate        DateTime                  @default(now()) @db.Date
+  paidAt           DateTime?
+  payoutNote       String?
+  notes            String?                   @db.Text
+  createdAt        DateTime                  @default(now())
+  updatedAt        DateTime                  @updatedAt
+
+  @@index([affiliateId])
+  @@index([status])
+  @@index([eventDate])
 }
 
 /// Configuración global del sitio para enlaces sociales (admin /contacto / pie).
@@ -1329,4 +1397,170 @@ model ShowroomDailyStat {
   updatedAt           DateTime @updatedAt
 
   @@index([date])
+}
+
+/// Registro rápido de procedencia — visita o compra en showroom (captura móvil).
+enum ShowroomFootfallType {
+  VISIT
+  PURCHASE
+}
+
+enum ShowroomOriginGroup {
+  LOCAL
+  ZAMORA
+  CASTILLA_LEON
+  MADRID
+  OTRAS_CCAA
+  EXTRANJERO
+  NO_INDICADO
+}
+
+enum ShowroomDiscoveryChannel {
+  LODGING
+  PASSING_BY
+  SOCIAL
+  REFERRAL
+  OTHER
+}
+
+model ShowroomFootfallEntry {
+  id               String                    @id @default(cuid())
+  /// Día operativo (YYYY-MM-DD en zona local del negocio)
+  date             DateTime                  @db.Date
+  recordedAt       DateTime                  @default(now())
+  entryType        ShowroomFootfallType
+  originGroup      ShowroomOriginGroup       @default(NO_INDICADO)
+  /// Detalle opcional, ej. «Madrid – Las Rozas»
+  localityDetail   String?
+  discoveryChannel ShowroomDiscoveryChannel?
+  contactCaptured  Boolean                   @default(false)
+  notes            String?                   @db.Text
+  createdAt        DateTime                  @default(now())
+  updatedAt        DateTime                  @updatedAt
+
+  @@index([date])
+  @@index([entryType])
+  @@index([originGroup])
+  @@index([discoveryChannel])
+}
+
+// --- Fidelización showroom: rasca y gana, sellos, club, referidos ---
+
+enum ShowroomScratchPrize {
+  MINI_CATA
+  DISCOUNT_10_TODAY
+  MIEL_OR_LONCHEADO
+  BASKET_UPGRADE
+  TOTE_BAG
+  BASKET_ESCAPADA
+}
+
+enum ShowroomStampCardStatus {
+  ACTIVE
+  COMPLETED
+  REDEEMED
+}
+
+enum ShowroomClubChannel {
+  WHATSAPP
+  EMAIL
+  BOTH
+}
+
+model ShowroomLoyaltyMonth {
+  /// Clave YYYY-MM
+  monthKey           String   @id
+  scratchWinEveryN   Int      @default(5)
+  scratchMaxWins     Int      @default(40)
+  scratchPlays       Int      @default(0)
+  scratchWins        Int      @default(0)
+  stampCardsCompleted Int     @default(0)
+  clubJoins          Int      @default(0)
+  referralsRewarded  Int      @default(0)
+  notes              String?  @db.Text
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  scratchPlaysList ShowroomScratchPlay[]
+}
+
+model ShowroomScratchPlay {
+  id            String                 @id @default(cuid())
+  monthKey      String
+  month         ShowroomLoyaltyMonth   @relation(fields: [monthKey], references: [monthKey], onDelete: Cascade)
+  playNumber    Int
+  won           Boolean                @default(false)
+  prize         ShowroomScratchPrize?
+  entryType     ShowroomFootfallType
+  customerLabel String?
+  notes         String?                @db.Text
+  createdAt     DateTime               @default(now())
+
+  @@index([monthKey])
+  @@index([won])
+  @@index([prize])
+}
+
+model ShowroomStampCard {
+  id              String                  @id @default(cuid())
+  cardCode        String                  @unique
+  customerName    String
+  contactHint     String?
+  stampsRequired  Int                     @default(6)
+  stampsCount     Int                     @default(0)
+  status          ShowroomStampCardStatus @default(ACTIVE)
+  completedAt     DateTime?
+  redeemedAt      DateTime?
+  notes           String?                 @db.Text
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+
+  stamps ShowroomStampEvent[]
+
+  @@index([status])
+  @@index([customerName])
+}
+
+model ShowroomStampEvent {
+  id        String            @id @default(cuid())
+  cardId    String
+  card      ShowroomStampCard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  eventDate DateTime          @default(now()) @db.Date
+  notes     String?
+  createdAt DateTime          @default(now())
+
+  @@index([cardId])
+}
+
+model ShowroomClubMember {
+  id           String               @id @default(cuid())
+  name         String
+  contact      String
+  channel      ShowroomClubChannel  @default(WHATSAPP)
+  originGroup  ShowroomOriginGroup?
+  promoCode    String?
+  birthday     DateTime?            @db.Date
+  isActive     Boolean              @default(true)
+  notes        String?              @db.Text
+  joinedAt     DateTime             @default(now())
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+
+  @@index([isActive])
+  @@index([originGroup])
+}
+
+model ShowroomReferral {
+  id                String   @id @default(cuid())
+  referrerName      String
+  referredName      String
+  referredPurchased Boolean  @default(false)
+  rewardGiven       Boolean  @default(false)
+  eventDate         DateTime @default(now()) @db.Date
+  notes             String?  @db.Text
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([eventDate])
+  @@index([rewardGiven])
 }

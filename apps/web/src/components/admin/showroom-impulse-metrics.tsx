@@ -11,6 +11,7 @@ import {
   type ImpulseMetricsInputs,
   type ImpulseSkuId,
 } from "@/lib/showroom-impulse-metrics";
+import { SimulatorResetButton } from "@/components/admin/simulator-reset-button";
 
 function SliderRow({
   label,
@@ -126,6 +127,13 @@ export function ShowroomImpulseMetrics() {
     }));
   }
 
+  function resetInputs() {
+    setInputs({
+      ...DEFAULT_IMPULSE_METRICS,
+      skuUnits: { ...DEFAULT_IMPULSE_METRICS.skuUnits },
+    });
+  }
+
   return (
     <div className="space-y-6 rounded-3xl border border-stone-200 bg-white p-5 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -160,6 +168,7 @@ export function ShowroomImpulseMetrics() {
               {p.label}
             </button>
           ))}
+          <SimulatorResetButton onReset={resetInputs} />
         </div>
       </div>
 

@@ -12,6 +12,7 @@ import {
   runCompensationSim,
   type CompensationSimInputs,
 } from "@/lib/alojamientos-contraprestaciones";
+import { SimulatorResetButton } from "@/components/admin/simulator-reset-button";
 
 function SliderRow({
   label,
@@ -104,7 +105,12 @@ export function LodgingCompensationPlaybook() {
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,20rem)_1fr]">
         <aside className="space-y-3 rounded-3xl border border-stone-200 bg-white p-5">
-          <h3 className="font-semibold">Simulador de coste / valor</h3>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h3 className="font-semibold">Simulador de coste / valor</h3>
+            <SimulatorResetButton
+              onReset={() => setInputs({ ...DEFAULT_COMPENSATION_SIM })}
+            />
+          </div>
           <SliderRow
             label="Clientes referidos"
             value={inputs.referredClients}

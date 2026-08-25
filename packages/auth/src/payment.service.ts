@@ -453,6 +453,9 @@ export async function markOrderPaid(params: {
 
   await createVendorTransfers(payment.orderId, payment.id, payment.order.orderNumber);
 
+  const { recordAffiliateCommissionForOrder } = await import("./affiliate.service.js");
+  recordAffiliateCommissionForOrder(payment.orderId).catch(() => undefined);
+
   // Notificación Telegram de pago confirmado (best-effort)
   notifyPaymentConfirmed({
     orderNumber: payment.order.orderNumber,

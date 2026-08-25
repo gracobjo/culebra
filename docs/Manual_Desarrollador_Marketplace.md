@@ -123,9 +123,35 @@ Flujo:
   - validación de que el producto está en el pedido,
   - prevención de duplicidad.
 
-### B8. Admin: KPIs, rentabilidad, rappels, piloto, sandbox, plan y turismo
+### B8. Admin: menú, KPIs, rentabilidad, rappels, piloto, sandbox, plan y turismo
 
-| Ruta | Código |
+Navegación agrupada en `apps/web/src/components/admin/admin-nav.tsx`. Solo un enlace activo (ruta más específica). Inventario funcional: [`docs/admin.md`](../../docs/admin.md).
+
+| Sección | Enlace | Ruta | Código principal |
+|---------|--------|------|------------------|
+| Panel | Resumen | `/admin` | `apps/web/src/app/admin/page.tsx` |
+| Panel | Configuración | `/admin/config` | `apps/web/src/app/admin/config/*` |
+| Catálogo | Productores | `/admin/productores` | `apps/web/src/app/admin/productores/*` |
+| Catálogo | Productos | `/admin/productos` | `apps/web/src/app/admin/productos/*` |
+| Catálogo | Turismo | `/admin/turismo` | `apps/web/src/app/admin/turismo/*` |
+| Operaciones | Pedidos | `/admin/pedidos` | `apps/web/src/app/admin/pedidos/*` |
+| Operaciones | Contratos | `/admin/contratos` | `apps/web/src/app/admin/contratos/*` |
+| Operaciones | Liquidaciones | `/admin/liquidaciones` | `apps/web/src/app/admin/liquidaciones/*` |
+| Operaciones | Usuarios | `/admin/usuarios` | `apps/web/src/app/admin/usuarios/*` |
+| Negocio | KPIs / riesgos | `/admin/kpis` | `apps/web/src/app/admin/kpis/page.tsx`, `lib/admin-risk-metrics.ts` |
+| Negocio | Plan / simulación | `/admin/plan` | `apps/web/src/app/admin/plan/*`, `lib/financial-simulation.ts` |
+| Negocio | Rentabilidad | `/admin/rentabilidad` | `apps/web/src/app/admin/rentabilidad/page.tsx` |
+| Negocio | Rappels | `/admin/rappels` | `apps/web/src/app/admin/rappels/*`, `lib/rappels.ts` |
+| Proyecto | Showroom | `/admin/showroom` | `apps/web/src/app/admin/showroom/page.tsx` |
+| Proyecto | Stats showroom | `/admin/showroom/estadisticas` | `apps/web/src/app/admin/showroom/estadisticas/*`, `components/admin/showroom-daily-stat-*`, `lib/showroom-stats-a11y.ts` |
+| Proyecto | Packaging | `/admin/packaging` | `apps/web/src/app/admin/packaging/page.tsx` |
+| Proyecto | Grupo piloto | `/admin/piloto` | `apps/web/src/app/admin/piloto/*` |
+| Proyecto | La Raya L1 | `/admin/raya` | `apps/web/src/app/admin/raya/page.tsx` |
+| Proyecto | Entregables A.I | `/admin/entregables-ai` | `apps/web/src/app/admin/entregables-ai/page.tsx` |
+| Proyecto | Sandbox | `/admin/sandbox` | `apps/web/src/app/admin/sandbox/*` |
+| Control | Auditoría | `/admin/auditoria` | `apps/web/src/app/admin/auditoria/page.tsx` |
+
+| Ruta (detalle) | Código |
 |------|--------|
 | KPIs | `apps/web/src/app/admin/kpis/page.tsx` |
 | Rentabilidad | `apps/web/src/app/admin/rentabilidad/page.tsx` |

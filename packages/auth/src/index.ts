@@ -305,15 +305,37 @@ export {
   listAffiliateCodesForAdmin,
   trackAffiliateClick,
   upsertAffiliateCodeForAdmin,
+  recordAffiliateCommissionForOrder,
+  registerManualShowroomCommissionForAdmin,
+  markAffiliateCommissionsPaidForAdmin,
+  cancelAffiliateCommissionForAdmin,
+  listAffiliateCommissionsForAdmin,
+  getAffiliateProgramSummary,
+  exportAffiliateCommissionsCsvForAdmin,
 } from "./affiliate.service.js";
-export type { AffiliateCodeRecord } from "./affiliate.service.js";
+export type {
+  AffiliateCodeRecord,
+  AffiliateCommissionRecord,
+  AffiliateProgramSummary,
+} from "./affiliate.service.js";
+export {
+  AFFILIATE_TYPE_LABELS,
+  AFFILIATE_STATUS_LABELS,
+  COMMISSION_TYPE_LABELS,
+  COMMISSION_STATUS_LABELS,
+  DEFAULT_COMMISSION_BY_TYPE,
+} from "./affiliate.constants.js";
 export {
   affiliateRefSchema,
   affiliateUpsertSchema,
+  manualShowroomCommissionSchema,
+  markAffiliatePayoutSchema,
 } from "./affiliate.schemas.js";
 export type {
   AffiliateRefInput,
   AffiliateUpsertInput,
+  ManualShowroomCommissionInput,
+  MarkAffiliatePayoutInput,
 } from "./affiliate.schemas.js";
 export {
   notifyCheckout,
@@ -411,3 +433,76 @@ export {
   showroomDailyStatUpsertSchema,
 } from "./showroom-daily-stat.schemas.js";
 export type { ShowroomDailyStatUpsertInput } from "./showroom-daily-stat.schemas.js";
+export {
+  createShowroomFootfallEntry,
+  deleteShowroomFootfallEntryForAdmin,
+  exportShowroomFootfallCsvForAdmin,
+  getShowroomFootfallOriginSummaryForAdmin,
+  listShowroomFootfallEntriesForAdmin,
+  summarizeShowroomFootfallOrigins,
+  showroomFootfallToCsv,
+} from "./showroom-footfall.service.js";
+export type {
+  ShowroomFootfallOriginSummary,
+  ShowroomFootfallRecord,
+} from "./showroom-footfall.service.js";
+export {
+  showroomFootfallCreateSchema,
+  showroomFootfallListSchema,
+  SHOWROOM_DISCOVERY_CHANNEL_LABELS,
+  SHOWROOM_DISCOVERY_CHANNELS,
+  SHOWROOM_FOOTFALL_TYPE_LABELS,
+  SHOWROOM_FOOTFALL_TYPES,
+  SHOWROOM_ORIGIN_GROUP_LABELS,
+  SHOWROOM_ORIGIN_GROUPS,
+} from "./showroom-footfall.schemas.js";
+export type {
+  ShowroomDiscoveryChannel,
+  ShowroomFootfallCreateInput,
+  ShowroomFootfallType,
+  ShowroomOriginGroup,
+} from "./showroom-footfall.schemas.js";
+export {
+  addStampToCard,
+  createStampCardForAdmin,
+  findStampCardsByQuery,
+  getShowroomLoyaltySummary,
+  joinShowroomClub,
+  listClubMembersForAdmin,
+  listRecentScratchPlays,
+  listReferralsForAdmin,
+  listStampCardsForAdmin,
+  markReferralRewarded,
+  registerReferral,
+  registerScratchPlay,
+  redeemStampCard,
+  updateLoyaltyMonthSettings,
+  SHOWROOM_SCRATCH_PRIZE_META,
+} from "./showroom-loyalty.service.js";
+export type {
+  ShowroomClubMemberRecord,
+  ShowroomLoyaltySummary,
+  ShowroomReferralRecord,
+  ShowroomScratchPlayRecord,
+  ShowroomStampCardRecord,
+} from "./showroom-loyalty.service.js";
+export {
+  clubJoinSchema,
+  loyaltyMonthSettingsSchema,
+  referralCreateSchema,
+  scratchPlaySchema,
+  SHOWROOM_CLUB_CHANNEL_LABELS,
+  SHOWROOM_CLUB_CHANNELS,
+  SHOWROOM_SCRATCH_PRIZES,
+  SHOWROOM_STAMP_REWARDS,
+  stampAddSchema,
+  stampCardCreateSchema,
+  stampRedeemSchema,
+} from "./showroom-loyalty.schemas.js";
+export type {
+  ClubJoinInput,
+  ReferralCreateInput,
+  ScratchPlayInput,
+  ShowroomScratchPrize,
+  StampCardCreateInput,
+} from "./showroom-loyalty.schemas.js";

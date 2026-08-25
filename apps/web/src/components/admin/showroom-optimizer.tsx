@@ -16,6 +16,7 @@ import {
   runShowroomOptimization,
   type ShowroomOptInputs,
 } from "@/lib/showroom-optimization";
+import { SimulatorResetButton } from "@/components/admin/simulator-reset-button";
 
 function SliderRow({
   label,
@@ -182,6 +183,7 @@ export function ShowroomOptimizer() {
               {p.label}
             </button>
           ))}
+          <SimulatorResetButton onReset={() => setInputs({ ...DEFAULT_SHOWROOM_OPT })} />
         </div>
       </section>
 

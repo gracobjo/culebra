@@ -104,6 +104,8 @@ export async function createSandboxOrder(_formData: FormData) {
         },
         billingSameAsShipping: true,
         notes: `SANDBOX (creado ${now.toLocaleDateString("es-ES")})`,
+        couponCode: undefined,
+        affiliateCode: undefined,
       },
     );
     orderNumber = order.orderNumber;
