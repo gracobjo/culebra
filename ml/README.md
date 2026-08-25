@@ -75,6 +75,10 @@ Los CSV de `data/kaggle/` están en `.gitignore`; los notebooks `.ipynb` de esa 
 
 Abrir con el kernel del `.venv` (Jupyter / VS Code / Cursor).
 
+### Captura operativa (producción)
+
+En **`/admin/showroom/estadisticas`**: formulario diario/quincenal, sync parcial desde pedidos + CRM, EDA con gráficos y **Exportar CSV** (43 columnas, mismo esquema que el sintético).
+
 ## Dataset sintético Culebra
 
 Con el venv activo:

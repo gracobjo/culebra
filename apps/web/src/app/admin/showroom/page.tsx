@@ -71,6 +71,10 @@ export default async function AdminShowroomPage() {
         <Link href="/admin/turismo" className="text-emerald-800 underline">
           Alojamientos (canal)
         </Link>
+        {" · "}
+        <Link href="/admin/showroom/estadisticas" className="text-emerald-800 underline">
+          Estadísticas y EDA
+        </Link>
         .
       </p>
 

@@ -124,6 +124,8 @@ Ninguno es “showroom rural Zamora”. Sirven para **aprender relaciones** tran
 
 Los **CSV** de Kaggle están gitignored; los **notebooks** `.ipynb` sí se versionan. Dataset sintético Culebra: `data/synthetic/culebra_showroom_synthetic_notebook.ipynb`.
 
+**Captura operativa (app):** `/admin/showroom/estadisticas` — registros en DB, EDA en panel y export CSV compatible con el notebook sintético.
+
 ```powershell
 .\.venv\Scripts\Activate.ps1
 New-Item -ItemType Directory -Force -Path data\kaggle | Out-Null

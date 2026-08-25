@@ -58,6 +58,7 @@ const groups: AdminNavGroup[] = [
     label: "Proyecto",
     links: [
       { href: "/admin/showroom", label: "Showroom", hint: "Optimización del showroom físico" },
+      { href: "/admin/showroom/estadisticas", label: "Stats showroom", hint: "Captura, EDA y export CSV para ML" },
       { href: "/admin/packaging", label: "Packaging", hint: "Cestas y packaging del catálogo" },
       { href: "/admin/piloto", label: "Grupo piloto", hint: "Seguimiento del grupo piloto" },
       { href: "/admin/raya", label: "La Raya L1", hint: "Checklist La Raya línea 1" },

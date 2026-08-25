@@ -63,6 +63,14 @@ export default async function AdminDashboardPage() {
       hint: "Optimización 90 días",
     },
     {
+      href: "/admin/showroom/estadisticas",
+      label: "Stats showroom",
+      value: "EDA",
+      isText: true as const,
+      image: "/categories/reposteria.png",
+      hint: "Captura y export CSV",
+    },
+    {
       href: "/admin/turismo",
       label: "Alojamientos",
       value: "Canal",

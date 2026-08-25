@@ -387,3 +387,26 @@ export type {
   LodgingRelationEventInput,
   LodgingRelationUpsertInput,
 } from "./lodging-relation.schemas.js";
+
+export {
+  deleteShowroomDailyStatForAdmin,
+  enrichShowroomDailyStat,
+  exportShowroomDailyStatsCsvForAdmin,
+  getShowroomDailyStatsEnrichedForAdmin,
+  listShowroomDailyStatsForAdmin,
+  showroomDailyStatsToCsv,
+  summarizeShowroomDailyStats,
+  syncShowroomDailyStatsFromSystem,
+  upsertShowroomDailyStatForAdmin,
+  SHOWROOM_DAILY_CSV_COLUMNS,
+} from "./showroom-daily-stat.service.js";
+export type {
+  ShowroomDailyStatExportRow,
+  ShowroomDailyStatRecord,
+  ShowroomDailyStatsSummary,
+} from "./showroom-daily-stat.service.js";
+export {
+  showroomDailyStatSyncSchema,
+  showroomDailyStatUpsertSchema,
+} from "./showroom-daily-stat.schemas.js";
+export type { ShowroomDailyStatUpsertInput } from "./showroom-daily-stat.schemas.js";

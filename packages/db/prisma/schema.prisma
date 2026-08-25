@@ -1289,3 +1289,44 @@ model HomeHubTile {
 
   @@index([isActive, sortOrder])
 }
+
+/// Estadísticas diarias del showroom físico (base para ML / export CSV).
+model ShowroomDailyStat {
+  id                  String   @id @default(cuid())
+  date                DateTime @unique @db.Date
+  open                Boolean  @default(true)
+  visits              Int      @default(0)
+  purchases           Int      @default(0)
+  gmv                 Decimal  @default(0) @db.Decimal(12, 2)
+  avgTicketBase       Decimal  @default(0) @db.Decimal(12, 2)
+  /// Porcentaje 0–100
+  impulseAttachPct    Decimal  @default(0) @db.Decimal(5, 2)
+  impulseAvgEur       Decimal  @default(0) @db.Decimal(12, 2)
+  quickBuyPct         Decimal  @default(0) @db.Decimal(5, 2)
+  quickBuyTicket      Decimal  @default(0) @db.Decimal(12, 2)
+  mielU               Int      @default(0)
+  loncheadoU          Int      @default(0)
+  mermeladaU          Int      @default(0)
+  quesoU              Int      @default(0)
+  toteU               Int      @default(0)
+  picosU              Int      @default(0)
+  vinoU               Int      @default(0)
+  minicataU           Int      @default(0)
+  toteStock           Int      @default(0)
+  onlineOrders        Int      @default(0)
+  onlineOrdersAttr    Int      @default(0)
+  contacts            Int      @default(0)
+  referredVisits      Int      @default(0)
+  basketsViaLodging   Int      @default(0)
+  partnersActive      Int      @default(0)
+  promotion           Boolean  @default(false)
+  holidayOrEvent      Boolean  @default(false)
+  marketSegment       String?
+  distributionChannel String?
+  notes               String?  @db.Text
+  sourceSyncedAt      DateTime?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([date])
+}
