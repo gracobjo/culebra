@@ -4,7 +4,7 @@
 
 **Marketplace Sabores de la Culebra – Villardeciervos**  
 Documento de **alternativa** al escenario base (comodato). No sustituye el concepto operativo de [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) ni el playbook de ingresos [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md).  
-**Plano de referencia:** [`imagenes/plano_showroom.jpg`](./imagenes/plano_showroom.jpg) (raíz: `planoShowRoom.jpg`).
+**Plano de referencia:** [`imagenes/plano_showroom.jpg`](./imagenes/plano_showroom.jpg).
 
 ---
 
