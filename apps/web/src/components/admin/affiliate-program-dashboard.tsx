@@ -4,11 +4,16 @@ import { useActionState, useMemo, useState } from "react";
 import type {
   AffiliateCodeRecord,
   AffiliateCommissionRecord,
+  AffiliateLoyaltyMetrics,
   AffiliateProgramSummary,
 } from "@culebra/auth";
 import {
+  AFFILIATE_LOYALTY_TIER_BENEFITS,
+  AFFILIATE_LOYALTY_TIER_LABELS,
+  AFFILIATE_PAYOUT_FREQUENCY_LABELS,
   AFFILIATE_STATUS_LABELS,
   AFFILIATE_TYPE_LABELS,
+  AFFILIATE_VOLUME_TIER_THRESHOLDS,
   COMMISSION_STATUS_LABELS,
   COMMISSION_TYPE_LABELS,
   DEFAULT_COMMISSION_BY_TYPE,
@@ -18,6 +23,7 @@ import {
   createAffiliateProgramAction,
   markPayoutAction,
   registerShowroomCommissionAction,
+  upgradeAffiliateLoyaltyAction,
   type AffiliateAdminState,
 } from "@/app/admin/afiliados/actions";
 import { CommissionStackCalculator } from "@/components/admin/commission-stack-calculator";
@@ -40,6 +46,7 @@ function KpiCard({ label, value, hint }: { label: string; value: string; hint?: 
 
 export function AffiliateProgramDashboard({
   summary,
+  loyalty,
   affiliates,
   commissions,
   accommodations,
@@ -47,6 +54,7 @@ export function AffiliateProgramDashboard({
   appUrl,
 }: {
   summary: AffiliateProgramSummary;
+  loyalty: AffiliateLoyaltyMetrics;
   affiliates: AffiliateCodeRecord[];
   commissions: AffiliateCommissionRecord[];
   accommodations: Array<{ id: string; name: string }>;
@@ -109,6 +117,92 @@ export function AffiliateProgramDashboard({
           value={String(summary.ordersAttributed)}
           hint="Solo ventas online confirmadas"
         />
+      </section>
+
+      <section className="rounded-3xl border border-violet-200 bg-violet-50/40 p-5">
+        <h2 className="text-lg font-semibold">Fidelización ({loyalty.quarterKey})</h2>
+        <p className="mt-1 text-sm text-stone-600">
+          Pagar bien y a tiempo es la base. Guía:{" "}
+          <code className="rounded bg-white px-1 text-xs">docs/Programa_Fidelizacion_Afiliados.md</code>
+        </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <KpiCard
+            label="Con venta en trimestre"
+            value={`${loyalty.activeRatePct} %`}
+            hint={`${loyalty.affiliatesWithSale} / ${loyalty.totalAffiliates} afiliados`}
+          />
+          <KpiCard
+            label="Volumen medio activo"
+            value={money(loyalty.avgVolumePerActive)}
+            hint="PVP atribuido / trimestre"
+          />
+          <KpiCard
+            label="Colaboradores"
+            value={String(loyalty.tierCounts.COLLABORATOR)}
+            hint={AFFILIATE_LOYALTY_TIER_BENEFITS.COLLABORATOR}
+          />
+          <KpiCard
+            label="Embajadores + Partners"
+            value={String(loyalty.tierCounts.AMBASSADOR + loyalty.tierCounts.PARTNER)}
+            hint={`${loyalty.tierCounts.AMBASSADOR} embajadores · ${loyalty.tierCounts.PARTNER} partners`}
+          />
+        </div>
+        {loyalty.upgradeCandidates.length > 0 ? (
+          <div className="mt-4 overflow-x-auto rounded-2xl border border-violet-200 bg-white">
+            <table className="min-w-full text-left text-sm">
+              <thead className="border-b text-xs uppercase text-stone-500">
+                <tr>
+                  <th className="px-3 py-2">Afiliado</th>
+                  <th className="px-3 py-2">Volumen trim.</th>
+                  <th className="px-3 py-2">Nivel actual</th>
+                  <th className="px-3 py-2">Sugerido</th>
+                  <th className="px-3 py-2">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loyalty.upgradeCandidates.map((row) => (
+                  <tr key={row.affiliateId} className="border-b border-stone-100">
+                    <td className="px-3 py-2">
+                      <p className="font-medium">{row.code}</p>
+                      <p className="text-xs text-stone-500">{row.label}</p>
+                    </td>
+                    <td className="px-3 py-2">{money(row.quarterVolume)}</td>
+                    <td className="px-3 py-2">
+                      {AFFILIATE_LOYALTY_TIER_LABELS[row.currentTier]}
+                    </td>
+                    <td className="px-3 py-2">
+                      {AFFILIATE_LOYALTY_TIER_LABELS[row.suggestedTier]}
+                    </td>
+                    <td className="px-3 py-2">
+                      <form action={upgradeAffiliateLoyaltyAction}>
+                        <input type="hidden" name="affiliateId" value={row.affiliateId} />
+                        <input type="hidden" name="loyaltyTier" value={row.suggestedTier} />
+                        <button
+                          type="submit"
+                          className="text-xs font-medium text-violet-800 underline"
+                        >
+                          Subir a {AFFILIATE_LOYALTY_TIER_LABELS[row.suggestedTier]}
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p className="mt-4 text-sm text-stone-600">
+            Sin candidatos a subir de nivel este trimestre (umbrales:{" "}
+            {AFFILIATE_VOLUME_TIER_THRESHOLDS.ACTIVE} € activo,{" "}
+            {AFFILIATE_VOLUME_TIER_THRESHOLDS.FEATURED} € destacado).
+          </p>
+        )}
+        <ul className="mt-4 grid gap-2 text-sm text-stone-700 sm:grid-cols-2">
+          <li>Pago: primeros 10 días del periodo · mínimo 30–40 €</li>
+          <li>Comunicación útil cada 3–4 semanas (no saturar)</li>
+          <li>Material actualizado por temporada</li>
+          <li>Detalle físico 1–2 veces al año a los activos</li>
+        </ul>
       </section>
 
       <section className="grid gap-6 xl:grid-cols-2">
@@ -213,7 +307,37 @@ export function AffiliateProgramDashboard({
                 className="mt-1 min-h-11 w-full rounded-xl border px-3"
               />
             </label>
-            <select name="programStatus" className="min-h-11 w-full rounded-xl border px-3" defaultValue="ACTIVE">
+            <label className="text-sm text-stone-600">
+              Periodicidad pago
+              <select
+                name="payoutFrequency"
+                className="mt-1 min-h-11 w-full rounded-xl border px-3"
+                defaultValue="QUARTERLY"
+              >
+                {Object.entries(AFFILIATE_PAYOUT_FREQUENCY_LABELS).map(([value, label]) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <label className="text-sm text-stone-600">
+              Nivel fidelización
+              <select
+                name="loyaltyTier"
+                className="mt-1 min-h-11 w-full rounded-xl border px-3"
+                defaultValue="COLLABORATOR"
+              >
+                {Object.entries(AFFILIATE_LOYALTY_TIER_LABELS).map(([value, label]) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <select name="programStatus" className="min-h-11 w-full rounded-xl border px-3 self-end" defaultValue="ACTIVE">
               {Object.entries(AFFILIATE_STATUS_LABELS).map(([value, label]) => (
                 <option key={value} value={value}>
                   {label}
@@ -346,6 +470,8 @@ export function AffiliateProgramDashboard({
                 <th className="py-2 pr-4">%</th>
                 <th className="py-2 pr-4">Clicks</th>
                 <th className="py-2 pr-4">Pedidos</th>
+                <th className="py-2 pr-4">Nivel</th>
+                <th className="py-2 pr-4">Pago</th>
                 <th className="py-2 pr-4">Pendiente</th>
                 <th className="py-2 pr-4">Pagado</th>
                 <th className="py-2">Estado</th>
@@ -368,6 +494,16 @@ export function AffiliateProgramDashboard({
                   <td className="py-3 pr-4">{row.commissionPct} %</td>
                   <td className="py-3 pr-4">{row.clickCount}</td>
                   <td className="py-3 pr-4">{row.orderCount}</td>
+                  <td className="py-3 pr-4">
+                    {AFFILIATE_LOYALTY_TIER_LABELS[
+                      row.loyaltyTier as keyof typeof AFFILIATE_LOYALTY_TIER_LABELS
+                    ] ?? row.loyaltyTier}
+                  </td>
+                  <td className="py-3 pr-4">
+                    {AFFILIATE_PAYOUT_FREQUENCY_LABELS[
+                      row.payoutFrequency as keyof typeof AFFILIATE_PAYOUT_FREQUENCY_LABELS
+                    ] ?? row.payoutFrequency}
+                  </td>
                   <td className="py-3 pr-4">{money(row.commissionPending)}</td>
                   <td className="py-3 pr-4">{money(row.commissionPaid)}</td>
                   <td className="py-3">

@@ -137,12 +137,15 @@ Cada enlace del menú (`AdminNav`) muestra al pasar el ratón o enfocar con tecl
 | Comisión | 8–10 % sobre PVP productos (sin portes); tope 10 % |
 | Enlace | `{APP_URL}/productos?ref=CODIGO` → cookie de atribución 15–30 días |
 | Ledger | Comisiones automáticas al pagar pedido online + registro manual showroom |
-| Pagos | Marcar comisiones pagadas; export CSV |
+| Pagos | Marcar comisiones pagadas; export CSV; periodicidad mensual/trimestral por afiliado |
+| Fidelización | KPIs trimestrales, niveles Colaborador / Embajador / Partner, candidatos a subir nivel |
 | Simulador | Margen S.L. con modelo en cascada (canal + productor + packaging) |
 
 **Reglas:** productor-afiliado no comisiona sus propias ventas; ver orden de cálculo en checkout.
 
-**Documentación:** [`Programa_Afiliados_Sabores_Culebra.md`](./Programa_Afiliados_Sabores_Culebra.md) · [`Modelos_Comisiones_Consolidado.md`](./Modelos_Comisiones_Consolidado.md)
+**Documentación:** [`Programa_Afiliados_Sabores_Culebra.md`](./Programa_Afiliados_Sabores_Culebra.md) · [`Modelos_Comisiones_Consolidado.md`](./Modelos_Comisiones_Consolidado.md) · [`Programa_Fidelizacion_Afiliados.md`](./Programa_Fidelizacion_Afiliados.md)
+
+**En el sistema:** niveles Colaborador / Embajador / Partner, periodicidad de pago, KPIs trimestrales y candidatos a subir de nivel.
 
 ---
 

@@ -311,12 +311,15 @@ export {
   cancelAffiliateCommissionForAdmin,
   listAffiliateCommissionsForAdmin,
   getAffiliateProgramSummary,
+  getAffiliateLoyaltyMetrics,
+  updateAffiliateLoyaltyForAdmin,
   exportAffiliateCommissionsCsvForAdmin,
 } from "./affiliate.service.js";
 export type {
   AffiliateCodeRecord,
   AffiliateCommissionRecord,
   AffiliateProgramSummary,
+  AffiliateLoyaltyMetrics,
 } from "./affiliate.service.js";
 export {
   AFFILIATE_TYPE_LABELS,
@@ -324,18 +327,25 @@ export {
   COMMISSION_TYPE_LABELS,
   COMMISSION_STATUS_LABELS,
   DEFAULT_COMMISSION_BY_TYPE,
+  AFFILIATE_LOYALTY_TIER_LABELS,
+  AFFILIATE_LOYALTY_TIER_BENEFITS,
+  AFFILIATE_PAYOUT_FREQUENCY_LABELS,
+  AFFILIATE_VOLUME_TIER_THRESHOLDS,
+  suggestAffiliateLoyaltyTier,
 } from "./affiliate.constants.js";
 export {
   affiliateRefSchema,
   affiliateUpsertSchema,
   manualShowroomCommissionSchema,
   markAffiliatePayoutSchema,
+  affiliateLoyaltyUpdateSchema,
 } from "./affiliate.schemas.js";
 export type {
   AffiliateRefInput,
   AffiliateUpsertInput,
   ManualShowroomCommissionInput,
   MarkAffiliatePayoutInput,
+  AffiliateLoyaltyUpdateInput,
 } from "./affiliate.schemas.js";
 export {
   notifyCheckout,

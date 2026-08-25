@@ -380,8 +380,9 @@ Notas:
   - enlace `?ref=CODIGO` y cookie de atribución,
   - comisión 8–10 % solo por venta confirmada,
   - ledger de comisiones y export CSV,
+  - **fidelización:** KPIs trimestrales, niveles (Colaborador / Embajador / Partner), periodicidad de pago y candidatos a subir nivel,
   - simulador de margen (modelo productor + canal externo).
-- Guías: [`Programa_Afiliados_Sabores_Culebra.md`](./Programa_Afiliados_Sabores_Culebra.md) · [`Modelos_Comisiones_Consolidado.md`](./Modelos_Comisiones_Consolidado.md).
+- Guías: [`Programa_Afiliados_Sabores_Culebra.md`](./Programa_Afiliados_Sabores_Culebra.md) · [`Modelos_Comisiones_Consolidado.md`](./Modelos_Comisiones_Consolidado.md) · [`Programa_Fidelizacion_Afiliados.md`](./Programa_Fidelizacion_Afiliados.md).
 
 #### 9) Otros módulos de proyecto y control
 

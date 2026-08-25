@@ -2,11 +2,17 @@ import { prisma } from "@culebra/db";
 import type { Prisma } from "@prisma/client";
 
 import type {
+  AffiliateLoyaltyUpdateInput,
   AffiliateUpsertInput,
   ManualShowroomCommissionInput,
   MarkAffiliatePayoutInput,
 } from "./affiliate.schemas.js";
-import { DEFAULT_COMMISSION_BY_TYPE } from "./affiliate.constants.js";
+import {
+  AFFILIATE_TIER_RANK,
+  DEFAULT_COMMISSION_BY_TYPE,
+  suggestAffiliateLoyaltyTier,
+  type AffiliateLoyaltyTierKey,
+} from "./affiliate.constants.js";
 
 export type AffiliateCodeRecord = {
   id: string;
@@ -25,6 +31,8 @@ export type AffiliateCodeRecord = {
   commissionPending: number;
   commissionPaid: number;
   programStatus: string;
+  loyaltyTier: string;
+  payoutFrequency: string;
   isActive: boolean;
   clickCount: number;
   orderCount: number;
@@ -51,6 +59,34 @@ export type AffiliateCommissionRecord = {
   notes: string | null;
   createdAt: Date;
 };
+
+export type AffiliateLoyaltyMetrics = {
+  quarterKey: string;
+  totalAffiliates: number;
+  affiliatesWithSale: number;
+  activeRatePct: number;
+  avgVolumePerActive: number;
+  tierCounts: Record<AffiliateLoyaltyTierKey, number>;
+  upgradeCandidates: Array<{
+    affiliateId: string;
+    code: string;
+    label: string;
+    quarterVolume: number;
+    currentTier: AffiliateLoyaltyTierKey;
+    suggestedTier: AffiliateLoyaltyTierKey;
+  }>;
+};
+
+function currentQuarterBounds(at = new Date()) {
+  const quarter = Math.floor(at.getMonth() / 3);
+  const start = new Date(at.getFullYear(), quarter * 3, 1);
+  const end = new Date(at.getFullYear(), quarter * 3 + 3, 0, 23, 59, 59, 999);
+  return {
+    start,
+    end,
+    quarterKey: `${at.getFullYear()}-Q${quarter + 1}`,
+  };
+}
 
 export type AffiliateProgramSummary = {
   activeAffiliates: number;
@@ -88,6 +124,8 @@ function mapAffiliate(row: {
   commissionPending: Prisma.Decimal;
   commissionPaid: Prisma.Decimal;
   programStatus: string;
+  loyaltyTier: string;
+  payoutFrequency: string;
   isActive: boolean;
   clickCount: number;
   orderCount: number;
@@ -114,6 +152,8 @@ function mapAffiliate(row: {
     commissionPending: toNumber(row.commissionPending),
     commissionPaid: toNumber(row.commissionPaid),
     programStatus: row.programStatus,
+    loyaltyTier: row.loyaltyTier,
+    payoutFrequency: row.payoutFrequency,
     isActive: row.isActive,
     clickCount: row.clickCount,
     orderCount: row.orderCount,
@@ -223,6 +263,8 @@ export async function upsertAffiliateCodeForAdmin(
     cookieDays: input.cookieDays,
     payoutMinimum: input.payoutMinimum,
     programStatus: input.programStatus,
+    loyaltyTier: input.loyaltyTier,
+    payoutFrequency: input.payoutFrequency,
     isActive: input.isActive,
     notes: emptyToNull(input.notes),
   };
@@ -471,6 +513,93 @@ export async function getAffiliateProgramSummary(): Promise<AffiliateProgramSumm
     paidThisYear: toNumber(paidAgg._sum.commissionAmount ?? 0),
     ordersAttributed,
   };
+}
+
+export async function getAffiliateLoyaltyMetrics(): Promise<AffiliateLoyaltyMetrics> {
+  const { start, end, quarterKey } = currentQuarterBounds();
+  const affiliates = await prisma.affiliateCode.findMany({
+    where: { isActive: true, programStatus: "ACTIVE" },
+    select: { id: true, code: true, label: true, loyaltyTier: true },
+  });
+
+  const commissions = await prisma.affiliateCommission.groupBy({
+    by: ["affiliateId"],
+    where: {
+      status: { not: "CANCELLED" },
+      eventDate: { gte: start, lte: end },
+    },
+    _sum: { baseAmount: true },
+  });
+
+  const volumeByAffiliate = new Map(
+    commissions.map((row) => [row.affiliateId, toNumber(row._sum.baseAmount ?? 0)]),
+  );
+
+  const affiliatesWithSale = affiliates.filter((row) =>
+    (volumeByAffiliate.get(row.id) ?? 0) > 0,
+  ).length;
+
+  const totalVolume = [...volumeByAffiliate.values()].reduce((sum, value) => sum + value, 0);
+  const avgVolumePerActive =
+    affiliatesWithSale > 0 ? roundMoney(totalVolume / affiliatesWithSale) : 0;
+
+  const tierCounts: Record<AffiliateLoyaltyTierKey, number> = {
+    COLLABORATOR: 0,
+    AMBASSADOR: 0,
+    PARTNER: 0,
+  };
+  for (const row of affiliates) {
+    const tier = row.loyaltyTier as AffiliateLoyaltyTierKey;
+    tierCounts[tier] = (tierCounts[tier] ?? 0) + 1;
+  }
+
+  const upgradeCandidates = affiliates
+    .map((row) => {
+      const quarterVolume = volumeByAffiliate.get(row.id) ?? 0;
+      const currentTier = row.loyaltyTier as AffiliateLoyaltyTierKey;
+      const suggestedTier = suggestAffiliateLoyaltyTier(quarterVolume);
+      return {
+        affiliateId: row.id,
+        code: row.code,
+        label: row.label,
+        quarterVolume,
+        currentTier,
+        suggestedTier,
+      };
+    })
+    .filter(
+      (row) =>
+        row.quarterVolume > 0 &&
+        AFFILIATE_TIER_RANK[row.suggestedTier] > AFFILIATE_TIER_RANK[row.currentTier],
+    )
+    .sort((a, b) => b.quarterVolume - a.quarterVolume);
+
+  return {
+    quarterKey,
+    totalAffiliates: affiliates.length,
+    affiliatesWithSale,
+    activeRatePct:
+      affiliates.length > 0
+        ? roundMoney((affiliatesWithSale / affiliates.length) * 100)
+        : 0,
+    avgVolumePerActive,
+    tierCounts,
+    upgradeCandidates,
+  };
+}
+
+export async function updateAffiliateLoyaltyForAdmin(
+  input: AffiliateLoyaltyUpdateInput,
+): Promise<AffiliateCodeRecord> {
+  const row = await prisma.affiliateCode.update({
+    where: { id: input.affiliateId },
+    data: {
+      loyaltyTier: input.loyaltyTier,
+      ...(input.payoutFrequency ? { payoutFrequency: input.payoutFrequency } : {}),
+    },
+    include: affiliateInclude,
+  });
+  return mapAffiliate(row);
 }
 
 function csvEscape(value: string | number | null | undefined) {

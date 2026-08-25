@@ -11,6 +11,10 @@ export const AFFILIATE_PARTNER_TYPES = [
 
 export const AFFILIATE_PROGRAM_STATUSES = ["PENDING", "ACTIVE", "SUSPENDED"] as const;
 
+export const AFFILIATE_LOYALTY_TIERS = ["COLLABORATOR", "AMBASSADOR", "PARTNER"] as const;
+
+export const AFFILIATE_PAYOUT_FREQUENCIES = ["MONTHLY", "QUARTERLY"] as const;
+
 export const AFFILIATE_COMMISSION_TYPES = [
   "ONLINE_ORDER",
   "BASKET_SALE",
@@ -34,8 +38,16 @@ export const affiliateUpsertSchema = z.object({
   cookieDays: z.coerce.number().int().min(15).max(30).default(30),
   payoutMinimum: z.coerce.number().min(0).max(9999).default(30),
   programStatus: z.enum(AFFILIATE_PROGRAM_STATUSES).default("ACTIVE"),
+  loyaltyTier: z.enum(AFFILIATE_LOYALTY_TIERS).default("COLLABORATOR"),
+  payoutFrequency: z.enum(AFFILIATE_PAYOUT_FREQUENCIES).default("QUARTERLY"),
   isActive: z.boolean().default(true),
   notes: z.string().trim().max(2000).optional(),
+});
+
+export const affiliateLoyaltyUpdateSchema = z.object({
+  affiliateId: z.string().trim().min(1),
+  loyaltyTier: z.enum(AFFILIATE_LOYALTY_TIERS),
+  payoutFrequency: z.enum(AFFILIATE_PAYOUT_FREQUENCIES).optional(),
 });
 
 export const affiliateRefSchema = z.object({
@@ -64,3 +76,4 @@ export type AffiliateUpsertInput = z.infer<typeof affiliateUpsertSchema>;
 export type AffiliateRefInput = z.infer<typeof affiliateRefSchema>;
 export type ManualShowroomCommissionInput = z.infer<typeof manualShowroomCommissionSchema>;
 export type MarkAffiliatePayoutInput = z.infer<typeof markAffiliatePayoutSchema>;
+export type AffiliateLoyaltyUpdateInput = z.infer<typeof affiliateLoyaltyUpdateSchema>;

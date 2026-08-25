@@ -1,12 +1,14 @@
 "use server";
 
 import {
+  affiliateLoyaltyUpdateSchema,
   affiliateUpsertSchema,
   manualShowroomCommissionSchema,
   markAffiliatePayoutSchema,
   cancelAffiliateCommissionForAdmin,
   markAffiliateCommissionsPaidForAdmin,
   registerManualShowroomCommissionForAdmin,
+  updateAffiliateLoyaltyForAdmin,
   upsertAffiliateCodeForAdmin,
 } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
@@ -35,6 +37,8 @@ export async function createAffiliateProgramAction(
     cookieDays: formData.get("cookieDays") || 30,
     payoutMinimum: formData.get("payoutMinimum") || 30,
     programStatus: formData.get("programStatus") || "ACTIVE",
+    loyaltyTier: formData.get("loyaltyTier") || "COLLABORATOR",
+    payoutFrequency: formData.get("payoutFrequency") || "QUARTERLY",
     isActive: formData.get("isActive") === "on",
     notes: formData.get("notes") || undefined,
   });
@@ -104,5 +108,17 @@ export async function cancelCommissionAction(formData: FormData) {
   const id = String(formData.get("commissionId") ?? "");
   if (!id) return;
   await cancelAffiliateCommissionForAdmin(id);
+  revalidatePath("/admin/afiliados");
+}
+
+export async function upgradeAffiliateLoyaltyAction(formData: FormData) {
+  await requireAdmin("/admin/afiliados");
+  const parsed = affiliateLoyaltyUpdateSchema.safeParse({
+    affiliateId: formData.get("affiliateId"),
+    loyaltyTier: formData.get("loyaltyTier"),
+    payoutFrequency: formData.get("payoutFrequency") || undefined,
+  });
+  if (!parsed.success) return;
+  await updateAffiliateLoyaltyForAdmin(parsed.data);
   revalidatePath("/admin/afiliados");
 }

@@ -104,4 +104,5 @@ Admin → revisar ledger → marcar pago → CSV para contabilidad
 - **Modelo consolidado** ([`Modelos_Comisiones_Consolidado.md`](./Modelos_Comisiones_Consolidado.md)): cómo se combinan comisión productor + canal externo + margen neto.
 - **Turismo / alojamientos** (`/admin/turismo`): CRM de hosteleros; los códigos de alojamiento pueden crearse también desde afiliados.
 - **Showroom procedencia** (`/admin/showroom/estadisticas`): complementa la atribución física; ventas showroom con código se registran manualmente en afiliados.
-- **Fidelización** (`/admin/showroom/fidelizacion`): programas distintos (premios vs comisión B2B).
+- **Fidelización showroom** (`/admin/showroom/fidelizacion`): premios en tienda (distinto del programa B2B).
+- **Fidelización de afiliados** ([`Programa_Fidelizacion_Afiliados.md`](./Programa_Fidelizacion_Afiliados.md)): retención, niveles y comunicación con canales externos.

@@ -1261,6 +1261,8 @@ model AffiliateCode {
   commissionPending Decimal              @default(0) @db.Decimal(12, 2)
   commissionPaid  Decimal                @default(0) @db.Decimal(12, 2)
   programStatus   AffiliateProgramStatus @default(ACTIVE)
+  loyaltyTier     AffiliateLoyaltyTier   @default(COLLABORATOR)
+  payoutFrequency AffiliatePayoutFrequency @default(QUARTERLY)
   isActive        Boolean                @default(true)
   clickCount      Int                    @default(0)
   orderCount      Int                    @default(0)
@@ -1275,6 +1277,7 @@ model AffiliateCode {
   @@index([isActive, code])
   @@index([affiliateType])
   @@index([programStatus])
+  @@index([loyaltyTier])
 }
 
 enum AffiliatePartnerType {
@@ -1290,6 +1293,17 @@ enum AffiliateProgramStatus {
   PENDING
   ACTIVE
   SUSPENDED
+}
+
+enum AffiliateLoyaltyTier {
+  COLLABORATOR
+  AMBASSADOR
+  PARTNER
+}
+
+enum AffiliatePayoutFrequency {
+  MONTHLY
+  QUARTERLY
 }
 
 enum AffiliateCommissionType {
