@@ -2,7 +2,7 @@
 
 ![Logo Sabores de la Culebra](./imagenes/logo.png)
 
-**Documentos relacionados:** [Requisitos / UC / UML](./Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [Turismo](./tourism.md) · [Base de datos](./database.md) · [Catálogo](./catalog.md)
+**Documentos relacionados:** [Requisitos / UC / UML](./Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [Funcionalidades / Python / IA](./Funcionalidades_Python_IA.md) · [Turismo](./tourism.md) · [Base de datos](./database.md) · [Catálogo](./catalog.md)
 
 ---
 
@@ -11,8 +11,10 @@
 ### B1. Estructura del monorepo
 
 - `apps/web`: frontend Next.js + rutas server (cron, webhook, admin).
-- `packages/auth`: lógica de negocio (checkout, pagos, emails, shipping, reviews, payouts, etc.).
+- `packages/auth`: lógica de negocio (checkout, pagos, emails, shipping, reviews, payouts, hub, lodging CRM, etc.).
 - `packages/db`: Prisma schema, migrations y `seed.ts`.
+- `ml/`: entorno Python offline (requirements, generador sintético); ver [`ml/README.md`](../ml/README.md).
+- `data/synthetic/`: dataset sintético showroom + notebook de decisión (no es runtime web).
 
 ### B2. Configuración local (imprescindible)
 

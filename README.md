@@ -26,11 +26,17 @@ packages/
   db/
   domain/
   shared/
+  auth/
 docs/
+ml/                 # Python: venv deps, generador sintético, README
+data/
+  synthetic/        # CSV + notebook decisión showroom
 infra/
 scripts/
 docker-compose.yml
 ```
+
+Documentación clave: [`docs/Funcionalidades_Python_IA.md`](docs/Funcionalidades_Python_IA.md) · [`docs/Requisitos_Funcionales_NoFuncionales_UseCases_UML.md`](docs/Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [`ml/README.md`](ml/README.md).
 
 ## Requisitos
 

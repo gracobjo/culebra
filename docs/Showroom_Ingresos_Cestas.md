@@ -6,7 +6,7 @@
 
 El showroom **no es un escaparate pasivo**. Convierte visitas en ingresos **sin romper el modelo**: sin comprar stock, sin absorber portes, comisión **17 %** (mín. 4 €). El packaging de cestas lo asume la S.L. y se resta del margen.
 
-**Referencias:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`commissions.md`](./commissions.md) · [`tourism.md`](./tourism.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · panel `/admin/showroom` · catálogo `/packs`
+**Referencias:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Showroom_Otros_Articulos.md`](./Showroom_Otros_Articulos.md) · [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`commissions.md`](./commissions.md) · [`tourism.md`](./tourism.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · panel `/admin/showroom` · catálogo `/packs`
 
 Importes **orientativos y sin IVA** (validar con los productores del piloto). El porte **6,50 €** lo paga el cliente y **no** entra en el margen de cesta.
 

@@ -6,8 +6,8 @@
 
 Con el volumen online prudente, las comisiones web **no sostienen** el modelo en los primeros años. El showroom deja de ser un “apoyo” y pasa a ser **motor de margen y de captación**.
 
-**Panel:** `/admin/showroom` (simulador + plan 90 días).  
-**Relacionado:** [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · [`Showroom_Alternativa_Local_Propiedad.md`](./Showroom_Alternativa_Local_Propiedad.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md)
+**Panel:** `/admin/showroom` (simulador + plan 90 días + otros artículos + métricas de impulso).  
+**Relacionado:** [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · [`Showroom_Otros_Articulos.md`](./Showroom_Otros_Articulos.md) · [`Variables_Decision_Datasets_Kaggle.md`](./Variables_Decision_Datasets_Kaggle.md) · [`Showroom_Alternativa_Local_Propiedad.md`](./Showroom_Alternativa_Local_Propiedad.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md)
 
 ---
 
@@ -35,7 +35,7 @@ Hay que **multiplicar** el aporte del showroom (venta física + cestas + experie
 2. **Conversión** ≥ 35 % — degustación, script 30 s, precios visibles.  
 3. **Tráfico** — temporada, alojamientos, eventos, redes, señalética.  
 4. **Captación** ≥ 40 % dejan contacto — QR/tablet/WhatsApp → online.  
-5. **Extra** — mini-cata, cata, taller, lotes temporada.
+5. **Extra** — lista corta de 8 (miel, loncheado, mermelada, queso, tote, picos, vino, mini-cata): +4–12 € en ticket. Ver [`Showroom_Otros_Articulos.md`](./Showroom_Otros_Articulos.md).
 
 ## Plan 90 días (metas)
 

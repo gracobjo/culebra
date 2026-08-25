@@ -16,6 +16,16 @@ uploads/
 infra/backups/*
 !infra/backups/.gitkeep
 
+# Python / ML
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+data/kaggle/
+*.egg-info/
+
 # Archivos de trabajo / documentación generada (evita ruido en Git)
 *.txt
 *.md
@@ -28,3 +38,8 @@ infra/backups/*
 !docs/**/*.md
 !docs/**/*.pdf
 !docs/**/*.txt
+!ml/
+!ml/**/*.md
+!ml/**/*.txt
+!ml/**/*.py
+!ml/**/*.toml

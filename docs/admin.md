@@ -5,7 +5,9 @@
 
 ## Estado
 
-FASE 11 completada: panel web para moderar productores, productos, contratos, pedidos, liquidaciones y usuarios. Ampliado con KPIs, plan/simulador, piloto, sandbox y turismo.
+FASE 11 completada: panel web para moderar productores, productos, contratos, pedidos, liquidaciones y usuarios. Ampliado con KPIs, plan/simulador, piloto, sandbox, turismo, showroom/impulso, hub CRUD y WAI.
+
+El menú admin está **agrupado por secciones** (Panel, Catálogo, Operaciones, Negocio, Proyecto, Control). Inventario funcional y Python/ML: [`Funcionalidades_Python_IA.md`](./Funcionalidades_Python_IA.md).
 
 ## Acceso
 
@@ -20,12 +22,12 @@ Crear el primer admin con `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` en `.env` y
 | `/admin` | Resumen de pendientes |
 | `/admin/entregables-ai` | Checklist técnico núcleo A.I |
 | `/admin/raya` | Checklist convocatoria **La Raya Línea 1** (docs Base 8ª, secuencia ICECYL → Diputación) |
-| `/admin/config` | Configuración global (redes sociales, pie y contacto) |
-| `/admin/showroom` | Playbook del showroom: ingresos, zonas, cestas y márgenes 17 % |
+| `/admin/config` | Redes; **CRUD bloques hub**; **auditoría WAI/WCAG** |
+| `/admin/showroom` | Simulador 90 días; lista de 8; tote; **métricas de impulso**; playbook cestas |
 | `/admin/packaging` | Cajas kraft + mosaico geométrico, tags, frases y costes por cesta |
 | `/admin/productores` | Aprobar, rechazar o suspender |
 | `/admin/productos` | Publicar o rechazar fichas |
-| `/admin/turismo` | Alojamientos, packs, cupones y afiliados |
+| `/admin/turismo` | Alojamientos, packs, cupones, afiliados; **CRM hosteleros** + estrategia 90 d |
 | `/admin/contratos` | Crear versiones y enviar a firma |
 | `/admin/pedidos` | Consultar pedidos de la plataforma |
 | `/admin/liquidaciones` | Payouts a productores |

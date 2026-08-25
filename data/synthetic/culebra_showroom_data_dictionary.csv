@@ -1,0 +1,44 @@
+column,description,maps_to
+date,Fecha del día,Culebra / Kaggle Date
+open,1 si el showroom abre,Culebra
+Customer_Footfall,Visitas (alias Kaggle),Kaggle footfall ↔ visits
+visits,Visitas showroom,Culebra
+purchases,Compras del día,Culebra
+conversion_rate,purchases / visits,Derivada (mapa §4)
+Sales_Amount,GMV € (alias Kaggle),Kaggle Sales_Amount ↔ gmv
+gmv,GMV € del día,Culebra
+avg_ticket_base,Ticket medio sin impulso €,Culebra
+avg_ticket_with_impulse,Ticket con impulso €,Culebra
+impulse_attach_pct,% ventas con añadido en caja,Culebra / attach
+impulse_avg_eur,€ medios de impulso cuando hay attach,Culebra meta 4–12
+items_per_ticket,Unidades lista-8 / compras,Proxy impulso / Instacart
+quick_buy_pct,% compra rápida sin cesta,Culebra
+quick_buy_ticket,Ticket medio compra rápida €,Culebra 12–20
+miel_u,Uds miel 250 g,Units_Sold SKU
+loncheado_u,Uds embutido loncheado,Units_Sold SKU
+mermelada_u,Uds mermelada,Units_Sold SKU
+queso_u,Uds queso cuña,Units_Sold SKU
+tote_u,Uds tote bag,Units_Sold SKU
+picos_u,Uds picos/regañás,Units_Sold SKU
+vino_u,Uds vino/licor,Units_Sold SKU
+minicata_u,Uds mini-cata,Units_Sold SKU
+Units_Sold,Suma unidades lista de 8,Kaggle Units_Sold
+Inventory_Level,Stock tote fin de día,Kaggle Inventory_Level
+tote_stock,Stock tote (alias Culebra),Culebra
+Online_Orders,Pedidos online del día,Kaggle Online_Orders
+online_orders_attr,Pedidos online atribuidos a showroom,Culebra
+contacts,Contactos captados,Culebra captación
+campaign_conversions,Proxy conversiones campaña (= online_attr),Kaggle campaigns
+referred_visits,Visitas referidas por alojamientos,Culebra
+baskets_via_lodging,Cestas vía partners,Culebra
+market_segment,Canal dominante del día,Kaggle market_segment
+distribution_channel,Canal distribución,Kaggle distribution_channel
+Promotion,Yes/No promo o empujón comercial,Kaggle Promotion
+Holiday,Yes/No festivo/evento,Kaggle Holiday
+holiday_or_event,0/1 festivo o evento,Culebra
+Season,Estación,Kaggle Season
+Day_Of_Week,Día semana,Kaggle
+Month,Mes,Kaggle
+Year,Año,Kaggle
+partners_active,Partners alojamiento activos (proxy),Culebra CRM
+Demand_Level,Low/Medium/High según GMV,Kaggle Demand_Level

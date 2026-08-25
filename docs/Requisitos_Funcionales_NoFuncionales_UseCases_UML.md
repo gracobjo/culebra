@@ -2,9 +2,9 @@
 
 ![Logo Sabores de la Culebra](./imagenes/logo.png)
 
-**Documentos relacionados:** [Manual de usuario](./Manual_Usuario_Marketplace.md) · [Manual de desarrollador](./Manual_Desarrollador_Marketplace.md) · [Turismo](./tourism.md) · [Carrito](./cart.md) · [Entregables A.I](./Entregables_Contrato_AI_Nucleo_Marketplace.md) · [Wireframes UI/UX](./Wireframes_UIUX_Contrato_AI.md)
+**Documentos relacionados:** [Manual de usuario](./Manual_Usuario_Marketplace.md) · [Manual de desarrollador](./Manual_Desarrollador_Marketplace.md) · [Funcionalidades / Python / IA](./Funcionalidades_Python_IA.md) · [Turismo](./tourism.md) · [Carrito](./cart.md) · [Entregables A.I](./Entregables_Contrato_AI_Nucleo_Marketplace.md) · [Wireframes UI/UX](./Wireframes_UIUX_Contrato_AI.md)
 
-**Última revisión:** ago-2026 — alineación con contrato A.I (núcleo 14.500 €: A.1–A.3 + A.5a), desglose de cesta por productor, hub/tienda visual y checklist `/admin/entregables-ai`.
+**Última revisión:** ago-2026 — showroom (lista 8, impulso, métricas), hub CRUD + WAI, CRM alojamientos, pipeline Python/ML offline, menú admin agrupado.
 
 ---
 
@@ -186,6 +186,45 @@ RF-26 Checklist entregables contrato A.I
 - Admin debe poder abrir `/admin/entregables-ai` con el estado de A.1 / A.2 / A.3 / A.5a y enlaces a rutas de verificación.
 - La documentación de aceptación vive en `docs/Entregables_Contrato_AI_Nucleo_Marketplace.md` y wireframes en `docs/Wireframes_UIUX_Contrato_AI.md`.
 
+RF-27 Showroom — optimización 90 días y playbook
+
+- Admin debe poder simular en `/admin/showroom` visitas, conversión, ticket, packaging, catas, captación y pedidos online atribuidos.
+- Debe contrastar metas del sprint (margen, ticket, conversión, cestas, contactos, online) y consultar playbook de cestas/zonas.
+- Documentación: `Showroom_Optimizacion_90_Dias.md`, `Showroom_Ingresos_Cestas.md`.
+
+RF-28 Accesibilidad WAI / WCAG en escaparate
+
+- Enlaces interactivos relevantes deben exponer propósito (tooltip / `title` / `aria-label` / hint visible al hover o foco).
+- Imágenes de catálogo y hub deben tener texto alternativo.
+- Admin debe poder lanzar una auditoría de páginas públicas desde `/admin/config` (idioma, `alt`, nombre accesible).
+
+RF-29 Hub de inicio configurable (CRUD)
+
+- Admin debe poder crear, editar, ordenar, activar/desactivar y borrar bloques (tiles) del hub de la home en `/admin/config`.
+- La home pública debe leer tiles activos (o defaults si la tabla está vacía).
+- Cada tile incluye título, href, descripción, imagen, alt, hint y tono agro/territorio.
+
+RF-30 Showroom — otros artículos, lista de 8 e impulso
+
+- El panel showroom debe exponer la lista prioritaria de 8 artículos (PVP, modelo, colocación), proveedores de tote y métricas de control (attach, uplift 4–12 €, compra rápida, sell-through tote, mini-cata, unidades SKU).
+- Documentación: `Showroom_Otros_Articulos.md`.
+
+RF-31 CRM alojamientos / hosteleros
+
+- Admin debe gestionar relaciones con alojamientos (estado, modalidades, eventos, contraprestaciones) desde `/admin/turismo` y fichas asociadas.
+- Debe existir simulación de estrategia 90 días (referidos, cestas vía partners, online huéspedes).
+- Documentación: `Estrategia_Alojamientos_Rurales.md`, `Relaciones_Hosteleros_Contraprestaciones.md`.
+
+RF-32 Analítica offline Python / ML (no runtime web)
+
+- El repo debe incluir entorno Python (`ml/`), generador de dataset sintético alineado al mapa Culebra↔Kaggle y notebook de EDA/modelos baseline.
+- Los artefactos ML **no** son requisito de disponibilidad del marketplace en producción; sirven para decisión y prototipo de predicción.
+- Documentación: `Funcionalidades_Python_IA.md`, `Variables_Decision_Datasets_Kaggle.md`, `ml/README.md`.
+
+RF-33 Admin sin compra
+
+- La cuenta ADMIN no debe usar carrito/checkout de consumidor (UI sin carrito; acciones de compra bloqueadas o redirigidas al panel).
+
 ### C2. Requisitos No Funcionales
 
 RNF-01 Seguridad
@@ -242,6 +281,20 @@ RNF-12 Entorno técnico reproducible
 
 - El entorno común (Docker / seed / docs `architecture` + `database`) debe permitir levantar el marketplace multi-vendedor de forma reproducible (criterio A.1).
 
+RNF-13 Accesibilidad (WAI / WCAG orientativo)
+
+- El escaparate público debe facilitar comprensión del propósito de controles (hints) y textos alternativos en imágenes.
+- La auditoría admin es de apoyo; no sustituye una certificación formal WCAG.
+
+RNF-14 Separación analítica offline
+
+- Dependencias Python/ML y datasets Kaggle no deben ser requisito de arranque de `apps/web` en producción.
+- Credenciales Kaggle y `.venv` permanecen fuera del repositorio (gitignore).
+
+RNF-15 Navegación admin usable
+
+- El menú del panel debe estar agrupado por secciones (Panel, Catálogo, Operaciones, Negocio, Proyecto, Control) para reducir carga cognitiva.
+
 ---
 
 ## D. Casos de Uso (Use Cases) — Alto nivel
@@ -277,6 +330,10 @@ Use cases principales:
 - UC-19 Generar/imprimir etiqueta de caja vía operador logístico (**futuro**; RF-22; pendiente de elegir operador)
 - UC-20 Admin consulta checklist entregables A.I (`/admin/entregables-ai`)
 - UC-21 Productor gestiona catálogo propio (productos, precios, stock) en `/panel/proveedor`
+- UC-22 Admin simula y controla showroom (90 días + métricas impulso / lista 8)
+- UC-23 Admin configura hub de inicio (CRUD tiles) y lanza auditoría WAI
+- UC-24 Admin gestiona CRM de hosteleros / estrategia alojamientos
+- UC-25 Analista / admin ejecuta pipeline Python (sintético + notebook) para apoyar decisiones
 
 ---
 
@@ -465,6 +522,30 @@ Flujo:
 Postcondiciones:
 
 - Evidencia de revisión técnica del núcleo (sin sustituir factura/pago).
+
+### E12. Showroom — métricas de impulso y decisión (RF-27 / RF-30 / UC-22)
+
+Precondiciones:
+
+- Usuario ADMIN autenticado.
+- Playbook y defaults de lista de 8 / metas cargados en código.
+
+Flujo básico:
+
+1. Admin abre `/admin/showroom`.
+2. Ajusta variables del simulador 90 días y/o métricas de impulso (attach, SKU, tote).
+3. El sistema calcula GMV, margen, uplift y cumplimiento de metas.
+4. Admin decide acciones operativas (TPV, stock tote, mini-cata, partners).
+
+Postcondiciones:
+
+- No se persisten ventas reales (simulación); la decisión se documenta fuera o en CRM si aplica.
+
+### E13. Hub CRUD + auditoría WAI (RF-28 / RF-29 / UC-23)
+
+1. Admin en `/admin/config` crea/edita tiles (imagen, alt, hint, orden).
+2. Home pública muestra tiles activos.
+3. Admin ejecuta auditoría WCAG de rutas públicas y revisa hallazgos.
 
 ---
 
@@ -796,6 +877,71 @@ flowchart LR
   VO2 --> Track
 ```
 
+### F9. Casos de uso — showroom, hub WAI y analítica (ampliación)
+
+```mermaid
+flowchart TB
+  subgraph Actores
+    Admin[Administrador]
+    Analista[Analista / Admin]
+    Cons[Consumidor]
+  end
+  subgraph Showroom
+    UC22[UC-22 Simular showroom e impulso]
+    UC24[UC-24 CRM alojamientos]
+  end
+  subgraph Escaparate
+    UC23[UC-23 Hub CRUD + auditoría WAI]
+    UC01[UC-01 Ver hub /tienda]
+  end
+  subgraph Offline
+    UC25[UC-25 Pipeline Python / ML]
+  end
+  Admin --> UC22
+  Admin --> UC23
+  Admin --> UC24
+  Analista --> UC25
+  Cons --> UC01
+  UC23 -.-> UC01
+```
+
+### F10. Componentes analítica offline vs marketplace
+
+```mermaid
+flowchart LR
+  subgraph Runtime["Producción web"]
+    Web[apps/web]
+    Auth["@culebra/auth"]
+    DB[(PostgreSQL)]
+    Web --> Auth --> DB
+  end
+  subgraph OfflineML["Offline — no bloquea web"]
+    Venv[.venv Python]
+    Gen[generate_culebra_synthetic.py]
+    NB[Notebook decisión]
+    CSV[(data/synthetic CSV)]
+    Kag[data/kaggle gitignored]
+    Venv --> Gen --> CSV
+    Venv --> NB
+    CSV --> NB
+    Kag --> NB
+  end
+  AdminUI["/admin/showroom"] --> Web
+  NB -.->|apoya decisiones| AdminUI
+```
+
+### F11. Actividades — control quincenal showroom
+
+```mermaid
+flowchart TD
+  A[Anotar visitas compras attach SKU] --> B[Introducir en métricas /admin/showroom]
+  B --> C{¿Metas OK?}
+  C -->|Sí| D[Mantener ritual TPV y stock]
+  C -->|No| E[Ajustar colocación lista 8 / promo / partners]
+  E --> A
+  D --> F[Opcional: recalibrar notebook Python]
+```
+
 ---
 
 ## G. Anexos sugeridos (opcional)
@@ -805,3 +951,5 @@ flowchart LR
 - Plantillas de UAT para el Grupo Piloto.
 - Acta interna A.I: [`Entregables_Contrato_AI_Nucleo_Marketplace.md`](./Entregables_Contrato_AI_Nucleo_Marketplace.md) §6.
 - Wireframes: [`Wireframes_UIUX_Contrato_AI.md`](./Wireframes_UIUX_Contrato_AI.md).
+- Funcionalidades / Python / IA: [`Funcionalidades_Python_IA.md`](./Funcionalidades_Python_IA.md).
+- Variables y datasets: [`Variables_Decision_Datasets_Kaggle.md`](./Variables_Decision_Datasets_Kaggle.md).
