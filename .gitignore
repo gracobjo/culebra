@@ -23,7 +23,9 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .ipynb_checkpoints/
-data/kaggle/
+data/kaggle/**
+!data/kaggle/**/
+!data/kaggle/**/*.ipynb
 *.egg-info/
 
 # Archivos de trabajo / documentación generada (evita ruido en Git)

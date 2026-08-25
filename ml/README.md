@@ -61,7 +61,19 @@ kaggle datasets download -d mittalvasu95/the-bread-basket -p data/kaggle/bread-b
 kaggle datasets download -d jessemostipak/hotel-booking-demand -p data/kaggle/hotel-booking --unzip
 ```
 
-`data/kaggle/` y `.venv/` están en `.gitignore`. Inventario completo: [`docs/Variables_Decision_Datasets_Kaggle.md`](../docs/Variables_Decision_Datasets_Kaggle.md) §3.
+Los CSV de `data/kaggle/` están en `.gitignore`; los notebooks `.ipynb` de esa carpeta **sí** se versionan. Inventario: [`docs/Variables_Decision_Datasets_Kaggle.md`](../docs/Variables_Decision_Datasets_Kaggle.md) §3.
+
+### Notebooks de análisis
+
+| Notebook | Dataset |
+|----------|---------|
+| `data/kaggle/retail-forecast/retail_sales_forecast_notebook.ipynb` | Retail Forecast 2026 |
+| `data/kaggle/groceries-mba/groceries_mba_notebook.ipynb` | Groceries MBA |
+| `data/kaggle/bread-basket/bread_basket_notebook.ipynb` | Bread Basket |
+| `data/kaggle/hotel-booking/hotel_booking_notebook.ipynb` | Hotel booking |
+| `data/synthetic/culebra_showroom_synthetic_notebook.ipynb` | Sintético Culebra |
+
+Abrir con el kernel del `.venv` (Jupyter / VS Code / Cursor).
 
 ## Dataset sintético Culebra
 

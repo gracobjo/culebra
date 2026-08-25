@@ -115,12 +115,14 @@ Ninguno es “showroom rural Zamora”. Sirven para **aprender relaciones** tran
 
 ### 3.0 Copias locales en el repo (`data/kaggle/`, gitignored)
 
-| Carpeta local | Dataset Kaggle | Uso Culebra |
-|---------------|----------------|-------------|
-| `data/kaggle/retail-forecast/` | [Retail Sales Forecast 2026](https://www.kaggle.com/datasets/mmumairkhattak/retail-sales-forecast-dataset-2026) | Tráfico → ventas → ticket · festivo/promo · online |
-| `data/kaggle/groceries-mba/` | [Groceries dataset](https://www.kaggle.com/datasets/heeraldedhia/groceries-dataset) | Market basket / co-compra (lista de 8, impulso) |
-| `data/kaggle/bread-basket/` | [The Bread Basket](https://www.kaggle.com/datasets/mittalvasu95/the-bread-basket) | Compra rápida / impulso por hora del día |
-| `data/kaggle/hotel-booking/` | [Hotel booking demand](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand) | Estacionalidad y canales → proxy huéspedes |
+| Carpeta local | Dataset Kaggle | Notebook | Uso Culebra |
+|---------------|----------------|----------|-------------|
+| `data/kaggle/retail-forecast/` | [Retail Sales Forecast 2026](https://www.kaggle.com/datasets/mmumairkhattak/retail-sales-forecast-dataset-2026) | `retail_sales_forecast_notebook.ipynb` | Tráfico → ventas → ticket · festivo/promo · online |
+| `data/kaggle/groceries-mba/` | [Groceries dataset](https://www.kaggle.com/datasets/heeraldedhia/groceries-dataset) | `groceries_mba_notebook.ipynb` | Market basket / co-compra (lista de 8, impulso) |
+| `data/kaggle/bread-basket/` | [The Bread Basket](https://www.kaggle.com/datasets/mittalvasu95/the-bread-basket) | `bread_basket_notebook.ipynb` | Compra rápida / impulso por hora del día |
+| `data/kaggle/hotel-booking/` | [Hotel booking demand](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand) | `hotel_booking_notebook.ipynb` | Estacionalidad y canales → proxy huéspedes |
+
+Los **CSV** de Kaggle están gitignored; los **notebooks** `.ipynb` sí se versionan. Dataset sintético Culebra: `data/synthetic/culebra_showroom_synthetic_notebook.ipynb`.
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
