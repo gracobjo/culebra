@@ -101,6 +101,14 @@ const nextConfig: NextConfig = {
         authRoot,
         "src/showroom-loyalty.schemas.ts",
       ),
+      "@culebra/auth/showroom-pricing.service": path.resolve(
+        authRoot,
+        "src/showroom-pricing.service.ts",
+      ),
+      "@culebra/auth/showroom-pricing.schemas": path.resolve(
+        authRoot,
+        "src/showroom-pricing.schemas.ts",
+      ),
     };
     return config;
   },

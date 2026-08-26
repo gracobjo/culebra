@@ -296,12 +296,11 @@ Además del menú, la página de inicio muestra **11 tarjetas** con acceso direc
 
 | Enlace | Ruta | Para qué sirve |
 |--------|------|----------------|
-| Showroom | `/admin/showroom` | Simulador del punto físico: conversión, impulso en caja, lista de 8, cestas y plan 90 días. |
-| Stats showroom | `/admin/showroom/estadisticas` | Registro diario en base de datos, procedencia visitantes, gráficos EDA, informe KPI, export CSV para Python/ML y carga demo. |
-| Showroom | `/admin/showroom` | Simulador 90 días, cestas e impulso. |
-| Precios showroom | `/admin/showroom/precios` | Coste y PVP persistentes: cestas, cajas, tote, catas. |
-| Fidelización | `/admin/showroom/fidelizacion` | Rasca y gana, sellos, Club WhatsApp y referidos en tienda física. |
-| Packaging | `/admin/packaging` | Diseño de cajas kraft, frases de etiqueta y costes de packaging por cesta. |
+| Showroom | `/admin/showroom` | Simulador del punto físico: conversión, impulso, lista de 8, cestas y plan 90 días. Ver §A4.8. |
+| Precios showroom | `/admin/showroom/precios` | **Coste y PVP** persistentes (cestas, cajas, tote, catas). Ver §A4.8. |
+| Stats showroom | `/admin/showroom/estadisticas` | Captura diaria, procedencia, EDA, informe KPI y export CSV. |
+| Fidelización | `/admin/showroom/fidelizacion` | Rasca y gana, sellos, Club WhatsApp y referidos en tienda. |
+| Packaging | `/admin/packaging` | Sistema kraft + costes por cesta (leen los precios guardados). |
 | Grupo piloto | `/admin/piloto` | Programa piloto de productores fundadores. Ver §A4.4. |
 | La Raya L1 | `/admin/raya` | Checklist documental de la convocatoria La Raya (ICECYL + Diputación). |
 | Entregables A.I | `/admin/entregables-ai` | Estado de entregables técnicos del contrato de desarrollo núcleo. |
@@ -358,7 +357,7 @@ Notas:
 
 #### 6) Plan / simulación financiera
 
-- Panel `/admin/plan`: PyG base del plan de viabilidad + **simulador** (comisión, fijos, RETA, marketing, ticket, escala GMV) con gráficos de decisión.
+- Panel `/admin/plan`: PyG base del plan de viabilidad + **simulador** (comisión personalizada, fijos, catas, packaging, capital/ayuda). Los defaults de **catas año 1** y **packaging/cesta** salen de `/admin/showroom/precios` (§A4.8).
 
 #### 7) Turismo territorial (fases 2–3)
 
@@ -369,13 +368,72 @@ Notas:
   - **códigos de afiliado** (`?ref=`).
 - Recuerda: publicar un alojamiento no implica checkout de noches en la plataforma.
 
-#### 8) Showroom físico y estadísticas
+#### 8) Showroom físico: precios, simuladores y estadísticas
 
-- **`/admin/showroom`:** simulador del punto de venta (visitas, conversión, ticket, impulso en caja, lista de 8, cestas, plan 90 días). Pasa el ratón sobre las métricas para ver definiciones (p. ej. *attach impulso* = % de tickets con producto extra en mostrador).
-- **`/admin/showroom/estadisticas`:** captura operativa diaria o quincenal, **procedencia de visitantes/compradores** (formulario móvil en 10 s), sincronización desde pedidos/CRM, gráficos EDA, **informe de KPI** (tabla + glosario + descarga `.txt`) y export CSV. Guía: [`Showroom_Procedencia_Visitantes.md`](./Showroom_Procedencia_Visitantes.md).
-- **`/admin/showroom/fidelizacion`:** rasca y gana, tarjeta de sellos, club WhatsApp y trae a un amigo. Guía: [`Showroom_Fidelizacion_Premios.md`](./Showroom_Fidelizacion_Premios.md).
+##### Dónde está cada funcionalidad
 
-#### 8) Programa de afiliados
+| Funcionalidad | Ruta | Qué hace |
+|---------------|------|----------|
+| **Precios (coste + PVP)** | `/admin/showroom/precios` | Fuente de verdad en BD: cestas, packaging, tote, catas |
+| Márgenes y simuladores | `/admin/showroom` | Usa esos precios para tablas de cestas, impulso y optimizador |
+| Packaging visual | `/admin/packaging` | Muestra costes vivos del catálogo + playbook kraft |
+| Plan / PyG | `/admin/plan` | Arranca con catas anuales y packaging medio del catálogo |
+| Stats operativas | `/admin/showroom/estadisticas` | Visitas, ventas, procedencia, export CSV |
+| Fidelización tienda | `/admin/showroom/fidelizacion` | Rasca, sellos, club WhatsApp, referidos |
+
+Menú admin: **Proyecto** → **Precios showroom** (o enlace «Editar coste y PVP» desde Showroom / Packaging).
+
+##### Cómo cambiar los valores (precios)
+
+1. Entra en **`/admin/showroom/precios`**.
+2. Edita **Coste €** y/ o **PVP €** en la fila que corresponda.
+3. Pulsa **Guardar precios**.
+4. Recarga Showroom, Packaging o Plan: verás los nuevos importes en márgenes y defaults del simulador.
+5. Si quieres volver al playbook original: **Restaurar valores del playbook**.
+
+| Columna | Significado |
+|---------|-------------|
+| Coste € | Gasto de la S.L. (packaging de cesta, compra de tote, coste variable de cata…) |
+| PVP € | Precio de venta / ticket objetivo |
+| Notas | Ayuda interna (no sale en tienda pública) |
+| Activo | Si se desmarca, el ítem deja de usarse en los snapshots |
+
+Los deslizantes de `/admin/showroom` y `/admin/plan` siguen pudiendo variar escenarios **en pantalla**; los valores **persistentes** se cambian solo en Precios.
+
+##### Ejemplos de funcionalidades
+
+**Ejemplo 1 — Subir el ticket de la cesta Comarca**  
+- En Precios → bloque *Cestas*: PVP de `cesta-comarca` de 45 € → **48 €**.  
+- Guardar.  
+- En `/admin/showroom` la tabla de márgenes muestra Comarca a 48 € y recalcula comisión / margen neto.
+
+**Ejemplo 2 — Encarece el packaging Escapada**  
+- En Precios → *Cestas*: coste de `cesta-escapada` de 1,80 € → **2,20 €** (caja + tag más caros).  
+- Guardar.  
+- El margen S.L. de Escapada baja (comisión − packaging). En `/admin/packaging` el «Coste plan» de Escapada pasa a 2,20 €.
+
+**Ejemplo 3 — Ajustar tote bag**  
+- En Precios → *Merchandising*: coste tote **3,50 €**, PVP **9 €**.  
+- Si el proveedor baja a 2,80 € y vendéis a 8 €, editar ambos y guardar.  
+- El bloque «impulso y tote» de `/admin/showroom` arranca con esos valores; el margen unitario = PVP − coste.
+
+**Ejemplo 4 — Mini-cata y catas del plan**  
+- *Experiencias* → `minicata`: coste 1,50 €, PVP 7 € (ticket por persona).  
+- `catas-annual-plan`: PVP **800** (ingreso anual orientativo de catas/talleres).  
+- Al abrir `/admin/plan`, el simulador usa 800 € como *Catas año 1* por defecto (luego podéis subir/bajar en Variables y pulsar Aplicar).
+
+**Ejemplo 5 — Piezas sueltas de caja**  
+- *Packaging unitario*: coste de `caja-kraft-sm`, `tag-madera`, etc.  
+- Sirve para control de compras; el coste por cesta completo sigue en las filas *Cestas* (más práctico para el margen).
+
+##### Estadísticas y fidelización (complemento)
+
+- **`/admin/showroom/estadisticas`:** captura diaria, procedencia (formulario móvil ~10 s), EDA, informe KPI, export CSV. Guía: [`Showroom_Procedencia_Visitantes.md`](./Showroom_Procedencia_Visitantes.md).
+- **`/admin/showroom/fidelizacion`:** rasca y gana, sellos, club WhatsApp, referidos. Guía: [`Showroom_Fidelizacion_Premios.md`](./Showroom_Fidelizacion_Premios.md).
+
+Playbooks: [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · [`Showroom_Otros_Articulos.md`](./Showroom_Otros_Articulos.md) · [`Packaging_Sabores_Culebra.md`](./Packaging_Sabores_Culebra.md) · detalle menú en [`admin.md`](./admin.md).
+
+#### 9) Programa de afiliados
 
 - Panel `/admin/afiliados`:
   - alta por tipo (alojamiento, productor, creador, guía, embajador…),
@@ -386,13 +444,13 @@ Notas:
   - simulador de margen (modelo productor + canal externo).
 - Guías: [`Programa_Afiliados_Sabores_Culebra.md`](./Programa_Afiliados_Sabores_Culebra.md) · [`Modelos_Comisiones_Consolidado.md`](./Modelos_Comisiones_Consolidado.md) · [`Programa_Fidelizacion_Afiliados.md`](./Programa_Fidelizacion_Afiliados.md).
 
-#### 9) Otros módulos de proyecto y control
+#### 10) Otros módulos de proyecto y control
 
 | Ruta | Uso |
 |------|-----|
 | `/admin/config` | Redes sociales, bloques del hub de la tienda y auditoría WAI. |
 | `/admin/afiliados` | Programa de afiliados y comisiones a canales externos. |
-| `/admin/showroom/precios` | Coste y PVP de cestas, packaging, tote y catas. |
+| `/admin/showroom/precios` | Coste y PVP de cestas, packaging, tote y catas (§A4.8). |
 | `/admin/showroom/fidelizacion` | Fidelización en showroom (premios, sellos, club). |
 | `/admin/packaging` | Frases, tags y costes de cajas kraft por tipo de cesta. |
 | `/admin/raya` | Checklist documental convocatoria La Raya L1. |

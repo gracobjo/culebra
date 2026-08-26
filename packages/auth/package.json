@@ -25,6 +25,16 @@
       "types": "./src/showroom-loyalty.schemas.ts",
       "import": "./src/showroom-loyalty.schemas.ts",
       "default": "./src/showroom-loyalty.schemas.ts"
+    },
+    "./showroom-pricing.service": {
+      "types": "./src/showroom-pricing.service.ts",
+      "import": "./src/showroom-pricing.service.ts",
+      "default": "./src/showroom-pricing.service.ts"
+    },
+    "./showroom-pricing.schemas": {
+      "types": "./src/showroom-pricing.schemas.ts",
+      "import": "./src/showroom-pricing.schemas.ts",
+      "default": "./src/showroom-pricing.schemas.ts"
     }
   },
   "scripts": {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getShowroomPricingSnapshot } from "@culebra/auth";
+import { getShowroomPricingSnapshot } from "@culebra/auth/showroom-pricing.service";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { ShowroomOptimizer } from "@/components/admin/showroom-optimizer";

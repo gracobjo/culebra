@@ -1,7 +1,7 @@
+import { getShowroomPricingSnapshot } from "@culebra/auth/showroom-pricing.service";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { prisma } from "@culebra/db";
-import { getShowroomPricingSnapshot } from "@culebra/auth";
 import { OrderStatus, VendorStatus } from "@culebra/domain";
 import { COMMISSION_RATE } from "@/lib/financial-plan";
 import { PlanDashboard, type LivePlanStats } from "./plan-dashboard";

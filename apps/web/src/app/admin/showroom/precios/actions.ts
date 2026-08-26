@@ -2,9 +2,9 @@
 
 import {
   resetShowroomPriceCatalogToDefaults,
-  showroomPriceBulkUpdateSchema,
   updateShowroomPriceCatalogBulk,
-} from "@culebra/auth";
+} from "@culebra/auth/showroom-pricing.service";
+import { showroomPriceBulkUpdateSchema } from "@culebra/auth/showroom-pricing.schemas";
 import { requireAdmin } from "@/lib/admin";
 import { revalidatePath } from "next/cache";
 

@@ -1,7 +1,10 @@
 "use client";
 
 import { useActionState } from "react";
-import type { ShowroomPriceCatalogRecord, ShowroomPriceKindKey } from "@culebra/auth";
+import type {
+  ShowroomPriceCatalogRecord,
+  ShowroomPriceKindKey,
+} from "@culebra/auth/showroom-pricing.service";
 import {
   resetShowroomPricingAction,
   saveShowroomPricingAction,
