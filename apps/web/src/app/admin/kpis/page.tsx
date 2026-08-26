@@ -29,50 +29,58 @@ const KPI_DEFINITIONS: KpiDefinition[] = [
   {
     id: "on_time_preparation",
     label: "Pedidos preparados a tiempo (<24h)",
-    description: "Porcentaje de subpedidos cumpliendo SLA (campos SLA o <24 h desde creación).",
+    description:
+      "Porcentaje de subpedidos que cumplen el SLA de preparación (campos SLA o <24 h desde la creación del subpedido).",
     unit: "%",
     targetLabel: "> 95 %",
     criticalLabel: "< 90 % — Suspensión temporal de cuenta",
     targetDirection: "above",
     targetValue: 95,
     criticalValue: 90,
-    consequence: "Suspensión temporal de cuenta",
+    consequence:
+      "Retrasos dañan la promesa de entrega de toda la plataforma. Por debajo del 90 %: suspensión temporal de la cuenta del artesano.",
   },
   {
     id: "stock_breakage",
     label: "Ratio de roturas de stock",
-    description: "Porcentaje de subpedidos cancelados respecto al total del productor.",
+    description:
+      "Porcentaje de subpedidos cancelados respecto al total del productor (proxy de rotura o no disponibilidad no avisada).",
     unit: "%",
     targetLabel: "< 1 %",
     criticalLabel: "> 3 % — Retirada del producto de la web",
     targetDirection: "below",
     targetValue: 1,
     criticalValue: 3,
-    consequence: "Retirada del producto de la web",
+    consequence:
+      "Cancelaciones tras el pago generan reembolsos, reclamaciones y pérdida de confianza. Por encima del 3 %: retirada de productos de la web.",
   },
   {
     id: "packaging_incidents",
     label: "Incidencias por embalaje defectuoso",
-    description: "Porcentaje de envíos con reclamación de embalaje inadecuado.",
+    description:
+      "Porcentaje de envíos con reclamación por embalaje inadecuado (producto dañado o presentación pobre).",
     unit: "%",
     targetLabel: "0 %",
     criticalLabel: "> 2 % — Obligatoriedad de empaquetar en tienda",
     targetDirection: "below",
     targetValue: 0,
     criticalValue: 2,
-    consequence: "Obligatoriedad de empaquetar en tienda",
+    consequence:
+      "Afecta a la percepción premium del territorio. Por encima del 2 %: empaquetado obligatorio en showroom/trastienda.",
   },
   {
     id: "avg_rating",
     label: "Puntuación media de valoraciones",
-    description: "Media de puntuaciones de compradores sobre los productos del artesano.",
+    description:
+      "Media de puntuaciones de compradores sobre los productos del artesano (1–5). Sin reseñas se muestra como neutro.",
     unit: "/ 5",
     targetLabel: "> 4.5 / 5",
     criticalLabel: "< 4.0 — Revisión técnica del producto",
     targetDirection: "above",
     targetValue: 4.5,
     criticalValue: 4.0,
-    consequence: "Revisión técnica del producto",
+    consequence:
+      "Las valoraciones bajas reducen conversión de toda la vitrina. Por debajo de 4.0: revisión técnica del producto.",
   },
 ];
 
@@ -200,9 +208,9 @@ function RiskDashboard({ metrics }: { metrics: PlatformRiskMetrics }) {
               Riesgos del modelo multimarca
             </h2>
             <p className="mt-1 text-sm text-stone-500">
-              Medición mensual ({formatMonthLabel(metrics.monthFrom)}) · multi-homing,
-              SLA e incidencias, concentración de GMV. Umbrales: incidencias &gt;10/15 %,
-              top 3 GMV &gt;65/70 %, máx. productor &gt;25/30 %.
+              Medición mensual ({formatMonthLabel(metrics.monthFrom)}). Cada tarjeta indica
+              qué se calcula y cómo afecta al negocio (reputación, dependencia de
+              productores, masa crítica del piloto).
             </p>
           </div>
           <span
@@ -222,6 +230,12 @@ function RiskDashboard({ metrics }: { metrics: PlatformRiskMetrics }) {
               <p className="text-xs font-medium opacity-80">{alert.label}</p>
               <p className="mt-2 text-xl font-semibold tabular-nums">{alert.valueLabel}</p>
               <p className="mt-1 text-[11px] opacity-70">{alert.thresholdLabel}</p>
+              <p className="mt-3 text-[11px] leading-snug opacity-90">
+                <span className="font-semibold">Qué mide:</span> {alert.meaning}
+              </p>
+              <p className="mt-2 text-[11px] leading-snug opacity-90">
+                <span className="font-semibold">Impacto:</span> {alert.businessImpact}
+              </p>
             </div>
           ))}
         </div>
@@ -230,6 +244,14 @@ function RiskDashboard({ metrics }: { metrics: PlatformRiskMetrics }) {
           <div className="rounded-2xl border border-stone-100 bg-stone-50 p-4">
             <p className="text-stone-500">Pedidos pagados (mes)</p>
             <p className="mt-1 text-2xl font-semibold tabular-nums">{metrics.ordersPaidMonth}</p>
+            <p className="mt-2 text-[11px] leading-snug text-stone-500">
+              <span className="font-semibold text-stone-600">Qué mide:</span> pedidos de
+              plataforma en estado pagado o posterior (enviado, entregado…).
+            </p>
+            <p className="mt-1.5 text-[11px] leading-snug text-stone-500">
+              <span className="font-semibold text-stone-600">Impacto:</span> volumen real de
+              actividad; sin pedidos no hay GMV ni señales de concentración o SLA.
+            </p>
           </div>
           <div className="rounded-2xl border border-stone-100 bg-stone-50 p-4">
             <p className="text-stone-500">% multiproductor</p>
@@ -238,6 +260,15 @@ function RiskDashboard({ metrics }: { metrics: PlatformRiskMetrics }) {
             </p>
             <p className="text-xs text-stone-400">
               {metrics.multiproducerOrdersMonth} de {metrics.ordersPaidMonth}
+            </p>
+            <p className="mt-2 text-[11px] leading-snug text-stone-500">
+              <span className="font-semibold text-stone-600">Qué mide:</span> pedidos que
+              incluyen productos de ≥2 productores distintos (ventaja de consolidación).
+            </p>
+            <p className="mt-1.5 text-[11px] leading-snug text-stone-500">
+              <span className="font-semibold text-stone-600">Impacto:</span> si es bajo, el
+              cliente compra como en una tienda monomarca; el valor del marketplace no se
+              materializa.
             </p>
           </div>
           <div className="rounded-2xl border border-stone-100 bg-stone-50 p-4">
@@ -249,6 +280,14 @@ function RiskDashboard({ metrics }: { metrics: PlatformRiskMetrics }) {
               })}{" "}
               €
             </p>
+            <p className="mt-2 text-[11px] leading-snug text-stone-500">
+              <span className="font-semibold text-stone-600">Qué mide:</span> suma de
+              subtotales de subpedidos pagados (solo mercancía; sin portes ni servicios).
+            </p>
+            <p className="mt-1.5 text-[11px] leading-snug text-stone-500">
+              <span className="font-semibold text-stone-600">Impacto:</span> base sobre la que
+              se calculan comisiones, liquidaciones y las alertas de concentración.
+            </p>
           </div>
           <div className="rounded-2xl border border-stone-100 bg-stone-50 p-4">
             <p className="text-stone-500">Desglose incidencias</p>
@@ -258,6 +297,14 @@ function RiskDashboard({ metrics }: { metrics: PlatformRiskMetrics }) {
             </p>
             <p className="text-xs text-stone-400">
               {metrics.incidentVendorOrdersMonth} / {metrics.vendorOrdersMonth} subpedidos
+            </p>
+            <p className="mt-2 text-[11px] leading-snug text-stone-500">
+              <span className="font-semibold text-stone-600">Qué mide:</span> causa de cada
+              incidencia (plazo SLA marcado, prep. &gt;24 h, cancelación/devolución).
+            </p>
+            <p className="mt-1.5 text-[11px] leading-snug text-stone-500">
+              <span className="font-semibold text-stone-600">Impacto:</span> indica dónde
+              actuar (formación SLA, stock, o baja de productor reincidente).
             </p>
           </div>
         </div>
@@ -269,7 +316,9 @@ function RiskDashboard({ metrics }: { metrics: PlatformRiskMetrics }) {
             Concentración GMV por productor (mes)
           </h3>
           <p className="mt-1 text-xs text-stone-500">
-            Objetivo diversificación: ningún productor &gt; 25–30 % del GMV.
+            Reparto del GMV de mercancía entre productores. Objetivo: ningún productor &gt;
+            25–30 %. Si uno concentra casi todo (como en piloto temprano), el riesgo de
+            dependencia es máximo aunque las incidencias operativas estén a 0 %.
           </p>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full min-w-[480px] text-sm">
@@ -325,23 +374,36 @@ function KpiLegend() {
     <div className="rounded-3xl border border-stone-200 bg-white p-6">
       <h2 className="text-base font-semibold">KPIs por artesano (cuadro mensual)</h2>
       <p className="mt-1 text-sm text-stone-500">
-        Evaluación de permanencia. Ver también riesgos de plataforma arriba.
+        Evaluación de permanencia de cada productor. Complementa los riesgos de plataforma
+        de arriba.
       </p>
       <div className="mt-4 overflow-x-auto">
-        <table className="w-full min-w-[640px] text-sm">
+        <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="border-b border-stone-200 text-left text-xs uppercase tracking-wide text-stone-500">
               <th className="pb-3 pr-4 font-medium">KPI</th>
               <th className="pb-3 pr-4 font-medium">Objetivo</th>
-              <th className="pb-3 font-medium">Nivel crítico</th>
+              <th className="pb-3 font-medium">Nivel crítico / impacto</th>
             </tr>
           </thead>
           <tbody>
             {KPI_DEFINITIONS.map((kpi) => (
-              <tr key={kpi.id} className="border-b border-stone-100 last:border-0">
-                <td className="py-3 pr-4 font-medium text-stone-800">{kpi.label}</td>
-                <td className="py-3 pr-4 text-emerald-700">{kpi.targetLabel}</td>
-                <td className="py-3 text-red-700">{kpi.criticalLabel}</td>
+              <tr key={kpi.id} className="border-b border-stone-100 last:border-0 align-top">
+                <td className="py-3 pr-4">
+                  <p className="font-medium text-stone-800">{kpi.label}</p>
+                  <p className="mt-1 text-[11px] leading-snug text-stone-500">
+                    <span className="font-semibold text-stone-600">Qué mide:</span>{" "}
+                    {kpi.description}
+                  </p>
+                </td>
+                <td className="py-3 pr-4 text-emerald-700 whitespace-nowrap">{kpi.targetLabel}</td>
+                <td className="py-3">
+                  <p className="text-red-700">{kpi.criticalLabel}</p>
+                  <p className="mt-1 text-[11px] leading-snug text-stone-500">
+                    <span className="font-semibold text-stone-600">Impacto:</span>{" "}
+                    {kpi.consequence}
+                  </p>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -411,11 +473,19 @@ export default async function AdminKpisPage() {
           <div className="rounded-3xl border border-stone-200 bg-white p-5">
             <p className="text-sm text-stone-500">Artesanos evaluados</p>
             <p className="mt-2 text-3xl font-semibold">{rows.length}</p>
+            <p className="mt-2 text-[11px] leading-snug text-stone-500">
+              Productores ACTIVE en el cuadro de KPIs individuales (SLA, stock, embalaje,
+              valoraciones).
+            </p>
           </div>
           <div className="rounded-3xl border border-stone-200 bg-white p-5">
             <p className="text-sm text-stone-500">Activos con venta (90 d)</p>
             <p className="mt-2 text-3xl font-semibold">
               {riskMetrics.activeVendorsWithSales90d}
+            </p>
+            <p className="mt-2 text-[11px] leading-snug text-stone-500">
+              Con al menos una venta pagada reciente. Si es bajo frente a los dados de alta,
+              hay cartera “fantasma” sin actividad.
             </p>
           </div>
           <div
@@ -433,6 +503,10 @@ export default async function AdminKpisPage() {
             >
               {totalWarning + riskWarning}
             </p>
+            <p className="mt-2 text-[11px] leading-snug text-stone-500">
+              Umbral superado pero aún no crítico: revisar antes de que escale (plataforma +
+              artesanos).
+            </p>
           </div>
           <div
             className={`rounded-3xl border p-5 ${
@@ -448,6 +522,10 @@ export default async function AdminKpisPage() {
               }`}
             >
               {totalCritical + riskCritical}
+            </p>
+            <p className="mt-2 text-[11px] leading-snug text-stone-500">
+              Requieren acción inmediata (dependencia de pocos productores, SLA o baja
+              calidad).
             </p>
           </div>
         </div>
@@ -537,7 +615,7 @@ export default async function AdminKpisPage() {
                   <li key={a.id} className="flex gap-2">
                     <span className="shrink-0 font-medium">Plataforma:</span>
                     <span>
-                      {a.label} — {a.valueLabel} ({a.thresholdLabel})
+                      {a.label} — {a.valueLabel} ({a.thresholdLabel}). {a.businessImpact}
                     </span>
                   </li>
                 ))}

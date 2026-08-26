@@ -28,7 +28,7 @@ export const DEFAULT_PACKAGING_PER_BASKET = 2.4;
 export const DEFAULT_CATAS_Y1 = 800;
 
 export type SimulationInputs = {
-  commissionRate: number; // 0.15–0.18
+  commissionRate: number; // tipico 0.12–0.25; presets 15–18 %
   ticketEur: number;
   gmvScale: number; // 0.7–1.5 sobre BASE_GMV
   fixed: FixedCostParts;
@@ -50,6 +50,10 @@ export type SimulationInputs = {
   otherGrowth: number;
   /** Crecimiento GMV a partir del año 6 (la base Excel llega a 5) */
   gmvGrowthAfterY5: number;
+  /** Capital inicial aportado por socios (€) */
+  capitalRef: number;
+  /** Ayuda / subvención esperada (€) */
+  subsidyRef: number;
 };
 
 export type YearSimulation = {
@@ -101,6 +105,9 @@ export const DEFAULT_FIXED: FixedCostParts = {
   rent: 0,
 };
 
+export const CAPITAL_REF = 40_000;
+export const SUBSIDY_REF = 22_200; // 74 % sobre 30k elegibles
+
 export const DEFAULT_SIMULATION: SimulationInputs = {
   commissionRate: 0.17,
   ticketEur: 62,
@@ -116,10 +123,10 @@ export const DEFAULT_SIMULATION: SimulationInputs = {
   otherIncomeY1: 0,
   otherGrowth: 0.1,
   gmvGrowthAfterY5: 0.12,
+  capitalRef: CAPITAL_REF,
+  subsidyRef: SUBSIDY_REF,
 };
 
-export const CAPITAL_REF = 40_000;
-export const SUBSIDY_REF = 22_200; // 74 % sobre 30k elegibles
 export const INVESTMENT_ELIGIBLE = 30_000;
 /** Desglose canónico (Plan Viabilidad §3.A / memoria §25.2 — contrato menor) */
 export const INVESTMENT_BREAKDOWN = [
@@ -250,6 +257,56 @@ export function sumFixedMonthly(fixed: FixedCostParts): number {
   );
 }
 
+/**
+ * Escala los fijos (salvo alquiler, si se mantiene) para que sumen un total objetivo.
+ * Útil cuando el usuario edita «Fijos / mes» como cifra única.
+ */
+export function scaleFixedToTotal(
+  fixed: FixedCostParts,
+  targetTotal: number,
+  options?: { keepRent?: boolean },
+): FixedCostParts {
+  const keepRent = options?.keepRent ?? true;
+  const target = Math.max(0, Math.round(targetTotal));
+  const rent = keepRent ? Math.max(0, fixed.rent) : 0;
+  const restTarget = Math.max(0, target - rent);
+  const keys = ["cloud", "office", "reta", "maintenance", "marketing"] as const;
+  const restCurrent = keys.reduce((s, k) => s + Math.max(0, fixed[k]), 0);
+
+  if (restCurrent <= 0) {
+    const each = Math.floor(restTarget / keys.length);
+    const next: FixedCostParts = {
+      cloud: each,
+      office: each,
+      reta: each,
+      maintenance: each,
+      marketing: each,
+      rent,
+    };
+    next.marketing += restTarget - each * keys.length;
+    return next;
+  }
+
+  const next: FixedCostParts = { ...fixed, rent };
+  let allocated = 0;
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i]!;
+    if (i === keys.length - 1) {
+      next[k] = Math.max(0, restTarget - allocated);
+    } else {
+      const share = Math.round((Math.max(0, fixed[k]) / restCurrent) * restTarget);
+      next[k] = share;
+      allocated += share;
+    }
+  }
+  return next;
+}
+
+export function clampCommissionRate(value: number): number {
+  if (!Number.isFinite(value)) return DEFAULT_SIMULATION.commissionRate;
+  return Math.min(0.4, Math.max(0.05, Math.round(value * 1000) / 1000));
+}
+
 export function clampHorizonYears(value: number): number {
   const n = Number.isFinite(value) ? Math.round(value) : MIN_HORIZON_YEARS;
   return Math.min(MAX_HORIZON_YEARS, Math.max(MIN_HORIZON_YEARS, n));
@@ -281,6 +338,9 @@ export function runSimulation(raw: SimulationInputs): SimulationResult {
     ...DEFAULT_SIMULATION,
     ...raw,
     fixed: { ...DEFAULT_FIXED, ...raw.fixed },
+    commissionRate: clampCommissionRate(raw.commissionRate ?? DEFAULT_SIMULATION.commissionRate),
+    capitalRef: Math.max(0, raw.capitalRef ?? DEFAULT_SIMULATION.capitalRef),
+    subsidyRef: Math.max(0, raw.subsidyRef ?? DEFAULT_SIMULATION.subsidyRef),
   };
   const horizonYears = clampHorizonYears(inputs.horizonYears);
   inputs.horizonYears = horizonYears;
@@ -348,7 +408,7 @@ export function runSimulation(raw: SimulationInputs): SimulationResult {
     }
   }
 
-  const partnerContribution = PARTNER_NET_REF;
+  const partnerContribution = Math.max(0, inputs.capitalRef - inputs.subsidyRef);
   let verdict: string;
   let verdictTone: SimulationResult["verdictTone"];
 
@@ -390,8 +450,8 @@ export function runSimulation(raw: SimulationInputs): SimulationResult {
     totalCatas,
     totalOtherIncome,
     partnerContribution,
-    subsidyRef: SUBSIDY_REF,
-    capitalRef: CAPITAL_REF,
+    subsidyRef: inputs.subsidyRef,
+    capitalRef: inputs.capitalRef,
     breakevenYear,
     verdict,
     verdictTone,

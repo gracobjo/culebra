@@ -40,10 +40,12 @@ import {
   PRESET_SCENARIOS,
   SUBSIDY_REF,
   TREASURY_RISK_MAP,
+  clampCommissionRate,
   compareCommissions,
   resolveCashAlertLevel,
   runCashFlowModel,
   runSimulation,
+  scaleFixedToTotal,
   sensitivityCombinedDelays,
   sensitivityCombinedScenarios,
   sensitivityFixedCosts,
@@ -941,6 +943,17 @@ export function PlanSimulator() {
   const [inputs, setInputs] = useState<SimulationInputs>(DEFAULT_SIMULATION);
   const [subsidyMonth, setSubsidyMonth] = useState(DEFAULT_SUBSIDY_MONTH);
   const [launchMonth, setLaunchMonth] = useState(DEFAULT_LAUNCH_MONTH);
+  const [customCommissionPct, setCustomCommissionPct] = useState(
+    String(Math.round(DEFAULT_SIMULATION.commissionRate * 1000) / 10),
+  );
+  const [draftParams, setDraftParams] = useState({
+    fixedMonthly: sumFixedMonthly(DEFAULT_SIMULATION.fixed),
+    catasY1: DEFAULT_SIMULATION.catasY1,
+    otherIncomeY1: DEFAULT_SIMULATION.otherIncomeY1,
+    packagingPerBasket: DEFAULT_SIMULATION.packagingPerBasket,
+    capitalRef: DEFAULT_SIMULATION.capitalRef,
+    subsidyRef: DEFAULT_SIMULATION.subsidyRef,
+  });
 
   const result = useMemo(() => runSimulation(inputs), [inputs]);
   const cmp = useMemo(() => {
@@ -948,28 +961,79 @@ export function PlanSimulator() {
     return compareCommissions(base);
   }, [inputs]);
 
+  const isPresetCommission = COMMISSION_PRESETS.some((p) => p.value === inputs.commissionRate);
+
+  function syncDraftFromInputs(next: SimulationInputs) {
+    setDraftParams({
+      fixedMonthly: sumFixedMonthly(next.fixed),
+      catasY1: next.catasY1,
+      otherIncomeY1: next.otherIncomeY1,
+      packagingPerBasket: next.packagingPerBasket,
+      capitalRef: next.capitalRef,
+      subsidyRef: next.subsidyRef,
+    });
+    setCustomCommissionPct(String(Math.round(next.commissionRate * 1000) / 10));
+  }
+
   function patchFixed(partial: Partial<FixedCostParts>) {
-    setInputs((prev) => ({
-      ...prev,
-      fixed: { ...prev.fixed, ...partial },
-    }));
+    setInputs((prev) => {
+      const next = {
+        ...prev,
+        fixed: { ...prev.fixed, ...partial },
+      };
+      setDraftParams((d) => ({ ...d, fixedMonthly: sumFixedMonthly(next.fixed) }));
+      return next;
+    });
+  }
+
+  function applyCommissionRate(rate: number) {
+    const commissionRate = clampCommissionRate(rate);
+    setInputs((prev) => ({ ...prev, commissionRate }));
+    setCustomCommissionPct(String(Math.round(commissionRate * 1000) / 10));
+  }
+
+  function applyCustomCommission() {
+    const parsed = Number(String(customCommissionPct).replace(",", "."));
+    if (!Number.isFinite(parsed)) return;
+    applyCommissionRate(parsed / 100);
+  }
+
+  function applyKeyParams() {
+    const fixed = scaleFixedToTotal(inputs.fixed, draftParams.fixedMonthly, {
+      keepRent: inputs.fixed.rent > 0,
+    });
+    const next: SimulationInputs = {
+      ...inputs,
+      fixed,
+      catasY1: Math.max(0, Math.round(draftParams.catasY1)),
+      otherIncomeY1: Math.max(0, Math.round(draftParams.otherIncomeY1)),
+      packagingPerBasket: Math.max(0, Number(draftParams.packagingPerBasket) || 0),
+      capitalRef: Math.max(0, Math.round(draftParams.capitalRef)),
+      subsidyRef: Math.max(0, Math.round(draftParams.subsidyRef)),
+    };
+    setInputs(next);
+    syncDraftFromInputs(next);
   }
 
   function applyPreset(id: string) {
     const preset = PRESET_SCENARIOS.find((p) => p.id === id);
     if (!preset) return;
-    setInputs((prev) => ({
-      ...prev,
+    const next = {
+      ...inputs,
       ...preset.patch,
-      fixed: preset.patch.fixed ? { ...preset.patch.fixed } : prev.fixed,
-    }));
+      fixed: preset.patch.fixed ? { ...preset.patch.fixed } : inputs.fixed,
+    };
+    setInputs(next);
+    syncDraftFromInputs(next);
   }
 
   function resetSimulation() {
-    setInputs({
+    const next = {
       ...DEFAULT_SIMULATION,
       fixed: { ...DEFAULT_SIMULATION.fixed },
-    });
+    };
+    setInputs(next);
+    syncDraftFromInputs(next);
     setSubsidyMonth(DEFAULT_SUBSIDY_MONTH);
     setLaunchMonth(DEFAULT_LAUNCH_MONTH);
   }
@@ -1051,7 +1115,7 @@ export function PlanSimulator() {
                 <button
                   key={p.value}
                   type="button"
-                  onClick={() => setInputs((prev) => ({ ...prev, commissionRate: p.value }))}
+                  onClick={() => applyCommissionRate(p.value)}
                   className={`min-h-9 rounded-full border px-3 text-xs font-medium ${
                     inputs.commissionRate === p.value
                       ? "border-emerald-800 bg-emerald-800 text-white"
@@ -1061,6 +1125,158 @@ export function PlanSimulator() {
                   {p.label}
                 </button>
               ))}
+            </div>
+            <div className="mt-3 flex flex-wrap items-end gap-2">
+              <label className="block min-w-[8rem] flex-1 text-sm">
+                <span className="font-medium text-stone-800">Otra comisión (%)</span>
+                <input
+                  type="number"
+                  min={5}
+                  max={40}
+                  step={0.1}
+                  value={customCommissionPct}
+                  onChange={(e) => setCustomCommissionPct(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      applyCustomCommission();
+                    }
+                  }}
+                  className={`mt-1 w-full rounded-xl border px-3 py-2 tabular-nums ${
+                    isPresetCommission
+                      ? "border-stone-300 bg-white"
+                      : "border-emerald-700 bg-emerald-50"
+                  }`}
+                  placeholder="ej. 14.5"
+                />
+              </label>
+              <button
+                type="button"
+                onClick={applyCustomCommission}
+                className="min-h-10 rounded-full border border-emerald-800 bg-emerald-800 px-4 text-xs font-semibold text-white hover:bg-emerald-900"
+              >
+                Aplicar
+              </button>
+            </div>
+            <p className="mt-1.5 text-xs text-stone-500">
+              Activa: {(inputs.commissionRate * 100).toFixed(1)} % · presets al clic;
+              personalizada con Aplicar (5–40 %).
+            </p>
+          </div>
+
+          <div className="border-t border-stone-100 pt-4">
+            <p className="mb-1 text-sm font-medium">Parámetros clave (cifras de resultado)</p>
+            <p className="mb-3 text-xs text-stone-500">
+              Edita fijos, catas, packaging, capital y ayuda; pulsa Aplicar para recalcular
+              veredicto y KPIs.
+            </p>
+            <div className="space-y-3">
+              <label className="block text-sm">
+                <span className="flex items-baseline justify-between gap-2">
+                  <span className="font-medium text-stone-800">Fijos / mes (€)</span>
+                  <span className="text-[11px] text-stone-500">
+                    ahora {formatPrice(result.fixedMonthly)}
+                  </span>
+                </span>
+                <input
+                  type="number"
+                  min={0}
+                  step={10}
+                  value={draftParams.fixedMonthly}
+                  onChange={(e) =>
+                    setDraftParams((d) => ({
+                      ...d,
+                      fixedMonthly: Number(e.target.value),
+                    }))
+                  }
+                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 tabular-nums"
+                />
+                <span className="mt-1 block text-xs text-stone-500">
+                  Reparte el total entre cloud, gestoría, RETA, mantenimiento y marketing
+                  (mantiene alquiler si está activo).
+                </span>
+              </label>
+              <label className="block text-sm">
+                <span className="font-medium text-stone-800">Catas / talleres año 1 (€)</span>
+                <input
+                  type="number"
+                  min={0}
+                  step={50}
+                  value={draftParams.catasY1}
+                  onChange={(e) =>
+                    setDraftParams((d) => ({ ...d, catasY1: Number(e.target.value) }))
+                  }
+                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 tabular-nums"
+                />
+                <span className="mt-1 block text-xs text-stone-500">
+                  «Catas + otros (horizonte)» suma catas y otros con su crecimiento anual.
+                </span>
+              </label>
+              <label className="block text-sm">
+                <span className="font-medium text-stone-800">Otros ingresos año 1 (€)</span>
+                <input
+                  type="number"
+                  min={0}
+                  step={50}
+                  value={draftParams.otherIncomeY1}
+                  onChange={(e) =>
+                    setDraftParams((d) => ({
+                      ...d,
+                      otherIncomeY1: Number(e.target.value),
+                    }))
+                  }
+                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 tabular-nums"
+                />
+              </label>
+              <label className="block text-sm">
+                <span className="font-medium text-stone-800">Packaging / cesta (€)</span>
+                <input
+                  type="number"
+                  min={0}
+                  step={0.1}
+                  value={draftParams.packagingPerBasket}
+                  onChange={(e) =>
+                    setDraftParams((d) => ({
+                      ...d,
+                      packagingPerBasket: Number(e.target.value),
+                    }))
+                  }
+                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 tabular-nums"
+                />
+              </label>
+              <label className="block text-sm">
+                <span className="font-medium text-stone-800">Capital socios (€)</span>
+                <input
+                  type="number"
+                  min={0}
+                  step={100}
+                  value={draftParams.capitalRef}
+                  onChange={(e) =>
+                    setDraftParams((d) => ({ ...d, capitalRef: Number(e.target.value) }))
+                  }
+                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 tabular-nums"
+                />
+              </label>
+              <label className="block text-sm">
+                <span className="font-medium text-stone-800">Ayuda / subvención (€)</span>
+                <input
+                  type="number"
+                  min={0}
+                  step={100}
+                  value={draftParams.subsidyRef}
+                  onChange={(e) =>
+                    setDraftParams((d) => ({ ...d, subsidyRef: Number(e.target.value) }))
+                  }
+                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 tabular-nums"
+                />
+              </label>
+              <button
+                type="button"
+                onClick={applyKeyParams}
+                className="w-full min-h-10 rounded-full border border-emerald-800 bg-emerald-800 text-sm font-semibold text-white hover:bg-emerald-900"
+              >
+                Aplicar a la simulación
+              </button>
             </div>
           </div>
 
@@ -1135,9 +1351,10 @@ export function PlanSimulator() {
                 min={0}
                 max={6}
                 step={0.1}
-                onChange={(packagingPerBasket) =>
-                  setInputs((prev) => ({ ...prev, packagingPerBasket }))
-                }
+                onChange={(packagingPerBasket) => {
+                  setInputs((prev) => ({ ...prev, packagingPerBasket }));
+                  setDraftParams((d) => ({ ...d, packagingPerBasket }));
+                }}
                 hint="Playbook: Escapada 1,80 € · Comarca 2,40 € · Sierra 3,20 €"
               />
               <SliderRow
@@ -1146,7 +1363,10 @@ export function PlanSimulator() {
                 min={0}
                 max={4000}
                 step={50}
-                onChange={(catasY1) => setInputs((prev) => ({ ...prev, catasY1 }))}
+                onChange={(catasY1) => {
+                  setInputs((prev) => ({ ...prev, catasY1 }));
+                  setDraftParams((d) => ({ ...d, catasY1 }));
+                }}
                 hint="Opcional en el PyG base: 800 € Y1"
               />
               <SliderRow
@@ -1164,7 +1384,10 @@ export function PlanSimulator() {
                 min={0}
                 max={5000}
                 step={50}
-                onChange={(otherIncomeY1) => setInputs((prev) => ({ ...prev, otherIncomeY1 }))}
+                onChange={(otherIncomeY1) => {
+                  setInputs((prev) => ({ ...prev, otherIncomeY1 }));
+                  setDraftParams((d) => ({ ...d, otherIncomeY1 }));
+                }}
                 hint="Mesas, merchandising, colaboraciones — 0 si no se activan"
               />
               <SliderRow
@@ -1256,6 +1479,7 @@ export function PlanSimulator() {
               {
                 label: "Fijos / mes",
                 value: formatPrice(result.fixedMonthly),
+                hint: "Editable en Variables → Parámetros clave",
               },
               {
                 label: "GMV equilibrio / mes",
@@ -1284,10 +1508,12 @@ export function PlanSimulator() {
               {
                 label: "Packaging (horizonte)",
                 value: `−${formatPrice(result.totalPackaging)}`,
+                hint: "Coste caja × cestas en el horizonte",
               },
               {
                 label: "Catas + otros (horizonte)",
                 value: formatPrice(result.totalCatas + result.totalOtherIncome),
+                hint: "Desde catas/otros año 1 + crecimiento",
               },
               {
                 label: "Equilibrio desde",

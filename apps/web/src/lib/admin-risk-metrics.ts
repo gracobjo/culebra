@@ -57,6 +57,10 @@ export type PlatformRiskMetrics = {
     level: RiskAlertLevel;
     valueLabel: string;
     thresholdLabel: string;
+    /** Qué mide (más allá del título). */
+    meaning: string;
+    /** Por qué importa para el negocio. */
+    businessImpact: string;
   }[];
 };
 
@@ -223,6 +227,10 @@ export async function computePlatformRiskMetrics(
         incidentRatePct > 15 ? "critical" : incidentRatePct > 10 ? "warning" : "ok",
       valueLabel: `${incidentRatePct} %`,
       thresholdLabel: "Alerta > 10 % · Crítico > 15 %",
+      meaning:
+        "Subpedidos del mes con SLA incumplido, preparación >24 h o cancelación/devolución. Un pedido de cliente puede generar varios subpedidos (uno por productor).",
+      businessImpact:
+        "La reputación es de toda la plataforma: un fallo de un productor afecta a la marca Sabores de la Culebra. Por encima del umbral: aviso → suspensión de fichas → baja.",
     },
     {
       id: "top3_gmv",
@@ -230,6 +238,10 @@ export async function computePlatformRiskMetrics(
       level: top3SharePct > 70 ? "critical" : top3SharePct > 65 ? "warning" : "ok",
       valueLabel: `${top3SharePct} %`,
       thresholdLabel: "Alerta > 65 % · Crítico > 70 %",
+      meaning:
+        "Porcentaje del GMV de mercancía del mes que concentran los tres productores con más ventas (suma de subtotales de subpedidos pagados).",
+      businessImpact:
+        "Si pocas marcas concentran casi todo el volumen, el marketplace deja de ser multimarca real: más riesgo si se van o fallan, y menos atractivo para nuevos productores y compradores.",
     },
     {
       id: "max_vendor_gmv",
@@ -240,6 +252,10 @@ export async function computePlatformRiskMetrics(
         ? `${maxVendorSharePct} % (${maxVendor.tradeName})`
         : "—",
       thresholdLabel: "Objetivo ≤ 25–30 % por productor",
+      meaning:
+        "Cuota del GMV mensual del productor con más ventas. Identifica dependencia de una sola marca.",
+      businessImpact:
+        "Dependencia crítica: si ese productor sale, tiene rotura de stock o incumple SLA, se cae gran parte de la facturación y de la oferta visible. Priorizar captar y activar más productores.",
     },
     {
       id: "active_vendors",
@@ -252,6 +268,10 @@ export async function computePlatformRiskMetrics(
             : "ok",
       valueLabel: `${sales90d.length} / ${activeVendorsTotal} dados de alta`,
       thresholdLabel: "Piloto ≥ 5 · Meta 18 m: 12–15",
+      meaning:
+        "Cuántos productores ACTIVE han tenido al menos una venta pagada en los últimos 90 días, frente al total dados de alta. Alta ≠ activo comercialmente.",
+      businessImpact:
+        "Sin masa crítica de productores que venden, no hay surtido ni pedidos multiproductor (ventaja del modelo). En piloto hace falta ≥5 activos; a 18 meses, meta 12–15.",
     },
   ];
 

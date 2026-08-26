@@ -449,14 +449,14 @@ Ver `docs/tourism.md`.
 
 Bloque **Riesgos del modelo multimarca** (mes en curso):
 
-| Métrica | Alerta | Crítico |
-|---------|--------|---------|
-| % subpedidos con incidencia (SLA breached, tarde &gt;24 h, cancelados) | &gt; 10 % | &gt; 15 % |
-| Concentración GMV top 3 productores | &gt; 65 % | &gt; 70 % |
-| Máx. cuota GMV de un productor | &gt; 25 % | &gt; 30 % |
-| Productores con venta en 90 días | &lt; 5 | &lt; 3 |
+| Métrica | Alerta | Crítico | Qué implica |
+|---------|--------|---------|-------------|
+| % subpedidos con incidencia (SLA breached, tarde &gt;24 h, cancelados) | &gt; 10 % | &gt; 15 % | Reputación de toda la plataforma |
+| Concentración GMV top 3 productores | &gt; 65 % | &gt; 70 % | Marketplace poco diversificado |
+| Máx. cuota GMV de un productor | &gt; 25 % | &gt; 30 % | Dependencia de una sola marca |
+| Productores con venta en 90 días | &lt; 5 | &lt; 3 | Sin masa crítica comercial |
 
-También: % pedidos multiproductor, GMV del mes, tabla de cuotas por productor, y KPIs individuales (preparación &lt;24 h, roturas, embalaje, valoraciones). Código: `apps/web/src/lib/admin-risk-metrics.ts`. Doc: [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md).
+En cada tarjeta de `/admin/kpis` se muestra **qué mide** e **impacto** en el negocio. También: % pedidos multiproductor, GMV del mes, tabla de cuotas por productor, y KPIs individuales (preparación &lt;24 h, roturas, embalaje, valoraciones). Código: `apps/web/src/lib/admin-risk-metrics.ts`. Doc: [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md).
 
 ## API extra
 
