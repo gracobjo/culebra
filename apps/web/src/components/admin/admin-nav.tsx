@@ -120,6 +120,11 @@ const groups: AdminNavGroup[] = [
         hint: "Simulador 90 días: conversión, impulso en caja y cestas.",
       },
       {
+        href: "/admin/showroom/precios",
+        label: "Precios showroom",
+        hint: "Coste y PVP de cestas, cajas, tote y catas (persistente).",
+      },
+      {
         href: "/admin/showroom/estadisticas",
         label: "Stats showroom",
         hint: "Captura diaria, procedencia visitantes, EDA y export CSV.",

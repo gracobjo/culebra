@@ -142,8 +142,18 @@ const PRESETS: { id: string; label: string; patch: Partial<ShowroomOptInputs> }[
   },
 ];
 
-export function ShowroomOptimizer() {
-  const [inputs, setInputs] = useState<ShowroomOptInputs>(DEFAULT_SHOWROOM_OPT);
+export function ShowroomOptimizer({
+  initialCatasAnnual,
+  packagingPerBasket,
+}: {
+  initialCatasAnnual?: number;
+  packagingPerBasket?: number;
+} = {}) {
+  const [inputs, setInputs] = useState<ShowroomOptInputs>(() => ({
+    ...DEFAULT_SHOWROOM_OPT,
+    catasAnnual: initialCatasAnnual ?? DEFAULT_SHOWROOM_OPT.catasAnnual,
+    packagingPerSale: packagingPerBasket ?? DEFAULT_SHOWROOM_OPT.packagingPerSale,
+  }));
   const result = useMemo(() => runShowroomOptimization(inputs), [inputs]);
 
   const y1Balance = modelBalance(
@@ -156,6 +166,14 @@ export function ShowroomOptimizer() {
 
   function patch(partial: Partial<ShowroomOptInputs>) {
     setInputs((prev) => ({ ...prev, ...partial }));
+  }
+
+  function resetToCatalog() {
+    setInputs({
+      ...DEFAULT_SHOWROOM_OPT,
+      catasAnnual: initialCatasAnnual ?? DEFAULT_SHOWROOM_OPT.catasAnnual,
+      packagingPerSale: packagingPerBasket ?? DEFAULT_SHOWROOM_OPT.packagingPerSale,
+    });
   }
 
   return (
@@ -183,7 +201,7 @@ export function ShowroomOptimizer() {
               {p.label}
             </button>
           ))}
-          <SimulatorResetButton onReset={() => setInputs({ ...DEFAULT_SHOWROOM_OPT })} />
+          <SimulatorResetButton onReset={resetToCatalog} />
         </div>
       </section>
 

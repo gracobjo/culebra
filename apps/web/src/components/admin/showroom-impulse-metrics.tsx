@@ -112,8 +112,25 @@ const PRESETS: { id: string; label: string; patch: Partial<ImpulseMetricsInputs>
   },
 ];
 
-export function ShowroomImpulseMetrics() {
-  const [inputs, setInputs] = useState<ImpulseMetricsInputs>(DEFAULT_IMPULSE_METRICS);
+export function ShowroomImpulseMetrics({
+  initialToteCost,
+  initialTotePvp,
+  initialMinicataCost,
+  initialMinicataPvp,
+}: {
+  initialToteCost?: number;
+  initialTotePvp?: number;
+  initialMinicataCost?: number;
+  initialMinicataPvp?: number;
+} = {}) {
+  const [inputs, setInputs] = useState<ImpulseMetricsInputs>(() => ({
+    ...DEFAULT_IMPULSE_METRICS,
+    skuUnits: { ...DEFAULT_IMPULSE_METRICS.skuUnits },
+    toteUnitCost: initialToteCost ?? DEFAULT_IMPULSE_METRICS.toteUnitCost,
+    totePvp: initialTotePvp ?? DEFAULT_IMPULSE_METRICS.totePvp,
+    minicataUnitCost: initialMinicataCost ?? DEFAULT_IMPULSE_METRICS.minicataUnitCost,
+    minicataPvp: initialMinicataPvp ?? DEFAULT_IMPULSE_METRICS.minicataPvp,
+  }));
   const result = useMemo(() => runImpulseMetrics(inputs), [inputs]);
 
   function patch(partial: Partial<ImpulseMetricsInputs>) {
@@ -131,6 +148,10 @@ export function ShowroomImpulseMetrics() {
     setInputs({
       ...DEFAULT_IMPULSE_METRICS,
       skuUnits: { ...DEFAULT_IMPULSE_METRICS.skuUnits },
+      toteUnitCost: initialToteCost ?? DEFAULT_IMPULSE_METRICS.toteUnitCost,
+      totePvp: initialTotePvp ?? DEFAULT_IMPULSE_METRICS.totePvp,
+      minicataUnitCost: initialMinicataCost ?? DEFAULT_IMPULSE_METRICS.minicataUnitCost,
+      minicataPvp: initialMinicataPvp ?? DEFAULT_IMPULSE_METRICS.minicataPvp,
     });
   }
 
@@ -300,6 +321,27 @@ export function ShowroomImpulseMetrics() {
               step={0.5}
               suffix="€"
               onChange={(totePvp) => patch({ totePvp })}
+            />
+          </div>
+          <div className="border-t border-stone-200 pt-4">
+            <p className="mb-3 text-sm font-medium">Mini-cata</p>
+            <SliderRow
+              label="Coste variable"
+              value={inputs.minicataUnitCost}
+              min={0}
+              max={6}
+              step={0.25}
+              suffix="€"
+              onChange={(minicataUnitCost) => patch({ minicataUnitCost })}
+            />
+            <SliderRow
+              label="PVP mini-cata"
+              value={inputs.minicataPvp}
+              min={4}
+              max={15}
+              step={0.5}
+              suffix="€"
+              onChange={(minicataPvp) => patch({ minicataPvp })}
             />
           </div>
         </aside>

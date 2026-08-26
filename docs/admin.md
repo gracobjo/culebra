@@ -291,6 +291,21 @@ Cada enlace del menú (`AdminNav`) muestra al pasar el ratón o enfocar con tecl
 
 ---
 
+#### Precios showroom — `/admin/showroom/precios`
+
+**Qué hace:** catálogo persistente de **coste** y **PVP** del showroom (BD).
+
+| Bloque | Detalle |
+|--------|---------|
+| Cestas | PVP ticket + coste packaging (Escapada, Comarca, Sierra, Reserva) |
+| Packaging unitario | Caja kraft, tag, relleno, tarjeta |
+| Merchandising | Tote (coste compra + PVP) |
+| Experiencias | Mini-cata, cata/taller, ingreso anual de catas (PyG) |
+
+Al guardar, alimenta márgenes de `/admin/showroom`, costes de `/admin/packaging` y defaults de `/admin/plan`.
+
+---
+
 #### Stats showroom — `/admin/showroom/estadisticas`
 
 **Qué hace:** datos operativos reales del showroom para análisis y ML.

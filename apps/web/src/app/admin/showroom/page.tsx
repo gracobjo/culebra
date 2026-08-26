@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getShowroomPricingSnapshot } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { ShowroomOptimizer } from "@/components/admin/showroom-optimizer";
@@ -12,6 +13,7 @@ import {
   SHOWROOM_BASKETS,
   basketEconomics,
 } from "@/lib/showroom-cestas";
+import { applyPricingSnapshotToBaskets } from "@/lib/showroom-pricing-apply";
 import {
   CHECKOUT_IMPULSE_GOAL,
   CHECKOUT_IMPULSE_ITEMS,
@@ -45,6 +47,8 @@ function euros(value: number) {
 
 export default async function AdminShowroomPage() {
   await requireAdmin();
+  const pricing = await getShowroomPricingSnapshot();
+  const baskets = applyPricingSnapshotToBaskets(SHOWROOM_BASKETS, pricing);
 
   return (
     <AdminShell title="Showroom — motor de margen">
@@ -55,6 +59,10 @@ export default async function AdminShowroomPage() {
         <code className="rounded bg-stone-100 px-1 text-xs">docs/Showroom_Ingresos_Cestas.md</code>
         {" · "}
         <code className="rounded bg-stone-100 px-1 text-xs">docs/Showroom_Otros_Articulos.md</code>
+        {" · "}
+        <Link href="/admin/showroom/precios" className="text-emerald-800 underline">
+          Editar coste y PVP
+        </Link>
         {" · "}
         <Link href="/packs" className="text-emerald-800 underline">
           Cestas en /packs
@@ -83,11 +91,19 @@ export default async function AdminShowroomPage() {
       </p>
 
       <div className="mt-8">
-        <ShowroomOptimizer />
+        <ShowroomOptimizer
+          initialCatasAnnual={pricing.catasAnnualPlan}
+          packagingPerBasket={pricing.packagingPerBasketDefault}
+        />
       </div>
 
       <div className="mt-8">
-        <ShowroomImpulseMetrics />
+        <ShowroomImpulseMetrics
+          initialToteCost={pricing.tote.unitCost}
+          initialTotePvp={pricing.tote.pvp}
+          initialMinicataCost={pricing.minicata.unitCost}
+          initialMinicataPvp={pricing.minicata.pvp}
+        />
       </div>
 
       <section className="mt-10 overflow-x-auto rounded-3xl border border-stone-200 bg-white">
@@ -188,7 +204,7 @@ export default async function AdminShowroomPage() {
             </tr>
           </thead>
           <tbody>
-            {SHOWROOM_BASKETS.map((basket) => {
+            {baskets.map((basket) => {
               const eco = basketEconomics(basket);
               return (
                 <tr key={basket.slug} className="border-t border-stone-100">
@@ -212,7 +228,7 @@ export default async function AdminShowroomPage() {
       </section>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        {SHOWROOM_BASKETS.filter((b) => b.launch).map((basket) => (
+        {baskets.filter((b) => b.launch).map((basket) => (
           <article key={basket.slug} className="overflow-hidden rounded-3xl border border-stone-200 bg-white">
             <PackCover pack={{ slug: basket.slug, name: basket.name }} className="aspect-[16/9]" />
             <div className="p-6">

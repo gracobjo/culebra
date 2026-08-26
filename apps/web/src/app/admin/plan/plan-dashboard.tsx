@@ -68,7 +68,15 @@ function Bar({
   );
 }
 
-export function PlanDashboard({ live }: { live: LivePlanStats }) {
+export function PlanDashboard({
+  live,
+  initialCatasY1,
+  initialPackagingPerBasket,
+}: {
+  live: LivePlanStats;
+  initialCatasY1?: number;
+  initialPackagingPerBasket?: number;
+}) {
   const [scenarioId, setScenarioId] = useState<PlanScenarioId>("conservador");
   const [profileYear, setProfileYear] = useState(1);
 
@@ -88,7 +96,10 @@ export function PlanDashboard({ live }: { live: LivePlanStats }) {
 
   return (
     <div className="space-y-8">
-      <PlanSimulator />
+      <PlanSimulator
+        initialCatasY1={initialCatasY1}
+        initialPackagingPerBasket={initialPackagingPerBasket}
+      />
 
       <section className="rounded-3xl border border-emerald-200 bg-white p-5 sm:p-6">
         <p className="text-sm uppercase tracking-[0.18em] text-emerald-800">

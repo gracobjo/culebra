@@ -516,3 +516,26 @@ export type {
   ShowroomScratchPrize,
   StampCardCreateInput,
 } from "./showroom-loyalty.schemas.js";
+export {
+  listShowroomPriceCatalog,
+  getShowroomPriceMap,
+  getShowroomPricingSnapshot,
+  updateShowroomPriceItem,
+  updateShowroomPriceCatalogBulk,
+  resetShowroomPriceCatalogToDefaults,
+  SHOWROOM_PRICE_KIND_LABELS,
+} from "./showroom-pricing.service.js";
+export type {
+  ShowroomPriceCatalogRecord,
+  ShowroomPriceKindKey,
+  ShowroomPricingSnapshot,
+} from "./showroom-pricing.service.js";
+export {
+  showroomPriceItemUpdateSchema,
+  showroomPriceBulkUpdateSchema,
+  SHOWROOM_PRICE_KINDS,
+} from "./showroom-pricing.schemas.js";
+export type {
+  ShowroomPriceItemUpdateInput,
+  ShowroomPriceBulkUpdateInput,
+} from "./showroom-pricing.schemas.js";

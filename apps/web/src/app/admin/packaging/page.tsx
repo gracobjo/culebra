@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getShowroomPricingSnapshot } from "@culebra/auth";
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import {
@@ -14,8 +15,16 @@ import {
 
 export const metadata = { title: "Packaging | Admin" };
 
+const BASKET_KEYS = [
+  "cesta-escapada",
+  "cesta-comarca",
+  "cesta-sierra",
+  "cesta-reserva",
+] as const;
+
 export default async function AdminPackagingPage() {
   await requireAdmin();
+  const pricing = await getShowroomPricingSnapshot();
 
   return (
     <AdminShell title="Packaging — kraft + mosaico">
@@ -23,6 +32,10 @@ export default async function AdminPackagingPage() {
         Cajas y tags: ilustración mosaico (lobo + ciervo geométrico). Los documentos usan el
         lockup corporativo (escudo verde/oro). Distinto de las cajas de envío S/M/L. Playbook:{" "}
         <code className="rounded bg-stone-100 px-1 text-xs">docs/Packaging_Sabores_Culebra.md</code>
+        {" · "}
+        <Link href="/admin/showroom/precios" className="text-emerald-800 underline">
+          Editar costes y PVP
+        </Link>
         {" · "}
         <Link href="/admin/showroom" className="text-emerald-800 underline">
           Márgenes de cestas
@@ -107,20 +120,28 @@ export default async function AdminPackagingPage() {
             </tr>
           </thead>
           <tbody>
-            {PACKAGING_BY_BASKET.map((row) => (
-              <tr key={row.basket} className="border-t border-stone-100">
-                <td className="px-5 py-3 font-medium">{row.basket}</td>
-                <td className="px-5 py-3 text-stone-600">{row.pack}</td>
-                <td className="px-5 py-3 text-stone-600">{row.extra}</td>
-                <td className="px-5 py-3">
-                  {row.plannedCost.toLocaleString("es-ES", {
-                    style: "currency",
-                    currency: "EUR",
-                  })}
-                </td>
-                <td className="px-5 py-3 text-stone-600">{row.costRange}</td>
-              </tr>
-            ))}
+            {PACKAGING_BY_BASKET.map((row, index) => {
+              const slug = BASKET_KEYS[index];
+              const live = slug ? pricing.baskets[slug] : undefined;
+              const cost = live?.packagingCost ?? row.plannedCost;
+              const pvpLabel = live?.pvp
+                ? `${row.basket.split(" ")[0]} ${live.pvp.toLocaleString("es-ES")} €`
+                : row.basket;
+              return (
+                <tr key={row.basket} className="border-t border-stone-100">
+                  <td className="px-5 py-3 font-medium">{pvpLabel}</td>
+                  <td className="px-5 py-3 text-stone-600">{row.pack}</td>
+                  <td className="px-5 py-3 text-stone-600">{row.extra}</td>
+                  <td className="px-5 py-3">
+                    {cost.toLocaleString("es-ES", {
+                      style: "currency",
+                      currency: "EUR",
+                    })}
+                  </td>
+                  <td className="px-5 py-3 text-stone-600">{row.costRange}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </section>
@@ -140,13 +161,32 @@ export default async function AdminPackagingPage() {
         <div className="rounded-3xl border border-stone-200 bg-white p-6">
           <h2 className="text-lg font-semibold">Coste unitario</h2>
           <ul className="mt-4 space-y-2 text-sm">
-            {PACKAGING_UNIT_COSTS.map((row) => (
-              <li key={row.item} className="flex justify-between gap-3">
-                <span className="text-stone-700">{row.item}</span>
-                <span className="tabular-nums font-medium">{row.range}</span>
-              </li>
-            ))}
+            {pricing.packagingUnits.length > 0
+              ? pricing.packagingUnits.map((row) => (
+                  <li key={row.key} className="flex justify-between gap-3">
+                    <span className="text-stone-700">{row.label}</span>
+                    <span className="tabular-nums font-medium">
+                      {row.costEur.toLocaleString("es-ES", {
+                        style: "currency",
+                        currency: "EUR",
+                      })}
+                    </span>
+                  </li>
+                ))
+              : PACKAGING_UNIT_COSTS.map((row) => (
+                  <li key={row.item} className="flex justify-between gap-3">
+                    <span className="text-stone-700">{row.item}</span>
+                    <span className="tabular-nums font-medium">{row.range}</span>
+                  </li>
+                ))}
           </ul>
+          <p className="mt-3 text-xs text-stone-500">
+            Editables en{" "}
+            <Link href="/admin/showroom/precios" className="underline">
+              /admin/showroom/precios
+            </Link>
+            .
+          </p>
         </div>
       </div>
 

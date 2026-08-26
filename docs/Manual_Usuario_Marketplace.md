@@ -298,6 +298,8 @@ Además del menú, la página de inicio muestra **11 tarjetas** con acceso direc
 |--------|------|----------------|
 | Showroom | `/admin/showroom` | Simulador del punto físico: conversión, impulso en caja, lista de 8, cestas y plan 90 días. |
 | Stats showroom | `/admin/showroom/estadisticas` | Registro diario en base de datos, procedencia visitantes, gráficos EDA, informe KPI, export CSV para Python/ML y carga demo. |
+| Showroom | `/admin/showroom` | Simulador 90 días, cestas e impulso. |
+| Precios showroom | `/admin/showroom/precios` | Coste y PVP persistentes: cestas, cajas, tote, catas. |
 | Fidelización | `/admin/showroom/fidelizacion` | Rasca y gana, sellos, Club WhatsApp y referidos en tienda física. |
 | Packaging | `/admin/packaging` | Diseño de cajas kraft, frases de etiqueta y costes de packaging por cesta. |
 | Grupo piloto | `/admin/piloto` | Programa piloto de productores fundadores. Ver §A4.4. |
@@ -390,6 +392,7 @@ Notas:
 |------|-----|
 | `/admin/config` | Redes sociales, bloques del hub de la tienda y auditoría WAI. |
 | `/admin/afiliados` | Programa de afiliados y comisiones a canales externos. |
+| `/admin/showroom/precios` | Coste y PVP de cestas, packaging, tote y catas. |
 | `/admin/showroom/fidelizacion` | Fidelización en showroom (premios, sellos, club). |
 | `/admin/packaging` | Frases, tags y costes de cajas kraft por tipo de cesta. |
 | `/admin/raya` | Checklist documental convocatoria La Raya L1. |

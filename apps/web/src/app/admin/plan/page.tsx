@@ -1,6 +1,7 @@
 import { requireAdmin } from "@/lib/admin";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { prisma } from "@culebra/db";
+import { getShowroomPricingSnapshot } from "@culebra/auth";
 import { OrderStatus, VendorStatus } from "@culebra/domain";
 import { COMMISSION_RATE } from "@/lib/financial-plan";
 import { PlanDashboard, type LivePlanStats } from "./plan-dashboard";
@@ -57,11 +58,18 @@ async function getLivePlanStats(): Promise<LivePlanStats> {
 
 export default async function AdminPlanPage() {
   await requireAdmin();
-  const live = await getLivePlanStats();
+  const [live, pricing] = await Promise.all([
+    getLivePlanStats(),
+    getShowroomPricingSnapshot(),
+  ]);
 
   return (
     <AdminShell title="Plan y simulación">
-      <PlanDashboard live={live} />
+      <PlanDashboard
+        live={live}
+        initialCatasY1={pricing.catasAnnualPlan}
+        initialPackagingPerBasket={pricing.packagingPerBasketDefault}
+      />
     </AdminShell>
   );
 }

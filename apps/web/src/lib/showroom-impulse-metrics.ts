@@ -127,6 +127,10 @@ export type ImpulseMetricsInputs = {
   toteUnitCost: number;
   /** PVP tote */
   totePvp: number;
+  /** Coste variable mini-cata */
+  minicataUnitCost: number;
+  /** PVP mini-cata */
+  minicataPvp: number;
 };
 
 export const DEFAULT_IMPULSE_METRICS: ImpulseMetricsInputs = {
@@ -151,6 +155,8 @@ export const DEFAULT_IMPULSE_METRICS: ImpulseMetricsInputs = {
   toteStock: 40,
   toteUnitCost: 3.5,
   totePvp: 9,
+  minicataUnitCost: 1.5,
+  minicataPvp: 7,
 };
 
 export type ImpulseSkuResult = ImpulseSkuDef & {
@@ -198,7 +204,14 @@ function clampPct(n: number) {
   return Math.min(100, Math.max(0, n));
 }
 
-function skuMargin(def: ImpulseSkuDef, units: number, toteCost: number, totePvp: number): {
+function skuMargin(
+  def: ImpulseSkuDef,
+  units: number,
+  toteCost: number,
+  totePvp: number,
+  minicataCost: number,
+  minicataPvp: number,
+): {
   gmv: number;
   margin: number;
 } {
@@ -206,6 +219,10 @@ function skuMargin(def: ImpulseSkuDef, units: number, toteCost: number, totePvp:
   if (def.id === "tote") {
     const gmv = units * totePvp;
     return { gmv, margin: units * (totePvp - toteCost) };
+  }
+  if (def.id === "minicata") {
+    const gmv = units * minicataPvp;
+    return { gmv, margin: units * (minicataPvp - minicataCost) };
   }
   const gmv = units * def.avgPvp;
   if (def.ownMargin) {
@@ -241,7 +258,14 @@ export function runImpulseMetrics(raw: ImpulseMetricsInputs): ImpulseMetricsResu
 
   const skuRows: ImpulseSkuResult[] = IMPULSE_SKU_DEFS.map((def) => {
     const units = Math.max(0, Math.round(inputs.skuUnits[def.id] ?? 0));
-    const { gmv, margin } = skuMargin(def, units, inputs.toteUnitCost, inputs.totePvp);
+    const { gmv, margin } = skuMargin(
+      def,
+      units,
+      inputs.toteUnitCost,
+      inputs.totePvp,
+      inputs.minicataUnitCost,
+      inputs.minicataPvp,
+    );
     return {
       ...def,
       units,

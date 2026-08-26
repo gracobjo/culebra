@@ -1578,3 +1578,31 @@ model ShowroomReferral {
   @@index([eventDate])
   @@index([rewardGiven])
 }
+
+/// Coste y PVP comercial del showroom (cestas, packaging, tote, catas).
+enum ShowroomPriceKind {
+  BASKET
+  PACKAGING_UNIT
+  MERCH
+  EXPERIENCE
+}
+
+model ShowroomPriceCatalogItem {
+  id        String            @id @default(cuid())
+  kind      ShowroomPriceKind
+  /// Clave estable: cesta-escapada, tote, minicata, caja-kraft-sm, catas-annual-plan…
+  key       String            @unique
+  label     String
+  sortOrder Int               @default(0)
+  /// Coste para la S.L. (packaging, compra tote, coste variable cata…)
+  costEur   Decimal?          @db.Decimal(12, 2)
+  /// Precio de venta orientativo / ticket
+  pvpEur    Decimal?          @db.Decimal(12, 2)
+  notes     String?           @db.Text
+  isActive  Boolean           @default(true)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  @@index([kind, sortOrder])
+  @@index([isActive])
+}

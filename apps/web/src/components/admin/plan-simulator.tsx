@@ -939,8 +939,19 @@ function CashFlowSection({
   );
 }
 
-export function PlanSimulator() {
-  const [inputs, setInputs] = useState<SimulationInputs>(DEFAULT_SIMULATION);
+export function PlanSimulator({
+  initialCatasY1,
+  initialPackagingPerBasket,
+}: {
+  initialCatasY1?: number;
+  initialPackagingPerBasket?: number;
+} = {}) {
+  const [inputs, setInputs] = useState<SimulationInputs>(() => ({
+    ...DEFAULT_SIMULATION,
+    fixed: { ...DEFAULT_SIMULATION.fixed },
+    catasY1: initialCatasY1 ?? DEFAULT_SIMULATION.catasY1,
+    packagingPerBasket: initialPackagingPerBasket ?? DEFAULT_SIMULATION.packagingPerBasket,
+  }));
   const [subsidyMonth, setSubsidyMonth] = useState(DEFAULT_SUBSIDY_MONTH);
   const [launchMonth, setLaunchMonth] = useState(DEFAULT_LAUNCH_MONTH);
   const [customCommissionPct, setCustomCommissionPct] = useState(
@@ -948,9 +959,9 @@ export function PlanSimulator() {
   );
   const [draftParams, setDraftParams] = useState({
     fixedMonthly: sumFixedMonthly(DEFAULT_SIMULATION.fixed),
-    catasY1: DEFAULT_SIMULATION.catasY1,
+    catasY1: initialCatasY1 ?? DEFAULT_SIMULATION.catasY1,
     otherIncomeY1: DEFAULT_SIMULATION.otherIncomeY1,
-    packagingPerBasket: DEFAULT_SIMULATION.packagingPerBasket,
+    packagingPerBasket: initialPackagingPerBasket ?? DEFAULT_SIMULATION.packagingPerBasket,
     capitalRef: DEFAULT_SIMULATION.capitalRef,
     subsidyRef: DEFAULT_SIMULATION.subsidyRef,
   });
@@ -1031,6 +1042,8 @@ export function PlanSimulator() {
     const next = {
       ...DEFAULT_SIMULATION,
       fixed: { ...DEFAULT_SIMULATION.fixed },
+      catasY1: initialCatasY1 ?? DEFAULT_SIMULATION.catasY1,
+      packagingPerBasket: initialPackagingPerBasket ?? DEFAULT_SIMULATION.packagingPerBasket,
     };
     setInputs(next);
     syncDraftFromInputs(next);
