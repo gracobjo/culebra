@@ -900,7 +900,6 @@ export function runCashFlowModel(params: CashFlowInputs = {}): CashFlowModelResu
     };
   });
 
-  let cash = 0;
   const annual: CashFlowAnnualRow[] = [];
 
   const y1SubsidyInYear = subsidyMonth >= 1 && subsidyMonth <= 12 ? subsidyAmount : 0;
@@ -919,7 +918,6 @@ export function runCashFlowModel(params: CashFlowInputs = {}): CashFlowModelResu
     cashEnd: 0,
   };
   y1Row.netPeriod = y1Row.totalInflows - y1Row.totalOutflows;
-  cash += y1Row.netPeriod;
   y1Row.cashEnd = cashEndY1;
   annual.push(y1Row);
 

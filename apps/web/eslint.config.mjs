@@ -13,6 +13,15 @@ const eslintConfig = [
     rules: {
       // Preview admin de URLs dinámicas; Image de Next exige remotePatterns.
       "@next/next/no-img-element": "off",
+      // Args de Server Actions / destructuring intencional: _prev, _formData…
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
     },
   },
 ];

@@ -1,8 +1,4 @@
-import {
-  generateCustomerOrderPdf,
-  generateCustomerOrderPdfForAdmin,
-  generateVendorOrderPdf,
-} from "@/lib/order-document";
+import { generateCustomerOrderPdf } from "@/lib/order-document";
 import { auth } from "@/auth";
 import { guestCanAccessOrder } from "@/lib/cart";
 

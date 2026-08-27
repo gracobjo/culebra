@@ -968,7 +968,7 @@ export function PlanSimulator({
 
   const result = useMemo(() => runSimulation(inputs), [inputs]);
   const cmp = useMemo(() => {
-    const { commissionRate: _ignored, ...base } = inputs;
+    const { commissionRate: _rate, ...base } = inputs;
     return compareCommissions(base);
   }, [inputs]);
 

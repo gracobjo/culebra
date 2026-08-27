@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { auth } from "@/auth";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { getVendorProduct, listCategories, listProductChangeDocuments } from "@culebra/auth";
 import { ProductForm } from "@/components/catalog/product-form";
 import { DownloadOrderDocumentButton } from "@/components/orders/download-order-document-button";

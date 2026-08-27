@@ -9,6 +9,7 @@ import { CartCouponForm } from "@/components/cart/cart-coupon-form";
 import { formatPrice } from "@/lib/format";
 import { PageShell } from "@/components/layout/page-shell";
 import { Breadcrumbs } from "@/components/ux/breadcrumbs";
+import { EmptyState } from "@/components/ux/empty-state";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 

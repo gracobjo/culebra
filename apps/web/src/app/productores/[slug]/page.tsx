@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicVendorBySlug, listPublicProducts } from "@culebra/auth";
 import { ProductCard } from "@/components/catalog/product-card";
