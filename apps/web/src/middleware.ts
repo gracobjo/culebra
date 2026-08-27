@@ -1,11 +1,23 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getToken } from "next-auth/jwt";
 
 const protectedPrefixes = ["/cuenta", "/panel/proveedor", "/admin"];
 
+const SESSION_COOKIE_NAMES = [
+  "__Secure-authjs.session-token",
+  "authjs.session-token",
+  "__Host-authjs.session-token",
+  "__Secure-next-auth.session-token",
+  "next-auth.session-token",
+] as const;
+
 function requiresAuth(pathname: string) {
   return protectedPrefixes.some((prefix) => pathname.startsWith(prefix));
+}
+
+/** Evita getToken() en Edge (jose/CompressionStream rompe y parece “sin sesión”). */
+function hasSessionCookie(request: NextRequest): boolean {
+  return SESSION_COOKIE_NAMES.some((name) => Boolean(request.cookies.get(name)?.value));
 }
 
 function parseOriginHost(origin: string): string {
@@ -51,28 +63,10 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const ref = request.nextUrl.searchParams.get("ref");
 
-  const token = await getToken({
-    req: request,
-    secret: process.env.AUTH_SECRET,
-  });
-
-  if (!token && requiresAuth(pathname)) {
+  if (requiresAuth(pathname) && !hasSessionCookie(request)) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);
-  }
-
-  if (token?.status && token.status !== "ACTIVE" && requiresAuth(pathname)) {
-    const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("error", "account_suspended");
-    return NextResponse.redirect(loginUrl);
-  }
-
-  if (pathname.startsWith("/admin") && token) {
-    const roles = (token.roles as string[] | undefined) ?? [];
-    if (!roles.includes("ADMIN")) {
-      return NextResponse.redirect(new URL("/cuenta", request.url));
-    }
   }
 
   const response = NextResponse.next({

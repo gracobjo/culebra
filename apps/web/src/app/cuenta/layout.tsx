@@ -1,12 +1,17 @@
-import type { Metadata } from "next";
-import { privateAreaMetadata } from "@/lib/site";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
-export const metadata: Metadata = privateAreaMetadata;
-
-export default function AccountLayout({
+export default async function CuentaLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth().catch(() => null);
+  if (!session?.user?.id) {
+    redirect("/login?callbackUrl=%2Fcuenta");
+  }
+  if (session.user.status && session.user.status !== "ACTIVE") {
+    redirect("/login?error=account_suspended");
+  }
   return children;
 }

@@ -44,15 +44,15 @@ const tabs = [
   },
 ];
 
-function getAccountHref(user: SessionUser | null | undefined, isLoggedIn: boolean, isAdmin?: boolean): string {
+function getAccountHref(user: SessionUser | null | undefined, isLoggedIn: boolean): string {
   if (!isLoggedIn) return "/login";
-  if (isAdmin) return "/admin";
-  if (user?.roles.includes("VENDOR")) return "/panel/proveedor";
+  if (user?.roles.includes("VENDOR") && !user.roles.includes("ADMIN")) {
+    return "/panel/proveedor";
+  }
   return "/cuenta";
 }
 
-function getAccountLabel(user: SessionUser | null | undefined, isLoggedIn: boolean, isAdmin?: boolean): string {
-  if (isAdmin) return "Admin";
+function getAccountLabel(user: SessionUser | null | undefined, isLoggedIn: boolean): string {
   if (!isLoggedIn || !user) return "Cuenta";
   const first = user.name.trim().split(/\s+/)[0];
   if (!first) return "Cuenta";
@@ -61,8 +61,8 @@ function getAccountLabel(user: SessionUser | null | undefined, isLoggedIn: boole
 
 export function MobileTabBar({ cartCount, isLoggedIn, isAdmin, user }: MobileTabBarProps) {
   const pathname = usePathname();
-  const accountHref = getAccountHref(user, isLoggedIn, isAdmin);
-  const accountLabel = getAccountLabel(user, isLoggedIn, isAdmin);
+  const accountHref = getAccountHref(user, isLoggedIn);
+  const accountLabel = getAccountLabel(user, isLoggedIn);
   const visibleTabs = isAdmin ? tabs.filter((tab) => tab.id !== "cart") : tabs;
 
   return (
@@ -74,10 +74,7 @@ export function MobileTabBar({ cartCount, isLoggedIn, isAdmin, user }: MobileTab
         {visibleTabs.map((tab) => {
           const href = tab.id === "account" ? accountHref : tab.href;
           const label = tab.id === "account" ? accountLabel : tab.label;
-          const active =
-            tab.id === "account" && isAdmin
-              ? pathname.startsWith("/admin")
-              : tab.match(pathname);
+          const active = tab.match(pathname);
           return (
             <li key={tab.id}>
               <Link
