@@ -29,7 +29,11 @@ async function sendTelegramLogin(email: string, role: string, success: boolean) 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: "Markdown" }),
     });
-    const body = await res.json() as { ok: boolean; description?: string };
+    const body = (await res.json()) as {
+      ok: boolean;
+      description?: string;
+      result?: { message_id?: number };
+    };
     if (!body.ok) {
       console.error("[telegram] Error API:", body.description);
     } else {
