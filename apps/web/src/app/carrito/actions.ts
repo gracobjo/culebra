@@ -9,8 +9,8 @@ import {
   checkoutSchema,
   clearCartCoupon,
   createOrderCheckoutSession,
-  CUSTOMER_SHIPPING_FEE_EUR,
   getOrCreateCart,
+  getCustomerShippingFeeEur,
   isStripeConfigured,
   removeCartItem,
   updateCartItem,
@@ -212,6 +212,7 @@ export async function checkoutAction(
 }
 
 export async function loadCart() {
+  const fee = await getCustomerShippingFeeEur().catch(() => 0);
   const empty = {
     id: null,
     sessionId: null,
@@ -223,7 +224,7 @@ export async function loadCart() {
     shippingAmount: "0.00",
     shippingFree: false,
     amountToFreeShipping: "0.00",
-    freeShippingThreshold: CUSTOMER_SHIPPING_FEE_EUR.toFixed(2),
+    freeShippingThreshold: fee.toFixed(2),
     grandTotal: "0.00",
     items: [],
   };

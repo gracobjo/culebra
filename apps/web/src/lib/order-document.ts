@@ -48,6 +48,7 @@ export type CustomerOrderDocument = {
   currency: string;
   lines: DocumentLineItem[];
   subtotalGross: number;
+  shippingAmount: number;
   taxTotal: number;
   totalAmount: number;
   vendorOrders: Array<{
@@ -188,6 +189,7 @@ function mapCustomerOrderDocument(order: {
   billingAddressSnapshot: unknown;
   currency: string;
   subtotalGross: unknown;
+  shippingAmount?: unknown;
   taxTotal: unknown;
   totalAmount: unknown;
   items: Array<{
@@ -197,6 +199,8 @@ function mapCustomerOrderDocument(order: {
     unitPrice: unknown;
     subtotalGross: unknown;
     vatRate: unknown;
+    taxAmount?: unknown;
+    netAmount?: unknown;
     vendor?: { tradeName: string } | null;
   }>;
   payment: {
@@ -234,6 +238,7 @@ function mapCustomerOrderDocument(order: {
     currency: order.currency,
     lines: order.items.map((item) => mapLineItem(item)),
     subtotalGross: asNumber(order.subtotalGross),
+    shippingAmount: asNumber(order.shippingAmount ?? 0),
     taxTotal: asNumber(order.taxTotal),
     totalAmount: asNumber(order.totalAmount),
     vendorOrders: order.vendorOrders.map((vendorOrder) => ({
@@ -471,6 +476,13 @@ async function renderCustomerOrderPdf(data: CustomerOrderDocument): Promise<Buff
     writeHeading(doc, "Totales");
     writeKeyValue(doc, "Subtotal (IVA incl.)", formatMoney(data.subtotalGross, data.currency));
     writeKeyValue(doc, "IVA total", formatMoney(data.taxTotal, data.currency));
+    if (data.shippingAmount > 0) {
+      writeKeyValue(
+        doc,
+        "Gastos de envio (tarifa plana)",
+        formatMoney(data.shippingAmount, data.currency),
+      );
+    }
     writeKeyValue(doc, "Total pagado", formatMoney(data.totalAmount, data.currency));
 
     if (data.vendorOrders.length > 0) {

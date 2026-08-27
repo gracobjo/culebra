@@ -135,8 +135,18 @@ export type {
 } from "./cart.schemas.js";
 export { checkoutCart } from "./checkout.service.js";
 export type { OrderSummary } from "./checkout.service.js";
-export { computeShippingQuote } from "./shipping.service.js";
+export { computeShippingQuote, getShippingQuote } from "./shipping.service.js";
 export type { ShippingQuote } from "./shipping.service.js";
+export {
+  getCustomerShippingFeeEur,
+  getShippingSettings,
+  upsertShippingSettingsForAdmin,
+} from "./shipping-settings.service.js";
+export type { ShippingSettingsRecord } from "./shipping-settings.service.js";
+export {
+  shippingSettingsUpsertSchema,
+} from "./shipping-settings.schemas.js";
+export type { ShippingSettingsUpsertInput } from "./shipping-settings.schemas.js";
 export {
   CUSTOMER_SHIPPING_FEE_EUR,
   FREE_SHIPPING_THRESHOLD_EUR,

@@ -6,8 +6,10 @@ import {
   deleteHomeHubTileForAdmin,
   homeHubTileUpsertSchema,
   seedHomeHubTilesIfEmpty,
+  shippingSettingsUpsertSchema,
   siteSocialLinksUpsertSchema,
   upsertHomeHubTileForAdmin,
+  upsertShippingSettingsForAdmin,
   upsertSiteSocialLinksForAdmin,
   type SiteSocialLinksUpsertInput,
 } from "@culebra/auth";
@@ -46,6 +48,36 @@ export async function upsertSiteSocialLinksAction(
   revalidatePath("/");
 
   return { success: "Redes sociales actualizadas." };
+}
+
+export async function upsertShippingSettingsAction(
+  _prev: SiteConfigAdminState,
+  formData: FormData,
+): Promise<SiteConfigAdminState> {
+  await requireAdmin("/admin/config");
+
+  const parsed = shippingSettingsUpsertSchema.safeParse({
+    customerFeeEur: formData.get("customerFeeEur"),
+    internalLabelCostEur: formData.get("internalLabelCostEur"),
+  });
+
+  if (!parsed.success) {
+    return { error: "Revisa los importes de envío (números ≥ 0)." };
+  }
+
+  try {
+    await upsertShippingSettingsForAdmin(parsed.data);
+  } catch {
+    return {
+      error: "No se pudo guardar. ¿Está aplicada la migración ShippingSettings?",
+    };
+  }
+
+  revalidatePath("/admin/config");
+  revalidatePath("/carrito");
+  revalidatePath("/checkout");
+
+  return { success: "Tarifa de envío actualizada. Se aplica a carritos y pedidos nuevos." };
 }
 
 export async function upsertHomeHubTileAction(

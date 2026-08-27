@@ -183,11 +183,11 @@ export const DEFAULT_MIN_COMMISSION_EUR = 4;
  */
 export const FREE_SHIPPING_THRESHOLD_EUR = Number.POSITIVE_INFINITY;
 
-/** Tarifa plana de envío que paga siempre el cliente. */
+/** Tarifa plana de envío por defecto (fallback si no hay fila en ShippingSettings). */
 export const CUSTOMER_SHIPPING_FEE_EUR = 6.5;
 
 /**
- * Coste interno orientativo de etiqueta (referencia operativa).
+ * Coste interno orientativo de etiqueta por defecto (fallback admin / operativa).
  * La S.L. no lo absorbe: lo cubre el cargo al cliente.
  */
 export const MARKETPLACE_SHIPPING_COST_EUR = 6.5;

@@ -1353,6 +1353,17 @@ model SiteSocialLinks {
   updatedAt    DateTime @updatedAt
 }
 
+/// Política de portes marketplace (singleton id=1). Editable en /admin/config.
+model ShippingSettings {
+  id                   Int      @id @default(1)
+  /// Tarifa plana que paga el cliente (carrito, checkout, pedidos nuevos).
+  customerFeeEur       Decimal  @default(6.50) @db.Decimal(12, 2)
+  /// Coste interno orientativo de etiqueta (referencia operativa).
+  internalLabelCostEur Decimal  @default(6.50) @db.Decimal(12, 2)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
 /// Bloques (divs) del hub «Tienda de la comarca» en inicio / tienda.
 model HomeHubTile {
   id          String   @id @default(cuid())

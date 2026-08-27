@@ -3,7 +3,7 @@ import { prisma, type Prisma } from "@culebra/db";
 
 import type { AddCartItemInput, ApplyCartCouponInput } from "./cart.schemas.js";
 import { computeCouponDiscount, getActiveCouponByCode } from "./coupon.service.js";
-import { computeShippingQuote } from "./shipping.service.js";
+import { getShippingQuote } from "./shipping.service.js";
 import { generateSecureToken } from "./token.js";
 import { getPublicTourismPackBySlug } from "./tourism-pack.service.js";
 
@@ -142,7 +142,7 @@ async function mapCart(cart: {
   }
 
   const total = Math.max(0, subtotalNumber - Number(discountAmount)).toFixed(2);
-  const shipping = computeShippingQuote(Number(total));
+  const shipping = await getShippingQuote(Number(total));
 
   return {
     id: cart.id,

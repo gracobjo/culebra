@@ -23,7 +23,7 @@ import {
   sendVendorNewOrderEmail,
 } from "./email.service.js";
 import { notifyCheckout } from "./notifications.service.js";
-import { computeShippingQuote } from "./shipping.service.js";
+import { getShippingQuote } from "./shipping.service.js";
 import { recordOrderDocuments } from "./stored-document.service.js";
 
 type CartOwner = {
@@ -166,7 +166,7 @@ export async function checkoutCart(
   const merchandiseTotal = Number(
     Math.max(0, subtotalGross - discountAmount).toFixed(2),
   );
-  const shipping = computeShippingQuote(merchandiseTotal);
+  const shipping = await getShippingQuote(merchandiseTotal);
   const totalAmount = shipping.grandTotal;
 
   const vendorIdsUnique = vendorIds;

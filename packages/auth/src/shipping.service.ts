@@ -1,5 +1,7 @@
 import { CUSTOMER_SHIPPING_FEE_EUR } from "@culebra/domain";
 
+import { getCustomerShippingFeeEur } from "./shipping-settings.service.js";
+
 export type ShippingQuote = {
   /** Merchandise after coupon, before shipping. */
   merchandiseTotal: number;
@@ -20,13 +22,16 @@ export type ShippingQuote = {
 
 /**
  * Política de envíos v4 (dossier):
- * - El cliente paga siempre tarifa plana (`CUSTOMER_SHIPPING_FEE_EUR`, 6,50 €).
+ * - El cliente paga siempre tarifa plana (BD `/admin/config` o fallback de dominio).
  * - No hay envío gratis ni absorción de etiquetas por la S.L.
  * - Carrito vacío (merchandise 0) → shipping 0.
  */
-export function computeShippingQuote(merchandiseTotal: number): ShippingQuote {
+export function computeShippingQuote(
+  merchandiseTotal: number,
+  feeEur: number = CUSTOMER_SHIPPING_FEE_EUR,
+): ShippingQuote {
   const merchandise = Number(Math.max(0, merchandiseTotal).toFixed(2));
-  const standardFee = CUSTOMER_SHIPPING_FEE_EUR;
+  const standardFee = Number(Math.max(0, feeEur).toFixed(2));
   const shippingAmount = merchandise > 0 ? standardFee : 0;
   const grandTotal = Number((merchandise + shippingAmount).toFixed(2));
 
@@ -40,4 +45,10 @@ export function computeShippingQuote(merchandiseTotal: number): ShippingQuote {
     standardFee,
     absorbedShippingCost: 0,
   };
+}
+
+/** Quote con la tarifa vigente en admin (singleton ShippingSettings). */
+export async function getShippingQuote(merchandiseTotal: number): Promise<ShippingQuote> {
+  const fee = await getCustomerShippingFeeEur();
+  return computeShippingQuote(merchandiseTotal, fee);
 }
