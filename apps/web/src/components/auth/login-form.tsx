@@ -5,6 +5,29 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
+type SessionPayload = { user?: { roles?: string[] } };
+
+async function waitForSession(retries = 8): Promise<SessionPayload["user"] | null> {
+  for (let i = 0; i < retries; i++) {
+    const sessionRes = await fetch("/api/auth/session", { cache: "no-store" });
+    if (sessionRes.ok) {
+      const session = (await sessionRes.json()) as SessionPayload;
+      if (session?.user) return session.user;
+    }
+    await new Promise((r) => setTimeout(r, 200));
+  }
+  return null;
+}
+
+function resolvePostLoginPath(roles: string[], callbackUrl: string | null): string {
+  if (roles.includes("ADMIN")) return "/admin";
+  if (roles.includes("VENDOR")) return "/panel/proveedor";
+  if (callbackUrl?.startsWith("/") && !callbackUrl.startsWith("//")) {
+    return callbackUrl;
+  }
+  return "/cuenta";
+}
+
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -17,7 +40,7 @@ export function LoginForm() {
     setError(null);
 
     const formData = new FormData(event.currentTarget);
-    const email = String(formData.get("email") ?? "");
+    const email = String(formData.get("email") ?? "").trim();
     const password = String(formData.get("password") ?? "");
 
     const result = await signIn("credentials", {
@@ -26,40 +49,22 @@ export function LoginForm() {
       redirect: false,
     });
 
-    setLoading(false);
-
     if (result?.error) {
-      setError("Credenciales invalidas.");
+      setLoading(false);
+      setError("Credenciales invalidas. Revisa email y contraseña.");
       return;
     }
 
-    const callbackUrl = searchParams.get("callbackUrl");
-    if (callbackUrl) {
-      router.push(callbackUrl);
-      router.refresh();
+    const user = await waitForSession();
+    if (!user) {
+      setLoading(false);
+      setError("Sesión no disponible. Recarga e inténtalo de nuevo.");
       return;
     }
 
-    // Redirección según rol (la pantalla por defecto de /login es /cuenta,
-    // pero si eres VENDOR/ADMIN debes ir al panel correspondiente).
-    // Nota: la sesión puede tardar un instante en estar disponible, así que hacemos
-    // un par de reintentos.
-    let roles: string[] = [];
-    for (let i = 0; i < 3; i++) {
-      const sessionRes = await fetch("/api/auth/session");
-      const session = (await sessionRes.json()) as { user?: { roles?: string[] } };
-      roles = session?.user?.roles ?? [];
-      if (roles.length) break;
-      await new Promise((r) => setTimeout(r, 250));
-    }
-
-    if (roles.includes("ADMIN")) {
-      router.push("/admin");
-    } else if (roles.includes("VENDOR")) {
-      router.push("/panel/proveedor");
-    } else {
-      router.push("/cuenta");
-    }
+    const path = resolvePostLoginPath(user.roles ?? [], searchParams.get("callbackUrl"));
+    // Navegación completa para que el middleware vea la cookie de sesión.
+    window.location.assign(path);
     router.refresh();
   }
 
@@ -72,8 +77,11 @@ export function LoginForm() {
         <input
           id="email"
           name="email"
-          type="email"
+          type="text"
+          inputMode="email"
+          autoComplete="username"
           required
+          placeholder="laura.garcia@example.com"
           className="w-full rounded-xl border border-stone-300 px-4 py-3"
         />
       </div>
@@ -85,6 +93,7 @@ export function LoginForm() {
           id="password"
           name="password"
           type="password"
+          autoComplete="current-password"
           required
           className="w-full rounded-xl border border-stone-300 px-4 py-3"
         />
