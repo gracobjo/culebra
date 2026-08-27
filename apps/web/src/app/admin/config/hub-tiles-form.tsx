@@ -150,7 +150,6 @@ export function HomeHubTilesCrud({ tiles }: { tiles: HomeHubTileRecord[] }) {
             <div className="overflow-hidden rounded-2xl border border-stone-200">
               {/* preview del div público */}
               <div className="relative h-28 bg-stone-200">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={tile.imageUrl} alt={tile.altText} className="h-full w-full object-cover" />
               </div>
               <p className="px-3 py-2 text-sm font-medium">{tile.title}</p>

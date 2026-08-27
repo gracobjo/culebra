@@ -1,25 +1,20 @@
-import tseslint from "typescript-eslint";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { FlatCompat } from "@eslint/eslintrc";
 
-export default [
+const compat = new FlatCompat({
+  baseDirectory: dirname(fileURLToPath(import.meta.url)),
+});
+
+/** @type {import("eslint").Linter.Config[]} */
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
-    files: ["src/**/*.{ts,tsx}"],
-    languageOptions: {
-      parser: tseslint.parser,
-      ecmaVersion: "latest",
-      sourceType: "module",
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
-        project: "./tsconfig.json",
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-    plugins: {
-      "@typescript-eslint": tseslint.plugin,
-    },
     rules: {
-      "no-undef": "off",
+      // Preview admin de URLs dinámicas; Image de Next exige remotePatterns.
+      "@next/next/no-img-element": "off",
     },
   },
 ];
+
+export default eslintConfig;
