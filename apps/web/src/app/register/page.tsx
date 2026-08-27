@@ -1,8 +1,18 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 import { RegisterForm } from "@/components/auth/register-form";
 import { PageShell } from "@/components/layout/page-shell";
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  const session = await auth().catch(() => null);
+  if (session?.user) {
+    const roles = session.user.roles ?? [];
+    if (roles.includes("ADMIN")) redirect("/admin");
+    if (roles.includes("VENDOR")) redirect("/panel/proveedor");
+    redirect("/cuenta");
+  }
+
   return (
     <PageShell width="sm" className="flex flex-col justify-center">
       <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8">
