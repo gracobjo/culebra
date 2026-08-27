@@ -3,6 +3,7 @@ import { prisma } from "@culebra/db";
 
 import { getCategoryById } from "./category.service.js";
 import { vendorHasActiveContract } from "./contract.service.js";
+import { toInputJson } from "./prisma-helpers.js";
 import { createUniqueSlug } from "./slug.js";
 import type {
   ProductCatalogQuery,
@@ -120,7 +121,7 @@ async function writeAuditLog(params: {
       fieldName: params.fieldName,
       oldValue: params.oldValue,
       newValue: params.newValue,
-      metadata: params.metadata,
+      metadata: toInputJson(params.metadata),
     },
   });
 }

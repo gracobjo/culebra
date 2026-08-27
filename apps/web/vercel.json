@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "cd ../.. && npm install",
+  "buildCommand": "cd ../.. && npm run generate --workspace @culebra/db && npm run build --workspace @culebra/domain && npm run build --workspace @culebra/auth && cd apps/web && npx next build"
+}

@@ -36,7 +36,14 @@ scripts/
 docker-compose.yml
 ```
 
-Documentación clave: [`docs/admin.md`](docs/admin.md) (menú completo del panel: cada enlace, tarjetas del resumen y funcionalidades) · [`docs/Funcionalidades_Python_IA.md`](docs/Funcionalidades_Python_IA.md) · [`docs/Requisitos_Funcionales_NoFuncionales_UseCases_UML.md`](docs/Requisitos_Funcionales_NoFuncionales_UseCases_UML.md) · [`docs/Manual_Usuario_Marketplace.md`](docs/Manual_Usuario_Marketplace.md) · [`ml/README.md`](ml/README.md).
+## Despliegue en Vercel (apps/web)
+
+1. En el proyecto Vercel, **Root Directory** = `apps/web`.
+2. Framework: Next.js (auto). `apps/web/vercel.json` define install/build del monorepo.
+3. Variables de entorno mínimas: `DATABASE_URL`, `AUTH_SECRET`, `AUTH_URL` / `NEXT_PUBLIC_APP_URL`, Stripe si aplica.
+4. Tras el deploy, ejecuta migraciones contra la BD (`npm run db:migrate:deploy`) desde CI o local apuntando a la misma `DATABASE_URL`.
+
+No uses `apps/api` como Root Directory en Vercel: ese paquete es Fastify y no es el front Next.js.
 
 ## Requisitos
 

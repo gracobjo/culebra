@@ -5,6 +5,7 @@ import { prisma } from "@culebra/db";
 
 import type { ContractVersionCreateInput } from "./contract.schemas.js";
 import { syncCommissionRuleFromContract } from "./commission.service.js";
+import { toInputJson } from "./prisma-helpers.js";
 import { getVendorById, getVendorByUserId } from "./vendor.service.js";
 
 export const DEFAULT_CONTRACT_CONDITIONS = `[REVISAR CON ABOGADO]
@@ -145,7 +146,7 @@ async function writeAuditLog(params: {
       entityType: params.entityType,
       entityId: params.entityId,
       action: params.action,
-      metadata: params.metadata ?? undefined,
+      metadata: toInputJson(params.metadata),
     },
   });
 }
@@ -467,7 +468,7 @@ export async function acceptContractVersion(
     commissionPercent: version.commissionPercent?.toString() ?? null,
   });
 
-  await prisma.$transaction(async (tx: typeof prisma) => {
+  await prisma.$transaction(async (tx) => {
     await tx.contractAcceptance.create({
       data: {
         contractVersionId: versionId,

@@ -4,6 +4,7 @@ import { sendShipmentNotificationEmail } from "./email.service.js";
 
 import { getVendorByUserId } from "./vendor.service.js";
 import type { ShipVendorOrderInput, VendorOrderStatusInput } from "./order.schemas.js";
+import { toInputJson } from "./prisma-helpers.js";
 import { isStripeConfigured } from "./stripe.js";
 
 type AddressSnapshot = {
@@ -80,6 +81,7 @@ export type VendorOrderDetail = {
   id: string;
   orderId: string;
   orderNumber: string;
+  vendorId: string;
   status: string;
   orderStatus: string;
   paymentStatus: string | null;
@@ -274,7 +276,7 @@ async function writeAuditLog(params: {
       entityType: "VendorOrder",
       entityId: params.entityId,
       action: params.action,
-      metadata: params.metadata,
+      metadata: toInputJson(params.metadata),
     },
   });
 }
@@ -353,6 +355,7 @@ export async function listOrdersForUser(userId: string): Promise<OrderListItem[]
 
 function mapVendorOrderDetail(row: {
   id: string;
+  vendorId: string;
   status: string;
   subtotalGross: unknown;
   marketplaceCommission?: unknown;
@@ -386,6 +389,7 @@ function mapVendorOrderDetail(row: {
     id: row.id,
     orderId: row.order.id,
     orderNumber: row.order.orderNumber,
+    vendorId: row.vendorId,
     status: row.status,
     orderStatus: row.order.status,
     paymentStatus: row.order.payment?.status ?? null,
@@ -488,7 +492,7 @@ async function syncParentOrderStatus(orderId: string) {
   if (next !== order.status) {
     await prisma.order.update({
       where: { id: orderId },
-      data: { status: next },
+      data: { status: next as OrderStatus },
     });
   }
 }

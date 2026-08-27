@@ -1,6 +1,7 @@
 import { AuditAction, UserRole, VendorPayoutMethod, VendorStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
 
+import { toInputJson } from "./prisma-helpers.js";
 import { createUniqueSlug } from "./slug.js";
 import type {
   VendorApplyInput,
@@ -109,7 +110,7 @@ async function writeAuditLog(params: {
       entityType: params.entityType,
       entityId: params.entityId,
       action: params.action,
-      metadata: params.metadata,
+      metadata: toInputJson(params.metadata),
     },
   });
 }

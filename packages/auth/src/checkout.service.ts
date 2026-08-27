@@ -176,7 +176,7 @@ export async function checkoutCart(
     throw new Error("CART_EMPTY");
   }
 
-  const order = await prisma.$transaction(async (tx: typeof prisma) => {
+  const order = await prisma.$transaction(async (tx) => {
     const created = await tx.order.create({
       data: {
         orderNumber,

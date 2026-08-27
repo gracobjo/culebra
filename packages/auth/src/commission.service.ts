@@ -3,6 +3,7 @@ import { prisma } from "@culebra/db";
 
 import type { CommissionRuleCreateInput } from "./commission.schemas.js";
 import { getCategoryById } from "./category.service.js";
+import { toInputJson } from "./prisma-helpers.js";
 import { getVendorById, getVendorByUserId } from "./vendor.service.js";
 
 export type CommissionRuleRecord = {
@@ -100,7 +101,7 @@ async function writeAuditLog(params: {
       entityType: params.entityType,
       entityId: params.entityId,
       action: params.action,
-      metadata: params.metadata ?? undefined,
+      metadata: toInputJson(params.metadata),
     },
   });
 }
@@ -278,7 +279,7 @@ export async function createCommissionRuleForAdmin(
       : { categoryId: null }),
   };
 
-  const created = await prisma.$transaction(async (tx: typeof prisma) => {
+  const created = await prisma.$transaction(async (tx) => {
     await tx.commissionRule.updateMany({
       where: overlapWhere,
       data: { validTo: now },

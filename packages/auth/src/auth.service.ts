@@ -1,5 +1,6 @@
 import { AuditAction, UserRole, type UserStatus } from "@culebra/domain";
 import { prisma } from "@culebra/db";
+import { toInputJson } from "./prisma-helpers.js";
 
 import { signAccessToken } from "./jwt.js";
 import { hashPassword, verifyPassword } from "./password.js";
@@ -79,7 +80,7 @@ async function writeAuditLog(params: {
       entityType: params.entityType,
       entityId: params.entityId,
       action: params.action,
-      metadata: params.metadata,
+      metadata: toInputJson(params.metadata),
     },
   });
 }

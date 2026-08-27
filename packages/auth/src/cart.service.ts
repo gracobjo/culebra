@@ -1,5 +1,5 @@
 import { ProductStatus, VendorStatus } from "@culebra/domain";
-import { prisma } from "@culebra/db";
+import { prisma, type Prisma } from "@culebra/db";
 
 import type { AddCartItemInput, ApplyCartCouponInput } from "./cart.schemas.js";
 import { computeCouponDiscount, getActiveCouponByCode } from "./coupon.service.js";
@@ -287,8 +287,8 @@ async function mergeGuestCart(userId: string, sessionId: string) {
     variantId: string | null;
     vendorId: string;
     quantity: number;
-    unitPriceSnapshot: unknown;
-    vatRateSnapshot: unknown;
+    unitPriceSnapshot: Prisma.Decimal;
+    vatRateSnapshot: Prisma.Decimal;
   };
   const userItems: MergeItem[] = [...(userCart.items as MergeItem[])];
 

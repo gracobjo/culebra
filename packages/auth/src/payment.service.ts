@@ -230,19 +230,7 @@ async function createVendorTransfers(orderId: string, paymentId: string, orderNu
     include: { vendor: true, payout: true },
   });
 
-  for (const vendorOrder of vendorOrders as Array<{
-    id: string;
-    vendorId: string;
-    subtotalGross: unknown;
-    marketplaceCommission: unknown;
-    otherFees: unknown;
-    vendorNetAmount: unknown;
-    payout: { id: string } | null;
-    vendor: {
-      stripeAccountId: string | null;
-      stripeChargesEnabled: boolean;
-    };
-  }>) {
+  for (const vendorOrder of vendorOrders) {
     if (vendorOrder.payout) {
       continue;
     }
@@ -439,7 +427,7 @@ export async function markOrderPaid(params: {
     },
   });
 
-  const shippingStatuses = [
+  const shippingStatuses: OrderStatus[] = [
     OrderStatus.PARTIALLY_SHIPPED,
     OrderStatus.SHIPPED,
     OrderStatus.DELIVERED,

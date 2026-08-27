@@ -1,4 +1,5 @@
 import { prisma } from "@culebra/db";
+import { toInputJson, toInputJsonValue } from "./prisma-helpers.js";
 
 export type StoredDocumentKind = "ORDER_CUSTOMER" | "ORDER_VENDOR" | "PRODUCT_CHANGE";
 
@@ -142,7 +143,7 @@ export async function recordOrderDocuments(orderId: string): Promise<void> {
       entityType: "Order",
       entityId: orderId,
       title: `Pedido ${order.orderNumber}`,
-      snapshot,
+      snapshot: toInputJsonValue(snapshot),
       retentionUntil: retentionUntil("ORDER_CUSTOMER"),
     },
   });
@@ -161,11 +162,11 @@ export async function recordOrderDocuments(orderId: string): Promise<void> {
         entityType: "VendorOrder",
         entityId: vendorOrder.id,
         title: `Pedido ${order.orderNumber} · ${vendorOrder.vendorName}`,
-        snapshot: {
+        snapshot: toInputJsonValue({
           ...snapshot,
           vendorOrderId: vendorOrder.id,
           vendorName: vendorOrder.vendorName,
-        },
+        }),
         retentionUntil: retentionUntil("ORDER_VENDOR"),
       },
     });
@@ -198,7 +199,7 @@ export async function recordProductChangeDocument(params: {
       entityType: "Product",
       entityId: params.productId,
       title: `Cambio en ${params.productName}`,
-      snapshot,
+      snapshot: toInputJsonValue(snapshot),
       retentionUntil: retentionUntil("PRODUCT_CHANGE"),
     },
   });
