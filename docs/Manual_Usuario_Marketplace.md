@@ -59,7 +59,7 @@ Rutas típicas:
 - Añade productos (o un pack completo: añade sus líneas de producto).
 - Puedes aplicar un **cupón** en `/carrito` (código; descuento % o fijo según reglas).
 - Si llegas con `?ref=CODIGO` (afiliado de un alojamiento), el código se guarda en cookie y se asocia al pedido en checkout.
-- **Envío:** tarifa plana de **6,50 €** por pedido, siempre a cargo del cliente (sin envío gratis).
+- **Envío:** tarifa plana a cargo del cliente (sin envío gratis). El importe vigente lo fija el administrador en `/admin/config` y se aplica en carrito y checkout; en la web se describe como «tarifa plana a cargo del cliente».
 - El sistema prepara el pedido agregando vendedores implicados.
 
 #### 4) Checkout y pago avanzado (Stripe Connect + Bizum)
@@ -263,7 +263,7 @@ Además del menú, la página de inicio muestra **11 tarjetas** con acceso direc
 | Enlace | Ruta | Para qué sirve |
 |--------|------|----------------|
 | Resumen | `/admin` | Cuadro de mando: pendientes de productores, productos, contratos y liquidaciones; accesos rápidos a showroom, estadísticas y turismo. |
-| Configuración | `/admin/config` | Redes sociales del sitio; bloques visuales del hub de la tienda; auditoría de accesibilidad (WAI) en páginas públicas. |
+| Configuración | `/admin/config` | **Envío (tarifa plana)** editable; redes sociales; bloques del hub de la tienda; auditoría WAI. |
 
 ##### Catálogo
 

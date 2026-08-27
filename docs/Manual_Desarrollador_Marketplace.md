@@ -243,16 +243,19 @@ Migración: `packages/db/prisma/migrations/20260820130000_tourism_module/`
 
 Hub UX: `/tienda` (agro + entradas turismo). `/categorias` (índice) redirige a `/tienda`.
 
-### B8c. Envío con umbral gratuito
+### B8c. Envío (tarifa plana editable)
 
-Regla en `packages/auth/src/shipping.service.ts` (`computeShippingQuote`):
+Regla en `packages/auth/src/shipping.service.ts` (`getShippingQuote` / `computeShippingQuote`):
 
-- Merchandise &gt; 0 → cliente paga **6,50 €** (`Order.shippingAmount`); no hay envío gratis
+- Merchandise &gt; 0 → cliente paga la **tarifa plana vigente** (`Order.shippingAmount`); no hay envío gratis
+- Importe: `ShippingSettings.customerFeeEur` (admin `/admin/config`) o fallback `CUSTOMER_SHIPPING_FEE_EUR` (6,5 €)
+- Coste etiqueta interno: `ShippingSettings.internalLabelCostEur` (referencia; no se cobra aparte)
 - La S.L. no absorbe portes; comisión por defecto **17 %** (mínimo **4 €** por subpedido)
+- PDF cliente: desglose «Gastos de envio (tarifa plana)»
 
-Constantes: `@culebra/domain` (`CUSTOMER_SHIPPING_FEE_EUR = 6.5`, `DEFAULT_MARKETPLACE_COMMISSION_PERCENT = 17`, `DEFAULT_MIN_COMMISSION_EUR = 4`).
+Migraciones: `20260820140000_order_shipping_amount`, `20260827220000_shipping_settings`.
 
-Migración: `20260820140000_order_shipping_amount`.
+Detalle: [`cart.md`](./cart.md) · [`admin.md`](./admin.md) § Configuración.
 
 ### B9. Diagramas y modelado
 

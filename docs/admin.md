@@ -70,11 +70,14 @@ Cada enlace del menú (`AdminNav`) muestra al pasar el ratón o enfocar con tecl
 
 **Qué hace:**
 
+- **Envío (tarifa plana):** importe que paga el cliente (`customerFeeEur`) y coste interno de etiqueta de referencia (`internalLabelCostEur`). Modelo Prisma `ShippingSettings` (singleton `id=1`). Alimenta carrito, checkout y pedidos **nuevos**; los pedidos ya creados conservan su `Order.shippingAmount`. Textos públicos: «tarifa plana a cargo del cliente» (sin cifra fija hardcodeada).
 - **Redes sociales:** URLs de Facebook, Instagram y WhatsApp; se muestran en cabecera, contacto y panel resumen.
 - **Hub de la tienda (`/tienda`):** CRUD de bloques visuales (título, imagen, enlace, orden) que componen la página de inicio del marketplace.
 - **Auditoría WAI/WCAG:** revisión de accesibilidad en páginas públicas (atributo `lang`, textos alternativos en imágenes, nombres accesibles de controles).
 
-**Quién lo usa:** administración de marca y contenidos; no afecta a comisiones ni pedidos.
+**Quién lo usa:** administración de marca, contenidos y política comercial de portes.
+
+**Documentación técnica:** [`cart.md`](./cart.md) · servicio `getShippingQuote` / `ShippingSettings`.
 
 ---
 
