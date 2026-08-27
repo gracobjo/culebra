@@ -123,8 +123,8 @@ export default async function PackDetailPage({ params }: PageProps) {
             <div className="mt-8 rounded-3xl border border-stone-200 bg-stone-50 p-5">
               <h2 className="font-medium">Cesta del showroom</h2>
               <p className="mt-2 text-sm text-stone-600">
-                Llévala en Villardeciervos o te la enviamos a casa. El envío lo paga el cliente
-                (6,50 €). Comisión marketplace 17 %; sin compra de stock.
+                Llévala en Villardeciervos o te la enviamos a casa. Tarifa plana a cargo del
+                cliente. Comisión marketplace 17 %; sin compra de stock.
               </p>
             </div>
           )}

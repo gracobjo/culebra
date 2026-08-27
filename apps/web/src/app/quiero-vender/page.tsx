@@ -96,7 +96,7 @@ export default async function SellPage() {
                 Cobramos una comision fija del 17% con minimo de 4€ por operacion.
               </li>
               <li>
-                <span className="font-medium">Logistica clara:</span> el cliente final paga un porte plano de 6.50€.
+                <span className="font-medium">Logistica clara:</span> tarifa plana a cargo del cliente.
               </li>
             </ul>
           </div>

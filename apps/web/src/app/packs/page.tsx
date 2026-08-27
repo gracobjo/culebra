@@ -27,7 +27,7 @@ export default async function PacksPage() {
       <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">Packs y cestas</h1>
       <p className="mt-4 max-w-2xl text-stone-600">
         Cestas del showroom (Escapada, Comarca, Sierra) y packs noche + lote. La estancia se
-        reserva fuera; el lote se compra aquí, para llevar o con envío plano de 6,50 €.
+        reserva fuera; el lote se compra aquí, para llevar o con envío (tarifa plana a cargo del cliente).
       </p>
 
       {items.length === 0 ? (

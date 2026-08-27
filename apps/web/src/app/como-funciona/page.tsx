@@ -28,7 +28,7 @@ export default function HowItWorksPage() {
           },
           {
             title: "2. Carrito y checkout",
-            body: "Anade productos de uno o varios productores. Envio con tarifa plana de 6,50 € (siempre a cargo del cliente). Puedes comprar como invitado o con cuenta.",
+            body: "Anade productos de uno o varios productores. Envio con tarifa plana a cargo del cliente. Puedes comprar como invitado o con cuenta.",
           },
           {
             title: "3. Pago seguro",

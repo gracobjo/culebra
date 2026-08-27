@@ -155,8 +155,8 @@ export default async function CartPage() {
               <span>{formatPrice(cart.shippingAmount)}</span>
             </div>
             <p className="text-sm text-stone-600">
-              Tarifa plana de envio ({formatPrice(cart.shippingAmount || "6.50")}). El porte lo
-              paga siempre el cliente. Un solo envío consolidado aunque haya varios productores.
+              Tarifa plana a cargo del cliente. Un solo envío consolidado aunque haya varios
+              productores.
             </p>
             <div className="flex items-center justify-between border-t border-stone-300 pt-2 font-medium">
               <span>Total</span>

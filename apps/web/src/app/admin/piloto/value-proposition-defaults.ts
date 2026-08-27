@@ -27,7 +27,7 @@ export function defaultValueProposition(input: {
     offerTerms: [
       "Condiciones Fundadores (primer año): comisión marketplace 12 % (vs. 17 % estándar).",
       "Retención legal del payout: 14 días (derecho de desistimiento); después se libera al productor.",
-      "Envío al cliente: tarifa plana 6,50 € siempre a cargo del comprador.",
+      "Envío al cliente: tarifa plana a cargo del comprador.",
       "El productor prepara el pedido en plazos SLA (objetivo: 24 h hábiles para no perecederos).",
       "Tras el piloto, se puede revisar la comisión según volumen (rappels / tramos contractuales).",
     ].join("\n"),

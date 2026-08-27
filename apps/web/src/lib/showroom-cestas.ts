@@ -12,7 +12,7 @@ export const INCOME_SOURCES = [
   {
     source: "Pedido para envío desde el showroom",
     how: "Prueba / elige en tienda y se lo mandáis a casa",
-    fit: "Comisión + porte 6,50 € al cliente",
+    fit: "Comisión + tarifa plana a cargo del cliente",
     potential: "Alto",
   },
   {

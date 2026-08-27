@@ -530,7 +530,7 @@ export default async function AdminShowroomPage() {
       </section>
 
       <p className="mt-8 rounded-3xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-950">
-        Reglas: depósito mínimo (no compra de género); porte 6,50 € al cliente si hay envío;
+        Reglas: depósito mínimo (no compra de género); tarifa plana a cargo del cliente si hay envío;
         3–4 productores por cesta; Comarca 45 € como estrella; no bajar del rango 29–45 €.
         Impulso en caja: +4–12 € sin stock frío ni merchandising genérico.
       </p>

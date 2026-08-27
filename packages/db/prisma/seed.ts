@@ -988,7 +988,7 @@ async function seedTourismModule() {
       shortDescription:
         "Ticket de impulso (29 €): miel + embutido + queso o conserva. Ideal para llevar del showroom.",
       longDescription:
-        "Cesta de arranque del showroom. Depósito de 3 productores del piloto. Si se envía, el cliente paga 6,50 €. La S.L. no compra stock.",
+        "Cesta de arranque del showroom. Depósito de 3 productores del piloto. Si se envía: tarifa plana a cargo del cliente. La S.L. no compra stock.",
       nightsHint: "Showroom · PVP objetivo 29 €",
       sortOrder: 10,
       itemCount: 3,
@@ -1010,7 +1010,7 @@ async function seedTourismModule() {
       shortDescription:
         "Regalo de la sierra (65 €): miel, embutidos, queso, dulce y vino o licor de la zona.",
       longDescription:
-        "Para packs turismo y temporada. Presentación más cuidada. Envío: porte plano 6,50 € al cliente.",
+        "Para packs turismo y temporada. Presentación más cuidada. Envío: tarifa plana a cargo del cliente.",
       nightsHint: "Regalo · PVP objetivo 65 €",
       sortOrder: 12,
       itemCount: 5,

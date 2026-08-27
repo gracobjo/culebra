@@ -107,7 +107,8 @@ export function PlanDashboard({
         </p>
         <h2 className="mt-1 text-xl font-semibold">Online + showroom / cestas (prudente)</h2>
         <p className="mt-2 max-w-3xl text-sm text-stone-600">
-          Comisión 17 %, sin compra de stock, porte 6,50 € al cliente. Ticket online {DETAILED_TICKET_ONLINE} €.
+          Comisión 17 %, sin compra de stock, tarifa plana a cargo del cliente. Ticket online{" "}
+          {DETAILED_TICKET_ONLINE} €.
           Fijos año 1 {formatPrice(DETAILED_FIXED_MONTHLY_Y1)}/mes. Equilibrio ≈{" "}
           {formatPrice(DETAILED_GMV_BREAKEVEN_MONTHLY)}/mes ({formatPrice(DETAILED_GMV_BREAKEVEN_ANNUAL)}/año,
           margen ~14,5 % sobre GMV). Distinto del Excel de justificación (14 / 48 / 75 k). Playbook:{" "}

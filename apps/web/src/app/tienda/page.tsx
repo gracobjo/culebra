@@ -133,7 +133,7 @@ export default async function TiendaPage() {
             imageSrc="/categories/miel-y-productos-apicolas.png"
             imageAlt="Miel y elaboraciones locales de las cestas y packs gourmet"
             hint="Ver packs y cestas gourmet"
-            description="Cestas del showroom y noche + lote. El envío, si aplica, lo paga el cliente (6,50 €)."
+            description="Cestas del showroom y noche + lote. El envío, si aplica: tarifa plana a cargo del cliente."
           />
         </div>
       </section>

@@ -13,7 +13,7 @@ const items = [
   },
   {
     title: "Envio con umbral",
-    description: "Tarifa plana 6,50 €; siempre a cargo del cliente.",
+    description: "Tarifa plana a cargo del cliente.",
   },
 ];
 

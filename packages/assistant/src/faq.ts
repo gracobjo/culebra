@@ -26,8 +26,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     id: "envio",
     question: "¿Cómo funciona el envío?",
     answer:
-      "El envío es tarifa plana de 6,50 € pagada siempre por el cliente (sin umbral de envío gratis). Puedes comprar a varios productores en un solo pedido; consolidamos cuando procede. Cuando el pedido se marca como enviado recibirás seguimiento si el productor indica transportista y tracking.",
-    keywords: ["envio", "envío", "transporte", "seguimiento", "tracking", "entrega", "recibir", "6,50", "tarifa"],
+      "El envío es tarifa plana a cargo del cliente (sin umbral de envío gratis). Puedes comprar a varios productores en un solo pedido; consolidamos cuando procede. Cuando el pedido se marca como enviado recibirás seguimiento si el productor indica transportista y tracking.",
+    keywords: ["envio", "envío", "transporte", "seguimiento", "tracking", "entrega", "recibir", "tarifa", "porte"],
   },
   {
     id: "conservacion",
