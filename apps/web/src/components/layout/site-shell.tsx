@@ -7,7 +7,13 @@ import { SiteFooter } from "./site-footer";
 import { SiteHeaderNav } from "./site-header-nav";
 
 export async function SiteShell({ children }: { children: React.ReactNode }) {
-  const session = await auth();
+  let session: Awaited<ReturnType<typeof auth>> = null;
+  try {
+    session = await auth();
+  } catch {
+    session = null;
+  }
+
   const cart = await loadCart();
   const socials = await getSiteSocialLinks();
   const isLoggedIn = Boolean(session?.user);

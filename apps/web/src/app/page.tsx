@@ -41,11 +41,27 @@ async function loadHubTiles() {
   }
 }
 
+async function loadFeaturedProducts() {
+  try {
+    return await listPublicProducts({ limit: 4 });
+  } catch {
+    return { items: [], total: 0 };
+  }
+}
+
+async function loadFeaturedVendors() {
+  try {
+    return await listPublicVendors({ limit: 3 });
+  } catch {
+    return { items: [], total: 0 };
+  }
+}
+
 export default async function HomePage() {
   const [hubTiles, featuredProducts, featuredVendors] = await Promise.all([
     loadHubTiles(),
-    listPublicProducts({ limit: 4 }),
-    listPublicVendors({ limit: 3 }),
+    loadFeaturedProducts(),
+    loadFeaturedVendors(),
   ]);
 
   return (

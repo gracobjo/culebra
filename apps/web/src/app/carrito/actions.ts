@@ -212,23 +212,29 @@ export async function checkoutAction(
 }
 
 export async function loadCart() {
-  const owner = await getCartOwner();
-  if (!owner.userId && !owner.sessionId) {
-    return {
-      id: null,
-      sessionId: null,
-      itemCount: 0,
-      subtotal: "0.00",
-      couponCode: null,
-      discountAmount: "0.00",
-      total: "0.00",
-      shippingAmount: "0.00",
-      shippingFree: false,
-      amountToFreeShipping: "0.00",
-      freeShippingThreshold: CUSTOMER_SHIPPING_FEE_EUR.toFixed(2),
-      grandTotal: "0.00",
-      items: [],
-    };
+  const empty = {
+    id: null,
+    sessionId: null,
+    itemCount: 0,
+    subtotal: "0.00",
+    couponCode: null,
+    discountAmount: "0.00",
+    total: "0.00",
+    shippingAmount: "0.00",
+    shippingFree: false,
+    amountToFreeShipping: "0.00",
+    freeShippingThreshold: CUSTOMER_SHIPPING_FEE_EUR.toFixed(2),
+    grandTotal: "0.00",
+    items: [],
+  };
+  try {
+    const owner = await getCartOwner();
+    if (!owner.userId && !owner.sessionId) {
+      return empty;
+    }
+    return await getOrCreateCart(owner);
+  } catch {
+    // Sin DATABASE_URL o BD caída: el layout no debe tumbar toda la web.
+    return empty;
   }
-  return getOrCreateCart(owner);
 }
