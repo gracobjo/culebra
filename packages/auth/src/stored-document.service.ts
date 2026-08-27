@@ -1,5 +1,5 @@
 import { prisma } from "@culebra/db";
-import { toInputJson, toInputJsonValue } from "./prisma-helpers.js";
+import { toInputJsonValue } from "./prisma-helpers.js";
 
 export type StoredDocumentKind = "ORDER_CUSTOMER" | "ORDER_VENDOR" | "PRODUCT_CHANGE";
 
