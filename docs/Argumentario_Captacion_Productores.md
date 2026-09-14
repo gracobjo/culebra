@@ -15,6 +15,8 @@ Cómo hablar con productores locales: en **su lenguaje**, con **beneficios concr
 
 La clave no es convencerles de «creer en el proyecto», sino de que **probar es barato, reversible y requiere poco trabajo adicional**.
 
+**Lectura CEO** (prioridad de empresa, no solo de captación): el éxito del piloto se mide por **productores que venden** y por logística viable — no por el número de altas. Detalle: [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) §0.
+
 **Claims de bolsillo:**
 
 > Tú haces el producto. Nosotros te ayudamos a venderlo.
@@ -68,9 +70,9 @@ Cuatro piezas del canal: **escaparate · confianza (sitio físico) · cesta · l
 | Beneficio | Cómo explicarlo |
 |-----------|-----------------|
 | **Escaparate sin abrir tienda** | Publicidad física permanente en Villardeciervos |
-| **Cesta conjunta** | Su producto se beneficia de la compra de otros artesanos |
+| **Cesta conjunta** | Su producto se beneficia de la compra de otros artesanos: **no compiten por la cesta; la construyen juntos** |
 | **Un solo envío para el cliente** | Más fácil que compre (ticket más alto, menos abandono) |
-| **Poco trabajo extra** | Reposición / preparación; el resto lo lleva el canal |
+| **Reparto claro de tareas** | Nosotros: venta conjunta y consolidación. Tú: entregar / reponer según lo acordado (y preparar si es bajo pedido). **No** «tú no haces nada» |
 | **Cobro claro** | Liquidación por sistema; retención legal 14 días |
 | **Prueba reversible** | Dos referencias, poco stock; si no rota, se recoge |
 
