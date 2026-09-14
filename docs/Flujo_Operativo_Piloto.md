@@ -4,9 +4,13 @@
 
 **Marketplace Sabores de la Culebra – Villardeciervos**
 
-**Objetivo del piloto:** validar el circuito completo con **5 productores** y volumen bajo (orientativo: **1–5 pedidos/día**), sin romper el modelo (**sin compra de stock**, comisión base **17 %**, porte **6,50 €** al cliente).
+**Objetivo del piloto:** validar el circuito completo con el programa **Productores Fundadores** (**5 productores**, **2–3 referencias**, revisión a **60–90 días**) y volumen bajo (orientativo: **1–5 pedidos/día**), sin romper el modelo (**sin compra de stock**, comisión base **17 %** / **12 %** fundadores año 1, tarifa plana de envío al cliente).
 
-**Referencias:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`tourism.md`](./tourism.md) · [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · [`Legal_NDA_Acuerdo_Confidencialidad.md`](./Legal_NDA_Acuerdo_Confidencialidad.md) DOC-02 · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §5–§7 y §14 · panel `/admin/piloto` · `/admin/kpis`
+**Éxito del piloto (lectura CEO):** no el número de altas, sino **productores activos con ventas**, pedidos/mes, ticket, margen/pedido y coste logístico/pedido. Ver [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) §0 y §8.
+
+**Regla logística:** ninguna venta debe generar una **ruta logística individual** (fechas fijas, recogidas por zona, consolidación en Villardeciervos).
+
+**Referencias:** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · [`tourism.md`](./tourism.md) · [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · [`Legal_NDA_Acuerdo_Confidencialidad.md`](./Legal_NDA_Acuerdo_Confidencialidad.md) DOC-02 · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §5–§7 y §14 · panel `/admin/piloto` · `/admin/kpis`
 
 ---
 
@@ -199,18 +203,33 @@ Tramos: [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Prod
 
 ## 13. Indicadores mínimos (90 días)
 
-Medición operativa en **`/admin/kpis`** (bloque riesgos + KPIs por artesano). Detalle de umbrales: [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md).
+Medición operativa en **`/admin/kpis`** (bloque riesgos + KPIs por artesano). Detalle de umbrales: [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md). Orden CEO: [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) §8.
+
+**KPI nº1 del piloto:** productores **activos con ventas** (no solo altas).
 
 - Nº de pedidos totales y por productor  
-- **% de pedidos multiproductor** (consolidación real)  
+- Pedidos / mes, ticket medio, margen/pedido, coste logístico/pedido (cuando se mida)  
+- **% de pedidos multiproductor** (consolidación / cesta real)  
 - Tiempo medio / % cumplimiento SLA **24 h**  
 - **% subpedidos con incidencia** (alerta &gt;10–15 %)  
 - **Concentración GMV** (top 3 y máx. por productor)  
 - Nº de productores activos (venta en 90 d)  
 - Feedback cualitativo productores y clientes  
 
+### Decisión a 60–90 días
+
+| Resultado | Acción |
+|-----------|--------|
+| Producto vende | Aumentar stock / referencias |
+| Vende poco | Probar presentación / precio / formato |
+| No vende | Retirar |
+| Logística excesiva por productor | Cambiar modalidad A/B/C o agrupar zona |
+| Productor tractor | Destacar en showroom y cestas |
+
+**Regla:** ninguna venta debe generar una **ruta logística individual**.
+
 ---
 
 ## 14. Regla de oro
 
-> Empezar **simple y reversible**. Preferir **bajo pedido + entrega en Villardeciervos** antes que stock muerto. Solo aumentar depósito cuando haya **rotación demostrada**.
+> Empezar **simple y reversible**. Preferir **bajo pedido + entrega en Villardeciervos** antes que stock muerto. Solo aumentar depósito cuando haya **rotación demostrada**. No escalar productores hasta que el piloto demuestre ventas y logística viable.

@@ -290,13 +290,14 @@ flowchart LR
 
 ## 7) Captación de productores y riesgo de multi-homing
 
-> **Tesis:** no pelear por exclusividad al inicio. Primero **demostrar un canal de prueba** (bajo riesgo, reversible); con tracción, aspirar a ser **canal prioritario**, no el único. Multi-homing OK; competir por comodidad, consolidación, showroom, cesta y rappels.  
-> **Claims:** *Tú haces el producto. Nosotros te ayudamos a venderlo.* · CTA: *¿Probamos con dos referencias?*  
-> **Estrategia (embudo, perfiles, tres piezas de comunicación):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
-> **Argumentario y guion de visita:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
-> **Flujo operativo del piloto:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).  
+> **Tesis CEO:** el riesgo nº1 no es captar productores, sino **demostrar ventas** (5 fundadores que vendan) con logística viable (**ninguna venta → ruta individual**). La captación masiva viene después.  
+> **Tesis comercial:** no pelear por exclusividad al inicio. Primero **canal de prueba**; con tracción, aspirar a ser **canal prioritario**. Multi-homing OK. Moat = **cesta comarcal** (showroom + online + consolidación).  
+> **Claims:** *Tú haces el producto. Nosotros te ayudamos a venderlo.* · *Una cesta. Muchos productores.* · CTA: *¿Probamos con dos referencias?*  
+> **Programa:** Productores Fundadores (5 · 60 días · 2–3 refs) — [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) §0–§2.  
+> **Argumentario y guion:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
+> **Flujo operativo:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).  
 > **Posicionamiento:** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
-> **Showroom:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  
+> **Showroom / cestas:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md).  
 > **Competencia provincial:** [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md).  
 > **Targets embutidos/caza:** [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md).
 
