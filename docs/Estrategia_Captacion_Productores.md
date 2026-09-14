@@ -6,6 +6,31 @@
 
 Marco de mensaje, captación y **lectura CEO** del piloto. Complementa el argumentario de visita y el dossier de socios.
 
+**Dos capas (no compiten):**
+
+| Capa | Pregunta | Dónde |
+|------|----------|-------|
+| **Mensaje / captación** | ¿Cómo hablamos para que el productor *pruebe* el canal? | §1, §4–§7 · [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) |
+| **CEO / empresa** | ¿Escala sin ahogarnos y con ventas reales? | §0, §2–§3, §8–§9 |
+
+**Correspondencia rápida (estrategia de mensaje → este doc):**
+
+| Idea | Sección |
+|------|---------|
+| No marketplace → **canal de prueba** | §1 |
+| *Tú haces el producto…* / roles producto–canal–cliente | §1 |
+| Promesa: oportunidades, no «más ventas» | §1 |
+| *Tu producto merece llegar más lejos* + cesta | §0.1 · §1 |
+| Embudo Conocer→…→¿Probamos?→Medir→Escalar | §4 |
+| Mensajes A/B/C/D (ya vende / poca online / poco volumen / una ref.) | §5 |
+| Canal = escaparate + confianza + cesta + logística | §1 · §0.1 |
+| Showroom = descubrimiento | §0.6 |
+| 5 fundadores + prueba social (no 30 de golpe) | §2 · §6 |
+| 12 % en condiciones, no en folleto | §2 · §7 |
+| CTA *¿Probamos con dos referencias?* | §1 · §4 · §7 |
+| Folleto / hoja condiciones / WhatsApp | §7 |
+| Frase central *otro lugar donde vender* | §1 · §10 |
+
 **Referencias:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md) · [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Riesgos_Modelo_Multimarca.md`](./Riesgos_Modelo_Multimarca.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · [`commissions.md`](./commissions.md) · panel `/admin/piloto` · `/admin/kpis`
 
 ---
@@ -117,14 +142,30 @@ No «tienda llena de cosas». El cliente debe pensar: *«No sabía que había ta
 
 > **Tú haces el producto. Nosotros te ayudamos a venderlo.**
 
+> Escaparate físico en Villardeciervos + venta online conjunta + pedidos agrupados de varios productores.
+
+> **Tu producto merece llegar más lejos.** Nosotros ponemos el escaparate; tú sigues haciendo lo que sabes hacer.  
+> *(Emoción: tu producto, tu trabajo, tu historia. Racional: canal + showroom + online + logística conjunta.)*
+
 > **Una cesta. Muchos productores. Un solo pedido.**
 
-> **No te pedimos que cambies cómo produces ni cómo vendes. Te ofrecemos otro lugar donde vender.** Empieza con poco. Si funciona, crecemos juntos.
+> **No te pedimos que cambies cómo produces ni cómo vendes. Te ofrecemos otro lugar donde vender.**  
+> Empieza con poco. Si funciona, crecemos juntos.
 
-CTA: **¿Probamos con dos referencias?**
+| Actor | Rol |
+|-------|-----|
+| Productor | Producto |
+| Sabores de la Culebra | Canal |
+| Cliente | Compra |
 
-Arquitectura: emoción → oportunidad → funcionamiento → seguridad → riesgo bajo → acción.  
-**Primero valor, después precio** (comisión en hoja de condiciones, no como titular del folleto).
+**No vendemos** web / tienda / logística aislada. Vendemos **acceso a un canal comercial compartido**: ① escaparate ② confianza (punto físico) ③ cesta ④ logística conjunta.
+
+CTA del folleto (única misión → *déjame probar*): **¿Probamos con dos referencias?**  
+No: «únete al marketplace» / «regístrate» / «solicita información».
+
+Arquitectura del mensaje: **emoción → oportunidad → funcionamiento → seguridad → riesgo bajo → acción.**  
+Conversación: folleto (interés) → visita (escuchar) → propuesta (2 refs) → piloto (medir) → resultados → ampliar.  
+**Primero valor, después precio** (12 % fundadores en hoja de condiciones, no como titular).
 
 ---
 
