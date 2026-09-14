@@ -2,23 +2,30 @@
 
 ![Logo Sabores de la Culebra](./imagenes/logo.png)
 
-**Marketplace Villardeciervos / Sabores de la Culebra**
+**Sabores de la Culebra · Villardeciervos**
 
-Cómo hablar con productores locales para que lleven producto a la tienda de Villardeciervos: en **su lenguaje**, con **beneficios concretos**, no con el proyecto en abstracto.
+Cómo hablar con productores locales: en **su lenguaje**, con **beneficios concretos**, vendiendo un **canal de prueba** — no «únete al marketplace».
 
-**Complementa:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · panel `/admin/piloto`.
+**Marco estratégico:** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md)  
+**Complementa:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md) · [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md) · [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) · [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md) · [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) · [`Showroom_Ingresos_Cestas.md`](./Showroom_Ingresos_Cestas.md) · [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md) · [`Resumen_Ejecutivo_Socios.md`](./Resumen_Ejecutivo_Socios.md) · [`Dossier_Socios_Marketplace_Villardeciervos.md`](./Dossier_Socios_Marketplace_Villardeciervos.md) §7 · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md) · [`commissions.md`](./commissions.md) · panel `/admin/piloto`
 
 ---
 
 ## Resumen
 
-La clave no es convencerles de «creer en el proyecto», sino de que **probar es barato, reversible y puede reportar ventas con poco trabajo extra**. Cuanto más fácil y menos comprometido sea el primer paso, más productores darán el sí.
+La clave no es convencerles de «creer en el proyecto», sino de que **probar es barato, reversible y requiere poco trabajo adicional**.
+
+**Claims de bolsillo:**
+
+> Tú haces el producto. Nosotros te ayudamos a venderlo.
+
+> No te pedimos que cambies cómo produces ni cómo vendes. Te ofrecemos otro lugar donde vender.
+
+> ¿Probamos con dos referencias?
 
 ---
 
 ## 1. Lo que de verdad les importa
-
-Los productores locales suelen pensar:
 
 | Pregunta implícita | Si no la respondes… |
 |--------------------|---------------------|
@@ -28,192 +35,197 @@ Los productores locales suelen pensar:
 | ¿De verdad se va a vender? | No dejan género |
 | ¿Qué gano yo dejando el género allí? | No dejan género |
 
-Hay que responder estas cinco de forma **clara y concreta** antes de hablar de plataforma, subvención o tecnología.
+Responder estas cinco **antes** de hablar de tecnología, subvención o «plataforma».
 
 ---
 
-## 2. Argumentario principal (mensaje central)
+## 2. Mensaje central
 
-> No te pedimos que nos dejes el género a cambio de nada. Te ofrecemos un **punto físico de confianza** donde el cliente puede ver y probar el producto, y además un sistema para que cuando alguien compre online a varios artesanos, se pueda preparar todo junto y salga en **un solo envío**. Tú cobras igual, y nosotros nos encargamos de la parte más pesada.
+> **Tú haces el producto. Nosotros te ayudamos a venderlo.**  
+> Escaparate físico en Villardeciervos + venta online conjunta + pedidos de varios productores en un solo envío.  
+> Empezamos con poco; si no te compensa, lo recoges.
+
+Versión larga (si hace falta):
+
+> No te pedimos que nos dejes el almacén. Te ofrecemos un **punto físico de confianza** y un canal para que, cuando alguien compre a varios artesanos, salga todo en **un solo pedido**. Tú fijas el precio y cobras tu parte; nosotros nos encargamos de escaparate, cesta y consolidación.
+
+### Lo que vendemos (y lo que no)
+
+| No | Sí |
+|----|----|
+| Una web / «el marketplace» | **Acceso a un canal comercial compartido** |
+| Sustituir sus canales | **Añadir** un canal |
+| «Más ventas» garantizadas | **Más oportunidades** con poco riesgo |
+
+Cuatro piezas del canal: **escaparate · confianza (sitio físico) · cesta · logística**.
+
+> **Una cesta. Muchos productores. Un solo pedido.**
 
 ---
 
-## 3. Beneficios claros que hay que enfatizar
+## 3. Beneficios a enfatizar
 
 | Beneficio | Cómo explicarlo |
 |-----------|-----------------|
-| **Más posibilidades de venta** | El cliente que entra en la tienda ve tu producto, lo puede tocar/probar y luego lo compra online o se lo lleva. Es publicidad física permanente. |
-| **Consolidación de pedidos** | Si un cliente compra tu miel + el embutido de otro + el queso de un tercero, se prepara todo junto. El cliente paga un solo envío y es más fácil que compre. |
-| **Menos trabajo para ellos** | Una vez que dejan el producto (o lo reponen), vosotros os encargáis de preparar muchos de los pedidos online. |
-| **Cobro seguro y transparente** | El dinero se liquida por el sistema (Stripe), con la retención legal de 14 días. No hay «ya te pagaré». |
-| **Presencia física sin abrir una tienda** | Muchos no pueden permitirse un local. Aquí tienen escaparate sin coste de alquiler. |
-| **Prueba sin gran riesgo** | Se puede empezar dejando poco stock o solo algunas referencias. |
+| **Escaparate sin abrir tienda** | Publicidad física permanente en Villardeciervos |
+| **Cesta conjunta** | Su producto se beneficia de la compra de otros artesanos |
+| **Un solo envío para el cliente** | Más fácil que compre (ticket más alto, menos abandono) |
+| **Poco trabajo extra** | Reposición / preparación; el resto lo lleva el canal |
+| **Cobro claro** | Liquidación por sistema; retención legal 14 días |
+| **Prueba reversible** | Dos referencias, poco stock; si no rota, se recoge |
 
 ---
 
-## 4. Fórmulas prácticas (modalidades A / B / C)
+## 4. Mensaje según perfil
 
-Canónico operativo: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §3.
+| Perfil | Mensaje |
+|--------|---------|
+| Ya vende bien | «No sustituimos tus canales. **Añadimos uno.**» |
+| Buen producto, poca venta online | «Presencia online **sin montar otro canal desde cero**.» |
+| Produce poco | «**Pocas unidades** y reposición organizada.» |
+| Una sola referencia | «**Más unidades de esa** + menos viajes / recogida agrupada» — no pedir tres productos nuevos |
 
-**Regla del piloto:** por defecto oferta **C (híbrida)**; arranque real en **A** hasta primera rotación; **B** solo con rotación demostrada. No pidas el máximo compromiso al principio.
+---
+
+## 5. Modalidades A / B / C (compromiso de stock)
+
+Canónico: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §3.
+
+**Regla del piloto:** por defecto oferta **C (híbrida)**; arranque real en **A** hasta primera rotación; **B** solo con rotación demostrada.
 
 ### A. Escaparate + bajo pedido
 
-Dejan **2–4 referencias** visibles en showroom. Cuando llega un pedido online, preparan y llevan a Villardeciervos en **24 h**. Ideal para empezar.
+2–4 referencias visibles; preparan y llevan en **24 h** ante pedido online.
 
 ### B. Stock mínimo en trastienda
 
-Dejan **4–12 unidades** de 2–3 referencias estables. La trastienda prepara el pedido. Solo cuando ya haya rotación.
+4–12 unidades de 2–3 referencias; solo con rotación.
 
-### C. Híbrida (oferta estándar)
+### C. Híbrida (estándar)
 
-Stock mínimo de lo que más rota + resto bajo pedido. La más flexible para el piloto.
-
-*(Depósito más completo = evolución de B cuando el productor confía y el producto gira.)*
+Stock de lo que rota + resto bajo pedido.
 
 ---
 
-## 5. Cómo reducir sus miedos
+## 6. Cómo reducir miedos
 
-| Miedo del productor | Respuesta efectiva |
-|---------------------|--------------------|
-| «Se me va a picar o caducar» | Trabajamos sin nevera, pero con **fechas claras**: miel/vino aguantan; un sol de Aliste o un loncheado tiene ventana corta (30–90 días). Rotamos y os avisamos. Ver guía de conservación. |
-| «Ya estoy en Exquisiteza / TodeToro / Gourmet Box» | Perfecto: no pedimos exclusividad. Somos canal **extra** con showroom en Villardeciervos y cesta de la comarca. Detalle competencia: [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md). |
-| «Me van a controlar el precio» | Tú fijas el PVP. Nosotros solo aplicamos la comisión acordada. |
-| «Si no se vende me lo como yo» | Empezamos con poco stock. Si no rota, lo recoges. No hay compra obligatoria por nuestra parte. |
-| «Es un lío llevarlo» | Quedamos un día fijo de reparto o lo recogemos nosotros si hay varios en la misma zona. |
-| «Y si la tienda cierra o falla» | El contrato y el sistema de pagos son independientes. El producto sigue siendo tuyo. |
-
----
-
-## 6. Secuencia de captación recomendada
-
-1. **Primero el piloto de 5** — Los de mejor relación y más abiertos. Si ellos dejan producto y les funciona, el resto escucha.
-2. **Visita en su obrador/taller** — Mucho más efectivo que llamar o mandar un WhatsApp.
-3. **Probar con muy poco** — «Déjanos solo 6–8 unidades de dos referencias y en un mes vemos qué tal.»
-4. **Feedback rápido** — Si se vende, se comunica enseguida. Si no, también, y se ajusta.
-5. **Prueba social** — «Fulanito ya tiene producto aquí y le están saliendo pedidos» es el argumento más potente en el medio rural.
+| Miedo | Respuesta |
+|-------|-----------|
+| «Se me caduca» | Fechas claras + rotación; guía: [`Catalogo_Productos_La_Raya_Conservacion.md`](./Catalogo_Productos_La_Raya_Conservacion.md) |
+| «Ya estoy en Exquisiteza / …» | Sin exclusividad; canal **extra** + showroom + cesta comarca — [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) |
+| «Me controláis el precio» | Tú fijas el PVP; nosotros la comisión acordada |
+| «Si no se vende…» | Poco stock; lo recoges; no compramos mercancía |
+| «Es un lío llevarlo» | Día fijo o recogida agrupada en zona |
+| «Y si falla el proyecto» | Producto tuyo; cobros con trazabilidad |
 
 ---
 
-## 7. Incentivos de arranque (opcional pero útil)
+## 7. Embudo (no cerrar en la primera frase)
 
-Para los primeros productores (fundadores piloto):
+Conocer → Interesar → Explicar → Reducir riesgo → **Probar** → Medir → Escalar.
 
-- Comisión **12 % fijo el primer año** (vs 17 % estándar; sin rappel adicional a la baja ese año).
-- Ayuda real con **fotos y fichas** de producto.
-- Colocación preferente en la tienda y en la web.
-- Compromiso de comunicación de ventas **semanal o quincenal** al principio.
+Detalle: [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md) §3.
+
+Secuencia práctica:
+
+1. **Piloto de 5** primero (prueba social después).
+2. **Visita al obrador** (mejor que WhatsApp frío).
+3. **Probar con muy poco** — dos referencias.
+4. **Feedback rápido** de ventas.
+5. **«Fulanito ya está»** cuando exista.
+
+---
+
+## 8. Incentivos fundadores (hoja de condiciones, no titular del folleto)
+
+Para los **primeros** del piloto:
+
+- Comisión **12 % fijo el primer año** (vs 17 %; sin rappel a la baja ese año).
+- Fotos / fichas; colocación preferente; comunicación frecuente de resultados.
+
+**En el folleto / primera conversación:** hablar de *ser de los primeros* y de *probar*.  
+**En la hoja de condiciones / contrato:** el 12 % y el resto de reglas.
 
 Detalle: [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) · [`commissions.md`](./commissions.md) · [`Clausula_Comision_Rappels_Productor.md`](./Clausula_Comision_Rappels_Productor.md).
+
 ---
 
-## 8. Frase de cierre que suele funcionar
+## 9. Frase de cierre
 
-> No te estamos pidiendo que nos dejes el almacén. Te estamos ofreciendo un **escaparate físico** + la posibilidad de que tus productos salgan en pedidos junto con los de otros artesanos, que es justo lo que más ayuda a vender. Empezamos con poco y si no te compensa, lo recoges. **¿Probamos con dos referencias?**
+> No te pedimos el almacén. Te ofrecemos **escaparate + cesta conjunta + un solo envío** para el cliente. Empezamos con poco; si no te compensa, lo recoges.  
+> **¿Probamos con dos referencias?**
 
 ---
 
 # Guion de visita al obrador
 
-Duración orientativa: **10–15 minutos** de conversación útil. Sin prisas, sin pitch tecnológico.
+Duración orientativa: **10–15 minutos**. Sin pitch tecnológico.
 
-## 1. Entrada y toma de contacto (1–2 minutos)
+## 1. Entrada (1–2 min)
 
-- Saludo cercano y sin prisas.
-- Agradecer que te reciba.
-- Comentario genuino sobre el obrador, el producto o algo que veas (el proceso, el olor, una pieza…).
+Saludo cercano; agradecer; comentario genuino sobre el obrador o el producto.
 
-**Ejemplo:**
+## 2. Presentación breve (1 min)
 
-> Buenos días, [Nombre]. Muchas gracias por recibirme. Hacía tiempo que quería pasarme. Se nota que esto está trabajado con mimo…
+**No** empezar por subvención ni tecnología.
 
-## 2. Presentación breve del proyecto (1 minuto)
+> Te resumo por qué he venido. Estamos montando en Villardeciervos un **punto físico** y un **canal conjunto** para productos de la zona: el cliente puede comprar a varios productores en un solo pedido y recibirlo junto. Tú haces el producto; nosotros te ayudamos a venderlo en ese canal. Empezamos probando con poco.
 
-Ve al grano. **No empieces por la subvención ni por la tecnología.**
+## 3. Que hable él
 
-**Texto orientativo:**
+- ¿Cómo vendes ahora?
+- ¿Qué te frena vender más fuera?
+- ¿Has probado internet? ¿Compensa el lío?
 
-> Te resumo muy rápido por qué he venido. Estamos montando en Villardeciervos un punto físico y una plataforma para vender productos de la zona de forma conjunta. La idea es que el cliente pueda comprar cosas de varios productores en un solo pedido y recibirlo todo junto. Y que además haya un sitio donde se puedan ver y tocar los productos.
+## 4. Beneficios según lo oído (2–3 min)
 
-## 3. Pregunta para que hable él (importante)
+- No compramos stock; tú fijas PVP.
+- Cesta multiproductor → más fácil que compren.
+- Punto físico = confianza.
+- Prueba con dos referencias.
+- Cobro por sistema, plazos legales.
 
-Antes de vender, deja que hable. Escucha de verdad. Apunta mentalmente sus dolores.
+> No te pedimos que cambies cómo trabajas. Te ofrecemos **otro lugar donde vender**. Empieza con poco; si funciona, crecemos juntos.
 
-**Preguntas útiles:**
+## 5. Propuesta de prueba (momento clave)
 
-- ¿Ahora mismo cómo estás vendiendo? ¿Más por aquí, ferias, algún pedido online…?
-- ¿Lo que más te frena de vender más fuera de la zona?
-- ¿Has probado a vender por internet o te da más trabajo de lo que aporta?
+> ¿Y si lo hacemos fácil? Me dejas **dos referencias**, poca cantidad, un mes o dos. Si no se mueve, lo recoges. Si funciona, hablamos de meter más. **¿Probamos?**
 
-## 4. Beneficios concretos (2–3 minutos)
+## 6. Objeciones cortas
 
-Habla de lo que le interesa **según lo que te haya contado**.
+| Si dice… | Respuesta |
+|----------|-----------|
+| «No quiero complicaciones» | Por eso poco stock y sin permanencia. |
+| «Ya vendo yo» | Canal **más**; sin exclusividad. |
+| «Si no se vende» | Lo recoges. |
+| «No tengo tiempo de llevar» | Día fijo o recogida de zona. |
+| «¿Cuánto me quedáis?» | Estándar **17 %** (+ rappels con volumen). Te lo dejo **por escrito**. Si entras en el **piloto fundadores**, hay condiciones de lanzamiento (12 % año 1) en la hoja de condiciones — no negociar el % como único tema de la visita. |
 
-**Ideas clave:**
+## 7. Cierre
 
-- No le compráis el género (no asume stock la S.L.).
-- Él sigue fijando el precio.
-- El cliente puede comprar varios productores a la vez → más fácil que compre.
-- Hay un punto físico en Villardeciervos (confianza).
-- Se puede empezar dejando muy poco producto.
-- El cobro va por el sistema, claro y con los plazos legales.
+- Dejar **folleto** (interés) + **hoja de condiciones** si pide detalle.
+- Siguiente paso concreto (fecha / dos referencias).
+- **Nunca** forzar el sí en el momento.
 
-**Frase tipo:**
+Materiales: [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md).
 
-> La idea no es que nos dejes el almacén ni que cambies tu forma de trabajar. Es que tengas un escaparate físico y la posibilidad de salir en pedidos junto con otros productos de la zona. Tú cobras tu parte y nosotros nos encargamos de la parte de consolidar y enviar cuando el pedido viene de fuera.
-
-## 5. La propuesta de prueba (el momento clave)
-
-Nunca pidas el máximo compromiso al principio.
-
-**Propuesta recomendada:**
-
-> ¿Y si lo hacemos fácil? Me dejas solo dos o tres referencias, poca cantidad, y durante un mes o dos vemos qué tal se mueve. Si no se vende o no te compensa, lo recoges y no pasa nada. Si funciona, ya hablamos de meter más.
-
-Esta fórmula baja muchísimo la resistencia.
-
-## 6. Objeciones frecuentes y respuestas cortas
-
-| Si dice… | Puedes responder… |
-|----------|-------------------|
-| «Es que no quiero complicaciones» | Por eso empezamos con muy poco y sin compromiso de permanencia. |
-| «Ya vendo yo por mi cuenta» | Perfecto, esto sería un canal más. No te pedimos exclusividad. |
-| «Y si no se vende» | Lo recoges. No hay compra mínima ni permanencia. |
-| «No tengo tiempo para llevar cosas» | Podemos cuadrar un día concreto o, si hay varios de la zona, organizar una recogida. |
-| «¿Cuánto me quedáis?» | La comisión es del **17 %**. Si vas cogiendo volumen, hay rappels y te baja. Te lo dejo por escrito para que lo veas con calma. |
-
-*(En piloto/fundadores puede aplicarse 12–14 % el primer año; dejarlo por escrito.)*
-
-## 7. Cierre de la visita
-
-- Deja documentación simple (una hoja o PDF corto).
-- Queda para un **siguiente paso concreto** (aunque sea pequeño).
-- **Nunca** presiones para que diga que sí en el momento.
-
-**Ejemplos de cierre:**
-
-> Te dejo esto una hoja para que lo mires con tranquilidad. La semana que viene te escribo y me dices qué te parece.
-
-> Si te encaja, el jueves paso y recogemos las dos referencias para empezar a probar.
-
-**Materiales útiles a dejar:** infografías de comisiones y logística en [`Materiales_Presentacion_Captacion.md`](./Materiales_Presentacion_Captacion.md).
-
-## 8. Después de la visita (muy importante)
+## 8. Después de la visita
 
 | Situación | Acción |
 |-----------|--------|
-| Tras cualquier visita | WhatsApp el **mismo día** o al día siguiente: agradecimiento + siguiente paso. |
-| Quedó en dejar producto | Confirma **día y cantidad**. |
-| Quedó en pensárselo | Escribe a los **5–7 días** (no al día siguiente). |
+| Cualquier visita | WhatsApp **mismo día** o al día siguiente |
+| Quedó en dejar producto | Confirmar día y cantidad |
+| «Me lo pienso» | Escribir a los **5–7 días** |
 
 ---
 
 ## Checklist rápido (bolsillo)
 
-- [ ] No hablar primero de subvención / tech  
-- [ ] Escuchar cómo vende hoy y qué le frena  
-- [ ] Mensaje: escaparate + consolidación + cobro claro  
-- [ ] Propuesta de prueba: 2–3 referencias, poco stock, reversible  
-- [ ] Dejar hoja / PNG + fecha de seguimiento  
+- [ ] No hablar primero de subvención / tech / «marketplace»  
+- [ ] Claim: **tú producto / nosotros canal**  
+- [ ] Escuchar cómo vende y qué le frena  
+- [ ] Mensaje según perfil (ya vende / poca online / poco volumen / una referencia)  
+- [ ] Escaparate + cesta + consolidación + cobro claro  
+- [ ] CTA: **¿Probamos con dos referencias?**  
+- [ ] 12 % solo en hoja de condiciones / fundadores  
 - [ ] WhatsApp de cierre el mismo día  

@@ -290,14 +290,15 @@ flowchart LR
 
 ## 7) Captación de productores y riesgo de multi-homing
 
-> **Tesis:** no pelear por exclusividad al inicio. Objetivo = ser el **canal principal o prioritario**, no el único. Aceptar multi-homing y competir por comodidad, consolidación logística, showroom y rappels.  
-> **Flujo operativo del piloto:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).  
-> **Posicionamiento (qué sí / adaptar / no):** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
-> **Estrategia operativa completa (segmentos, fases, KPIs, riesgos):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
+> **Tesis:** no pelear por exclusividad al inicio. Primero **demostrar un canal de prueba** (bajo riesgo, reversible); con tracción, aspirar a ser **canal prioritario**, no el único. Multi-homing OK; competir por comodidad, consolidación, showroom, cesta y rappels.  
+> **Claims:** *Tú haces el producto. Nosotros te ayudamos a venderlo.* · CTA: *¿Probamos con dos referencias?*  
+> **Estrategia (embudo, perfiles, tres piezas de comunicación):** [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).  
 > **Argumentario y guion de visita:** [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).  
-> **Concepto de showroom / tienda física:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  
-> **Competencia digital provincial:** [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md) (Exquisiteza, Gourmet Box, TodeToro, Pedro y Ana).  
-> **Productores embutidos/caza:** [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md).
+> **Flujo operativo del piloto:** [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md).  
+> **Posicionamiento:** [`Posicionamiento_Activador_Territorio.md`](./Posicionamiento_Activador_Territorio.md).  
+> **Showroom:** [`Concepto_Tienda_Showroom_Villardeciervos.md`](./Concepto_Tienda_Showroom_Villardeciervos.md).  
+> **Competencia provincial:** [`Competencia_Plataformas_Gourmet_Zamora.md`](./Competencia_Plataformas_Gourmet_Zamora.md).  
+> **Targets embutidos/caza:** [`Productores_Objetivo_Embutidos_Caza_Culebra.md`](./Productores_Objetivo_Embutidos_Caza_Culebra.md).
 
 ### 7.1 Diagnóstico del riesgo real
 
@@ -318,11 +319,12 @@ Pedir exclusividad total al principio es **casi imposible y poco recomendable**.
 
 - **Objetivo:** validar flujo completo (alta, pedidos, preparación, pago, consolidación).
 - **Perfil:** artesanos conocidos, no perecedero de calidad, cierta predisposición digital.
-- **Oferta de arranque:**
+- **Oferta de arranque** (detalle en **hoja de condiciones**, no como gancho del primer folleto):
   - comisión reducida **12 % fijo el primer año** (fundadores; vs 17 % estándar; sin rappel adicional a la baja ese año) — [`Flujo_Operativo_Piloto.md`](./Flujo_Operativo_Piloto.md) §12;
   - ayuda real con fotos, fichas y optimización;
   - prioridad de posicionamiento en la web;
   - acompañamiento personal (visitas, WhatsApp directo).
+- **Mensaje de visita:** canal de prueba + CTA *¿Probamos con dos referencias?* — [`Argumentario_Captacion_Productores.md`](./Argumentario_Captacion_Productores.md).
 - Validará Stripe Connect, logística a demanda nacional/turística y el “efecto llamada”.
 
 #### Fase 2 — Expansión local (puerta a puerta + referidos)
@@ -357,12 +359,14 @@ Pedir exclusividad total al principio es **casi imposible y poco recomendable**.
 
 ### 7.4 Argumentario comercial (guion)
 
-> Documento operativo completo (beneficios, modalidades de compromiso, miedos, guion de visita al obrador, objeciones y seguimiento): [`docs/Argumentario_Captacion_Productores.md`](docs/Argumentario_Captacion_Productores.md).
+> Documento operativo completo: [`docs/Argumentario_Captacion_Productores.md`](docs/Argumentario_Captacion_Productores.md) · marco: [`Estrategia_Captacion_Productores.md`](./Estrategia_Captacion_Productores.md).
 
-> No te pedimos que dejes de vender en otros sitios.  
-> Te ofrecemos un canal adicional con ventajas reales: comisión clara y rappels si creces; el cliente puede comprar tus productos junto con los de otros artesanos en un solo envío; presencia física en Villardeciervos; ayuda con fichas y fotos; cobro automático y transparente.  
-> Si te funciona, irás metiendo más producto. Si no, no pierdes nada.  
-> **Empezamos con poco y si no te compensa, lo recoges. ¿Probamos con dos referencias?**
+> **Tú haces el producto. Nosotros te ayudamos a venderlo.**  
+> No te pedimos que dejes de vender en otros sitios: te ofrecemos **otro canal** (escaparate en Villardeciervos + cesta de varios productores + un solo envío).  
+> Empezamos con poco; si no te compensa, lo recoges.  
+> **¿Probamos con dos referencias?**
+
+*(Comisión fundadores 12 % año 1: hoja de condiciones / contrato, no titular del folleto.)*
 
 ### 7.5 Riesgos y mitigación
 
