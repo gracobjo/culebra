@@ -17,6 +17,12 @@ Archivos en la **raíz del repositorio** (no en `docs/`, para facilitar descarga
 
 Claims canónicos: *Tú haces el producto. Nosotros te ayudamos a venderlo.* · *Una cesta. Muchos productores. Un solo pedido.*
 
+## Brief para generadores (vídeo / infografía / PPT)
+
+| Documento | Uso |
+|-----------|-----|
+| [`Brief_Creativo_Productores_Canal.md`](./Brief_Creativo_Productores_Canal.md) | **Prompt maestro** dirigido a productores: arco narrativo, storyboard, dirección de marca, bloque «cópialo al generador». No mezclar con hoja de condiciones. |
+
 ## Presentaciones (PPTX)
 
 | Archivo | Uso |
